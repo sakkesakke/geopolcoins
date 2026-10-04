@@ -182,6 +182,110 @@ a{color:inherit}
 .btn-black{background:#000;color:#fff}
 .btn-yellow{background:var(--yellow);color:#000}
 .btn-white{background:#fff;color:#000}
+.btn-blue{background:var(--blue);color:#fff}
+
+/* ============ FEATURED $MAIGA ============ */
+.featured{
+  margin-top:50px;
+  position:relative;
+  overflow:hidden;
+  padding:32px;
+  border:5px solid #000;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(29,161,242,.30), transparent 42%),
+    radial-gradient(circle at 8% 92%, rgba(255,216,0,.16), transparent 42%),
+    #0d1622;
+  box-shadow:14px 14px 0 #000;
+}
+
+.featured::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:11px;
+  background:linear-gradient(90deg,var(--yellow),var(--blue),var(--red),var(--yellow));
+}
+
+.featured-badge{
+  display:inline-block;
+  margin:14px 0 20px;
+  padding:9px 18px;
+  background:var(--yellow);
+  color:#000;
+  font-size:16px;
+  letter-spacing:1.5px;
+  border:3px solid #000;
+  box-shadow:4px 4px 0 #000;
+  animation:pulse 1.7s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
+
+.featured-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:32px;
+  align-items:center;
+}
+
+.featured-grid > img{
+  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  background:#06101b;
+  border:5px solid #000;
+  border-radius:20px;
+  box-shadow:9px 9px 0 rgba(0,0,0,.9);
+}
+
+.featured h2{
+  margin:0 0 14px;
+  font-size:clamp(38px, 5vw, 64px);
+  line-height:.94;
+  text-transform:uppercase;
+  text-shadow:4px 4px 0 #000;
+}
+
+.featured h2 span{color:var(--yellow)}
+
+.featured p{
+  font-family:Arial, sans-serif;
+  font-size:18px;
+  line-height:1.65;
+  color:#e7eef7;
+  margin:0 0 16px;
+}
+
+.contract-box{
+  font-family:Arial, sans-serif;
+  font-size:12px;
+  line-height:1.5;
+  background:#fff;
+  color:#111;
+  border:3px solid #000;
+  border-radius:10px;
+  padding:10px 12px;
+  margin:0 0 18px;
+  word-break:break-all;
+  box-shadow:4px 4px 0 #000;
+}
+
+.dev-note{
+  margin:20px 0 0;
+  padding-left:15px;
+  border-left:6px solid var(--yellow);
+  font-family:Arial, sans-serif;
+  font-size:15px;
+  line-height:1.65;
+  color:#c6d3e2;
+}
+
+.dev-note strong{color:var(--yellow)}
 
 /* SECTION HEADERS */
 .section-title{
@@ -404,6 +508,7 @@ footer{
 /* RESPONSIVE */
 @media(max-width:950px){
   .hero-copy{grid-template-columns:1fr}
+  .featured-grid{grid-template-columns:1fr}
   .coins{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr}
   .gallery{grid-template-columns:1fr 1fr}
@@ -414,6 +519,7 @@ footer{
   .ticker{font-size:11px;letter-spacing:1px}
   .hero-banner{padding-top:20px}
   .hero-copy h1{font-size:54px}
+  .featured{padding:22px}
   .coins,
   .steps,
   .gallery{grid-template-columns:1fr}
@@ -429,7 +535,7 @@ footer{
 <div class="top">
   <div class="container nav">
     <div class="brand">
-      <img src="https://sakkemoto.com/wp-content/uploads/2026/09/earthcoin.jpeg" alt="GeopolCoins Earth coin">
+      <img src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg" alt="GeopolCoins $MAIGA — Make AI Great Again">
       <div>
         <div class="brand-title">GEOPOLCOINS</div>
         <span class="brand-sub">SAME PLANET. DIFFERENT DRAMA.</span>
@@ -441,12 +547,12 @@ footer{
 </div>
 
 <div class="ticker">
-  ⚠ MEME COINS • $LANDUSA • $IRANUSA • $PLANET • $MAIGA • 4 COINS / 1 PLANET • INFINITE MEMES ⚠
+  🔥 $MAIGA • $PLANET • $LANDUSA • $IRANUSA • 4 COINS / 1 PLANET • INFINITE MEMES • AIRDROPS &amp; FREEBIES ON X 🔥
 </div>
 
 <div class="container">
 
-  <!-- NEW WIDE BANNER -->
+  <!-- WIDE BANNER -->
   <section class="hero-banner">
     <img
       src="https://sakkemoto.com/wp-content/uploads/2026/09/bannerearthcoin.jpeg"
@@ -467,17 +573,66 @@ footer{
       </p>
 
       <div class="buttons">
+        <a class="btn btn-blue" href="#maiga">🔥 VIEW $MAIGA</a>
+        <a class="btn btn-yellow" href="#coins">VIEW $PLANET</a>
         <a class="btn btn-red" href="https://pump.fun/coin/3p7JNozLW8gHh7j1EGZVACnQS1q2TSuh3BaVKqRmpump" target="_blank" rel="noopener">VIEW $LANDUSA</a>
         <a class="btn btn-black" href="https://pump.fun/coin/FKTHTcJSmnkgwf8kiLAEbkzEVg8QgP3McnFsztigpump" target="_blank" rel="noopener">VIEW $IRANUSA</a>
-        <a class="btn btn-yellow" href="#coins">VIEW $PLANET</a>
-        <a class="btn btn-white" href="#maiga">VIEW $MAIGA</a>
       </div>
     </div>
   </section>
 
+  <!-- ============ FEATURED: $MAIGA ============ -->
+  <section class="featured" id="maiga">
+    <div class="featured-badge">🔥 FEATURED • NEW • AI</div>
+
+    <div class="featured-grid">
+      <img
+        src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg"
+        alt="$MAIGA — Make AI Great Again GeopolCoins meme coin"
+      >
+
+      <div>
+        <h2>MAKE AI<br><span>GREAT AGAIN</span></h2>
+
+        <p>
+          $MAIGA is the AI-themed flagship of the GeopolCoins universe — artificial intelligence,
+          blockchain and internet culture colliding in one meme coin.
+        </p>
+
+        <div class="contract-box">
+          <strong>CONTRACT:</strong><br>
+          3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump
+        </div>
+
+        <div class="buttons" style="margin-top:0;">
+          <a
+            class="btn btn-black"
+            href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump"
+            target="_blank"
+            rel="noopener"
+          >🚀 BUY $MAIGA</a>
+
+          <a
+            class="btn btn-blue"
+            href="https://x.com/greenlandusa1"
+            target="_blank"
+            rel="noopener"
+          >🎁 AIRDROPS &amp; FREEBIES ON X</a>
+        </div>
+
+        <p class="dev-note">
+          <strong>WE ARE DEVELOPING EVERY DAY AND WE ARE HERE TO STAY.</strong>
+          New art, new memes, new drops — follow us on X for airdrops, freebies and
+          every update first. Join the community now.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE OTHER COINS ============ -->
   <section id="coins">
-    <h2 class="section-title">THE <span>4 COINS</span></h2>
-    <p class="section-note">Four community meme concepts sharing one planet and one visual universe.</p>
+    <h2 class="section-title">MORE <span>COINS</span></h2>
+    <p class="section-note">The rest of the GeopolCoins universe — same planet, different drama.</p>
 
     <div class="coins">
 
@@ -522,31 +677,6 @@ footer{
 
         <!-- Add the $PLANET token URL here when available -->
         <a class="btn btn-yellow" href="#join" aria-label="More information about PLANET">MORE</a>
-      </div>
-
-      <div class="coin" id="maiga">
-        <div class="status" style="background:#1da1f2;color:#fff;">NEW • AI</div>
-        <img
-          src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg"
-          alt="$MAIGA — Make AI Great Again"
-        >
-        <h3>$MAIGA</h3>
-        <p>
-          Make AI Great Again. An AI-themed community meme coin bringing artificial intelligence,
-          blockchain and internet culture into the GeopolCoins universe.
-        </p>
-
-        <div style="font-family:Arial,sans-serif;font-size:12px;line-height:1.45;background:#eef1f5;border:2px solid #000;border-radius:9px;padding:9px;margin:10px 0;text-align:left;word-break:break-all;">
-          <strong>CONTRACT:</strong><br>
-          3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump
-        </div>
-
-        <a
-          class="btn btn-black"
-          href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump"
-          target="_blank"
-          rel="noopener"
-        >VIEW $MAIGA</a>
       </div>
 
     </div>
@@ -601,19 +731,20 @@ footer{
   </section>
 
   <section class="gallery">
+    <img src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg" alt="GeopolCoins $MAIGA artwork">
     <img src="https://sakkemoto.com/wp-content/uploads/2026/09/earthcoin.jpeg" alt="GeopolCoins $PLANET artwork">
     <img src="https://sakkemoto.com/wp-content/uploads/2026/03/this556.jpeg" alt="GeopolCoins meme artwork">
     <img src="https://sakkemoto.com/wp-content/uploads/2026/03/HAN-rUUX0AACtuL.jpeg" alt="GeopolCoins community meme">
-    <img src="https://sakkemoto.com/wp-content/uploads/2026/03/G_ljbHEWEAAGBc5.jpeg" alt="GeopolCoins geopolitical meme">
   </section>
 
   <section class="cta" id="join">
     <h2>JOIN GEOPOLCOINS</h2>
     <p>
-      Explore the four-coin universe, follow the project on X and share the memes.
+      We are developing every day and we are here to stay. Follow the project on X for
+      airdrops, freebies, new memes and every update first.
     </p>
 
-    <a class="btn btn-yellow" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN US ON X</a>
+    <a class="btn btn-blue" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">🎁 JOIN US ON X — AIRDROPS &amp; FREEBIES</a>
   </section>
 
   <div class="disclaimer">

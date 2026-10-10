@@ -16,6 +16,7 @@
   --gold:#ffb800;
   --silver:#c0c8d4;
   --bronze:#cd7f32;
+  --green:#28c76f;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -64,7 +65,6 @@ a{color:inherit}
 .section-title span{color:var(--yellow)}
 .section-note{font-family:Arial,sans-serif;color:#bcc9d8;margin:-8px 0 24px;font-size:16px}
 
-/* GAME SECTION */
 .game-section{margin-top:60px;padding:30px;border:5px solid #000;border-radius:26px;background:radial-gradient(circle at 50% 0%, rgba(217,39,54,.14), transparent 42%),#0b1520;box-shadow:14px 14px 0 #000;position:relative;overflow:hidden}
 .game-section::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--red),#fff,var(--blue),#fff,var(--red))}
 .game-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0 6px}
@@ -81,7 +81,6 @@ a{color:inherit}
 
 #gameHud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:10px 16px;color:var(--yellow);font-size:clamp(13px,2.2vw,20px);letter-spacing:2px;text-shadow:2px 2px 0 #000;pointer-events:none;z-index:5}
 #gameHud .maigaLabel{color:var(--red)}
-#gameHud .streakLabel{color:var(--gold)}
 
 #gameOverlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(2,5,10,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;z-index:10;color:#fff;overflow-y:auto}
 #gameOverlay.hidden{display:none}
@@ -101,7 +100,6 @@ a{color:inherit}
 .share-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
 .share-btn.green{background:var(--red);color:#fff}
 
-/* PANELS */
 .panel{background:#fff;color:#111;border:5px solid #000;border-radius:18px;padding:22px;box-shadow:9px 9px 0 rgba(0,0,0,.9);margin-bottom:20px}
 .panel h4{margin:0 0 14px;font-size:clamp(18px,2.4vw,22px);text-transform:uppercase;border-bottom:4px solid #000;padding-bottom:10px;letter-spacing:1px}
 .panel h4 span{color:var(--red)}
@@ -116,7 +114,6 @@ a{color:inherit}
 .lb-row .pts{font-weight:900;color:var(--red);font-size:16px}
 .lb-empty{font-family:Arial,sans-serif;font-size:13px;color:#667;text-align:center;padding:16px 8px}
 
-/* Daily challenge */
 .challenge-box{background:linear-gradient(135deg,#ffd800,#ffb800);border:4px solid #000;border-radius:14px;padding:16px;margin-bottom:14px;font-family:Arial,sans-serif;box-shadow:4px 4px 0 #000;color:#000}
 .challenge-box .label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;opacity:.7;margin-bottom:6px}
 .challenge-box .task{font-family:Impact,sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:8px}
@@ -124,14 +121,20 @@ a{color:inherit}
 .challenge-box.done{background:linear-gradient(135deg,#28c76f,#1fa857);color:#fff}
 .challenge-box.done .label{color:rgba(255,255,255,.8)}
 
-/* Streak */
 .streak-box{background:linear-gradient(135deg,#ff3d3d,#b91f2b);color:#fff;border:4px solid #000;border-radius:14px;padding:16px;margin-bottom:14px;font-family:Arial,sans-serif;box-shadow:4px 4px 0 #000;display:flex;align-items:center;gap:14px}
 .streak-box .flame{font-size:40px;line-height:1}
 .streak-box .streak-info{flex:1}
 .streak-box .streak-count{font-family:Impact,sans-serif;font-size:32px;line-height:1;letter-spacing:1px}
 .streak-box .streak-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;opacity:.85;margin-top:4px}
 
-/* Achievements */
+/* Referral */
+.referral-box{background:linear-gradient(135deg,#2457a6,#1a3f7a);color:#fff;border:4px solid #000;border-radius:14px;padding:16px;margin-bottom:14px;font-family:Arial,sans-serif;box-shadow:4px 4px 0 #000}
+.referral-box .label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;opacity:.85;margin-bottom:8px}
+.referral-box .link{background:#fff;color:#111;padding:10px;border:3px solid #000;border-radius:8px;font-family:Courier,monospace;font-size:11px;word-break:break-all;margin-bottom:10px}
+.referral-box .ref-btn{width:100%;background:var(--yellow);color:#000;border:3px solid #000;border-radius:8px;padding:10px;font-family:inherit;font-size:14px;letter-spacing:1px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 #000}
+.referral-box .ref-btn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 #000}
+.referral-box .referred-by{background:#fff;color:#111;padding:8px 10px;border:3px solid #000;border-radius:8px;font-size:12px;margin-bottom:8px;text-align:center}
+
 .badges-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .badge{background:#f4f7fb;border:3px solid #000;border-radius:12px;padding:10px;display:flex;align-items:center;gap:10px;font-family:Arial,sans-serif;opacity:.35;transition:.2s}
 .badge.unlocked{opacity:1;background:linear-gradient(135deg,#fff8e6,#ffefc2)}
@@ -157,7 +160,6 @@ a{color:inherit}
 
 .game-controls{margin-top:16px;font-family:Arial,sans-serif;font-size:12px;color:#7e8ea3;text-align:center}
 
-/* COINS */
 .coins{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .coin{background:linear-gradient(180deg,#fff 0%,#f0f3f7 100%);color:#111;padding:20px;border-radius:20px;border:5px solid #000;box-shadow:10px 10px 0 #000;text-align:center;position:relative;overflow:hidden}
 .coin::before{content:"";position:absolute;inset:0 0 auto 0;height:9px;background:var(--yellow)}
@@ -217,7 +219,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 </div>
 
 <div class="ticker">
-  🔥 $MAIGA • $MAIGA TAKEOVER GAME • DAILY CHALLENGE • STREAKS • BADGES • AIRDROP LIVE 🔥
+  🔥 $MAIGA • BOSS WAVES EVERY 5 LEVELS • POWER-UPS • DAILY CHALLENGE • REFER FRIENDS • AIRDROP LIVE 🔥
 </div>
 
 <div class="container">
@@ -248,7 +250,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       <span class="live-dot"></span>
       <h2><span>$MAIGA</span> TAKEOVER</h2>
     </div>
-    <p>🎮 <strong>Jean-Phil</strong> pilots the last $MAIGA ship. <strong>Trump</strong> commands from the bridge. Shoot the crypto coins. 🧢🤖</p>
+    <p>🎮 <strong>Jean-Phil</strong> pilots the last $MAIGA ship. <strong>Trump</strong> commands from the bridge. 👾 <strong>Bosses every 5 waves.</strong> ⚡ <strong>Grab power-ups.</strong> 🧢🤖</p>
 
     <div class="game-grid">
       <div>
@@ -283,16 +285,26 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
         <div class="panel">
           <h4>🏆 TOP <span>5</span> SCORES</h4>
           <div id="lbList"><div class="lb-empty">No scores yet. Be the first pilot! 🧢🤖</div></div>
-
           <div class="name-box">
             <label for="pilotName">🪪 Pilot name (saved locally)</label>
             <input id="pilotName" type="text" maxlength="12" placeholder="e.g. JeanPhil01">
           </div>
-
           <div class="lb-actions">
             <button class="yellow" id="shareTopBtn" type="button">📸 SHARE</button>
             <button class="blue" id="challengeBtn" type="button">⚔️ CHALLENGE</button>
             <button class="gray" id="clearLbBtn" type="button">🗑️ CLEAR</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h4>👥 REFER <span>A FRIEND</span></h4>
+          <div class="referral-box">
+            <div id="referredByBox" style="display:none;" class="referred-by">
+              🎉 You were referred by <strong id="referrerName"></strong>!
+            </div>
+            <div class="label">YOUR REFERRAL LINK</div>
+            <div class="link" id="refLink">Loading…</div>
+            <button class="ref-btn" id="copyRefBtn" type="button" onclick="MAIGA_GAME.copyRef()">📋 COPY LINK</button>
           </div>
         </div>
 
@@ -322,7 +334,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   <section id="achievements" style="margin-top:60px;">
     <h2 class="section-title">🏅 ACHIEVEMENT <span>BADGES</span></h2>
     <p class="section-note">Unlock badges by playing. Collect them all. 🧢</p>
-
     <div class="badges-grid" id="badgesGrid"></div>
   </section>
 
@@ -381,28 +392,36 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
 <script>
 /* =====================================================================
-   $MAIGA TAKEOVER — FULL ENGINE
-   Features: juice pack, sound FX, daily challenge, streak, achievements
+   $MAIGA TAKEOVER — TIER 2
+   Boss waves + power-ups + referral system
    ===================================================================== */
 (function(){
   'use strict';
 
-  /* ---------- CONFIG ---------- */
   var X_HASHTAGS = 'MAIGA,MakeAIGreatAgain,Solana,MAIGATakeover';
-  var SHARE_URL = 'https://geopolcoins.xyz/';
+  var SHARE_BASE = 'https://geopolcoins.xyz/';
   var LB_KEY = 'maiga_lb_v1';
   var NAME_KEY = 'maiga_name_v1';
   var STREAK_KEY = 'maiga_streak_v1';
   var DAILY_KEY = 'maiga_daily_v1';
   var BADGE_KEY = 'maiga_badges_v1';
   var SOUND_KEY = 'maiga_sound_v1';
+  var REF_KEY = 'maiga_referrer_v1';
   var MAX_LB = 5;
 
   /* ---------- STATE ---------- */
   var state = 'menu';
-  var score = 0, lives = 3, wave = 1, kills = 0;
+  var score = 0, lives = 3, wave = 1, kills = 0, bossKills = 0, powerUpsCollected = 0;
   var enemies = [], bullets = [], enemyBullets = [], particles = [], stars = [];
-  var player = { x: 480, y: 630, speed: 380, cooldown: 0.22 };
+  var powerUps = [];
+  var boss = null;
+  var player = {
+    x: 480, y: 630, speed: 380, cooldown: 0.22,
+    hasShield: false,
+    tripleShotTime: 0,
+    rapidFireTime: 0
+  };
+  var slowMoTimer = 0;
   var keys = {};
   var lastShot = 0, enemyDir = 1, enemySpeed = 40, shootTimer = 0;
   var touchActive = false, touchX = 0;
@@ -423,8 +442,23 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     { sym:'S', color:'#ff3d3d' }
   ];
 
+  /* Boss types — rotate by wave */
+  var BOSS_TYPES = [
+    { sym:'₿',  color:'#f7931a', name:'BITCOIN BOSS',   hp:100, speed:60, fireRate:1.2, bulletCount:3 },
+    { sym:'Ξ',  color:'#8a92b2', name:'ETHEREUM BOSS',  hp:130, speed:80, fireRate:1.0, bulletCount:4 },
+    { sym:'Ð',  color:'#c2a633', name:'DOGE BOSS',      hp:150, speed:110, fireRate:0.8, bulletCount:5 }
+  ];
+
+  /* Power-up types */
+  var POWERUPS = [
+    { id:'triple', icon:'⚡', color:'#ffd800', name:'TRIPLE SHOT', duration:10 },
+    { id:'shield', icon:'🛡️', color:'#1da1f2', name:'SHIELD',      duration:0 },
+    { id:'rapid',  icon:'🔥', color:'#ff3d3d', name:'RAPID FIRE',  duration:8 },
+    { id:'slow',   icon:'🐢', color:'#28c76f', name:'SLOW-MO',     duration:6 }
+  ];
+
   /* ============================================================
-     AUDIO ENGINE (procedural — no files)
+     AUDIO (procedural)
      ============================================================ */
   var audioCtx = null;
   var soundEnabled = true;
@@ -485,27 +519,87 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     playTone(880, 0.10, 'sine', 0.08);
     setTimeout(function(){ playTone(1320, 0.20, 'sine', 0.08); }, 100);
   }
+  function sfxPowerUp(){
+    playTone(660, 0.06, 'sine', 0.09);
+    setTimeout(function(){ playTone(990, 0.06, 'sine', 0.09); }, 70);
+    setTimeout(function(){ playTone(1320, 0.12, 'sine', 0.09); }, 140);
+  }
+  function sfxBossAlert(){
+    playTone(120, 0.4, 'sawtooth', 0.10);
+    setTimeout(function(){ playTone(100, 0.4, 'sawtooth', 0.10); }, 200);
+  }
+  function sfxBossHit(){ playTone(200, 0.08, 'square', 0.06); }
+  function sfxBossDeath(){
+    playTone(300, 0.1, 'sawtooth', 0.10);
+    setTimeout(function(){ playTone(220, 0.1, 'sawtooth', 0.10); }, 100);
+    setTimeout(function(){ playTone(180, 0.15, 'sawtooth', 0.10); }, 200);
+    setTimeout(function(){ playTone(120, 0.5, 'sawtooth', 0.10); }, 320);
+  }
 
   /* ============================================================
-     LOCAL STORAGE HELPERS
+     STORAGE
      ============================================================ */
-  function safeGet(key){
-    try{ return localStorage.getItem(key); } catch(e){ return null; }
-  }
-  function safeSet(key, val){
-    try{ localStorage.setItem(key, val); } catch(e){}
-  }
-  function safeDel(key){
-    try{ localStorage.removeItem(key); } catch(e){}
-  }
+  function safeGet(k){ try{ return localStorage.getItem(k); } catch(e){ return null; } }
+  function safeSet(k,v){ try{ localStorage.setItem(k,v); } catch(e){} }
+  function safeDel(k){ try{ localStorage.removeItem(k); } catch(e){} }
   function todayKey(){
     var d = new Date();
     return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
   }
   function yesterdayKey(){
-    var d = new Date();
-    d.setDate(d.getDate() - 1);
+    var d = new Date(); d.setDate(d.getDate() - 1);
     return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  /* ============================================================
+     REFERRAL SYSTEM
+     ============================================================ */
+  function initReferral(){
+    // Check URL for ?ref=
+    var params = new URLSearchParams(window.location.search);
+    var ref = params.get('ref');
+    if (ref){
+      ref = ref.slice(0, 12).replace(/[^a-zA-Z0-9_\-]/g, '');
+      if (ref && !safeGet(REF_KEY)){
+        safeSet(REF_KEY, ref);
+        console.log('[MAIGA] Referred by:', ref);
+      }
+    }
+  }
+  function getReferrer(){
+    return safeGet(REF_KEY) || null;
+  }
+  function getMyRefLink(){
+    var name = getPilotName();
+    if (name === 'Anonymous') name = 'pilot';
+    return SHARE_BASE + '?ref=' + encodeURIComponent(name);
+  }
+  function renderReferral(){
+    var linkEl = document.getElementById('refLink');
+    var refBox = document.getElementById('referredByBox');
+    var refNameEl = document.getElementById('referrerName');
+    if (linkEl) linkEl.textContent = getMyRefLink();
+    var r = getReferrer();
+    if (r && refBox && refNameEl){
+      refBox.style.display = 'block';
+      refNameEl.textContent = r;
+    }
+  }
+  function copyRefLink(){
+    var link = getMyRefLink();
+    var doCopy = function(){
+      try{
+        navigator.clipboard.writeText(link).then(function(){
+          var btn = document.getElementById('copyRefBtn');
+          if (btn){
+            var orig = btn.textContent;
+            btn.textContent = '✅ COPIED!';
+            setTimeout(function(){ btn.textContent = orig; }, 1500);
+          }
+        });
+      } catch(e){ alert('Your link:\n\n' + link); }
+    };
+    doCopy();
   }
 
   /* ============================================================
@@ -519,9 +613,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       return Array.isArray(arr) ? arr.filter(function(x){ return x && typeof x.score === 'number'; }) : [];
     } catch(e){ return []; }
   }
-  function saveLB(arr){
-    safeSet(LB_KEY, JSON.stringify(arr.slice(0, MAX_LB)));
-  }
+  function saveLB(arr){ safeSet(LB_KEY, JSON.stringify(arr.slice(0, MAX_LB))); }
   function addScore(name, sc){
     if (!sc || sc <= 0) return;
     var arr = loadLB();
@@ -564,26 +656,26 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
   function saveName(){
     safeSet(NAME_KEY, getPilotName());
+    renderReferral();
   }
 
   /* ============================================================
      DAILY CHALLENGE
      ============================================================ */
   var CHALLENGES = [
-    { id:'score300',  text:'Score 300+ points in one run',   check:function(s,w,k){ return s >= 300; } },
-    { id:'score500',  text:'Score 500+ points in one run',   check:function(s,w,k){ return s >= 500; } },
-    { id:'score800',  text:'Score 800+ points in one run',   check:function(s,w,k){ return s >= 800; } },
-    { id:'wave5',     text:'Reach Wave 5',                   check:function(s,w,k){ return w >= 5; } },
-    { id:'wave8',     text:'Reach Wave 8',                   check:function(s,w,k){ return w >= 8; } },
-    { id:'kill40',    text:'Kill 40 enemies in one run',     check:function(s,w,k){ return k >= 40; } }
+    { id:'score300', text:'Score 300+ points',        check:function(s,w,k){ return s >= 300; } },
+    { id:'score500', text:'Score 500+ points',        check:function(s,w,k){ return s >= 500; } },
+    { id:'score800', text:'Score 800+ points',        check:function(s,w,k){ return s >= 800; } },
+    { id:'wave5',    text:'Reach Wave 5',             check:function(s,w,k){ return w >= 5; } },
+    { id:'wave8',    text:'Reach Wave 8',             check:function(s,w,k){ return w >= 8; } },
+    { id:'kill40',   text:'Kill 40 enemies',          check:function(s,w,k){ return k >= 40; } },
+    { id:'boss1',    text:'Defeat a boss',            check:function(s,w,k){ return bossKills >= 1; } }
   ];
-
   function getDailyChallenge(){
     var today = todayKey();
     var saved = null;
     try{ saved = JSON.parse(safeGet(DAILY_KEY) || 'null'); } catch(e){}
     if (saved && saved.date === today) return saved;
-
     var hash = 0;
     for (var i=0;i<today.length;i++) hash = (hash*31 + today.charCodeAt(i)) | 0;
     var idx = Math.abs(hash) % CHALLENGES.length;
@@ -591,9 +683,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var data = { date: today, id: c.id, text: c.text, completed: false };
     safeSet(DAILY_KEY, JSON.stringify(data));
     return data;
-  }
-  function saveDaily(data){
-    safeSet(DAILY_KEY, JSON.stringify(data));
   }
   function renderDaily(){
     var box = document.getElementById('dailyChallengeBox');
@@ -618,7 +707,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     if (!c) return false;
     if (c.check(score, wave, kills)){
       d.completed = true;
-      saveDaily(d);
+      safeSet(DAILY_KEY, JSON.stringify(d));
       renderDaily();
       return true;
     }
@@ -638,15 +727,9 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   function updateStreakOnPlay(){
     var data = getStreakData();
     var today = todayKey();
-    if (data.lastDate === today){
-      // already counted today
-      return data.streak;
-    }
-    if (data.lastDate === yesterdayKey()){
-      data.streak = (data.streak || 0) + 1;
-    } else {
-      data.streak = 1;
-    }
+    if (data.lastDate === today) return data.streak;
+    if (data.lastDate === yesterdayKey()) data.streak = (data.streak || 0) + 1;
+    else data.streak = 1;
     data.lastDate = today;
     safeSet(STREAK_KEY, JSON.stringify(data));
     return data.streak;
@@ -655,7 +738,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var el = document.getElementById('streakCount');
     if (!el) return;
     var data = getStreakData();
-    // If streak broken (last play was before yesterday), show 0
     if (data.lastDate !== todayKey() && data.lastDate !== yesterdayKey()){
       el.textContent = '0';
     } else {
@@ -664,43 +746,39 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
 
   /* ============================================================
-     ACHIEVEMENTS
+     BADGES
      ============================================================ */
   var BADGES = [
-    { id:'first_blood', icon:'🎯', name:'First Blood',   desc:'Kill your first enemy',        check:function(st){ return st.kills >= 1; } },
-    { id:'wave5',       icon:'🌊', name:'Wave Master',   desc:'Reach Wave 5',                 check:function(st){ return st.wave >= 5; } },
-    { id:'wave10',      icon:'🚀', name:'Deep Space',    desc:'Reach Wave 10',                check:function(st){ return st.wave >= 10; } },
-    { id:'score500',    icon:'💥', name:'Rookie',        desc:'Score 500+',                   check:function(st){ return st.score >= 500; } },
-    { id:'score1000',   icon:'💯', name:'Century Club',  desc:'Score 1000+',                  check:function(st){ return st.score >= 1000; } },
-    { id:'score5000',   icon:'👑', name:'Legend',        desc:'Score 5000+',                  check:function(st){ return st.score >= 5000; } },
-    { id:'kill50',      icon:'🔫', name:'Sharpshooter',  desc:'Kill 50 enemies in one run',   check:function(st){ return st.kills >= 50; } },
-    { id:'kill100',     icon:'☠️', name:'Exterminator',  desc:'Kill 100 enemies in one run',  check:function(st){ return st.kills >= 100; } }
+    { id:'first_blood', icon:'🎯', name:'First Blood',   desc:'Kill your first enemy',      check:function(st){ return st.kills >= 1; } },
+    { id:'wave5',       icon:'🌊', name:'Wave Master',   desc:'Reach Wave 5',               check:function(st){ return st.wave >= 5; } },
+    { id:'wave10',      icon:'🚀', name:'Deep Space',    desc:'Reach Wave 10',              check:function(st){ return st.wave >= 10; } },
+    { id:'wave15',      icon:'🌌', name:'Star Voyager',  desc:'Reach Wave 15',              check:function(st){ return st.wave >= 15; } },
+    { id:'score500',    icon:'💥', name:'Rookie',        desc:'Score 500+',                 check:function(st){ return st.score >= 500; } },
+    { id:'score1000',   icon:'💯', name:'Century Club',  desc:'Score 1000+',                check:function(st){ return st.score >= 1000; } },
+    { id:'score5000',   icon:'👑', name:'Legend',        desc:'Score 5000+',                check:function(st){ return st.score >= 5000; } },
+    { id:'kill50',      icon:'🔫', name:'Sharpshooter',  desc:'Kill 50 enemies in one run', check:function(st){ return st.kills >= 50; } },
+    { id:'kill100',     icon:'☠️', name:'Exterminator',  desc:'Kill 100 enemies in one run',check:function(st){ return st.kills >= 100; } },
+    { id:'boss1',       icon:'👾', name:'Boss Slayer',   desc:'Defeat your first boss',     check:function(st){ return st.bossKills >= 1; } },
+    { id:'boss3',       icon:'🛸', name:'Boss Hunter',   desc:'Defeat 3 bosses in one run', check:function(st){ return st.bossKills >= 3; } },
+    { id:'powerup10',   icon:'⚡', name:'Powered Up',    desc:'Collect 10 power-ups',       check:function(st){ return st.powerUpsCollected >= 10; } }
   ];
-
   function loadBadges(){
-    try{
-      var d = JSON.parse(safeGet(BADGE_KEY) || '{}');
-      return d && typeof d === 'object' ? d : {};
-    } catch(e){ return {}; }
+    try{ var d = JSON.parse(safeGet(BADGE_KEY) || '{}'); return d && typeof d === 'object' ? d : {}; }
+    catch(e){ return {}; }
   }
-  function saveBadges(obj){ safeSet(BADGE_KEY, JSON.stringify(obj)); }
-
+  function saveBadges(o){ safeSet(BADGE_KEY, JSON.stringify(o)); }
   function checkBadges(stats){
     var unlocked = loadBadges();
-    var newlyUnlocked = [];
+    var newly = [];
     for (var i=0;i<BADGES.length;i++){
       var b = BADGES[i];
       if (unlocked[b.id]) continue;
-      if (b.check(stats)){
-        unlocked[b.id] = Date.now();
-        newlyUnlocked.push(b);
-      }
+      if (b.check(stats)){ unlocked[b.id] = Date.now(); newly.push(b); }
     }
-    if (newlyUnlocked.length) saveBadges(unlocked);
+    if (newly.length) saveBadges(unlocked);
     renderBadges();
-    return newlyUnlocked;
+    return newly;
   }
-
   function renderBadges(){
     var grid = document.getElementById('badgesGrid');
     if (!grid) return;
@@ -708,46 +786,44 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var html = '';
     for (var i=0;i<BADGES.length;i++){
       var b = BADGES[i];
-      var isUnlocked = !!unlocked[b.id];
-      html += '<div class="badge ' + (isUnlocked ? 'unlocked' : '') + '">' +
+      var isU = !!unlocked[b.id];
+      html += '<div class="badge ' + (isU ? 'unlocked' : '') + '">' +
         '<div class="icon">' + b.icon + '</div>' +
-        '<div class="info">' +
-          '<div class="name">' + b.name + '</div>' +
-          '<div class="desc">' + b.desc + '</div>' +
-        '</div>' +
-      '</div>';
+        '<div class="info"><div class="name">' + b.name + '</div>' +
+        '<div class="desc">' + b.desc + '</div></div></div>';
     }
     grid.innerHTML = html;
   }
 
   /* ============================================================
-     JUICE PACK HELPERS
+     JUICE
      ============================================================ */
-  function triggerShake(intensity){
-    if (intensity > shakeIntensity) shakeIntensity = intensity;
-  }
-  function triggerFlash(color, alpha){
-    flashColor = color;
-    if (alpha > flashAlpha) flashAlpha = alpha;
-  }
+  function triggerShake(v){ if (v > shakeIntensity) shakeIntensity = v; }
+  function triggerFlash(c, a){ flashColor = c; if (a > flashAlpha) flashAlpha = a; }
 
   /* ============================================================
-     STARS / WAVE
+     STARS
      ============================================================ */
   function initStars(){
     stars = [];
     for (var i=0;i<180;i++){
-      stars.push({
-        x: Math.random()*W,
-        y: Math.random()*H,
-        r: Math.random()*1.6+0.3,
-        s: Math.random()*0.5+0.1
-      });
+      stars.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.6+0.3, s: Math.random()*0.5+0.1 });
     }
   }
 
+  /* ============================================================
+     WAVES
+     ============================================================ */
   function spawnWave(){
     enemies = [];
+    boss = null;
+
+    // Boss wave every 5 levels
+    if (wave % 5 === 0){
+      spawnBoss();
+      return;
+    }
+
     var cols = 8;
     var rows = Math.min(2 + wave, 5);
     var padX = 92;
@@ -761,8 +837,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
           x: startX + c*padX,
           y: startY + r*padY,
           w: 44, h: 44,
-          alive: true,
-          type: t,
+          alive: true, type: t,
           wobble: Math.random()*Math.PI*2
         });
       }
@@ -771,9 +846,49 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     enemySpeed = 40 + wave*10;
   }
 
+  function spawnBoss(){
+    var bossIdx = Math.floor((wave / 5) - 1) % BOSS_TYPES.length;
+    var t = BOSS_TYPES[bossIdx];
+    var hpBonus = Math.floor((wave - 5) / 5) * 50;
+
+    boss = {
+      type: t,
+      x: W/2,
+      y: 150,
+      w: 110, h: 110,
+      hp: t.hp + hpBonus,
+      maxHp: t.hp + hpBonus,
+      vx: t.speed,
+      shootTimer: t.fireRate,
+      hitFlash: 0,
+      wobble: 0
+    };
+
+    sfxBossAlert();
+    triggerShake(18);
+    triggerFlash('#ffd800', 0.35);
+
+    // Show alert text
+    var bossAlertEl = document.getElementById('bossAlert');
+    if (!bossAlertEl){
+      bossAlertEl = document.createElement('div');
+      bossAlertEl.id = 'bossAlert';
+      bossAlertEl.style.cssText = 'position:absolute;top:40%;left:0;right:0;text-align:center;font-family:Impact,sans-serif;font-size:60px;color:#ffd800;text-shadow:4px 4px 0 #000,0 0 30px #ff3d3d;pointer-events:none;z-index:8;letter-spacing:4px;';
+      bossAlertEl.textContent = '👾 BOSS INCOMING 👾';
+      var wrap = document.querySelector('.game-wrap');
+      if (wrap) wrap.appendChild(bossAlertEl);
+      setTimeout(function(){
+        if (bossAlertEl.parentNode) bossAlertEl.parentNode.removeChild(bossAlertEl);
+      }, 1800);
+    }
+  }
+
   function resetPlayer(){
     player.x = W/2;
     player.y = H - 90;
+    player.hasShield = false;
+    player.tripleShotTime = 0;
+    player.rapidFireTime = 0;
   }
 
   /* ============================================================
@@ -781,9 +896,18 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
      ============================================================ */
   function shoot(){
     var now = performance.now()/1000;
-    if (now - lastShot < player.cooldown) return;
+    var cd = player.rapidFireTime > 0 ? player.cooldown * 0.4 : player.cooldown;
+    if (now - lastShot < cd) return;
     lastShot = now;
-    bullets.push({ x: player.x, y: player.y - 30, vy: -620 });
+
+    if (player.tripleShotTime > 0){
+      // Triple shot
+      bullets.push({ x: player.x, y: player.y - 30, vy: -620 });
+      bullets.push({ x: player.x - 14, y: player.y - 22, vy: -620, vx: -180 });
+      bullets.push({ x: player.x + 14, y: player.y - 22, vy: -620, vx: 180 });
+    } else {
+      bullets.push({ x: player.x, y: player.y - 30, vy: -620 });
+    }
     sfxShoot();
   }
 
@@ -795,8 +919,24 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     enemyBullets.push({ x: e.x, y: e.y + 22, vy: 300, type: e.type });
   }
 
-  function burst(x, y, color){
-    for (var i=0;i<16;i++){
+  function bossShoot(b){
+    var count = b.type.bulletCount;
+    var spread = 0.5;
+    for (var i=0;i<count;i++){
+      var angle = -Math.PI/2 + (i - (count-1)/2) * (spread / Math.max(1, count-1)) * 2;
+      enemyBullets.push({
+        x: b.x + (i - (count-1)/2) * 20,
+        y: b.y + 40,
+        vy: Math.cos(angle) * 320,
+        vx: Math.sin(angle) * 320,
+        type: b.type
+      });
+    }
+  }
+
+  function burst(x, y, color, count){
+    var n = count || 16;
+    for (var i=0;i<n;i++){
       var a = Math.random()*Math.PI*2;
       var sp = Math.random()*220+50;
       particles.push({ x:x, y:y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life:0.65, max:0.65, color:color });
@@ -806,9 +946,51 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
 
   /* ============================================================
+     POWER-UPS
+     ============================================================ */
+  function maybeSpawnPowerUp(x, y){
+    if (Math.random() > 0.10) return; // 10% drop chance
+    var t = POWERUPS[Math.floor(Math.random() * POWERUPS.length)];
+    powerUps.push({
+      x: x, y: y, w: 32, h: 32,
+      type: t,
+      vy: 90,
+      wobble: Math.random()*Math.PI*2,
+      life: 8
+    });
+  }
+
+  function applyPowerUp(t){
+    sfxPowerUp();
+    powerUpsCollected++;
+    triggerFlash(t.color, 0.3);
+    triggerShake(10);
+
+    if (t.id === 'triple'){
+      player.tripleShotTime = Math.max(player.tripleShotTime, t.duration);
+    } else if (t.id === 'shield'){
+      player.hasShield = true;
+    } else if (t.id === 'rapid'){
+      player.rapidFireTime = Math.max(player.rapidFireTime, t.duration);
+    } else if (t.id === 'slow'){
+      slowMoTimer = Math.max(slowMoTimer, t.duration);
+    }
+
+    // Show floating text
+    showFloatingText(player.x, player.y - 60, t.icon + ' ' + t.name, t.color);
+  }
+
+  function showFloatingText(x, y, text, color){
+    var t = { x: x, y: y, text: text, color: color, life: 1.5, max: 1.5 };
+    if (!window.__maigaFloatingTexts) window.__maigaFloatingTexts = [];
+    window.__maigaFloatingTexts.push(t);
+  }
+
+  /* ============================================================
      UPDATE
      ============================================================ */
   function update(dt){
+    // Juice decay
     if (shakeIntensity > 0){
       shakeIntensity *= Math.exp(-dt * 10);
       if (shakeIntensity < 0.15) shakeIntensity = 0;
@@ -818,14 +1000,34 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       if (flashAlpha < 0) flashAlpha = 0;
     }
 
+    // Stars
     for (var i=0;i<stars.length;i++){
       var s = stars[i];
       s.y += s.s * 60 * dt;
       if (s.y > H){ s.y = 0; s.x = Math.random()*W; }
     }
 
+    // Floating texts
+    if (window.__maigaFloatingTexts){
+      var ft = window.__maigaFloatingTexts;
+      for (var i2=0;i2<ft.length;i2++){
+        ft[i2].y -= 40 * dt;
+        ft[i2].life -= dt;
+      }
+      window.__maigaFloatingTexts = ft.filter(function(t){ return t.life > 0; });
+    }
+
     if (state !== 'playing') return;
 
+    // Power-up timers
+    if (player.tripleShotTime > 0) player.tripleShotTime -= dt;
+    if (player.rapidFireTime > 0) player.rapidFireTime -= dt;
+    if (slowMoTimer > 0) slowMoTimer -= dt;
+
+    // Slow-mo factor
+    var timeScale = slowMoTimer > 0 ? 0.45 : 1;
+
+    // Player move
     var mv = 0;
     if (keys['ArrowLeft'] || keys['a'] || keys['A']) mv -= 1;
     if (keys['ArrowRight'] || keys['d'] || keys['D']) mv += 1;
@@ -840,58 +1042,142 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     if (player.x < 34) player.x = 34;
     if (player.x > W-34) player.x = W-34;
 
-    for (var b=0;b<bullets.length;b++) bullets[b].y += bullets[b].vy * dt;
-    bullets = bullets.filter(function(x){ return x.y > -30; });
-
-    for (var eb=0;eb<enemyBullets.length;eb++) enemyBullets[eb].y += enemyBullets[eb].vy * dt;
-    enemyBullets = enemyBullets.filter(function(x){ return x.y < H+30; });
-
-    var alive = [];
-    for (var k=0;k<enemies.length;k++) if (enemies[k].alive) alive.push(enemies[k]);
-
-    var minX = 99999, maxX = -99999;
-    for (var e=0;e<alive.length;e++){
-      var en = alive[e];
-      en.x += enemyDir * enemySpeed * dt;
-      en.wobble += dt*3;
-      if (en.x - en.w/2 < minX) minX = en.x - en.w/2;
-      if (en.x + en.w/2 > maxX) maxX = en.x + en.w/2;
+    // Bullets
+    for (var b=0;b<bullets.length;b++){
+      bullets[b].y += bullets[b].vy * dt;
+      if (bullets[b].vx) bullets[b].x += bullets[b].vx * dt;
     }
-    if (maxX > W-28 && enemyDir > 0){ enemyDir = -1; dropEnemies(); }
-    if (minX < 28 && enemyDir < 0){ enemyDir = 1; dropEnemies(); }
+    bullets = bullets.filter(function(x){ return x.y > -30 && x.x > -30 && x.x < W+30; });
 
-    shootTimer -= dt;
-    if (shootTimer <= 0){
-      enemyShoot();
-      shootTimer = Math.max(0.3, 1.15 - wave*0.08);
+    // Enemy bullets
+    for (var eb=0;eb<enemyBullets.length;eb++){
+      enemyBullets[eb].y += enemyBullets[eb].vy * dt;
+      if (enemyBullets[eb].vx) enemyBullets[eb].x += enemyBullets[eb].vx * dt;
+    }
+    enemyBullets = enemyBullets.filter(function(x){ return x.y < H+30 && x.y > -30 && x.x > -30 && x.x < W+30; });
+
+    // Power-up drift
+    for (var pu=0;pu<powerUps.length;pu++){
+      var p = powerUps[pu];
+      p.y += p.vy * dt * timeScale;
+      p.wobble += dt * 4;
+      p.life -= dt;
     }
 
-    for (var bi=0;bi<bullets.length;bi++){
-      var bb = bullets[bi];
-      for (var ei=0;ei<enemies.length;ei++){
-        var ee = enemies[ei];
-        if (!ee.alive) continue;
-        if (Math.abs(bb.x - ee.x) < ee.w/2 + 6 && Math.abs(bb.y - ee.y) < ee.h/2 + 6){
-          ee.alive = false;
-          bb.y = -200;
-          score += 10;
-          kills++;
-          if (hudScoreEl) hudScoreEl.textContent = score;
-          burst(ee.x, ee.y, ee.type.color);
-        }
+    // Player collects power-ups
+    for (var pc=0;pc<powerUps.length;pc++){
+      var pu2 = powerUps[pc];
+      if (Math.abs(pu2.x - player.x) < 28 && Math.abs(pu2.y - player.y) < 32){
+        applyPowerUp(pu2.type);
+        pu2.life = 0;
       }
     }
-    bullets = bullets.filter(function(x){ return x.y > -30; });
+    powerUps = powerUps.filter(function(p){ return p.life > 0 && p.y < H + 40; });
 
-    for (var p=0;p<enemyBullets.length;p++){
-      var ebul = enemyBullets[p];
+    // BOSS
+    if (boss){
+      boss.wobble += dt * 2;
+      boss.x += boss.vx * dt * timeScale;
+      if (boss.x > W - 80){ boss.x = W - 80; boss.vx *= -1; }
+      if (boss.x < 80){ boss.x = 80; boss.vx *= -1; }
+
+      if (boss.hitFlash > 0) boss.hitFlash -= dt;
+
+      boss.shootTimer -= dt;
+      if (boss.shootTimer <= 0){
+        bossShoot(boss);
+        boss.shootTimer = boss.type.fireRate;
+      }
+
+      // Player bullets hit boss
+      for (var bbi=0;bbi<bullets.length;bbi++){
+        var bb2 = bullets[bbi];
+        if (Math.abs(bb2.x - boss.x) < boss.w/2 && Math.abs(bb2.y - boss.y) < boss.h/2){
+          boss.hp -= 5;
+          boss.hitFlash = 0.12;
+          bb2.y = -300;
+          score += 5;
+          if (hudScoreEl) hudScoreEl.textContent = score;
+          sfxBossHit();
+          burst(bb2.x, bb2.y, boss.type.color, 6);
+          if (boss.hp <= 0){
+            // Boss defeated!
+            sfxBossDeath();
+            triggerShake(35);
+            triggerFlash(boss.type.color, 0.6);
+            burst(boss.x, boss.y, boss.type.color, 40);
+            burst(boss.x - 30, boss.y, boss.type.color, 25);
+            burst(boss.x + 30, boss.y, boss.type.color, 25);
+            score += 100 + wave * 20;
+            bossKills++;
+            if (hudScoreEl) hudScoreEl.textContent = score;
+            showFloatingText(boss.x, boss.y - 40, '+BOSS KILL +' + (100 + wave * 20), '#ffd800');
+            boss = null;
+            wave++;
+            spawnWave();
+            break;
+          }
+        }
+      }
+      bullets = bullets.filter(function(x){ return x.y > -30 && x.x > -30 && x.x < W+30; });
+    } else {
+      // Regular enemies
+      var alive = [];
+      for (var k=0;k<enemies.length;k++) if (enemies[k].alive) alive.push(enemies[k]);
+
+      var minX = 99999, maxX = -99999;
+      for (var e=0;e<alive.length;e++){
+        var en = alive[e];
+        en.x += enemyDir * enemySpeed * dt * timeScale;
+        en.wobble += dt*3;
+        if (en.x - en.w/2 < minX) minX = en.x - en.w/2;
+        if (en.x + en.w/2 > maxX) maxX = en.x + en.w/2;
+      }
+      if (maxX > W-28 && enemyDir > 0){ enemyDir = -1; dropEnemies(); }
+      if (minX < 28 && enemyDir < 0){ enemyDir = 1; dropEnemies(); }
+
+      shootTimer -= dt;
+      if (shootTimer <= 0){
+        enemyShoot();
+        shootTimer = Math.max(0.3, 1.15 - wave*0.08);
+      }
+
+      // Bullets vs enemies
+      for (var bi=0;bi<bullets.length;bi++){
+        var bb = bullets[bi];
+        for (var ei=0;ei<enemies.length;ei++){
+          var ee = enemies[ei];
+          if (!ee.alive) continue;
+          if (Math.abs(bb.x - ee.x) < ee.w/2 + 6 && Math.abs(bb.y - ee.y) < ee.h/2 + 6){
+            ee.alive = false;
+            bb.y = -200;
+            score += 10;
+            kills++;
+            if (hudScoreEl) hudScoreEl.textContent = score;
+            burst(ee.x, ee.y, ee.type.color);
+            maybeSpawnPowerUp(ee.x, ee.y);
+          }
+        }
+      }
+      bullets = bullets.filter(function(x){ return x.y > -30 && x.x > -30 && x.x < W+30; });
+
+      if (alive.length === 0){
+        wave++;
+        spawnWave();
+      }
+    }
+
+    // Enemy bullets vs player
+    for (var p2=0;p2<enemyBullets.length;p2++){
+      var ebul = enemyBullets[p2];
       if (Math.abs(ebul.x - player.x) < 24 && Math.abs(ebul.y - player.y) < 28){
         ebul.y = H + 200;
         hitPlayer();
       }
     }
-    enemyBullets = enemyBullets.filter(function(x){ return x.y < H+30; });
+    enemyBullets = enemyBullets.filter(function(x){ return x.y < H+30 && x.y > -30 && x.x > -30 && x.x < W+30; });
 
+    // Particles
     for (var pi=0;pi<particles.length;pi++){
       var pt = particles[pi];
       pt.x += pt.vx*dt;
@@ -901,7 +1187,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     }
     particles = particles.filter(function(x){ return x.life > 0; });
 
-    if (alive.length === 0){ wave++; spawnWave(); }
     if (lives <= 0) gameOver();
   }
 
@@ -910,6 +1195,15 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
 
   function hitPlayer(){
+    if (player.hasShield){
+      player.hasShield = false;
+      triggerShake(12);
+      triggerFlash('#1da1f2', 0.4);
+      burst(player.x, player.y, '#1da1f2', 20);
+      showFloatingText(player.x, player.y - 50, '🛡️ SHIELD BROKEN', '#1da1f2');
+      playTone(440, 0.15, 'triangle', 0.10);
+      return;
+    }
     lives--;
     if (hudLivesEl) hudLivesEl.textContent = lives;
     burst(player.x, player.y, '#ff3d3d');
@@ -946,10 +1240,20 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     ctx.fillStyle = 'rgba(36,87,166,.12)';
     ctx.fillRect(0, H-70, W, 70);
 
+    // Enemies
     for (var e=0;e<enemies.length;e++){
       if (enemies[e].alive) drawCoin(enemies[e]);
     }
 
+    // Power-ups
+    for (var pu=0;pu<powerUps.length;pu++){
+      drawPowerUp(powerUps[pu]);
+    }
+
+    // Boss
+    if (boss) drawBoss(boss);
+
+    // Enemy bullets
     for (var eb=0;eb<enemyBullets.length;eb++){
       var b = enemyBullets[eb];
       ctx.save();
@@ -962,6 +1266,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       ctx.restore();
     }
 
+    // Player bullets
     for (var pb=0;pb<bullets.length;pb++){
       var bul = bullets[pb];
       ctx.save();
@@ -972,8 +1277,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       ctx.restore();
     }
 
+    // Player
     if (state !== 'over' || lives > 0) drawJeanPhil(player.x, player.y);
 
+    // Particles
     for (var pi=0;pi<particles.length;pi++){
       var pt = particles[pi];
       ctx.globalAlpha = Math.max(0, pt.life/pt.max);
@@ -984,10 +1291,80 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     }
     ctx.globalAlpha = 1;
 
+    // Floating texts
+    if (window.__maigaFloatingTexts){
+      var ft = window.__maigaFloatingTexts;
+      for (var fi=0;fi<ft.length;fi++){
+        var t = ft[fi];
+        ctx.globalAlpha = Math.max(0, t.life/t.max);
+        ctx.font = 'bold 20px Impact, Arial';
+        ctx.fillStyle = t.color;
+        ctx.textAlign = 'center';
+        ctx.fillText(t.text, t.x, t.y);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // Boss HP bar
+    if (boss){
+      var barW = W * 0.7;
+      var barX = (W - barW) / 2;
+      var barY = 50;
+      var barH = 18;
+
+      ctx.fillStyle = 'rgba(0,0,0,.7)';
+      ctx.fillRect(barX - 3, barY - 3, barW + 6, barH + 6);
+
+      ctx.fillStyle = '#333';
+      ctx.fillRect(barX, barY, barW, barH);
+
+      var hpPct = Math.max(0, boss.hp / boss.maxHp);
+      var grad = ctx.createLinearGradient(barX, 0, barX + barW, 0);
+      grad.addColorStop(0, '#ff3d3d');
+      grad.addColorStop(0.5, '#ffd800');
+      grad.addColorStop(1, boss.type.color);
+      ctx.fillStyle = grad;
+      ctx.fillRect(barX, barY, barW * hpPct, barH);
+
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(barX, barY, barW, barH);
+
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 14px Impact, Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(boss.type.name + ' — ' + Math.max(0, boss.hp) + ' HP', W/2, barY - 8);
+    }
+
+    // Wave
     ctx.font = 'bold 22px Impact, Arial';
     ctx.fillStyle = 'rgba(255,216,0,.55)';
     ctx.textAlign = 'center';
-    ctx.fillText('WAVE ' + wave, W/2, H - 22);
+    ctx.fillText('WAVE ' + wave + (wave % 5 === 0 ? ' • BOSS' : ''), W/2, H - 22);
+
+    // Active power-up timers
+    var timerY = 100;
+    ctx.font = 'bold 16px Impact, Arial';
+    ctx.textAlign = 'left';
+    if (player.tripleShotTime > 0){
+      ctx.fillStyle = '#ffd800';
+      ctx.fillText('⚡ TRIPLE ' + player.tripleShotTime.toFixed(1) + 's', 20, timerY);
+      timerY += 24;
+    }
+    if (player.rapidFireTime > 0){
+      ctx.fillStyle = '#ff3d3d';
+      ctx.fillText('🔥 RAPID ' + player.rapidFireTime.toFixed(1) + 's', 20, timerY);
+      timerY += 24;
+    }
+    if (slowMoTimer > 0){
+      ctx.fillStyle = '#28c76f';
+      ctx.fillText('🐢 SLOW-MO ' + slowMoTimer.toFixed(1) + 's', 20, timerY);
+      timerY += 24;
+    }
+    if (player.hasShield){
+      ctx.fillStyle = '#1da1f2';
+      ctx.fillText('🛡️ SHIELD ACTIVE', 20, timerY);
+    }
   }
 
   function draw(){
@@ -1035,9 +1412,108 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     ctx.restore();
   }
 
+  function drawBoss(b){
+    ctx.save();
+    ctx.translate(b.x, b.y);
+
+    // Outer aura
+    var pulse = 1 + Math.sin(b.wobble*2) * 0.08;
+    ctx.shadowColor = b.type.color;
+    ctx.shadowBlur = 40 * pulse;
+
+    // Body (giant coin)
+    var r = b.w / 2;
+    var grad = ctx.createRadialGradient(-r*0.3, -r*0.3, 4, 0, 0, r);
+    grad.addColorStop(0, b.type.color);
+    grad.addColorStop(1, '#0a0f16');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI*2);
+    ctx.fill();
+
+    // Hit flash
+    if (b.hitFlash > 0){
+      ctx.globalAlpha = b.hitFlash * 4;
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(0, 0, r, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    // Ring
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = b.type.color;
+    ctx.stroke();
+
+    // Inner ring
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'rgba(255,255,255,.4)';
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.75, 0, Math.PI*2);
+    ctx.stroke();
+
+    // Symbol
+    ctx.shadowBlur = 20;
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold ' + Math.floor(r * 1.1) + 'px Impact, Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(b.type.sym, 0, 4);
+
+    ctx.restore();
+  }
+
+  function drawPowerUp(p){
+    var t = p.type;
+    var r = 16;
+    var pulse = 1 + Math.sin(p.wobble * 2) * 0.15;
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+
+    // Glow
+    ctx.shadowColor = t.color;
+    ctx.shadowBlur = 22;
+    ctx.fillStyle = t.color;
+    ctx.beginPath();
+    ctx.arc(0, 0, r * pulse, 0, Math.PI*2);
+    ctx.fill();
+
+    // Ring
+    ctx.shadowBlur = 0;
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#000';
+    ctx.stroke();
+
+    // Icon
+    ctx.fillStyle = '#000';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(t.icon, 0, 1);
+
+    ctx.restore();
+  }
+
   function drawJeanPhil(x, y){
     ctx.save();
     ctx.translate(x, y);
+
+    // Shield aura
+    if (player.hasShield){
+      ctx.save();
+      var shieldPulse = 1 + Math.sin(performance.now()/150) * 0.1;
+      ctx.shadowColor = '#1da1f2';
+      ctx.shadowBlur = 30;
+      ctx.strokeStyle = '#1da1f2';
+      ctx.lineWidth = 3;
+      ctx.globalAlpha = 0.7;
+      ctx.beginPath();
+      ctx.arc(0, 0, 38 * shieldPulse, 0, Math.PI*2);
+      ctx.stroke();
+      ctx.restore();
+    }
 
     var flame = 16 + Math.sin(performance.now()/60)*5;
     var fg = ctx.createLinearGradient(0, 20, 0, 20+flame);
@@ -1201,7 +1677,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       ? '<button class="share-btn" type="button" onclick="MAIGA_GAME.share()">📸 SHARE ON X</button>' +
         '<button class="share-btn green" type="button" onclick="MAIGA_GAME.challenge()">⚔️ CHALLENGE</button>'
       : '';
-
     overlay.innerHTML =
       '<div class="tag">$MAIGA</div>' +
       '<h3>' + title + '</h3>' +
@@ -1220,7 +1695,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
      ============================================================ */
   function openTweet(text){
     var url = 'https://x.com/intent/tweet?text=' + encodeURIComponent(text) +
-              '&url=' + encodeURIComponent(SHARE_URL) +
+              '&url=' + encodeURIComponent(SHARE_BASE) +
               '&hashtags=' + encodeURIComponent(X_HASHTAGS);
     window.open(url, '_blank', 'noopener');
   }
@@ -1228,10 +1703,12 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var best = getBestScore();
     var streak = getStreakData().streak || 0;
     var text = 'I scored ' + score + ' on $MAIGA TAKEOVER 🧢🤖🔥\n' +
+      (bossKills > 0 ? '👾 Bosses defeated: ' + bossKills + '\n' : '') +
+      (powerUpsCollected > 0 ? '⚡ Power-ups: ' + powerUpsCollected + '\n' : '') +
       (best ? 'Top score: ' + best + ' 🏆\n' : '') +
       'Pilot: ' + getPilotName() + ' 🪪\n' +
       (streak > 1 ? '🔥 ' + streak + '-day streak\n' : '') +
-      '\nMake AI Great Again 🇺🇸\nCan you beat me? 🎮';
+      '\nMake AI Great Again 🇺🇸\nCan you beat me? 🎮\n\n' + getMyRefLink();
     openTweet(text);
   }
   function challengeFriends(){
@@ -1239,9 +1716,11 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var myScore = score || best;
     var text = '⚔️ $MAIGA TAKEOVER CHALLENGE ⚔️\n\n' +
       'I scored ' + myScore + ' on the $MAIGA arcade game 🎮🧢🤖\n' +
-      'Think you can beat me?\n\nMake AI Great Again 🇺🇸';
+      'Think you can beat me?\n\n' +
+      'Play here 👇 ' + getMyRefLink() + '\n\nMake AI Great Again 🇺🇸';
     openTweet(text);
   }
+  function copyRef(){ copyRefLink(); }
 
   /* ============================================================
      START / GAME OVER
@@ -1261,10 +1740,13 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     sfxStart();
 
     overlay.classList.add('hidden');
-    score = 0; lives = 3; wave = 1; kills = 0;
+    score = 0; lives = 3; wave = 1; kills = 0; bossKills = 0; powerUpsCollected = 0;
     if (hudScoreEl) hudScoreEl.textContent = '0';
     if (hudLivesEl) hudLivesEl.textContent = '3';
-    bullets = []; enemyBullets = []; particles = [];
+    bullets = []; enemyBullets = []; particles = []; powerUps = [];
+    window.__maigaFloatingTexts = [];
+    boss = null;
+    slowMoTimer = 0;
     shakeIntensity = 0; flashAlpha = 0;
     initStars();
     resetPlayer();
@@ -1275,7 +1757,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     lastTime = performance.now();
     startLoop();
 
-    // Count play for streak
     updateStreakOnPlay();
     renderStreak();
   }
@@ -1287,8 +1768,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var name = getPilotName();
     addScore(name, score);
 
-    // Check badges
-    var newBadges = checkBadges({ score: score, wave: wave, kills: kills });
+    var newBadges = checkBadges({
+      score: score, wave: wave, kills: kills,
+      bossKills: bossKills, powerUpsCollected: powerUpsCollected
+    });
     var newBadgesHtml = '';
     if (newBadges.length){
       newBadgesHtml = '<div class="overlay-new-badges">';
@@ -1299,7 +1782,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       sfxBadge();
     }
 
-    // Check daily
     var dailyDone = checkDailyComplete();
 
     var best = getBestScore();
@@ -1307,6 +1789,8 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
     var msg = 'Final score: <strong>' + score + '</strong><br>' +
       'Pilot: <strong>' + escapeHtml(name) + '</strong><br>' +
+      (bossKills > 0 ? '👾 Bosses defeated: <strong>' + bossKills + '</strong><br>' : '') +
+      (powerUpsCollected > 0 ? '⚡ Power-ups collected: <strong>' + powerUpsCollected + '</strong><br>' : '') +
       (isNewBest && score > 0 ? '<span style="color:#ffd800">🏆 NEW HIGH SCORE! 🏆</span><br>' : '') +
       (dailyDone ? '<span style="color:#28c76f">📅 DAILY CHALLENGE COMPLETE! ✅</span><br>' : '') +
       '<br>The crypto coins won this round… but $MAIGA never stops.<br>' +
@@ -1323,19 +1807,12 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     soundEnabled = v === null ? true : v === '1';
     updateSoundBtn();
   }
-  function saveSoundPref(){
-    safeSet(SOUND_KEY, soundEnabled ? '1' : '0');
-  }
+  function saveSoundPref(){ safeSet(SOUND_KEY, soundEnabled ? '1' : '0'); }
   function updateSoundBtn(){
     var btn = document.getElementById('soundToggle');
     if (!btn) return;
-    if (soundEnabled){
-      btn.textContent = '🔊 SOUND: ON';
-      btn.classList.remove('off');
-    } else {
-      btn.textContent = '🔇 SOUND: OFF';
-      btn.classList.add('off');
-    }
+    if (soundEnabled){ btn.textContent = '🔊 SOUND: ON'; btn.classList.remove('off'); }
+    else { btn.textContent = '🔇 SOUND: OFF'; btn.classList.add('off'); }
   }
   function toggleSound(){
     soundEnabled = !soundEnabled;
@@ -1360,6 +1837,9 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     W = canvas.width;
     H = canvas.height;
 
+    // Referral
+    initReferral();
+
     initStars();
     resetPlayer();
     renderLB();
@@ -1368,6 +1848,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     renderDaily();
     renderStreak();
     renderBadges();
+    renderReferral();
 
     if (pilotInput) pilotInput.addEventListener('input', saveName);
 
@@ -1395,14 +1876,15 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
     attachInput();
     startLoop();
-    console.log('[MAIGA] Game engine ready. Click START TAKEOVER to play.');
+    console.log('[MAIGA] Tier 2 engine ready. Bosses every 5 waves. Power-ups active. Referral system online.');
   }
 
   window.MAIGA_GAME = {
     start: startGame,
     share: shareScore,
     challenge: challengeFriends,
-    toggleSound: toggleSound
+    toggleSound: toggleSound,
+    copyRef: copyRef
   };
 
   if (document.readyState === 'loading'){

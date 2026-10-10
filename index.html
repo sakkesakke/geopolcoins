@@ -68,7 +68,7 @@ header{background:linear-gradient(180deg, rgba(0,0,0,.95), rgba(5,5,16,.85));bor
 .contract-box{font-family:'Courier New',monospace;font-size:11px;line-height:1.5;background:#000;color:var(--cyan);border:2px solid var(--cyan);border-radius:10px;padding:12px;margin:16px auto;max-width:600px;word-break:break-all;box-shadow:0 0 15px rgba(0,240,255,.3);text-align:left}
 .contract-box strong{color:var(--yellow);letter-spacing:1px}
 
-.hub{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px,1fr));gap:16px;padding:20px 0 40px}
+.hub{display:grid;grid-template-columns:repeat(auto-fit, minmax(220px,1fr));gap:16px;padding:20px 0 30px}
 .game-card{position:relative;background:linear-gradient(180deg, rgba(10,10,31,.85), rgba(15,15,42,.85));border:3px solid var(--cyan);border-radius:16px;padding:20px;cursor:pointer;text-align:center;overflow:hidden;transition:.2s;box-shadow:0 0 20px rgba(0,240,255,.15), 6px 6px 0 #000;backdrop-filter:blur(4px)}
 .game-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--cyan);box-shadow:0 0 20px var(--cyan)}
 .game-card:hover{transform:translate(-3px,-3px);box-shadow:0 0 40px rgba(0,240,255,.5), 9px 9px 0 #000}
@@ -122,6 +122,89 @@ header{background:linear-gradient(180deg, rgba(0,0,0,.95), rgba(5,5,16,.85));bor
 .game-overlay .start-btn.pink{background:var(--magenta);color:#fff;box-shadow:0 0 30px var(--magenta), 4px 4px 0 #000}
 .game-overlay .start-btn.yellow{background:var(--yellow);box-shadow:0 0 30px var(--yellow), 4px 4px 0 #000}
 .controls-hint{font-size:10px;color:var(--dim);letter-spacing:2px;margin-top:14px;line-height:1.6}
+
+/* ============ SWAP SECTION ============ */
+.swap-section{
+  margin-top:50px;
+  padding:28px 22px 32px;
+  background:linear-gradient(180deg, rgba(10,10,31,.85), rgba(15,15,42,.85));
+  border:3px solid var(--green);
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(0,255,136,.2), 8px 8px 0 #000;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(6px);
+}
+.swap-section::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--cyan),var(--green));box-shadow:0 0 25px var(--green)}
+.swap-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px;justify-content:center}
+.swap-head h2{
+  font-family:Impact,sans-serif;
+  font-size:clamp(26px,4.5vw,42px);
+  letter-spacing:3px;
+  color:#fff;
+  text-transform:uppercase;
+  text-shadow:0 0 15px var(--green);
+  margin:0;
+}
+.swap-head h2 span{color:var(--green)}
+.swap-live-dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--green);border:2px solid #000;box-shadow:0 0 15px var(--green);animation:swapBlip 1.4s infinite}
+@keyframes swapBlip{0%{box-shadow:0 0 0 0 rgba(0,255,136,.7)}70%{box-shadow:0 0 0 12px rgba(0,255,136,0)}100%{box-shadow:0 0 0 0 rgba(0,255,136,0)}}
+.swap-sub{font-family:'Courier New',monospace;color:var(--dim);text-align:center;font-size:12px;letter-spacing:2px;margin-bottom:20px}
+.swap-sub strong{color:var(--green);letter-spacing:1px}
+.swap-wrap{
+  max-width:520px;
+  margin:0 auto;
+  background:linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,.3));
+  border:2px solid var(--green);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 0 25px rgba(0,255,136,.15), inset 0 0 40px rgba(0,255,136,.03);
+  position:relative;
+  overflow:hidden;
+}
+.swap-wrap::before{
+  content:"JUPITER";
+  position:absolute;
+  top:8px;
+  right:12px;
+  font-family:Impact,sans-serif;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--green);
+  opacity:.5;
+  z-index:1;
+}
+#target-container{
+  min-height:380px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--dim);
+  font-family:'Courier New',monospace;
+  font-size:12px;
+  letter-spacing:2px;
+  border-radius:12px;
+  overflow:hidden;
+}
+#target-container:empty::before{content:"LOADING SWAP…"}
+.swap-badges{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:18px;
+  font-family:'Courier New',monospace;
+  font-size:10px;
+  letter-spacing:1px;
+}
+.swap-badge{
+  background:rgba(0,255,136,.08);
+  border:1px solid var(--green);
+  color:var(--green);
+  padding:6px 12px;
+  border-radius:20px;
+  font-weight:900;
+}
 
 .panels{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px,1fr));gap:16px;margin-top:26px}
 .panel{background:linear-gradient(180deg, rgba(10,10,31,.9), rgba(15,15,42,.9));border:2px solid var(--cyan);border-radius:14px;padding:18px;box-shadow:0 0 25px rgba(0,240,255,.15), 5px 5px 0 #000;backdrop-filter:blur(6px)}
@@ -189,11 +272,6 @@ header{background:linear-gradient(180deg, rgba(0,0,0,.95), rgba(5,5,16,.85));bor
 .section-title span{color:var(--yellow);text-shadow:0 0 20px var(--yellow)}
 .section-note{font-family:'Courier New',monospace;color:var(--dim);text-align:center;font-size:13px;letter-spacing:2px;margin-bottom:26px}
 
-.swap-section{margin-top:60px}
-.swap-wrap{background:linear-gradient(180deg, rgba(10,10,31,.9), rgba(15,15,42,.9));border:3px solid var(--cyan);border-radius:18px;padding:20px;box-shadow:0 0 30px rgba(0,240,255,.25), 8px 8px 0 #000;max-width:600px;margin:auto;backdrop-filter:blur(6px)}
-#target-container{min-height:400px;display:flex;align-items:center;justify-content:center;color:var(--dim);font-family:'Courier New',monospace;font-size:12px;letter-spacing:2px}
-#target-container::before{content:"LOADING SWAP…"}
-
 .coins{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:20px}
 .coin{background:linear-gradient(180deg, rgba(10,10,31,.9), rgba(15,15,42,.9));color:#fff;padding:20px;border-radius:18px;border:3px solid var(--cyan);box-shadow:0 0 25px rgba(0,240,255,.2), 8px 8px 0 #000;text-align:center;position:relative;overflow:hidden;transition:.2s;backdrop-filter:blur(6px)}
 .coin:hover{transform:translate(-2px,-2px);box-shadow:0 0 40px rgba(0,240,255,.4), 10px 10px 0 #000}
@@ -247,6 +325,9 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
   .game-desc{display:none}
   .hero-title{font-size:38px}
   .coins{grid-template-columns:1fr}
+  .swap-section{padding:20px 14px 24px}
+  .swap-wrap{padding:10px}
+  #target-container{min-height:340px}
 }
 </style>
 </head>
@@ -284,15 +365,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     <div class="hero-sub">5 GAMES · 1 TOURNAMENT · INSTANT SWAP · <span>1,750,000 $MAIGA EVERY 48H</span></div>
   </section>
 
-  <!-- SWAP WIDGET -->
-  <section id="swap" class="swap-section">
-    <h2 class="section-title">SWAP TO <span>$MAIGA</span></h2>
-    <p class="section-note">Swap any Solana token → $MAIGA. Powered by Jupiter. One click.</p>
-    <div class="swap-wrap">
-      <div id="target-container"></div>
-    </div>
-  </section>
-
+  <!-- ARCADE HUB -->
   <section class="hub" id="hub">
     <div class="game-card cyan" onclick="MAIGA_GAME.openGame('invaders')">
       <div class="game-icon">👾</div>
@@ -331,6 +404,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     </div>
   </section>
 
+  <!-- GAME VIEW -->
   <section class="game-view" id="gameView">
     <div class="game-view-head">
       <button class="back-btn" onclick="MAIGA_GAME.backToHub()">← BACK TO ARCADE</button>
@@ -343,6 +417,24 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
         <div class="lives" id="hudLivesWrap">LIVES: <span id="hudLives">3</span></div>
       </div>
       <div class="game-frame" id="gameFrame"></div>
+    </div>
+  </section>
+
+  <!-- ============ SWAP WIDGET — NOW UNDER ARCADE ============ -->
+  <section id="swap" class="swap-section">
+    <div class="swap-head">
+      <span class="swap-live-dot"></span>
+      <h2>BUY <span>$MAIGA</span> INSTANTLY</h2>
+    </div>
+    <p class="swap-sub">Swap ANY Solana token → <strong>$MAIGA</strong> · Powered by <strong>Jupiter</strong> · One click</p>
+    <div class="swap-wrap">
+      <div id="target-container"></div>
+    </div>
+    <div class="swap-badges">
+      <span class="swap-badge">⚡ INSTANT</span>
+      <span class="swap-badge">🔒 NON-CUSTODIAL</span>
+      <span class="swap-badge">💱 BEST ROUTES</span>
+      <span class="swap-badge">🇺🇸 MAKE AI GREAT AGAIN</span>
     </div>
   </section>
 
@@ -474,9 +566,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
   var BEST_PREFIX = 'maiga_best_';
   var GLOBAL_ENABLED = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
 
-  /* ============================================================
-     PIXEL SPRITES
-     ============================================================ */
   var SPRITES = {
     doge: { w:14,h:12, data:["..OOOO..OOOO..",".OYYYYOOYYYYO.","OYYYYYYYYYYYYO","OYYKYYYYYYKYYO","OYYKKYYYYKKYYO","OYYYYYYYYYYYYO","OYYYYYYYYYYYYO","OYYWWKKKKWWYYO","OYYWKKKKKKWYYO",".OYYWWWWWWYYO.","..OOOOOOOOOO..","...O.O..O.O..."], colors:{O:'#a86818',Y:'#f5c518',K:'#000',W:'#fff'} },
     shiba: { w:12,h:11, data:["..RRRR..RRRR",".RYYYYRRYYYY","RYYYYYYYYYYY","RYYKYYYYYKYY","RYYKKYYYKKYY","RYYYYYYYYYYY","RYYYYYYYYYYY","RYYWKKKKWYYR",".RYYWWWWYYR.","..RRRRRRRR..","...R.RR.R..."], colors:{R:'#a04818',Y:'#f0b040',K:'#000',W:'#fff'} },
@@ -508,9 +597,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     }
   }
 
-  /* ============================================================
-     MEME BACKGROUND
-     ============================================================ */
   (function initMemeBg(){
     var canvas = document.getElementById('memeBg'); if (!canvas) return;
     var ctx = canvas.getContext('2d');
@@ -534,7 +620,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     for (var i=0;i<initial;i++) spawnMeme(true);
     setInterval(function(){ var t = Math.min(35, Math.floor(window.innerWidth/50)); if (memes.length < t) spawnMeme(false); }, 600);
     document.addEventListener('click', function(e){
-      if (e.target.closest('button, a, input, .game-card, .game-overlay, #target-container')) return;
+      if (e.target.closest('button, a, input, .game-card, .game-overlay, #target-container, .swap-wrap, .swap-section')) return;
       var cx = e.clientX * dpr, cy = e.clientY * dpr;
       for (var i=0;i<5;i++){
         var key = pickMeme(); var sprite = SPRITES[key]; var px = (3 + Math.random()*2) * dpr;
@@ -565,9 +651,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     };
   })();
 
-  /* ============================================================
-     HELPERS
-     ============================================================ */
   function safeGet(k){ try{ return localStorage.getItem(k); } catch(e){ return null; } }
   function safeSet(k,v){ try{ localStorage.setItem(k,v); } catch(e){} }
   function $(id){ return document.getElementById(id); }
@@ -714,7 +797,8 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     state.activeGame = id;
     $('hub').style.display = 'none';
     document.querySelector('.hero').style.display = 'none';
-    document.querySelector('.swap-section').style.display = 'none';
+    var swap = document.querySelector('.swap-section');
+    if (swap) swap.style.display = 'none';
     $('gameView').classList.add('active');
     var titles = { invaders:'TAKEOVER', runner:'RUNNER', popper:'COIN POPPER', snake:'MEME SNAKE', match:'MEME MATCH' };
     $('gameViewTitle').innerHTML = '$MAIGA <span>' + titles[id] + '</span>';
@@ -727,7 +811,8 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     state.activeGame = null;
     $('hub').style.display = 'grid';
     document.querySelector('.hero').style.display = 'block';
-    document.querySelector('.swap-section').style.display = 'block';
+    var swap = document.querySelector('.swap-section');
+    if (swap) swap.style.display = 'block';
     $('gameView').classList.remove('active');
     updateBestLabels();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -740,7 +825,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
   function sfxBad(){ playTone(140,0.2,'sawtooth',0.08); }
   function sfxJump(){ playTone(440,0.1,'triangle',0.05); }
 
-  /* ========== TAKEOVER ========== */
   games.invaders = (function(){
     var canvas, ctx, W = 960, H = 640;
     var player, enemies, bullets, ebullets, particles, stars, bgMemes;
@@ -888,7 +972,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     return { start: function(){ mount(); $('hudTitle').textContent = 'SPACE TAKEOVER'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== RUNNER ========== */
   games.runner = (function(){
     var canvas, ctx, W = 960, H = 500;
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
@@ -1013,7 +1096,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     return { start: function(){ mount(); $('hudTitle').textContent = 'MAIGA RUNNER'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== POPPER ========== */
   games.popper = (function(){
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
     var cells = [];
@@ -1086,7 +1168,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     return { start: function(){ mount(); $('hudTitle').textContent = '⏱ 60s'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== SNAKE ========== */
   games.snake = (function(){
     var canvas, ctx, W = 960, H = 640, CELL = 32, COLS = 30, ROWS = 20;
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
@@ -1197,7 +1278,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     return { start: function(){ mount(); $('hudTitle').textContent = 'MEME SNAKE'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== MATCH ========== */
   games.match = (function(){
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
     var deck, flipped, matched, score, timeLeft, moves, MAX_TIME = 45;
@@ -1311,9 +1391,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
 </script>
 
 <script>
-  /* =====================================================================
-     JUPITER SWAP WIDGET — $MAIGA referral fees
-     ===================================================================== */
+  /* Jupiter swap widget init — waits for plugin to load */
   window.addEventListener('load', function(){
     var tries = 0;
     var iv = setInterval(function(){
@@ -1335,14 +1413,9 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
             }
           });
           console.log('[MAIGA] Jupiter swap widget loaded ✅');
-        } catch(e){
-          console.error('[MAIGA] Jupiter init error:', e);
-        }
+        } catch(e){ console.error('[MAIGA] Jupiter init error:', e); }
       }
-      if (tries > 30){
-        clearInterval(iv);
-        console.warn('[MAIGA] Jupiter plugin never loaded');
-      }
+      if (tries > 40){ clearInterval(iv); console.warn('[MAIGA] Jupiter plugin timeout'); }
     }, 300);
   });
 </script>

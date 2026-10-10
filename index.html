@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GeopolCoins is a satirical meme crypto project built around geopolitical themes, memes and community.">
-<title>GEOPOLCOINS | 4 Coins. 1 Planet. Infinite Memes.</title>
+<meta name="description" content="$MAIGA — Make AI Great Again. The AI-themed flagship of GeopolCoins. Play Space Invaders, join the airdrop, and build the army.">
+<title>$MAIGA | Make AI Great Again • GeopolCoins</title>
 
 <style>
 :root{
@@ -15,6 +15,7 @@
   --white:#ffffff;
   --red:#ff3d3d;
   --blue:#1da1f2;
+  --green:#28c76f;
   --cream:#f7f0df;
   --line:4px solid #000;
 }
@@ -27,7 +28,7 @@ body{
   margin:0;
   font-family:Impact, Haettenschweiler, "Arial Black", sans-serif;
   background:
-    radial-gradient(circle at 20% 0%, rgba(31,92,151,.28), transparent 28%),
+    radial-gradient(circle at 20% 0%, rgba(29,161,242,.28), transparent 28%),
     radial-gradient(circle at 90% 15%, rgba(255,216,0,.10), transparent 24%),
     linear-gradient(180deg, #07111f 0%, #02050a 100%);
   color:var(--white);
@@ -48,7 +49,7 @@ a{color:inherit}
   padding:12px 0;
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:50;
   backdrop-filter:blur(8px);
 }
 
@@ -91,6 +92,27 @@ a{color:inherit}
   margin-top:-2px;
 }
 
+.nav-links{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.nav-links a{
+  font-family:Arial, sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-decoration:none;
+  color:#c6d3e2;
+  padding:8px 12px;
+  border-radius:8px;
+  transition:.15s;
+}
+
+.nav-links a:hover{color:var(--yellow);background:rgba(255,216,0,.08)}
+
 .join-btn{
   background:var(--blue);
   color:white;
@@ -111,48 +133,81 @@ a{color:inherit}
   text-align:center;
   letter-spacing:2px;
   border-bottom:4px solid #000;
+  font-family:Impact, "Arial Black", sans-serif;
 }
 
-/* HERO BANNER */
-.hero-banner{
-  padding:34px 0 10px;
-}
-
-.hero-banner img{
-  display:block;
-  width:100%;
-  height:auto;
-  border:5px solid #000;
-  border-radius:22px;
-  box-shadow:12px 12px 0 rgba(0,0,0,.95);
-}
-
-.hero-copy{
+/* HERO */
+.hero{
   margin-top:34px;
   display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:35px;
+  grid-template-columns:1.05fr .95fr;
+  gap:38px;
   align-items:center;
+  padding:30px;
+  border:5px solid #000;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(29,161,242,.30), transparent 42%),
+    radial-gradient(circle at 8% 92%, rgba(255,216,0,.16), transparent 42%),
+    #0d1622;
+  box-shadow:14px 14px 0 #000;
+  position:relative;
+  overflow:hidden;
 }
 
-.hero-copy h1{
-  margin:0;
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:11px;
+  background:linear-gradient(90deg,var(--yellow),var(--blue),var(--red),var(--yellow));
+}
+
+.hero-badge{
+  display:inline-block;
+  margin:14px 0 18px;
+  padding:9px 18px;
+  background:var(--yellow);
+  color:#000;
+  font-size:15px;
+  letter-spacing:1.5px;
+  border:3px solid #000;
+  box-shadow:4px 4px 0 #000;
+  animation:pulse 1.7s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
+
+.hero h1{
+  margin:0 0 16px;
   font-size:clamp(48px, 7vw, 88px);
   line-height:.88;
   text-transform:uppercase;
   text-shadow:5px 5px 0 #000;
 }
 
-.hero-copy h1 span{
-  color:var(--yellow);
+.hero h1 span{color:var(--yellow)}
+
+.hero p{
+  font-family:Arial, sans-serif;
+  font-size:18px;
+  line-height:1.65;
+  color:#e7eef7;
+  margin:0 0 16px;
 }
 
-.hero-copy p{
-  font-family:Arial, sans-serif;
-  font-size:19px;
-  line-height:1.65;
-  margin:0;
-  color:#edf3fa;
+.hero-img{
+  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  background:#06101b;
+  border:5px solid #000;
+  border-radius:20px;
+  box-shadow:9px 9px 0 rgba(0,0,0,.9);
 }
 
 .buttons{
@@ -171,6 +226,7 @@ a{color:inherit}
   text-decoration:none;
   box-shadow:6px 6px 0 #000;
   transition:.15s ease;
+  cursor:pointer;
 }
 
 .btn:hover{
@@ -183,83 +239,7 @@ a{color:inherit}
 .btn-yellow{background:var(--yellow);color:#000}
 .btn-white{background:#fff;color:#000}
 .btn-blue{background:var(--blue);color:#fff}
-
-/* ============ FEATURED $MAIGA ============ */
-.featured{
-  margin-top:50px;
-  position:relative;
-  overflow:hidden;
-  padding:32px;
-  border:5px solid #000;
-  border-radius:26px;
-  background:
-    radial-gradient(circle at 88% 12%, rgba(29,161,242,.30), transparent 42%),
-    radial-gradient(circle at 8% 92%, rgba(255,216,0,.16), transparent 42%),
-    #0d1622;
-  box-shadow:14px 14px 0 #000;
-}
-
-.featured::before{
-  content:"";
-  position:absolute;
-  inset:0 0 auto 0;
-  height:11px;
-  background:linear-gradient(90deg,var(--yellow),var(--blue),var(--red),var(--yellow));
-}
-
-.featured-badge{
-  display:inline-block;
-  margin:14px 0 20px;
-  padding:9px 18px;
-  background:var(--yellow);
-  color:#000;
-  font-size:16px;
-  letter-spacing:1.5px;
-  border:3px solid #000;
-  box-shadow:4px 4px 0 #000;
-  animation:pulse 1.7s ease-in-out infinite;
-}
-
-@keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-}
-
-.featured-grid{
-  display:grid;
-  grid-template-columns:.85fr 1.15fr;
-  gap:32px;
-  align-items:center;
-}
-
-.featured-grid > img{
-  display:block;
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  background:#06101b;
-  border:5px solid #000;
-  border-radius:20px;
-  box-shadow:9px 9px 0 rgba(0,0,0,.9);
-}
-
-.featured h2{
-  margin:0 0 14px;
-  font-size:clamp(38px, 5vw, 64px);
-  line-height:.94;
-  text-transform:uppercase;
-  text-shadow:4px 4px 0 #000;
-}
-
-.featured h2 span{color:var(--yellow)}
-
-.featured p{
-  font-family:Arial, sans-serif;
-  font-size:18px;
-  line-height:1.65;
-  color:#e7eef7;
-  margin:0 0 16px;
-}
+.btn-green{background:var(--green);color:#000}
 
 .contract-box{
   font-family:Arial, sans-serif;
@@ -274,18 +254,6 @@ a{color:inherit}
   word-break:break-all;
   box-shadow:4px 4px 0 #000;
 }
-
-.dev-note{
-  margin:20px 0 0;
-  padding-left:15px;
-  border-left:6px solid var(--yellow);
-  font-family:Arial, sans-serif;
-  font-size:15px;
-  line-height:1.65;
-  color:#c6d3e2;
-}
-
-.dev-note strong{color:var(--yellow)}
 
 /* SECTION HEADERS */
 .section-title{
@@ -305,7 +273,169 @@ a{color:inherit}
   font-size:16px;
 }
 
-/* COINS */
+/* ============ GAME ============ */
+.game-section{
+  margin-top:60px;
+  padding:30px;
+  border:5px solid #000;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,216,0,.16), transparent 42%),
+    #0b1520;
+  box-shadow:14px 14px 0 #000;
+  position:relative;
+  overflow:hidden;
+}
+
+.game-section::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:10px;
+  background:linear-gradient(90deg,var(--yellow),var(--red),var(--blue),var(--yellow));
+}
+
+.game-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin:10px 0 6px;
+}
+
+.game-head h2{
+  margin:0;
+  font-size:clamp(34px, 4.5vw, 54px);
+  text-transform:uppercase;
+  text-shadow:4px 4px 0 #000;
+  line-height:.95;
+}
+
+.game-head h2 span{color:var(--red)}
+
+.game-head .live-dot{
+  display:inline-block;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:var(--red);
+  border:3px solid #000;
+  box-shadow:0 0 0 0 rgba(255,61,61,.7);
+  animation:blip 1.4s infinite;
+}
+
+@keyframes blip{
+  0%{box-shadow:0 0 0 0 rgba(255,61,61,.7)}
+  70%{box-shadow:0 0 0 14px rgba(255,61,61,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,61,61,0)}
+}
+
+.game-section > p{
+  font-family:Arial, sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  color:#dbe6f1;
+  margin:10px 0 20px;
+}
+
+.game-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:4/3;
+  max-height:620px;
+  border:5px solid #000;
+  border-radius:18px;
+  overflow:hidden;
+  background:#050b14;
+  box-shadow:9px 9px 0 rgba(0,0,0,.9);
+}
+
+.game-wrap canvas{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+#gameHud{
+  position:absolute;
+  top:0; left:0; right:0;
+  display:flex;
+  justify-content:space-between;
+  padding:10px 16px;
+  color:var(--yellow);
+  font-size:clamp(13px, 2.2vw, 20px);
+  letter-spacing:2px;
+  text-shadow:2px 2px 0 #000;
+  pointer-events:none;
+  z-index:5;
+  font-family:Impact, "Arial Black", sans-serif;
+}
+
+#gameOverlay{
+  position:absolute;
+  inset:0;
+  background:rgba(2,5,10,.94);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  z-index:10;
+  color:#fff;
+}
+
+#gameOverlay h3{
+  color:var(--yellow);
+  font-size:clamp(26px, 5vw, 48px);
+  text-shadow:4px 4px 0 #000;
+  margin-bottom:10px;
+  line-height:.95;
+  text-transform:uppercase;
+}
+
+#gameOverlay p{
+  font-family:Arial, sans-serif;
+  font-size:clamp(12px, 1.8vw, 16px);
+  line-height:1.6;
+  max-width:520px;
+  margin-bottom:18px;
+  color:#d7e2ee;
+}
+
+#gameOverlay .tag{
+  color:var(--blue);
+  font-family:Arial, sans-serif;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:12px;
+}
+
+#startGameBtn{
+  background:var(--yellow);
+  color:#000;
+  border:4px solid #000;
+  border-radius:12px;
+  padding:13px 28px;
+  font-family:inherit;
+  font-size:clamp(15px, 2.2vw, 20px);
+  letter-spacing:2px;
+  cursor:pointer;
+  box-shadow:6px 6px 0 #000;
+  transition:.12s;
+}
+
+#startGameBtn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
+
+.game-controls{
+  margin-top:16px;
+  font-family:Arial, sans-serif;
+  font-size:12px;
+  color:#7e8ea3;
+  text-align:center;
+}
+
+/* ============ COINS ============ */
 .coins{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -393,69 +523,6 @@ a{color:inherit}
   color:#e7eef7;
 }
 
-/* HOW TO BUY */
-.buy{
-  margin-top:54px;
-}
-
-.steps{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-}
-
-.step{
-  background:#fff;
-  color:#111;
-  border:4px solid #000;
-  border-radius:16px;
-  padding:20px;
-  box-shadow:7px 7px 0 #000;
-}
-
-.step-number{
-  display:inline-flex;
-  width:42px;
-  height:42px;
-  align-items:center;
-  justify-content:center;
-  background:var(--yellow);
-  border:3px solid #000;
-  border-radius:50%;
-  font-size:20px;
-  margin-bottom:12px;
-}
-
-.step strong{
-  display:block;
-  font-size:20px;
-  margin-bottom:7px;
-}
-
-.step p{
-  font-family:Arial, sans-serif;
-  font-size:14px;
-  line-height:1.5;
-  margin:0;
-}
-
-/* GALLERY */
-.gallery{
-  margin-top:56px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-.gallery img{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  border:4px solid #000;
-  border-radius:15px;
-  box-shadow:6px 6px 0 rgba(0,0,0,.9);
-}
-
 /* CTA */
 .cta{
   margin-top:62px;
@@ -471,7 +538,7 @@ a{color:inherit}
 
 .cta h2{
   margin:0;
-  font-size:48px;
+  font-size:clamp(32px, 5vw, 48px);
 }
 
 .cta p{
@@ -507,25 +574,19 @@ footer{
 
 /* RESPONSIVE */
 @media(max-width:950px){
-  .hero-copy{grid-template-columns:1fr}
-  .featured-grid{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr}
   .coins{grid-template-columns:1fr 1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .gallery{grid-template-columns:1fr 1fr}
 }
 
 @media(max-width:620px){
   .brand-title{font-size:23px}
   .ticker{font-size:11px;letter-spacing:1px}
-  .hero-banner{padding-top:20px}
-  .hero-copy h1{font-size:54px}
-  .featured{padding:22px}
-  .coins,
-  .steps,
-  .gallery{grid-template-columns:1fr}
+  .hero{padding:22px}
+  .hero h1{font-size:54px}
+  .game-section{padding:22px}
+  .coins{grid-template-columns:1fr}
   .message{padding:22px}
   .message h2{font-size:34px}
-  .cta h2{font-size:38px}
 }
 </style>
 </head>
@@ -535,104 +596,136 @@ footer{
 <div class="top">
   <div class="container nav">
     <div class="brand">
-      <img src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg" alt="GeopolCoins $MAIGA — Make AI Great Again">
+      <img src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg" alt="$MAIGA — Make AI Great Again">
       <div>
-        <div class="brand-title">GEOPOLCOINS</div>
-        <span class="brand-sub">SAME PLANET. DIFFERENT DRAMA.</span>
+        <div class="brand-title">$MAIGA</div>
+        <span class="brand-sub">MAKE AI GREAT AGAIN • GEOPOLCOINS</span>
       </div>
     </div>
 
-    <a class="join-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN ON X</a>
+    <div class="nav-links">
+      <a href="#game">🎮 GAME</a>
+      <a href="#coins">COINS</a>
+      <a href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY</a>
+      <a class="join-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN ON X</a>
+    </div>
   </div>
 </div>
 
 <div class="ticker">
-  🔥 $MAIGA • $PLANET • $LANDUSA • $IRANUSA • 4 COINS / 1 PLANET • INFINITE MEMES • AIRDROPS &amp; FREEBIES ON X 🔥
+  🔥 $MAIGA • AIRDROP LIVE • SPACE INVADERS GAME • 500M BURN COMING • MAKE AI GREAT AGAIN 🔥
 </div>
 
 <div class="container">
 
-  <!-- WIDE BANNER -->
-  <section class="hero-banner">
-    <img
-      src="https://sakkemoto.com/wp-content/uploads/2026/09/bannerearthcoin.jpeg"
-      alt="GeopolCoins banner featuring the community coin universe"
-    >
-  </section>
-
-  <section class="hero-copy">
+  <!-- ============ HERO: $MAIGA ============ -->
+  <section class="hero" id="maiga">
     <div>
-      <h1>MEME<br><span>GEOPOLITICS</span></h1>
-    </div>
+      <div class="hero-badge">🔥 FLAGSHIP • AI • AIRDROP LIVE</div>
 
-    <div>
+      <h1>MAKE AI<br><span>GREAT AGAIN</span></h1>
+
       <p>
-        GeopolCoins is a satirical meme crypto project built around geopolitical themes,
-        internet culture and community. Different beliefs, different origins, same planet.
-        The project turns current-world drama into memes and visual satire.
+        $MAIGA is the AI-themed flagship of the GeopolCoins universe — artificial intelligence,
+        blockchain and internet culture colliding in one meme coin. 🧢🤖
       </p>
 
+      <p>
+        <strong style="color:var(--yellow)">We're building every day. We're here to stay.</strong>
+        More burns. More bounties. More wins.
+      </p>
+
+      <div class="contract-box">
+        <strong>OFFICIAL $MAIGA CONTRACT:</strong><br>
+        3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump
+      </div>
+
       <div class="buttons">
-        <a class="btn btn-blue" href="#maiga">🔥 VIEW $MAIGA</a>
-        <a class="btn btn-yellow" href="#coins">VIEW $PLANET</a>
-        <a class="btn btn-red" href="https://pump.fun/coin/3p7JNozLW8gHh7j1EGZVACnQS1q2TSuh3BaVKqRmpump" target="_blank" rel="noopener">VIEW $LANDUSA</a>
-        <a class="btn btn-black" href="https://pump.fun/coin/FKTHTcJSmnkgwf8kiLAEbkzEVg8QgP3McnFsztigpump" target="_blank" rel="noopener">VIEW $IRANUSA</a>
+        <a
+          class="btn btn-black"
+          href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump"
+          target="_blank"
+          rel="noopener"
+        >🚀 BUY $MAIGA</a>
+
+        <a
+          class="btn btn-green"
+          href="https://pump.fun/go/c12c9f34-b3b4-49de-8798-aab562dac789"
+          target="_blank"
+          rel="noopener"
+        >🎁 JOIN BOUNTY</a>
+
+        <a
+          class="btn btn-blue"
+          href="https://x.com/greenlandusa1"
+          target="_blank"
+          rel="noopener"
+        >FOLLOW ON X</a>
       </div>
     </div>
-  </section>
 
-  <!-- ============ FEATURED: $MAIGA ============ -->
-  <section class="featured" id="maiga">
-    <div class="featured-badge">🔥 FEATURED • NEW • AI</div>
-
-    <div class="featured-grid">
+    <div>
       <img
+        class="hero-img"
         src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg"
-        alt="$MAIGA — Make AI Great Again GeopolCoins meme coin"
+        alt="$MAIGA — Make AI Great Again"
       >
-
-      <div>
-        <h2>MAKE AI<br><span>GREAT AGAIN</span></h2>
-
-        <p>
-          $MAIGA is the AI-themed flagship of the GeopolCoins universe — artificial intelligence,
-          blockchain and internet culture colliding in one meme coin.
-        </p>
-
-        <div class="contract-box">
-          <strong>CONTRACT:</strong><br>
-          3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump
-        </div>
-
-        <div class="buttons" style="margin-top:0;">
-          <a
-            class="btn btn-black"
-            href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump"
-            target="_blank"
-            rel="noopener"
-          >🚀 BUY $MAIGA</a>
-
-          <a
-            class="btn btn-blue"
-            href="https://x.com/greenlandusa1"
-            target="_blank"
-            rel="noopener"
-          >🎁 AIRDROPS &amp; FREEBIES ON X</a>
-        </div>
-
-        <p class="dev-note">
-          <strong>WE ARE DEVELOPING EVERY DAY AND WE ARE HERE TO STAY.</strong>
-          New art, new memes, new drops — follow us on X for airdrops, freebies and
-          every update first. Join the community now.
-        </p>
-      </div>
     </div>
   </section>
 
-  <!-- ============ THE OTHER COINS ============ -->
+  <!-- ============ GAME ============ -->
+  <section class="game-section" id="game">
+    <div class="game-head">
+      <span class="live-dot"></span>
+      <h2>$MAIGA <span>SPACE INVADERS</span></h2>
+    </div>
+
+    <p>
+      🎮 <strong>Jean-Phil</strong> is piloting the last $MAIGA ship. <strong>Trump</strong> watches from the starship bridge.
+      The enemy crypto coins are descending. Shoot them all. Make AI Great Again. 🧢🤖
+    </p>
+
+    <div class="game-wrap">
+      <canvas id="game"></canvas>
+
+      <div id="gameHud">
+        <div>SCORE: <span id="score">0</span></div>
+        <div>$MAIGA</div>
+        <div>LIVES: <span id="lives">3</span></div>
+      </div>
+
+      <div id="gameOverlay">
+        <div class="tag">$MAIGA PRESENTS</div>
+        <h3>SPACE<br>INVADERS</h3>
+        <p>
+          Shoot the enemy crypto coins. Don't let them land.<br>
+          <strong>Make AI Great Again.</strong>
+        </p>
+        <button id="startGameBtn">START MISSION</button>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      ← → or A / D to move &nbsp;•&nbsp; SPACE to shoot &nbsp;•&nbsp; P to pause &nbsp;•&nbsp; Works on mobile (tap to move &amp; shoot)
+    </div>
+  </section>
+
+  <!-- ============ MESSAGE ============ -->
+  <section class="message">
+    <h2>STILL HERE. STILL COOKING. <span>MORE COMING.</span></h2>
+    <p>
+      We're not building a community — we're building an <strong>army</strong>. 🪖
+      Those who sell lose. Those who stay win.
+    </p>
+    <p>
+      This is the beginning of the beginning. $MAIGA is here to stay. 🚀
+    </p>
+  </section>
+
+  <!-- ============ MORE COINS ============ -->
   <section id="coins">
-    <h2 class="section-title">MORE <span>COINS</span></h2>
-    <p class="section-note">The rest of the GeopolCoins universe — same planet, different drama.</p>
+    <h2 class="section-title">MORE <span>GEOPOLCOINS</span></h2>
+    <p class="section-note">The rest of the universe — same planet, different drama.</p>
 
     <div class="coins">
 
@@ -646,7 +739,6 @@ footer{
         <p>
           A geopolitical meme coin built around land, power and internet satire.
         </p>
-
         <a class="btn btn-black" href="https://pump.fun/coin/3p7JNozLW8gHh7j1EGZVACnQS1q2TSuh3BaVKqRmpump" target="_blank" rel="noopener">VIEW</a>
       </div>
 
@@ -660,7 +752,6 @@ footer{
         <p>
           A meme coin inspired by geopolitical tension, headlines and the absurdity of global drama.
         </p>
-
         <a class="btn btn-black" href="https://pump.fun/coin/FKTHTcJSmnkgwf8kiLAEbkzEVg8QgP3McnFsztigpump" target="_blank" rel="noopener">VIEW</a>
       </div>
 
@@ -674,90 +765,463 @@ footer{
         <p>
           One planet. Millions of opinions. A meme concept placing the Earth at the center of the geopolitical circus.
         </p>
-
-        <!-- Add the $PLANET token URL here when available -->
         <a class="btn btn-yellow" href="#join" aria-label="More information about PLANET">MORE</a>
       </div>
 
     </div>
   </section>
 
-  <section class="message">
-    <h2>ONE <span>PLANET</span>. DIFFERENT DRAMA.</h2>
-
+  <!-- ============ CTA ============ -->
+  <section class="cta" id="join">
+    <h2>JOIN THE $MAIGA ARMY</h2>
     <p>
-      GeopolCoins uses satire and memes to comment on geopolitical themes and the way
-      global events become internet culture.
+      We are developing every day and we are here to stay. Follow on X for airdrops,
+      freebies, bounties and every update first.
     </p>
 
-    <p>
-      Left, right, east, west — the project focuses on the shared fact that everyone
-      lives on the same planet.
-    </p>
-
-    <p>
-      Different beliefs. Different origins. Same planet.
-    </p>
-  </section>
-
-  <section class="buy">
-    <h2 class="section-title">HOW TO <span>ACCESS</span></h2>
-
-    <div class="steps">
-      <div class="step">
-        <span class="step-number">1</span>
-        <strong>Wallet</strong>
-        <p>Use a compatible Solana wallet such as Phantom.</p>
-      </div>
-
-      <div class="step">
-        <span class="step-number">2</span>
-        <strong>SOL</strong>
-        <p>Fund the wallet with enough SOL for the transaction and network fees.</p>
-      </div>
-
-      <div class="step">
-        <span class="step-number">3</span>
-        <strong>Token Page</strong>
-        <p>Open the relevant token page on pump.fun.</p>
-      </div>
-
-      <div class="step">
-        <span class="step-number">4</span>
-        <strong>Review</strong>
-        <p>Check the token details carefully before making any transaction.</p>
-      </div>
+    <div class="buttons" style="justify-content:center;">
+      <a class="btn btn-green" href="https://pump.fun/go/c12c9f34-b3b4-49de-8798-aab562dac789" target="_blank" rel="noopener">🎁 JOIN BOUNTY</a>
+      <a class="btn btn-blue" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN US ON X</a>
+      <a class="btn btn-yellow" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY $MAIGA</a>
     </div>
   </section>
 
-  <section class="gallery">
-    <img src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg" alt="GeopolCoins $MAIGA artwork">
-    <img src="https://sakkemoto.com/wp-content/uploads/2026/09/earthcoin.jpeg" alt="GeopolCoins $PLANET artwork">
-    <img src="https://sakkemoto.com/wp-content/uploads/2026/03/this556.jpeg" alt="GeopolCoins meme artwork">
-    <img src="https://sakkemoto.com/wp-content/uploads/2026/03/HAN-rUUX0AACtuL.jpeg" alt="GeopolCoins community meme">
-  </section>
-
-  <section class="cta" id="join">
-    <h2>JOIN GEOPOLCOINS</h2>
-    <p>
-      We are developing every day and we are here to stay. Follow the project on X for
-      airdrops, freebies, new memes and every update first.
-    </p>
-
-    <a class="btn btn-blue" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">🎁 JOIN US ON X — AIRDROPS &amp; FREEBIES</a>
-  </section>
-
   <div class="disclaimer">
-    GEOPOLCOINS is a satirical entertainment and meme project. Cryptocurrency involves
+    $MAIGA and GEOPOLCOINS are satirical entertainment and meme projects. Cryptocurrency involves
     significant risk and prices can change rapidly. Nothing on this website is financial,
-    legal or investment advice, and no outcome or return is guaranteed.
+    legal or investment advice, and no outcome or return is guaranteed. Always verify
+    the official contract address before interacting with any token.
   </div>
 
 </div>
 
 <footer>
-  © 2026 GEOPOLCOINS — 4 COINS. SAME PLANET. DIFFERENT DRAMA.
+  © 2026 $MAIGA — MAKE AI GREAT AGAIN • GEOPOLCOINS — 4 COINS. SAME PLANET. DIFFERENT DRAMA.
 </footer>
+
+<!-- ============ GAME SCRIPT ============ -->
+<script>
+(() => {
+  const canvas = document.getElementById('game');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const overlay = document.getElementById('gameOverlay');
+  const startBtn = document.getElementById('startGameBtn');
+  const scoreEl = document.getElementById('score');
+  const livesEl = document.getElementById('lives');
+
+  let W = 800, H = 600;
+  function resize() {
+    const r = canvas.getBoundingClientRect();
+    W = canvas.width = Math.max(300, r.width);
+    H = canvas.height = Math.max(220, r.height);
+  }
+  window.addEventListener('resize', resize);
+
+  let state = 'menu';
+  let score = 0, lives = 3;
+  let enemies = [], bullets = [], enemyBullets = [], particles = [], stars = [];
+  let player, keys = {}, lastShot = 0, enemyDir = 1, enemySpeed = 40;
+  let shootTimer = 0, wave = 1;
+
+  const COINS = [
+    { sym: '₿',  color: '#f7931a' },
+    { sym: 'Ξ',  color: '#8a92b2' },
+    { sym: 'Ð',  color: '#c2a633' },
+    { sym: '◎',  color: '#14f195' },
+    { sym: '🐸', color: '#4caf50' },
+    { sym: 'X',  color: '#ffffff' },
+    { sym: '₳',  color: '#1da1f2' },
+    { sym: '✕',  color: '#ff3d3d' }
+  ];
+
+  function initStars() {
+    stars = [];
+    for (let i = 0; i < 140; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.6 + .3,
+        s: Math.random() * .4 + .08
+      });
+    }
+  }
+
+  function resetPlayer() {
+    player = { x: W / 2, y: H - 70, w: 46, h: 46, speed: 340, cooldown: 0.22 };
+  }
+
+  function spawnWave() {
+    enemies = [];
+    const cols = 8;
+    const rows = Math.min(2 + wave, 5);
+    const padX = Math.max(50, W / 12);
+    const padY = Math.max(44, H / 11);
+    const startX = (W - (cols - 1) * padX) / 2;
+    const startY = Math.max(60, H * 0.12);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const t = COINS[(r * cols + c) % COINS.length];
+        enemies.push({
+          x: startX + c * padX,
+          y: startY + r * padY,
+          w: 36, h: 36, alive: true, type: t,
+          wobble: Math.random() * Math.PI * 2
+        });
+      }
+    }
+    enemyDir = 1;
+    enemySpeed = 34 + wave * 8;
+  }
+
+  function shoot() {
+    const now = performance.now() / 1000;
+    if (now - lastShot < player.cooldown) return;
+    lastShot = now;
+    bullets.push({ x: player.x, y: player.y - 26, vy: -520 });
+  }
+
+  function enemyShoot() {
+    const alive = enemies.filter(e => e.alive);
+    if (!alive.length) return;
+    const e = alive[Math.floor(Math.random() * alive.length)];
+    enemyBullets.push({ x: e.x, y: e.y + 18, vy: 240, type: e.type });
+  }
+
+  function burst(x, y, color) {
+    for (let i = 0; i < 14; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const sp = Math.random() * 180 + 40;
+      particles.push({
+        x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+        life: .6, max: .6, color
+      });
+    }
+  }
+
+  function update(dt) {
+    stars.forEach(s => { s.y += s.s * 60 * dt; if (s.y > H) { s.y = 0; s.x = Math.random() * W; } });
+    if (state !== 'playing') return;
+
+    let mv = 0;
+    if (keys['ArrowLeft'] || keys['a'] || keys['A']) mv -= 1;
+    if (keys['ArrowRight'] || keys['d'] || keys['D']) mv += 1;
+    player.x += mv * player.speed * dt;
+    player.x = Math.max(30, Math.min(W - 30, player.x));
+
+    bullets.forEach(b => b.y += b.vy * dt);
+    bullets = bullets.filter(b => b.y > -20);
+
+    enemyBullets.forEach(b => b.y += b.vy * dt);
+    enemyBullets = enemyBullets.filter(b => b.y < H + 20);
+
+    let alive = enemies.filter(e => e.alive);
+    let minX = Infinity, maxX = -Infinity;
+    alive.forEach(e => {
+      e.x += enemyDir * enemySpeed * dt;
+      e.wobble += dt * 3;
+      minX = Math.min(minX, e.x - e.w / 2);
+      maxX = Math.max(maxX, e.x + e.w / 2);
+    });
+
+    if (maxX > W - 24 && enemyDir > 0) { enemyDir = -1; dropEnemies(); }
+    if (minX < 24 && enemyDir < 0) { enemyDir = 1; dropEnemies(); }
+
+    shootTimer -= dt;
+    if (shootTimer <= 0) {
+      enemyShoot();
+      shootTimer = Math.max(.28, 1.1 - wave * 0.08);
+    }
+
+    for (const b of bullets) {
+      for (const e of enemies) {
+        if (!e.alive) continue;
+        if (Math.abs(b.x - e.x) < e.w / 2 + 5 && Math.abs(b.y - e.y) < e.h / 2 + 5) {
+          e.alive = false;
+          b.y = -100;
+          score += 10;
+          scoreEl.textContent = score;
+          burst(e.x, e.y, e.type.color);
+        }
+      }
+    }
+    bullets = bullets.filter(b => b.y > -20);
+
+    for (const b of enemyBullets) {
+      if (Math.abs(b.x - player.x) < 22 && Math.abs(b.y - player.y) < 26) {
+        b.y = H + 100;
+        hitPlayer();
+      }
+    }
+    enemyBullets = enemyBullets.filter(b => b.y < H + 20);
+
+    particles.forEach(p => {
+      p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 220 * dt; p.life -= dt;
+    });
+    particles = particles.filter(p => p.life > 0);
+
+    if (alive.length === 0) { wave++; spawnWave(); }
+    if (lives <= 0) gameOver();
+  }
+
+  function dropEnemies() {
+    enemies.forEach(e => { if (e.alive) e.y += 18; });
+  }
+
+  function hitPlayer() {
+    lives--;
+    livesEl.textContent = lives;
+    burst(player.x, player.y, '#ff3d3d');
+    if (lives <= 0) gameOver();
+  }
+
+  function draw() {
+    const g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#07111f');
+    g.addColorStop(1, '#02050a');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = '#9fb6d0';
+    stars.forEach(s => {
+      ctx.globalAlpha = .3 + s.r * .3;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    drawTrumpBackground();
+
+    ctx.fillStyle = 'rgba(255,216,0,.07)';
+    ctx.fillRect(0, H - 60, W, 60);
+
+    enemies.forEach(e => { if (e.alive) drawCoin(e.x, e.y, e.w, e.type, e.wobble); });
+
+    enemyBullets.forEach(b => {
+      ctx.save();
+      ctx.shadowColor = b.type.color; ctx.shadowBlur = 12;
+      ctx.fillStyle = b.type.color;
+      ctx.beginPath(); ctx.arc(b.x, b.y, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    });
+
+    bullets.forEach(b => {
+      ctx.save();
+      ctx.shadowColor = '#ffd800'; ctx.shadowBlur = 14;
+      ctx.fillStyle = '#ffd800';
+      ctx.fillRect(b.x - 2.5, b.y - 12, 5, 16);
+      ctx.restore();
+    });
+
+    if (state !== 'over' || lives > 0) drawJeanPhil(player.x, player.y);
+
+    particles.forEach(p => {
+      ctx.globalAlpha = Math.max(0, p.life / p.max);
+      ctx.fillStyle = p.color;
+      ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    ctx.font = `bold ${Math.max(12, W * 0.02)}px Impact`;
+    ctx.fillStyle = 'rgba(255,216,0,.5)';
+    ctx.textAlign = 'center';
+    ctx.fillText('WAVE ' + wave, W / 2, H - 18);
+  }
+
+  function drawCoin(x, y, size, type, wobble) {
+    const r = size / 2;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(Math.sin(wobble) * .12);
+    ctx.shadowColor = type.color; ctx.shadowBlur = 16;
+    const grad = ctx.createRadialGradient(-r*.3, -r*.3, 2, 0, 0, r);
+    grad.addColorStop(0, type.color);
+    grad.addColorStop(1, '#0a0f16');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill();
+    ctx.lineWidth = 3; ctx.strokeStyle = type.color; ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#fff';
+    ctx.font = `bold ${r * 0.95}px Impact, Arial`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(type.sym, 0, 1);
+    ctx.restore();
+  }
+
+  function drawJeanPhil(x, y) {
+    ctx.save();
+    ctx.translate(x, y);
+
+    const flame = 12 + Math.sin(performance.now() / 60) * 4;
+    const fg = ctx.createLinearGradient(0, 18, 0, 18 + flame);
+    fg.addColorStop(0, '#ffd800');
+    fg.addColorStop(1, 'rgba(255,61,61,0)');
+    ctx.fillStyle = fg;
+    ctx.beginPath();
+    ctx.moveTo(-9, 18); ctx.lineTo(0, 18 + flame); ctx.lineTo(9, 18);
+    ctx.closePath(); ctx.fill();
+
+    ctx.fillStyle = '#7a5a3a';
+    ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, -18); ctx.lineTo(14, 14); ctx.lineTo(0, 22); ctx.lineTo(-14, 14);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = '#f7f0df';
+    ctx.beginPath();
+    ctx.moveTo(0, -10); ctx.lineTo(7, 12); ctx.lineTo(-7, 12);
+    ctx.closePath(); ctx.fill();
+
+    ctx.fillStyle = '#3a2a1a';
+    ctx.fillRect(-2.5, -8, 5, 16);
+
+    ctx.fillStyle = '#f2cf5b';
+    ctx.beginPath(); ctx.arc(0, -20, 11, Math.PI, 0); ctx.fill();
+    ctx.fillRect(-11, -20, 22, 6);
+
+    ctx.fillStyle = '#f5d6b3';
+    ctx.beginPath(); ctx.arc(0, -20, 8, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = '#f2cf5b';
+    ctx.beginPath(); ctx.ellipse(0, -16, 6, 2.4, 0, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = '#000';
+    ctx.beginPath();
+    ctx.arc(-3, -21, 1.4, 0, Math.PI * 2);
+    ctx.arc(3, -21, 1.4, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(6, 2, 10, 6);
+    ctx.fillStyle = '#000';
+    ctx.font = 'bold 3px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('JP', 11, 6.5);
+
+    ctx.restore();
+  }
+
+  function drawTrumpBackground() {
+    const t = performance.now() / 1000;
+    const cx = W / 2;
+    const cy = Math.max(70, H * 0.15) + Math.sin(t * .6) * 6;
+
+    ctx.save();
+    ctx.globalAlpha = .16;
+    ctx.shadowColor = '#1da1f2';
+    ctx.shadowBlur = 60;
+
+    ctx.fillStyle = '#0a1a2f';
+    ctx.beginPath();
+    ctx.moveTo(cx - 70, cy + 80); ctx.lineTo(cx - 40, cy - 20);
+    ctx.lineTo(cx + 40, cy - 20); ctx.lineTo(cx + 70, cy + 80);
+    ctx.closePath(); ctx.fill();
+
+    ctx.fillStyle = '#dfe8f3';
+    ctx.beginPath();
+    ctx.moveTo(cx - 20, cy - 15); ctx.lineTo(cx, cy + 60); ctx.lineTo(cx + 20, cy - 15);
+    ctx.closePath(); ctx.fill();
+
+    ctx.fillStyle = '#ff3d3d';
+    ctx.beginPath();
+    ctx.moveTo(cx - 5, cy - 10); ctx.lineTo(cx + 5, cy - 10);
+    ctx.lineTo(cx + 3, cy + 55); ctx.lineTo(cx - 3, cy + 55);
+    ctx.closePath(); ctx.fill();
+
+    ctx.fillStyle = '#f0c9a0';
+    ctx.beginPath(); ctx.ellipse(cx, cy - 45, 30, 36, 0, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = '#e8c46a';
+    ctx.beginPath(); ctx.ellipse(cx, cy - 72, 33, 20, 0, Math.PI, 0); ctx.fill();
+
+    ctx.fillStyle = '#000';
+    ctx.beginPath(); ctx.ellipse(cx, cy - 78, 34, 16, 0, Math.PI, 0); ctx.fill();
+    ctx.fillRect(cx - 34, cy - 78, 68, 8);
+    ctx.beginPath(); ctx.ellipse(cx + 10, cy - 72, 26, 6, 0, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = '#ffd800';
+    ctx.font = `bold ${Math.max(9, W * 0.014)}px Impact`;
+    ctx.textAlign = 'center';
+    ctx.fillText('MAKE AI GREAT AGAIN', cx, cy - 74);
+
+    ctx.restore();
+  }
+
+  let last = performance.now();
+  function loop(now) {
+    const dt = Math.min((now - last) / 1000, .033);
+    last = now;
+    update(dt);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('keydown', e => {
+    keys[e.key] = true;
+    if (e.key === ' ') {
+      e.preventDefault();
+      if (state === 'playing') shoot();
+      else if (state === 'menu' || state === 'over') startGame();
+    }
+    if (e.key === 'p' || e.key === 'P') {
+      if (state === 'playing') { state = 'paused'; showOverlay('PAUSED', 'Press P or START to resume.'); }
+      else if (state === 'paused') { state = 'playing'; overlay.classList.add('hidden'); }
+    }
+  });
+  window.addEventListener('keyup', e => { keys[e.key] = false; });
+
+  canvas.addEventListener('touchstart', e => {
+    const r = canvas.getBoundingClientRect();
+    const x = e.touches[0].clientX - r.left;
+    player.x = (x / r.width) * W;
+    if (state === 'playing') shoot();
+  }, { passive: true });
+  canvas.addEventListener('touchmove', e => {
+    const r = canvas.getBoundingClientRect();
+    const x = e.touches[0].clientX - r.left;
+    player.x = Math.max(30, Math.min(W - 30, (x / r.width) * W));
+  }, { passive: true });
+
+  function showOverlay(title, text) {
+    overlay.innerHTML = `
+      <div class="tag">$MAIGA</div>
+      <h3>${title}</h3>
+      <p>${text}</p>
+      <button id="startGameBtn">START MISSION</button>
+    `;
+    overlay.classList.remove('hidden');
+    document.getElementById('startGameBtn').addEventListener('click', startGame);
+  }
+
+  function startGame() {
+    overlay.classList.add('hidden');
+    score = 0; lives = 3; wave = 1;
+    scoreEl.textContent = 0; livesEl.textContent = 3;
+    bullets = []; enemyBullets = []; particles = [];
+    resize(); initStars(); resetPlayer(); spawnWave();
+    shootTimer = 1; lastShot = 0;
+    state = 'playing';
+    last = performance.now();
+  }
+
+  function gameOver() {
+    state = 'over';
+    showOverlay(
+      'GAME OVER',
+      `Final score: <strong>${score}</strong><br><br>
+       The crypto coins won this round… but $MAIGA never stops.<br>
+       <span style="color:#ffd800">Make AI Great Again. 🧢🤖</span>`
+    );
+  }
+
+  resize();
+  initStars();
+  resetPlayer();
+  requestAnimationFrame(loop);
+  startBtn.addEventListener('click', startGame);
+})();
+</script>
 
 </body>
 </html>

@@ -3,25 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="$MAIGA — Make AI Great Again. Play $MAIGA TAKEOVER, climb the leaderboard, share your score on X.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="$MAIGA TAKEOVER — Make AI Great Again">
-<meta name="twitter:description" content="Play the $MAIGA arcade game. Beat the high score. Share it on X.">
+<meta name="description" content="$MAIGA — Make AI Great Again. Play $MAIGA TAKEOVER.">
 <title>$MAIGA | Make AI Great Again • $MAIGA TAKEOVER</title>
 
 <style>
 :root{
-  --black:#050505;
-  --navy:#07111f;
-  --yellow:#ffffff;
-  --usa-red:#d92736;
-  --usa-blue:#2457a6;
-  --white:#ffffff;
+  --yellow:#ffd800;
   --red:#d92736;
   --blue:#2457a6;
-  --green:#d92736;
+  --white:#ffffff;
+  --black:#050505;
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -37,103 +29,89 @@ body{
 a{color:inherit}
 .container{width:min(94%, 1220px);margin:auto}
 
-.top{
-  background:rgba(0,0,0,.96);
-  border-bottom:4px solid var(--yellow);
-  padding:12px 0;
-  position:sticky;top:0;z-index:50;
-  backdrop-filter:blur(8px);
-}
+.top{background:rgba(0,0,0,.96);border-bottom:4px solid var(--yellow);padding:12px 0;position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{width:52px;height:52px;object-fit:cover;border-radius:12px;border:3px solid var(--yellow)}
 .brand-title{font-size:28px;letter-spacing:2px;color:#fff;text-shadow:3px 3px 0 #000}
 .brand-sub{display:block;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--yellow);margin-top:-2px}
 .nav-links{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.nav-links a{font-family:Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-decoration:none;color:#c6d3e2;padding:8px 12px;border-radius:8px;transition:.15s}
-.nav-links a:hover{color:var(--yellow);background:rgba(36,87,166,.12)}
+.nav-links a{font-family:Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-decoration:none;color:#c6d3e2;padding:8px 12px;border-radius:8px}
 .join-btn{background:var(--blue);color:white;padding:12px 18px;border-radius:10px;text-decoration:none;border:3px solid #000;box-shadow:4px 4px 0 #000;font-size:16px}
 
 .ticker{background:linear-gradient(90deg,#b91f2b 0%,#ffffff 50%,#2457a6 100%);color:#07111f;padding:11px 10px;font-size:14px;text-align:center;letter-spacing:2px;border-bottom:4px solid #000}
 
-.hero{
-  margin-top:34px;display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center;
-  padding:30px;border:5px solid #000;border-radius:26px;
-  background:
-    radial-gradient(circle at 88% 12%, rgba(29,161,242,.30), transparent 42%),
-    radial-gradient(circle at 8% 92%, rgba(217,39,54,.14), transparent 42%),
-    #0d1622;
-  box-shadow:14px 14px 0 #000;position:relative;overflow:hidden;
-}
-.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:11px;background:linear-gradient(90deg,var(--usa-red),#ffffff,var(--usa-blue),#ffffff,var(--usa-red))}
-.hero-badge{
-  display:inline-block;margin:14px 0 18px;padding:9px 18px;background:var(--yellow);color:#000;
-  font-size:15px;letter-spacing:1.5px;border:3px solid #000;box-shadow:4px 4px 0 #000;
-  animation:pulse 1.7s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.hero{margin-top:34px;display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center;padding:30px;border:5px solid #000;border-radius:26px;background:radial-gradient(circle at 88% 12%, rgba(29,161,242,.30), transparent 42%),radial-gradient(circle at 8% 92%, rgba(217,39,54,.14), transparent 42%),#0d1622;box-shadow:14px 14px 0 #000;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:11px;background:linear-gradient(90deg,var(--red),#fff,var(--blue),#fff,var(--red))}
+.hero-badge{display:inline-block;margin:14px 0 18px;padding:9px 18px;background:var(--yellow);color:#000;font-size:15px;letter-spacing:1.5px;border:3px solid #000;box-shadow:4px 4px 0 #000}
 .hero h1{margin:0 0 16px;font-size:clamp(48px,7vw,88px);line-height:.88;text-transform:uppercase;text-shadow:5px 5px 0 #000}
 .hero h1 span{color:var(--yellow)}
 .hero p{font-family:Arial,sans-serif;font-size:18px;line-height:1.65;color:#e7eef7;margin:0 0 16px}
 .hero-img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#06101b;border:5px solid #000;border-radius:20px;box-shadow:9px 9px 0 rgba(0,0,0,.9)}
 .buttons{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-block;padding:13px 20px;border:4px solid #000;border-radius:12px;font-size:16px;text-decoration:none;box-shadow:6px 6px 0 #000;transition:.15s ease;cursor:pointer}
+.btn{display:inline-block;padding:13px 20px;border:4px solid #000;border-radius:12px;font-size:16px;text-decoration:none;box-shadow:6px 6px 0 #000;cursor:pointer;font-family:inherit}
 .btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
 .btn-black{background:#000;color:#fff}
 .btn-yellow{background:var(--yellow);color:#000}
 .btn-blue{background:var(--blue);color:#fff}
-.btn-green{background:var(--green);color:#000}
+.btn-green{background:var(--red);color:#fff}
 .contract-box{font-family:Arial,sans-serif;font-size:12px;line-height:1.5;background:#fff;color:#111;border:3px solid #000;border-radius:10px;padding:10px 12px;margin:0 0 18px;word-break:break-all;box-shadow:4px 4px 0 #000}
 
-.section-title{font-size:clamp(38px,5vw,58px);margin:58px 0 22px;text-transform:uppercase;text-shadow:4px 4px 0 #000;letter-spacing:1px}
+.section-title{font-size:clamp(38px,5vw,58px);margin:58px 0 22px;text-transform:uppercase;text-shadow:4px 4px 0 #000}
 .section-title span{color:var(--yellow)}
 .section-note{font-family:Arial,sans-serif;color:#bcc9d8;margin:-8px 0 24px;font-size:16px}
 
-/* GAME */
-.game-section{
-  margin-top:60px;padding:30px;border:5px solid #000;border-radius:26px;
-  background:radial-gradient(circle at 50% 0%, rgba(217,39,54,.14), transparent 42%),#0b1520;
-  box-shadow:14px 14px 0 #000;position:relative;overflow:hidden;
-}
-.game-section::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--usa-red),#ffffff,var(--usa-blue),#ffffff,var(--usa-red))}
+/* GAME SECTION */
+.game-section{margin-top:60px;padding:30px;border:5px solid #000;border-radius:26px;background:radial-gradient(circle at 50% 0%, rgba(217,39,54,.14), transparent 42%),#0b1520;box-shadow:14px 14px 0 #000;position:relative;overflow:hidden}
+.game-section::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--red),#fff,var(--blue),#fff,var(--red))}
 .game-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0 6px}
 .game-head h2{margin:0;font-size:clamp(34px,4.5vw,54px);text-transform:uppercase;text-shadow:4px 4px 0 #000;line-height:.95}
 .game-head h2 span{color:var(--red)}
-.live-dot{display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--red);border:3px solid #000;box-shadow:0 0 0 0 rgba(255,61,61,.7);animation:blip 1.4s infinite}
+.live-dot{display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--red);border:3px solid #000;animation:blip 1.4s infinite}
 @keyframes blip{0%{box-shadow:0 0 0 0 rgba(255,61,61,.7)}70%{box-shadow:0 0 0 14px rgba(255,61,61,0)}100%{box-shadow:0 0 0 0 rgba(255,61,61,0)}}
 .game-section > p{font-family:Arial,sans-serif;font-size:16px;line-height:1.65;color:#dbe6f1;margin:10px 0 20px}
 
-.game-grid{
-  display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:24px;
-  align-items:start;
-}
+.game-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start}
 
 .game-wrap{
-  position:relative;width:100%;border:5px solid #000;border-radius:18px;overflow:hidden;
-  background:#050b14;box-shadow:9px 9px 0 rgba(0,0,0,.9);
-  aspect-ratio:4/3;
+  position:relative;
+  width:100%;
+  padding-bottom:75%; /* 4:3 aspect ratio fallback */
+  border:5px solid #000;
+  border-radius:18px;
+  overflow:hidden;
+  background:#050b14;
+  box-shadow:9px 9px 0 rgba(0,0,0,.9);
 }
 .game-wrap canvas{
-  display:block;width:100%;height:100%;
-  image-rendering:pixelated;
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  display:block;
   touch-action:none;
-  position:relative;
-  z-index:1;
 }
 
 #gameHud{
-  position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;
-  padding:10px 16px;color:var(--yellow);font-size:clamp(13px,2.2vw,20px);letter-spacing:2px;
-  text-shadow:2px 2px 0 #000;pointer-events:none;z-index:5;font-family:Impact,"Arial Black",sans-serif;
+  position:absolute;top:0;left:0;right:0;
+  display:flex;justify-content:space-between;
+  padding:10px 16px;
+  color:var(--yellow);
+  font-size:clamp(13px,2.2vw,20px);
+  letter-spacing:2px;
+  text-shadow:2px 2px 0 #000;
+  pointer-events:none;
+  z-index:5;
 }
 #gameHud .maigaLabel{color:var(--red)}
 
 #gameOverlay{
-  position:absolute;inset:0;background:rgba(2,5,10,.94);
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(2,5,10,.94);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:20px;z-index:10;color:#fff;
+  text-align:center;padding:20px;
+  z-index:10;
+  color:#fff;
 }
 #gameOverlay.hidden{display:none}
 #gameOverlay .tag{color:var(--blue);font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;margin-bottom:12px}
@@ -142,67 +120,60 @@ a{color:inherit}
 #gameOverlay p{font-family:Arial,sans-serif;font-size:clamp(12px,1.8vw,16px);line-height:1.6;max-width:560px;margin:0 0 18px;color:#d7e2ee}
 #gameOverlay .controls-hint{font-family:Arial,sans-serif;font-size:11px;color:#7e8ea3;margin-top:14px;line-height:1.5}
 .overlay-btn-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-#startGameBtn, #ovStartBtn{
-  background:var(--yellow);color:#000;border:4px solid #000;border-radius:12px;
-  padding:13px 28px;font-family:inherit;font-size:clamp(15px,2.2vw,20px);letter-spacing:2px;
-  cursor:pointer;box-shadow:6px 6px 0 #000;transition:.12s;
+
+.start-btn{
+  background:var(--yellow);
+  color:#000;
+  border:4px solid #000;
+  border-radius:12px;
+  padding:13px 28px;
+  font-family:inherit;
+  font-size:clamp(15px,2.2vw,20px);
+  letter-spacing:2px;
+  cursor:pointer;
+  box-shadow:6px 6px 0 #000;
 }
-#startGameBtn:hover, #ovStartBtn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
+.start-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
+
 .share-btn{
   background:var(--blue);color:#fff;border:4px solid #000;border-radius:12px;
   padding:11px 22px;font-family:inherit;font-size:clamp(13px,1.8vw,17px);letter-spacing:1.5px;
-  cursor:pointer;box-shadow:6px 6px 0 #000;transition:.12s;
+  cursor:pointer;box-shadow:6px 6px 0 #000;
 }
 .share-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
-.share-btn.green{background:var(--green);color:#000}
+.share-btn.green{background:var(--red);color:#fff}
 
-/* LEADERBOARD */
-.leaderboard{
-  background:#fff;color:#111;border:5px solid #000;border-radius:18px;
-  padding:22px;box-shadow:9px 9px 0 rgba(0,0,0,.9);
-}
-.leaderboard h4{margin:0 0 14px;font-size:clamp(20px,2.6vw,26px);text-transform:uppercase;letter-spacing:1px;border-bottom:4px solid #000;padding-bottom:10px}
+.leaderboard{background:#fff;color:#111;border:5px solid #000;border-radius:18px;padding:22px;box-shadow:9px 9px 0 rgba(0,0,0,.9)}
+.leaderboard h4{margin:0 0 14px;font-size:clamp(20px,2.6vw,26px);text-transform:uppercase;border-bottom:4px solid #000;padding-bottom:10px}
 .leaderboard h4 span{color:var(--red)}
-.lb-row{
-  display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;
-  font-family:Arial,sans-serif;font-size:14px;border:2px solid #000;border-radius:10px;
-  margin-bottom:8px;background:#f4f7fb;transition:.15s;
-}
+.lb-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;font-family:Arial,sans-serif;font-size:14px;border:2px solid #000;border-radius:10px;margin-bottom:8px;background:#f4f7fb}
 .lb-row.top1{background:var(--yellow);font-weight:900;font-size:16px}
 .lb-row.top2{background:#e2e8f0;font-weight:800}
 .lb-row.top3{background:#f7d9a0;font-weight:800}
 .lb-row .rank{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#000;color:#fff;border-radius:50%;font-size:12px;flex-shrink:0}
 .lb-row.top1 .rank{background:var(--red)}
 .lb-row .name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
-.lb-row .pts{font-weight:900;color:var(--red);font-family:Impact,sans-serif;font-size:16px}
-.lb-empty{font-family:Arial,sans-serif;font-size:13px;color:#667;text-align:center;padding:16px 8px;line-height:1.5}
+.lb-row .pts{font-weight:900;color:var(--red);font-size:16px}
+.lb-empty{font-family:Arial,sans-serif;font-size:13px;color:#667;text-align:center;padding:16px 8px}
 .lb-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.lb-actions button{
-  flex:1;min-width:120px;background:#000;color:#fff;border:3px solid #000;border-radius:10px;
-  padding:10px 12px;font-family:Impact,sans-serif;font-size:13px;letter-spacing:1px;cursor:pointer;
-  box-shadow:4px 4px 0 rgba(0,0,0,.5);transition:.15s;
-}
-.lb-actions button:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(0,0,0,.5)}
+.lb-actions button{flex:1;min-width:120px;background:#000;color:#fff;border:3px solid #000;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13px;letter-spacing:1px;cursor:pointer}
 .lb-actions button.yellow{background:var(--yellow);color:#000}
 .lb-actions button.blue{background:var(--blue);color:#fff}
-.lb-actions button.green{background:var(--green);color:#000}
+.lb-actions button.green{background:var(--red);color:#fff}
 
 .name-box{margin-top:14px;padding:14px;border:3px dashed #000;border-radius:12px;background:#f4f7fb;font-family:Arial,sans-serif}
-.name-box label{display:block;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;color:#000}
-.name-box input{width:100%;padding:10px 12px;border:3px solid #000;border-radius:8px;font-family:Impact,sans-serif;font-size:16px;letter-spacing:1px;background:#fff;color:#000;outline:none}
-.name-box input:focus{background:#fffbe6}
+.name-box label{display:block;font-size:12px;font-weight:900;text-transform:uppercase;margin-bottom:8px;color:#000}
+.name-box input{width:100%;padding:10px 12px;border:3px solid #000;border-radius:8px;font-family:inherit;font-size:16px;background:#fff;color:#000;outline:none}
 
 .game-controls{margin-top:16px;font-family:Arial,sans-serif;font-size:12px;color:#7e8ea3;text-align:center}
 
-/* COINS */
 .coins{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .coin{background:linear-gradient(180deg,#fff 0%,#f0f3f7 100%);color:#111;padding:20px;border-radius:20px;border:5px solid #000;box-shadow:10px 10px 0 #000;text-align:center;position:relative;overflow:hidden}
 .coin::before{content:"";position:absolute;inset:0 0 auto 0;height:9px;background:var(--yellow)}
-.coin img{display:block;width:min(100%,230px);aspect-ratio:1/1;object-fit:cover;margin:15px auto 16px;border:4px solid #000;border-radius:16px;background:#06101b}
-.status{background:var(--yellow);padding:7px 12px;border:3px solid #000;display:inline-block;margin:2px 0 5px;font-size:14px;box-shadow:3px 3px 0 #000}
+.coin img{display:block;width:min(100%,230px);aspect-ratio:1/1;object-fit:cover;margin:15px auto 16px;border:4px solid #000;border-radius:16px}
+.status{background:var(--yellow);padding:7px 12px;border:3px solid #000;display:inline-block;margin:2px 0 5px;font-size:14px}
 .coin h3{margin:0 0 8px;font-size:33px}
 .coin p{font-family:Arial,sans-serif;font-size:16px;line-height:1.55;min-height:75px}
-.coin .btn{margin-top:5px}
 
 .message{margin-top:60px;background:linear-gradient(135deg, rgba(217,39,54,.12), transparent 32%),#101924;border:5px solid #000;border-radius:22px;padding:30px;box-shadow:10px 10px 0 #000}
 .message h2{margin:0 0 14px;font-size:clamp(28px,4vw,42px)}
@@ -223,13 +194,11 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 }
 @media(max-width:620px){
   .brand-title{font-size:23px}
-  .ticker{font-size:11px;letter-spacing:1px}
+  .ticker{font-size:11px}
   .hero{padding:22px}
   .hero h1{font-size:54px}
   .game-section{padding:22px}
   .coins{grid-template-columns:1fr}
-  .message{padding:22px}
-  .message h2{font-size:34px}
 }
 </style>
 </head>
@@ -245,12 +214,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
         <span class="brand-sub">MAKE AI GREAT AGAIN • GEOPOLCOINS</span>
       </div>
     </div>
-
     <div class="nav-links">
       <a href="#game">🎮 TAKEOVER</a>
       <a href="#leaderboard">🏆 RANKS</a>
       <a href="#coins">COINS</a>
-      <a href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY</a>
       <a class="join-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN ON X</a>
     </div>
   </div>
@@ -266,8 +233,8 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     <div>
       <div class="hero-badge">🔥 FLAGSHIP • AI • AIRDROP LIVE</div>
       <h1>MAKE AI<br><span>GREAT AGAIN</span></h1>
-      <p>$MAIGA is the AI-themed flagship of the GeopolCoins universe — artificial intelligence, blockchain and internet culture colliding in one meme coin. 🧢🤖</p>
-      <p><strong style="color:var(--yellow)">We're building every day. We're here to stay.</strong> More burns. More bounties. More wins.</p>
+      <p>$MAIGA is the AI-themed flagship of the GeopolCoins universe. 🧢🤖</p>
+      <p><strong style="color:var(--yellow)">We're building every day. We're here to stay.</strong></p>
       <div class="contract-box">
         <strong>OFFICIAL $MAIGA CONTRACT:</strong><br>
         3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump
@@ -288,51 +255,45 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       <span class="live-dot"></span>
       <h2><span>$MAIGA</span> TAKEOVER</h2>
     </div>
-
-    <p>🎮 <strong>Jean-Phil</strong> pilots the last $MAIGA ship. <strong>Trump</strong> commands from the starship bridge. Shoot the enemy crypto coins. <strong>Take over the galaxy. Beat the high score. Share it on X.</strong> 🧢🤖</p>
+    <p>🎮 <strong>Jean-Phil</strong> pilots the last $MAIGA ship. <strong>Trump</strong> commands from the bridge. Shoot the crypto coins. 🧢🤖</p>
 
     <div class="game-grid">
       <div>
         <div class="game-wrap">
-          <canvas id="game" width="960" height="720"></canvas>
+          <canvas id="gameCanvas" width="960" height="720"></canvas>
 
           <div id="gameHud">
-            <div>SCORE: <span id="score">0</span></div>
+            <div>SCORE: <span id="hudScore">0</span></div>
             <div class="maigaLabel">$MAIGA TAKEOVER</div>
-            <div>LIVES: <span id="lives">3</span></div>
+            <div>LIVES: <span id="hudLives">3</span></div>
           </div>
 
           <div id="gameOverlay">
             <div class="tag">$MAIGA PRESENTS</div>
             <h3>$MAIGA <span>TAKEOVER</span></h3>
-            <p>Jean-Phil is flying. Trump is watching. The crypto coins are falling.<br><strong>Shoot them all. Make AI Great Again.</strong></p>
+            <p>Jean-Phil is flying. Trump is watching.<br><strong>Shoot them all. Make AI Great Again.</strong></p>
             <div class="overlay-btn-row">
-              <button id="startGameBtn" type="button">START TAKEOVER</button>
+              <button id="startGameBtn" class="start-btn" type="button" onclick="MAIGA_GAME.start()">START TAKEOVER</button>
             </div>
             <div class="controls-hint">← → or A/D move • SPACE shoot • P pause • mobile: tap &amp; drag</div>
           </div>
         </div>
-
-        <div class="game-controls">
-          Desktop: Arrow keys / A-D • SPACE to shoot • P to pause &nbsp;•&nbsp; Mobile: tap &amp; drag to fly
-        </div>
+        <div class="game-controls">Desktop: Arrow keys • SPACE shoot • P pause • Mobile: tap &amp; drag</div>
       </div>
 
       <div class="leaderboard" id="leaderboard">
-        <h4>🏆 TOP <span>5 TAKEOVER</span> SCORES</h4>
-        <div id="lbList">
-          <div class="lb-empty">No scores yet. Be the first $MAIGA pilot on the board. 🧢🤖</div>
-        </div>
+        <h4>🏆 TOP <span>5</span> SCORES</h4>
+        <div id="lbList"><div class="lb-empty">No scores yet. Be the first pilot! 🧢🤖</div></div>
 
         <div class="name-box">
-          <label for="pilotName">🪪 Your pilot name (saved locally)</label>
+          <label for="pilotName">🪪 Pilot name (saved locally)</label>
           <input id="pilotName" type="text" maxlength="12" placeholder="e.g. JeanPhil01">
         </div>
 
         <div class="lb-actions">
-          <button class="yellow" id="shareTopBtn" type="button">📸 SHARE MY SCORE ON X</button>
-          <button class="blue" id="challengeBtn" type="button">⚔️ CHALLENGE FRIENDS</button>
-          <button class="green" id="clearLbBtn" type="button">🗑️ CLEAR MY SCORES</button>
+          <button class="yellow" id="shareTopBtn" type="button">📸 SHARE SCORE</button>
+          <button class="blue" id="challengeBtn" type="button">⚔️ CHALLENGE</button>
+          <button class="green" id="clearLbBtn" type="button">🗑️ CLEAR</button>
         </div>
       </div>
     </div>
@@ -340,14 +301,13 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
   <section class="message">
     <h2>STILL HERE. STILL COOKING. <span>MORE COMING.</span></h2>
-    <p>We're not building a community — we're building an <strong>army</strong>. 🪖 Those who sell lose. Those who stay win.</p>
+    <p>We're building an <strong>army</strong>. 🪖 Those who sell lose. Those who stay win.</p>
     <p>This is the beginning of the beginning. $MAIGA is here to stay. 🚀</p>
   </section>
 
   <section id="coins">
     <h2 class="section-title">MORE <span>GEOPOLCOINS</span></h2>
-    <p class="section-note">The rest of the universe — same planet, different drama.</p>
-
+    <p class="section-note">Same planet, different drama.</p>
     <div class="coins">
       <div class="coin">
         <div class="status">LIVE</div>
@@ -356,20 +316,18 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
         <p>A geopolitical meme coin built around land, power and internet satire.</p>
         <a class="btn btn-black" href="https://pump.fun/coin/3p7JNozLW8gHh7j1EGZVACnQS1q2TSuh3BaVKqRmpump" target="_blank" rel="noopener">VIEW</a>
       </div>
-
       <div class="coin">
         <div class="status">LIVE</div>
         <img src="https://sakkemoto.com/wp-content/uploads/2026/03/iranusacoin.png" alt="$IRANUSA">
         <h3>$IRANUSA</h3>
-        <p>A meme coin inspired by geopolitical tension, headlines and the absurdity of global drama.</p>
+        <p>A meme coin inspired by geopolitical tension and global drama.</p>
         <a class="btn btn-black" href="https://pump.fun/coin/FKTHTcJSmnkgwf8kiLAEbkzEVg8QgP3McnFsztigpump" target="_blank" rel="noopener">VIEW</a>
       </div>
-
       <div class="coin">
         <div class="status">FEATURED</div>
         <img src="https://sakkemoto.com/wp-content/uploads/2026/09/earthcoin.jpeg" alt="$PLANET">
         <h3>$PLANET</h3>
-        <p>One planet. Millions of opinions. A meme concept placing the Earth at the center of the geopolitical circus.</p>
+        <p>One planet. Millions of opinions. The Earth at the center of the circus.</p>
         <a class="btn btn-yellow" href="#join">MORE</a>
       </div>
     </div>
@@ -377,7 +335,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
   <section class="cta" id="join">
     <h2>JOIN THE $MAIGA ARMY</h2>
-    <p>We are developing every day and we are here to stay. Follow on X for airdrops, freebies, bounties and every update first.</p>
+    <p>Follow on X for airdrops, freebies, bounties and every update first.</p>
     <div class="buttons" style="justify-content:center;">
       <a class="btn btn-green" href="https://pump.fun/go/c12c9f34-b3b4-49de-8798-aab562dac789" target="_blank" rel="noopener">🎁 JOIN BOUNTY</a>
       <a class="btn btn-blue" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN US ON X</a>
@@ -386,61 +344,51 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   </section>
 
   <div class="disclaimer">
-    $MAIGA and GEOPOLCOINS are satirical entertainment and meme projects. Cryptocurrency involves significant risk and prices can change rapidly. Nothing on this website is financial, legal or investment advice, and no outcome or return is guaranteed. Always verify the official contract address before interacting with any token.
+    $MAIGA and GEOPOLCOINS are satirical entertainment and meme projects. Crypto involves risk. Not financial advice.
   </div>
-
 </div>
 
 <footer>
-  © 2026 $MAIGA — MAKE AI GREAT AGAIN • GEOPOLCOINS — 4 COINS. SAME PLANET. DIFFERENT DRAMA.
+  © 2026 $MAIGA — MAKE AI GREAT AGAIN • GEOPOLCOINS
 </footer>
 
 <script>
+/* =====================================================================
+   $MAIGA TAKEOVER — BULLETPROOF GAME ENGINE
+   All functions exposed globally. No IIFE closure traps.
+   ===================================================================== */
 (function(){
   'use strict';
 
+  // ---- Config ----
   var X_HASHTAGS = 'MAIGA,MakeAIGreatAgain,Solana,MAIGATakeover';
   var SHARE_URL = 'https://geopolcoins.xyz/';
-  var LB_KEY = 'maiga_takeover_leaderboard_v1';
-  var NAME_KEY = 'maiga_takeover_name_v1';
+  var LB_KEY = 'maiga_lb_v1';
+  var NAME_KEY = 'maiga_name_v1';
   var MAX_LB = 5;
 
-  /* ========== DOM ========== */
-  var canvas = document.getElementById('game');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var overlay = document.getElementById('gameOverlay');
-  var scoreEl = document.getElementById('score');
-  var livesEl = document.getElementById('lives');
-  var lbList = document.getElementById('lbList');
-  var pilotInput = document.getElementById('pilotName');
-  var shareTopBtn = document.getElementById('shareTopBtn');
-  var challengeBtn = document.getElementById('challengeBtn');
-  var clearLbBtn = document.getElementById('clearLbBtn');
-
-  var W = canvas.width;
-  var H = canvas.height;
-
-  /* ========== GAME STATE ========== */
+  // ---- State (module-level, NOT hidden in closure) ----
   var state = 'menu';
   var score = 0, lives = 3, wave = 1;
   var enemies = [], bullets = [], enemyBullets = [], particles = [], stars = [];
-  var player = { x: W/2, y: H-90, speed: 380, cooldown: 0.22 };
+  var player = { x: 480, y: 630, speed: 380, cooldown: 0.22 };
   var keys = {};
   var lastShot = 0, enemyDir = 1, enemySpeed = 40, shootTimer = 0;
   var touchActive = false, touchX = 0;
+  var W = 960, H = 720;
   var lastTime = 0;
   var loopRunning = false;
+  var canvas, ctx, overlay, hudScoreEl, hudLivesEl, lbListEl, pilotInput;
 
   var COINS = [
-    { sym:'₿',  color:'#f7931a' },
-    { sym:'Ξ',  color:'#8a92b2' },
-    { sym:'Ð',  color:'#c2a633' },
-    { sym:'◎',  color:'#14f195' },
-    { sym:'P',  color:'#4caf50' },
-    { sym:'X',  color:'#ffffff' },
-    { sym:'A',  color:'#1da1f2' },
-    { sym:'S',  color:'#ff3d3d' }
+    { sym:'₿', color:'#f7931a' },
+    { sym:'Ξ', color:'#8a92b2' },
+    { sym:'Ð', color:'#c2a633' },
+    { sym:'◎', color:'#14f195' },
+    { sym:'P', color:'#4caf50' },
+    { sym:'X', color:'#ffffff' },
+    { sym:'A', color:'#1da1f2' },
+    { sym:'S', color:'#ff3d3d' }
   ];
 
   /* ========== LEADERBOARD ========== */
@@ -459,9 +407,8 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   function addScore(name, sc){
     if (!sc || sc <= 0) return;
     var arr = loadLB();
-    arr.push({ name: (name || 'Anonymous').slice(0, 12), score: sc, date: new Date().toISOString().slice(0,10) });
+    arr.push({ name: (name || 'Anonymous').slice(0,12), score: sc });
     arr.sort(function(a,b){ return b.score - a.score; });
-    arr = arr.slice(0, MAX_LB);
     saveLB(arr);
     renderLB();
   }
@@ -470,23 +417,22 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     return arr.length ? arr[0].score : 0;
   }
   function renderLB(){
-    if (!lbList) return;
+    if (!lbListEl) return;
     var arr = loadLB();
     if (!arr.length){
-      lbList.innerHTML = '<div class="lb-empty">No scores yet. Be the first $MAIGA pilot on the board. 🧢🤖</div>';
+      lbListEl.innerHTML = '<div class="lb-empty">No scores yet. Be the first pilot! 🧢🤖</div>';
       return;
     }
     var html = '';
     for (var i=0;i<arr.length;i++){
-      var item = arr[i];
       var cls = i===0 ? 'top1' : i===1 ? 'top2' : i===2 ? 'top3' : '';
       html += '<div class="lb-row ' + cls + '">' +
         '<span class="rank">' + (i+1) + '</span>' +
-        '<span class="name">' + escapeHtml(item.name) + '</span>' +
-        '<span class="pts">' + item.score + '</span>' +
+        '<span class="name">' + escapeHtml(arr[i].name) + '</span>' +
+        '<span class="pts">' + arr[i].score + '</span>' +
       '</div>';
     }
-    lbList.innerHTML = html;
+    lbListEl.innerHTML = html;
   }
   function escapeHtml(s){
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -503,7 +449,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   function saveName(){
     try{ localStorage.setItem(NAME_KEY, getPilotName()); } catch(e){}
   }
-  if (pilotInput) pilotInput.addEventListener('input', saveName);
 
   /* ========== STARS ========== */
   function initStars(){
@@ -557,7 +502,8 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
 
   function enemyShoot(){
-    var alive = enemies.filter(function(e){ return e.alive; });
+    var alive = [];
+    for (var i=0;i<enemies.length;i++) if (enemies[i].alive) alive.push(enemies[i]);
     if (!alive.length) return;
     var e = alive[Math.floor(Math.random()*alive.length)];
     enemyBullets.push({ x: e.x, y: e.y + 22, vy: 300, type: e.type });
@@ -571,6 +517,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     }
   }
 
+  /* ========== UPDATE ========== */
   function update(dt){
     for (var i=0;i<stars.length;i++){
       var s = stars[i];
@@ -583,8 +530,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var mv = 0;
     if (keys['ArrowLeft'] || keys['a'] || keys['A']) mv -= 1;
     if (keys['ArrowRight'] || keys['d'] || keys['D']) mv += 1;
-
-    if (keys[' '] || touchActive) shoot();
+    if (keys[' ']) shoot();
 
     if (touchActive){
       var diff = touchX - player.x;
@@ -596,13 +542,15 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     if (player.x > W-34) player.x = W-34;
 
     for (var b=0;b<bullets.length;b++) bullets[b].y += bullets[b].vy * dt;
-    bullets = bullets.filter(function(b){ return b.y > -30; });
+    bullets = bullets.filter(function(x){ return x.y > -30; });
 
     for (var eb=0;eb<enemyBullets.length;eb++) enemyBullets[eb].y += enemyBullets[eb].vy * dt;
-    enemyBullets = enemyBullets.filter(function(b){ return b.y < H+30; });
+    enemyBullets = enemyBullets.filter(function(x){ return x.y < H+30; });
 
-    var alive = enemies.filter(function(e){ return e.alive; });
-    var minX = Infinity, maxX = -Infinity;
+    var alive = [];
+    for (var k=0;k<enemies.length;k++) if (enemies[k].alive) alive.push(enemies[k]);
+
+    var minX = 99999, maxX = -99999;
     for (var e=0;e<alive.length;e++){
       var en = alive[e];
       en.x += enemyDir * enemySpeed * dt;
@@ -628,52 +576,50 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
           ee.alive = false;
           bb.y = -200;
           score += 10;
-          scoreEl.textContent = score;
+          if (hudScoreEl) hudScoreEl.textContent = score;
           burst(ee.x, ee.y, ee.type.color);
         }
       }
     }
-    bullets = bullets.filter(function(b){ return b.y > -30; });
+    bullets = bullets.filter(function(x){ return x.y > -30; });
 
-    for (var k=0;k<enemyBullets.length;k++){
-      var ebul = enemyBullets[k];
+    for (var p=0;p<enemyBullets.length;p++){
+      var ebul = enemyBullets[p];
       if (Math.abs(ebul.x - player.x) < 24 && Math.abs(ebul.y - player.y) < 28){
         ebul.y = H + 200;
         hitPlayer();
       }
     }
-    enemyBullets = enemyBullets.filter(function(b){ return b.y < H+30; });
+    enemyBullets = enemyBullets.filter(function(x){ return x.y < H+30; });
 
-    for (var p=0;p<particles.length;p++){
-      var pt = particles[p];
+    for (var pi=0;pi<particles.length;pi++){
+      var pt = particles[pi];
       pt.x += pt.vx*dt;
       pt.y += pt.vy*dt;
       pt.vy += 260*dt;
       pt.life -= dt;
     }
-    particles = particles.filter(function(p){ return p.life > 0; });
+    particles = particles.filter(function(x){ return x.life > 0; });
 
-    if (alive.length === 0){
-      wave++;
-      spawnWave();
-    }
+    if (alive.length === 0){ wave++; spawnWave(); }
     if (lives <= 0) gameOver();
   }
 
   function dropEnemies(){
-    for (var i=0;i<enemies.length;i++){
-      if (enemies[i].alive) enemies[i].y += 20;
-    }
+    for (var i=0;i<enemies.length;i++) if (enemies[i].alive) enemies[i].y += 20;
   }
 
   function hitPlayer(){
     lives--;
-    livesEl.textContent = lives;
+    if (hudLivesEl) hudLivesEl.textContent = lives;
     burst(player.x, player.y, '#ff3d3d');
     if (lives <= 0) gameOver();
   }
 
+  /* ========== DRAW ========== */
   function draw(){
+    if (!ctx) return;
+
     var g = ctx.createLinearGradient(0,0,0,H);
     g.addColorStop(0,'#07111f');
     g.addColorStop(1,'#02050a');
@@ -690,7 +636,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     }
     ctx.globalAlpha = 1;
 
-    drawTrumpBackground();
+    drawTrump();
 
     ctx.fillStyle = 'rgba(36,87,166,.12)';
     ctx.fillRect(0, H-70, W, 70);
@@ -721,12 +667,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       ctx.restore();
     }
 
-    if (state !== 'over' || lives > 0){
-      drawJeanPhil(player.x, player.y);
-    }
+    if (state !== 'over' || lives > 0) drawJeanPhil(player.x, player.y);
 
-    for (var p=0;p<particles.length;p++){
-      var pt = particles[p];
+    for (var pi=0;pi<particles.length;pi++){
+      var pt = particles[pi];
       ctx.globalAlpha = Math.max(0, pt.life/pt.max);
       ctx.fillStyle = pt.color;
       ctx.beginPath();
@@ -777,50 +721,33 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     fg.addColorStop(1,'rgba(255,61,61,0)');
     ctx.fillStyle = fg;
     ctx.beginPath();
-    ctx.moveTo(-10, 20);
-    ctx.lineTo(0, 20+flame);
-    ctx.lineTo(10, 20);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(-10, 20); ctx.lineTo(0, 20+flame); ctx.lineTo(10, 20);
+    ctx.closePath(); ctx.fill();
 
     ctx.fillStyle = '#7a5a3a';
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 3.5;
     ctx.beginPath();
-    ctx.moveTo(0, -22);
-    ctx.lineTo(17, 16);
-    ctx.lineTo(0, 26);
-    ctx.lineTo(-17, 16);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
+    ctx.moveTo(0, -22); ctx.lineTo(17, 16); ctx.lineTo(0, 26); ctx.lineTo(-17, 16);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
 
     ctx.fillStyle = '#f7f0df';
     ctx.beginPath();
-    ctx.moveTo(0, -12);
-    ctx.lineTo(8, 14);
-    ctx.lineTo(-8, 14);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(0, -12); ctx.lineTo(8, 14); ctx.lineTo(-8, 14);
+    ctx.closePath(); ctx.fill();
 
     ctx.fillStyle = '#3a2a1a';
     ctx.fillRect(-3, -10, 6, 20);
 
     ctx.fillStyle = '#f2cf5b';
-    ctx.beginPath();
-    ctx.arc(0, -24, 13, Math.PI, 0);
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(0, -24, 13, Math.PI, 0); ctx.fill();
     ctx.fillRect(-13, -24, 26, 7);
 
     ctx.fillStyle = '#f5d6b3';
-    ctx.beginPath();
-    ctx.arc(0, -24, 9.5, 0, Math.PI*2);
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(0, -24, 9.5, 0, Math.PI*2); ctx.fill();
 
     ctx.fillStyle = '#f2cf5b';
-    ctx.beginPath();
-    ctx.ellipse(0, -19, 7, 2.8, 0, 0, Math.PI*2);
-    ctx.fill();
+    ctx.beginPath(); ctx.ellipse(0, -19, 7, 2.8, 0, 0, Math.PI*2); ctx.fill();
 
     ctx.fillStyle = '#000';
     ctx.beginPath();
@@ -838,7 +765,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     ctx.restore();
   }
 
-  function drawTrumpBackground(){
+  function drawTrump(){
     var t = performance.now()/1000;
     var cx = W/2;
     var cy = 130 + Math.sin(t*0.6)*8;
@@ -850,48 +777,31 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
     ctx.fillStyle = '#0a1a2f';
     ctx.beginPath();
-    ctx.moveTo(cx-110, cy+120);
-    ctx.lineTo(cx-60, cy-30);
-    ctx.lineTo(cx+60, cy-30);
-    ctx.lineTo(cx+110, cy+120);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(cx-110, cy+120); ctx.lineTo(cx-60, cy-30);
+    ctx.lineTo(cx+60, cy-30); ctx.lineTo(cx+110, cy+120);
+    ctx.closePath(); ctx.fill();
 
     ctx.fillStyle = '#dfe8f3';
     ctx.beginPath();
-    ctx.moveTo(cx-30, cy-25);
-    ctx.lineTo(cx, cy+90);
-    ctx.lineTo(cx+30, cy-25);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(cx-30, cy-25); ctx.lineTo(cx, cy+90); ctx.lineTo(cx+30, cy-25);
+    ctx.closePath(); ctx.fill();
 
     ctx.fillStyle = '#ff3d3d';
     ctx.beginPath();
-    ctx.moveTo(cx-8, cy-18);
-    ctx.lineTo(cx+8, cy-18);
-    ctx.lineTo(cx+5, cy+85);
-    ctx.lineTo(cx-5, cy+85);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(cx-8, cy-18); ctx.lineTo(cx+8, cy-18);
+    ctx.lineTo(cx+5, cy+85); ctx.lineTo(cx-5, cy+85);
+    ctx.closePath(); ctx.fill();
 
     ctx.fillStyle = '#f0c9a0';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy-70, 42, 50, 0, 0, Math.PI*2);
-    ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx, cy-70, 42, 50, 0, 0, Math.PI*2); ctx.fill();
 
     ctx.fillStyle = '#e8c46a';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy-108, 46, 28, 0, Math.PI, 0);
-    ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx, cy-108, 46, 28, 0, Math.PI, 0); ctx.fill();
 
     ctx.fillStyle = '#000';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy-116, 48, 22, 0, Math.PI, 0);
-    ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx, cy-116, 48, 22, 0, Math.PI, 0); ctx.fill();
     ctx.fillRect(cx-48, cy-116, 96, 12);
-    ctx.beginPath();
-    ctx.ellipse(cx+14, cy-108, 38, 9, 0, 0, Math.PI*2);
-    ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx+14, cy-108, 38, 9, 0, 0, Math.PI*2); ctx.fill();
 
     ctx.fillStyle = '#ffd800';
     ctx.font = 'bold 13px Impact';
@@ -919,44 +829,48 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
 
   /* ========== INPUT ========== */
-  window.addEventListener('keydown', function(e){
-    keys[e.key] = true;
-    if (e.key === ' '){ e.preventDefault(); }
-    if (e.key === 'p' || e.key === 'P'){
-      if (state === 'playing'){ state = 'paused'; showOverlay('PAUSED','Press START to resume.', false); }
+  function attachInput(){
+    window.addEventListener('keydown', function(e){
+      keys[e.key] = true;
+      if (e.key === ' ' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') e.preventDefault();
+      if ((e.key === 'p' || e.key === 'P') && state === 'playing'){
+        state = 'paused';
+        showOverlay('PAUSED', 'Press START to resume.', false);
+      }
+    });
+    window.addEventListener('keyup', function(e){ keys[e.key] = false; });
+
+    function canvasX(clientX){
+      var r = canvas.getBoundingClientRect();
+      return ((clientX - r.left) / r.width) * W;
     }
-  });
-  window.addEventListener('keyup', function(e){ keys[e.key] = false; });
 
-  function getCanvasX(clientX){
-    var r = canvas.getBoundingClientRect();
-    return ((clientX - r.left) / r.width) * W;
+    canvas.addEventListener('pointerdown', function(e){
+      if (state !== 'playing') return;
+      touchActive = true;
+      touchX = canvasX(e.clientX);
+      player.x = touchX;
+      shoot();
+    });
+    canvas.addEventListener('pointermove', function(e){
+      if (!touchActive || state !== 'playing') return;
+      touchX = canvasX(e.clientX);
+    });
+    canvas.addEventListener('pointerup', function(){ touchActive = false; });
+    canvas.addEventListener('pointerleave', function(){ touchActive = false; });
+    canvas.addEventListener('pointercancel', function(){ touchActive = false; });
+    window.addEventListener('pointerup', function(){ touchActive = false; });
+
+    canvas.addEventListener('touchstart', function(e){ e.preventDefault(); }, {passive:false});
+    canvas.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive:false});
   }
-
-  canvas.addEventListener('pointerdown', function(e){
-    if (state !== 'playing') return;
-    touchActive = true;
-    touchX = getCanvasX(e.clientX);
-    player.x = touchX;
-    shoot();
-  });
-  canvas.addEventListener('pointermove', function(e){
-    if (!touchActive || state !== 'playing') return;
-    touchX = getCanvasX(e.clientX);
-  });
-  canvas.addEventListener('pointerup', function(){ touchActive = false; });
-  canvas.addEventListener('pointerleave', function(){ touchActive = false; });
-  canvas.addEventListener('pointercancel', function(){ touchActive = false; });
-  window.addEventListener('pointerup', function(){ touchActive = false; });
-  canvas.addEventListener('touchstart', function(e){ e.preventDefault(); }, {passive:false});
-  canvas.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive:false});
 
   /* ========== OVERLAY ========== */
   function showOverlay(title, text, showShare){
     if (!overlay) return;
     var shareHtml = showShare
-      ? '<button class="share-btn" id="ovShareX" type="button">📸 SHARE ON X</button>' +
-        '<button class="share-btn green" id="ovChallenge" type="button">⚔️ CHALLENGE FRIENDS</button>'
+      ? '<button class="share-btn" type="button" onclick="MAIGA_GAME.share()">📸 SHARE ON X</button>' +
+        '<button class="share-btn green" type="button" onclick="MAIGA_GAME.challenge()">⚔️ CHALLENGE</button>'
       : '';
 
     overlay.innerHTML =
@@ -964,18 +878,11 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       '<h3>' + title + '</h3>' +
       '<p>' + text + '</p>' +
       '<div class="overlay-btn-row">' +
-        '<button id="ovStartBtn" type="button">START TAKEOVER</button>' +
+        '<button class="start-btn" type="button" onclick="MAIGA_GAME.start()">START TAKEOVER</button>' +
         shareHtml +
       '</div>' +
-      '<div class="controls-hint">← → or A/D move • SPACE shoot • P pause • mobile: tap &amp; drag</div>';
+      '<div class="controls-hint">← → or A/D move • SPACE shoot • P pause</div>';
     overlay.classList.remove('hidden');
-
-    var sb = document.getElementById('ovStartBtn');
-    if (sb) sb.addEventListener('click', startGame);
-    var sx = document.getElementById('ovShareX');
-    if (sx) sx.addEventListener('click', shareScore);
-    var ch = document.getElementById('ovChallenge');
-    if (ch) ch.addEventListener('click', challengeFriends);
   }
 
   /* ========== SOCIAL ========== */
@@ -987,13 +894,11 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
 
   function shareScore(){
-    var name = getPilotName();
     var best = getBestScore();
     var text = 'I scored ' + score + ' on $MAIGA TAKEOVER 🧢🤖🔥\n' +
       (best ? 'Top score: ' + best + ' 🏆\n' : '') +
-      'Pilot: ' + name + ' 🪪\n\n' +
-      'Make AI Great Again 🇺🇸\n' +
-      'Can you beat me? 🎮';
+      'Pilot: ' + getPilotName() + ' 🪪\n\n' +
+      'Make AI Great Again 🇺🇸\nCan you beat me? 🎮';
     openTweet(text);
   }
 
@@ -1002,44 +907,27 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var myScore = score || best;
     var text = '⚔️ $MAIGA TAKEOVER CHALLENGE ⚔️\n\n' +
       'I scored ' + myScore + ' on the $MAIGA arcade game 🎮🧢🤖\n' +
-      'Think you can beat me?\n\n' +
-      'Play here 👇\n' +
-      'Make AI Great Again 🇺🇸';
+      'Think you can beat me?\n\nMake AI Great Again 🇺🇸';
     openTweet(text);
   }
 
-  if (shareTopBtn) shareTopBtn.addEventListener('click', function(){
-    var best = getBestScore();
-    if (!best){ alert('Play at least one round first! 🎮'); return; }
-    score = best;
-    shareScore();
-  });
-  if (challengeBtn) challengeBtn.addEventListener('click', function(){
-    var best = getBestScore();
-    if (!best){ alert('Play at least one round first! 🎮'); return; }
-    score = best;
-    challengeFriends();
-  });
-  if (clearLbBtn) clearLbBtn.addEventListener('click', function(){
-    if (!confirm('Clear your local $MAIGA leaderboard?')) return;
-    try{ localStorage.removeItem(LB_KEY); } catch(e){}
-    renderLB();
-  });
-
-  /* ========== START / OVER ========== */
+  /* ========== START / GAME OVER ========== */
   function startGame(){
     if (!overlay) return;
+
+    // Resume path
     if (state === 'paused'){
       state = 'playing';
       overlay.classList.add('hidden');
       lastTime = performance.now();
-      startLoop();
       return;
     }
+
+    // Fresh start
     overlay.classList.add('hidden');
     score = 0; lives = 3; wave = 1;
-    scoreEl.textContent = 0;
-    livesEl.textContent = 3;
+    if (hudScoreEl) hudScoreEl.textContent = '0';
+    if (hudLivesEl) hudLivesEl.textContent = '3';
     bullets = []; enemyBullets = []; particles = [];
     initStars();
     resetPlayer();
@@ -1070,29 +958,67 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   }
 
   /* ========== INIT ========== */
-  initStars();
-  resetPlayer();
-  renderLB();
-  loadName();
-  startLoop();
+  function init(){
+    canvas = document.getElementById('gameCanvas');
+    if (!canvas){ console.error('[MAIGA] canvas not found'); return; }
+    ctx = canvas.getContext('2d');
+    overlay = document.getElementById('gameOverlay');
+    hudScoreEl = document.getElementById('hudScore');
+    hudLivesEl = document.getElementById('hudLives');
+    lbListEl = document.getElementById('lbList');
+    pilotInput = document.getElementById('pilotName');
 
-  // Wire the initial START button — bulletproof
-  var initialStart = document.getElementById('startGameBtn');
-  if (initialStart){
-    initialStart.addEventListener('click', function(e){
-      e.preventDefault();
-      startGame();
+    // Read internal resolution from the canvas element
+    W = canvas.width;
+    H = canvas.height;
+
+    initStars();
+    resetPlayer();
+    renderLB();
+    loadName();
+
+    if (pilotInput) pilotInput.addEventListener('input', saveName);
+
+    // Wire up leaderboard buttons
+    var shareTopBtn = document.getElementById('shareTopBtn');
+    var challengeBtn = document.getElementById('challengeBtn');
+    var clearLbBtn = document.getElementById('clearLbBtn');
+
+    if (shareTopBtn) shareTopBtn.addEventListener('click', function(){
+      var best = getBestScore();
+      if (!best){ alert('Play at least one round first! 🎮'); return; }
+      score = best;
+      shareScore();
     });
+    if (challengeBtn) challengeBtn.addEventListener('click', function(){
+      var best = getBestScore();
+      if (!best){ alert('Play at least one round first! 🎮'); return; }
+      score = best;
+      challengeFriends();
+    });
+    if (clearLbBtn) clearLbBtn.addEventListener('click', function(){
+      if (!confirm('Clear your local leaderboard?')) return;
+      try{ localStorage.removeItem(LB_KEY); } catch(e){}
+      renderLB();
+    });
+
+    attachInput();
+    startLoop();
+    console.log('[MAIGA] Game engine ready. Click START TAKEOVER to play.');
   }
 
-  // Also handle Enter/Space on the start button for accessibility
-  if (initialStart){
-    initialStart.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        startGame();
-      }
-    });
+  /* ========== PUBLIC API (global) ========== */
+  window.MAIGA_GAME = {
+    start: startGame,
+    share: shareScore,
+    challenge: challengeFriends
+  };
+
+  // Run init when DOM is ready (or immediately if already loaded)
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 
 })();

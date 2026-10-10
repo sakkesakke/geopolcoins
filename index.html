@@ -4,17 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="$MAIGA — Make AI Great Again. Play $MAIGA TAKEOVER, climb the leaderboard, share your score on X.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$MAIGA TAKEOVER — Make AI Great Again">
+<meta name="twitter:description" content="Play the $MAIGA arcade game. Beat the high score. Share it on X.">
 <title>$MAIGA | Make AI Great Again • $MAIGA TAKEOVER</title>
 
 <style>
 :root{
   --black:#050505;
   --navy:#07111f;
-  --yellow:#ffd800;
+  --yellow:#ffffff;
+  --usa-red:#d92736;
+  --usa-blue:#2457a6;
   --white:#ffffff;
-  --red:#ff3d3d;
-  --blue:#1da1f2;
-  --green:#28c76f;
+  --red:#d92736;
+  --blue:#2457a6;
+  --green:#d92736;
 }
 
 *{box-sizing:border-box}
@@ -24,8 +29,8 @@ body{
   font-family:Impact, Haettenschweiler, "Arial Black", sans-serif;
   background:
     radial-gradient(circle at 20% 0%, rgba(29,161,242,.28), transparent 28%),
-    radial-gradient(circle at 90% 15%, rgba(255,216,0,.10), transparent 24%),
-    linear-gradient(180deg, #07111f 0%, #02050a 100%);
+    radial-gradient(circle at 90% 15%, rgba(36,87,166,.18), transparent 24%),
+    linear-gradient(180deg, #081b3a 0%, #07111f 48%, #24070d 100%);
   color:var(--white);
   overflow-x:hidden;
 }
@@ -46,21 +51,21 @@ a{color:inherit}
 .brand-sub{display:block;font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--yellow);margin-top:-2px}
 .nav-links{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .nav-links a{font-family:Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-decoration:none;color:#c6d3e2;padding:8px 12px;border-radius:8px;transition:.15s}
-.nav-links a:hover{color:var(--yellow);background:rgba(255,216,0,.08)}
+.nav-links a:hover{color:var(--yellow);background:rgba(36,87,166,.12)}
 .join-btn{background:var(--blue);color:white;padding:12px 18px;border-radius:10px;text-decoration:none;border:3px solid #000;box-shadow:4px 4px 0 #000;font-size:16px}
 
-.ticker{background:var(--yellow);color:#000;padding:11px 10px;font-size:14px;text-align:center;letter-spacing:2px;border-bottom:4px solid #000}
+.ticker{background:linear-gradient(90deg,#b91f2b 0%,#ffffff 50%,#2457a6 100%);color:#07111f;padding:11px 10px;font-size:14px;text-align:center;letter-spacing:2px;border-bottom:4px solid #000}
 
 .hero{
   margin-top:34px;display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center;
   padding:30px;border:5px solid #000;border-radius:26px;
   background:
     radial-gradient(circle at 88% 12%, rgba(29,161,242,.30), transparent 42%),
-    radial-gradient(circle at 8% 92%, rgba(255,216,0,.16), transparent 42%),
+    radial-gradient(circle at 8% 92%, rgba(217,39,54,.14), transparent 42%),
     #0d1622;
   box-shadow:14px 14px 0 #000;position:relative;overflow:hidden;
 }
-.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:11px;background:linear-gradient(90deg,var(--yellow),var(--blue),var(--red),var(--yellow))}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:11px;background:linear-gradient(90deg,var(--usa-red),#ffffff,var(--usa-blue),#ffffff,var(--usa-red))}
 .hero-badge{
   display:inline-block;margin:14px 0 18px;padding:9px 18px;background:var(--yellow);color:#000;
   font-size:15px;letter-spacing:1.5px;border:3px solid #000;box-shadow:4px 4px 0 #000;
@@ -87,10 +92,10 @@ a{color:inherit}
 /* GAME */
 .game-section{
   margin-top:60px;padding:30px;border:5px solid #000;border-radius:26px;
-  background:radial-gradient(circle at 50% 0%, rgba(255,216,0,.16), transparent 42%),#0b1520;
+  background:radial-gradient(circle at 50% 0%, rgba(217,39,54,.14), transparent 42%),#0b1520;
   box-shadow:14px 14px 0 #000;position:relative;overflow:hidden;
 }
-.game-section::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--yellow),var(--red),var(--blue),var(--yellow))}
+.game-section::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,var(--usa-red),#ffffff,var(--usa-blue),#ffffff,var(--usa-red))}
 .game-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0 6px}
 .game-head h2{margin:0;font-size:clamp(34px,4.5vw,54px);text-transform:uppercase;text-shadow:4px 4px 0 #000;line-height:.95}
 .game-head h2 span{color:var(--red)}
@@ -199,12 +204,12 @@ a{color:inherit}
 .coin p{font-family:Arial,sans-serif;font-size:16px;line-height:1.55;min-height:75px}
 .coin .btn{margin-top:5px}
 
-.message{margin-top:60px;background:linear-gradient(135deg, rgba(255,216,0,.12), transparent 32%),#101924;border:5px solid #000;border-radius:22px;padding:30px;box-shadow:10px 10px 0 #000}
+.message{margin-top:60px;background:linear-gradient(135deg, rgba(217,39,54,.12), transparent 32%),#101924;border:5px solid #000;border-radius:22px;padding:30px;box-shadow:10px 10px 0 #000}
 .message h2{margin:0 0 14px;font-size:clamp(28px,4vw,42px)}
 .message h2 span{color:var(--yellow)}
 .message p{font-family:Arial,sans-serif;font-size:18px;line-height:1.7;color:#e7eef7}
 
-.cta{margin-top:62px;text-align:center;padding:42px 26px;border:5px solid #000;border-radius:22px;background:radial-gradient(circle at 50% 0%, rgba(255,216,0,.22), transparent 35%),#111b27;box-shadow:10px 10px 0 #000}
+.cta{margin-top:62px;text-align:center;padding:42px 26px;border:5px solid #000;border-radius:22px;background:radial-gradient(circle at 50% 0%, rgba(36,87,166,.24), transparent 35%),#111b27;box-shadow:10px 10px 0 #000}
 .cta h2{margin:0;font-size:clamp(32px,5vw,48px)}
 .cta p{max-width:760px;margin:15px auto 24px;font-family:Arial,sans-serif;font-size:18px;line-height:1.6;color:#e2eaf3}
 
@@ -302,7 +307,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
             <h3>$MAIGA <span>TAKEOVER</span></h3>
             <p>Jean-Phil is flying. Trump is watching. The crypto coins are falling.<br><strong>Shoot them all. Make AI Great Again.</strong></p>
             <div class="overlay-btn-row">
-              <button id="startGameBtn">START TAKEOVER</button>
+              <button id="startGameBtn" type="button">START TAKEOVER</button>
             </div>
             <div class="controls-hint">← → or A/D move • SPACE shoot • P pause • mobile: tap &amp; drag</div>
           </div>
@@ -325,9 +330,9 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
         </div>
 
         <div class="lb-actions">
-          <button class="yellow" id="shareTopBtn">📸 SHARE MY SCORE ON X</button>
-          <button class="blue" id="challengeBtn">⚔️ CHALLENGE FRIENDS</button>
-          <button class="green" id="clearLbBtn">🗑️ CLEAR MY SCORES</button>
+          <button class="yellow" id="shareTopBtn" type="button">📸 SHARE MY SCORE ON X</button>
+          <button class="blue" id="challengeBtn" type="button">⚔️ CHALLENGE FRIENDS</button>
+          <button class="green" id="clearLbBtn" type="button">🗑️ CLEAR MY SCORES</button>
         </div>
       </div>
     </div>
@@ -394,14 +399,15 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 (function(){
   'use strict';
 
-  var X_HANDLE = 'greenlandusa1';
   var X_HASHTAGS = 'MAIGA,MakeAIGreatAgain,Solana,MAIGATakeover';
+  var SHARE_URL = 'https://geopolcoins.xyz/';
   var LB_KEY = 'maiga_takeover_leaderboard_v1';
   var NAME_KEY = 'maiga_takeover_name_v1';
   var MAX_LB = 5;
 
   /* ========== DOM ========== */
   var canvas = document.getElementById('game');
+  if (!canvas) return;
   var ctx = canvas.getContext('2d');
   var overlay = document.getElementById('gameOverlay');
   var scoreEl = document.getElementById('score');
@@ -423,8 +429,8 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   var keys = {};
   var lastShot = 0, enemyDir = 1, enemySpeed = 40, shootTimer = 0;
   var touchActive = false, touchX = 0;
-  var rafId = null;
   var lastTime = 0;
+  var loopRunning = false;
 
   var COINS = [
     { sym:'₿',  color:'#f7931a' },
@@ -464,6 +470,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     return arr.length ? arr[0].score : 0;
   }
   function renderLB(){
+    if (!lbList) return;
     var arr = loadLB();
     if (!arr.length){
       lbList.innerHTML = '<div class="lb-empty">No scores yet. Be the first $MAIGA pilot on the board. 🧢🤖</div>';
@@ -577,6 +584,8 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     if (keys['ArrowLeft'] || keys['a'] || keys['A']) mv -= 1;
     if (keys['ArrowRight'] || keys['d'] || keys['D']) mv += 1;
 
+    if (keys[' '] || touchActive) shoot();
+
     if (touchActive){
       var diff = touchX - player.x;
       player.x += Math.max(-player.speed*dt, Math.min(player.speed*dt, diff*8*dt));
@@ -683,7 +692,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
     drawTrumpBackground();
 
-    ctx.fillStyle = 'rgba(255,216,0,.08)';
+    ctx.fillStyle = 'rgba(36,87,166,.12)';
     ctx.fillRect(0, H-70, W, 70);
 
     for (var e=0;e<enemies.length;e++){
@@ -894,20 +903,25 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
   /* ========== LOOP ========== */
   function loop(now){
+    if (!loopRunning) return;
     var dt = Math.min((now - lastTime)/1000, 0.033);
     lastTime = now;
     update(dt);
     draw();
-    rafId = requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
+  }
+
+  function startLoop(){
+    if (loopRunning) return;
+    loopRunning = true;
+    lastTime = performance.now();
+    requestAnimationFrame(loop);
   }
 
   /* ========== INPUT ========== */
   window.addEventListener('keydown', function(e){
     keys[e.key] = true;
-    if (e.key === ' '){
-      e.preventDefault();
-      if (state === 'playing') shoot();
-    }
+    if (e.key === ' '){ e.preventDefault(); }
     if (e.key === 'p' || e.key === 'P'){
       if (state === 'playing'){ state = 'paused'; showOverlay('PAUSED','Press START to resume.', false); }
     }
@@ -933,14 +947,16 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   canvas.addEventListener('pointerup', function(){ touchActive = false; });
   canvas.addEventListener('pointerleave', function(){ touchActive = false; });
   canvas.addEventListener('pointercancel', function(){ touchActive = false; });
+  window.addEventListener('pointerup', function(){ touchActive = false; });
   canvas.addEventListener('touchstart', function(e){ e.preventDefault(); }, {passive:false});
   canvas.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive:false});
 
-  /* ========== OVERLAY / START ========== */
+  /* ========== OVERLAY ========== */
   function showOverlay(title, text, showShare){
+    if (!overlay) return;
     var shareHtml = showShare
-      ? '<button class="share-btn" id="ovShareX">📸 SHARE ON X</button>' +
-        '<button class="share-btn green" id="ovChallenge">⚔️ CHALLENGE FRIENDS</button>'
+      ? '<button class="share-btn" id="ovShareX" type="button">📸 SHARE ON X</button>' +
+        '<button class="share-btn green" id="ovChallenge" type="button">⚔️ CHALLENGE FRIENDS</button>'
       : '';
 
     overlay.innerHTML =
@@ -948,7 +964,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       '<h3>' + title + '</h3>' +
       '<p>' + text + '</p>' +
       '<div class="overlay-btn-row">' +
-        '<button id="ovStartBtn">START TAKEOVER</button>' +
+        '<button id="ovStartBtn" type="button">START TAKEOVER</button>' +
         shareHtml +
       '</div>' +
       '<div class="controls-hint">← → or A/D move • SPACE shoot • P pause • mobile: tap &amp; drag</div>';
@@ -964,8 +980,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
   /* ========== SOCIAL ========== */
   function openTweet(text){
-    var url = 'https://x.com/intent/tweet?text=' + encodeURIComponent(text) + '&hashtags=' + encodeURIComponent(X_HASHTAGS);
-    window.open(url, '_blank');
+    var url = 'https://x.com/intent/tweet?text=' + encodeURIComponent(text) +
+              '&url=' + encodeURIComponent(SHARE_URL) +
+              '&hashtags=' + encodeURIComponent(X_HASHTAGS);
+    window.open(url, '_blank', 'noopener');
   }
 
   function shareScore(){
@@ -974,16 +992,18 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var text = 'I scored ' + score + ' on $MAIGA TAKEOVER 🧢🤖🔥\n' +
       (best ? 'Top score: ' + best + ' 🏆\n' : '') +
       'Pilot: ' + name + ' 🪪\n\n' +
-      'Make AI Great Again 🇺🇸\nCan you beat me? 👇';
+      'Make AI Great Again 🇺🇸\n' +
+      'Can you beat me? 🎮';
     openTweet(text);
   }
 
   function challengeFriends(){
     var best = getBestScore();
+    var myScore = score || best;
     var text = '⚔️ $MAIGA TAKEOVER CHALLENGE ⚔️\n\n' +
-      'I scored ' + (score || best) + ' on the $MAIGA arcade game 🎮🧢🤖\n' +
+      'I scored ' + myScore + ' on the $MAIGA arcade game 🎮🧢🤖\n' +
       'Think you can beat me?\n\n' +
-      'Play here 👉 https://geopolcoins.xyz/#game\n\n' +
+      'Play here 👇\n' +
       'Make AI Great Again 🇺🇸';
     openTweet(text);
   }
@@ -1008,6 +1028,14 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
   /* ========== START / OVER ========== */
   function startGame(){
+    if (!overlay) return;
+    if (state === 'paused'){
+      state = 'playing';
+      overlay.classList.add('hidden');
+      lastTime = performance.now();
+      startLoop();
+      return;
+    }
     overlay.classList.add('hidden');
     score = 0; lives = 3; wave = 1;
     scoreEl.textContent = 0;
@@ -1020,6 +1048,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     lastShot = 0;
     state = 'playing';
     lastTime = performance.now();
+    startLoop();
   }
 
   function gameOver(){
@@ -1045,13 +1074,25 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   resetPlayer();
   renderLB();
   loadName();
-  lastTime = performance.now();
-  rafId = requestAnimationFrame(loop);
+  startLoop();
 
-  // THE FIX: attach listener DIRECTLY on the initial start button
+  // Wire the initial START button — bulletproof
   var initialStart = document.getElementById('startGameBtn');
   if (initialStart){
-    initialStart.addEventListener('click', startGame);
+    initialStart.addEventListener('click', function(e){
+      e.preventDefault();
+      startGame();
+    });
+  }
+
+  // Also handle Enter/Space on the start button for accessibility
+  if (initialStart){
+    initialStart.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        startGame();
+      }
+    });
   }
 
 })();

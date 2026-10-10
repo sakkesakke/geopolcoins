@@ -448,10 +448,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   'use strict';
 
   /* ============================================================
-     ⚙️ SUPABASE CONFIG — ALREADY FILLED IN
+     ⚙️ SUPABASE CONFIG — FIXED URL + KEY
      ============================================================ */
-  var SUPABASE_URL = 'https://zslzbfbrtfpvgbjhssd.supabase.co';
-  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzbHpiZmJxcnRmcHZnYmpoc3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2MTkxNjQsImV4cCI6MjEwNzE5NTE2NH0.O72uYR9UxfzOARMAIbPyaEpqyUvtUaKXr1b7T85f-aI';
+  var SUPABASE_URL = 'https://zslzbfbqrtfpvgbjhssd.supabase.co';
+  var SUPABASE_ANON_KEY = 'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';
 
   var X_HASHTAGS = 'MAIGA,MakeAIGreatAgain,Solana,MAIGATakeover';
   var SHARE_BASE = 'https://geopolcoins.xyz/';
@@ -543,6 +543,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
         headers: sbHeaders(),
         body: JSON.stringify({ name: name.slice(0,12), score: sc, wave: waveNum, kills: killsNum })
       });
+      if (!res.ok){
+        var errText = await res.text();
+        console.error('[MAIGA] Score insert failed:', res.status, errText);
+      }
       return res.ok;
     } catch(e){ console.error('[MAIGA] Insert error:', e); return false; }
   }
@@ -552,7 +556,11 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       var res = await fetch(SUPABASE_URL + '/rest/v1/scores?select=name,score,created_at&order=score.desc&limit=' + MAX_LB, {
         headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY }
       });
-      if (!res.ok){ console.error('[MAIGA] Fetch error:', res.status); return null; }
+      if (!res.ok){
+        var errText = await res.text();
+        console.error('[MAIGA] Fetch failed:', res.status, errText);
+        return null;
+      }
       return await res.json();
     } catch(e){ console.error('[MAIGA] Fetch error:', e); return null; }
   }
@@ -564,6 +572,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
         headers: sbHeaders(),
         body: JSON.stringify({ name: name.slice(0,12), wallet: wallet })
       });
+      if (!res.ok){
+        var errText = await res.text();
+        console.error('[MAIGA] Wallet insert failed:', res.status, errText);
+      }
       return res.ok;
     } catch(e){ console.error('[MAIGA] Wallet error:', e); return false; }
   }
@@ -1379,8 +1391,8 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     addLocalScore(name, score);
     if (GLOBAL_ENABLED && score > 0){
       sbInsertScore(name, score, wave, kills).then(function(ok){
-        if (ok) console.log('[MAIGA] Score saved globally');
-        else console.warn('[MAIGA] Global score save failed');
+        if (ok) console.log('[MAIGA] Score saved globally ✅');
+        else console.warn('[MAIGA] Global score save failed ❌');
         renderLB();
       });
     } else {
@@ -1507,8 +1519,9 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
     attachInput();
     startLoop();
-    console.log('[MAIGA] Tier 3 LIVE. Global:', GLOBAL_ENABLED ? 'ENABLED ✅' : 'local fallback');
+    console.log('[MAIGA] Tier 3 LIVE ✅');
     console.log('[MAIGA] Supabase URL:', SUPABASE_URL);
+    console.log('[MAIGA] Global:', GLOBAL_ENABLED ? 'ENABLED ✅' : 'local fallback');
   }
 
   window.MAIGA_GAME = {

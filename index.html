@@ -13,6 +13,9 @@
   --blue:#2457a6;
   --white:#ffffff;
   --black:#050505;
+  --gold:#ffb800;
+  --silver:#c0c8d4;
+  --bronze:#cd7f32;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -73,46 +76,14 @@ a{color:inherit}
 
 .game-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start}
 
-.game-wrap{
-  position:relative;
-  width:100%;
-  padding-bottom:75%; /* 4:3 aspect ratio fallback */
-  border:5px solid #000;
-  border-radius:18px;
-  overflow:hidden;
-  background:#050b14;
-  box-shadow:9px 9px 0 rgba(0,0,0,.9);
-}
-.game-wrap canvas{
-  position:absolute;
-  top:0;left:0;
-  width:100%;height:100%;
-  display:block;
-  touch-action:none;
-}
+.game-wrap{position:relative;width:100%;padding-bottom:75%;border:5px solid #000;border-radius:18px;overflow:hidden;background:#050b14;box-shadow:9px 9px 0 rgba(0,0,0,.9)}
+.game-wrap canvas{position:absolute;top:0;left:0;width:100%;height:100%;display:block;touch-action:none}
 
-#gameHud{
-  position:absolute;top:0;left:0;right:0;
-  display:flex;justify-content:space-between;
-  padding:10px 16px;
-  color:var(--yellow);
-  font-size:clamp(13px,2.2vw,20px);
-  letter-spacing:2px;
-  text-shadow:2px 2px 0 #000;
-  pointer-events:none;
-  z-index:5;
-}
+#gameHud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:10px 16px;color:var(--yellow);font-size:clamp(13px,2.2vw,20px);letter-spacing:2px;text-shadow:2px 2px 0 #000;pointer-events:none;z-index:5}
 #gameHud .maigaLabel{color:var(--red)}
+#gameHud .streakLabel{color:var(--gold)}
 
-#gameOverlay{
-  position:absolute;
-  top:0;left:0;right:0;bottom:0;
-  background:rgba(2,5,10,.94);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:20px;
-  z-index:10;
-  color:#fff;
-}
+#gameOverlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(2,5,10,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;z-index:10;color:#fff;overflow-y:auto}
 #gameOverlay.hidden{display:none}
 #gameOverlay .tag{color:var(--blue);font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;margin-bottom:12px}
 #gameOverlay h3{color:var(--yellow);font-size:clamp(28px,5vw,52px);text-shadow:4px 4px 0 #000;margin:0 0 10px;line-height:.95;text-transform:uppercase}
@@ -120,53 +91,73 @@ a{color:inherit}
 #gameOverlay p{font-family:Arial,sans-serif;font-size:clamp(12px,1.8vw,16px);line-height:1.6;max-width:560px;margin:0 0 18px;color:#d7e2ee}
 #gameOverlay .controls-hint{font-family:Arial,sans-serif;font-size:11px;color:#7e8ea3;margin-top:14px;line-height:1.5}
 .overlay-btn-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.overlay-new-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 14px}
+.new-badge{background:linear-gradient(135deg,#ffd800,#ffb800);color:#000;border:3px solid #000;border-radius:10px;padding:8px 12px;font-family:Arial,sans-serif;font-size:12px;font-weight:900;box-shadow:3px 3px 0 #000;animation:pop 0.4s ease}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.1)}100%{transform:scale(1)}}
 
-.start-btn{
-  background:var(--yellow);
-  color:#000;
-  border:4px solid #000;
-  border-radius:12px;
-  padding:13px 28px;
-  font-family:inherit;
-  font-size:clamp(15px,2.2vw,20px);
-  letter-spacing:2px;
-  cursor:pointer;
-  box-shadow:6px 6px 0 #000;
-}
+.start-btn{background:var(--yellow);color:#000;border:4px solid #000;border-radius:12px;padding:13px 28px;font-family:inherit;font-size:clamp(15px,2.2vw,20px);letter-spacing:2px;cursor:pointer;box-shadow:6px 6px 0 #000}
 .start-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
-
-.share-btn{
-  background:var(--blue);color:#fff;border:4px solid #000;border-radius:12px;
-  padding:11px 22px;font-family:inherit;font-size:clamp(13px,1.8vw,17px);letter-spacing:1.5px;
-  cursor:pointer;box-shadow:6px 6px 0 #000;
-}
+.share-btn{background:var(--blue);color:#fff;border:4px solid #000;border-radius:12px;padding:11px 22px;font-family:inherit;font-size:clamp(13px,1.8vw,17px);letter-spacing:1.5px;cursor:pointer;box-shadow:6px 6px 0 #000}
 .share-btn:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 #000}
 .share-btn.green{background:var(--red);color:#fff}
 
-.leaderboard{background:#fff;color:#111;border:5px solid #000;border-radius:18px;padding:22px;box-shadow:9px 9px 0 rgba(0,0,0,.9)}
-.leaderboard h4{margin:0 0 14px;font-size:clamp(20px,2.6vw,26px);text-transform:uppercase;border-bottom:4px solid #000;padding-bottom:10px}
-.leaderboard h4 span{color:var(--red)}
+/* PANELS */
+.panel{background:#fff;color:#111;border:5px solid #000;border-radius:18px;padding:22px;box-shadow:9px 9px 0 rgba(0,0,0,.9);margin-bottom:20px}
+.panel h4{margin:0 0 14px;font-size:clamp(18px,2.4vw,22px);text-transform:uppercase;border-bottom:4px solid #000;padding-bottom:10px;letter-spacing:1px}
+.panel h4 span{color:var(--red)}
+
 .lb-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;font-family:Arial,sans-serif;font-size:14px;border:2px solid #000;border-radius:10px;margin-bottom:8px;background:#f4f7fb}
-.lb-row.top1{background:var(--yellow);font-weight:900;font-size:16px}
-.lb-row.top2{background:#e2e8f0;font-weight:800}
-.lb-row.top3{background:#f7d9a0;font-weight:800}
+.lb-row.top1{background:var(--gold);font-weight:900;font-size:16px}
+.lb-row.top2{background:var(--silver);font-weight:800}
+.lb-row.top3{background:var(--bronze);color:#fff;font-weight:800}
 .lb-row .rank{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#000;color:#fff;border-radius:50%;font-size:12px;flex-shrink:0}
 .lb-row.top1 .rank{background:var(--red)}
 .lb-row .name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
 .lb-row .pts{font-weight:900;color:var(--red);font-size:16px}
 .lb-empty{font-family:Arial,sans-serif;font-size:13px;color:#667;text-align:center;padding:16px 8px}
-.lb-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.lb-actions button{flex:1;min-width:120px;background:#000;color:#fff;border:3px solid #000;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13px;letter-spacing:1px;cursor:pointer}
-.lb-actions button.yellow{background:var(--yellow);color:#000}
-.lb-actions button.blue{background:var(--blue);color:#fff}
-.lb-actions button.green{background:var(--red);color:#fff}
+
+/* Daily challenge */
+.challenge-box{background:linear-gradient(135deg,#ffd800,#ffb800);border:4px solid #000;border-radius:14px;padding:16px;margin-bottom:14px;font-family:Arial,sans-serif;box-shadow:4px 4px 0 #000;color:#000}
+.challenge-box .label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;opacity:.7;margin-bottom:6px}
+.challenge-box .task{font-family:Impact,sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:8px}
+.challenge-box .status{font-size:13px;font-weight:700}
+.challenge-box.done{background:linear-gradient(135deg,#28c76f,#1fa857);color:#fff}
+.challenge-box.done .label{color:rgba(255,255,255,.8)}
+
+/* Streak */
+.streak-box{background:linear-gradient(135deg,#ff3d3d,#b91f2b);color:#fff;border:4px solid #000;border-radius:14px;padding:16px;margin-bottom:14px;font-family:Arial,sans-serif;box-shadow:4px 4px 0 #000;display:flex;align-items:center;gap:14px}
+.streak-box .flame{font-size:40px;line-height:1}
+.streak-box .streak-info{flex:1}
+.streak-box .streak-count{font-family:Impact,sans-serif;font-size:32px;line-height:1;letter-spacing:1px}
+.streak-box .streak-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;opacity:.85;margin-top:4px}
+
+/* Achievements */
+.badges-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.badge{background:#f4f7fb;border:3px solid #000;border-radius:12px;padding:10px;display:flex;align-items:center;gap:10px;font-family:Arial,sans-serif;opacity:.35;transition:.2s}
+.badge.unlocked{opacity:1;background:linear-gradient(135deg,#fff8e6,#ffefc2)}
+.badge .icon{font-size:26px;line-height:1;flex-shrink:0}
+.badge .info{flex:1;min-width:0}
+.badge .name{font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.badge .desc{font-size:10px;color:#667;line-height:1.3}
 
 .name-box{margin-top:14px;padding:14px;border:3px dashed #000;border-radius:12px;background:#f4f7fb;font-family:Arial,sans-serif}
 .name-box label{display:block;font-size:12px;font-weight:900;text-transform:uppercase;margin-bottom:8px;color:#000}
 .name-box input{width:100%;padding:10px 12px;border:3px solid #000;border-radius:8px;font-family:inherit;font-size:16px;background:#fff;color:#000;outline:none}
 
+.lb-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.lb-actions button{flex:1;min-width:100px;background:#000;color:#fff;border:3px solid #000;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:12px;letter-spacing:1px;cursor:pointer}
+.lb-actions button.yellow{background:var(--yellow);color:#000}
+.lb-actions button.blue{background:var(--blue);color:#fff}
+.lb-actions button.green{background:var(--red);color:#fff}
+.lb-actions button.gray{background:#666;color:#fff}
+
+.sound-toggle{background:#000;color:#fff;border:3px solid #000;border-radius:10px;padding:8px 14px;font-family:inherit;font-size:12px;letter-spacing:1px;cursor:pointer;margin-top:10px}
+.sound-toggle.off{background:#666}
+.sound-toggle:hover{transform:translate(1px,1px)}
+
 .game-controls{margin-top:16px;font-family:Arial,sans-serif;font-size:12px;color:#7e8ea3;text-align:center}
 
+/* COINS */
 .coins{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .coin{background:linear-gradient(180deg,#fff 0%,#f0f3f7 100%);color:#111;padding:20px;border-radius:20px;border:5px solid #000;box-shadow:10px 10px 0 #000;text-align:center;position:relative;overflow:hidden}
 .coin::before{content:"";position:absolute;inset:0 0 auto 0;height:9px;background:var(--yellow)}
@@ -199,6 +190,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   .hero h1{font-size:54px}
   .game-section{padding:22px}
   .coins{grid-template-columns:1fr}
+  .badges-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -217,6 +209,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     <div class="nav-links">
       <a href="#game">🎮 TAKEOVER</a>
       <a href="#leaderboard">🏆 RANKS</a>
+      <a href="#achievements">🏅 BADGES</a>
       <a href="#coins">COINS</a>
       <a class="join-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN ON X</a>
     </div>
@@ -224,7 +217,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 </div>
 
 <div class="ticker">
-  🔥 $MAIGA • $MAIGA TAKEOVER GAME • BEAT THE HIGH SCORE • AIRDROP LIVE • 500M BURN COMING 🔥
+  🔥 $MAIGA • $MAIGA TAKEOVER GAME • DAILY CHALLENGE • STREAKS • BADGES • AIRDROP LIVE 🔥
 </div>
 
 <div class="container">
@@ -278,25 +271,59 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
             <div class="controls-hint">← → or A/D move • SPACE shoot • P pause • mobile: tap &amp; drag</div>
           </div>
         </div>
-        <div class="game-controls">Desktop: Arrow keys • SPACE shoot • P pause • Mobile: tap &amp; drag</div>
+        <div class="game-controls">
+          Desktop: Arrow keys • SPACE shoot • P pause • Mobile: tap &amp; drag
+          <div style="margin-top:10px;">
+            <button class="sound-toggle" id="soundToggle" type="button" onclick="MAIGA_GAME.toggleSound()">🔊 SOUND: ON</button>
+          </div>
+        </div>
       </div>
 
-      <div class="leaderboard" id="leaderboard">
-        <h4>🏆 TOP <span>5</span> SCORES</h4>
-        <div id="lbList"><div class="lb-empty">No scores yet. Be the first pilot! 🧢🤖</div></div>
+      <div id="leaderboard">
+        <div class="panel">
+          <h4>🏆 TOP <span>5</span> SCORES</h4>
+          <div id="lbList"><div class="lb-empty">No scores yet. Be the first pilot! 🧢🤖</div></div>
 
-        <div class="name-box">
-          <label for="pilotName">🪪 Pilot name (saved locally)</label>
-          <input id="pilotName" type="text" maxlength="12" placeholder="e.g. JeanPhil01">
+          <div class="name-box">
+            <label for="pilotName">🪪 Pilot name (saved locally)</label>
+            <input id="pilotName" type="text" maxlength="12" placeholder="e.g. JeanPhil01">
+          </div>
+
+          <div class="lb-actions">
+            <button class="yellow" id="shareTopBtn" type="button">📸 SHARE</button>
+            <button class="blue" id="challengeBtn" type="button">⚔️ CHALLENGE</button>
+            <button class="gray" id="clearLbBtn" type="button">🗑️ CLEAR</button>
+          </div>
         </div>
 
-        <div class="lb-actions">
-          <button class="yellow" id="shareTopBtn" type="button">📸 SHARE SCORE</button>
-          <button class="blue" id="challengeBtn" type="button">⚔️ CHALLENGE</button>
-          <button class="green" id="clearLbBtn" type="button">🗑️ CLEAR</button>
+        <div class="panel">
+          <h4>📅 DAILY <span>CHALLENGE</span></h4>
+          <div id="dailyChallengeBox" class="challenge-box">
+            <div class="label">TODAY'S MISSION</div>
+            <div class="task" id="dailyTask">Loading…</div>
+            <div class="status" id="dailyStatus">Play a round to complete it</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h4>🔥 STREAK <span>STATUS</span></h4>
+          <div class="streak-box">
+            <div class="flame">🔥</div>
+            <div class="streak-info">
+              <div class="streak-count"><span id="streakCount">0</span> DAYS</div>
+              <div class="streak-label">Consecutive play streak</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="achievements" style="margin-top:60px;">
+    <h2 class="section-title">🏅 ACHIEVEMENT <span>BADGES</span></h2>
+    <p class="section-note">Unlock badges by playing. Collect them all. 🧢</p>
+
+    <div class="badges-grid" id="badgesGrid"></div>
   </section>
 
   <section class="message">
@@ -354,22 +381,26 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
 
 <script>
 /* =====================================================================
-   $MAIGA TAKEOVER — BULLETPROOF GAME ENGINE
-   All functions exposed globally. No IIFE closure traps.
+   $MAIGA TAKEOVER — FULL ENGINE
+   Features: juice pack, sound FX, daily challenge, streak, achievements
    ===================================================================== */
 (function(){
   'use strict';
 
-  // ---- Config ----
+  /* ---------- CONFIG ---------- */
   var X_HASHTAGS = 'MAIGA,MakeAIGreatAgain,Solana,MAIGATakeover';
   var SHARE_URL = 'https://geopolcoins.xyz/';
   var LB_KEY = 'maiga_lb_v1';
   var NAME_KEY = 'maiga_name_v1';
+  var STREAK_KEY = 'maiga_streak_v1';
+  var DAILY_KEY = 'maiga_daily_v1';
+  var BADGE_KEY = 'maiga_badges_v1';
+  var SOUND_KEY = 'maiga_sound_v1';
   var MAX_LB = 5;
 
-  // ---- State (module-level, NOT hidden in closure) ----
+  /* ---------- STATE ---------- */
   var state = 'menu';
-  var score = 0, lives = 3, wave = 1;
+  var score = 0, lives = 3, wave = 1, kills = 0;
   var enemies = [], bullets = [], enemyBullets = [], particles = [], stars = [];
   var player = { x: 480, y: 630, speed: 380, cooldown: 0.22 };
   var keys = {};
@@ -378,6 +409,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
   var W = 960, H = 720;
   var lastTime = 0;
   var loopRunning = false;
+  var shakeIntensity = 0, flashAlpha = 0, flashColor = '#ff3d3d';
   var canvas, ctx, overlay, hudScoreEl, hudLivesEl, lbListEl, pilotInput;
 
   var COINS = [
@@ -391,18 +423,104 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     { sym:'S', color:'#ff3d3d' }
   ];
 
-  /* ========== LEADERBOARD ========== */
+  /* ============================================================
+     AUDIO ENGINE (procedural — no files)
+     ============================================================ */
+  var audioCtx = null;
+  var soundEnabled = true;
+
+  function initAudio(){
+    if (audioCtx) return;
+    try{
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    } catch(e){}
+  }
+  function resumeAudio(){
+    if (audioCtx && audioCtx.state === 'suspended'){
+      try{ audioCtx.resume(); } catch(e){}
+    }
+  }
+  function playTone(freq, dur, type, vol){
+    if (!soundEnabled || !audioCtx) return;
+    try{
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.type = type || 'square';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(vol || 0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + dur);
+    } catch(e){}
+  }
+  function sfxShoot(){ playTone(880, 0.05, 'square', 0.04); }
+  function sfxExplode(){
+    if (!soundEnabled || !audioCtx) return;
+    try{
+      var len = Math.floor(audioCtx.sampleRate * 0.14);
+      var buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
+      var d = buf.getChannelData(0);
+      for (var i=0;i<len;i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/len, 2);
+      var src = audioCtx.createBufferSource();
+      src.buffer = buf;
+      var g = audioCtx.createGain();
+      g.gain.value = 0.06;
+      src.connect(g); g.connect(audioCtx.destination);
+      src.start();
+    } catch(e){}
+  }
+  function sfxHit(){ playTone(140, 0.22, 'sawtooth', 0.10); }
+  function sfxStart(){
+    playTone(440, 0.08, 'square', 0.07);
+    setTimeout(function(){ playTone(660, 0.08, 'square', 0.07); }, 90);
+    setTimeout(function(){ playTone(880, 0.14, 'square', 0.07); }, 180);
+  }
+  function sfxGameOver(){
+    playTone(440, 0.14, 'sawtooth', 0.08);
+    setTimeout(function(){ playTone(330, 0.14, 'sawtooth', 0.08); }, 140);
+    setTimeout(function(){ playTone(220, 0.35, 'sawtooth', 0.08); }, 280);
+  }
+  function sfxBadge(){
+    playTone(880, 0.10, 'sine', 0.08);
+    setTimeout(function(){ playTone(1320, 0.20, 'sine', 0.08); }, 100);
+  }
+
+  /* ============================================================
+     LOCAL STORAGE HELPERS
+     ============================================================ */
+  function safeGet(key){
+    try{ return localStorage.getItem(key); } catch(e){ return null; }
+  }
+  function safeSet(key, val){
+    try{ localStorage.setItem(key, val); } catch(e){}
+  }
+  function safeDel(key){
+    try{ localStorage.removeItem(key); } catch(e){}
+  }
+  function todayKey(){
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function yesterdayKey(){
+    var d = new Date();
+    d.setDate(d.getDate() - 1);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  /* ============================================================
+     LEADERBOARD
+     ============================================================ */
   function loadLB(){
     try{
-      var raw = localStorage.getItem(LB_KEY);
+      var raw = safeGet(LB_KEY);
       if (!raw) return [];
       var arr = JSON.parse(raw);
-      if (!Array.isArray(arr)) return [];
-      return arr.filter(function(x){ return x && typeof x.score === 'number'; });
+      return Array.isArray(arr) ? arr.filter(function(x){ return x && typeof x.score === 'number'; }) : [];
     } catch(e){ return []; }
   }
   function saveLB(arr){
-    try{ localStorage.setItem(LB_KEY, JSON.stringify(arr.slice(0, MAX_LB))); } catch(e){}
+    safeSet(LB_KEY, JSON.stringify(arr.slice(0, MAX_LB)));
   }
   function addScore(name, sc){
     if (!sc || sc <= 0) return;
@@ -441,16 +559,181 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     return (pilotInput && pilotInput.value.trim()) || 'Anonymous';
   }
   function loadName(){
-    try{
-      var n = localStorage.getItem(NAME_KEY);
-      if (n && pilotInput) pilotInput.value = n;
-    } catch(e){}
+    var n = safeGet(NAME_KEY);
+    if (n && pilotInput) pilotInput.value = n;
   }
   function saveName(){
-    try{ localStorage.setItem(NAME_KEY, getPilotName()); } catch(e){}
+    safeSet(NAME_KEY, getPilotName());
   }
 
-  /* ========== STARS ========== */
+  /* ============================================================
+     DAILY CHALLENGE
+     ============================================================ */
+  var CHALLENGES = [
+    { id:'score300',  text:'Score 300+ points in one run',   check:function(s,w,k){ return s >= 300; } },
+    { id:'score500',  text:'Score 500+ points in one run',   check:function(s,w,k){ return s >= 500; } },
+    { id:'score800',  text:'Score 800+ points in one run',   check:function(s,w,k){ return s >= 800; } },
+    { id:'wave5',     text:'Reach Wave 5',                   check:function(s,w,k){ return w >= 5; } },
+    { id:'wave8',     text:'Reach Wave 8',                   check:function(s,w,k){ return w >= 8; } },
+    { id:'kill40',    text:'Kill 40 enemies in one run',     check:function(s,w,k){ return k >= 40; } }
+  ];
+
+  function getDailyChallenge(){
+    var today = todayKey();
+    var saved = null;
+    try{ saved = JSON.parse(safeGet(DAILY_KEY) || 'null'); } catch(e){}
+    if (saved && saved.date === today) return saved;
+
+    var hash = 0;
+    for (var i=0;i<today.length;i++) hash = (hash*31 + today.charCodeAt(i)) | 0;
+    var idx = Math.abs(hash) % CHALLENGES.length;
+    var c = CHALLENGES[idx];
+    var data = { date: today, id: c.id, text: c.text, completed: false };
+    safeSet(DAILY_KEY, JSON.stringify(data));
+    return data;
+  }
+  function saveDaily(data){
+    safeSet(DAILY_KEY, JSON.stringify(data));
+  }
+  function renderDaily(){
+    var box = document.getElementById('dailyChallengeBox');
+    var task = document.getElementById('dailyTask');
+    var status = document.getElementById('dailyStatus');
+    if (!box || !task || !status) return;
+    var d = getDailyChallenge();
+    task.textContent = d.text;
+    if (d.completed){
+      box.classList.add('done');
+      status.textContent = '✅ COMPLETED TODAY — come back tomorrow!';
+    } else {
+      box.classList.remove('done');
+      status.textContent = '🎯 Play a round to complete it';
+    }
+  }
+  function checkDailyComplete(){
+    var d = getDailyChallenge();
+    if (d.completed) return false;
+    var c = null;
+    for (var i=0;i<CHALLENGES.length;i++) if (CHALLENGES[i].id === d.id){ c = CHALLENGES[i]; break; }
+    if (!c) return false;
+    if (c.check(score, wave, kills)){
+      d.completed = true;
+      saveDaily(d);
+      renderDaily();
+      return true;
+    }
+    return false;
+  }
+
+  /* ============================================================
+     STREAK
+     ============================================================ */
+  function getStreakData(){
+    try{
+      var d = JSON.parse(safeGet(STREAK_KEY) || 'null');
+      if (d && typeof d.streak === 'number') return d;
+    } catch(e){}
+    return { lastDate: null, streak: 0 };
+  }
+  function updateStreakOnPlay(){
+    var data = getStreakData();
+    var today = todayKey();
+    if (data.lastDate === today){
+      // already counted today
+      return data.streak;
+    }
+    if (data.lastDate === yesterdayKey()){
+      data.streak = (data.streak || 0) + 1;
+    } else {
+      data.streak = 1;
+    }
+    data.lastDate = today;
+    safeSet(STREAK_KEY, JSON.stringify(data));
+    return data.streak;
+  }
+  function renderStreak(){
+    var el = document.getElementById('streakCount');
+    if (!el) return;
+    var data = getStreakData();
+    // If streak broken (last play was before yesterday), show 0
+    if (data.lastDate !== todayKey() && data.lastDate !== yesterdayKey()){
+      el.textContent = '0';
+    } else {
+      el.textContent = data.streak || 0;
+    }
+  }
+
+  /* ============================================================
+     ACHIEVEMENTS
+     ============================================================ */
+  var BADGES = [
+    { id:'first_blood', icon:'🎯', name:'First Blood',   desc:'Kill your first enemy',        check:function(st){ return st.kills >= 1; } },
+    { id:'wave5',       icon:'🌊', name:'Wave Master',   desc:'Reach Wave 5',                 check:function(st){ return st.wave >= 5; } },
+    { id:'wave10',      icon:'🚀', name:'Deep Space',    desc:'Reach Wave 10',                check:function(st){ return st.wave >= 10; } },
+    { id:'score500',    icon:'💥', name:'Rookie',        desc:'Score 500+',                   check:function(st){ return st.score >= 500; } },
+    { id:'score1000',   icon:'💯', name:'Century Club',  desc:'Score 1000+',                  check:function(st){ return st.score >= 1000; } },
+    { id:'score5000',   icon:'👑', name:'Legend',        desc:'Score 5000+',                  check:function(st){ return st.score >= 5000; } },
+    { id:'kill50',      icon:'🔫', name:'Sharpshooter',  desc:'Kill 50 enemies in one run',   check:function(st){ return st.kills >= 50; } },
+    { id:'kill100',     icon:'☠️', name:'Exterminator',  desc:'Kill 100 enemies in one run',  check:function(st){ return st.kills >= 100; } }
+  ];
+
+  function loadBadges(){
+    try{
+      var d = JSON.parse(safeGet(BADGE_KEY) || '{}');
+      return d && typeof d === 'object' ? d : {};
+    } catch(e){ return {}; }
+  }
+  function saveBadges(obj){ safeSet(BADGE_KEY, JSON.stringify(obj)); }
+
+  function checkBadges(stats){
+    var unlocked = loadBadges();
+    var newlyUnlocked = [];
+    for (var i=0;i<BADGES.length;i++){
+      var b = BADGES[i];
+      if (unlocked[b.id]) continue;
+      if (b.check(stats)){
+        unlocked[b.id] = Date.now();
+        newlyUnlocked.push(b);
+      }
+    }
+    if (newlyUnlocked.length) saveBadges(unlocked);
+    renderBadges();
+    return newlyUnlocked;
+  }
+
+  function renderBadges(){
+    var grid = document.getElementById('badgesGrid');
+    if (!grid) return;
+    var unlocked = loadBadges();
+    var html = '';
+    for (var i=0;i<BADGES.length;i++){
+      var b = BADGES[i];
+      var isUnlocked = !!unlocked[b.id];
+      html += '<div class="badge ' + (isUnlocked ? 'unlocked' : '') + '">' +
+        '<div class="icon">' + b.icon + '</div>' +
+        '<div class="info">' +
+          '<div class="name">' + b.name + '</div>' +
+          '<div class="desc">' + b.desc + '</div>' +
+        '</div>' +
+      '</div>';
+    }
+    grid.innerHTML = html;
+  }
+
+  /* ============================================================
+     JUICE PACK HELPERS
+     ============================================================ */
+  function triggerShake(intensity){
+    if (intensity > shakeIntensity) shakeIntensity = intensity;
+  }
+  function triggerFlash(color, alpha){
+    flashColor = color;
+    if (alpha > flashAlpha) flashAlpha = alpha;
+  }
+
+  /* ============================================================
+     STARS / WAVE
+     ============================================================ */
   function initStars(){
     stars = [];
     for (var i=0;i<180;i++){
@@ -463,7 +746,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     }
   }
 
-  /* ========== WAVE ========== */
   function spawnWave(){
     enemies = [];
     var cols = 8;
@@ -494,11 +776,15 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     player.y = H - 90;
   }
 
+  /* ============================================================
+     SHOOTING
+     ============================================================ */
   function shoot(){
     var now = performance.now()/1000;
     if (now - lastShot < player.cooldown) return;
     lastShot = now;
     bullets.push({ x: player.x, y: player.y - 30, vy: -620 });
+    sfxShoot();
   }
 
   function enemyShoot(){
@@ -515,10 +801,23 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       var sp = Math.random()*220+50;
       particles.push({ x:x, y:y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life:0.65, max:0.65, color:color });
     }
+    triggerShake(7);
+    sfxExplode();
   }
 
-  /* ========== UPDATE ========== */
+  /* ============================================================
+     UPDATE
+     ============================================================ */
   function update(dt){
+    if (shakeIntensity > 0){
+      shakeIntensity *= Math.exp(-dt * 10);
+      if (shakeIntensity < 0.15) shakeIntensity = 0;
+    }
+    if (flashAlpha > 0){
+      flashAlpha -= dt * 2.2;
+      if (flashAlpha < 0) flashAlpha = 0;
+    }
+
     for (var i=0;i<stars.length;i++){
       var s = stars[i];
       s.y += s.s * 60 * dt;
@@ -576,6 +875,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
           ee.alive = false;
           bb.y = -200;
           score += 10;
+          kills++;
           if (hudScoreEl) hudScoreEl.textContent = score;
           burst(ee.x, ee.y, ee.type.color);
         }
@@ -613,11 +913,16 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     lives--;
     if (hudLivesEl) hudLivesEl.textContent = lives;
     burst(player.x, player.y, '#ff3d3d');
+    triggerShake(22);
+    triggerFlash('#ff3d3d', 0.55);
+    sfxHit();
     if (lives <= 0) gameOver();
   }
 
-  /* ========== DRAW ========== */
-  function draw(){
+  /* ============================================================
+     DRAW
+     ============================================================ */
+  function drawScene(){
     if (!ctx) return;
 
     var g = ctx.createLinearGradient(0,0,0,H);
@@ -683,6 +988,25 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     ctx.fillStyle = 'rgba(255,216,0,.55)';
     ctx.textAlign = 'center';
     ctx.fillText('WAVE ' + wave, W/2, H - 22);
+  }
+
+  function draw(){
+    if (!ctx) return;
+    ctx.save();
+    if (shakeIntensity > 0){
+      var sx = (Math.random() - 0.5) * shakeIntensity;
+      var sy = (Math.random() - 0.5) * shakeIntensity;
+      ctx.translate(sx, sy);
+    }
+    drawScene();
+    ctx.restore();
+
+    if (flashAlpha > 0.01){
+      ctx.fillStyle = flashColor;
+      ctx.globalAlpha = flashAlpha;
+      ctx.fillRect(0, 0, W, H);
+      ctx.globalAlpha = 1;
+    }
   }
 
   function drawCoin(e){
@@ -811,7 +1135,9 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     ctx.restore();
   }
 
-  /* ========== LOOP ========== */
+  /* ============================================================
+     LOOP
+     ============================================================ */
   function loop(now){
     if (!loopRunning) return;
     var dt = Math.min((now - lastTime)/1000, 0.033);
@@ -820,7 +1146,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     draw();
     requestAnimationFrame(loop);
   }
-
   function startLoop(){
     if (loopRunning) return;
     loopRunning = true;
@@ -828,7 +1153,9 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     requestAnimationFrame(loop);
   }
 
-  /* ========== INPUT ========== */
+  /* ============================================================
+     INPUT
+     ============================================================ */
   function attachInput(){
     window.addEventListener('keydown', function(e){
       keys[e.key] = true;
@@ -865,8 +1192,10 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     canvas.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive:false});
   }
 
-  /* ========== OVERLAY ========== */
-  function showOverlay(title, text, showShare){
+  /* ============================================================
+     OVERLAY
+     ============================================================ */
+  function showOverlay(title, text, showShare, newBadgesHtml){
     if (!overlay) return;
     var shareHtml = showShare
       ? '<button class="share-btn" type="button" onclick="MAIGA_GAME.share()">📸 SHARE ON X</button>' +
@@ -876,6 +1205,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     overlay.innerHTML =
       '<div class="tag">$MAIGA</div>' +
       '<h3>' + title + '</h3>' +
+      (newBadgesHtml || '') +
       '<p>' + text + '</p>' +
       '<div class="overlay-btn-row">' +
         '<button class="start-btn" type="button" onclick="MAIGA_GAME.start()">START TAKEOVER</button>' +
@@ -885,23 +1215,25 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     overlay.classList.remove('hidden');
   }
 
-  /* ========== SOCIAL ========== */
+  /* ============================================================
+     SOCIAL
+     ============================================================ */
   function openTweet(text){
     var url = 'https://x.com/intent/tweet?text=' + encodeURIComponent(text) +
               '&url=' + encodeURIComponent(SHARE_URL) +
               '&hashtags=' + encodeURIComponent(X_HASHTAGS);
     window.open(url, '_blank', 'noopener');
   }
-
   function shareScore(){
     var best = getBestScore();
+    var streak = getStreakData().streak || 0;
     var text = 'I scored ' + score + ' on $MAIGA TAKEOVER 🧢🤖🔥\n' +
       (best ? 'Top score: ' + best + ' 🏆\n' : '') +
-      'Pilot: ' + getPilotName() + ' 🪪\n\n' +
-      'Make AI Great Again 🇺🇸\nCan you beat me? 🎮';
+      'Pilot: ' + getPilotName() + ' 🪪\n' +
+      (streak > 1 ? '🔥 ' + streak + '-day streak\n' : '') +
+      '\nMake AI Great Again 🇺🇸\nCan you beat me? 🎮';
     openTweet(text);
   }
-
   function challengeFriends(){
     var best = getBestScore();
     var myScore = score || best;
@@ -911,11 +1243,14 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     openTweet(text);
   }
 
-  /* ========== START / GAME OVER ========== */
+  /* ============================================================
+     START / GAME OVER
+     ============================================================ */
   function startGame(){
+    initAudio();
+    resumeAudio();
     if (!overlay) return;
 
-    // Resume path
     if (state === 'paused'){
       state = 'playing';
       overlay.classList.add('hidden');
@@ -923,12 +1258,14 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
       return;
     }
 
-    // Fresh start
+    sfxStart();
+
     overlay.classList.add('hidden');
-    score = 0; lives = 3; wave = 1;
+    score = 0; lives = 3; wave = 1; kills = 0;
     if (hudScoreEl) hudScoreEl.textContent = '0';
     if (hudLivesEl) hudLivesEl.textContent = '3';
     bullets = []; enemyBullets = []; particles = [];
+    shakeIntensity = 0; flashAlpha = 0;
     initStars();
     resetPlayer();
     spawnWave();
@@ -937,13 +1274,33 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     state = 'playing';
     lastTime = performance.now();
     startLoop();
+
+    // Count play for streak
+    updateStreakOnPlay();
+    renderStreak();
   }
 
   function gameOver(){
     state = 'over';
+    sfxGameOver();
     saveName();
     var name = getPilotName();
     addScore(name, score);
+
+    // Check badges
+    var newBadges = checkBadges({ score: score, wave: wave, kills: kills });
+    var newBadgesHtml = '';
+    if (newBadges.length){
+      newBadgesHtml = '<div class="overlay-new-badges">';
+      for (var i=0;i<newBadges.length;i++){
+        newBadgesHtml += '<div class="new-badge">' + newBadges[i].icon + ' ' + newBadges[i].name + '</div>';
+      }
+      newBadgesHtml += '</div>';
+      sfxBadge();
+    }
+
+    // Check daily
+    var dailyDone = checkDailyComplete();
 
     var best = getBestScore();
     var isNewBest = score > 0 && score >= best;
@@ -951,13 +1308,45 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     var msg = 'Final score: <strong>' + score + '</strong><br>' +
       'Pilot: <strong>' + escapeHtml(name) + '</strong><br>' +
       (isNewBest && score > 0 ? '<span style="color:#ffd800">🏆 NEW HIGH SCORE! 🏆</span><br>' : '') +
+      (dailyDone ? '<span style="color:#28c76f">📅 DAILY CHALLENGE COMPLETE! ✅</span><br>' : '') +
       '<br>The crypto coins won this round… but $MAIGA never stops.<br>' +
       '<span style="color:#ffd800">Make AI Great Again. 🧢🤖</span>';
 
-    showOverlay('GAME OVER', msg, true);
+    showOverlay('GAME OVER', msg, true, newBadgesHtml);
   }
 
-  /* ========== INIT ========== */
+  /* ============================================================
+     SOUND TOGGLE
+     ============================================================ */
+  function loadSoundPref(){
+    var v = safeGet(SOUND_KEY);
+    soundEnabled = v === null ? true : v === '1';
+    updateSoundBtn();
+  }
+  function saveSoundPref(){
+    safeSet(SOUND_KEY, soundEnabled ? '1' : '0');
+  }
+  function updateSoundBtn(){
+    var btn = document.getElementById('soundToggle');
+    if (!btn) return;
+    if (soundEnabled){
+      btn.textContent = '🔊 SOUND: ON';
+      btn.classList.remove('off');
+    } else {
+      btn.textContent = '🔇 SOUND: OFF';
+      btn.classList.add('off');
+    }
+  }
+  function toggleSound(){
+    soundEnabled = !soundEnabled;
+    saveSoundPref();
+    updateSoundBtn();
+    if (soundEnabled){ initAudio(); resumeAudio(); playTone(660, 0.08, 'square', 0.08); }
+  }
+
+  /* ============================================================
+     INIT
+     ============================================================ */
   function init(){
     canvas = document.getElementById('gameCanvas');
     if (!canvas){ console.error('[MAIGA] canvas not found'); return; }
@@ -968,7 +1357,6 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     lbListEl = document.getElementById('lbList');
     pilotInput = document.getElementById('pilotName');
 
-    // Read internal resolution from the canvas element
     W = canvas.width;
     H = canvas.height;
 
@@ -976,10 +1364,13 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     resetPlayer();
     renderLB();
     loadName();
+    loadSoundPref();
+    renderDaily();
+    renderStreak();
+    renderBadges();
 
     if (pilotInput) pilotInput.addEventListener('input', saveName);
 
-    // Wire up leaderboard buttons
     var shareTopBtn = document.getElementById('shareTopBtn');
     var challengeBtn = document.getElementById('challengeBtn');
     var clearLbBtn = document.getElementById('clearLbBtn');
@@ -998,7 +1389,7 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     });
     if (clearLbBtn) clearLbBtn.addEventListener('click', function(){
       if (!confirm('Clear your local leaderboard?')) return;
-      try{ localStorage.removeItem(LB_KEY); } catch(e){}
+      safeDel(LB_KEY);
       renderLB();
     });
 
@@ -1007,14 +1398,13 @@ footer{margin-top:44px;padding:24px 15px 35px;text-align:center;font-family:Aria
     console.log('[MAIGA] Game engine ready. Click START TAKEOVER to play.');
   }
 
-  /* ========== PUBLIC API (global) ========== */
   window.MAIGA_GAME = {
     start: startGame,
     share: shareScore,
-    challenge: challengeFriends
+    challenge: challengeFriends,
+    toggleSound: toggleSound
   };
 
-  // Run init when DOM is ready (or immediately if already loaded)
   if (document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', init);
   } else {

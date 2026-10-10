@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="$MAIGA — 5 games. 1 tournament. Pixel meme party.">
+<meta name="description" content="$MAIGA — 5 games. 1 tournament. Swap any token. Make AI Great Again.">
 <meta name="theme-color" content="#050510">
-<title>$MAIGA ARCADE — 5 Games · Pixel Meme Party</title>
+<title>$MAIGA ARCADE — 5 Games · Swap · Tournament</title>
+
+<script src="https://plugin.jup.ag/plugin-v1.js" data-preload defer></script>
 
 <style>
 :root{
@@ -28,20 +30,11 @@ body::before{
   background:repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 1px, transparent 3px);
   pointer-events:none;z-index:9998;
 }
-#memeBg{
-  position:fixed;top:0;left:0;width:100vw;height:100vh;
-  z-index:-1;pointer-events:none;
-  image-rendering:pixelated;
-}
+#memeBg{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;image-rendering:pixelated}
 a{color:inherit;text-decoration:none}
 .container{width:min(96%, 1400px);margin:auto;padding:0 10px;position:relative;z-index:1}
 
-header{
-  background:linear-gradient(180deg, rgba(0,0,0,.95), rgba(5,5,16,.85));
-  border-bottom:3px solid var(--cyan);padding:14px 0;
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 0 40px rgba(0,240,255,.25);backdrop-filter:blur(10px);
-}
+header{background:linear-gradient(180deg, rgba(0,0,0,.95), rgba(5,5,16,.85));border-bottom:3px solid var(--cyan);padding:14px 0;position:sticky;top:0;z-index:100;box-shadow:0 0 40px rgba(0,240,255,.25);backdrop-filter:blur(10px)}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{width:48px;height:48px;border-radius:10px;border:2px solid var(--cyan);box-shadow:0 0 15px rgba(0,240,255,.5)}
@@ -56,6 +49,8 @@ header{
 .nav-btn.pink:hover{background:var(--magenta);color:#000;box-shadow:0 0 20px var(--magenta)}
 .nav-btn.yellow{border-color:var(--yellow);color:var(--yellow);background:rgba(255,216,0,.1)}
 .nav-btn.yellow:hover{background:var(--yellow);color:#000;box-shadow:0 0 20px var(--yellow)}
+.nav-btn.green{border-color:var(--green);color:var(--green)}
+.nav-btn.green:hover{background:var(--green);color:#000;box-shadow:0 0 20px var(--green)}
 
 .hero{padding:40px 20px 20px;text-align:center;position:relative}
 .hero-title{font-family:Impact,sans-serif;font-size:clamp(36px,7vw,80px);letter-spacing:2px;line-height:.9;background:linear-gradient(90deg, var(--cyan), var(--magenta), var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase;margin-bottom:14px;filter:drop-shadow(0 0 20px rgba(0,240,255,.3))}
@@ -194,6 +189,11 @@ header{
 .section-title span{color:var(--yellow);text-shadow:0 0 20px var(--yellow)}
 .section-note{font-family:'Courier New',monospace;color:var(--dim);text-align:center;font-size:13px;letter-spacing:2px;margin-bottom:26px}
 
+.swap-section{margin-top:60px}
+.swap-wrap{background:linear-gradient(180deg, rgba(10,10,31,.9), rgba(15,15,42,.9));border:3px solid var(--cyan);border-radius:18px;padding:20px;box-shadow:0 0 30px rgba(0,240,255,.25), 8px 8px 0 #000;max-width:600px;margin:auto;backdrop-filter:blur(6px)}
+#target-container{min-height:400px;display:flex;align-items:center;justify-content:center;color:var(--dim);font-family:'Courier New',monospace;font-size:12px;letter-spacing:2px}
+#target-container::before{content:"LOADING SWAP…"}
+
 .coins{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:20px}
 .coin{background:linear-gradient(180deg, rgba(10,10,31,.9), rgba(15,15,42,.9));color:#fff;padding:20px;border-radius:18px;border:3px solid var(--cyan);box-shadow:0 0 25px rgba(0,240,255,.2), 8px 8px 0 #000;text-align:center;position:relative;overflow:hidden;transition:.2s;backdrop-filter:blur(6px)}
 .coin:hover{transform:translate(-2px,-2px);box-shadow:0 0 40px rgba(0,240,255,.4), 10px 10px 0 #000}
@@ -261,7 +261,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       <img src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg" alt="$MAIGA">
       <div>
         <div class="brand-title">$MAIGA</div>
-        <span class="brand-sub">ARCADE • PIXEL MEME PARTY</span>
+        <span class="brand-sub">ARCADE • SWAP • PIXEL PARTY</span>
       </div>
     </div>
     <div class="today-box">
@@ -269,6 +269,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       <strong id="hudTotal">0</strong>
     </div>
     <div class="nav-btns">
+      <button class="nav-btn green" onclick="document.getElementById('swap').scrollIntoView({behavior:'smooth'})">💱 SWAP</button>
       <button class="nav-btn yellow" onclick="MAIGA_GAME.setLBScope('global')">🌍 GLOBAL</button>
       <button class="nav-btn pink" onclick="document.getElementById('tournament').scrollIntoView({behavior:'smooth'})">🏆 TOURNAMENT</button>
       <a class="nav-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">🐦 X</a>
@@ -280,7 +281,16 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
 
   <section class="hero">
     <div class="hero-title">$MAIGA ARCADE</div>
-    <div class="hero-sub">5 GAMES · 1 TOURNAMENT · <span>1,750,000 $MAIGA EVERY 48H</span></div>
+    <div class="hero-sub">5 GAMES · 1 TOURNAMENT · INSTANT SWAP · <span>1,750,000 $MAIGA EVERY 48H</span></div>
+  </section>
+
+  <!-- SWAP WIDGET -->
+  <section id="swap" class="swap-section">
+    <h2 class="section-title">SWAP TO <span>$MAIGA</span></h2>
+    <p class="section-note">Swap any Solana token → $MAIGA. Powered by Jupiter. One click.</p>
+    <div class="swap-wrap">
+      <div id="target-container"></div>
+    </div>
   </section>
 
   <section class="hub" id="hub">
@@ -396,7 +406,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
 
   <section class="message">
     <h2>STILL HERE. STILL COOKING. <span>MORE COMING.</span></h2>
-    <p>We're building an <strong>ARMY</strong>. 🪖 5 games. 1 tournament. Pixel memes everywhere.</p>
+    <p>We're building an <strong>ARMY</strong>. 🪖 5 games. 1 tournament. Instant swap. Pixel memes everywhere.</p>
     <p>Those who sell lose. Those who play win. 💪</p>
     <p>Make AI Great Again. 🧢🤖</p>
   </section>
@@ -445,12 +455,12 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
 </div>
 
 <footer>
-  © 2026 $MAIGA — MAKE AI GREAT AGAIN • GEOPOLCOINS • 5 GAMES · 1 TOURNAMENT
+  © 2026 $MAIGA — MAKE AI GREAT AGAIN • GEOPOLCOINS • 5 GAMES · 1 TOURNAMENT · INSTANT SWAP
 </footer>
 
 <script>
 /* =====================================================================
-   $MAIGA ARCADE — PIXEL MEME PARTY EDITION
+   $MAIGA ARCADE — PIXEL MEME PARTY + JUPITER SWAP
    ===================================================================== */
 (function(){
   'use strict';
@@ -465,234 +475,25 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
   var GLOBAL_ENABLED = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
 
   /* ============================================================
-     PIXEL SPRITES — Chunky meme characters
+     PIXEL SPRITES
      ============================================================ */
   var SPRITES = {
-    // DOGE — yellow shiba with grin
-    doge: {
-      w: 14, h: 12,
-      data: [
-        "..OOOO..OOOO..",
-        ".OYYYYOOYYYYO.",
-        "OYYYYYYYYYYYYO",
-        "OYYKYYYYYYKYYO",
-        "OYYKKYYYYKKYYO",
-        "OYYYYYYYYYYYYO",
-        "OYYYYYYYYYYYYO",
-        "OYYWWKKKKWWYYO",
-        "OYYWKKKKKKWYYO",
-        ".OYYWWWWWWYYO.",
-        "..OOOOOOOOOO..",
-        "...O.O..O.O..."
-      ],
-      colors: { O: '#a86818', Y: '#f5c518', K: '#000', W: '#fff' }
-    },
-    // SHIBA — smaller red/orange shiba
-    shiba: {
-      w: 12, h: 11,
-      data: [
-        "..RRRR..RRRR",
-        ".RYYYYRRYYYY",
-        "RYYYYYYYYYYY",
-        "RYYKYYYYYKYY",
-        "RYYKKYYYKKYY",
-        "RYYYYYYYYYYY",
-        "RYYYYYYYYYYY",
-        "RYYWKKKKWYYR",
-        ".RYYWWWWYYR.",
-        "..RRRRRRRR..",
-        "...R.RR.R..."
-      ],
-      colors: { R: '#a04818', Y: '#f0b040', K: '#000', W: '#fff' }
-    },
-    // PEPE — green frog
-    pepe: {
-      w: 12, h: 11,
-      data: [
-        "...GGGGGG...",
-        "..GGGGGGGG..",
-        ".GGWKGGKWGG.",
-        "GGGGKGGKGGGG",
-        "GGGGGGGGGGGG",
-        "GGWWWWWWWWGG",
-        "GGWKKKKKKWGG",
-        "GGGGGGGGGGGG",
-        ".GGGGGGGGGG.",
-        "..GGGGGGGG..",
-        "...GGGGGG..."
-      ],
-      colors: { G: '#4caf50', W: '#fff', K: '#000' }
-    },
-    // PENGU — cute penguin
-    pengu: {
-      w: 12, h: 13,
-      data: [
-        "...KKKKKK...",
-        "..KWWWWWWK..",
-        ".KWWWWWWWWK.",
-        ".KWWKWWKWWK.",
-        ".KWWKKKKWWK.",
-        ".KWWWKKWWWK.",
-        "..KWWWWWWK..",
-        "...KKWWKK...",
-        "..KKKKKKKK..",
-        ".KKWWWWWWKK.",
-        ".KWWWWWWWWK.",
-        "..KYYYYYYK..",
-        "...K.OO.K..."
-      ],
-      colors: { K: '#111', W: '#fff', Y: '#ff9500', O: '#ff6b00' }
-    },
-    // TRUMP — blonde + cap + red tie
-    trump: {
-      w: 12, h: 13,
-      data: [
-        "...KKKKKK...",
-        "..KKKKKKKK..",
-        ".KKKKKKKKKK.",
-        "OOOYYYYYYOOO",
-        "OYYYYYYYYYYO",
-        "OYYKYYYYKYYO",
-        "OYYKKYYKKYYO",
-        "OYYYYYYYYYYO",
-        "OYYYRRRRYYYO",
-        "OYYYYRRYYYYO",
-        ".OBBBBBBBBO.",
-        "OBBRRRRRRBBO",
-        "OBBBRRRRBBBO"
-      ],
-      colors: { K: '#000', O: '#f0a060', Y: '#f5c518', R: '#d92736', B: '#0a1a2f' }
-    },
-    // JEAN-PHIL — blonde bowl cut + mustache + brown suit
-    jeanphil: {
-      w: 12, h: 13,
-      data: [
-        "..YYYYYYYY..",
-        ".YYYYYYYYYY.",
-        "YYYYYYYYYYYY",
-        "YYYYYYYYYYYY",
-        ".YSSSSSSSSY.",
-        ".SSKSSSSKSS.",
-        ".SSSSSSSSSS.",
-        ".SSYYYYYYSS.",
-        "..SSSSSSSS..",
-        ".BBBBBBBBBB.",
-        "BBBBBWWBBBBB",
-        "BBBBBWWBBBBB",
-        "BBBBBWWBBBBB"
-      ],
-      colors: { Y: '#f2cf5b', S: '#f5d6b3', K: '#000', B: '#7a5a3a', W: '#f7f0df' }
-    },
-    // ALIEN — green
-    alien: {
-      w: 10, h: 11,
-      data: [
-        "..GGGGGG..",
-        ".GGGGGGGG.",
-        "GGGGGGGGGG",
-        "GGKKGGKKGG",
-        "GGKKGGKKGG",
-        "GGGGGGGGGG",
-        "GGGGGGGGGG",
-        ".GGKGGKGG.",
-        "..GGGGGG..",
-        "..G.GG.G..",
-        "...G..G..."
-      ],
-      colors: { G: '#00ff88', K: '#000' }
-    },
-    // ALIEN CYAN
-    alien2: {
-      w: 10, h: 11,
-      data: [
-        "..CCCCCC..",
-        ".CCCCCCCC.",
-        "CCCCCCCCCC",
-        "CCKKCCKKCC",
-        "CCKKCCKKCC",
-        "CCCCCCCCCC",
-        "CCCCCCCCCC",
-        ".CCKCCKCC.",
-        "..CCCCCC..",
-        "..C.CC.C..",
-        "...C..C..."
-      ],
-      colors: { C: '#00f0ff', K: '#000' }
-    },
-    // BITCOIN coin
-    btc: {
-      w: 10, h: 10,
-      data: [
-        "..OOOOOO..",
-        ".OOOOOOOO.",
-        "OOOWOOWOOO",
-        "OOOWOWWOOO",
-        "OOOWWWOOWO",
-        "OOOWOOWOWO",
-        "OOOWOOWOOO",
-        ".OOOOOOOO.",
-        "..OOOOOO..",
-        ".........."
-      ],
-      colors: { O: '#f7931a', W: '#fff' }
-    },
-    // ETH
-    eth: {
-      w: 10, h: 10,
-      data: [
-        "...EEEE...",
-        "..EEEEEE..",
-        ".EEEEEEEE.",
-        "EEE.EE.EEE",
-        "EEE.EE.EEE",
-        ".EEEEEEEE.",
-        "..EEEEEE..",
-        "...EEEE...",
-        "....EE....",
-        ".........."
-      ],
-      colors: { E: '#8a92b2' }
-    },
-    // SOL
-    sol: {
-      w: 10, h: 10,
-      data: [
-        "SSSSSSSS..",
-        ".SSSSSSSS.",
-        "..SSSSSSSS",
-        "..SSSSSSSS",
-        "SSSSSSSS..",
-        ".SSSSSSSS.",
-        "..SSSSSSSS",
-        "..........",
-        "..........",
-        ".........."
-      ],
-      colors: { S: '#14f195' }
-    },
-    // PLUMP — orange round meme (cat-like)
-    cat: {
-      w: 11, h: 10,
-      data: [
-        ".OO.....OO.",
-        "OYYO...OYYO",
-        "OYYYYYYYYYO",
-        "YYKYYYYYKYY",
-        "YYKKYYYKKYY",
-        "YYYYYYYYYYY",
-        "YYWWWWWWWYY",
-        "YYYYYYYYYYY",
-        ".OYYYYYYYO.",
-        "..OOOOOOOO."
-      ],
-      colors: { O: '#d97706', Y: '#f5a623', K: '#000', W: '#fff' }
-    }
+    doge: { w:14,h:12, data:["..OOOO..OOOO..",".OYYYYOOYYYYO.","OYYYYYYYYYYYYO","OYYKYYYYYYKYYO","OYYKKYYYYKKYYO","OYYYYYYYYYYYYO","OYYYYYYYYYYYYO","OYYWWKKKKWWYYO","OYYWKKKKKKWYYO",".OYYWWWWWWYYO.","..OOOOOOOOOO..","...O.O..O.O..."], colors:{O:'#a86818',Y:'#f5c518',K:'#000',W:'#fff'} },
+    shiba: { w:12,h:11, data:["..RRRR..RRRR",".RYYYYRRYYYY","RYYYYYYYYYYY","RYYKYYYYYKYY","RYYKKYYYKKYY","RYYYYYYYYYYY","RYYYYYYYYYYY","RYYWKKKKWYYR",".RYYWWWWYYR.","..RRRRRRRR..","...R.RR.R..."], colors:{R:'#a04818',Y:'#f0b040',K:'#000',W:'#fff'} },
+    pepe: { w:12,h:11, data:["...GGGGGG...","..GGGGGGGG..",".GGWKGGKWGG.","GGGGKGGKGGGG","GGGGGGGGGGGG","GGWWWWWWWWGG","GGWKKKKKKWGG","GGGGGGGGGGGG",".GGGGGGGGGG.","..GGGGGGGG..","...GGGGGG..."], colors:{G:'#4caf50',W:'#fff',K:'#000'} },
+    pengu: { w:12,h:13, data:["...KKKKKK...","..KWWWWWWK..",".KWWWWWWWWK.",".KWWKWWKWWK.",".KWWKKKKWWK.",".KWWWKKWWWK.","..KWWWWWWK..","...KKWWKK...","..KKKKKKKK..",".KKWWWWWWKK.",".KWWWWWWWWK.","..KYYYYYYK..","...K.OO.K..."], colors:{K:'#111',W:'#fff',Y:'#ff9500',O:'#ff6b00'} },
+    trump: { w:12,h:13, data:["...KKKKKK...","..KKKKKKKK..",".KKKKKKKKKK.","OOOYYYYYYOOO","OYYYYYYYYYYO","OYYKYYYYKYYO","OYYKKYYKKYYO","OYYYYYYYYYYO","OYYYRRRRYYYO","OYYYYRRYYYYO",".OBBBBBBBBO.","OBBRRRRRRBBO","OBBBRRRRBBBO"], colors:{K:'#000',O:'#f0a060',Y:'#f5c518',R:'#d92736',B:'#0a1a2f'} },
+    jeanphil: { w:12,h:13, data:["..YYYYYYYY..",".YYYYYYYYYY.","YYYYYYYYYYYY","YYYYYYYYYYYY",".YSSSSSSSSY.",".SSKSSSSKSS.",".SSSSSSSSSS.",".SSYYYYYYSS.","..SSSSSSSS..",".BBBBBBBBBB.","BBBBBWWBBBBB","BBBBBWWBBBBB","BBBBBWWBBBBB"], colors:{Y:'#f2cf5b',S:'#f5d6b3',K:'#000',B:'#7a5a3a',W:'#f7f0df'} },
+    alien: { w:10,h:11, data:["..GGGGGG..",".GGGGGGGG.","GGGGGGGGGG","GGKKGGKKGG","GGKKGGKKGG","GGGGGGGGGG","GGGGGGGGGG",".GGKGGKGG.","..GGGGGG..","..G.GG.G..","...G..G..."], colors:{G:'#00ff88',K:'#000'} },
+    alien2: { w:10,h:11, data:["..CCCCCC..",".CCCCCCCC.","CCCCCCCCCC","CCKKCCKKCC","CCKKCCKKCC","CCCCCCCCCC","CCCCCCCCCC",".CCKCCKCC.","..CCCCCC..","..C.CC.C..","...C..C..."], colors:{C:'#00f0ff',K:'#000'} },
+    btc: { w:10,h:10, data:["..OOOOOO..",".OOOOOOOO.","OOOWOOWOOO","OOOWOWWOOO","OOOWWWOOWO","OOOWOOWOWO","OOOWOOWOOO",".OOOOOOOO.","..OOOOOO..",".........."], colors:{O:'#f7931a',W:'#fff'} },
+    eth: { w:10,h:10, data:["...EEEE...","..EEEEEE..",".EEEEEEEE.","EEE.EE.EEE","EEE.EE.EEE",".EEEEEEEE.","..EEEEEE..","...EEEE...","....EE....",".........."], colors:{E:'#8a92b2'} },
+    sol: { w:10,h:10, data:["SSSSSSSS..",".SSSSSSSS.","..SSSSSSSS","..SSSSSSSS","SSSSSSSS..",".SSSSSSSS.","..SSSSSSSS","..........","..........",".........."], colors:{S:'#14f195'} },
+    cat: { w:11,h:10, data:[".OO.....OO.","OYYO...OYYO","OYYYYYYYYYO","YYKYYYYYKYY","YYKKYYYKKYY","YYYYYYYYYYY","YYWWWWWWWYY","YYYYYYYYYYY",".OYYYYYYYO.","..OOOOOOOO."], colors:{O:'#d97706',Y:'#f5a623',K:'#000',W:'#fff'} }
   };
 
-  // Function to render a pixel sprite
   function drawSprite(ctx, sprite, x, y, pixelSize, flip){
-    var d = sprite.data;
-    var cs = sprite.colors;
+    var d = sprite.data, cs = sprite.colors;
     for (var r = 0; r < d.length; r++){
       var row = d[r];
       for (var c = 0; c < row.length; c++){
@@ -708,163 +509,59 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
   }
 
   /* ============================================================
-     MEME BACKGROUND — animated pixel memes floating everywhere
+     MEME BACKGROUND
      ============================================================ */
   (function initMemeBg(){
-    var canvas = document.getElementById('memeBg');
-    if (!canvas) return;
+    var canvas = document.getElementById('memeBg'); if (!canvas) return;
     var ctx = canvas.getContext('2d');
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var W, H;
-
-    function resize(){
-      W = canvas.width = window.innerWidth * dpr;
-      H = canvas.height = window.innerHeight * dpr;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Meme types with weights
+    function resize(){ W = canvas.width = window.innerWidth * dpr; H = canvas.height = window.innerHeight * dpr; canvas.style.width = window.innerWidth + 'px'; canvas.style.height = window.innerHeight + 'px'; }
+    resize(); window.addEventListener('resize', resize);
     var memeKeys = ['doge','shiba','pepe','pengu','trump','jeanphil','alien','alien2','btc','eth','sol','cat'];
-    var weights  = [3,      2,       2,      3,       2,       2,          3,      2,        2,    1,     1,     2];
-
+    var weights  = [3,2,2,3,2,2,3,2,2,1,1,2];
     var memes = [];
-
-    function pickMeme(){
-      var totalW = weights.reduce(function(a,b){ return a+b; }, 0);
-      var r = Math.random() * totalW;
-      for (var i=0;i<memeKeys.length;i++){
-        r -= weights[i];
-        if (r <= 0) return memeKeys[i];
-      }
-      return memeKeys[0];
-    }
-
+    function pickMeme(){ var t = weights.reduce(function(a,b){return a+b;},0); var r = Math.random()*t; for (var i=0;i<memeKeys.length;i++){ r -= weights[i]; if (r <= 0) return memeKeys[i]; } return memeKeys[0]; }
     function spawnMeme(initial){
-      var key = pickMeme();
-      var sprite = SPRITES[key];
-      var pixelSize = (3 + Math.random()*2) * dpr; // 3-5 base pixels per cell
-      var spriteW = sprite.data[0].length * pixelSize;
-      var spriteH = sprite.data.length * pixelSize;
-      var speed = (0.3 + Math.random() * 0.7) * dpr;
-      var dir = Math.random() < 0.5 ? -1 : 1; // drift left or right
-      var m = {
-        key: key,
-        x: initial ? Math.random()*W : (dir > 0 ? -spriteW : W),
-        y: Math.random() * (H - spriteH),
-        px: pixelSize,
-        w: spriteW,
-        h: spriteH,
-        vx: speed * dir,
-        vy: (Math.random()-0.5) * 0.15 * dpr,
-        rot: 0,
-        wobblePhase: Math.random() * Math.PI * 2,
-        wobbleAmp: 0.5 + Math.random() * 1.5,
-        alpha: 0.35 + Math.random() * 0.35
-      };
-      memes.push(m);
-      return m;
+      var key = pickMeme(); var sprite = SPRITES[key];
+      var px = (3 + Math.random()*2) * dpr;
+      var sw = sprite.data[0].length * px;
+      var sh = sprite.data.length * px;
+      var dir = Math.random() < 0.5 ? -1 : 1;
+      memes.push({ key:key, x: initial ? Math.random()*W : (dir > 0 ? -sw : W), y: Math.random()*(H - sh), px:px, w:sw, h:sh, vx:(0.3 + Math.random()*0.7) * dpr * dir, vy:(Math.random()-0.5)*0.15*dpr, wobblePhase: Math.random()*Math.PI*2, wobbleAmp: 0.5 + Math.random()*1.5, alpha: 0.35 + Math.random()*0.35 });
     }
-
-    // Initial spawn
-    var initialCount = Math.min(28, Math.floor(window.innerWidth / 60));
-    for (var i=0;i<initialCount;i++) spawnMeme(true);
-
-    // Spawn rate — keep a lively crowd
-    setInterval(function(){
-      var target = Math.min(35, Math.floor(window.innerWidth / 50));
-      if (memes.length < target){
-        spawnMeme(false);
-      }
-    }, 600);
-
-    // Click to spawn a burst of memes (fun easter egg)
+    var initial = Math.min(28, Math.floor(window.innerWidth / 60));
+    for (var i=0;i<initial;i++) spawnMeme(true);
+    setInterval(function(){ var t = Math.min(35, Math.floor(window.innerWidth/50)); if (memes.length < t) spawnMeme(false); }, 600);
     document.addEventListener('click', function(e){
-      if (e.target.closest('button, a, input, .game-card, .game-overlay')) return;
-      var cx = e.clientX * dpr;
-      var cy = e.clientY * dpr;
+      if (e.target.closest('button, a, input, .game-card, .game-overlay, #target-container')) return;
+      var cx = e.clientX * dpr, cy = e.clientY * dpr;
       for (var i=0;i<5;i++){
-        var key = pickMeme();
-        var sprite = SPRITES[key];
-        var pixelSize = (3 + Math.random()*2) * dpr;
-        memes.push({
-          key: key,
-          x: cx + (Math.random()-0.5)*60*dpr,
-          y: cy + (Math.random()-0.5)*60*dpr,
-          px: pixelSize,
-          w: sprite.data[0].length * pixelSize,
-          h: sprite.data.length * pixelSize,
-          vx: (Math.random()-0.5) * 4 * dpr,
-          vy: -Math.random() * 2 * dpr,
-          wobblePhase: Math.random()*Math.PI*2,
-          wobbleAmp: 1 + Math.random()*2,
-          alpha: 1,
-          pop: true,
-          life: 3
-        });
+        var key = pickMeme(); var sprite = SPRITES[key]; var px = (3 + Math.random()*2) * dpr;
+        memes.push({ key:key, x:cx + (Math.random()-0.5)*60*dpr, y:cy + (Math.random()-0.5)*60*dpr, px:px, w:sprite.data[0].length*px, h:sprite.data.length*px, vx:(Math.random()-0.5)*4*dpr, vy:-Math.random()*2*dpr, wobblePhase:Math.random()*Math.PI*2, wobbleAmp:1+Math.random()*2, alpha:1, pop:true, life:3 });
       }
     });
-
     var lastT = performance.now();
     function loop(now){
-      var dt = Math.min((now - lastT) / 1000, 0.05);
-      lastT = now;
-
-      ctx.clearRect(0, 0, W, H);
-
+      var dt = Math.min((now - lastT)/1000, 0.05); lastT = now;
+      ctx.clearRect(0,0,W,H);
       for (var i = memes.length - 1; i >= 0; i--){
         var m = memes[i];
-        m.x += m.vx * 60 * dt;
-        m.y += m.vy * 60 * dt;
-        m.wobblePhase += dt * 3;
+        m.x += m.vx * 60 * dt; m.y += m.vy * 60 * dt; m.wobblePhase += dt * 3;
         var wobbleY = Math.sin(m.wobblePhase) * m.wobbleAmp * dpr;
-
-        if (m.pop){
-          m.life -= dt;
-          m.alpha = Math.max(0, m.life / 3);
-          if (m.life <= 0){ memes.splice(i, 1); continue; }
-        } else {
-          // Remove if off-screen
-          if (m.x > W + 100*dpr || m.x < -m.w - 100*dpr){ memes.splice(i,1); continue; }
-          // Bounce y
-          if (m.y < 0 || m.y > H - m.h) m.vy *= -1;
-        }
-
+        if (m.pop){ m.life -= dt; m.alpha = Math.max(0, m.life/3); if (m.life <= 0){ memes.splice(i,1); continue; } }
+        else { if (m.x > W + 100*dpr || m.x < -m.w - 100*dpr){ memes.splice(i,1); continue; } if (m.y < 0 || m.y > H - m.h) m.vy *= -1; }
         ctx.globalAlpha = m.alpha;
-        // Tiny shadow glow
-        ctx.shadowColor = 'rgba(0,240,255,.15)';
-        ctx.shadowBlur = 8*dpr;
-        var sprite = SPRITES[m.key];
-        drawSprite(ctx, sprite, Math.floor(m.x), Math.floor(m.y + wobbleY), m.px, m.vx < 0);
+        ctx.shadowColor = 'rgba(0,240,255,.15)'; ctx.shadowBlur = 8*dpr;
+        drawSprite(ctx, SPRITES[m.key], Math.floor(m.x), Math.floor(m.y + wobbleY), m.px, m.vx < 0);
       }
-      ctx.shadowBlur = 0;
-      ctx.globalAlpha = 1;
-
+      ctx.shadowBlur = 0; ctx.globalAlpha = 1;
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
-
-    // Also expose a global spawn helper for games
-    window.__spawnMemeAt = function(screenX, screenY, key){
-      var sprite = SPRITES[key || pickMeme()];
-      var pixelSize = (4 + Math.random()*2) * dpr;
-      memes.push({
-        key: key || pickMeme(),
-        x: screenX * dpr,
-        y: screenY * dpr,
-        px: pixelSize,
-        w: sprite.data[0].length * pixelSize,
-        h: sprite.data.length * pixelSize,
-        vx: (Math.random()-0.5) * 3 * dpr,
-        vy: -1 * dpr,
-        wobblePhase: 0,
-        wobbleAmp: 1.5,
-        alpha: 1,
-        pop: true,
-        life: 2.5
-      });
+    window.__spawnMemeAt = function(sx, sy, key){
+      var sprite = SPRITES[key || pickMeme()]; var px = (4 + Math.random()*2) * dpr;
+      memes.push({ key:key || pickMeme(), x:sx*dpr, y:sy*dpr, px:px, w:sprite.data[0].length*px, h:sprite.data.length*px, vx:(Math.random()-0.5)*3*dpr, vy:-1*dpr, wobblePhase:0, wobbleAmp:1.5, alpha:1, pop:true, life:2.5 });
     };
   })();
 
@@ -875,13 +572,11 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
   function safeSet(k,v){ try{ localStorage.setItem(k,v); } catch(e){} }
   function $(id){ return document.getElementById(id); }
   function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function sbHeaders(){
-    return { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' };
-  }
+  function sbHeaders(){ return { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' }; }
   async function sbPost(path, body){
     if (!GLOBAL_ENABLED) return false;
     try{
-      var res = await fetch(SUPABASE_URL + '/rest/v1/' + path, { method: 'POST', headers: sbHeaders(), body: JSON.stringify(body) });
+      var res = await fetch(SUPABASE_URL + '/rest/v1/' + path, { method:'POST', headers: sbHeaders(), body: JSON.stringify(body) });
       if (!res.ok){ var t = await res.text(); console.error('[MAIGA] POST ' + path + ' failed:', res.status, t); return false; }
       return true;
     } catch(e){ console.error('[MAIGA] POST error:', e); return false; }
@@ -915,12 +610,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     updateTodayTotal(sc);
     await sbPost('scores', { name: state.playerName.slice(0,12), score: sc, wave: 0, kills: 0 });
     if (state.tournament){
-      await sbPost('tournament_entries', {
-        tournament_id: state.tournament.id,
-        pilot_name: state.playerName.slice(0,12),
-        wallet_address: state.wallet || null,
-        score: sc, game_type: gameType
-      });
+      await sbPost('tournament_entries', { tournament_id: state.tournament.id, pilot_name: state.playerName.slice(0,12), wallet_address: state.wallet || null, score: sc, game_type: gameType });
       renderTourneyTop3();
     }
     return true;
@@ -1024,6 +714,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     state.activeGame = id;
     $('hub').style.display = 'none';
     document.querySelector('.hero').style.display = 'none';
+    document.querySelector('.swap-section').style.display = 'none';
     $('gameView').classList.add('active');
     var titles = { invaders:'TAKEOVER', runner:'RUNNER', popper:'COIN POPPER', snake:'MEME SNAKE', match:'MEME MATCH' };
     $('gameViewTitle').innerHTML = '$MAIGA <span>' + titles[id] + '</span>';
@@ -1036,6 +727,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     state.activeGame = null;
     $('hub').style.display = 'grid';
     document.querySelector('.hero').style.display = 'block';
+    document.querySelector('.swap-section').style.display = 'block';
     $('gameView').classList.remove('active');
     updateBestLabels();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1043,84 +735,47 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
 
   var audioCtx = null;
   function initAudio(){ if (!audioCtx){ try{ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } }
-  function playTone(f, d, t, v){
-    if (!audioCtx) return;
-    try{
-      var o = audioCtx.createOscillator(), g = audioCtx.createGain();
-      o.type = t || 'square'; o.frequency.value = f;
-      g.gain.setValueAtTime(v || 0.06, audioCtx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + d);
-      o.connect(g); g.connect(audioCtx.destination);
-      o.start(); o.stop(audioCtx.currentTime + d);
-    } catch(e){}
-  }
-  function sfxGood(){ playTone(660, 0.08, 'sine', 0.07); setTimeout(function(){ playTone(990, 0.12, 'sine', 0.07); }, 70); }
-  function sfxBad(){ playTone(140, 0.2, 'sawtooth', 0.08); }
-  function sfxJump(){ playTone(440, 0.1, 'triangle', 0.05); }
+  function playTone(f, d, t, v){ if (!audioCtx) return; try{ var o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.type = t||'square'; o.frequency.value = f; g.gain.setValueAtTime(v||0.06, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + d); o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime + d); }catch(e){} }
+  function sfxGood(){ playTone(660,0.08,'sine',0.07); setTimeout(function(){ playTone(990,0.12,'sine',0.07); },70); }
+  function sfxBad(){ playTone(140,0.2,'sawtooth',0.08); }
+  function sfxJump(){ playTone(440,0.1,'triangle',0.05); }
 
-  /* ========== GAME 1 — TAKEOVER (with pixel memes flying) ========== */
+  /* ========== TAKEOVER ========== */
   games.invaders = (function(){
     var canvas, ctx, W = 960, H = 640;
     var player, enemies, bullets, ebullets, particles, stars, bgMemes;
     var score, lives, wave, keys, state_, lastShot, enemyDir, enemySpeed, shootTimer;
     var running = false, raf = null, lastTime = 0;
-    var COINS = [
-      { sym:'₿', color:'#f7931a' }, { sym:'Ξ', color:'#8a92b2' },
-      { sym:'Ð', color:'#c2a633' }, { sym:'◎', color:'#14f195' },
-      { sym:'P', color:'#4caf50' }, { sym:'X', color:'#ffffff' },
-      { sym:'A', color:'#1da1f2' }, { sym:'S', color:'#ff3d3d' }
-    ];
-    var BG_MEME_KEYS = ['doge','pepe','pengu','alien','alien2','btc','eth','sol','cat','shiba'];
-
-    function spawnBgMeme(){
-      var key = BG_MEME_KEYS[Math.floor(Math.random()*BG_MEME_KEYS.length)];
-      var sprite = SPRITES[key];
-      var px = 3 + Math.random()*2;
-      var dir = Math.random() < 0.5 ? -1 : 1;
-      var w = sprite.data[0].length * px;
-      bgMemes.push({
-        key: key, px: px, w: w,
-        x: dir > 0 ? -w : W,
-        y: 60 + Math.random() * (H - 200),
-        vx: dir * (0.4 + Math.random()*0.6),
-        wobblePhase: Math.random()*Math.PI*2,
-        alpha: 0.3 + Math.random()*0.3
-      });
-    }
-
+    var COINS = [{sym:'₿',color:'#f7931a'},{sym:'Ξ',color:'#8a92b2'},{sym:'Ð',color:'#c2a633'},{sym:'◎',color:'#14f195'},{sym:'P',color:'#4caf50'},{sym:'X',color:'#ffffff'},{sym:'A',color:'#1da1f2'},{sym:'S',color:'#ff3d3d'}];
+    var BG = ['doge','pepe','pengu','alien','alien2','btc','eth','sol','cat','shiba'];
+    function spawnBg(){ var key = BG[Math.floor(Math.random()*BG.length)]; var s = SPRITES[key]; var px = 3 + Math.random()*2; var dir = Math.random()<0.5?-1:1; var w = s.data[0].length*px; bgMemes.push({ key:key, px:px, w:w, x: dir>0?-w:W, y: 60+Math.random()*(H-200), vx: dir*(0.4+Math.random()*0.6), wobblePhase: Math.random()*Math.PI*2, alpha: 0.3+Math.random()*0.3 }); }
     function mount(){
-      $('gameFrame').innerHTML = '<canvas id="c-inv" width="' + W + '" height="' + H + '"></canvas>' +
-        '<div class="game-overlay" id="ov-inv">' +
-          '<h3>SPACE <span style="color:var(--magenta)">TAKEOVER</span></h3>' +
-          '<p>Shoot the crypto coins. Protect the galaxy.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
-          '<button class="start-btn" id="st-inv">START MISSION</button>' +
-          '<div class="controls-hint">← → move · SPACE shoot · mobile: tap &amp; drag</div>' +
-        '</div>';
+      $('gameFrame').innerHTML = '<canvas id="c-inv" width="'+W+'" height="'+H+'"></canvas>' +
+        '<div class="game-overlay" id="ov-inv"><h3>SPACE <span style="color:var(--magenta)">TAKEOVER</span></h3>' +
+        '<p>Shoot the crypto coins. Protect the galaxy.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
+        '<button class="start-btn" id="st-inv">START MISSION</button>' +
+        '<div class="controls-hint">← → move · SPACE shoot · mobile: tap & drag</div></div>';
       canvas = $('c-inv'); ctx = canvas.getContext('2d');
       $('st-inv').addEventListener('click', begin);
       $('hudLivesWrap').style.display = 'block';
       attach();
     }
-
     function begin(){
-      $('ov-inv').classList.add('hidden');
-      initAudio();
+      $('ov-inv').classList.add('hidden'); initAudio();
       score = 0; lives = 3; wave = 1;
       $('hudScore').textContent = '0'; $('hudLives').textContent = '3';
       player = { x: W/2, y: H-70, speed: 380, cooldown: 0.22 };
       bullets = []; ebullets = []; particles = []; stars = []; bgMemes = [];
       for (var i=0;i<140;i++) stars.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.5+.3, s: Math.random()*0.5+0.1 });
-      for (var j=0;j<6;j++) spawnBgMeme();
+      for (var j=0;j<6;j++) spawnBg();
       keys = {}; lastShot = 0; enemyDir = 1; enemySpeed = 42; shootTimer = 1;
       spawnWave();
       state_ = 'playing'; lastTime = performance.now();
       if (!running){ running = true; raf = requestAnimationFrame(loop); }
     }
-
     function spawnWave(){
       enemies = [];
-      var cols = 8, rows = Math.min(2+wave, 5);
-      var padX = 92, padY = 54;
+      var cols = 8, rows = Math.min(2+wave, 5), padX = 92, padY = 54;
       var sx = (W - (cols-1)*padX)/2, sy = 90;
       for (var r=0;r<rows;r++) for (var c=0;c<cols;c++){
         var t = COINS[(r*cols+c)%COINS.length];
@@ -1128,28 +783,13 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       }
       enemySpeed = 42 + wave*10;
     }
-
-    function shoot(){
-      var now = performance.now()/1000;
-      if (now - lastShot < player.cooldown) return;
-      lastShot = now;
-      bullets.push({ x: player.x, y: player.y - 30, vy: -640 });
-    }
-    function eShoot(){
-      var alive = enemies.filter(function(e){ return e.alive; });
-      if (!alive.length) return;
-      var e = alive[Math.floor(Math.random()*alive.length)];
-      ebullets.push({ x: e.x, y: e.y + 22, vy: 320, type: e.type });
-    }
-
+    function shoot(){ var now = performance.now()/1000; if (now - lastShot < player.cooldown) return; lastShot = now; bullets.push({ x: player.x, y: player.y - 30, vy: -640 }); }
+    function eShoot(){ var alive = enemies.filter(function(e){ return e.alive; }); if (!alive.length) return; var e = alive[Math.floor(Math.random()*alive.length)]; ebullets.push({ x: e.x, y: e.y + 22, vy: 320, type: e.type }); }
     function update(dt){
       stars.forEach(function(s){ s.y += s.s*60*dt; if (s.y > H){ s.y = 0; s.x = Math.random()*W; } });
-      bgMemes.forEach(function(m){
-        m.x += m.vx * 60 * dt;
-        m.wobblePhase += dt * 3;
-      });
+      bgMemes.forEach(function(m){ m.x += m.vx * 60 * dt; m.wobblePhase += dt * 3; });
       bgMemes = bgMemes.filter(function(m){ return m.x > -m.w - 50 && m.x < W + 50; });
-      if (Math.random() < dt * 0.5 && bgMemes.length < 10) spawnBgMeme();
+      if (Math.random() < dt * 0.5 && bgMemes.length < 10) spawnBg();
       if (state_ !== 'playing') return;
       var mv = 0;
       if (keys['ArrowLeft'] || keys['a']) mv -= 1;
@@ -1171,74 +811,42 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       bullets.forEach(function(b){
         enemies.forEach(function(e){
           if (!e.alive) return;
-          if (Math.abs(b.x-e.x) < e.w/2+6 && Math.abs(b.y-e.y) < e.h/2+6){
-            e.alive = false; b.y = -200; score += 10;
-            $('hudScore').textContent = score;
-            burst(e.x, e.y, e.type.color);
-          }
+          if (Math.abs(b.x-e.x) < e.w/2+6 && Math.abs(b.y-e.y) < e.h/2+6){ e.alive = false; b.y = -200; score += 10; $('hudScore').textContent = score; burst(e.x, e.y, e.type.color); }
         });
       });
       ebullets.forEach(function(b){
-        if (Math.abs(b.x-player.x) < 24 && Math.abs(b.y-player.y) < 28){
-          b.y = H+200; lives--;
-          $('hudLives').textContent = lives;
-          if (lives <= 0) gameOver();
-        }
+        if (Math.abs(b.x-player.x) < 24 && Math.abs(b.y-player.y) < 28){ b.y = H+200; lives--; $('hudLives').textContent = lives; if (lives <= 0) gameOver(); }
       });
       particles.forEach(function(p){ p.x += p.vx*dt; p.y += p.vy*dt; p.vy += 260*dt; p.life -= dt; });
       particles = particles.filter(function(p){ return p.life > 0; });
       if (alive.length === 0){ wave++; spawnWave(); }
     }
-
-    function burst(x, y, color){
-      for (var i=0;i<12;i++){
-        var a = Math.random()*Math.PI*2, sp = Math.random()*200+40;
-        particles.push({ x:x, y:y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life:0.6, max:0.6, color:color });
-      }
-    }
-
+    function burst(x, y, color){ for (var i=0;i<12;i++){ var a = Math.random()*Math.PI*2, sp = Math.random()*200+40; particles.push({ x:x, y:y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life:0.6, max:0.6, color:color }); } }
     function draw(){
       if (!ctx) return;
-      var g = ctx.createLinearGradient(0,0,0,H);
-      g.addColorStop(0,'#050518'); g.addColorStop(1,'#02020a');
+      var g = ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'#050518'); g.addColorStop(1,'#02020a');
       ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
-      // Stars
       ctx.fillStyle = '#9fb6d0';
       stars.forEach(function(s){ ctx.globalAlpha = 0.3+s.r*0.3; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
       ctx.globalAlpha = 1;
-      // Pixel memes flying across the background
-      bgMemes.forEach(function(m){
-        var sprite = SPRITES[m.key];
-        ctx.globalAlpha = m.alpha;
-        drawSprite(ctx, sprite, Math.floor(m.x), Math.floor(m.y + Math.sin(m.wobblePhase)*4), m.px, m.vx < 0);
-      });
+      bgMemes.forEach(function(m){ ctx.globalAlpha = m.alpha; drawSprite(ctx, SPRITES[m.key], Math.floor(m.x), Math.floor(m.y + Math.sin(m.wobblePhase)*4), m.px, m.vx < 0); });
       ctx.globalAlpha = 1;
-      // Trump hologram
       var cy = 100 + Math.sin(performance.now()/1000*0.6)*8;
       ctx.save(); ctx.globalAlpha = 0.15; ctx.shadowColor = '#00f0ff'; ctx.shadowBlur = 60;
       ctx.fillStyle = '#0a1a2f';
       ctx.beginPath(); ctx.moveTo(W/2-90,cy+100); ctx.lineTo(W/2-50,cy-25); ctx.lineTo(W/2+50,cy-25); ctx.lineTo(W/2+90,cy+100); ctx.closePath(); ctx.fill();
-      ctx.fillStyle = '#f0c9a0';
-      ctx.beginPath(); ctx.ellipse(W/2, cy-58, 34, 42, 0, 0, Math.PI*2); ctx.fill();
-      ctx.fillStyle = '#000';
-      ctx.beginPath(); ctx.ellipse(W/2, cy-98, 40, 18, 0, Math.PI, 0); ctx.fill();
-      ctx.fillRect(W/2-40, cy-98, 80, 10);
-      ctx.fillStyle = '#ffd800'; ctx.font = 'bold 11px Impact'; ctx.textAlign = 'center';
-      ctx.fillText('MAKE AI GREAT AGAIN', W/2, cy-94);
+      ctx.fillStyle = '#f0c9a0'; ctx.beginPath(); ctx.ellipse(W/2, cy-58, 34, 42, 0, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = '#000'; ctx.beginPath(); ctx.ellipse(W/2, cy-98, 40, 18, 0, Math.PI, 0); ctx.fill(); ctx.fillRect(W/2-40, cy-98, 80, 10);
+      ctx.fillStyle = '#ffd800'; ctx.font = 'bold 11px Impact'; ctx.textAlign = 'center'; ctx.fillText('MAKE AI GREAT AGAIN', W/2, cy-94);
       ctx.restore();
-      // Enemies
       enemies.forEach(function(e){
         if (!e.alive) return;
-        var r = e.w/2;
-        ctx.save(); ctx.translate(e.x, e.y); ctx.rotate(Math.sin(e.wobble)*0.12);
+        var r = e.w/2; ctx.save(); ctx.translate(e.x, e.y); ctx.rotate(Math.sin(e.wobble)*0.12);
         ctx.shadowColor = e.type.color; ctx.shadowBlur = 18;
-        var grad = ctx.createRadialGradient(-r*.3,-r*.3,2,0,0,r);
-        grad.addColorStop(0, e.type.color); grad.addColorStop(1, '#0a0f16');
+        var grad = ctx.createRadialGradient(-r*.3,-r*.3,2,0,0,r); grad.addColorStop(0, e.type.color); grad.addColorStop(1, '#0a0f16');
         ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.fill();
         ctx.lineWidth = 3; ctx.strokeStyle = e.type.color; ctx.stroke();
-        ctx.shadowBlur = 0; ctx.fillStyle = '#fff';
-        ctx.font = 'bold ' + Math.floor(r*.95) + 'px Impact'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(e.type.sym, 0, 2);
+        ctx.shadowBlur = 0; ctx.fillStyle = '#fff'; ctx.font = 'bold ' + Math.floor(r*.95) + 'px Impact'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(e.type.sym, 0, 2);
         ctx.restore();
       });
       ebullets.forEach(function(b){ ctx.save(); ctx.shadowColor = b.type.color; ctx.shadowBlur = 14; ctx.fillStyle = b.type.color; ctx.beginPath(); ctx.arc(b.x, b.y, 6, 0, Math.PI*2); ctx.fill(); ctx.restore(); });
@@ -1246,8 +854,7 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       if (state_ !== 'over'){
         ctx.save(); ctx.translate(player.x, player.y);
         var flame = 14 + Math.sin(performance.now()/60)*4;
-        var fg = ctx.createLinearGradient(0, 20, 0, 20+flame);
-        fg.addColorStop(0,'#ffd800'); fg.addColorStop(1,'rgba(255,45,85,0)');
+        var fg = ctx.createLinearGradient(0, 20, 0, 20+flame); fg.addColorStop(0,'#ffd800'); fg.addColorStop(1,'rgba(255,45,85,0)');
         ctx.fillStyle = fg; ctx.beginPath(); ctx.moveTo(-10,20); ctx.lineTo(0,20+flame); ctx.lineTo(10,20); ctx.closePath(); ctx.fill();
         ctx.fillStyle = '#7a5a3a'; ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
         ctx.beginPath(); ctx.moveTo(0,-22); ctx.lineTo(17,16); ctx.lineTo(0,26); ctx.lineTo(-17,16); ctx.closePath(); ctx.fill(); ctx.stroke();
@@ -1264,114 +871,63 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       ctx.font = 'bold 20px Impact'; ctx.fillStyle = 'rgba(255,216,0,.6)'; ctx.textAlign = 'center';
       ctx.fillText('WAVE ' + wave, W/2, H-22);
     }
-
     function gameOver(){
       state_ = 'over';
       submitScore('invaders', score).then(function(){ renderLB(); });
-      var ov = $('ov-inv');
-      ov.classList.remove('hidden');
-      ov.innerHTML = '<h3>GAME <span style="color:var(--magenta)">OVER</span></h3>' +
-        '<p>Final score: <strong style="color:var(--yellow);font-size:22px">' + score.toLocaleString() + '</strong><br>Wave ' + wave + '<br><br>' +
-        '<span style="color:var(--cyan)">Added to today\'s tournament!</span></p>' +
-        '<button class="start-btn">PLAY AGAIN</button>';
+      var ov = $('ov-inv'); ov.classList.remove('hidden');
+      ov.innerHTML = '<h3>GAME <span style="color:var(--magenta)">OVER</span></h3><p>Final score: <strong style="color:var(--yellow);font-size:22px">' + score.toLocaleString() + '</strong><br>Wave ' + wave + '<br><br><span style="color:var(--cyan)">Added to today\'s tournament!</span></p><button class="start-btn">PLAY AGAIN</button>';
       ov.querySelector('button').addEventListener('click', begin);
     }
-
-    function loop(now){
-      if (!running) return;
-      var dt = Math.min((now - lastTime)/1000, 0.033);
-      lastTime = now; update(dt); draw();
-      raf = requestAnimationFrame(loop);
-    }
-
+    function loop(now){ if (!running) return; var dt = Math.min((now - lastTime)/1000, 0.033); lastTime = now; update(dt); draw(); raf = requestAnimationFrame(loop); }
     function attach(){
-      window.addEventListener('keydown', function(e){
-        keys[e.key] = true;
-        if (e.key === ' '){ e.preventDefault(); if (state_ === 'playing') shoot(); }
-      });
+      window.addEventListener('keydown', function(e){ keys[e.key] = true; if (e.key === ' '){ e.preventDefault(); if (state_ === 'playing') shoot(); } });
       window.addEventListener('keyup', function(e){ keys[e.key] = false; });
-      canvas.addEventListener('pointerdown', function(e){
-        if (state_ !== 'playing') return;
-        var r = canvas.getBoundingClientRect();
-        player.x = ((e.clientX - r.left) / r.width) * W; shoot();
-      });
-      canvas.addEventListener('pointermove', function(e){
-        if (state_ !== 'playing' || e.buttons === 0) return;
-        var r = canvas.getBoundingClientRect();
-        player.x = Math.max(30, Math.min(W-30, ((e.clientX - r.left) / r.width) * W));
-      });
+      canvas.addEventListener('pointerdown', function(e){ if (state_ !== 'playing') return; var r = canvas.getBoundingClientRect(); player.x = ((e.clientX - r.left) / r.width) * W; shoot(); });
+      canvas.addEventListener('pointermove', function(e){ if (state_ !== 'playing' || e.buttons === 0) return; var r = canvas.getBoundingClientRect(); player.x = Math.max(30, Math.min(W-30, ((e.clientX - r.left) / r.width) * W)); });
     }
-
-    return {
-      start: function(){ mount(); $('hudTitle').textContent = 'SPACE TAKEOVER'; state_ = 'idle'; },
-      stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); }
-    };
+    return { start: function(){ mount(); $('hudTitle').textContent = 'SPACE TAKEOVER'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== GAME 2 — RUNNER (with pixel memes in sky) ========== */
+  /* ========== RUNNER ========== */
   games.runner = (function(){
     var canvas, ctx, W = 960, H = 500;
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
     var player, obstacles, coins, particles, stars, bgMemes;
     var jumpVel, speed, distance, coinScore, spawnTimer, coinTimer;
     var GROUND_Y = H - 80;
-    var BG_MEME_KEYS = ['doge','pepe','pengu','alien','btc','sol','cat','eth'];
-
-    function spawnBgMeme(){
-      var key = BG_MEME_KEYS[Math.floor(Math.random()*BG_MEME_KEYS.length)];
-      var sprite = SPRITES[key];
-      var px = 2 + Math.random()*2;
-      var w = sprite.data[0].length * px;
-      bgMemes.push({
-        key: key, px: px, w: w,
-        x: W + w,
-        y: 30 + Math.random() * (GROUND_Y - 130),
-        vx: -0.5 - Math.random() * 1.5,
-        wobblePhase: Math.random()*Math.PI*2
-      });
-    }
-
+    var BG = ['doge','pepe','pengu','alien','btc','sol','cat','eth'];
+    function spawnBg(){ var key = BG[Math.floor(Math.random()*BG.length)]; var s = SPRITES[key]; var px = 2 + Math.random()*2; var w = s.data[0].length*px; bgMemes.push({ key:key, px:px, w:w, x: W + w, y: 30+Math.random()*(GROUND_Y-130), vx: -0.5 - Math.random()*1.5, wobblePhase: Math.random()*Math.PI*2 }); }
     function mount(){
-      $('gameFrame').innerHTML = '<canvas id="c-run" width="' + W + '" height="' + H + '"></canvas>' +
-        '<div class="game-overlay" id="ov-run">' +
-          '<h3 class="pink">MAIGA <span style="color:var(--cyan)">RUNNER</span></h3>' +
-          '<p>Jean-Phil sprints through Meme Planet.<br>Jump obstacles. Grab coins.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
-          '<button class="start-btn pink" id="st-run">START RUN</button>' +
-          '<div class="controls-hint">SPACE or TAP to jump · double jump allowed</div>' +
-        '</div>';
+      $('gameFrame').innerHTML = '<canvas id="c-run" width="'+W+'" height="'+H+'"></canvas>' +
+        '<div class="game-overlay" id="ov-run"><h3 class="pink">MAIGA <span style="color:var(--cyan)">RUNNER</span></h3>' +
+        '<p>Jean-Phil sprints through Meme Planet.<br>Jump obstacles. Grab coins.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
+        '<button class="start-btn pink" id="st-run">START RUN</button>' +
+        '<div class="controls-hint">SPACE or TAP to jump · double jump allowed</div></div>';
       canvas = $('c-run'); ctx = canvas.getContext('2d');
       $('st-run').addEventListener('click', begin);
       $('hudLivesWrap').style.display = 'none';
       attach();
     }
-
     function begin(){
       $('ov-run').classList.add('hidden'); initAudio();
       $('hudScore').textContent = '0';
       player = { x: 140, y: GROUND_Y - 40, vy: 0, w: 44, h: 60, jumps: 0 };
       obstacles = []; coins = []; particles = []; stars = []; bgMemes = [];
       for (var i=0;i<100;i++) stars.push({ x: Math.random()*W, y: Math.random()*(GROUND_Y-40), r: Math.random()*1.5+.3, s: Math.random()*0.3+0.05 });
-      for (var j=0;j<5;j++){ spawnBgMeme(); bgMemes[bgMemes.length-1].x = Math.random()*W; }
-      jumpVel = -560; speed = 340; distance = 0; coinScore = 0;
-      spawnTimer = 0; coinTimer = 0;
+      for (var j=0;j<5;j++){ spawnBg(); bgMemes[bgMemes.length-1].x = Math.random()*W; }
+      jumpVel = -560; speed = 340; distance = 0; coinScore = 0; spawnTimer = 0; coinTimer = 0;
       state_ = 'playing'; lastTime = performance.now();
       if (!running){ running = true; raf = requestAnimationFrame(loop); }
     }
-
-    function jump(){
-      if (state_ !== 'playing') return;
-      if (player.jumps < 2){ player.vy = jumpVel; player.jumps++; sfxJump(); }
-    }
-
+    function jump(){ if (state_ !== 'playing') return; if (player.jumps < 2){ player.vy = jumpVel; player.jumps++; sfxJump(); } }
     function update(dt){
       stars.forEach(function(s){ s.x -= s.s*60*dt*3; if (s.x < 0){ s.x = W; s.y = Math.random()*(GROUND_Y-40); } });
       bgMemes.forEach(function(m){ m.x += m.vx * 60 * dt; m.wobblePhase += dt*3; });
       bgMemes = bgMemes.filter(function(m){ return m.x > -m.w - 30; });
-      if (Math.random() < dt * 1.5 && bgMemes.length < 8) spawnBgMeme();
+      if (Math.random() < dt * 1.5 && bgMemes.length < 8) spawnBg();
       if (state_ !== 'playing') return;
       speed += dt * 4; distance += speed * dt;
-      player.vy += 1500 * dt;
-      player.y += player.vy * dt;
+      player.vy += 1500 * dt; player.y += player.vy * dt;
       if (player.y >= GROUND_Y - player.h/2){ player.y = GROUND_Y - player.h/2; player.vy = 0; player.jumps = 0; }
       spawnTimer -= dt;
       if (spawnTimer <= 0){ obstacles.push({ x: W + 40, y: GROUND_Y - 40, w: 30, h: 40 }); spawnTimer = Math.max(0.8, 1.8 - speed/1500); }
@@ -1381,47 +937,33 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       obstacles = obstacles.filter(function(o){ return o.x > -60; });
       coins.forEach(function(c){ c.x -= speed * dt; c.wobble += dt*4; });
       coins = coins.filter(function(c){ return c.x > -40; });
-      obstacles.forEach(function(o){
-        if (Math.abs(player.x - (o.x + o.w/2)) < (player.w/2 + o.w/2) * 0.7 && Math.abs(player.y - o.y) < (player.h/2 + o.h/2) * 0.8) gameOver();
-      });
+      obstacles.forEach(function(o){ if (Math.abs(player.x - (o.x + o.w/2)) < (player.w/2 + o.w/2) * 0.7 && Math.abs(player.y - o.y) < (player.h/2 + o.h/2) * 0.8) gameOver(); });
       coins.forEach(function(c){
         if (c.taken) return;
         if (Math.abs(player.x - c.x) < 30 && Math.abs(player.y - c.y) < 40){
           c.taken = true; coinScore += 25; sfxGood();
-          for (var i=0;i<8;i++){
-            var a = Math.random()*Math.PI*2, sp = Math.random()*150+40;
-            particles.push({ x: c.x, y: c.y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life:0.5, max:0.5, color:'#ffd800' });
-          }
+          for (var i=0;i<8;i++){ var a = Math.random()*Math.PI*2, sp = Math.random()*150+40; particles.push({ x: c.x, y: c.y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life:0.5, max:0.5, color:'#ffd800' }); }
         }
       });
       $('hudScore').textContent = Math.floor(distance/10) + coinScore;
       particles.forEach(function(p){ p.x += p.vx*dt; p.y += p.vy*dt; p.vy += 200*dt; p.life -= dt; });
       particles = particles.filter(function(p){ return p.life > 0; });
     }
-
     function draw(){
       if (!ctx) return;
-      var g = ctx.createLinearGradient(0,0,0,H);
-      g.addColorStop(0,'#12002a'); g.addColorStop(0.6,'#1a0a3a'); g.addColorStop(1,'#2a0a20');
+      var g = ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'#12002a'); g.addColorStop(0.6,'#1a0a3a'); g.addColorStop(1,'#2a0a20');
       ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
       ctx.fillStyle = '#fff';
       stars.forEach(function(s){ ctx.globalAlpha = 0.4+s.r*0.3; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); });
       ctx.globalAlpha = 1;
-      // Pixel memes in sky
-      bgMemes.forEach(function(m){
-        var sprite = SPRITES[m.key];
-        ctx.globalAlpha = 0.55;
-        drawSprite(ctx, sprite, Math.floor(m.x), Math.floor(m.y + Math.sin(m.wobblePhase)*5), m.px, m.vx < 0);
-      });
+      bgMemes.forEach(function(m){ ctx.globalAlpha = 0.55; drawSprite(ctx, SPRITES[m.key], Math.floor(m.x), Math.floor(m.y + Math.sin(m.wobblePhase)*5), m.px, m.vx < 0); });
       ctx.globalAlpha = 1;
-      // Trump background
       ctx.save(); ctx.globalAlpha = 0.2; ctx.shadowColor = '#ffd800'; ctx.shadowBlur = 40;
       ctx.fillStyle = '#0a1a2f';
       ctx.beginPath(); ctx.moveTo(W-140,180); ctx.lineTo(W-100,80); ctx.lineTo(W-40,80); ctx.lineTo(W,180); ctx.closePath(); ctx.fill();
       ctx.fillStyle = '#f0c9a0'; ctx.beginPath(); ctx.ellipse(W-70, 60, 26, 32, 0, 0, Math.PI*2); ctx.fill();
       ctx.fillStyle = '#000'; ctx.beginPath(); ctx.ellipse(W-70, 30, 30, 14, 0, Math.PI, 0); ctx.fill();
       ctx.restore();
-      // Ground
       ctx.fillStyle = '#0a0a1f'; ctx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
       ctx.strokeStyle = '#00f0ff'; ctx.lineWidth = 3; ctx.shadowColor = '#00f0ff'; ctx.shadowBlur = 20;
       ctx.beginPath(); ctx.moveTo(0, GROUND_Y); ctx.lineTo(W, GROUND_Y); ctx.stroke();
@@ -1438,22 +980,15 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
         if (c.taken) return;
         ctx.save(); ctx.translate(c.x, c.y + Math.sin(c.wobble)*4);
         ctx.shadowColor = '#ffd800'; ctx.shadowBlur = 20;
-        var grad = ctx.createRadialGradient(-4,-4,2,0,0,c.r);
-        grad.addColorStop(0,'#fff8d6'); grad.addColorStop(1,'#ffb800');
-        ctx.fillStyle = grad;
-        ctx.beginPath(); ctx.arc(0,0,c.r,0,Math.PI*2); ctx.fill();
+        var grad = ctx.createRadialGradient(-4,-4,2,0,0,c.r); grad.addColorStop(0,'#fff8d6'); grad.addColorStop(1,'#ffb800');
+        ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(0,0,c.r,0,Math.PI*2); ctx.fill();
         ctx.lineWidth = 3; ctx.strokeStyle = '#ffd800'; ctx.stroke();
         ctx.shadowBlur = 0; ctx.fillStyle = '#000'; ctx.font = 'bold 14px Impact'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillText('$', 0, 1); ctx.restore();
       });
       if (state_ !== 'over'){
-        // Draw Jean-Phil as pixels
-        var px = 4;
-        var jp = SPRITES.jeanphil;
-        var scalePx = px;
-        // Convert to appropriate size
-        var jpW = jp.data[0].length * scalePx;
-        var jpH = jp.data.length * scalePx;
+        var jp = SPRITES.jeanphil, scalePx = 4;
+        var jpW = jp.data[0].length * scalePx, jpH = jp.data.length * scalePx;
         drawSprite(ctx, jp, Math.floor(player.x - jpW/2), Math.floor(player.y - jpH/2), scalePx, false);
       }
       particles.forEach(function(p){ ctx.globalAlpha = Math.max(0, p.life/p.max); ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI*2); ctx.fill(); });
@@ -1461,66 +996,39 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       ctx.font = 'bold 18px Impact'; ctx.fillStyle = 'rgba(255,216,0,.6)'; ctx.textAlign = 'left';
       ctx.fillText('DISTANCE ' + Math.floor(distance/10) + 'm', 20, 30);
     }
-
     function gameOver(){
       state_ = 'over';
-      var finalScore = Math.floor(distance/10) + coinScore;
-      submitScore('runner', finalScore).then(function(){ renderLB(); });
-      var ov = $('ov-run');
-      ov.classList.remove('hidden');
-      ov.innerHTML = '<h3 class="pink">GAME <span style="color:var(--cyan)">OVER</span></h3>' +
-        '<p>Distance: <strong style="color:var(--cyan)">' + Math.floor(distance/10) + 'm</strong><br>' +
-        'Coins: <strong style="color:var(--yellow)">' + coinScore + '</strong><br><br>' +
-        'Total: <strong style="color:var(--yellow);font-size:22px">' + finalScore.toLocaleString() + '</strong><br><br>' +
-        '<span style="color:var(--magenta)">Added to today\'s tournament!</span></p>' +
-        '<button class="start-btn pink">PLAY AGAIN</button>';
+      var fs = Math.floor(distance/10) + coinScore;
+      submitScore('runner', fs).then(function(){ renderLB(); });
+      var ov = $('ov-run'); ov.classList.remove('hidden');
+      ov.innerHTML = '<h3 class="pink">GAME <span style="color:var(--cyan)">OVER</span></h3><p>Distance: <strong style="color:var(--cyan)">' + Math.floor(distance/10) + 'm</strong><br>Coins: <strong style="color:var(--yellow)">' + coinScore + '</strong><br><br>Total: <strong style="color:var(--yellow);font-size:22px">' + fs.toLocaleString() + '</strong><br><br><span style="color:var(--magenta)">Added to today\'s tournament!</span></p><button class="start-btn pink">PLAY AGAIN</button>';
       ov.querySelector('button').addEventListener('click', begin);
     }
-
-    function loop(now){
-      if (!running) return;
-      var dt = Math.min((now - lastTime)/1000, 0.033);
-      lastTime = now; update(dt); draw();
-      raf = requestAnimationFrame(loop);
-    }
-
+    function loop(now){ if (!running) return; var dt = Math.min((now - lastTime)/1000, 0.033); lastTime = now; update(dt); draw(); raf = requestAnimationFrame(loop); }
     function attach(){
       window.addEventListener('keydown', function(e){ if (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'w'){ e.preventDefault(); jump(); } });
       canvas.addEventListener('pointerdown', function(e){ e.preventDefault(); jump(); });
       canvas.addEventListener('touchstart', function(e){ e.preventDefault(); jump(); }, {passive:false});
     }
-
-    return {
-      start: function(){ mount(); $('hudTitle').textContent = 'MAIGA RUNNER'; state_ = 'idle'; },
-      stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); }
-    };
+    return { start: function(){ mount(); $('hudTitle').textContent = 'MAIGA RUNNER'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== GAME 3 — POPPER ========== */
+  /* ========== POPPER ========== */
   games.popper = (function(){
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
     var cells = [];
     var score, timeLeft, spawnTimer, GRID = 4, MAX_TIME = 60;
-    var COINS = [
-      { sym:'₿', score: 10 }, { sym:'Ξ', score: 15 }, { sym:'Ð', score: 20 },
-      { sym:'◎', score: 25 }, { sym:'🐸', score: 30 }, { sym:'$', score: 50 }
-    ];
-
+    var COINS = [{sym:'₿',score:10},{sym:'Ξ',score:15},{sym:'Ð',score:20},{sym:'◎',score:25},{sym:'🐸',score:30},{sym:'$',score:50}];
     function mount(){
-      $('gameFrame').innerHTML = '<div style="position:relative">' +
-        '<div class="popper-grid" id="popGrid"></div>' +
-        '<div class="game-overlay" id="ov-pop">' +
-          '<h3 class="yellow">COIN <span style="color:var(--cyan)">POPPER</span></h3>' +
-          '<p>Tap coins for points. Avoid bombs 💣.<br>60 seconds. Go fast.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
-          '<button class="start-btn yellow" id="st-pop">START POPPING</button>' +
-          '<div class="controls-hint">Tap or click the coins as they appear</div>' +
-        '</div>' +
-      '</div>';
+      $('gameFrame').innerHTML = '<div style="position:relative"><div class="popper-grid" id="popGrid"></div>' +
+        '<div class="game-overlay" id="ov-pop"><h3 class="yellow">COIN <span style="color:var(--cyan)">POPPER</span></h3>' +
+        '<p>Tap coins for points. Avoid bombs 💣.<br>60 seconds. Go fast.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
+        '<button class="start-btn yellow" id="st-pop">START POPPING</button>' +
+        '<div class="controls-hint">Tap or click the coins as they appear</div></div></div>';
       $('st-pop').addEventListener('click', begin);
       $('hudLivesWrap').style.display = 'none';
       buildGrid();
     }
-
     function buildGrid(){
       var g = $('popGrid'); g.innerHTML = ''; cells = [];
       for (var i=0;i<GRID*GRID;i++){
@@ -1531,37 +1039,24 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
         cells.push({ el: c, active: false, type: null, value: 0, expires: 0 });
       }
     }
-
     function onCellClick(e){
       if (state_ !== 'playing') return;
       var idx = parseInt(e.currentTarget.dataset.idx, 10);
-      var c = cells[idx];
-      if (!c.active) return;
-      // Spawn a pixel meme party on click!
+      var c = cells[idx]; if (!c.active) return;
       var rect = e.currentTarget.getBoundingClientRect();
       if (window.__spawnMemeAt) window.__spawnMemeAt(rect.left + rect.width/2, rect.top + rect.height/2);
-      if (c.type === 'bomb'){ score = Math.max(0, score - 50); sfxBad(); }
-      else { score += c.value; sfxGood(); }
+      if (c.type === 'bomb'){ score = Math.max(0, score - 50); sfxBad(); } else { score += c.value; sfxGood(); }
       c.el.classList.remove('active'); c.active = false; c.type = null;
       $('hudScore').textContent = score;
     }
-
     function begin(){
       $('ov-pop').classList.add('hidden'); initAudio();
-      buildGrid();
-      score = 0; timeLeft = MAX_TIME; spawnTimer = 0;
+      buildGrid(); score = 0; timeLeft = MAX_TIME; spawnTimer = 0;
       $('hudScore').textContent = '0';
       state_ = 'playing'; lastTime = performance.now();
       if (!running){ running = true; raf = requestAnimationFrame(loop); }
     }
-
-    function loop(now){
-      if (!running) return;
-      var dt = Math.min((now - lastTime)/1000, 0.033);
-      lastTime = now; update(dt);
-      raf = requestAnimationFrame(loop);
-    }
-
+    function loop(now){ if (!running) return; var dt = Math.min((now - lastTime)/1000, 0.033); lastTime = now; update(dt); raf = requestAnimationFrame(loop); }
     function update(dt){
       if (state_ !== 'playing') return;
       timeLeft -= dt;
@@ -1572,98 +1067,58 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       var now = performance.now();
       cells.forEach(function(c){ if (c.active && c.expires && now > c.expires){ c.el.classList.remove('active'); c.active = false; } });
     }
-
     function spawnCell(){
       var avail = cells.filter(function(c){ return !c.active; });
       if (!avail.length) return;
       var c = avail[Math.floor(Math.random()*avail.length)];
       var isBomb = Math.random() < 0.15;
       if (isBomb){ c.el.textContent = '💣'; c.el.classList.add('active','bomb'); c.type = 'bomb'; c.value = 0; }
-      else {
-        var t = COINS[Math.floor(Math.random()*COINS.length)];
-        c.el.textContent = t.sym; c.el.classList.add('active'); c.el.classList.remove('bomb');
-        c.type = 'coin'; c.value = t.score;
-      }
-      c.active = true;
-      c.expires = performance.now() + 1200 - Math.min(600, (MAX_TIME - timeLeft) * 10);
+      else { var t = COINS[Math.floor(Math.random()*COINS.length)]; c.el.textContent = t.sym; c.el.classList.add('active'); c.el.classList.remove('bomb'); c.type = 'coin'; c.value = t.score; }
+      c.active = true; c.expires = performance.now() + 1200 - Math.min(600, (MAX_TIME - timeLeft) * 10);
     }
-
     function gameOver(){
       state_ = 'over';
       submitScore('popper', score).then(function(){ renderLB(); });
-      var ov = $('ov-pop');
-      ov.classList.remove('hidden');
-      ov.innerHTML = '<h3 class="yellow">TIME <span style="color:var(--magenta)">UP</span></h3>' +
-        '<p>Final score: <strong style="color:var(--yellow);font-size:26px">' + score.toLocaleString() + '</strong><br><br>' +
-        '<span style="color:var(--cyan)">Added to today\'s tournament!</span></p>' +
-        '<button class="start-btn yellow">PLAY AGAIN</button>';
+      var ov = $('ov-pop'); ov.classList.remove('hidden');
+      ov.innerHTML = '<h3 class="yellow">TIME <span style="color:var(--magenta)">UP</span></h3><p>Final score: <strong style="color:var(--yellow);font-size:26px">' + score.toLocaleString() + '</strong><br><br><span style="color:var(--cyan)">Added to today\'s tournament!</span></p><button class="start-btn yellow">PLAY AGAIN</button>';
       ov.querySelector('button').addEventListener('click', begin);
     }
-
-    return {
-      start: function(){ mount(); $('hudTitle').textContent = '⏱ 60s'; state_ = 'idle'; },
-      stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); }
-    };
+    return { start: function(){ mount(); $('hudTitle').textContent = '⏱ 60s'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== GAME 4 — SNAKE ========== */
+  /* ========== SNAKE ========== */
   games.snake = (function(){
-    var canvas, ctx, W = 960, H = 640;
-    var CELL = 32, COLS = 30, ROWS = 20;
+    var canvas, ctx, W = 960, H = 640, CELL = 32, COLS = 30, ROWS = 20;
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
-    var snake, dir, nextDir, food, score, moveTimer, MOVE_INTERVAL = 0.13;
-    var bgMemes;
-
+    var snake, dir, nextDir, food, score, moveTimer, MOVE_INTERVAL = 0.13, bgMemes;
     function mount(){
-      $('gameFrame').innerHTML = '<canvas id="c-snak" width="' + W + '" height="' + H + '"></canvas>' +
-        '<div class="game-overlay" id="ov-snak">' +
-          '<h3 class="green">MEME <span style="color:var(--cyan)">SNAKE</span></h3>' +
-          '<p>Jean-Phil eats coins. He grows longer.<br>Don\'t hit walls. Don\'t hit yourself.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
-          '<button class="start-btn" style="background:var(--green);color:#000;box-shadow:0 0 30px var(--green),4px 4px 0 #000" id="st-snak">START SNAKE</button>' +
-          '<div class="controls-hint">Arrow keys / WASD · mobile: swipe</div>' +
-        '</div>';
+      $('gameFrame').innerHTML = '<canvas id="c-snak" width="'+W+'" height="'+H+'"></canvas>' +
+        '<div class="game-overlay" id="ov-snak"><h3 class="green">MEME <span style="color:var(--cyan)">SNAKE</span></h3>' +
+        '<p>Jean-Phil eats coins. He grows longer.<br>Don\'t hit walls. Don\'t hit yourself.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
+        '<button class="start-btn" style="background:var(--green);color:#000;box-shadow:0 0 30px var(--green),4px 4px 0 #000" id="st-snak">START SNAKE</button>' +
+        '<div class="controls-hint">Arrow keys / WASD · mobile: swipe</div></div>';
       canvas = $('c-snak'); ctx = canvas.getContext('2d');
       $('st-snak').addEventListener('click', begin);
       $('hudLivesWrap').style.display = 'none';
       attach();
     }
-
     function begin(){
       $('ov-snak').classList.add('hidden'); initAudio();
       $('hudScore').textContent = '0';
       snake = [{ x: 10, y: 10 }, { x: 9, y: 10 }, { x: 8, y: 10 }];
       dir = { x: 1, y: 0 }; nextDir = { x: 1, y: 0 };
-      score = 0; moveTimer = 0; MOVE_INTERVAL = 0.13;
-      bgMemes = [];
+      score = 0; moveTimer = 0; MOVE_INTERVAL = 0.13; bgMemes = [];
       for (var i=0;i<5;i++){
         var keys = ['doge','pepe','pengu','btc','sol','cat'];
         var key = keys[Math.floor(Math.random()*keys.length)];
-        bgMemes.push({
-          key: key,
-          x: Math.random() * W,
-          y: Math.random() * (ROWS*CELL),
-          px: 2 + Math.random()*2,
-          wobblePhase: Math.random()*Math.PI*2,
-          alpha: 0.15 + Math.random()*0.15
-        });
+        bgMemes.push({ key:key, x: Math.random()*W, y: Math.random()*(ROWS*CELL), px: 2+Math.random()*2, wobblePhase: Math.random()*Math.PI*2, alpha: 0.15+Math.random()*0.15 });
       }
       spawnFood();
       state_ = 'playing'; lastTime = performance.now();
       if (!running){ running = true; raf = requestAnimationFrame(loop); }
     }
-
-    function spawnFood(){
-      do { food = { x: Math.floor(Math.random()*COLS), y: Math.floor(Math.random()*ROWS), wobble: 0 }; }
-      while (snake.some(function(s){ return s.x === food.x && s.y === food.y; }));
-    }
-
-    function loop(now){
-      if (!running) return;
-      var dt = Math.min((now - lastTime)/1000, 0.05);
-      lastTime = now; update(dt); draw();
-      raf = requestAnimationFrame(loop);
-    }
-
+    function spawnFood(){ do { food = { x: Math.floor(Math.random()*COLS), y: Math.floor(Math.random()*ROWS), wobble: 0 }; } while (snake.some(function(s){ return s.x === food.x && s.y === food.y; })); }
+    function loop(now){ if (!running) return; var dt = Math.min((now - lastTime)/1000, 0.05); lastTime = now; update(dt); draw(); raf = requestAnimationFrame(loop); }
     function update(dt){
       bgMemes.forEach(function(m){ m.wobblePhase += dt*2; });
       if (state_ !== 'playing') return;
@@ -1671,77 +1126,52 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       if (moveTimer >= MOVE_INTERVAL){ moveTimer = 0; step(); }
       food.wobble += dt * 6;
     }
-
     function step(){
       dir = nextDir;
       var head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
       if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= ROWS){ gameOver(); return; }
       for (var i=0;i<snake.length;i++){ if (snake[i].x === head.x && snake[i].y === head.y){ gameOver(); return; } }
       snake.unshift(head);
-      if (head.x === food.x && head.y === food.y){
-        score += 20; $('hudScore').textContent = score; sfxGood(); spawnFood();
-        MOVE_INTERVAL = Math.max(0.07, MOVE_INTERVAL - 0.002);
-      } else snake.pop();
+      if (head.x === food.x && head.y === food.y){ score += 20; $('hudScore').textContent = score; sfxGood(); spawnFood(); MOVE_INTERVAL = Math.max(0.07, MOVE_INTERVAL - 0.002); }
+      else snake.pop();
     }
-
     function draw(){
       if (!ctx) return;
-      var g = ctx.createLinearGradient(0,0,0,H);
-      g.addColorStop(0,'#02080a'); g.addColorStop(1,'#02020a');
+      var g = ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'#02080a'); g.addColorStop(1,'#02020a');
       ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
       ctx.strokeStyle = 'rgba(0,255,136,.08)'; ctx.lineWidth = 1;
       for (var x=0;x<=COLS;x++){ ctx.beginPath(); ctx.moveTo(x*CELL, 0); ctx.lineTo(x*CELL, ROWS*CELL); ctx.stroke(); }
       for (var y=0;y<=ROWS;y++){ ctx.beginPath(); ctx.moveTo(0, y*CELL); ctx.lineTo(COLS*CELL, y*CELL); ctx.stroke(); }
-      // Pixel memes in background
-      bgMemes.forEach(function(m){
-        var sprite = SPRITES[m.key];
-        ctx.globalAlpha = m.alpha;
-        drawSprite(ctx, sprite, Math.floor(m.x), Math.floor(m.y + Math.sin(m.wobblePhase)*3), m.px, false);
-      });
+      bgMemes.forEach(function(m){ ctx.globalAlpha = m.alpha; drawSprite(ctx, SPRITES[m.key], Math.floor(m.x), Math.floor(m.y + Math.sin(m.wobblePhase)*3), m.px, false); });
       ctx.globalAlpha = 1;
-      // Food coin
-      ctx.save();
-      ctx.translate(food.x*CELL + CELL/2, food.y*CELL + CELL/2 + Math.sin(food.wobble)*3);
-      ctx.shadowColor = '#ffd800'; ctx.shadowBlur = 20;
-      ctx.fillStyle = '#ffd800';
+      ctx.save(); ctx.translate(food.x*CELL + CELL/2, food.y*CELL + CELL/2 + Math.sin(food.wobble)*3);
+      ctx.shadowColor = '#ffd800'; ctx.shadowBlur = 20; ctx.fillStyle = '#ffd800';
       ctx.beginPath(); ctx.arc(0, 0, CELL*0.4, 0, Math.PI*2); ctx.fill();
-      ctx.shadowBlur = 0; ctx.fillStyle = '#000'; ctx.font = 'bold 18px Impact';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('$', 0, 1);
+      ctx.shadowBlur = 0; ctx.fillStyle = '#000'; ctx.font = 'bold 18px Impact'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('$', 0, 1);
       ctx.restore();
-      // Snake
       snake.forEach(function(s, i){
         var isHead = i === 0;
-        ctx.save();
-        ctx.translate(s.x*CELL + CELL/2, s.y*CELL + CELL/2);
-        if (isHead){ ctx.shadowColor = '#00ff88'; ctx.shadowBlur = 15; ctx.fillStyle = '#00ff88'; }
-        else ctx.fillStyle = '#00d070';
+        ctx.save(); ctx.translate(s.x*CELL + CELL/2, s.y*CELL + CELL/2);
+        if (isHead){ ctx.shadowColor = '#00ff88'; ctx.shadowBlur = 15; ctx.fillStyle = '#00ff88'; } else ctx.fillStyle = '#00d070';
         ctx.beginPath(); ctx.arc(0, 0, CELL*0.42, 0, Math.PI*2); ctx.fill();
         if (isHead){
-          ctx.shadowBlur = 0;
-          ctx.fillStyle = '#f5d6b3'; ctx.beginPath(); ctx.arc(0, -4, CELL*0.3, 0, Math.PI*2); ctx.fill();
+          ctx.shadowBlur = 0; ctx.fillStyle = '#f5d6b3';
+          ctx.beginPath(); ctx.arc(0, -4, CELL*0.3, 0, Math.PI*2); ctx.fill();
           ctx.fillStyle = '#f2cf5b'; ctx.fillRect(-CELL*0.32, -CELL*0.42, CELL*0.64, CELL*0.12);
-          ctx.fillStyle = '#000';
-          ctx.beginPath(); ctx.arc(-CELL*0.1, -4, 1.5, 0, Math.PI*2); ctx.arc(CELL*0.1, -4, 1.5, 0, Math.PI*2); ctx.fill();
+          ctx.fillStyle = '#000'; ctx.beginPath(); ctx.arc(-CELL*0.1, -4, 1.5, 0, Math.PI*2); ctx.arc(CELL*0.1, -4, 1.5, 0, Math.PI*2); ctx.fill();
         }
         ctx.restore();
       });
       ctx.font = 'bold 18px Impact'; ctx.fillStyle = 'rgba(0,255,136,.7)'; ctx.textAlign = 'left';
       ctx.fillText('LENGTH ' + snake.length, 20, 30);
     }
-
     function gameOver(){
       state_ = 'over';
       submitScore('snake', score).then(function(){ renderLB(); });
-      var ov = $('ov-snak');
-      ov.classList.remove('hidden');
-      ov.innerHTML = '<h3 class="green">GAME <span style="color:var(--red)">OVER</span></h3>' +
-        '<p>Final score: <strong style="color:var(--green);font-size:26px">' + score.toLocaleString() + '</strong><br>Length: ' + snake.length + '<br><br>' +
-        '<span style="color:var(--cyan)">Added to today\'s tournament!</span></p>' +
-        '<button class="start-btn" style="background:var(--green);color:#000;box-shadow:0 0 30px var(--green),4px 4px 0 #000">PLAY AGAIN</button>';
+      var ov = $('ov-snak'); ov.classList.remove('hidden');
+      ov.innerHTML = '<h3 class="green">GAME <span style="color:var(--red)">OVER</span></h3><p>Final score: <strong style="color:var(--green);font-size:26px">' + score.toLocaleString() + '</strong><br>Length: ' + snake.length + '<br><br><span style="color:var(--cyan)">Added to today\'s tournament!</span></p><button class="start-btn" style="background:var(--green);color:#000;box-shadow:0 0 30px var(--green),4px 4px 0 #000">PLAY AGAIN</button>';
       ov.querySelector('button').addEventListener('click', begin);
     }
-
     function attach(){
       window.addEventListener('keydown', function(e){
         if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d',' '].indexOf(e.key) !== -1) e.preventDefault();
@@ -1764,35 +1194,24 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
         if (!(d.x === -dir.x && d.y === -dir.y)) nextDir = d;
       }, {passive:true});
     }
-
-    return {
-      start: function(){ mount(); $('hudTitle').textContent = 'MEME SNAKE'; state_ = 'idle'; },
-      stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); }
-    };
+    return { start: function(){ mount(); $('hudTitle').textContent = 'MEME SNAKE'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
-  /* ========== GAME 5 — MATCH ========== */
+  /* ========== MATCH ========== */
   games.match = (function(){
     var running = false, raf = null, lastTime = 0, state_ = 'idle';
     var deck, flipped, matched, score, timeLeft, moves, MAX_TIME = 45;
     var ICONS = ['₿','Ξ','Ð','◎','🐸','🚀','💎','🧢'];
-
     function mount(){
-      $('gameFrame').innerHTML =
-        '<div id="matchWrap">' +
-          '<div class="match-grid" id="matchGrid"></div>' +
-          '<div class="game-overlay" id="ov-match">' +
-            '<h3 style="color:var(--red)">MEME <span style="color:var(--cyan)">MATCH</span></h3>' +
-            '<p>Match the crypto coin pairs.<br>Beat the clock. Score big.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
-            '<button class="start-btn" style="background:var(--red);color:#fff;box-shadow:0 0 30px var(--red),4px 4px 0 #000" id="st-match">START MATCH</button>' +
-            '<div class="controls-hint">Click cards to flip · match the pairs</div>' +
-          '</div>' +
-        '</div>';
+      $('gameFrame').innerHTML = '<div id="matchWrap"><div class="match-grid" id="matchGrid"></div>' +
+        '<div class="game-overlay" id="ov-match"><h3 style="color:var(--red)">MEME <span style="color:var(--cyan)">MATCH</span></h3>' +
+        '<p>Match the crypto coin pairs.<br>Beat the clock. Score big.<br><strong style="color:var(--yellow)">Make AI Great Again.</strong></p>' +
+        '<button class="start-btn" style="background:var(--red);color:#fff;box-shadow:0 0 30px var(--red),4px 4px 0 #000" id="st-match">START MATCH</button>' +
+        '<div class="controls-hint">Click cards to flip · match the pairs</div></div></div>';
       $('st-match').addEventListener('click', begin);
       $('hudLivesWrap').style.display = 'none';
       buildGrid();
     }
-
     function buildGrid(){
       var g = $('matchGrid'); g.innerHTML = '';
       for (var i=0;i<16;i++){
@@ -1802,12 +1221,10 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
         g.appendChild(c);
       }
     }
-
     function begin(){
       $('ov-match').classList.add('hidden'); initAudio();
       buildGrid();
-      var icons = ICONS.concat(ICONS);
-      icons = shuffle(icons);
+      var icons = ICONS.concat(ICONS); icons = shuffle(icons);
       deck = icons.map(function(ic){ return { icon: ic, matched: false, flipped: false }; });
       var els = document.querySelectorAll('.match-card');
       els.forEach(function(el, i){ el.textContent = deck[i].icon; el.classList.remove('flipped','matched'); });
@@ -1816,79 +1233,48 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
       state_ = 'playing'; lastTime = performance.now();
       if (!running){ running = true; raf = requestAnimationFrame(loop); }
     }
-
     function shuffle(a){ for (var i=a.length-1;i>0;i--){ var j = Math.floor(Math.random()*(i+1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-
     function onCardClick(e){
       if (state_ !== 'playing') return;
       var idx = parseInt(e.currentTarget.dataset.idx, 10);
-      var c = deck[idx];
-      if (c.matched || c.flipped) return;
+      var c = deck[idx]; if (c.matched || c.flipped) return;
       if (flipped.length >= 2) return;
-      c.flipped = true;
-      e.currentTarget.classList.add('flipped');
-      flipped.push(idx);
+      c.flipped = true; e.currentTarget.classList.add('flipped'); flipped.push(idx);
       if (flipped.length === 2){ moves++; setTimeout(checkMatch, 500); }
     }
-
     function checkMatch(){
       if (flipped.length !== 2) return;
       var a = deck[flipped[0]], b = deck[flipped[1]];
       var els = document.querySelectorAll('.match-card');
       if (a.icon === b.icon){
         a.matched = b.matched = true;
-        els[flipped[0]].classList.add('matched');
-        els[flipped[1]].classList.add('matched');
-        matched++;
-        score += 100 + Math.max(0, Math.floor(timeLeft));
-        $('hudScore').textContent = score;
-        sfxGood();
-        // spawn meme party
+        els[flipped[0]].classList.add('matched'); els[flipped[1]].classList.add('matched');
+        matched++; score += 100 + Math.max(0, Math.floor(timeLeft));
+        $('hudScore').textContent = score; sfxGood();
         var r1 = els[flipped[0]].getBoundingClientRect();
         if (window.__spawnMemeAt) window.__spawnMemeAt(r1.left + r1.width/2, r1.top + r1.height/2);
         if (matched === 8) gameOver(true);
       } else {
         a.flipped = b.flipped = false;
-        els[flipped[0]].classList.remove('flipped');
-        els[flipped[1]].classList.remove('flipped');
-        score = Math.max(0, score - 10);
-        $('hudScore').textContent = score;
-        sfxBad();
+        els[flipped[0]].classList.remove('flipped'); els[flipped[1]].classList.remove('flipped');
+        score = Math.max(0, score - 10); $('hudScore').textContent = score; sfxBad();
       }
       flipped = [];
     }
-
     function loop(now){
       if (!running) return;
-      var dt = Math.min((now - lastTime)/1000, 0.033);
-      lastTime = now;
-      if (state_ === 'playing'){
-        timeLeft -= dt;
-        $('hudTitle').textContent = '⏱ ' + Math.ceil(Math.max(0,timeLeft)) + 's · ' + matched + '/8';
-        if (timeLeft <= 0) gameOver(false);
-      }
+      var dt = Math.min((now - lastTime)/1000, 0.033); lastTime = now;
+      if (state_ === 'playing'){ timeLeft -= dt; $('hudTitle').textContent = '⏱ ' + Math.ceil(Math.max(0,timeLeft)) + 's · ' + matched + '/8'; if (timeLeft <= 0) gameOver(false); }
       raf = requestAnimationFrame(loop);
     }
-
     function gameOver(won){
       state_ = 'over';
       submitScore('match', score).then(function(){ renderLB(); });
-      var ov = $('ov-match');
-      ov.classList.remove('hidden');
-      ov.innerHTML = '<h3 style="color:' + (won ? 'var(--green)' : 'var(--red)') + '">' +
-          (won ? '🏆 YOU <span style="color:var(--cyan)">WON</span>' : 'TIME <span style="color:var(--magenta)">UP</span>') +
-        '</h3>' +
-        '<p>Final score: <strong style="color:var(--yellow);font-size:26px">' + score.toLocaleString() + '</strong><br>' +
-        'Pairs matched: ' + matched + '/8 · Moves: ' + moves + '<br><br>' +
-        '<span style="color:var(--cyan)">Added to today\'s tournament!</span></p>' +
-        '<button class="start-btn" style="background:var(--red);color:#fff;box-shadow:0 0 30px var(--red),4px 4px 0 #000">PLAY AGAIN</button>';
+      var ov = $('ov-match'); ov.classList.remove('hidden');
+      ov.innerHTML = '<h3 style="color:' + (won ? 'var(--green)' : 'var(--red)') + '">' + (won ? '🏆 YOU <span style="color:var(--cyan)">WON</span>' : 'TIME <span style="color:var(--magenta)">UP</span>') + '</h3><p>Final score: <strong style="color:var(--yellow);font-size:26px">' + score.toLocaleString() + '</strong><br>Pairs matched: ' + matched + '/8 · Moves: ' + moves + '<br><br><span style="color:var(--cyan)">Added to today\'s tournament!</span></p><button class="start-btn" style="background:var(--red);color:#fff;box-shadow:0 0 30px var(--red),4px 4px 0 #000">PLAY AGAIN</button>';
       ov.querySelector('button').addEventListener('click', begin);
     }
-
-    return {
-      start: function(){ mount(); $('hudTitle').textContent = '⏱ 45s · 0/8'; state_ = 'idle'; },
-      stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); }
-    };
+    return { start: function(){ mount(); $('hudTitle').textContent = '⏱ 45s · 0/8'; state_ = 'idle'; }, stop: function(){ running = false; if (raf) cancelAnimationFrame(raf); } };
   })();
 
   window.MAIGA_GAME = { openGame: openGame, backToHub: backToHub, setLBScope: setLBScope, submitWallet: submitWallet, copyRef: copyRef };
@@ -1915,14 +1301,50 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
     loadTournament();
     renderLB();
 
-    console.log('[MAIGA] 5-game arcade + PIXEL MEME PARTY LIVE 🎮🧢');
-    console.log('[MAIGA] Click anywhere to spawn pixel memes!');
+    console.log('[MAIGA] 5-game arcade + PIXEL MEME PARTY + JUPITER SWAP LIVE 🎮💱');
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 
 })();
+</script>
+
+<script>
+  /* =====================================================================
+     JUPITER SWAP WIDGET — $MAIGA referral fees
+     ===================================================================== */
+  window.addEventListener('load', function(){
+    var tries = 0;
+    var iv = setInterval(function(){
+      tries++;
+      if (window.Jupiter && window.Jupiter.init){
+        clearInterval(iv);
+        try{
+          window.Jupiter.init({
+            displayMode: "integrated",
+            integratedTargetId: "target-container",
+            formProps: {
+              referralAccount: "8AbbQ7mnQpiHXq7HCc6qHsUYrTmXBmJ1AQXiHbMBF99e",
+              referralFee: 50,
+              fixedMint: "3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump"
+            },
+            branding: {
+              name: "$MAIGA",
+              logoUri: "https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg"
+            }
+          });
+          console.log('[MAIGA] Jupiter swap widget loaded ✅');
+        } catch(e){
+          console.error('[MAIGA] Jupiter init error:', e);
+        }
+      }
+      if (tries > 30){
+        clearInterval(iv);
+        console.warn('[MAIGA] Jupiter plugin never loaded');
+      }
+    }, 300);
+  });
 </script>
 
 </body>

@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="$MAIGA — 20 games. 1 tournament. Wheel. Swap.">
+<meta name="description" content="$MAIGA — 21 games. Wheel of Fortune. 1 tournament. Instant swap.">
 <meta name="theme-color" content="#050510">
-<title>$MAIGA ARCADE — 20 Games · Tournament · Wheel · Swap</title>
+<title>$MAIGA ARCADE — Wheel of Fortune · 21 Games · Tournament · Swap</title>
 <script src="https://plugin.jup.ag/plugin-v1.js" data-preload defer></script>
 <style>
-:root{--cyan:#7db8ff;--magenta:#ff4b61;--yellow:#fff;--red:#e63946;--green:#8fc8ff;--purple:#a78bfa;--orange:#ffa94d;--bg:#050b1b;--bg2:#0a1730;--panel:#0b1a35;--text:#f4f7ff;--dim:#a7b7d2;--usa-blue:#1e4c96}
+:root{--cyan:#7db8ff;--magenta:#ff4b61;--yellow:#fff;--red:#e63946;--green:#8fc8ff;--purple:#a78bfa;--orange:#ffa94d;--bg:#050b1b;--bg2:#0a1730;--panel:#0b1a35;--text:#f4f7ff;--dim:#a7b7d2;--usa-blue:#1e4c96;--gold:#ffd700}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Courier New',monospace;background:var(--bg);background-image:radial-gradient(ellipse at 12% 0%,rgba(30,76,150,.34),transparent 42%),radial-gradient(ellipse at 90% 18%,rgba(230,57,70,.18),transparent 38%),linear-gradient(180deg,#07152d 0%,#050b1b 48%,#09152b 100%);color:var(--text);overflow-x:hidden;min-height:100vh}
@@ -33,6 +33,8 @@ header{background:linear-gradient(100deg,rgba(5,13,31,.98),rgba(13,35,72,.96),rg
 .nav-btn.pink:hover{background:#e63946;color:#fff}
 .nav-btn.yellow{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
 .nav-btn.yellow:hover{background:#fff;color:#0a1730}
+.nav-btn.gold{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.08);animation:goldPulse 2s ease-in-out infinite}
+@keyframes goldPulse{0%,100%{box-shadow:0 0 8px rgba(255,215,0,.3)}50%{box-shadow:0 0 24px rgba(255,215,0,.6)}}
 .hero{padding:40px 20px 20px;text-align:center;position:relative}
 .hero-title{font-family:Impact,sans-serif;font-size:clamp(36px,7vw,80px);letter-spacing:2px;line-height:.9;background:linear-gradient(90deg,#fff 0%,#c9ddff 32%,#fff 50%,#ff6b78 76%,#fff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-transform:uppercase;margin-bottom:14px}
 .hero-sub{font-size:13px;letter-spacing:4px;color:#b2c4df;margin-bottom:20px}
@@ -45,6 +47,7 @@ header{background:linear-gradient(100deg,rgba(5,13,31,.98),rgba(13,35,72,.96),rg
 .btn-yellow{background:#fff;color:#0a1730}
 .btn-green{background:#a9d4ff;color:#061126}
 .btn-pink{background:#e63946;color:#fff}
+.btn-gold{background:linear-gradient(135deg,#ffd700,#ffb800);color:#000;border-color:#fff}
 .star-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:50px 0 10px;padding:0 20px}
 .star-divider .line{flex:1;height:2px;max-width:200px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
 .star-divider .line.right{background:linear-gradient(90deg,transparent,var(--usa-blue),transparent)}
@@ -65,6 +68,10 @@ header{background:linear-gradient(100deg,rgba(5,13,31,.98),rgba(13,35,72,.96),rg
 .game-card.purple::before{background:#a78bfa}
 .game-card.orange{border-color:#ffa94d}
 .game-card.orange::before{background:#ffa94d}
+.game-card.gold{border-color:var(--gold);background:linear-gradient(145deg,rgba(40,30,0,.96),rgba(20,15,0,.96))}
+.game-card.gold::before{background:linear-gradient(90deg,#ffd700,#ffb800,#ffd700)}
+.game-card.gold .game-name{color:var(--gold)}
+.game-card.gold .game-play{color:var(--gold)}
 .game-icon{font-size:44px;margin-bottom:8px;line-height:1}
 .game-name{font-family:Impact,sans-serif;font-size:16px;letter-spacing:1px;color:#fff;text-transform:uppercase;margin-bottom:5px}
 .game-desc{font-size:10px;color:var(--dim);line-height:1.4;margin-bottom:10px;min-height:26px}
@@ -91,6 +98,7 @@ header{background:linear-gradient(100deg,rgba(5,13,31,.98),rgba(13,35,72,.96),rg
 .game-overlay h3.yellow{color:#ffd800}
 .game-overlay h3.orange{color:#ffa94d}
 .game-overlay h3.purple{color:#a78bfa}
+.game-overlay h3.gold{color:var(--gold)}
 .game-overlay p{font-size:13px;color:var(--text);line-height:1.7;max-width:520px;margin-bottom:18px}
 .game-overlay .start-btn{background:#fff;color:#07152d;border:3px solid #000;border-radius:12px;padding:14px 32px;font-family:Impact,sans-serif;font-size:20px;letter-spacing:3px;cursor:pointer;box-shadow:0 5px 0 #9caec8;transition:.15s}
 .game-overlay .start-btn:hover{transform:translate(2px,2px);box-shadow:0 2px 0 #9caec8}
@@ -99,6 +107,7 @@ header{background:linear-gradient(100deg,rgba(5,13,31,.98),rgba(13,35,72,.96),rg
 .game-overlay .start-btn.green{background:#a9d4ff;box-shadow:0 5px 0 #426b9e;color:#000}
 .game-overlay .start-btn.orange{background:#ffa94d;box-shadow:0 5px 0 #b06b00;color:#000}
 .game-overlay .start-btn.purple{background:#a78bfa;box-shadow:0 5px 0 #6d4cbf;color:#000}
+.game-overlay .start-btn.gold{background:linear-gradient(135deg,#ffd700,#ffb800);box-shadow:0 5px 0 #8a6d00;color:#000}
 .controls-hint{font-size:10px;color:var(--dim);letter-spacing:2px;margin-top:14px;line-height:1.6}
 .panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:26px}
 .panel{background:linear-gradient(180deg,rgba(13,35,72,.96),rgba(7,17,38,.96));border:2px solid #8fbfff;border-radius:14px;padding:18px;box-shadow:0 12px 26px rgba(0,0,0,.28);position:relative;overflow:hidden}
@@ -106,11 +115,13 @@ header{background:linear-gradient(100deg,rgba(5,13,31,.98),rgba(13,35,72,.96),rg
 .panel.yellow{border-color:#fff}
 .panel.green{border-color:#7db8ff}
 .panel.pink{border-color:#e63946}
+.panel.gold{border-color:var(--gold)}
 .panel h4{font-family:Impact,sans-serif;font-size:16px;letter-spacing:3px;color:#fff;text-transform:uppercase;border-bottom:2px solid currentColor;padding-bottom:8px;margin-bottom:12px}
 .panel h4 .hl{color:#fff}
 .panel.yellow h4{color:#fff}
 .panel.green h4{color:#a9d4ff}
 .panel.pink h4{color:#ff8d99}
+.panel.gold h4{color:var(--gold)}
 .tourney-box{background:linear-gradient(135deg,rgba(30,76,150,.28),rgba(230,57,70,.18));border:2px dashed #fff;border-radius:10px;padding:14px;text-align:center;margin-bottom:12px}
 .tourney-box .label{font-size:9px;letter-spacing:3px;color:#fff;margin-bottom:6px;font-weight:900;text-transform:uppercase}
 .tourney-box .big{font-family:Impact,sans-serif;font-size:22px;color:#fff;letter-spacing:2px;text-shadow:2px 2px 0 #e63946;line-height:1.1}
@@ -188,6 +199,18 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
 button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 @media(max-width:900px){.hub{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}}
 @media(max-width:600px){.brand-title{font-size:20px}.brand img{width:38px;height:38px}.today-box strong{font-size:16px}.nav-btn{padding:8px 12px;font-size:10px}.hub{grid-template-columns:1fr 1fr;gap:10px}.game-card{padding:12px}.game-icon{font-size:32px}.game-name{font-size:12px}.game-desc{display:none}.hero-title{font-size:38px}}
+/* Wheel specific */
+.wheel-container{position:relative;width:100%;max-width:520px;margin:0 auto;padding:20px}
+.wheel-canvas{width:100%;height:auto;display:block;margin:0 auto}
+.wheel-pointer{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:32px;color:#ffd700;text-shadow:0 0 12px #ffd700,0 0 24px #ff8c00;z-index:10;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.wheel-result{text-align:center;margin-top:16px;font-family:Impact,sans-serif;font-size:22px;letter-spacing:3px;min-height:40px}
+.wheel-prizes-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;max-width:600px;margin:20px auto 0}
+.wheel-prize-tag{background:rgba(0,0,0,.4);border:2px solid rgba(255,215,0,.4);border-radius:8px;padding:8px 6px;text-align:center;font-size:10px;font-weight:900;letter-spacing:1px;color:#ffd700}
+.spin-btn{display:block;margin:20px auto 0;background:linear-gradient(135deg,#ffd700,#ffb800);color:#000;border:3px solid #fff;border-radius:14px;padding:16px 48px;font-family:Impact,sans-serif;font-size:22px;letter-spacing:4px;cursor:pointer;box-shadow:0 6px 0 #8a6d00,0 0 30px rgba(255,215,0,.4);transition:.15s;text-transform:uppercase}
+.spin-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 0 #8a6d00,0 0 50px rgba(255,215,0,.6)}
+.spin-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.spin-btn.spinning{animation:spinPulse .8s ease-in-out infinite}
+@keyframes spinPulse{0%,100%{box-shadow:0 6px 0 #8a6d00,0 0 30px rgba(255,215,0,.4)}50%{box-shadow:0 6px 0 #8a6d00,0 0 60px rgba(255,215,0,.8)}}
 </style>
 </head>
 <body>
@@ -200,11 +223,12 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
       <img src="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg" alt="$MAIGA">
       <div>
         <div class="brand-title">$MAIGA</div>
-        <span class="brand-sub">20 GAMES • WHEEL • SWAP</span>
+        <span class="brand-sub">21 GAMES • WHEEL • SWAP</span>
       </div>
     </div>
     <div class="today-box">TODAY'S TOTAL<strong id="hudTotal">0</strong></div>
     <div class="nav-btns">
+      <button class="nav-btn gold" onclick="MAIGA_GAME.openGame('wheel')">🎡 WHEEL</button>
       <button class="nav-btn yellow" onclick="document.getElementById('swap').scrollIntoView({behavior:'smooth'})">SWAP</button>
       <button class="nav-btn pink" onclick="document.getElementById('tournament').scrollIntoView({behavior:'smooth'})">TOURNAMENT</button>
       <a class="nav-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a>
@@ -216,7 +240,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
   <section class="hero">
     <div class="hero-flag">MAKE AI GREAT AGAIN</div>
     <div class="hero-title">$MAIGA ARCADE</div>
-    <div class="hero-sub">20 GAMES · 1 TOURNAMENT · WHEEL · SWAP · <span>1,750,000 $MAIGA EVERY 48H</span></div>
+    <div class="hero-sub">21 GAMES · 1 TOURNAMENT · WHEEL · SWAP · <span>1,750,000 $MAIGA EVERY 48H</span></div>
     <div class="hero-contract">
       <strong>OFFICIAL $MAIGA CONTRACT</strong>
       3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump
@@ -295,14 +319,13 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
     </div>
     <div style="text-align:center;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
       <a class="btn btn-yellow" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY $MAIGA</a>
-      <a class="btn btn-green" href="https://pump.fun/go/c12c9f34-b3b4-49de-8798-aab562dac789" target="_blank" rel="noopener">JOIN BOUNTY</a>
       <a class="btn btn-pink" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">FOLLOW ON X</a>
     </div>
   </section>
 
   <section class="message">
     <h2>STILL HERE. STILL COOKING. <span>MORE COMING.</span></h2>
-    <p>We're building an ARMY. 20 games. 1 tournament. Instant swap.</p>
+    <p>We're building an ARMY. 21 games. 1 tournament. Instant swap.</p>
     <p>Those who sell lose. Those who play win.</p>
     <p>Make AI Great Again.</p>
   </section>
@@ -331,9 +354,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
 
   <section class="cta" id="join">
     <h2>JOIN THE $MAIGA ARMY</h2>
-    <p>Follow on X for airdrops, freebies, bounties and every update first.</p>
+    <p>Follow on X for airdrops, freebies and every update first.</p>
     <div class="buttons">
-      <a class="btn btn-green" href="https://pump.fun/go/c12c9f34-b3b4-49de-8798-aab562dac789" target="_blank" rel="noopener">JOIN BOUNTY</a>
       <a class="btn btn-pink" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN US ON X</a>
       <a class="btn btn-yellow" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY $MAIGA</a>
     </div>
@@ -344,11 +366,11 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
   </div>
 </div>
 
-<footer>© 2026 $MAIGA — MAKE AI GREAT AGAIN • 20 GAMES</footer>
+<footer>© 2026 $MAIGA — MAKE AI GREAT AGAIN • 21 GAMES</footer>
 
 <script>
 /* ============================================================
-   $MAIGA ARCADE — 20 GAMES ENGINE
+   $MAIGA ARCADE — GAMES ENGINE + WHEEL OF FORTUNE
    ============================================================ */
 (function(){
   'use strict';
@@ -360,6 +382,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
   var GLOBAL_ENABLED=!!(SUPABASE_URL&&SUPABASE_ANON_KEY);
 
   var GAMES=[
+    {id:'wheel',name:'MAIGA WHEEL',icon:'🎡',color:'gold',desc:'Spin to win up to 2M $MAIGA!'},
     {id:'invaders',name:'MAIGA TAKEOVER',icon:'👾',color:'cyan',desc:'Shoot crypto coins in space.'},
     {id:'runner',name:'MAIGA RUNNER',icon:'🏃',color:'pink',desc:'Sprint through Meme Planet.'},
     {id:'popper',name:'MAIGA POPPER',icon:'⚡',color:'yellow',desc:'Tap coins, dodge bombs.'},
@@ -559,6 +582,156 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
   function sfxBad(){playTone(140,0.2,'sawtooth',0.08);}
   function sfxJump(){playTone(440,0.1,'triangle',0.05);}
 
+  /* ============================================================
+     GAME 0: WHEEL OF FORTUNE — MAX 2M
+     ============================================================ */
+  games.wheel=(function(){
+    var cv,ctx,W=520,H=520,run=false,raf=null,lt=0,st='idle';
+    var angle=0,spinning=false,spinVel=0,decel=0.985;
+    var score=0;
+    // 8 prizes, max 2M
+    var PRIZES=[
+      {label:'50K',value:50000,color:'#8fc8ff',textColor:'#000'},
+      {label:'100K',value:100000,color:'#ffd700',textColor:'#000'},
+      {label:'250K',value:250000,color:'#7db8ff',textColor:'#000'},
+      {label:'500K',value:500000,color:'#a78bfa',textColor:'#fff'},
+      {label:'750K',value:750000,color:'#ffa94d',textColor:'#000'},
+      {label:'1M',value:1000000,color:'#e63946',textColor:'#fff'},
+      {label:'1.5M',value:1500000,color:'#00ff88',textColor:'#000'},
+      {label:'2M',value:2000000,color:'#ff4b61',textColor:'#fff'}
+    ];
+    var sliceAngle=Math.PI*2/PRIZES.length;
+
+    function mount(){
+      $('gameFrame').innerHTML=
+        '<div class="wheel-container">'+
+          '<div class="wheel-pointer">▼</div>'+
+          '<canvas class="wheel-canvas" id="c-wheel" width="'+W+'" height="'+H+'"></canvas>'+
+        '</div>'+
+        '<div class="wheel-result" id="wheelResult" style="color:#ffd700;">SPIN TO WIN</div>'+
+        '<button class="spin-btn" id="spinBtn">SPIN</button>'+
+        '<div class="wheel-prizes-legend" id="wheelLegend"></div>'+
+        '<div class="game-overlay" id="ov-wheel" style="display:none;">'+
+          '<h3 class="gold">WHEEL OF FORTUNE</h3>'+
+          '<p>Spin the wheel. Win up to 2M $MAIGA.</p>'+
+          '<button class="start-btn gold" id="s-wheel">START SPINNING</button>'+
+          '<div class="controls-hint">Max prize: 2,000,000 $MAIGA</div>'+
+        '</div>';
+      cv=$('c-wheel');ctx=cv.getContext('2d');
+      $('spinBtn').addEventListener('click',spin);
+      $('s-wheel').addEventListener('click',function(){$('ov-wheel').style.display='none';draw();});
+      $('hudLivesWrap').style.display='none';
+      $('hudTitle').textContent='MAIGA WHEEL';
+      buildLegend();
+      draw();
+      st='idle';
+    }
+
+    function buildLegend(){
+      var leg=$('wheelLegend');if(!leg)return;
+      var h='';
+      PRIZES.forEach(function(p){
+        h+='<div class="wheel-prize-tag" style="border-color:'+p.color+';color:'+p.color+';">'+p.label+' $MAIGA</div>';
+      });
+      leg.innerHTML=h;
+    }
+
+    function draw(){
+      if(!ctx)return;
+      ctx.clearRect(0,0,W,H);
+      var cx=W/2,cy=H/2,R=W/2-30;
+      // Outer glow ring
+      ctx.save();
+      ctx.shadowColor='#ffd700';ctx.shadowBlur=40;
+      ctx.beginPath();ctx.arc(cx,cy,R+10,0,Math.PI*2);
+      ctx.strokeStyle='#ffd700';ctx.lineWidth=6;ctx.stroke();
+      ctx.restore();
+      // Wheel slices
+      for(var i=0;i<PRIZES.length;i++){
+        var start=angle+i*sliceAngle;
+        var end=start+sliceAngle;
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.arc(cx,cy,R,start,end);
+        ctx.closePath();
+        ctx.fillStyle=PRIZES[i].color;
+        ctx.fill();
+        ctx.strokeStyle='rgba(0,0,0,.4)';
+        ctx.lineWidth=3;
+        ctx.stroke();
+        // Label
+        ctx.save();
+        ctx.translate(cx,cy);
+        ctx.rotate(start+sliceAngle/2);
+        ctx.textAlign='right';
+        ctx.fillStyle=PRIZES[i].textColor;
+        ctx.font='bold 16px Impact';
+        ctx.fillText(PRIZES[i].label, R-20, 6);
+        ctx.restore();
+      }
+      // Center hub
+      ctx.save();
+      ctx.shadowColor='#000';ctx.shadowBlur=20;
+      ctx.beginPath();ctx.arc(cx,cy,38,0,Math.PI*2);
+      var cg=ctx.createRadialGradient(cx-10,cy-10,5,cx,cy,38);
+      cg.addColorStop(0,'#fff');cg.addColorStop(0.5,'#ffd700');cg.addColorStop(1,'#b8860b');
+      ctx.fillStyle=cg;ctx.fill();
+      ctx.strokeStyle='#000';ctx.lineWidth=4;ctx.stroke();
+      ctx.restore();
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.fillStyle='#000';ctx.font='bold 22px Impact';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText('$',0,2);
+      ctx.restore();
+    }
+
+    function spin(){
+      if(spinning)return;
+      spinning=true;
+      $('spinBtn').disabled=true;
+      $('spinBtn').classList.add('spinning');
+      $('spinBtn').textContent='SPINNING…';
+      $('wheelResult').textContent='';
+      spinVel=0.55+Math.random()*0.5;
+      st='spinning';
+      if(!run){run=true;lt=performance.now();raf=requestAnimationFrame(loop);}
+    }
+
+    function loop(now){
+      if(!run)return;
+      var dt=Math.min((now-lt)/1000,0.05);lt=now;
+      if(spinning){
+        angle+=spinVel*dt*20;
+        spinVel*=0.982;
+        if(spinVel<0.002){
+          spinning=false;
+          run=false;
+          sfxGood();
+          var norm=((angle%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+          var idx=Math.floor(norm/sliceAngle)%PRIZES.length;
+          var prize=PRIZES[idx];
+          score+=prize.value;
+          $('hudScore').textContent=score.toLocaleString();
+          $('wheelResult').textContent='🎉 YOU WON '+prize.label+' $MAIGA!';
+          $('wheelResult').style.color=prize.color;
+          submitScore('wheel',score);
+          updateBestLabels();
+          $('spinBtn').disabled=false;
+          $('spinBtn').classList.remove('spinning');
+          $('spinBtn').textContent='SPIN AGAIN';
+          draw();
+          return;
+        }
+      }
+      draw();
+      raf=requestAnimationFrame(loop);
+    }
+
+    function stop(){run=false;if(raf)cancelAnimationFrame(raf);}
+    return{start:mount,stop:stop};
+  })();
+
   /* ==== GAME 1: INVADERS ==== */
   games.invaders=(function(){
     var cv,ctx,W=800,H=600,run=false,raf=null,lt=0,st='idle';
@@ -748,8 +921,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
     return{start:function(){mount();$('hudTitle').textContent='MAIGA TETRIS';st='idle';},stop:function(){run=false;if(raf)cancelAnimationFrame(raf);}};
   })();
 
-  /* Placeholder pattern for remaining games - they work but simpler */
-  function simpleGame(id,name,color,callback){
+  /* Placeholder pattern for remaining games */
+  function simpleGame(id,name,color){
     return (function(){
       var run=false,raf=null,lt=0,st='idle',score=0;
       function mount(){
@@ -782,7 +955,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
     })();
   }
 
-  /* Register remaining games with simple logic (they all submit scores properly) */
+  /* Register remaining games */
   games.plinko=simpleGame('plinko','MAIGA PLINKO','cyan');
   games.dunk=simpleGame('dunk','MAIGA DUNK','pink');
   games.slice=simpleGame('slice','MAIGA SLICE','green');
@@ -807,7 +980,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
     state.playerName=sn||'Anonymous';
     if(n){n.addEventListener('input',function(){state.playerName=n.value.trim()||'Anonymous';safeSet(NAME_KEY,n.value.trim());});}
     loadTournament();renderLB();
-    console.log('[MAIGA] Arcade ready');
+    console.log('[MAIGA] Arcade ready — Wheel of Fortune max 2M');
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();

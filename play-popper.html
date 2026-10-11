@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAIGA FLAPPY — Play on X</title>
+
+<!-- X Player Card Meta Tags -->
+<meta name="twitter:card" content="player">
+<meta name="twitter:site" content="@greenlandusa1">
+<meta name="twitter:title" content="MAIGA FLAPPY">
+<meta name="twitter:description" content="Tap to fly. Dodge the pipes. Make AI Great Again.">
+<meta name="twitter:image" content="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg">
+<meta name="twitter:player" content="https://geopolcoins.xyz/play-flappy.html">
+<meta name="twitter:player:width" content="480">
+<meta name="twitter:player:height" content="480">
+<meta name="twitter:player:stream" content="https://geopolcoins.xyz/play-flappy.html">
+<meta name="twitter:player:stream:content_type" content="text/html">
+
+<!-- OG tags for other platforms -->
+<meta property="og:title" content="MAIGA FLAPPY">
+<meta property="og:description" content="Tap to fly. Dodge the pipes.">
+<meta property="og:image" content="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100vh;overflow:hidden;background:#0a0520;font-family:Impact,sans-serif;}
+#gameWrap{position:relative;width:100%;height:100vh;display:flex;align-items:center;justify-content:center;}
+canvas{display:block;max-width:100%;max-height:100%;touch-action:none;}
+#startBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#ffd800;color:#000;border:3px solid #000;border-radius:12px;padding:14px 32px;font-family:Impact,sans-serif;font-size:20px;letter-spacing:2px;cursor:pointer;box-shadow:0 5px 0 #b89800;}
+#startBtn:hover{transform:translate(calc(-50% + 2px),calc(-50% + 2px));box-shadow:0 2px 0 #b89800;}
+#hud{position:absolute;top:10px;left:0;right:0;display:flex;justify-content:space-between;padding:0 14px;color:#ffd800;font-size:16px;letter-spacing:2px;text-shadow:2px 2px 0 #000;pointer-events:none;}
+#gameOver{position:absolute;inset:0;background:rgba(10,5,32,.92);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;}
+#gameOver h3{color:#ffd800;font-size:34px;margin-bottom:10px;text-shadow:2px 2px 0 #000;letter-spacing:2px;}
+#gameOver p{color:#fff;font-size:16px;margin-bottom:6px;font-family:'Courier New',monospace;}
+#gameOver strong{color:#ffd800;font-size:24px;}
+#gameOver button{background:#ffd800;color:#000;border:3px solid #000;border-radius:10px;padding:12px 26px;font-family:Impact,sans-serif;font-size:16px;cursor:pointer;box-shadow:0 4px 0 #b89800;margin-top:14px;}
+</style>
+</head>
+<body>
+
+<div id="gameWrap">
+  <canvas id="game" width="480" height="480"></canvas>
+  <div id="hud">
+    <span>SCORE: <span id="score">0</span></span>
+    <span>MAIGA FLAPPY</span>
+    <span>BEST: <span id="best">0</span></span>
+  </div>
+  <button id="startBtn">START</button>
+  <div id="gameOver">
+    <h3>GAME OVER</h3>
+    <p>Score: <strong id="finalScore">0</strong></p>
+    <p style="color:#a9d4ff;font-size:12px;margin-top:8px;">MAKE AI GREAT AGAIN</p>
+    <button id="againBtn">PLAY AGAIN</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var canvas=document.getElementById('game');
+  var ctx=canvas.getContext('2d');
+  var W=480,H=480;
+  var state='menu';
+  var score=0,best=0;
+  var bird,pipes,gTimer,groundOffset=0;
+  var G=1500;
+  var flapPower=-420;
+  var pipeSpeed=180;
+  var pipeGap=160;
+  var pipeWidth=60;
+  var pipeSpacing=1.5;
+
+  try{ best=parseInt(localStorage.getItem('maiga_flappy_best')||'0',10); }catch(e){}
+  document.getElementById('best').textContent=best;
+
+  document.getElementById('startBtn').addEventListener('click',startGame);
+  document.getElementById('againBtn').addEventListener('click',startGame);
+
+  canvas.addEventListener('pointerdown',function(e){
+    e.preventDefault();
+    flap();
+  });
+  canvas.addEventListener('touchstart',function(e){
+    e.preventDefault();
+    flap();
+  },{passive:false});
+  window.addEventListener('keydown',function(e){
+    if(e.key===' '){e.preventDefault();flap();}
+  });
+
+  function flap(){
+    if(state!=='playing')return;
+    bird.vy=flapPower;
+    // small particle burst
+    for(var i=0;i<4;i++){
+      bird.particles.push({
+        x:bird.x-10,
+        y:bird.y+5,
+        vx:-Math.random()*80-20,
+        vy:(Math.random()-0.5)*60,
+        life:0.4,
+        max:0.4
+      });
+    }
+  }
+
+  function startGame(){
+    document.getElementById('startBtn').style.display='none';
+    document.getElementById('gameOver').style.display='none';
+    state='playing';
+    score=0;
+    document.getElementById('score').textContent='0';
+
+    bird={
+      x:W*0.28,
+      y:H*0.45,
+      vy:0,
+      r:16,
+      rot:0,
+      particles:[]
+    };
+    pipes=[];
+    gTimer=0;
+    groundOffset=0;
+
+    last=performance.now();
+    requestAnimationFrame(loop);
+  }
+
+  var last=0;
+  function loop(now){
+    var dt=Math.min((now-last)/1000,0.033);
+    last=now;
+    update(dt);
+    draw();
+    if(state==='playing')requestAnimationFrame(loop);
+  }
+
+  function update(dt){
+    if(state!=='playing')return;
+
+    // Bird physics
+    bird.vy+=G*dt;
+    bird.y+=bird.vy*dt;
+    // Rotation based on velocity
+    bird.rot=Math.max(-0.5,Math.min(1.2,bird.vy/700));
+
+    // Bird particles
+    for(var i=bird.particles.length-1;i>=0;i--){
+      var p=bird.particles[i];
+      p.x+=p.vx*dt;
+      p.y+=p.vy*dt;
+      p.life-=dt;
+      if(p.life<=0)bird.particles.splice(i,1);
+    }
+
+    // Spawn pipes
+    gTimer-=dt;
+    if(gTimer<=0){
+      var minY=80;
+      var maxY=H-80-pipeGap;
+      var gapY=minY+Math.random()*(maxY-minY);
+      pipes.push({
+        x:W+20,
+        gapY:gapY,
+        scored:false
+      });
+      gTimer=pipeSpacing;
+    }
+
+    // Move pipes
+    for(var j=0;j<pipes.length;j++){
+      var p2=pipes[j];
+      p2.x-=pipeSpeed*dt;
+
+      // Score check
+      if(!p2.scored && p2.x+pipeWidth<bird.x){
+        p2.scored=true;
+        score++;
+        document.getElementById('score').textContent=score;
+      }
+
+      // Collision check
+      if(bird.x+bird.r>p2.x && bird.x-bird.r<p2.x+pipeWidth){
+        if(bird.y-bird.r<p2.gapY || bird.y+bird.r>p2.gapY+pipeGap){
+          gameOver();
+          return;
+        }
+      }
+    }
+
+    // Remove offscreen pipes
+    pipes=pipes.filter(function(p){return p.x>-pipeWidth-20;});
+
+    // Ceiling/floor collision
+    if(bird.y-bird.r<0){
+      bird.y=bird.r;
+      bird.vy=0;
+    }
+    if(bird.y+bird.r>H-40){
+      gameOver();
+      return;
+    }
+
+    groundOffset=(groundOffset+pipeSpeed*dt)%20;
+  }
+
+  function draw(){
+    // Sky gradient
+    var g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'#1a0a3a');
+    g.addColorStop(0.7,'#2a0a20');
+    g.addColorStop(1,'#0a0520');
+    ctx.fillStyle=g;
+    ctx.fillRect(0,0,W,H);
+
+    // Stars
+    ctx.fillStyle='rgba(255,255,255,.35)';
+    for(var i=0;i<30;i++){
+      var sx=(i*137)%W;
+      var sy=(i*89)%(H-60);
+      ctx.fillRect(sx,sy,2,2);
+    }
+
+    // Pipes
+    for(var j=0;j<pipes.length;j++){
+      var p=pipes[j];
+      drawPipe(p.x,0,pipeWidth,p.gapY,false);
+      drawPipe(p.x,p.gapY+pipeGap,pipeWidth,H-(p.gapY+pipeGap),true);
+    }
+
+    // Ground
+    ctx.fillStyle='#0a0a1f';
+    ctx.fillRect(0,H-40,W,40);
+    ctx.strokeStyle='#ffd800';
+    ctx.lineWidth=3;
+    ctx.beginPath();
+    ctx.moveTo(0,H-40);
+    ctx.lineTo(W,H-40);
+    ctx.stroke();
+    // Ground stripes
+    ctx.strokeStyle='rgba(255,216,0,.3)';
+    ctx.lineWidth=2;
+    for(var k=0;k<25;k++){
+      var gx=k*20-groundOffset;
+      ctx.beginPath();
+      ctx.moveTo(gx,H-40);
+      ctx.lineTo(gx-10,H);
+      ctx.stroke();
+    }
+
+    // Draw bird (Jean-Phil pixel)
+    drawBird();
+
+    // Particles
+    for(var pi=0;pi<bird.particles.length;pi++){
+      var pt=bird.particles[pi];
+      ctx.globalAlpha=pt.life/pt.max;
+      ctx.fillStyle='#ffd800';
+      ctx.beginPath();
+      ctx.arc(pt.x,pt.y,2.5,0,Math.PI*2);
+      ctx.fill();
+    }
+    ctx.globalAlpha=1;
+  }
+
+  function drawPipe(x,y,w,h,isTop){
+    // Pipe body
+    ctx.fillStyle='#7db8ff';
+    ctx.fillRect(x,y,w,h);
+
+    // Pipe edge darker
+    ctx.fillStyle='#4a7fc0';
+    ctx.fillRect(x,y,6,h);
+    ctx.fillRect(x+w-6,y,6,h);
+
+    // Pipe cap
+    if(isTop){
+      ctx.fillStyle='#a9d4ff';
+      ctx.fillRect(x-4,y+h-16,w+8,16);
+      ctx.strokeStyle='#000';
+      ctx.lineWidth=2;
+      ctx.strokeRect(x-4,y+h-16,w+8,16);
+    } else {
+      ctx.fillStyle='#a9d4ff';
+      ctx.fillRect(x-4,y,w+8,16);
+      ctx.strokeStyle='#000';
+      ctx.lineWidth=2;
+      ctx.strokeRect(x-4,y,w+8,16);
+    }
+
+    // $MAIGA coin in pipe
+    var cy=isTop?y+h-40:y+40;
+    ctx.save();
+    ctx.translate(x+w/2,cy);
+    ctx.shadowColor='#ffd800';
+    ctx.shadowBlur=15;
+    ctx.fillStyle='#ffd800';
+    ctx.beginPath();
+    ctx.arc(0,0,14,0,Math.PI*2);
+    ctx.fill();
+    ctx.shadowBlur=0;
+    ctx.fillStyle='#000';
+    ctx.font='bold 16px Impact';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('$',0,1);
+    ctx.restore();
+  }
+
+  function drawBird(){
+    ctx.save();
+    ctx.translate(bird.x,bird.y);
+    ctx.rotate(bird.rot);
+
+    // Flame
+    var flameSize=10+Math.sin(performance.now()/50)*3;
+    var fg=ctx.createLinearGradient(-16,0,-16-flameSize,0);
+    fg.addColorStop(0,'#ffd800');
+    fg.addColorStop(1,'rgba(255,61,61,0)');
+    ctx.fillStyle=fg;
+    ctx.beginPath();
+    ctx.moveTo(-14,-4);
+    ctx.lineTo(-14-flameSize,0);
+    ctx.lineTo(-14,4);
+    ctx.closePath();
+    ctx.fill();
+
+    // Body (triangle ship)
+    ctx.shadowColor='#ffd800';
+    ctx.shadowBlur=15;
+    ctx.fillStyle='#ffd800';
+    ctx.beginPath();
+    ctx.moveTo(16,0);
+    ctx.lineTo(-10,-14);
+    ctx.lineTo(-6,0);
+    ctx.lineTo(-10,14);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.shadowBlur=0;
+    ctx.strokeStyle='#000';
+    ctx.lineWidth=2.5;
+    ctx.stroke();
+
+    // Jean-Phil face (small)
+    ctx.fillStyle='#f5d6b3';
+    ctx.beginPath();
+    ctx.arc(2,-2,7,0,Math.PI*2);
+    ctx.fill();
+
+    // Blonde hair
+    ctx.fillStyle='#f2cf5b';
+    ctx.beginPath();
+    ctx.arc(2,-4,7,Math.PI,0);
+    ctx.fill();
+    ctx.fillRect(-5,-4,14,3);
+
+    // Eyes
+    ctx.fillStyle='#000';
+    ctx.beginPath();
+    ctx.arc(0,-2,1.3,0,Math.PI*2);
+    ctx.arc(4,-2,1.3,0,Math.PI*2);
+    ctx.fill();
+
+    // Mustache
+    ctx.fillStyle='#f2cf5b';
+    ctx.beginPath();
+    ctx.ellipse(2,1,4,1.6,0,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function gameOver(){
+    state='over';
+    if(score>best){
+      best=score;
+      document.getElementById('best').textContent=best;
+      try{ localStorage.setItem('maiga_flappy_best',String(best)); }catch(e){}
+    }
+    document.getElementById('finalScore').textContent=score;
+    document.getElementById('gameOver').style.display='flex';
+  }
+
+  // Auto-start after short delay for X embed
+  setTimeout(startGame,500);
+})();
+</script>
+</body>
+</html>

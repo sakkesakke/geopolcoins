@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play MAIGA TAKEOVER on X</title>
+
+<!-- X Player Card Meta Tags -->
+<meta name="twitter:card" content="player">
+<meta name="twitter:site" content="@greenlandusa1">
+<meta name="twitter:title" content="MAIGA TAKEOVER">
+<meta name="twitter:description" content="Shoot crypto coins in space. Make AI Great Again.">
+<meta name="twitter:image" content="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg">
+<meta name="twitter:player" content="https://geopolcoins.xyz/play.html">
+<meta name="twitter:player:width" content="480">
+<meta name="twitter:player:height" content="480">
+<meta name="twitter:player:stream" content="https://geopolcoins.xyz/play.html">
+<meta name="twitter:player:stream:content_type" content="text/html">
+
+<!-- OG tags for other platforms -->
+<meta property="og:title" content="MAIGA TAKEOVER">
+<meta property="og:description" content="Shoot crypto coins in space.">
+<meta property="og:image" content="https://sakkemoto.com/wp-content/uploads/2026/10/maiga.jpeg">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100vh;overflow:hidden;background:#02020a;font-family:Impact,sans-serif;}
+#gameWrap{position:relative;width:100%;height:100vh;display:flex;align-items:center;justify-content:center;}
+canvas{display:block;max-width:100%;max-height:100%;touch-action:none;}
+#startBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#07152d;border:3px solid #000;border-radius:12px;padding:14px 32px;font-family:Impact,sans-serif;font-size:20px;letter-spacing:2px;cursor:pointer;box-shadow:0 5px 0 #9caec8;}
+#startBtn:hover{transform:translate(calc(-50% + 2px),calc(-50% + 2px));box-shadow:0 2px 0 #9caec8;}
+#hud{position:absolute;top:8px;left:0;right:0;display:flex;justify-content:space-between;padding:0 12px;color:#ffd800;font-size:14px;letter-spacing:2px;text-shadow:2px 2px 0 #000;pointer-events:none;}
+#gameOver{position:absolute;inset:0;background:rgba(2,2,10,.92);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;}
+#gameOver h3{color:#fff;font-size:32px;margin-bottom:10px;text-shadow:2px 2px 0 #e63946;}
+#gameOver p{color:#fff;font-size:16px;margin-bottom:16px;font-family:'Courier New',monospace;}
+#gameOver button{background:#fff;color:#07152d;border:3px solid #000;border-radius:10px;padding:12px 26px;font-family:Impact,sans-serif;font-size:16px;cursor:pointer;box-shadow:0 4px 0 #9caec8;}
+</style>
+</head>
+<body>
+
+<div id="gameWrap">
+  <canvas id="game" width="480" height="480"></canvas>
+  <div id="hud"><span>SCORE: <span id="score">0</span></span><span>MAIGA TAKEOVER</span><span>LIVES: <span id="lives">3</span></span></div>
+  <button id="startBtn">START</button>
+  <div id="gameOver">
+    <h3>GAME OVER</h3>
+    <p>Score: <strong id="finalScore">0</strong></p>
+    <button id="againBtn">PLAY AGAIN</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var canvas=document.getElementById('game');
+  var ctx=canvas.getContext('2d');
+  var W=480,H=480;
+  var state='menu';
+  var score=0,lives=3,wave=1;
+  var player={x:W/2,y:H-40,speed:280,cd:0.25};
+  var bullets=[],enemies=[],ebullets=[],parts=[];
+  var keys={},lastShot=0,eDir=1,eSpeed=40,sTimer=1;
+  var COINS=[{sym:'₿',color:'#f7931a'},{sym:'Ξ',color:'#8a92b2'},{sym:'Ð',color:'#c2a633'},{sym:'◎',color:'#14f195'},{sym:'P',color:'#4caf50'},{sym:'X',color:'#fff'}];
+
+  document.getElementById('startBtn').addEventListener('click',startGame);
+  document.getElementById('againBtn').addEventListener('click',startGame);
+  window.addEventListener('keydown',function(e){keys[e.key]=true;if(e.key===' ')e.preventDefault();});
+  window.addEventListener('keyup',function(e){keys[e.key]=false;});
+  canvas.addEventListener('pointerdown',function(e){
+    if(state!=='playing')return;
+    var r=canvas.getBoundingClientRect();
+    player.x=((e.clientX-r.left)/r.width)*W;
+    shoot();
+  });
+  canvas.addEventListener('pointermove',function(e){
+    if(state!=='playing'||e.buttons===0)return;
+    var r=canvas.getBoundingClientRect();
+    player.x=Math.max(20,Math.min(W-20,((e.clientX-r.left)/r.width)*W));
+  });
+  canvas.addEventListener('touchstart',function(e){
+    if(state!=='playing')return;
+    e.preventDefault();
+    var r=canvas.getBoundingClientRect();
+    player.x=((e.touches[0].clientX-r.left)/r.width)*W;
+    shoot();
+  },{passive:false});
+
+  function startGame(){
+    document.getElementById('startBtn').style.display='none';
+    document.getElementById('gameOver').style.display='none';
+    state='playing';
+    score=0;lives=3;wave=1;
+    bullets=[];enemies=[];ebullets=[];parts=[];
+    player={x:W/2,y:H-40,speed:280,cd:0.25};
+    keys={};lastShot=0;eDir=1;eSpeed=40;sTimer=1;
+    document.getElementById('score').textContent='0';
+    document.getElementById('lives').textContent='3';
+    spawnWave();
+    last=performance.now();
+    requestAnimationFrame(loop);
+  }
+
+  function spawnWave(){
+    enemies=[];
+    var cols=6,rows=Math.min(2+wave,4);
+    var padX=64,padY=46;
+    var sx=(W-(cols-1)*padX)/2,sy=60;
+    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){
+      var t=COINS[(r*cols+c)%COINS.length];
+      enemies.push({x:sx+c*padX,y:sy+r*padY,w:34,h:34,alive:true,type:t,wob:Math.random()*6});
+    }
+  }
+
+  function shoot(){
+    var now=performance.now()/1000;
+    if(now-lastShot<player.cd)return;
+    lastShot=now;
+    bullets.push({x:player.x,y:player.y-20,vy:-500});
+  }
+
+  function burst(x,y,color){
+    for(var i=0;i<10;i++){
+      var a=Math.random()*Math.PI*2,sp=Math.random()*150+40;
+      parts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:0.5,max:0.5,color:color});
+    }
+  }
+
+  var last=0;
+  function loop(now){
+    var dt=Math.min((now-last)/1000,0.033);
+    last=now;
+    update(dt);
+    draw();
+    if(state==='playing')requestAnimationFrame(loop);
+  }
+
+  function update(dt){
+    if(state!=='playing')return;
+    var mv=0;
+    if(keys['ArrowLeft']||keys['a'])mv-=1;
+    if(keys['ArrowRight']||keys['d'])mv+=1;
+    if(keys[' '])shoot();
+    player.x+=mv*player.speed*dt;
+    player.x=Math.max(20,Math.min(W-20,player.x));
+
+    bullets.forEach(function(b){b.y+=b.vy*dt;});
+    bullets=bullets.filter(function(b){return b.y>-20;});
+
+    var alive=enemies.filter(function(e){return e.alive;});
+    var minX=Infinity,maxX=-Infinity;
+    alive.forEach(function(e){
+      e.x+=eDir*eSpeed*dt;e.wob+=dt*3;
+      minX=Math.min(minX,e.x-e.w/2);
+      maxX=Math.max(maxX,e.x+e.w/2);
+    });
+    if(maxX>W-16&&eDir>0){eDir=-1;alive.forEach(function(e){e.y+=14;});}
+    if(minX<16&&eDir<0){eDir=1;alive.forEach(function(e){e.y+=14;});}
+
+    sTimer-=dt;
+    if(sTimer<=0){
+      var e=alive[Math.floor(Math.random()*alive.length)];
+      if(e)ebullets.push({x:e.x,y:e.y+18,vy:240,type:e.type});
+      sTimer=Math.max(0.4,1.1-wave*0.06);
+    }
+
+    bullets.forEach(function(b){
+      enemies.forEach(function(e){
+        if(!e.alive)return;
+        if(Math.abs(b.x-e.x)<e.w/2+5&&Math.abs(b.y-e.y)<e.h/2+5){
+          e.alive=false;b.y=-100;
+          score+=10;
+          document.getElementById('score').textContent=score;
+          burst(e.x,e.y,e.type.color);
+        }
+      });
+    });
+
+    ebullets.forEach(function(b){b.y+=b.vy*dt;});
+    ebullets=ebullets.filter(function(b){
+      if(Math.abs(b.x-player.x)<18&&Math.abs(b.y-player.y)<22){
+        lives--;
+        document.getElementById('lives').textContent=lives;
+        burst(player.x,player.y,'#ff3d3d');
+        if(lives<=0){gameOver();return false;}
+        player.x=W/2;
+        return false;
+      }
+      return b.y<H+20;
+    });
+
+    parts.forEach(function(p){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=200*dt;p.life-=dt;});
+    parts=parts.filter(function(p){return p.life>0;});
+
+    if(alive.length===0){wave++;spawnWave();}
+  }
+
+  function draw(){
+    ctx.fillStyle='#02020a';
+    ctx.fillRect(0,0,W,H);
+
+    enemies.forEach(function(e){
+      if(!e.alive)return;
+      var r=e.w/2;
+      ctx.save();ctx.translate(e.x,e.y);ctx.rotate(Math.sin(e.wob)*0.1);
+      ctx.shadowColor=e.type.color;ctx.shadowBlur=12;
+      ctx.fillStyle=e.type.color;
+      ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();
+      ctx.shadowBlur=0;
+      ctx.fillStyle='#fff';
+      ctx.font='bold 18px Impact';ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(e.type.sym,0,2);
+      ctx.restore();
+    });
+
+    ctx.fillStyle='#00f0ff';
+    bullets.forEach(function(b){ctx.fillRect(b.x-2,b.y-10,4,12);});
+
+    ebullets.forEach(function(b){
+      ctx.fillStyle=b.type.color;
+      ctx.beginPath();ctx.arc(b.x,b.y,4,0,Math.PI*2);ctx.fill();
+    });
+
+    ctx.save();ctx.translate(player.x,player.y);
+    ctx.shadowColor='#ffd800';ctx.shadowBlur=15;
+    ctx.fillStyle='#ffd800';
+    ctx.beginPath();ctx.moveTo(0,-16);ctx.lineTo(12,12);ctx.lineTo(-12,12);ctx.closePath();ctx.fill();
+    ctx.shadowBlur=0;
+    ctx.fillStyle='#000';ctx.font='bold 10px Impact';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('JP',0,0);
+    ctx.restore();
+
+    parts.forEach(function(p){
+      ctx.globalAlpha=p.life/p.max;
+      ctx.fillStyle=p.color;
+      ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fill();
+    });
+    ctx.globalAlpha=1;
+  }
+
+  function gameOver(){
+    state='over';
+    document.getElementById('finalScore').textContent=score;
+    document.getElementById('gameOver').style.display='flex';
+  }
+
+  // Auto-start on load for X embed
+  setTimeout(startGame,300);
+})();
+</script>
+</body>
+</html>

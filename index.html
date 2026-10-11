@@ -203,14 +203,20 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
 .wheel-container{position:relative;width:100%;max-width:520px;margin:0 auto;padding:20px}
 .wheel-canvas{width:100%;height:auto;display:block;margin:0 auto}
 .wheel-pointer{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:32px;color:#ffd700;text-shadow:0 0 12px #ffd700,0 0 24px #ff8c00;z-index:10;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
-.wheel-result{text-align:center;margin-top:16px;font-family:Impact,sans-serif;font-size:22px;letter-spacing:3px;min-height:40px}
-.wheel-prizes-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;max-width:600px;margin:20px auto 0}
-.wheel-prize-tag{background:rgba(0,0,0,.4);border:2px solid rgba(255,215,0,.4);border-radius:8px;padding:8px 6px;text-align:center;font-size:10px;font-weight:900;letter-spacing:1px;color:#ffd700}
-.spin-btn{display:block;margin:20px auto 0;background:linear-gradient(135deg,#ffd700,#ffb800);color:#000;border:3px solid #fff;border-radius:14px;padding:16px 48px;font-family:Impact,sans-serif;font-size:22px;letter-spacing:4px;cursor:pointer;box-shadow:0 6px 0 #8a6d00,0 0 30px rgba(255,215,0,.4);transition:.15s;text-transform:uppercase}
+.wheel-status{text-align:center;margin-top:12px;padding:12px 16px;border-radius:10px;font-family:Impact,sans-serif;font-size:14px;letter-spacing:2px;border:2px solid;transition:.3s}
+.wheel-status.ready{background:rgba(0,255,136,.12);border-color:#00ff88;color:#00ff88;box-shadow:0 0 20px rgba(0,255,136,.25)}
+.wheel-status.locked{background:rgba(230,57,70,.12);border-color:#ff6574;color:#ff9ba5}
+.wheel-status.nowallet{background:rgba(255,215,0,.12);border-color:#ffd700;color:#ffd700}
+.wheel-status small{display:block;font-family:'Courier New',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);margin-top:4px;font-weight:400}
+.wheel-result{text-align:center;margin-top:12px;font-family:Impact,sans-serif;font-size:22px;letter-spacing:3px;min-height:40px}
+.wheel-prizes-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:6px;max-width:640px;margin:20px auto 0}
+.wheel-prize-tag{background:rgba(0,0,0,.4);border:2px solid rgba(255,215,0,.4);border-radius:6px;padding:6px 4px;text-align:center;font-size:9px;font-weight:900;letter-spacing:1px;color:#ffd700}
+.spin-btn{display:block;margin:16px auto 0;background:linear-gradient(135deg,#ffd700,#ffb800);color:#000;border:3px solid #fff;border-radius:14px;padding:16px 48px;font-family:Impact,sans-serif;font-size:22px;letter-spacing:4px;cursor:pointer;box-shadow:0 6px 0 #8a6d00,0 0 30px rgba(255,215,0,.4);transition:.15s;text-transform:uppercase}
 .spin-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 0 #8a6d00,0 0 50px rgba(255,215,0,.6)}
 .spin-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .spin-btn.spinning{animation:spinPulse .8s ease-in-out infinite}
 @keyframes spinPulse{0%,100%{box-shadow:0 6px 0 #8a6d00,0 0 30px rgba(255,215,0,.4)}50%{box-shadow:0 6px 0 #8a6d00,0 0 60px rgba(255,215,0,.8)}}
+.wheel-goto-wallet{display:inline-block;margin-top:8px;padding:6px 14px;background:#ffd700;color:#000;font-family:Impact,sans-serif;font-size:12px;letter-spacing:2px;border-radius:6px;border:2px solid #000;cursor:pointer;text-decoration:none}
 </style>
 </head>
 <body>
@@ -380,9 +386,10 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
   var SHARE_BASE='https://geopolcoins.xyz/';
   var NAME_KEY='maiga_name_v1',WALLET_KEY='maiga_wallet_v1',BEST_PREFIX='maiga_best_';
   var GLOBAL_ENABLED=!!(SUPABASE_URL&&SUPABASE_ANON_KEY);
+  var WHEEL_COOLDOWN_MS=24*60*60*1000; // 24h
 
   var GAMES=[
-    {id:'wheel',name:'MAIGA WHEEL',icon:'🎡',color:'gold',desc:'Spin to win up to 2M $MAIGA!'},
+    {id:'wheel',name:'MAIGA WHEEL',icon:'🎡',color:'gold',desc:'1 FREE SPIN PER DAY · WIN UP TO 2M $MAIGA'},
     {id:'invaders',name:'MAIGA TAKEOVER',icon:'👾',color:'cyan',desc:'Shoot crypto coins in space.'},
     {id:'runner',name:'MAIGA RUNNER',icon:'🏃',color:'pink',desc:'Sprint through Meme Planet.'},
     {id:'popper',name:'MAIGA POPPER',icon:'⚡',color:'yellow',desc:'Tap coins, dodge bombs.'},
@@ -583,24 +590,85 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
   function sfxJump(){playTone(440,0.1,'triangle',0.05);}
 
   /* ============================================================
-     GAME 0: WHEEL OF FORTUNE — MAX 2M
+     GAME 0: WHEEL OF FORTUNE — 16 PRIZES, MAX 2M
+     1 FREE SPIN / 24H PER WALLET
      ============================================================ */
   games.wheel=(function(){
     var cv,ctx,W=520,H=520,run=false,raf=null,lt=0,st='idle';
-    var angle=0,spinning=false,spinVel=0,decel=0.985;
+    var angle=0,spinning=false,spinVel=0;
     var score=0;
-    // 8 prizes, max 2M
+    var countdownIv=null;
+    // 16 prizes — more lower tiers, max 2M
     var PRIZES=[
-      {label:'50K',value:50000,color:'#8fc8ff',textColor:'#000'},
-      {label:'100K',value:100000,color:'#ffd700',textColor:'#000'},
-      {label:'250K',value:250000,color:'#7db8ff',textColor:'#000'},
-      {label:'500K',value:500000,color:'#a78bfa',textColor:'#fff'},
-      {label:'750K',value:750000,color:'#ffa94d',textColor:'#000'},
-      {label:'1M',value:1000000,color:'#e63946',textColor:'#fff'},
-      {label:'1.5M',value:1500000,color:'#00ff88',textColor:'#000'},
-      {label:'2M',value:2000000,color:'#ff4b61',textColor:'#fff'}
+      {label:'10K',  value:10000,  color:'#a9d4ff', textColor:'#000'},
+      {label:'25K',  value:25000,  color:'#8fc8ff', textColor:'#000'},
+      {label:'50K',  value:50000,  color:'#7db8ff', textColor:'#000'},
+      {label:'75K',  value:75000,  color:'#ffd700', textColor:'#000'},
+      {label:'100K', value:100000, color:'#ffb800', textColor:'#000'},
+      {label:'150K', value:150000, color:'#ffa94d', textColor:'#000'},
+      {label:'200K', value:200000, color:'#ff8c42', textColor:'#000'},
+      {label:'250K', value:250000, color:'#ff6b61', textColor:'#fff'},
+      {label:'300K', value:300000, color:'#e63946', textColor:'#fff'},
+      {label:'400K', value:400000, color:'#c92a3a', textColor:'#fff'},
+      {label:'500K', value:500000, color:'#a78bfa', textColor:'#fff'},
+      {label:'750K', value:750000, color:'#8b5cf6', textColor:'#fff'},
+      {label:'1M',   value:1000000,color:'#00ff88', textColor:'#000'},
+      {label:'1.25M',value:1250000,color:'#00d970', textColor:'#000'},
+      {label:'1.5M', value:1500000,color:'#00b360', textColor:'#fff'},
+      {label:'2M',   value:2000000,color:'#ff4b61', textColor:'#fff'}
     ];
     var sliceAngle=Math.PI*2/PRIZES.length;
+
+    function getSpinKey(){
+      if(!state.wallet) return null;
+      return 'maiga_wheel_spin_v1_'+state.wallet;
+    }
+    function checkStatus(){
+      if(!state.wallet) return {ok:false,reason:'nowallet'};
+      var key=getSpinKey();
+      var last=parseInt(safeGet(key)||'0',10);
+      var now=Date.now();
+      if(last && (now-last)<WHEEL_COOLDOWN_MS){
+        return {ok:false,reason:'cooldown',remaining:WHEEL_COOLDOWN_MS-(now-last)};
+      }
+      return {ok:true};
+    }
+    function markSpun(){
+      var key=getSpinKey();
+      if(key) safeSet(key, String(Date.now()));
+    }
+    function fmt(ms){
+      var s=Math.floor(ms/1000);
+      var h=Math.floor(s/3600);s%=3600;
+      var m=Math.floor(s/60);s%=60;
+      return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    }
+
+    function updateStatusUI(){
+      var sBox=$('wheelStatus'),btn=$('spinBtn'),res=$('wheelResult');
+      if(!sBox||!btn)return;
+      var status=checkStatus();
+      if(status.ok){
+        sBox.className='wheel-status ready';
+        sBox.innerHTML='🎁 FREE SPIN AVAILABLE<small>You can spin once every 24h</small>';
+        btn.disabled=false;
+        btn.textContent='SPIN FREE';
+      } else if(status.reason==='nowallet'){
+        sBox.className='wheel-status nowallet';
+        sBox.innerHTML='⚠ SUBMIT WALLET TO SPIN<small>Required for 1 free spin per 24h</small>';
+        btn.disabled=true;
+        btn.textContent='WALLET REQUIRED';
+      } else {
+        sBox.className='wheel-status locked';
+        sBox.innerHTML='⏳ NEXT SPIN IN '+fmt(status.remaining)+'<small>1 free spin every 24 hours per wallet</small>';
+        btn.disabled=true;
+        btn.textContent='COME BACK TOMORROW';
+      }
+      // Clear stale result text when cooldown restarts
+      if(!status.ok&&res&&st!=='spinning'&&res.dataset.stale!=='1'){
+        res.textContent='';
+      }
+    }
 
     function mount(){
       $('gameFrame').innerHTML=
@@ -608,14 +676,18 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
           '<div class="wheel-pointer">▼</div>'+
           '<canvas class="wheel-canvas" id="c-wheel" width="'+W+'" height="'+H+'"></canvas>'+
         '</div>'+
-        '<div class="wheel-result" id="wheelResult" style="color:#ffd700;">SPIN TO WIN</div>'+
-        '<button class="spin-btn" id="spinBtn">SPIN</button>'+
+        '<div class="wheel-status" id="wheelStatus"></div>'+
+        '<div class="wheel-result" id="wheelResult" style="color:#ffd700;"></div>'+
+        '<button class="spin-btn" id="spinBtn">SPIN FREE</button>'+
+        '<div style="text-align:center;margin-top:10px;">'+
+          '<a class="wheel-goto-wallet" href="#global" onclick="document.getElementById(\'global\').scrollIntoView({behavior:\'smooth\'});return false;">MANAGE WALLET ↓</a>'+
+        '</div>'+
         '<div class="wheel-prizes-legend" id="wheelLegend"></div>'+
         '<div class="game-overlay" id="ov-wheel" style="display:none;">'+
           '<h3 class="gold">WHEEL OF FORTUNE</h3>'+
           '<p>Spin the wheel. Win up to 2M $MAIGA.</p>'+
           '<button class="start-btn gold" id="s-wheel">START SPINNING</button>'+
-          '<div class="controls-hint">Max prize: 2,000,000 $MAIGA</div>'+
+          '<div class="controls-hint">1 FREE spin every 24h per wallet</div>'+
         '</div>';
       cv=$('c-wheel');ctx=cv.getContext('2d');
       $('spinBtn').addEventListener('click',spin);
@@ -624,6 +696,12 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
       $('hudTitle').textContent='MAIGA WHEEL';
       buildLegend();
       draw();
+      updateStatusUI();
+      // live countdown
+      if(countdownIv)clearInterval(countdownIv);
+      countdownIv=setInterval(function(){
+        if(state.activeGame==='wheel')updateStatusUI();
+      },1000);
       st='idle';
     }
 
@@ -657,7 +735,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
         ctx.fillStyle=PRIZES[i].color;
         ctx.fill();
         ctx.strokeStyle='rgba(0,0,0,.4)';
-        ctx.lineWidth=3;
+        ctx.lineWidth=2;
         ctx.stroke();
         // Label
         ctx.save();
@@ -665,8 +743,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
         ctx.rotate(start+sliceAngle/2);
         ctx.textAlign='right';
         ctx.fillStyle=PRIZES[i].textColor;
-        ctx.font='bold 16px Impact';
-        ctx.fillText(PRIZES[i].label, R-20, 6);
+        ctx.font='bold 14px Impact';
+        ctx.fillText(PRIZES[i].label, R-18, 5);
         ctx.restore();
       }
       // Center hub
@@ -688,11 +766,21 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
 
     function spin(){
       if(spinning)return;
+      var status=checkStatus();
+      if(!status.ok){
+        if(status.reason==='nowallet'){
+          alert('Submit a Solana wallet first (see Airdrop Wallet panel).');
+        } else if(status.reason==='cooldown'){
+          alert('You already spun today. Come back in '+fmt(status.remaining)+' for your next free spin.');
+        }
+        return;
+      }
       spinning=true;
       $('spinBtn').disabled=true;
       $('spinBtn').classList.add('spinning');
       $('spinBtn').textContent='SPINNING…';
       $('wheelResult').textContent='';
+      $('wheelResult').dataset.stale='0';
       spinVel=0.55+Math.random()*0.5;
       st='spinning';
       if(!run){run=true;lt=performance.now();raf=requestAnimationFrame(loop);}
@@ -711,16 +799,18 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
           var norm=((angle%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
           var idx=Math.floor(norm/sliceAngle)%PRIZES.length;
           var prize=PRIZES[idx];
+          markSpun();
           score+=prize.value;
           $('hudScore').textContent=score.toLocaleString();
-          $('wheelResult').textContent='🎉 YOU WON '+prize.label+' $MAIGA!';
-          $('wheelResult').style.color=prize.color;
+          var res=$('wheelResult');
+          res.textContent='🎉 YOU WON '+prize.label+' $MAIGA!';
+          res.style.color=prize.color;
+          res.dataset.stale='1';
           submitScore('wheel',score);
           updateBestLabels();
-          $('spinBtn').disabled=false;
           $('spinBtn').classList.remove('spinning');
-          $('spinBtn').textContent='SPIN AGAIN';
           draw();
+          updateStatusUI();
           return;
         }
       }
@@ -728,7 +818,11 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
       raf=requestAnimationFrame(loop);
     }
 
-    function stop(){run=false;if(raf)cancelAnimationFrame(raf);}
+    function stop(){
+      run=false;
+      if(raf)cancelAnimationFrame(raf);
+      if(countdownIv){clearInterval(countdownIv);countdownIv=null;}
+    }
     return{start:mount,stop:stop};
   })();
 
@@ -980,7 +1074,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;
     state.playerName=sn||'Anonymous';
     if(n){n.addEventListener('input',function(){state.playerName=n.value.trim()||'Anonymous';safeSet(NAME_KEY,n.value.trim());});}
     loadTournament();renderLB();
-    console.log('[MAIGA] Arcade ready — Wheel of Fortune max 2M');
+    console.log('[MAIGA] Arcade ready — Wheel: 1 free spin / 24h, 16 prizes, max 2M');
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();

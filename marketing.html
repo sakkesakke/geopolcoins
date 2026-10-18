@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>MAIGA Marketing Agent</title>
+<style>
+:root{--bg:#0a1226;--card:#111c38;--line:#25365e;--tx:#e8eefb;--dim:#9fb0c8;--y:#ffd800;--g:#14F195;--r:#ff4b61;--p:#a78bfa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:26px;margin:6px 0 2px}h1 span{color:var(--y)}
+h2{font-size:15px;letter-spacing:2px;color:var(--y);margin:0 0 12px}
+.sub{color:var(--dim);margin-bottom:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+label{display:block;font-size:11px;letter-spacing:1.5px;color:var(--dim);margin:10px 0 4px}
+select,input[type=text],textarea{width:100%;padding:10px;background:#0a0f20;color:#fff;border:2px solid #2b3a63;border-radius:8px;font:inherit}
+.row{display:flex;gap:12px;flex-wrap:wrap}.row>div{flex:1;min-width:200px}
+.chk{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0 4px;font-size:13px}.chk label{margin:0;font-size:13px;letter-spacing:0;color:var(--tx);display:flex;gap:6px;align-items:center}
+button{font:inherit;font-weight:800;border:0;border-radius:8px;padding:10px 14px;cursor:pointer;letter-spacing:1px}
+.go{background:var(--g);color:#000;width:100%;margin-top:12px;font-size:15px}
+.cp{background:var(--p);color:#fff}.xx{background:#fff;color:#000}.ghost{background:transparent;border:2px solid #4a5b8a;color:var(--tx)}
+.draft{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;background:#0d1730}
+.draft pre{white-space:pre-wrap;word-break:break-word;margin:0 0 8px;font:inherit}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cnt{font-size:12px;color:var(--dim)}.cnt.bad{color:var(--r);font-weight:800}
+.flag{font-size:12px;padding:2px 8px;border-radius:6px;border:1px solid}
+.flag.r{color:#ff9aa6;border-color:var(--r)}.flag.y{color:#ffe36a;border-color:var(--y)}.flag.g{color:#7dffc9;border-color:var(--g)}
+.note{font-size:12px;color:var(--dim)}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--dim);font-size:11px;letter-spacing:1.5px}
+details{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:#0d1730}summary{padding:10px 12px;cursor:pointer;font-weight:700}
+details div{padding:0 12px 12px}
+.rules li{margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🤖 MAIGA <span>Marketing Agent</span></h1>
+  <div class="sub">Writes post drafts for you. It never posts by itself: you read every draft, then press Copy or Open in X. Private tool: keep this file off the public site if you prefer (it stores nothing and holds no secrets).</div>
+
+  <div class="card">
+    <h2>1 · MAKE DRAFTS</h2>
+    <div class="row">
+      <div><label for="type">POST TYPE</label>
+        <select id="type">
+          <option value="agent">Agent spotlight</option>
+          <option value="trust">Trust post</option>
+          <option value="recap">Tournament recap (live standings)</option>
+          <option value="meme">Meme drop</option>
+          <option value="question">Community question</option>
+          <option value="update">Update / what we shipped</option>
+          <option value="team">Team call</option>
+        </select></div>
+      <div id="extraWrap"><label for="extra" id="extraLbl">AGENT</label>
+        <select id="extraSel"><option value="arcade">Arcade Agent</option><option value="launchcheck">Launch Check Agent</option><option value="meme">Meme Agent</option><option value="teammatch">Team Match Agent</option></select>
+        <input type="text" id="extra" maxlength="100" placeholder="" style="display:none"></div>
+    </div>
+    <div class="chk">
+      <label><input type="checkbox" id="fSite" checked> website</label>
+      <label><input type="checkbox" id="fDiscord"> Discord link</label>
+      <label><input type="checkbox" id="fCA"> contract address</label>
+      <label><input type="checkbox" id="fNFA" checked> NFA · DYOR</label>
+    </div>
+    <button class="go" id="gen">WRITE 4 DRAFTS</button>
+    <div id="msg" class="note" style="margin-top:8px"></div>
+  </div>
+
+  <div id="drafts"></div>
+
+  <div class="card">
+    <h2>2 · WEEKLY PLAN (Brussels time)</h2>
+    <table>
+      <tr><th>DAY</th><th>POST</th><th>TIME</th></tr>
+      <tr><td>Mon</td><td>Agent spotlight (Arcade)</td><td>18:00</td></tr>
+      <tr><td>Tue</td><td>Meme drop</td><td>12:00</td></tr>
+      <tr><td>Wed</td><td>Trust post</td><td>18:00</td></tr>
+      <tr><td>Thu</td><td>Community question</td><td>12:00</td></tr>
+      <tr><td>Fri</td><td>Tournament recap</td><td>21:30 (after the daily Discord post)</td></tr>
+      <tr><td>Sat</td><td>Team call</td><td>15:00</td></tr>
+      <tr><td>Sun</td><td>Update / what we shipped</td><td>17:00</td></tr>
+    </table>
+    <p class="note">One post a day is enough. After each post, stay 20 minutes and reply to real questions with the Reply bank below.</p>
+  </div>
+
+  <div class="card">
+    <h2>3 · REPLY BANK</h2>
+    <div id="bank"></div>
+  </div>
+
+  <div class="card rules">
+    <h2>4 · RULES THAT KEEP US TRUSTED</h2>
+    <ul>
+      <li>No price talk: no "moon", "x100", "cheap", "get a bag", "don't miss out". The checker flags them.</li>
+      <li>Always say NFA · DYOR and show the contract address now and then.</li>
+      <li>Never buy followers, comments or engagement. Never mass-tag people.</li>
+      <li>Never use a real person's name or face to suggest they back the project.</li>
+      <li>If someone is paid to promote, they must say so.</li>
+      <li>Admins never DM first. Say it often.</li>
+      <li>Read each draft before posting. This tool is a helper, not a guarantee.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id);};
+  var SITE='geopolcoins.xyz',DISCORD='discord.gg/KFYCT4xVk',CA='3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump';
+  var SB='https://zslzbfbqrtfpvgbjhssd.supabase.co',KEY='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';
+
+  var AGENT={
+    arcade:[
+      '🏆 Arcade Agent is live. Every day it posts the tournament standings in our Discord: top players, runs and best score. Play, then check the board.',
+      'Who is #1 today? The Arcade Agent posts the daily tournament standings in our Discord. 9 games, one leaderboard. 🕹️',
+      'We built a bot that keeps score. 🏆 Arcade Agent = daily standings in Discord. Read-only: it never touches wallets.',
+      'Play. Score. Check the board. 🕹️ The Arcade Agent drops the daily standings in our Discord.'],
+    launchcheck:[
+      '🛡️ Launch Check Agent: paste your coin name, ticker and text and get brand and scam-wording flags before you launch. Free, in the Launch Hub.',
+      'Before you launch a coin, run the check. 🛡️ It flags known brands and wording that promises profit. A checklist, not legal advice.',
+      'Copied names and big promises are classic red flags. Our Launch Check flags both before you launch. Free.',
+      'New creator? Run your coin through the Launch Check first. It takes 5 seconds. 🛡️'],
+    meme:[
+      '🎨 Meme Agent: type one word, get meme text plus coin name and ticker ideas. Simple templates, so read before you use. Launch Hub, Step 1.',
+      'Blank page problem? Give the Meme Agent one word and pick a tone: funny, crypto humor or wholesome. 🎨 Free in the Launch Hub.',
+      'One word in, four meme ideas out. 🎨 The Meme Agent fills joke templates with your idea. Not a language model, just fun.',
+      'Need a meme fast? Meme Agent, Step 1 of the Launch Hub. 🎨'],
+    teammatch:[
+      '🤝 Team Match Agent: post your role and the role you need. Dev, marketing, mod, designer. No wallets or contacts stored, you talk on Discord.',
+      'Building alone is hard. 🤝 Find a dev, marketer or mod on the Team Match board, then team up in our Discord.',
+      'Post your role. Find your squad. 🤝 Team Match board, Step 2 of the Launch Hub.',
+      'Devs, marketers, mods, designers: say what you need on the Team Match board. 🤝']
+  };
+  var TRUST=[
+    'Quick trust check ✅ Always compare the CA before you buy. Admins never DM first. Never share your seed phrase. Swap fee shown openly: 0.5%.',
+    'No price promises here. Ever. We ship tools and show our work. Check the CA yourself. 🛡️',
+    'If someone DMs you "support" or asks for your seed phrase, it is a scam. We never DM first. Stay safe. 🛡️',
+    'Swaps on our site run from your own wallet. The fee is shown openly: 0.5%. Check the details before you confirm.'];
+  var QUESTION=[
+    'What should the next agent do? Reply with your idea, we read everything. 🤖',
+    'Which of our 9 games is your best score on? Drop it below. 🕹️',
+    'What would make launching a coin safer for beginners? Best ideas get built.',
+    'Which game should get a daily challenge next? Reply with your pick. 🎮'];
+  var UPDATE=['Update: {X}. We build in public, step by step.','Shipped: {X} ✅ More coming. Feedback welcome in our Discord.','New on '+SITE+': {X}. Try it and tell us what to improve.','Small step today: {X}. Thanks to everyone testing.'];
+  var MEME=['Me: I will be serious today.\n{X}: no. 😅','Tell me you love {X} without telling me you love {X}. I will start: I built an arcade for it. 🕹️','Today\'s mood: {X}. Reply with yours.','{X} walks into the arcade and leaves with the high score. 🏆'];
+  var TEAM=['Looking for builders: devs, marketers, mods and designers. Post your role on the Team Match board, then team up in Discord. 🤝','Got an idea but no team? Post it on the Team Match board and find your squad.','We need community mods. Know someone kind and active? Send them to our Discord. 💬','Builders wanted. Show what you can do, find people who complement you. 🤝'];
+
+  var BANK=[
+    ['Is this a rug?','We cannot promise anything about any coin, and we make no price promises. Check the contract address yourself, read how things work on our site, and only use money you can afford to lose. NFA · DYOR.'],
+    ['Where do I buy?','There is a step-by-step guide on '+SITE+' (How to buy). Always compare the contract address first: '+CA],
+    ['When moon / what price?','No price promises from us. We build tools: games, a tournament, a launch hub and 4 helper agents. Check them out and decide for yourself. NFA.'],
+    ['Someone DM\'d me from the team','It was not us. We never DM first and never ask for your seed phrase. Block and report. 🛡️'],
+    ['What is the Arcade Agent?','A bot that posts the daily tournament standings in our Discord: top players, runs and best score. It only reads names and scores.'],
+    ['Is the swap safe?','The swap runs from your own wallet and a small 0.5% fee is shown openly before you confirm. Always check the details in your wallet. Not financial advice.'],
+    ['Can I join the team?','Yes! Post your role on the Team Match board on the site and say hi in our Discord: '+DISCORD],
+    ['Why should I trust you?','Do not trust, verify: the contract address is public, the code of the tools runs in your browser, and we promise no profits. Ask us anything in Discord.']
+  ];
+
+  function pick4(a){return a.slice(0,4);}
+  function clean(s,n){return String(s||'').replace(/https?:\/\/\S+/gi,'').replace(/[@#<>]/g,'').replace(/[\u0000-\u001f]/g,' ').replace(/\s+/g,' ').trim().slice(0,n||100);}
+
+  // X counts every link as 23 characters
+  function xlen(t){
+    var s=t.replace(/(https?:\/\/\S+|\b[a-z0-9-]+\.(?:xyz|com|gg|io|fun|app)\b(?:\/\S*)?)/gi,'x'.repeat(23));
+    return Array.from(s).length;
+  }
+  var RED=[[/guarante/i,'promises or guarantees profit'],[/\b\d{2,}x\b/i,'promises a multiple like 100x'],[/get a bag|buy now|don'?t miss|last chance|ape in|apes? in/i,'pushes people to buy'],[/\bcheap\b|\bdiscount\b/i,'talks price ("cheap")'],[/passive income|free money|risk ?free|can'?t lose/i,'promises easy money'],[/seed ?phrase.*(send|share|give)|send.*(sol|eth|funds)/i,'asks for keys or funds']];
+  var YEL=[[/\bmoon\b|to the moon|lambo/i,'moon / lambo talk'],[/\binvest/i,'uses "invest"'],[/giveaway|airdrop/i,'giveaway / airdrop wording (needs clear rules)'],[/\bpump(ing|ed)?\b/i,'"pump" wording (not pump.fun)'],[/\byolo\b/i,'yolo wording']];
+  function lint(t){
+    var out=[];
+    RED.forEach(function(r){if(r[0].test(t))out.push(['r','Fix: '+r[1]]);});
+    YEL.forEach(function(r){if(r[0].test(t))out.push(['y','Check: '+r[1]]);});
+    if((t.match(/#\w+/g)||[]).length>2)out.push(['y','Check: more than 2 hashtags']);
+    if((t.match(/@\w+/g)||[]).length>2)out.push(['y','Check: many @mentions look like spam']);
+    var L=t.replace(/[^A-Za-z]/g,'');if(L.length>25&&L.replace(/[^A-Z]/g,'').length/L.length>0.6)out.push(['y','Check: mostly capitals']);
+    if(xlen(t)>280)out.push(['r','Too long for a free X account ('+xlen(t)+'/280)']);
+    return out;
+  }
+
+  function footer(){
+    var f=[];
+    if($('fSite').checked)f.push('🌐 '+SITE);
+    if($('fDiscord').checked)f.push('💬 '+DISCORD);
+    if($('fCA').checked)f.push('CA: '+CA);
+    if($('fNFA').checked)f.push('NFA · DYOR');
+    return f.join('\n');
+  }
+
+  async function standings(){
+    try{
+      var h={apikey:KEY,Authorization:'Bearer '+KEY};
+      var tr=await fetch(SB+'/rest/v1/tournaments?select=id,start_date,status&order=start_date.desc&limit=1',{headers:h});
+      if(!tr.ok)return null;var t=(await tr.json())[0];if(!t)return {players:0,runs:0,top:[]};
+      var rows=[];
+      for(var off=0;off<5000;off+=1000){
+        var r=await fetch(SB+'/rest/v1/tournament_entries?tournament_id=eq.'+encodeURIComponent(t.id)+'&select=pilot_name,score&limit=1000&offset='+off,{headers:h});
+        if(!r.ok)return null;var d=await r.json();rows=rows.concat(d);if(d.length<1000)break;
+      }
+      var tot={};rows.forEach(function(e){var n=clean(e.pilot_name,12)||'anon';tot[n]=(tot[n]||0)+(Number(e.score)||0);});
+      var top=Object.keys(tot).map(function(n){return [n,tot[n]];}).sort(function(a,b){return b[1]-a[1];});
+      return {players:top.length,runs:rows.length,top:top.slice(0,3)};
+    }catch(e){return null;}
+  }
+  function recapDrafts(s){
+    if(!s)return null;
+    if(!s.runs)return ['The tournament board is empty right now. Be the first on it. 🕹️','No scores yet today. 9 games, one leaderboard: who goes first? 🏆'];
+    var M=['🥇','🥈','🥉'];
+    var list=s.top.map(function(p,i){return M[i]+' '+p[0]+': '+p[1].toLocaleString('en-US')+' pts';}).join('\n');
+    return ['🏆 Tournament standings\n'+list+'\n'+s.players+' players · '+s.runs+' runs','Today\'s top 3 on the board:\n'+list+'\nThink you can beat them? 🕹️','Daily standings are in. 🏆\n'+list,'Leaderboard check 🕹️\n'+list+'\nPlay today, climb tomorrow.'];
+  }
+
+  function render(drafts){
+    var box=$('drafts');box.textContent='';
+    var card=document.createElement('div');card.className='card';
+    var h=document.createElement('h2');h.textContent='DRAFTS (read them, then copy)';card.appendChild(h);
+    drafts.forEach(function(body){
+      var f=footer(),text=f?body+'\n\n'+f:body;
+      var d=document.createElement('div');d.className='draft';
+      var p=document.createElement('pre');p.textContent=text;d.appendChild(p);
+      var m=document.createElement('div');m.className='meta';
+      var c=document.createElement('span');var n=xlen(text);c.className='cnt'+(n>280?' bad':'');c.textContent=n+'/280';m.appendChild(c);
+      var fl=lint(text);
+      if(!fl.length){var g=document.createElement('span');g.className='flag g';g.textContent='✔ no red flags';m.appendChild(g);}
+      fl.forEach(function(x){var s=document.createElement('span');s.className='flag '+x[0];s.textContent=x[1];m.appendChild(s);});
+      var cp=document.createElement('button');cp.className='cp';cp.textContent='COPY';
+      cp.addEventListener('click',function(){
+        var done=function(){cp.textContent='COPIED ✔';setTimeout(function(){cp.textContent='COPY';},1500);};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,function(){});}
+      });
+      var x=document.createElement('a');x.className='xx';x.textContent='OPEN IN X';x.target='_blank';x.rel='noopener noreferrer';
+      x.href='https://x.com/intent/post?text='+encodeURIComponent(text);
+      x.style.cssText='display:inline-block;border-radius:8px;padding:10px 14px;text-decoration:none;font-weight:800;letter-spacing:1px;background:#fff;color:#000';
+      m.appendChild(cp);m.appendChild(x);d.appendChild(m);card.appendChild(d);
+    });
+    var nn=document.createElement('p');nn.className='note';nn.textContent='"Open in X" only fills the post box. Nothing is sent until you press Post on X yourself.';card.appendChild(nn);
+    box.appendChild(card);
+  }
+
+  function syncExtra(){
+    var t=$('type').value,sel=$('extraSel'),inp=$('extra'),lbl=$('extraLbl'),wrap=$('extraWrap');
+    wrap.style.display='';
+    if(t==='agent'){sel.style.display='';inp.style.display='none';lbl.textContent='AGENT';}
+    else if(t==='meme'){sel.style.display='none';inp.style.display='';lbl.textContent='YOUR WORD OR IDEA';inp.placeholder='frog, monday, coffee';}
+    else if(t==='update'){sel.style.display='none';inp.style.display='';lbl.textContent='WHAT DID YOU SHIP? (one short sentence)';inp.placeholder='the Team Match board is live';}
+    else{wrap.style.display='none';}
+  }
+  $('type').addEventListener('change',syncExtra);syncExtra();
+
+  $('gen').addEventListener('click',async function(){
+    var t=$('type').value,msg=$('msg');msg.textContent='';
+    var drafts;
+    if(t==='agent')drafts=pick4(AGENT[$('extraSel').value]||AGENT.arcade);
+    else if(t==='trust')drafts=TRUST;
+    else if(t==='question')drafts=QUESTION;
+    else if(t==='team')drafts=TEAM;
+    else if(t==='meme'||t==='update'){
+      var x=clean($('extra').value,t==='meme'?24:100);
+      if(x.length<2){msg.textContent='Type your '+(t==='meme'?'word':'sentence')+' first.';return;}
+      var X=t==='meme'?x.toUpperCase():x;
+      drafts=(t==='meme'?MEME:UPDATE).map(function(s){return s.split('{X}').join(X);});
+    }else if(t==='recap'){
+      msg.textContent='Loading the live standings...';
+      drafts=recapDrafts(await standings());
+      if(!drafts){msg.textContent='Could not load the standings right now. Try again later.';return;}
+      msg.textContent='';
+    }
+    render(drafts);
+  });
+
+  var bank=$('bank');
+  BANK.forEach(function(b){
+    var d=document.createElement('details');var s=document.createElement('summary');s.textContent=b[0];d.appendChild(s);
+    var w=document.createElement('div');var p=document.createElement('pre');p.style.cssText='white-space:pre-wrap;font:inherit;margin:0 0 8px';p.textContent=b[1];
+    var c=document.createElement('button');c.className='cp';c.textContent='COPY';
+    c.addEventListener('click',function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(b[1]).then(function(){c.textContent='COPIED ✔';setTimeout(function(){c.textContent='COPY';},1500);},function(){});}});
+    w.appendChild(p);w.appendChild(c);d.appendChild(w);bank.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

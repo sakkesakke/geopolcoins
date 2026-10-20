@@ -84,6 +84,10 @@ button.gray{background:#666;color:#fff}
   <div class="card">
     <h2>🎯 <span>Tournament</span> Status</h2>
     <div id="tourneyStatus" class="status none">Loading…</div>
+    <div id="tourneyPick" class="hidden" style="margin-bottom:14px">
+      <label for="tSel">Finished tournaments waiting for payout (pick one)</label>
+      <select id="tSel" style="width:100%;padding:10px;border-radius:8px;background:#050b14;color:#fff;border:2px solid #000;font-size:14px"></select>
+    </div>
     <div class="info-grid">
       <div class="info-cell"><div class="label">START DATE</div><div class="value" id="tourneyStart">—</div></div>
       <div class="info-cell"><div class="label">END DATE</div><div class="value" id="tourneyEnd">—</div></div>
@@ -251,19 +255,42 @@ function showDash(){
 /* ============================================================
    LOAD TOURNAMENT + RANKING
    ============================================================ */
+let selId = null;               // tournament the admin picked in the dropdown
 async function loadData(){
   winners = []; tournament = null;
   try{
     const now = encodeURIComponent(new Date().toISOString());
-    const t = await sbJson('tournaments?select=*&end_date=lte.' + now + '&status=eq.active&order=end_date.desc&limit=1');
-    if (!t.length){
+    const list = await sbJson('tournaments?select=*&end_date=lte.' + now + '&status=eq.active&order=end_date.desc&limit=60');
+    // only tournaments that have at least one entry are worth paying
+    const counts = new Map();
+    if (list.length){
+      const ids = list.map(t => encodeURIComponent(t.id)).join(',');
+      const rows = await sbAll('tournament_entries?select=tournament_id,pilot_name&tournament_id=in.(' + ids + ')');
+      for (const r of rows){
+        const c = counts.get(r.tournament_id) || { n: 0, pilots: new Set() };
+        c.n++; c.pilots.add(String(r.pilot_name || '')); counts.set(r.tournament_id, c);
+      }
+    }
+    const due = list.filter(t => counts.has(t.id));
+    const sel = $('tSel');
+    if (!due.length){
+      $('tourneyPick').classList.add('hidden');
       setStatus('✅ NO TOURNAMENTS AWAITING PAYOUT', 'none');
       $('winnersList').replaceChildren(el('div', { class: 'info-cell', style: 'text-align:center;padding:24px;', text: 'Nothing to pay right now. 🎉' }));
       $('tourneyStart').textContent = '—'; $('tourneyEnd').textContent = '—';
       updatePayBtn();
       return;
     }
-    tournament = t[0];
+    if (!due.some(t => String(t.id) === String(selId))) selId = due[0].id;
+    sel.replaceChildren(...due.map(t => {
+      const c = counts.get(t.id);
+      const o = el('option', { text: '#' + t.id + ' · ' + t.start_date + ' → ' + t.end_date + ' · ' + c.pilots.size + ' pilot(s), ' + c.n + ' entries' });
+      o.value = String(t.id);
+      return o;
+    }));
+    sel.value = String(selId);
+    $('tourneyPick').classList.remove('hidden');
+    tournament = due.find(t => String(t.id) === String(selId));
     setStatus('⏳ AWAITING PAYOUT', 'pending');
     $('tourneyStart').textContent = String(tournament.start_date);
     $('tourneyEnd').textContent = String(tournament.end_date);
@@ -482,6 +509,7 @@ $('logoutBtn').addEventListener('click', signOut);
 $('connectBtn').addEventListener('click', connectPhantom);
 $('payBtn').addEventListener('click', sendPayouts);
 $('reloadBtn').addEventListener('click', reload);
+$('tSel').addEventListener('change', (e) => { if (busy) { e.target.value = String(selId); return; } selId = e.target.value; loadData(); });
 
 try{
   const saved = JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null');

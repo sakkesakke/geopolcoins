@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://geopolcoins.xyz/sitemap.xml

@@ -1,0 +1,35 @@
+name: Site check (is the site up?)
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"      # every 6 hours
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Key pages respond and contain what they should
+        run: |
+          set -u
+          fail=0
+          check() {
+            url="$1"; needle="$2"
+            body=$(curl -fsSL --max-time 30 "$url") || { echo "::error::$url did not load"; fail=1; return; }
+            echo "$body" | grep -qi "$needle" || { echo "::error::$url is missing: $needle"; fail=1; return; }
+            echo "OK $url"
+          }
+          check "https://geopolcoins.xyz/" "MAIGA"
+          check "https://geopolcoins.xyz/" 'id="factory"'
+          check "https://geopolcoins.xyz/factory.html" "Meme Factory"
+          check "https://geopolcoins.xyz/partners.html" "Partner"
+          check "https://geopolcoins.xyz/sitemap.xml" "geopolcoins.xyz"
+          # the public database must still answer (publishable key is public by design)
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
+            -H "apikey: sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN" \
+            "https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/tournaments?select=id&limit=1")
+          if [ "$code" != "200" ]; then echo "::error::Supabase REST returned $code"; fail=1; else echo "OK supabase"; fi
+          exit $fail

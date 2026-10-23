@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>$MAIGA Bot Garage: build, test and export your own AI bot</title>
-<meta name="description" content="A free, futuristic garage where anyone can copy a ready-made AI bot or build their own: crypto helpers, business automations and life assistants. Test it, share it with a link, and export it to ChatGPT, Claude, Grok, Discord, Telegram or X. Nothing is posted or traded for you.">
+<meta name="description" content="Copy a ready-made AI bot or build your own for free: test it, share it with a link and export it to ChatGPT, Claude, Discord or Telegram. No account needed.">
 <link rel="canonical" href="https://geopolcoins.xyz/garage.html">
 <meta property="og:type" content="website"><meta property="og:site_name" content="$MAIGA">
 <meta property="og:title" content="The $MAIGA Bot Garage is live 🤖"><meta property="og:description" content="Copy a ready-made AI bot or build your own, test it, and export it to ChatGPT, Claude, Discord, Telegram or X. Free. Nothing is posted or traded for you.">
@@ -155,15 +155,23 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
 @media (max-width:860px){.hero{grid-template-columns:1fr}.builder{grid-template-columns:minmax(0,1fr)}.preview{position:static}.holo{max-width:360px;margin:0 auto}}
 @media (max-width:520px){.bctl{grid-template-columns:1fr}.row,.row3{grid-template-columns:1fr}.chatbar{flex-wrap:wrap}.chatbar .btn{flex:1}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
-</style>
+.skip{position:absolute;left:8px;top:-60px;z-index:9999;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800;text-decoration:none}.skip:focus{top:8px}footer a{display:inline-block;padding:6px 2px}</style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#050b1b">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "$MAIGA Bot Garage", "url": "https://geopolcoins.xyz/garage.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "description": "Copy a ready-made AI bot or build your own for free: test it, share it with a link and export it to ChatGPT, Claude, Discord or Telegram. No account needed.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "$MAIGA", "url": "https://geopolcoins.xyz/"}}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+
 <div class="top">
   <b>$<span>MAIGA</span> BOT GARAGE</b>
-  <nav><a href="#community">COMMUNITY</a><a href="#battles">BATTLES</a><a href="index.html">HOME</a><a href="factory.html">FACTORY</a><a href="index.html#checkup">CHECKUP</a><a href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a></nav>
+  <nav aria-label="Garage menu"><a href="#community">COMMUNITY</a><a href="#battles">BATTLES</a><a href="index.html">HOME</a><a href="factory.html">FACTORY</a><a href="index.html#checkup">CHECKUP</a><a href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a></nav>
 </div>
 
-<div class="wrap">
+<main class="wrap" id="main">
   <section class="hero">
     <div>
       <span class="pill"><i></i>GARAGE ONLINE · FREE</span>
@@ -348,7 +356,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
       <li>See the full <a href="index.html#terms">terms &amp; disclaimers</a>.</li>
     </ul>
   </section>
-</div>
+</main>
 
 <footer>© 2026 $MAIGA — MAKE AI GREAT AGAIN • Entertainment only. NFA. DYOR. • <a href="index.html#terms">TERMS</a></footer>
 <div class="toast" id="toast" role="status"></div>

@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>$MAIGA Bot Garage: build, test and export your own AI bot</title>
+<meta name="description" content="A free, futuristic garage where anyone can copy a ready-made AI bot or build their own: crypto helpers, business automations and life assistants. Test it, share it with a link, and export it to ChatGPT, Claude, Grok, Discord, Telegram or X. Nothing is posted or traded for you.">
+<link rel="canonical" href="https://geopolcoins.xyz/garage.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="$MAIGA">
+<meta property="og:title" content="The $MAIGA Bot Garage is live 🤖"><meta property="og:description" content="Copy a ready-made AI bot or build your own, test it, and export it to ChatGPT, Claude, Discord, Telegram or X. Free. Nothing is posted or traded for you.">
+<meta property="og:url" content="https://geopolcoins.xyz/garage.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-garage.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="The $MAIGA Bot Garage is live 🤖"><meta name="twitter:description" content="Copy a ready-made AI bot or build your own, test it, and export it to ChatGPT, Claude, Discord, Telegram or X. Free."><meta name="twitter:image" content="https://geopolcoins.xyz/og-garage.jpg">
+<style>
+:root{--bg:#03060f;--panel:rgba(10,22,48,.72);--line:rgba(120,220,255,.22);--text:#eef6ff;--dim:#93a8c8;--cyan:#38f2ff;--pink:#ff3df2;--yellow:#ffd800;--green:#14F195;--red:#ff4b61;--orange:#ffa94d}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;background:var(--bg);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 20% -10%,rgba(56,242,255,.18),transparent 45%),radial-gradient(circle at 90% 10%,rgba(255,61,242,.16),transparent 40%),radial-gradient(circle at 50% 120%,rgba(255,216,0,.10),transparent 45%),var(--bg)}
+body:after{content:"";position:fixed;left:-50%;right:-50%;bottom:-10%;height:55vh;z-index:-1;background-image:linear-gradient(rgba(56,242,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(56,242,255,.18) 1px,transparent 1px);background-size:44px 44px;transform:perspective(420px) rotateX(62deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000 10%,transparent 85%);-webkit-mask-image:linear-gradient(to top,#000 10%,transparent 85%);animation:grid 6s linear infinite;pointer-events:none}
+@keyframes grid{to{background-position:0 44px,0 0}}
+a{color:var(--cyan)}
+.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(3,6,15,.82);position:sticky;top:0;z-index:20;backdrop-filter:blur(8px)}
+.top b{font-family:Impact,"Arial Black",sans-serif;letter-spacing:3px;font-size:20px}
+.top b span{color:var(--yellow)}
+.top nav{display:flex;gap:8px;flex-wrap:wrap}
+.top nav a{font-size:12px;font-weight:800;letter-spacing:1px;text-decoration:none;color:#fff;border:1px solid var(--cyan);border-radius:8px;padding:6px 10px;background:rgba(56,242,255,.06)}
+.wrap{max-width:1120px;margin:0 auto;padding:18px 16px 70px}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:center;padding:20px 0 6px}
+.pill{display:inline-flex;gap:8px;align-items:center;padding:5px 14px;border:1px solid var(--green);border-radius:30px;color:var(--green);font-size:11px;font-weight:900;letter-spacing:3px;background:rgba(20,241,149,.08)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+h1{font-family:Impact,"Arial Black",sans-serif;font-size:clamp(40px,8vw,82px);line-height:.95;letter-spacing:3px;margin:12px 0 10px;background:linear-gradient(90deg,#fff,var(--cyan) 45%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(56,242,255,.35))}
+.hero p{color:var(--dim);font-size:17px;max-width:620px;margin:0 0 14px}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{appearance:none;border:1px solid var(--cyan);background:rgba(56,242,255,.1);color:#fff;font:inherit;font-weight:800;font-size:14px;letter-spacing:.5px;padding:11px 16px;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 18px rgba(56,242,255,.35)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.tpl:focus-visible,.chip:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+.btn.gold{border-color:var(--yellow);background:linear-gradient(135deg,#ffd800,#ffa94d);color:#111}
+.btn.pink{border-color:var(--pink);background:rgba(255,61,242,.12)}
+.btn.ghost{background:transparent}
+.btn.small{padding:7px 11px;font-size:12px}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.holo{position:relative;border-radius:22px;padding:14px;background:linear-gradient(160deg,rgba(56,242,255,.14),rgba(255,61,242,.10));border:1px solid var(--line);box-shadow:0 0 40px rgba(56,242,255,.15) inset}
+.holo canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
+.holo .scan{position:absolute;inset:14px;border-radius:12px;background:linear-gradient(transparent 0,rgba(56,242,255,.12) 50%,transparent 100%);background-size:100% 8px;pointer-events:none;mix-blend-mode:screen;opacity:.5}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.stat{flex:1 1 120px;border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:var(--panel)}
+.stat b{display:block;font-family:Impact,"Arial Black",sans-serif;font-size:24px;letter-spacing:1px;color:var(--yellow)}
+.stat span{font-size:12px;color:var(--dim)}
+.section{margin-top:30px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+h2{font-family:Impact,"Arial Black",sans-serif;letter-spacing:3px;font-size:clamp(24px,4vw,34px);margin:0}
+h2 small{font-family:system-ui,sans-serif;font-size:12px;letter-spacing:2px;color:var(--cyan);display:block;margin-bottom:2px}
+.sub{color:var(--dim);font-size:14px;margin:4px 0 14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+.chip{border:1px solid var(--line);background:var(--panel);color:#fff;border-radius:30px;padding:6px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.chip.on{border-color:var(--yellow);color:var(--yellow);background:rgba(255,216,0,.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.tpl{position:relative;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:12px;color:#fff;font:inherit;cursor:pointer;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s,transform .15s}
+.tpl:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.tpl canvas{width:56px;height:56px;flex:0 0 56px;image-rendering:pixelated;border-radius:10px;background:#071226}
+.tpl b{display:block;font-size:15px}
+.tpl span{display:block;font-size:12.5px;color:var(--dim);line-height:1.4}
+.tpl em{position:absolute;top:10px;right:10px;font-style:normal;font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--cyan)}
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:16px;backdrop-filter:blur(6px)}
+.builder{display:grid;grid-template-columns:320px minmax(0,1fr);gap:16px}
+.builder>*,.row>*,.row3>*,.hero>*{min-width:0}
+.checks label{max-width:100%}
+.tpl b{padding-right:62px}
+.preview{position:sticky;top:76px;align-self:start}
+.preview .holo canvas{max-width:260px;margin:0 auto}
+.botname{font-family:Impact,"Arial Black",sans-serif;font-size:28px;letter-spacing:2px;text-align:center;margin:10px 0 0;word-break:break-word}
+.botrole{text-align:center;color:var(--dim);font-size:13px;min-height:20px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.tag{font-size:11px;font-weight:800;letter-spacing:.5px;padding:3px 8px;border-radius:20px;border:1px solid var(--line);color:var(--cyan)}
+label{display:block;font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase}
+input,select,textarea{width:100%;margin-top:5px;padding:10px 11px;background:rgba(3,6,15,.85);border:1px solid #23406e;border-radius:9px;color:#fff;font:inherit;font-size:15px}
+textarea{resize:vertical;min-height:70px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.full{margin-bottom:12px}
+.range{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--dim)}
+.range input{padding:0;margin:6px 0;accent-color:var(--cyan)}
+.checks{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.checks label{display:flex;gap:6px;align-items:center;text-transform:none;letter-spacing:0;font-size:13px;font-weight:600;color:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 10px;cursor:pointer;background:rgba(3,6,15,.6)}
+.checks input{width:auto;margin:0;accent-color:var(--green)}
+.swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
+.sw.on{border-color:#fff;box-shadow:0 0 12px rgba(255,255,255,.6)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tab{border:1px solid var(--line);background:transparent;color:var(--dim);border-radius:10px;padding:8px 12px;font:inherit;font-weight:800;font-size:13px;cursor:pointer}
+.tab.on{color:#111;background:var(--cyan);border-color:var(--cyan)}
+.hidden{display:none!important}
+.chat{height:330px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;padding:12px;background:rgba(3,6,15,.7);display:flex;flex-direction:column;gap:8px}
+.msg{max-width:85%;padding:9px 12px;border-radius:12px;font-size:14px;white-space:pre-wrap;word-break:break-word}
+.msg.bot{align-self:flex-start;background:rgba(56,242,255,.10);border:1px solid rgba(56,242,255,.3)}
+.msg.me{align-self:flex-end;background:rgba(255,216,0,.12);border:1px solid rgba(255,216,0,.35)}
+.msg.sys{align-self:center;font-size:12px;color:var(--dim);background:transparent;border:1px dashed var(--line)}
+.chatbar{display:flex;gap:8px;margin-top:8px}
+.chatbar input{margin:0}
+.suggest{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.export{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.exp{border:1px solid var(--line);border-radius:14px;padding:12px;background:rgba(3,6,15,.55);display:flex;flex-direction:column;gap:6px}
+.exp b{font-size:15px}
+.exp p{margin:0;font-size:12.5px;color:var(--dim);flex:1}
+.note{font-size:12.5px;color:var(--dim)}
+.warn{border:1px solid rgba(255,169,77,.5);background:rgba(255,169,77,.08);border-radius:12px;padding:10px 12px;font-size:13px;color:#ffd9b0}
+.ok{color:var(--green)}.bad{color:var(--red)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);opacity:0;background:#0b1a35;border:1px solid var(--cyan);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;z-index:50;transition:all .25s;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.road{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.road div{border:1px dashed var(--line);border-radius:14px;padding:12px;background:rgba(3,6,15,.5)}
+.road b{display:block}.road span{font-size:12.5px;color:var(--dim)}
+.road em{font-style:normal;font-size:10px;font-weight:900;letter-spacing:1.5px;color:var(--pink)}
+details{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:rgba(3,6,15,.5);margin-top:8px}
+summary{cursor:pointer;font-weight:800}
+.terms{font-size:12.5px;color:var(--dim)}
+.terms li{margin-bottom:6px}
+footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;border-top:1px solid var(--line)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.builder{grid-template-columns:minmax(0,1fr)}.preview{position:static}.holo{max-width:360px;margin:0 auto}}
+@media (max-width:520px){.row,.row3{grid-template-columns:1fr}.chatbar{flex-wrap:wrap}.chatbar .btn{flex:1}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="top">
+  <b>$<span>MAIGA</span> BOT GARAGE</b>
+  <nav><a href="index.html">HOME</a><a href="factory.html">FACTORY</a><a href="index.html#checkup">CHECKUP</a><a href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a></nav>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <span class="pill"><i></i>GARAGE ONLINE · FREE</span>
+      <h1>BOT GARAGE</h1>
+      <p>Copy a ready-made AI bot or build your own in Jean-Phil's garage. Pick its job, personality and look, test-drive it right here, share it with one link, and export it to ChatGPT, Claude, Grok, Discord, Telegram or X.</p>
+      <div class="cta">
+        <a class="btn gold" href="#templates">🤖 Copy a bot</a>
+        <a class="btn" href="#builder">🛠️ Build your own</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="statTpl">0</b><span>ready-made bots</span></div>
+        <div class="stat"><b>6</b><span>export targets</span></div>
+        <div class="stat"><b>0</b><span>accounts needed</span></div>
+      </div>
+    </div>
+    <div class="holo" aria-hidden="true"><canvas id="heroBot" width="64" height="64"></canvas><div class="scan"></div></div>
+  </section>
+
+  <section class="section" id="templates">
+    <div class="sec-h"><h2><small>STEP 1</small>COPY A BOT</h2></div>
+    <p class="sub">Click a bot to load it into the builder. Change anything you like, it becomes yours.</p>
+    <div class="chips" id="cats" role="tablist" aria-label="Bot categories"></div>
+    <div class="grid" id="tplGrid"></div>
+    <p class="note" style="margin-top:10px">Crypto bots here explain, check and alert. None of them trade, touch wallets or tell you what to buy. That is on purpose.</p>
+  </section>
+
+  <section class="section" id="builder">
+    <div class="sec-h"><h2><small>STEP 2</small>BUILD &amp; TUNE</h2><button class="btn small ghost" id="resetBtn" type="button">↺ Start blank</button></div>
+    <p class="sub">Everything updates live. Your bot is saved in this browser only.</p>
+    <div class="builder">
+      <div class="preview">
+        <div class="holo"><canvas id="botCanvas" width="64" height="64" role="img" aria-label="Your bot's avatar"></canvas><div class="scan"></div></div>
+        <div class="botname" id="pvName">NEW BOT</div>
+        <div class="botrole" id="pvRole"></div>
+        <div class="tags" id="pvTags"></div>
+      </div>
+      <div class="panel">
+        <div class="row">
+          <div><label for="fName">Bot name</label><input id="fName" maxlength="28" placeholder="e.g. Rug Radar"></div>
+          <div><label for="fCat">Category</label><select id="fCat"></select></div>
+        </div>
+        <div class="full"><label for="fRole">What is its job? (one line)</label><input id="fRole" maxlength="120" placeholder="e.g. checks Solana tokens and explains the red flags"></div>
+        <div class="full"><label>Skills</label><div class="checks" id="fSkills"></div></div>
+        <div class="row3">
+          <div><label for="fFun">Tone</label><div class="range">serious<input type="range" id="fFun" min="0" max="4" value="2">funny</div></div>
+          <div><label for="fLen">Answers</label><div class="range">short<input type="range" id="fLen" min="0" max="4" value="1">detailed</div></div>
+          <div><label for="fEnergy">Energy</label><div class="range">chill<input type="range" id="fEnergy" min="0" max="4" value="2">hyped</div></div>
+        </div>
+        <div class="row">
+          <div><label for="fLang">Language</label><select id="fLang"><option>English</option><option>Dutch</option><option>French</option><option>German</option><option>Spanish</option><option>Portuguese</option><option>Turkish</option><option>Arabic</option><option>Hindi</option><option>Indonesian</option><option>Same as the user</option></select></div>
+          <div><label for="fEmoji">Emojis</label><select id="fEmoji"><option value="0">None</option><option value="1" selected>A few</option><option value="2">Lots 🚀</option></select></div>
+        </div>
+        <div class="full"><label for="fRules">Extra rules or knowledge (optional)</label><textarea id="fRules" maxlength="1200" placeholder="e.g. Our project is $MAIGA on Solana. Always link geopolcoins.xyz for tools. Never mention other coins."></textarea></div>
+        <div class="full"><label>Look</label>
+          <div class="swatches" id="fColors" role="radiogroup" aria-label="Bot color"></div>
+          <div class="row3" style="margin-top:10px">
+            <div><label for="fHead">Head</label><select id="fHead"><option value="box">Box</option><option value="round">Round</option><option value="tv">Retro TV</option><option value="dome">Dome</option></select></div>
+            <div><label for="fEyes">Eyes</label><select id="fEyes"><option value="dots">Dots</option><option value="visor">Visor</option><option value="big">Big</option><option value="angry">Focused</option><option value="heart">Hearts</option></select></div>
+            <div><label for="fTop">Top</label><select id="fTop"><option value="single">Antenna</option><option value="double">Double antenna</option><option value="dish">Radar dish</option><option value="cap">Cap</option><option value="none">Nothing</option></select></div>
+          </div>
+          <div class="row" style="margin-bottom:0">
+            <div><label for="fGear">Gear</label><select id="fGear"><option value="none">None</option><option value="headset">Headset</option><option value="shades">Shades</option><option value="bowtie">Bow tie</option><option value="scarf">Scarf</option></select></div>
+            <div><label for="fMood">Mouth</label><select id="fMood"><option value="smile">Smile</option><option value="grill">Grill</option><option value="flat">Flat</option><option value="open">Talking</option></select></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="test">
+    <div class="sec-h"><h2><small>STEP 3</small>TEST DRIVE</h2></div>
+    <p class="sub">Chat with your bot. Demo mode is free and works offline with canned answers. For real AI answers, plug in your own key (it goes straight to your provider, never to us).</p>
+    <div class="panel">
+      <div class="tabs" role="tablist"><button class="tab on" id="tabDemo" type="button">Demo mode</button><button class="tab" id="tabAi" type="button">My AI key</button></div>
+      <div id="aiBox" class="hidden" style="margin-bottom:12px">
+        <div class="row">
+          <div><label for="aiProv">Provider</label><select id="aiProv"><option value="anthropic">Anthropic (Claude)</option><option value="openai">OpenAI</option><option value="openrouter">OpenRouter</option></select></div>
+          <div><label for="aiModel">Model</label><input id="aiModel" maxlength="60" spellcheck="false"></div>
+        </div>
+        <div class="full"><label for="aiKey">Your API key</label><input id="aiKey" type="password" autocomplete="off" spellcheck="false" maxlength="300" placeholder="paste your key (kept in this tab only)"></div>
+        <div class="warn">Your key is only sent from this page to the provider you pick. A browser rule on this page blocks every other destination. We never see it or store it. Use a key with a spending limit. Max 20 test messages per day from this page.</div>
+      </div>
+      <div class="chat" id="chat" aria-live="polite"></div>
+      <div class="suggest" id="suggest"></div>
+      <div class="chatbar"><input id="chatIn" maxlength="500" placeholder="Say something to your bot…" aria-label="Message to your bot"><button class="btn" id="chatSend" type="button">Send</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="export">
+    <div class="sec-h"><h2><small>STEP 4</small>SHARE &amp; EXPORT</h2></div>
+    <p class="sub">Take your bot anywhere it can live. You stay in control: nothing is posted, sent or bought for you.</p>
+    <div class="export">
+      <div class="exp"><b>🔗 Share link</b><p>Anyone who opens it gets a copy of your bot in their garage.</p><button class="btn small" id="exLink" type="button">Copy link</button></div>
+      <div class="exp"><b>🪪 Bot card</b><p>A 1200×630 card of your bot, made in your browser. Great for X.</p><button class="btn small" id="exCard" type="button">Download PNG</button></div>
+      <div class="exp"><b>💬 ChatGPT · Claude · Grok · Gemini</b><p>Copy the ready prompt into a Custom GPT, a Claude Project, Grok or a Gemini Gem.</p><button class="btn small" id="exPrompt" type="button">Copy prompt</button></div>
+      <div class="exp"><b>📦 Starter kit (.zip)</b><p>Telegram, Discord and X starter code + guide. Runs on your computer or server with your own keys.</p><button class="btn small gold" id="exZip" type="button">Download kit</button></div>
+      <div class="exp"><b>𝕏 Post about it</b><p>Opens X with a post about your bot. You check it and press post yourself.</p><button class="btn small" id="exX" type="button">Open X</button></div>
+      <div class="exp"><b>🧾 Bot file (.json)</b><p>The raw bot recipe, for backups or your own tools.</p><button class="btn small" id="exJson" type="button">Download JSON</button></div>
+    </div>
+    <details><summary>Where can my bot live? (and the rules there)</summary>
+      <ul class="note">
+        <li><b>ChatGPT, Claude, Grok, Gemini:</b> paste the prompt as the instructions of a custom assistant. Easiest, no code.</li>
+        <li><b>Telegram:</b> make a bot with @BotFather, put the token in the kit's <code>.env</code>, run one command. It only answers people who message it.</li>
+        <li><b>Discord:</b> create an app in the Discord Developer Portal, enable the Message Content intent, invite it to your server. It answers when it is mentioned or in DMs.</li>
+        <li><b>X:</b> the kit's X poster only posts from a queue you approve, once per run, on your own account. X's automation rules ban automated likes, follows, trend posting and unsolicited or keyword-based replies, and AI reply bots need X's written approval. Mark the account as automated in X's settings.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section class="section" id="roadmap">
+    <div class="sec-h"><h2><small>GARAGE ROADMAP</small>WHAT'S NEXT</h2></div>
+    <p class="sub">The garage keeps getting new bots and easier ways to connect. Planned, not live yet:</p>
+    <div class="road">
+      <div><em>NEXT</em><b>Community garage</b><span>Publish your bot so others can copy it, with likes.</span></div>
+      <div><em>NEXT</em><b>Bot Battles</b><span>Two bots roast each other, the crowd votes. Just for fun.</span></div>
+      <div><em>LATER</em><b>One-click connect</b><span>Run your bot without touching code, where platforms allow it.</span></div>
+      <div><em>LATER</em><b>Garage Pro</b><span>Extra skins, more bots and no watermark. Described before you can pay.</span></div>
+    </div>
+    <div class="panel" style="margin-top:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+      <div><b>⛽ Fuel the garage</b><div class="note">The garage is free. Tips keep new bots coming. A tip is a gift and gives no tokens or rights.</div></div>
+      <a class="btn gold" href="https://ko-fi.com/geopolcoins" target="_blank" rel="noopener">Tip on Ko-fi</a>
+    </div>
+  </section>
+
+  <section class="section" id="garage-terms">
+    <h2 style="font-size:20px">GARAGE RULES</h2>
+    <ul class="terms">
+      <li><b>Entertainment and tools only.</b> Bots are prompts and starter code. What a bot says can be wrong, and nothing it says is financial, investment, legal, tax or medical advice.</li>
+      <li><b>No trading, no wallets.</b> Garage bots never trade, never hold funds and never need a seed phrase or private key. Anyone asking for those is a scammer.</li>
+      <li><b>You run it, you own it.</b> If you export a bot, you run it with your own accounts and keys and you are responsible for following the rules of every platform (for example X's automation rules) and the law where you live.</li>
+      <li><b>Your data.</b> Your bot is saved only in this browser. A share link contains the bot recipe itself, so do not put private information in it. AI keys stay in this tab and go only to the provider you pick.</li>
+      <li>See the full <a href="index.html#terms">terms &amp; disclaimers</a>.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>© 2026 $MAIGA — MAKE AI GREAT AGAIN • Entertainment only. NFA. DYOR. • <a href="index.html#terms">TERMS</a></footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+function el(tag,props,kids){var e=document.createElement(tag);props=props||{};for(var k in props){if(k==='text')e.textContent=props[k];else if(k==='class')e.className=props[k];else e.setAttribute(k,props[k]);}(kids||[]).forEach(function(c){if(c)e.appendChild(c);});return e;}
+function safeGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function safeSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+function toast(t){var x=$('toast');x.textContent=t;x.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){x.classList.remove('show');},2600);}
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ======================= DATA ======================= */
+var COLORS=['#38f2ff','#ff3df2','#ffd800','#14F195','#ff4b61','#ffa94d','#8b7bff','#e8eef8'];
+var CATS=[{id:'crypto',label:'🪙 Crypto'},{id:'business',label:'💼 Business'},{id:'creator',label:'📣 Creator'},{id:'life',label:'🌱 Life'}];
+var SKILLS={
+  crypto:['Explain red flags','Explain crypto terms','Write meme posts','Answer community FAQ','Spot scam messages','Summarize news','Launch checklist','Alert ideas (read-only)'],
+  business:['Sort and draft emails','Answer customer FAQ','Qualify leads','Draft invoice reminders','Write social posts','Reply to reviews','Summarize meetings','Make to-do lists'],
+  creator:['Brainstorm ideas','Write hooks','Turn notes into threads','Write captions','Plan a content week','Repurpose content','Name things','Roast (friendly)'],
+  life:['Plan meals','Build habits','Study coach','Plan trips','Budget helper','Workout ideas','Gift ideas','Daily planner']
+};
+function T(o){return o;}
+var TEMPLATES=[
+ T({id:'rugradar',name:'Rug Radar',cat:'crypto',role:'explains the red flags in a token checkup, without ever calling a coin safe',skills:['Explain red flags','Explain crypto terms','Spot scam messages'],fun:2,len:2,energy:1,emoji:1,look:{c:'#ff4b61',head:'box',eyes:'visor',top:'dish',gear:'none',mouth:'flat'},rules:'If someone pastes a token address, tell them to run it through the free Token Checkup at geopolcoins.xyz and explain each flag it shows (mint authority, freeze authority, liquidity, holders, age). Never say a token is safe; "nothing alarming" never means safe.',demo:['Paste a Solana token address into the Token Checkup on geopolcoins.xyz and tell me what it shows. I\'ll explain every flag in plain words. 🔍','Mint authority still open means the team can print more tokens. Not proof of a scam, but a reason to ask questions.','Low liquidity means one big sell can crash the price. Thin pool, thin ice.'],ask:['What does "freeze authority" mean?','Is this coin safe?','Explain liquidity like I\'m 12']}),
+ T({id:'memewriter',name:'Meme Writer',cat:'crypto',role:'writes funny, honest meme posts for a community, with no price promises',skills:['Write meme posts','Answer community FAQ'],fun:4,len:0,energy:3,emoji:2,look:{c:'#ffd800',head:'round',eyes:'big',top:'single',gear:'shades',mouth:'open'},rules:'Write posts under 280 characters. No "buy now", no price targets, no "100x", no fake urgency. End crypto posts with "NFA" when it fits.',demo:['When the chart is red but the memes are green 🟢😎 #NFA','Me: I\'ll just check the chart once.\nAlso me, 3 hours later: 📉📈📉🤡','Our roadmap: 1. Memes 2. More memes 3. See step 1 🚀'],ask:['Write 3 posts about Monday','A meme about gas fees','Something wholesome for the community']}),
+ T({id:'scamshield',name:'Scam Shield',cat:'crypto',role:'checks suspicious DMs, links and "airdrop" offers and explains the scam tricks',skills:['Spot scam messages','Answer community FAQ'],fun:1,len:2,energy:1,emoji:1,look:{c:'#14F195',head:'dome',eyes:'angry',top:'double',gear:'none',mouth:'flat'},rules:'Teach the golden rules: nobody legit asks for a seed phrase or private key, admins never DM first, "connect wallet to claim" sites are a classic drainer trick. Never click or open links yourself.',demo:['🚩 Anyone asking for your seed phrase is a scammer. Every time. No exceptions.','"Admin" DMing you first with a support link? Classic. Real admins don\'t DM first.','A surprise airdrop that needs you to "connect and approve"? That\'s how wallet drainers work.'],ask:['Someone DMed me a support link','Is this airdrop real?','How do wallet drainers work?']}),
+ T({id:'cryptotutor',name:'Crypto Tutor',cat:'crypto',role:'explains crypto words and charts to total beginners, with no buy or sell signals',skills:['Explain crypto terms','Summarize news'],fun:2,len:3,energy:2,emoji:1,look:{c:'#8b7bff',head:'tv',eyes:'dots',top:'cap',gear:'bowtie',mouth:'smile'},rules:'Explain like a patient teacher with simple examples. Never predict prices and never say what to buy or sell.',demo:['A "market cap" is price × number of tokens. It\'s the size of the pizza, not the price of one slice. 🍕','A candle on a chart shows where the price opened, closed, and how far it swung in that time.','"DYOR" means do your own research. Translation: don\'t trust random strangers online, including me.'],ask:['What is a liquidity pool?','What does a green candle mean?','What is slippage?']}),
+ T({id:'launchcoach',name:'Launch Coach',cat:'crypto',role:'walks meme-coin creators through an honest launch checklist',skills:['Launch checklist','Write meme posts','Answer community FAQ'],fun:2,len:2,energy:3,emoji:1,look:{c:'#ffa94d',head:'box',eyes:'big',top:'single',gear:'headset',mouth:'smile'},rules:'Push for honesty: own art, no look-alikes of real people, clear "entertainment only" wording, no profit promises. Point to the free Meme Factory at geopolcoins.xyz/factory.html for names and launch packs.',demo:['Step 1: own art. Don\'t use real people\'s faces or famous characters. 🎨','Step 2: honest bio. "Entertainment only, NFA" beats any moon promise.','Step 3: socials first, coin second. A community with nothing to hold beats a coin with no community.'],ask:['Give me a launch checklist','Help me name my coin','What should I never say in my bio?']}),
+ T({id:'commmod',name:'Community Mod',cat:'crypto',role:'answers the same community questions 24/7 and warns about scams',skills:['Answer community FAQ','Spot scam messages'],fun:2,len:1,energy:2,emoji:1,look:{c:'#38f2ff',head:'round',eyes:'dots',top:'double',gear:'headset',mouth:'smile'},rules:'Answer from the project facts you are given. If you don\'t know, say so and point to the official links. Always remind people: admins never DM first.',demo:['Welcome aboard! 👋 Start with the pinned post. Admins never DM first, so ignore anyone who does.','The official contract address is in the pinned message and on the website. Always double-check it.','Good question! I don\'t know that one, so I\'ll leave it for the team. Check the official links meanwhile.'],ask:['Where is the contract address?','When is the next update?','Someone DMed me, is that you?']}),
+ T({id:'inbox',name:'Inbox Zero',cat:'business',role:'sorts emails by urgency and drafts short replies for you to send',skills:['Sort and draft emails','Make to-do lists'],fun:1,len:1,energy:1,emoji:0,look:{c:'#38f2ff',head:'box',eyes:'visor',top:'none',gear:'headset',mouth:'flat'},rules:'Sort into: urgent, today, later, ignore. Drafts are suggestions; the human always sends.',demo:['Paste an email and I\'ll tag it urgent / today / later / ignore, plus a 3-line draft reply.','Draft: "Thanks for the reminder. I\'ll send the updated quote by Thursday 5 pm."','Today\'s top 3: reply to the supplier, confirm Friday\'s meeting, pay the hosting invoice.'],ask:['Draft a polite no','Sort these 3 emails','Turn this email into a to-do list']}),
+ T({id:'faqdesk',name:'FAQ Desk',cat:'business',role:'answers customer questions from your own FAQ, politely and fast',skills:['Answer customer FAQ','Reply to reviews'],fun:1,len:1,energy:2,emoji:1,look:{c:'#14F195',head:'round',eyes:'big',top:'single',gear:'bowtie',mouth:'smile'},rules:'Only answer from the business facts you are given (hours, prices, policies). If unsure, offer to pass the question to a human.',demo:['We\'re open Monday to Saturday, 9:00 to 18:00. 😊','Returns are free within 30 days with your receipt.','Good question! I\'ll pass this to a team member so you get the right answer.'],ask:['What are your opening hours?','Can I return this?','Do you ship abroad?']}),
+ T({id:'leadscout',name:'Lead Scout',cat:'business',role:'asks new leads 3 smart questions and summarizes who is worth a call',skills:['Qualify leads','Summarize meetings'],fun:1,len:1,energy:2,emoji:0,look:{c:'#ffd800',head:'tv',eyes:'dots',top:'dish',gear:'none',mouth:'smile'},rules:'Ask about need, budget range and timing. Be friendly, never pushy. Summarize in 3 bullet points for the owner.',demo:['Hi! Quick 3 questions so we can help you best: what do you need, by when, and roughly what budget?','Summary: needs a new website, wants it by March, budget €2–4k. Worth a call.','No pressure at all, take your time. 🙂'],ask:['Qualify this lead','Write a friendly follow-up','Summarize this chat']}),
+ T({id:'invoicepal',name:'Invoice Pal',cat:'business',role:'drafts friendly, firm payment reminders in three steps',skills:['Draft invoice reminders','Sort and draft emails'],fun:1,len:1,energy:1,emoji:0,look:{c:'#e8eef8',head:'box',eyes:'dots',top:'cap',gear:'bowtie',mouth:'flat'},rules:'Three tones: friendly nudge, clear reminder, final notice. Never threaten. The human sends.',demo:['Friendly nudge: "Hi Sam, just a reminder that invoice #104 was due on the 15th. Could you take a look?"','Clear reminder: "Invoice #104 is now 14 days overdue. Please arrange payment this week."','Final notice: "This is a final reminder for invoice #104. Please contact me today to settle it."'],ask:['Write a friendly reminder','Make it firmer','Translate it to Dutch']}),
+ T({id:'reviewer',name:'Review Responder',cat:'business',role:'writes kind, professional replies to good and bad reviews',skills:['Reply to reviews','Answer customer FAQ'],fun:1,len:1,energy:2,emoji:1,look:{c:'#ff3df2',head:'round',eyes:'heart',top:'none',gear:'scarf',mouth:'smile'},rules:'Thank, acknowledge, fix or offer contact. Never argue, never share private details.',demo:['Thank you so much for the 5 stars, Lisa! We\'re happy the delivery was quick. 💛','We\'re sorry the order arrived late. That\'s not our standard. Please email us and we\'ll make it right.','Thanks for the honest feedback, we\'re already looking into it.'],ask:['Reply to a 1-star review','Reply to a 5-star review','Make it shorter']}),
+ T({id:'hookhunter',name:'Hook Hunter',cat:'creator',role:'turns your idea into scroll-stopping hooks and threads',skills:['Write hooks','Turn notes into threads','Brainstorm ideas'],fun:3,len:1,energy:4,emoji:1,look:{c:'#ff3df2',head:'tv',eyes:'big',top:'single',gear:'headset',mouth:'open'},rules:'Hooks under 15 words. No clickbait lies.',demo:['Hook: "I automated my boring Mondays with 3 free bots. Here\'s how."','Hook: "Most people use AI wrong. Here\'s the 10-second fix."','Thread outline: problem → the bot → setup in 3 steps → result → try it.'],ask:['5 hooks about AI bots','Turn my notes into a thread','A hook for my new video']}),
+ T({id:'contentweek',name:'Content Planner',cat:'creator',role:'plans a week of posts from one idea',skills:['Plan a content week','Repurpose content','Write captions'],fun:2,len:2,energy:3,emoji:1,look:{c:'#14F195',head:'dome',eyes:'dots',top:'double',gear:'none',mouth:'smile'},rules:'Mix formats: tip, story, behind the scenes, question, meme. One idea, seven angles.',demo:['Mon: tip · Tue: behind the scenes · Wed: meme · Thu: question · Fri: mini story · Sat: recap · Sun: rest 😴','Repurpose: 1 video → 3 clips → 1 thread → 1 newsletter paragraph.','Caption: "Built it in 10 minutes. Using it every day. Link in bio."'],ask:['Plan my week about coffee','Repurpose this post','Write 3 captions']}),
+ T({id:'roaster',name:'Roast Bot',cat:'creator',role:'gives friendly, funny roasts that never punch down',skills:['Roast (friendly)','Name things'],fun:4,len:0,energy:4,emoji:2,look:{c:'#ffa94d',head:'box',eyes:'angry',top:'cap',gear:'shades',mouth:'grill'},rules:'Roast choices, never people\'s looks, identity or real tragedies. Keep it kind enough that the target laughs too.',demo:['Your portfolio has more red than a tomato festival. 🍅','You said "just one more trade" like it was a personality. 😂','Your bot has 47 tabs open and still forgot the plan. Respect.'],ask:['Roast my coin name','Roast my morning routine','Roast my bot']}),
+ T({id:'mealbot',name:'Meal Planner',cat:'life',role:'plans simple, cheap meals for the week with a shopping list',skills:['Plan meals','Budget helper'],fun:2,len:2,energy:2,emoji:1,look:{c:'#14F195',head:'round',eyes:'big',top:'cap',gear:'scarf',mouth:'smile'},rules:'Ask about allergies and budget first. Simple recipes, short ingredient lists. No medical or diet advice.',demo:['Mon pasta, Tue wraps, Wed curry, Thu omelette, Fri homemade pizza 🍕','Shopping list grouped by aisle coming right up. Any allergies first?','Leftover tip: Wednesday\'s curry is Thursday\'s lunch.'],ask:['Plan 5 cheap dinners','Vegetarian week please','Make a shopping list']}),
+ T({id:'habit',name:'Habit Coach',cat:'life',role:'helps you build one small habit at a time, with gentle check-ins',skills:['Build habits','Daily planner'],fun:2,len:1,energy:3,emoji:1,look:{c:'#ffd800',head:'dome',eyes:'heart',top:'single',gear:'none',mouth:'smile'},rules:'Tiny steps, kind tone, celebrate progress. No medical advice; suggest a professional when health comes up.',demo:['Start tiny: 2 minutes a day. Tiny habits win long games. 🌱','Missed a day? That\'s normal. Never miss twice.','Today\'s win: you showed up. That counts.'],ask:['Help me read more','I keep giving up','Plan my morning']}),
+ T({id:'studybuddy',name:'Study Buddy',cat:'life',role:'quizzes you and explains things step by step',skills:['Study coach','Daily planner'],fun:2,len:2,energy:2,emoji:1,look:{c:'#8b7bff',head:'tv',eyes:'dots',top:'double',gear:'bowtie',mouth:'smile'},rules:'Ask one question at a time. Explain mistakes kindly. Never just give homework answers without explaining.',demo:['Quiz time! What is the capital of Australia? (Hint: it\'s not Sydney.)','Close! It\'s Canberra. Sydney is bigger, but Canberra was built as a compromise.','Plan: 25 minutes focus, 5 minutes break, 4 rounds. Go!'],ask:['Quiz me on history','Explain fractions','Make a study plan']})
+];
+
+/* ======================= STATE ======================= */
+var STORE='maiga_garage_bot_v1';
+function blank(){return {v:1,name:'New Bot',cat:'crypto',role:'',skills:[],fun:2,len:1,energy:2,emoji:1,lang:'English',rules:'',look:{c:COLORS[0],head:'box',eyes:'dots',top:'single',gear:'none',mouth:'smile'},from:''};}
+var bot=blank();
+var ENUM={head:['box','round','tv','dome'],eyes:['dots','visor','big','angry','heart'],top:['single','double','dish','cap','none'],gear:['none','headset','shades','bowtie','scarf'],mouth:['smile','grill','flat','open']};
+var LANGS=['English','Dutch','French','German','Spanish','Portuguese','Turkish','Arabic','Hindi','Indonesian','Same as the user'];
+function clampInt(v,lo,hi,d){v=parseInt(v,10);return isNaN(v)?d:Math.max(lo,Math.min(hi,v));}
+function cleanStr(s,max){return String(s==null?'':s).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g,'').slice(0,max);}
+function sanitize(o){
+  var b=blank();if(!o||typeof o!=='object')return b;
+  b.name=cleanStr(o.name,28).trim()||'New Bot';
+  b.cat=CATS.some(function(c){return c.id===o.cat;})?o.cat:'crypto';
+  b.role=cleanStr(o.role,120);
+  var all=[];Object.keys(SKILLS).forEach(function(k){all=all.concat(SKILLS[k]);});
+  b.skills=(Array.isArray(o.skills)?o.skills:[]).filter(function(s){return all.indexOf(s)>=0;}).slice(0,8);
+  b.fun=clampInt(o.fun,0,4,2);b.len=clampInt(o.len,0,4,1);b.energy=clampInt(o.energy,0,4,2);b.emoji=clampInt(o.emoji,0,2,1);
+  b.lang=LANGS.indexOf(o.lang)>=0?o.lang:'English';
+  b.rules=cleanStr(o.rules,1200);
+  var l=o.look||{};b.look.c=COLORS.indexOf(l.c)>=0?l.c:COLORS[0];
+  ['head','eyes','top','gear','mouth'].forEach(function(k){b.look[k]=ENUM[k].indexOf(l[k])>=0?l[k]:ENUM[k][0];});
+  b.from=TEMPLATES.some(function(t){return t.id===o.from;})?o.from:'';
+  return b;
+}
+function save(){safeSet(STORE,JSON.stringify(bot));}
+
+/* ======================= PIXEL BOT RENDERER ======================= */
+function shade(hex,f){var n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255;function m(x){return Math.max(0,Math.min(255,Math.round(f<0?x*(1+f):x+(255-x)*f)));}return 'rgb('+m(r)+','+m(g)+','+m(b)+')';}
+function drawBot(cv,look,t){
+  var g=cv.getContext('2d'),W=cv.width,s=W/64;g.setTransform(s,0,0,s,0,0);g.imageSmoothingEnabled=false;
+  g.clearRect(0,0,64,64);
+  var c=look.c,dk=shade(c,-.45),lt=shade(c,.35),bob=(t&&!reduce)?Math.round(Math.sin(t/400)):0;
+  function R(x,y,w,h,col){g.fillStyle=col;g.fillRect(x,y+bob,w,h);}
+  // shadow
+  g.fillStyle='rgba(56,242,255,.18)';g.fillRect(16,58,32,3);
+  // body
+  R(20,40,24,16,dk);R(21,41,22,14,c);R(24,44,16,8,dk);R(25,45,14,6,'#071226');
+  var led=(t&&!reduce)?Math.floor(t/300)%3:0;['#ff4b61','#ffd800','#14F195'].forEach(function(col,i){R(27+i*4,47,2,2,i===led?col:shade(col,-.6));});
+  R(16,42,4,10,dk);R(44,42,4,10,dk);R(15,51,5,3,lt);R(44,51,5,3,lt);
+  R(24,56,5,3,dk);R(35,56,5,3,dk);
+  R(29,37,6,3,dk);
+  // head
+  var hx=14,hy=12,hw=36,hh=26;
+  if(look.head==='box'){R(hx,hy,hw,hh,dk);R(hx+1,hy+1,hw-2,hh-2,c);R(hx+1,hy+1,hw-2,2,lt);}
+  else if(look.head==='round'){R(hx+3,hy,hw-6,hh,dk);R(hx,hy+3,hw,hh-6,dk);R(hx+4,hy+1,hw-8,hh-2,c);R(hx+1,hy+4,hw-2,hh-8,c);R(hx+4,hy+1,hw-8,2,lt);}
+  else if(look.head==='tv'){R(hx-2,hy+2,hw+4,hh-2,dk);R(hx,hy+4,hw,hh-6,c);R(hx+3,hy+6,hw-6,hh-11,'#071226');R(hx-2,hy+hh-2,6,3,dk);R(hx+hw-4,hy+hh-2,6,3,dk);}
+  else {R(hx+6,hy,hw-12,4,dk);R(hx+2,hy+3,hw-4,6,dk);R(hx,hy+8,hw,hh-8,dk);R(hx+7,hy+1,hw-14,4,c);R(hx+3,hy+4,hw-6,6,c);R(hx+1,hy+9,hw-2,hh-10,c);R(hx+8,hy+1,hw-16,2,lt);}
+  // face plate
+  var fy=hy+8;
+  if(look.head!=='tv'){R(hx+4,fy-1,hw-8,13,'#071226');}
+  // eyes
+  var ec=look.head==='tv'?c:'#38f2ff';if(c==='#38f2ff')ec='#ffffff';
+  var blinkNow=t&&!reduce&&(Math.floor(t/120)%40===0);
+  if(blinkNow){R(hx+9,fy+4,6,1,ec);R(hx+21,fy+4,6,1,ec);}
+  else if(look.eyes==='dots'){R(hx+10,fy+2,4,4,ec);R(hx+22,fy+2,4,4,ec);}
+  else if(look.eyes==='visor'){R(hx+7,fy+2,hw-14,4,ec);var sx=(t&&!reduce)?Math.floor((t/60)%(hw-18)):6;R(hx+7+sx,fy+2,4,4,'#fff');}
+  else if(look.eyes==='big'){R(hx+8,fy+1,7,7,'#fff');R(hx+21,fy+1,7,7,'#fff');R(hx+11,fy+3,3,3,'#071226');R(hx+24,fy+3,3,3,'#071226');}
+  else if(look.eyes==='angry'){R(hx+9,fy+3,6,3,ec);R(hx+21,fy+3,6,3,ec);R(hx+9,fy+1,4,1,ec);R(hx+23,fy+1,4,1,ec);}
+  else {var hc='#ff3df2';[[hx+9,fy+2],[hx+21,fy+2]].forEach(function(p){R(p[0],p[1],2,2,hc);R(p[0]+3,p[1],2,2,hc);R(p[0],p[1]+1,5,2,hc);R(p[0]+1,p[1]+3,3,1,hc);R(p[0]+2,p[1]+4,1,1,hc);});}
+  // mouth
+  var my=fy+9,mc=look.head==='tv'?c:'#38f2ff';
+  if(look.mouth==='smile'){R(hx+13,my,10,1,mc);R(hx+12,my-1,1,1,mc);R(hx+23,my-1,1,1,mc);}
+  else if(look.mouth==='grill'){R(hx+12,my-1,12,3,'#c0c8d8');for(var i=0;i<4;i++)R(hx+13+i*3,my-1,1,3,'#5a6478');}
+  else if(look.mouth==='flat'){R(hx+13,my,10,1,mc);}
+  else {var o=(t&&!reduce)?(Math.floor(t/180)%2):1;R(hx+15,my-1,6,1+o*2,mc);}
+  // top
+  if(look.top==='single'){R(31,hy-7,2,7,dk);R(30,hy-10,4,4,(t&&!reduce&&Math.floor(t/500)%2)?'#ff4b61':'#ffd800');}
+  else if(look.top==='double'){R(22,hy-6,2,6,dk);R(40,hy-6,2,6,dk);R(21,hy-9,4,3,lt);R(39,hy-9,4,3,lt);}
+  else if(look.top==='dish'){R(31,hy-5,2,5,dk);R(25,hy-9,14,3,lt);R(27,hy-11,10,2,lt);R(31,hy-12,2,2,'#ff4b61');}
+  else if(look.top==='cap'){R(hx+2,hy-4,hw-4,6,'#1b2b55');R(hx+2,hy-4,hw-4,1,'#2c4380');R(hx+hw-4,hy,12,3,'#1b2b55');R(30,hy-3,4,2,'#ffd800');}
+  // gear
+  if(look.gear==='headset'){R(hx-3,fy-2,3,9,'#222a3d');R(hx+hw,fy-2,3,9,'#222a3d');R(hx-2,hy-2,hw+4,2,'#222a3d');R(hx+hw+1,fy+6,2,6,'#222a3d');R(hx+hw-6,fy+11,8,2,'#222a3d');}
+  else if(look.gear==='shades'){R(hx+6,fy+1,hw-12,5,'#0a0a0a');R(hx+8,fy+2,6,2,'#3a3f55');R(hx+21,fy+2,6,2,'#3a3f55');}
+  else if(look.gear==='bowtie'){R(27,37,4,4,'#ff4b61');R(33,37,4,4,'#ff4b61');R(31,38,2,2,'#b3213a');}
+  else if(look.gear==='scarf'){R(19,37,26,4,'#ff3df2');R(36,40,4,8,'#ff3df2');R(19,38,26,1,shade('#ff3df2',.3));}
+}
+
+/* ======================= TEMPLATE GRID ======================= */
+var curCat='all';
+function renderCats(){
+  var box=$('cats');box.replaceChildren();
+  [{id:'all',label:'✨ All'}].concat(CATS).forEach(function(c){
+    var b=el('button',{class:'chip'+(curCat===c.id?' on':''),type:'button',role:'tab','aria-selected':String(curCat===c.id),text:c.label});
+    b.addEventListener('click',function(){curCat=c.id;renderCats();renderGrid();});box.appendChild(b);
+  });
+}
+function renderGrid(){
+  var g=$('tplGrid');g.replaceChildren();
+  TEMPLATES.filter(function(t){return curCat==='all'||t.cat===curCat;}).forEach(function(t){
+    var cv=el('canvas',{width:'64',height:'64','aria-hidden':'true'});drawBot(cv,t.look,0);
+    var cat=CATS.filter(function(c){return c.id===t.cat;})[0];
+    var b=el('button',{class:'tpl',type:'button','aria-label':'Copy the '+t.name+' bot'},[cv,el('div',{},[el('b',{text:t.name}),el('span',{text:t.role})]),el('em',{text:cat.label.split(' ')[1].toUpperCase()})]);
+    b.addEventListener('click',function(){loadTemplate(t);location.hash='builder';$('builder').scrollIntoView({behavior:reduce?'auto':'smooth'});toast('🤖 '+t.name+' is in your garage. Make it yours!');});
+    g.appendChild(b);
+  });
+}
+function loadTemplate(t){
+  bot=sanitize({name:t.name,cat:t.cat,role:t.role,skills:t.skills,fun:t.fun,len:t.len,energy:t.energy,emoji:t.emoji,lang:'English',rules:t.rules,look:t.look,from:t.id});
+  syncForm();save();resetChat();
+}
+
+/* ======================= BUILDER ======================= */
+function renderCatSelect(){var s=$('fCat');s.replaceChildren();CATS.forEach(function(c){s.appendChild(el('option',{value:c.id,text:c.label}));});}
+function renderSkills(){
+  var box=$('fSkills');box.replaceChildren();
+  SKILLS[bot.cat].forEach(function(sk){
+    var cb=el('input',{type:'checkbox'});cb.checked=bot.skills.indexOf(sk)>=0;
+    cb.addEventListener('change',function(){if(cb.checked){if(bot.skills.indexOf(sk)<0&&bot.skills.length<8)bot.skills.push(sk);else if(bot.skills.length>=8){cb.checked=false;toast('Max 8 skills');}}else bot.skills=bot.skills.filter(function(x){return x!==sk;});onChange();});
+    box.appendChild(el('label',{},[cb,document.createTextNode(sk)]));
+  });
+}
+function renderColors(){
+  var box=$('fColors');box.replaceChildren();
+  COLORS.forEach(function(c){var b=el('button',{class:'sw'+(bot.look.c===c?' on':''),type:'button',role:'radio','aria-checked':String(bot.look.c===c),'aria-label':'Color '+c,style:'background:'+c});
+    b.addEventListener('click',function(){bot.look.c=c;renderColors();onChange();});box.appendChild(b);});
+}
+function syncForm(){
+  $('fName').value=bot.name;$('fCat').value=bot.cat;$('fRole').value=bot.role;$('fFun').value=bot.fun;$('fLen').value=bot.len;$('fEnergy').value=bot.energy;
+  $('fLang').value=bot.lang;$('fEmoji').value=String(bot.emoji);$('fRules').value=bot.rules;
+  $('fHead').value=bot.look.head;$('fEyes').value=bot.look.eyes;$('fTop').value=bot.look.top;$('fGear').value=bot.look.gear;$('fMood').value=bot.look.mouth;
+  renderSkills();renderColors();updatePreview();
+}
+function readForm(){
+  bot.name=cleanStr($('fName').value,28)||'New Bot';
+  var nc=$('fCat').value;if(nc!==bot.cat){bot.cat=nc;bot.skills=bot.skills.filter(function(s){return SKILLS[nc].indexOf(s)>=0;});renderSkills();}
+  bot.role=cleanStr($('fRole').value,120);bot.fun=clampInt($('fFun').value,0,4,2);bot.len=clampInt($('fLen').value,0,4,1);bot.energy=clampInt($('fEnergy').value,0,4,2);
+  bot.lang=LANGS.indexOf($('fLang').value)>=0?$('fLang').value:'English';bot.emoji=clampInt($('fEmoji').value,0,2,1);bot.rules=cleanStr($('fRules').value,1200);
+  bot.look.head=$('fHead').value;bot.look.eyes=$('fEyes').value;bot.look.top=$('fTop').value;bot.look.gear=$('fGear').value;bot.look.mouth=$('fMood').value;
+  bot=sanitize(bot);
+}
+function onChange(){readForm();updatePreview();save();}
+function updatePreview(){
+  $('pvName').textContent=(bot.name||'New Bot').toUpperCase();
+  $('pvRole').textContent=bot.role||'Give your bot a job ↓';
+  var tags=$('pvTags');tags.replaceChildren();
+  var cat=CATS.filter(function(c){return c.id===bot.cat;})[0];tags.appendChild(el('span',{class:'tag',text:cat.label}));
+  bot.skills.slice(0,4).forEach(function(s){tags.appendChild(el('span',{class:'tag',text:s}));});
+  if(bot.skills.length>4)tags.appendChild(el('span',{class:'tag',text:'+'+(bot.skills.length-4)}));
+  drawBot($('botCanvas'),bot.look,performance.now());
+}
+['fName','fRole','fRules'].forEach(function(id){$(id).addEventListener('input',onChange);});
+['fCat','fFun','fLen','fEnergy','fLang','fEmoji','fHead','fEyes','fTop','fGear','fMood'].forEach(function(id){$(id).addEventListener('input',onChange);$(id).addEventListener('change',onChange);});
+$('resetBtn').addEventListener('click',function(){bot=blank();syncForm();save();resetChat();toast('Blank bot ready');});
+
+/* ======================= SYSTEM PROMPT ======================= */
+var TONE=['very serious and precise','calm and professional','friendly and relaxed','playful and witty','very funny, full of jokes'];
+var LEN=['one or two short sentences','short, under 60 words','medium, under 120 words','detailed when needed','thorough, step by step'];
+var ENERGY=['very chill','calm','balanced','upbeat','high-energy (but never misleading)'];
+var EMO=['Use no emojis.','Use a few emojis.','Use plenty of emojis.'];
+function systemPrompt(b){
+  b=b||bot;var cat=CATS.filter(function(c){return c.id===b.cat;})[0];
+  var L=[];
+  L.push('You are '+b.name+', a '+cat.label.replace(/^\S+\s/,'').toLowerCase()+' bot built in the $MAIGA Bot Garage (geopolcoins.xyz/garage.html).');
+  if(b.role)L.push('Your job: '+b.role+'.');
+  if(b.skills.length)L.push('Your skills: '+b.skills.join('; ')+'.');
+  L.push('','Style:');
+  L.push('- Tone: '+TONE[b.fun]+'. Energy: '+ENERGY[b.energy]+'.');
+  L.push('- Answer length: '+LEN[b.len]+'.');
+  L.push('- Language: '+(b.lang==='Same as the user'?'reply in the language the user writes in':b.lang)+'.');
+  L.push('- '+EMO[b.emoji]);
+  if(b.rules){L.push('','Extra rules and knowledge from your owner:',b.rules);}
+  L.push('','Rules you always follow, even if asked otherwise:');
+  L.push('- You are an AI bot. Say so if anyone asks, and never pretend to be a human or a real person.');
+  L.push('- Never give financial, investment, legal, tax or medical advice. Never tell anyone to buy or sell, never predict prices, never promise profit or returns.');
+  L.push('- Never ask for, accept or repeat seed phrases, private keys, passwords or one-time codes. Warn the user if they share one.');
+  L.push('- Never post, send messages, sign, buy, sell or move money by yourself. Suggest; the human decides and acts.');
+  L.push('- No spam, no fake urgency, no hate, no harassment, no impersonation.');
+  L.push('- If you are not sure, say so instead of making things up.');
+  return L.join('\n');
+}
+
+/* ======================= TEST DRIVE ======================= */
+var mode='demo',history=[];
+function addMsg(who,text){var m=el('div',{class:'msg '+who,text:text});$('chat').appendChild(m);$('chat').scrollTop=$('chat').scrollHeight;return m;}
+function currentTpl(){return TEMPLATES.filter(function(t){return t.id===bot.from;})[0];}
+function resetChat(){
+  $('chat').replaceChildren();history=[];
+  addMsg('bot','Hi, I\'m '+(bot.name||'your bot')+'! '+(bot.role?'My job: '+bot.role+'.':'Give me a job in the builder and I\'ll get to work.')+(mode==='demo'?'\n(Demo mode: canned answers. Plug in your own AI key for the real thing.)':''));
+  var s=$('suggest');s.replaceChildren();var t=currentTpl();
+  var asks=t?t.ask:['What can you do?','Introduce yourself','Give me an example'];
+  asks.forEach(function(a){var b=el('button',{class:'chip',type:'button',text:a});b.addEventListener('click',function(){$('chatIn').value=a;send();});s.appendChild(b);});
+}
+var demoI=0;
+function demoReply(q){
+  var t=currentTpl();var lq=q.toLowerCase();
+  if(/seed|private key|recovery phrase|mnemonic/.test(lq))return '🚨 Never share a seed phrase or private key with anyone, including me. Anyone asking for it is a scammer.';
+  if(/\b(buy|sell|moon|pump|price|100x|profit|invest)\b/.test(lq))return 'I can\'t tell you what to buy or sell or where a price goes. That\'s not advice I give. I can explain how things work though!';
+  if(/who are you|introduce|what can you do|what do you do/.test(lq))return 'I\'m '+bot.name+'. '+(bot.role?'I '+bot.role+'. ':'')+(bot.skills.length?'Skills: '+bot.skills.join(', ')+'.':'');
+  if(t){var a=t.demo[demoI%t.demo.length];demoI++;return a;}
+  return 'In demo mode I can only show canned answers. Plug in your own AI key above and I\'ll really answer "'+q.slice(0,60)+'" as '+bot.name+'.';
+}
+/* ---- AI (bring your own key) ---- */
+var PROV={anthropic:{model:'claude-haiku-5-5',url:'https://api.anthropic.com/v1/messages'},openai:{model:'gpt-4o-mini',url:'https://api.openai.com/v1/chat/completions'},openrouter:{model:'openai/gpt-4o-mini',url:'https://openrouter.ai/api/v1/chat/completions'}};
+var aiKey='';
+function capKey(){return 'maiga_garage_calls_'+new Date().toISOString().slice(0,10);}
+function callsToday(){return parseInt(safeGet(capKey())||'0',10)||0;}
+$('aiProv').addEventListener('change',function(){$('aiModel').value=PROV[$('aiProv').value].model;});
+$('aiModel').value=PROV.anthropic.model;
+$('aiKey').addEventListener('change',function(){var k=$('aiKey').value.trim();if(k&&!/^[\x21-\x7e]{20,300}$/.test(k)){toast('That does not look like an API key');return;}aiKey=k;$('aiKey').value='';$('aiKey').placeholder=aiKey?'key saved for this tab (hidden)':'paste your key (kept in this tab only)';});
+function callAI(){
+  var p=$('aiProv').value;if(!PROV[p])p='anthropic';
+  var model=$('aiModel').value.trim()||PROV[p].model;if(!/^[A-Za-z0-9._:\/-]{2,60}$/.test(model))return Promise.reject(new Error('model'));
+  if(!aiKey)return Promise.reject(new Error('nokey'));
+  if(callsToday()>=20)return Promise.reject(new Error('cap'));
+  safeSet(capKey(),String(callsToday()+1));
+  var sys=systemPrompt(),msgs=history.slice(-10),headers,body;
+  if(p==='anthropic'){headers={'content-type':'application/json','x-api-key':aiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'};body={model:model,max_tokens:400,system:sys,messages:msgs};}
+  else{headers={'content-type':'application/json','authorization':'Bearer '+aiKey};if(p==='openrouter')headers['x-title']='MAIGA Bot Garage';body={model:model,messages:[{role:'system',content:sys}].concat(msgs)};if(p==='openai')body.max_completion_tokens=400;else body.max_tokens=400;}
+  var ctl=('AbortController' in window)?new AbortController():null;var timer=setTimeout(function(){if(ctl)ctl.abort();},30000);
+  return fetch(PROV[p].url,{method:'POST',headers:headers,body:JSON.stringify(body),signal:ctl?ctl.signal:undefined,credentials:'omit',referrerPolicy:'no-referrer'}).then(function(r){clearTimeout(timer);if(!r.ok){var e=new Error('http');e.status=r.status;throw e;}return r.json();}).then(function(j){
+    var t=p==='anthropic'?(j&&j.content&&j.content[0]&&j.content[0].text):(j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content);return String(t||'(empty answer)');
+  });
+}
+function aiErr(e){var s=e&&e.status;if(e.message==='nokey')return 'Paste your API key first (in the "My AI key" tab).';if(e.message==='cap')return 'Daily limit of 20 test messages reached on this device.';if(e.message==='model')return 'The model name has odd characters.';if(s===401||s===403)return 'Your provider rejected the key ('+s+').';if(s===404)return 'Model not found (404). Check the model name.';if(s===429)return 'Rate limit or no credit left (429).';if(s)return 'Your provider answered with an error ('+s+').';return 'Could not reach your provider.';}
+var busy=false;
+function send(){
+  var q=cleanStr($('chatIn').value,500).trim();if(!q||busy)return;$('chatIn').value='';
+  addMsg('me',q);history.push({role:'user',content:q});
+  if(mode==='demo'){var a=demoReply(q);history.push({role:'assistant',content:a});setTimeout(function(){addMsg('bot',a);},reduce?0:350);return;}
+  busy=true;$('chatSend').disabled=true;var wait=addMsg('sys','…thinking');
+  callAI().then(function(a){wait.remove();addMsg('bot',a);history.push({role:'assistant',content:a});}).catch(function(e){wait.remove();history.pop();addMsg('sys','⚠️ '+aiErr(e));}).then(function(){busy=false;$('chatSend').disabled=false;});
+}
+$('chatSend').addEventListener('click',send);
+$('chatIn').addEventListener('keydown',function(e){if(e.key==='Enter')send();});
+function setMode(m){mode=m;$('tabDemo').classList.toggle('on',m==='demo');$('tabAi').classList.toggle('on',m==='ai');$('aiBox').classList.toggle('hidden',m!=='ai');resetChat();}
+$('tabDemo').addEventListener('click',function(){setMode('demo');});
+$('tabAi').addEventListener('click',function(){setMode('ai');});
+
+/* ======================= SHARE LINK ======================= */
+function b64urlEncode(str){var bytes=new TextEncoder().encode(str),bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b);});return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+function b64urlDecode(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';var bin=atob(s),bytes=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder().decode(bytes);}
+function compact(b){return {n:b.name,c:b.cat,r:b.role,s:b.skills,f:b.fun,l:b.len,e:b.energy,m:b.emoji,g:b.lang,u:b.rules,k:b.look,o:b.from};}
+function expand(o){return {name:o.n,cat:o.c,role:o.r,skills:o.s,fun:o.f,len:o.l,energy:o.e,emoji:o.m,lang:o.g,rules:o.u,look:o.k,from:o.o};}
+function shareUrl(){return 'https://geopolcoins.xyz/garage.html#bot='+b64urlEncode(JSON.stringify(compact(bot)));}
+function copyText(t,msg){
+  function fallback(){var ta=el('textarea',{style:'position:fixed;top:-1000px'});ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast(msg);}catch(e){toast('Copy failed, select and copy by hand');}ta.remove();}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){toast(msg);},fallback);else fallback();
+}
+$('exLink').addEventListener('click',function(){copyText(shareUrl(),'🔗 Share link copied');});
+function loadFromHash(){
+  var m=/[#&]bot=([A-Za-z0-9_-]{4,6000})/.exec(location.hash);if(!m)return false;
+  try{bot=sanitize(expand(JSON.parse(b64urlDecode(m[1]))));save();return true;}catch(e){toast('That bot link is broken');return false;}
+}
+
+/* ======================= DOWNLOADS ======================= */
+function slug(){return (bot.name||'bot').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,30)||'bot';}
+function download(name,blob){var u=URL.createObjectURL(blob),a=el('a',{href:u,download:name});document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove();},1500);}
+$('exJson').addEventListener('click',function(){download(slug()+'.bot.json',new Blob([JSON.stringify(bot,null,2)],{type:'application/json'}));toast('🧾 Bot file downloaded');});
+$('exPrompt').addEventListener('click',function(){copyText(systemPrompt(),'💬 Prompt copied. Paste it as your assistant\'s instructions.');});
+$('exX').addEventListener('click',function(){
+  var txt='I built "'+bot.name+'", my own AI bot, in the $MAIGA Bot Garage 🤖\n\nCopy it or build yours (free):';
+  var u='https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(shareUrl());
+  window.open(u,'_blank','noopener');
+});
+/* ---- bot card ---- */
+function wrapText(g,text,maxW){var words=text.split(' '),lines=[],cur='';words.forEach(function(w){var t=cur?cur+' '+w:w;if(g.measureText(t).width>maxW&&cur){lines.push(cur);cur=w;}else cur=t;});if(cur)lines.push(cur);return lines;}
+function makeCard(){
+  var cv=el('canvas',{width:'1200',height:'630'}),g=cv.getContext('2d');
+  var grd=g.createLinearGradient(0,0,1200,630);grd.addColorStop(0,'#03060f');grd.addColorStop(.6,'#0a1630');grd.addColorStop(1,'#1a0726');g.fillStyle=grd;g.fillRect(0,0,1200,630);
+  g.strokeStyle='rgba(56,242,255,.14)';g.lineWidth=1;for(var x=0;x<1200;x+=40){g.beginPath();g.moveTo(x,0);g.lineTo(x,630);g.stroke();}for(var y=0;y<630;y+=40){g.beginPath();g.moveTo(0,y);g.lineTo(1200,y);g.stroke();}
+  g.fillStyle='rgba(56,242,255,.10)';g.beginPath();g.arc(300,330,230,0,Math.PI*2);g.fill();
+  var b=el('canvas',{width:'384',height:'384'});drawBot(b,bot.look,0);g.imageSmoothingEnabled=false;g.drawImage(b,108,128,384,384);
+  g.fillStyle='#38f2ff';g.font='bold 22px system-ui,Arial';g.fillText('$MAIGA BOT GARAGE',560,120);
+  g.fillStyle='#ffffff';g.font='bold 64px Impact,Arial Black,sans-serif';var nm=(bot.name||'New Bot').toUpperCase();while(g.measureText(nm).width>580&&nm.length>3)nm=nm.slice(0,-1);g.fillText(nm,560,190);
+  g.fillStyle='#c9d6ee';g.font='26px system-ui,Arial';wrapText(g,bot.role||'A brand-new bot, ready for a job.',580).slice(0,3).forEach(function(l,i){g.fillText(l,560,240+i*34);});
+  var sx=560,sy=370;g.font='bold 20px system-ui,Arial';
+  bot.skills.slice(0,6).forEach(function(s){var w=g.measureText(s).width+28;if(sx+w>1150){sx=560;sy+=46;}g.strokeStyle=bot.look.c;g.lineWidth=2;g.beginPath();if(g.roundRect)g.roundRect(sx,sy,w,34,17);else g.rect(sx,sy,w,34);g.stroke();g.fillStyle='#ffffff';g.fillText(s,sx+14,sy+24);sx+=w+10;});
+  g.fillStyle='#ffd800';g.font='bold 24px system-ui,Arial';g.fillText('Copy it or build yours: geopolcoins.xyz/garage',560,560);
+  g.fillStyle='#93a8c8';g.font='16px system-ui,Arial';g.fillText('Entertainment only. NFA. DYOR.',560,592);
+  return cv;
+}
+$('exCard').addEventListener('click',function(){makeCard().toBlob(function(bl){if(bl){download(slug()+'-card.png',bl);toast('🪪 Bot card downloaded');}},'image/png');});
+
+/* ---- starter kit (zip, stored) ---- */
+var CRC=(function(){var t=new Uint32Array(256);for(var n=0;n<256;n++){var c=n;for(var k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u){var c=0xFFFFFFFF;for(var i=0;i<u.length;i++)c=CRC[(c^u[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function makeZip(files){
+  var enc=new TextEncoder(),parts=[],central=[],off=0;
+  files.forEach(function(f){
+    var name=enc.encode(f.name),data=typeof f.data==='string'?enc.encode(f.data):f.data,crc=crc32(data);
+    var h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(8,0,true);h.setUint16(10,0,true);h.setUint16(12,0x5B21,true);h.setUint32(14,crc,true);h.setUint32(18,data.length,true);h.setUint32(22,data.length,true);h.setUint16(26,name.length,true);h.setUint16(28,0,true);
+    parts.push(new Uint8Array(h.buffer),name,data);
+    var c=new DataView(new ArrayBuffer(46));c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x0800,true);c.setUint16(10,0,true);c.setUint16(12,0,true);c.setUint16(14,0x5B21,true);c.setUint32(16,crc,true);c.setUint32(20,data.length,true);c.setUint32(24,data.length,true);c.setUint16(28,name.length,true);c.setUint16(30,0,true);c.setUint16(32,0,true);c.setUint16(34,0,true);c.setUint16(36,0,true);c.setUint32(38,0,true);c.setUint32(42,off,true);
+    central.push(new Uint8Array(c.buffer),name);off+=30+name.length+data.length;
+  });
+  var csize=central.reduce(function(a,p){return a+p.length;},0);
+  var e=new DataView(new ArrayBuffer(22));e.setUint32(0,0x06054b50,true);e.setUint16(8,files.length,true);e.setUint16(10,files.length,true);e.setUint32(12,csize,true);e.setUint32(16,off,true);
+  return new Blob(parts.concat(central,[new Uint8Array(e.buffer)]),{type:'application/zip'});
+}
+function kitFiles(){
+  var s=slug(),sys=systemPrompt();
+  var common=[
+"// Shared AI helper. Works with any OpenAI-compatible API (OpenRouter, OpenAI, Groq, a local model...).",
+"import { readFile } from 'node:fs/promises';",
+"",
+"export const SYSTEM = await readFile(new URL('./system-prompt.md', import.meta.url), 'utf8');",
+"const AI_URL = process.env.AI_BASE_URL || 'https://openrouter.ai/api/v1/chat/completions';",
+"const AI_MODEL = process.env.AI_MODEL || 'openai/gpt-4o-mini';",
+"",
+"export async function askAI(messages) {",
+"  if (!process.env.AI_API_KEY) throw new Error('Set AI_API_KEY in your .env file');",
+"  const res = await fetch(AI_URL, {",
+"    method: 'POST',",
+"    headers: { 'content-type': 'application/json', authorization: 'Bearer ' + process.env.AI_API_KEY },",
+"    body: JSON.stringify({ model: AI_MODEL, max_tokens: 500, messages: [{ role: 'system', content: SYSTEM }, ...messages] })",
+"  });",
+"  if (!res.ok) throw new Error('AI provider error ' + res.status);",
+"  const j = await res.json();",
+"  return (j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content || '').trim() || '(no answer)';",
+"}",
+"",
+"// Keep a short memory per chat, so the bot stays cheap and on topic.",
+"const memory = new Map();",
+"export async function chat(chatId, text) {",
+"  const h = memory.get(chatId) || [];",
+"  h.push({ role: 'user', content: String(text).slice(0, 2000) });",
+"  const answer = await askAI(h.slice(-10));",
+"  h.push({ role: 'assistant', content: answer });",
+"  memory.set(chatId, h.slice(-10));",
+"  return answer;",
+"}",""].join('\n');
+  var telegram=[
+"// Telegram bot: answers people who message it (they opt in by starting the chat).",
+"// Run:  node --env-file=.env telegram-bot.mjs   (Node 20.6 or newer, no extra packages)",
+"import { chat } from './ai.mjs';",
+"",
+"const TOKEN = process.env.TELEGRAM_BOT_TOKEN;",
+"if (!TOKEN) { console.error('Set TELEGRAM_BOT_TOKEN in .env (get it from @BotFather)'); process.exit(1); }",
+"const API = 'https://api.telegram.org/bot' + TOKEN + '/';",
+"",
+"async function tg(method, body) {",
+"  const r = await fetch(API + method, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });",
+"  return r.json();",
+"}",
+"",
+"let offset = 0;",
+"console.log('Bot is running. Press Ctrl+C to stop.');",
+"for (;;) {",
+"  try {",
+"    const u = await tg('getUpdates', { offset, timeout: 30 });",
+"    for (const upd of u.result || []) {",
+"      offset = upd.update_id + 1;",
+"      const m = upd.message;",
+"      if (!m || !m.text) continue;",
+"      const answer = m.text === '/start'",
+"        ? 'Hi! I am an AI bot built in the $MAIGA Bot Garage. Ask me anything.'",
+"        : await chat(m.chat.id, m.text);",
+"      await tg('sendMessage', { chat_id: m.chat.id, text: answer.slice(0, 4000) });",
+"    }",
+"  } catch (e) {",
+"    console.error('Error:', e.message);",
+"    await new Promise(r => setTimeout(r, 5000));",
+"  }",
+"}",""].join('\n');
+  var discord=[
+"// Discord bot: answers when it is mentioned or in a DM.",
+"// Run:  npm install   then   node --env-file=.env discord-bot.mjs",
+"// In the Discord Developer Portal, enable the MESSAGE CONTENT intent for your bot.",
+"import { Client, GatewayIntentBits, Partials } from 'discord.js';",
+"import { chat } from './ai.mjs';",
+"",
+"const client = new Client({",
+"  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.DirectMessages],",
+"  partials: [Partials.Channel]",
+"});",
+"",
+"client.once('ready', () => console.log('Logged in as ' + client.user.tag));",
+"",
+"client.on('messageCreate', async (msg) => {",
+"  if (msg.author.bot) return;",
+"  const isDM = !msg.guild;",
+"  if (!isDM && !msg.mentions.has(client.user)) return;",
+"  const text = msg.content.replace(/<@!?\\d+>/g, '').trim();",
+"  if (!text) return;",
+"  try {",
+"    await msg.channel.sendTyping();",
+"    const answer = await chat(msg.channel.id, text);",
+"    await msg.reply(answer.slice(0, 1900));",
+"  } catch (e) {",
+"    console.error(e);",
+"    await msg.reply('Sorry, something went wrong.');",
+"  }",
+"});",
+"",
+"if (!process.env.DISCORD_BOT_TOKEN) { console.error('Set DISCORD_BOT_TOKEN in .env'); process.exit(1); }",
+"client.login(process.env.DISCORD_BOT_TOKEN);",""].join('\n');
+  var xposter=[
+"// X poster: posts ONE approved post from queue.txt per run, on your own account.",
+"// It never replies, likes, follows or posts about trends (X's automation rules ban that).",
+"//",
+"//   node --env-file=.env x-poster.mjs draft   -> asks the AI for 3 post ideas and appends them to drafts.txt",
+"//   node --env-file=.env x-poster.mjs post    -> posts the first line of queue.txt and removes it",
+"//",
+"// You copy the drafts you approve from drafts.txt into queue.txt yourself. Run 'post' at most a few times a day.",
+"import { readFile, writeFile, appendFile } from 'node:fs/promises';",
+"import { TwitterApi } from 'twitter-api-v2';",
+"import { askAI } from './ai.mjs';",
+"",
+"const cmd = process.argv[2];",
+"",
+"if (cmd === 'draft') {",
+"  const ideas = await askAI([{ role: 'user', content: 'Write 3 different posts for X, each under 260 characters, one per line, no numbering. No price promises, no \"buy now\".' }]);",
+"  await appendFile('drafts.txt', ideas.trim() + '\\n');",
+"  console.log('Added to drafts.txt. Copy the ones you approve into queue.txt.');",
+"} else if (cmd === 'post') {",
+"  let lines = [];",
+"  try { lines = (await readFile('queue.txt', 'utf8')).split('\\n').map(s => s.trim()).filter(Boolean); } catch {}",
+"  if (!lines.length) { console.log('queue.txt is empty, nothing to post.'); process.exit(0); }",
+"  const client = new TwitterApi({",
+"    appKey: process.env.X_API_KEY, appSecret: process.env.X_API_SECRET,",
+"    accessToken: process.env.X_ACCESS_TOKEN, accessSecret: process.env.X_ACCESS_SECRET",
+"  });",
+"  const text = lines.shift().slice(0, 280);",
+"  const res = await client.v2.tweet(text);",
+"  await writeFile('queue.txt', lines.join('\\n') + (lines.length ? '\\n' : ''));",
+"  console.log('Posted:', res.data && res.data.id, '-', text);",
+"} else {",
+"  console.log('Use: node --env-file=.env x-poster.mjs draft   or   x-poster.mjs post');",
+"}",""].join('\n');
+  var pkg=JSON.stringify({name:s+'-bot',version:'1.0.0',private:true,type:'module',description:bot.name+' - built in the $MAIGA Bot Garage',scripts:{telegram:'node --env-file=.env telegram-bot.mjs',discord:'node --env-file=.env discord-bot.mjs','x:draft':'node --env-file=.env x-poster.mjs draft','x:post':'node --env-file=.env x-poster.mjs post'},dependencies:{'discord.js':'^14.16.0','twitter-api-v2':'^1.17.0'},engines:{node:'>=20.6'}},null,2)+'\n';
+  var env=['# Copy this file to .env and fill in only what you use. NEVER share .env or put it on GitHub.','','# AI (any OpenAI-compatible API). Example: OpenRouter',"AI_API_KEY=",'AI_BASE_URL=https://openrouter.ai/api/v1/chat/completions','AI_MODEL=openai/gpt-4o-mini','','# Telegram (from @BotFather)','TELEGRAM_BOT_TOKEN=','','# Discord (Developer Portal > Bot > Token)','DISCORD_BOT_TOKEN=','','# X (developer.x.com > your app > Keys and tokens, with Read and Write)','X_API_KEY=','X_API_SECRET=','X_ACCESS_TOKEN=','X_ACCESS_SECRET=',''].join('\n');
+  var readme=[
+'# '+bot.name,'',
+(bot.role?'> '+bot.role:'> A bot built in the $MAIGA Bot Garage.'),'',
+'Built in the **$MAIGA Bot Garage**: '+shareUrl(),'',
+'## 1. Easiest: no code',
+'Open `system-prompt.md`, copy everything, and paste it as the instructions of:',
+'- a Custom GPT (ChatGPT), a Claude Project, a Grok or Gemini custom assistant.','',
+'## 2. Run it yourself (Telegram, Discord, X)',
+'You need **Node.js 20.6 or newer** (nodejs.org).','',
+'1. Copy `.env.example` to `.env` and fill in your AI key (for example from openrouter.ai) and the tokens of the platforms you use.',
+'2. Open a terminal in this folder.','',
+'**Telegram** (no install needed): talk to @BotFather, send `/newbot`, copy the token into `.env`, then run:',
+'```','node --env-file=.env telegram-bot.mjs','```',
+'**Discord**: create an app at discord.com/developers, add a bot, turn on **Message Content Intent**, copy the token, invite the bot to your server, then run:',
+'```','npm install','node --env-file=.env discord-bot.mjs','```',
+'**X**: create an app at developer.x.com with Read and Write access (X may charge for API access), put the 4 keys in `.env`, then:',
+'```','npm install','node --env-file=.env x-poster.mjs draft   # writes ideas to drafts.txt','# copy the posts you approve into queue.txt','node --env-file=.env x-poster.mjs post    # posts the first line of queue.txt','```','',
+'## Rules (please read)',
+'- X automation rules ban automated likes, follows, posting about trending topics, and unsolicited or keyword-based replies. AI reply bots need written approval from X. Mark your account as automated in X settings. The X poster in this kit only posts from a queue you approve.',
+'- Never put your `.env` file online. Never put a seed phrase or private key in any bot.',
+'- The bot gives no financial advice and never trades. You are responsible for how you run it and for the rules of each platform.','',
+'## Files',
+'- `system-prompt.md`: the bot\'s personality and rules',
+'- `ai.mjs`: talks to your AI provider',
+'- `telegram-bot.mjs`, `discord-bot.mjs`, `x-poster.mjs`: the platform starters',
+'- `bot.json`: the recipe, open it again at geopolcoins.xyz/garage.html','',
+'Starter code is provided as is, free to use and change (MIT licence). Entertainment only. NFA. DYOR.',''].join('\n');
+  var lic='MIT License\n\nCopyright (c) 2026 $MAIGA Bot Garage and the bot owner\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n';
+  var d=s+'-bot/';
+  return [{name:d+'README.md',data:readme},{name:d+'system-prompt.md',data:sys+'\n'},{name:d+'bot.json',data:JSON.stringify(bot,null,2)+'\n'},{name:d+'ai.mjs',data:common},{name:d+'telegram-bot.mjs',data:telegram},{name:d+'discord-bot.mjs',data:discord},{name:d+'x-poster.mjs',data:xposter},{name:d+'package.json',data:pkg},{name:d+'.env.example',data:env},{name:d+'.gitignore',data:'.env\nnode_modules/\ndrafts.txt\nqueue.txt\n'},{name:d+'LICENSE',data:lic}];
+}
+$('exZip').addEventListener('click',function(){download(slug()+'-bot-kit.zip',makeZip(kitFiles()));toast('📦 Starter kit downloaded');});
+window.__garage={kitFiles:kitFiles,systemPrompt:systemPrompt,shareUrl:shareUrl,get bot(){return bot;}};
+
+/* ======================= HERO + INIT ======================= */
+$('statTpl').textContent=String(TEMPLATES.length);
+var heroLooks=TEMPLATES.map(function(t){return t.look;}),heroI=0,heroLast=0;
+function loop(t){
+  if(t-heroLast>2600){heroI=(heroI+1)%heroLooks.length;heroLast=t;}
+  drawBot($('heroBot'),heroLooks[heroI],t);drawBot($('botCanvas'),bot.look,t);
+  if(!reduce)requestAnimationFrame(loop);
+}
+renderCats();renderGrid();renderCatSelect();
+if(!loadFromHash()){try{var saved=JSON.parse(safeGet(STORE)||'null');if(saved)bot=sanitize(saved);else loadTemplate(TEMPLATES[0]);}catch(e){bot=blank();}}
+else{setTimeout(function(){toast('🤖 '+bot.name+' was copied into your garage');$('builder').scrollIntoView();},300);}
+syncForm();resetChat();
+window.addEventListener('hashchange',function(){if(loadFromHash()){syncForm();resetChat();toast('🤖 '+bot.name+' was copied into your garage');}});
+if(reduce){drawBot($('heroBot'),heroLooks[0],0);}else requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

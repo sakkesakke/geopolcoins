@@ -68,6 +68,8 @@ button.gray{background:#666;color:#fff}
     <input type="password" id="pwd" autocomplete="current-password" placeholder="Your Supabase admin password">
     <button id="loginBtn">SIGN IN</button>
     <div id="loginError" style="color:#ff3d3d;margin-top:12px;font-size:13px;"></div>
+    <button class="gray" id="forgotBtn" type="button" style="margin-top:10px">FORGOT PASSWORD? SEND RESET EMAIL</button>
+    <div id="forgotMsg" style="margin-top:10px;font-size:13px;"></div>
     <p class="note" style="margin-top:14px">This page contains no secrets. Only the one Supabase account you create (see README) can read wallets or write payouts.</p>
   </div>
 </div>
@@ -238,6 +240,26 @@ async function signIn(){
   } catch(e){
     $('loginError').textContent = '❌ ' + e.message;
   } finally { $('loginBtn').disabled = false; }
+}
+async function forgotPassword(){
+  const email = $('email').value.trim();
+  const msg = $('forgotMsg');
+  msg.style.color = '#ff3d3d';
+  if (!email){ msg.textContent = 'Type the admin email first, then click again.'; return; }
+  $('forgotBtn').disabled = true;
+  try{
+    const res = await fetch(SUPABASE_URL + '/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + '/reset.html'), {
+      method: 'POST',
+      headers: { apikey: SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    if (res.status === 429) throw new Error('Too many reset emails. Wait about 1 hour and try once more.');
+    if (!res.ok){ let j = {}; try{ j = await res.json(); }catch(e){} throw new Error(j.msg || j.error_description || ('HTTP ' + res.status)); }
+    msg.style.color = '#3dff7a';
+    msg.textContent = '✅ If this is the admin email, a reset email is on its way. Open it, click the link once, and set a new password.';
+  } catch(e){
+    msg.textContent = '❌ ' + e.message;
+  } finally { setTimeout(() => { $('forgotBtn').disabled = false; }, 30000); }
 }
 function signOut(){
   session = null;
@@ -504,6 +526,7 @@ function reload(){ if (!session) return; loadData(); loadHistory(); }
    INIT
    ============================================================ */
 $('loginBtn').addEventListener('click', signIn);
+$('forgotBtn').addEventListener('click', forgotPassword);
 $('pwd').addEventListener('keydown', (e) => { if (e.key === 'Enter') signIn(); });
 $('logoutBtn').addEventListener('click', signOut);
 $('connectBtn').addEventListener('click', connectPhantom);

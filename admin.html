@@ -454,13 +454,26 @@ async function sendPayouts(){
     const programId = mintAcc.owner;                         // classic SPL Token or Token-2022, detected automatically
     const mintInfo = await getMint(connection, mint, 'confirmed', programId);
     const decimals = mintInfo.decimals;
-    const fromAta = getAssociatedTokenAddressSync(mint, payer, false, programId);
-    log('Mint OK · decimals ' + decimals + ' · source token account ' + fromAta.toBase58(), 'info');
+    let fromAta = getAssociatedTokenAddressSync(mint, payer, false, programId);
+    let balRaw = -1n, lastErr = '';
+    // 1) look up every $MAIGA account this wallet owns and use the fullest one (works for non-standard accounts too)
+    try{
+      const r = await connection.getParsedTokenAccountsByOwner(payer, { mint }, 'confirmed');
+      for (const a of r.value){
+        const amt = BigInt(a.account.data.parsed.info.tokenAmount.amount);
+        if (amt > balRaw){ balRaw = amt; fromAta = a.pubkey; }
+      }
+      if (!r.value.length) lastErr = 'no $MAIGA account found for this wallet';
+    } catch(e){ lastErr = String(e.message || e); log('Token-account lookup failed: ' + lastErr.slice(0, 160), 'err'); }
+    // 2) fallback: read the standard account directly
+    if (balRaw < 0n){
+      try{ balRaw = BigInt((await connection.getTokenAccountBalance(fromAta, 'confirmed')).value.amount); }
+      catch(e){ lastErr = String(e.message || e); }
+    }
+    if (balRaw < 0n) throw new Error('Could not read the $MAIGA balance of ' + short(connectedKey) + ' (' + lastErr.slice(0, 160) + '). If this IS the prize wallet, paste your own RPC link (e.g. Helius) and try again. Nothing was sent.');
+    log('Mint OK · decimals ' + decimals + ' · source ' + fromAta.toBase58() + ' · balance ' + (balRaw / 10n ** BigInt(decimals)).toLocaleString() + ' $MAIGA', 'info');
 
     const totalRaw = todo.reduce((a, x) => a + BigInt(x.amount) * 10n ** BigInt(decimals), 0n);
-    let balRaw = 0n;
-    try{ balRaw = BigInt((await connection.getTokenAccountBalance(fromAta)).value.amount); }
-    catch(e){ throw new Error('The connected wallet has no $MAIGA token account — is this the prize-pool wallet?'); }
     if (balRaw < totalRaw) throw new Error('Not enough $MAIGA in the connected wallet (needs ' + (totalRaw / 10n ** BigInt(decimals)).toLocaleString() + ', has ' + (balRaw / 10n ** BigInt(decimals)).toLocaleString() + ')');
 
     for (const x of todo){

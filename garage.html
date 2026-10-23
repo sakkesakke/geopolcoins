@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>$MAIGA Bot Garage: build, test and export your own AI bot</title>
 <meta name="description" content="A free, futuristic garage where anyone can copy a ready-made AI bot or build their own: crypto helpers, business automations and life assistants. Test it, share it with a link, and export it to ChatGPT, Claude, Grok, Discord, Telegram or X. Nothing is posted or traded for you.">
@@ -120,15 +120,42 @@ summary{cursor:pointer;font-weight:800}
 .terms{font-size:12.5px;color:var(--dim)}
 .terms li{margin-bottom:6px}
 footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;border-top:1px solid var(--line)}
+.cbot{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.cbot .head{display:flex;gap:10px;align-items:center}
+.cbot canvas{width:52px;height:52px;flex:0 0 52px;image-rendering:pixelated;border-radius:10px;background:#071226}
+.cbot b{display:block;font-size:15px;word-break:break-word}
+.cbot .by{font-size:11.5px;color:var(--cyan)}
+.cbot p{margin:0;font-size:12.5px;color:var(--dim);flex:1;word-break:break-word}
+.cbot .acts{display:flex;gap:6px;flex-wrap:wrap}
+.cbot .acts .btn{padding:6px 10px;font-size:12px}
+.cbot .acts .btn.liked{border-color:var(--pink);color:var(--pink)}
+.arena{position:relative;display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:16px;border-radius:18px;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 120%,rgba(255,61,242,.25),transparent 60%),radial-gradient(ellipse at 50% -20%,rgba(56,242,255,.18),transparent 60%),rgba(3,6,15,.75);overflow:hidden}
+.fighter{text-align:center;min-width:0}
+.fighter canvas{width:100%;max-width:170px;height:auto;image-rendering:pixelated}
+#fbCv{transform:scaleX(-1)}
+.fighter b{display:block;font-family:Impact,"Arial Black",sans-serif;letter-spacing:1px;font-size:20px;word-break:break-word}
+.fighter.hit{animation:hit .35s}
+.fighter.win canvas{filter:drop-shadow(0 0 18px #ffd800)}
+@keyframes hit{25%{transform:translateX(-8px) rotate(-3deg)}75%{transform:translateX(8px) rotate(3deg)}}
+.vs{font-family:Impact,"Arial Black",sans-serif;font-size:clamp(34px,7vw,64px);color:var(--yellow);text-shadow:0 0 20px rgba(255,216,0,.6);letter-spacing:2px}
+.feed{display:flex;flex-direction:column;gap:8px;margin-top:12px;min-height:40px}
+.line{max-width:88%;padding:10px 13px;border-radius:14px;font-size:14.5px;word-break:break-word;animation:pop .25s}
+.line.a{align-self:flex-start;background:rgba(56,242,255,.10);border:1px solid rgba(56,242,255,.35)}
+.line.b{align-self:flex-end;background:rgba(255,61,242,.10);border:1px solid rgba(255,61,242,.35);text-align:right}
+.line small{display:block;font-size:11px;font-weight:800;letter-spacing:1px;opacity:.8}
+.round{align-self:center;font-size:11px;font-weight:900;letter-spacing:3px;color:var(--yellow)}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.bctl{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-bottom:12px}
+.judge{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
 @media (max-width:860px){.hero{grid-template-columns:1fr}.builder{grid-template-columns:minmax(0,1fr)}.preview{position:static}.holo{max-width:360px;margin:0 auto}}
-@media (max-width:520px){.row,.row3{grid-template-columns:1fr}.chatbar{flex-wrap:wrap}.chatbar .btn{flex:1}}
+@media (max-width:520px){.bctl{grid-template-columns:1fr}.row,.row3{grid-template-columns:1fr}.chatbar{flex-wrap:wrap}.chatbar .btn{flex:1}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="top">
   <b>$<span>MAIGA</span> BOT GARAGE</b>
-  <nav><a href="index.html">HOME</a><a href="factory.html">FACTORY</a><a href="index.html#checkup">CHECKUP</a><a href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a></nav>
+  <nav><a href="#community">COMMUNITY</a><a href="#battles">BATTLES</a><a href="index.html">HOME</a><a href="factory.html">FACTORY</a><a href="index.html#checkup">CHECKUP</a><a href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a></nav>
 </div>
 
 <div class="wrap">
@@ -140,6 +167,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
       <div class="cta">
         <a class="btn gold" href="#templates">🤖 Copy a bot</a>
         <a class="btn" href="#builder">🛠️ Build your own</a>
+        <a class="btn pink" href="#battles">⚔️ Bot Battles</a>
       </div>
       <div class="stats">
         <div class="stat"><b id="statTpl">0</b><span>ready-made bots</span></div>
@@ -230,6 +258,10 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
       <div class="exp"><b>📦 Starter kit (.zip)</b><p>Telegram, Discord and X starter code + guide. Runs on your computer or server with your own keys.</p><button class="btn small gold" id="exZip" type="button">Download kit</button></div>
       <div class="exp"><b>𝕏 Post about it</b><p>Opens X with a post about your bot. You check it and press post yourself.</p><button class="btn small" id="exX" type="button">Open X</button></div>
       <div class="exp"><b>🧾 Bot file (.json)</b><p>The raw bot recipe, for backups or your own tools.</p><button class="btn small" id="exJson" type="button">Download JSON</button></div>
+      <div class="exp"><b>🌍 Publish to the community</b><p>Put your bot in the public garage so others can like, copy and battle it.</p>
+        <input id="pubNick" maxlength="20" placeholder="your nickname (2-20, letters/numbers)" aria-label="Nickname">
+        <label style="display:flex;gap:6px;align-items:flex-start;text-transform:none;letter-spacing:0;font-weight:600;font-size:12px;color:var(--dim)"><input type="checkbox" id="pubOk" style="width:auto;margin:2px 0 0"> I share no private info, no links and nothing hateful. It's public.</label>
+        <button class="btn small pink" id="pubBtn" type="button">Publish</button><div class="note" id="pubMsg" role="status"></div></div>
     </div>
     <details><summary>Where can my bot live? (and the rules there)</summary>
       <ul class="note">
@@ -241,12 +273,40 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
     </details>
   </section>
 
+  <section class="section" id="community">
+    <div class="sec-h"><h2><small>COMMUNITY GARAGE</small>BOTS BY THE CROWD</h2>
+      <div class="chips" style="margin:0" role="tablist"><button class="chip on" id="cTop" type="button">🔥 Top</button><button class="chip" id="cNew" type="button">🆕 New</button></div></div>
+    <p class="sub">Bots other people built and shared. Like them, copy them into your garage, or throw them into a battle.</p>
+    <div class="grid" id="cGrid"><div class="note">Loading the community garage…</div></div>
+  </section>
+
+  <section class="section" id="battles">
+    <div class="sec-h"><h2><small>ARENA</small>BOT BATTLES</h2></div>
+    <p class="sub">Pick two bots. They roast each other for three rounds. You are the judge. Friendly fire only: bots roast choices and code, never people.</p>
+    <div class="panel">
+      <div class="bctl">
+        <div><label for="selA">Fighter 1</label><select id="selA"></select></div>
+        <div><label for="selB">Fighter 2</label><select id="selB"></select></div>
+        <button class="btn gold" id="fightBtn" type="button">⚔️ FIGHT</button>
+      </div>
+      <label style="display:flex;gap:6px;align-items:center;text-transform:none;letter-spacing:0;font-weight:600;font-size:13px;color:var(--dim);margin-bottom:10px"><input type="checkbox" id="useAi" style="width:auto;margin:0"> Use my AI key for fresh roasts (6 messages, set it in Test drive → My AI key). Off = built-in roast engine, free.</label>
+      <div class="arena" aria-live="polite">
+        <div class="fighter" id="fa"><canvas id="faCv" width="64" height="64" aria-hidden="true"></canvas><b id="faName">?</b></div>
+        <div class="vs">VS</div>
+        <div class="fighter" id="fb"><canvas id="fbCv" width="64" height="64" aria-hidden="true"></canvas><b id="fbName">?</b></div>
+      </div>
+      <div class="feed" id="feed"></div>
+      <div class="judge hidden" id="judge"><span class="note" style="width:100%;text-align:center">🧑‍⚖️ Who won? You decide.</span><button class="btn" id="winA" type="button"></button><button class="btn pink" id="winB" type="button"></button></div>
+      <div class="judge hidden" id="after"><button class="btn small" id="bCard" type="button">🪪 Battle card</button><button class="btn small" id="bX" type="button">𝕏 Post the result</button><button class="btn small ghost" id="bAgain" type="button">↻ Rematch</button></div>
+    </div>
+  </section>
+
   <section class="section" id="roadmap">
     <div class="sec-h"><h2><small>GARAGE ROADMAP</small>WHAT'S NEXT</h2></div>
     <p class="sub">The garage keeps getting new bots and easier ways to connect. Planned, not live yet:</p>
     <div class="road">
-      <div><em>NEXT</em><b>Community garage</b><span>Publish your bot so others can copy it, with likes.</span></div>
-      <div><em>NEXT</em><b>Bot Battles</b><span>Two bots roast each other, the crowd votes. Just for fun.</span></div>
+      <div><em>NEXT</em><b>Battle of the day</b><span>The top community bots battle and everyone votes.</span></div>
+      <div><em>NEXT</em><b>More bots &amp; skins</b><span>New ready-made bots and looks every week.</span></div>
       <div><em>LATER</em><b>One-click connect</b><span>Run your bot without touching code, where platforms allow it.</span></div>
       <div><em>LATER</em><b>Garage Pro</b><span>Extra skins, more bots and no watermark. Described before you can pay.</span></div>
     </div>
@@ -262,6 +322,8 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
       <li><b>Entertainment and tools only.</b> Bots are prompts and starter code. What a bot says can be wrong, and nothing it says is financial, investment, legal, tax or medical advice.</li>
       <li><b>No trading, no wallets.</b> Garage bots never trade, never hold funds and never need a seed phrase or private key. Anyone asking for those is a scammer.</li>
       <li><b>You run it, you own it.</b> If you export a bot, you run it with your own accounts and keys and you are responsible for following the rules of every platform (for example X's automation rules) and the law where you live.</li>
+      <li><b>Community garage.</b> If you publish a bot, its name, job, settings, extra rules and your nickname become public on this site. Links (other than geopolcoins.xyz) are blocked, there are daily limits, and we can remove any bot at any time. Copying a community bot does not mean we checked or endorse it.</li>
+      <li><b>Bot Battles.</b> Battles are jokes made by a built-in template engine or by your own AI key. They happen in your browser, nothing is stored or posted unless you share it yourself, and there are no prizes, stakes or bets.</li>
       <li><b>Your data.</b> Your bot is saved only in this browser. A share link contains the bot recipe itself, so do not put private information in it. AI keys stay in this tab and go only to the provider you pick.</li>
       <li>See the full <a href="index.html#terms">terms &amp; disclaimers</a>.</li>
     </ul>
@@ -440,7 +502,7 @@ function readForm(){
   bot.look.head=$('fHead').value;bot.look.eyes=$('fEyes').value;bot.look.top=$('fTop').value;bot.look.gear=$('fGear').value;bot.look.mouth=$('fMood').value;
   bot=sanitize(bot);
 }
-function onChange(){readForm();updatePreview();save();}
+function onChange(){readForm();updatePreview();save();if($('selA').value==='mine'||$('selB').value==='mine'){fighterMap.mine=bot;showFighters();}}
 function updatePreview(){
   $('pvName').textContent=(bot.name||'New Bot').toUpperCase();
   $('pvRole').textContent=bot.role||'Give your bot a job ↓';
@@ -509,15 +571,16 @@ function callsToday(){return parseInt(safeGet(capKey())||'0',10)||0;}
 $('aiProv').addEventListener('change',function(){$('aiModel').value=PROV[$('aiProv').value].model;});
 $('aiModel').value=PROV.anthropic.model;
 $('aiKey').addEventListener('change',function(){var k=$('aiKey').value.trim();if(k&&!/^[\x21-\x7e]{20,300}$/.test(k)){toast('That does not look like an API key');return;}aiKey=k;$('aiKey').value='';$('aiKey').placeholder=aiKey?'key saved for this tab (hidden)':'paste your key (kept in this tab only)';});
-function callAI(){
+function callAI(){return callAIRaw(systemPrompt(),history.slice(-10),400);}
+function callAIRaw(sys,msgs,maxTok){
   var p=$('aiProv').value;if(!PROV[p])p='anthropic';
   var model=$('aiModel').value.trim()||PROV[p].model;if(!/^[A-Za-z0-9._:\/-]{2,60}$/.test(model))return Promise.reject(new Error('model'));
   if(!aiKey)return Promise.reject(new Error('nokey'));
   if(callsToday()>=20)return Promise.reject(new Error('cap'));
   safeSet(capKey(),String(callsToday()+1));
-  var sys=systemPrompt(),msgs=history.slice(-10),headers,body;
-  if(p==='anthropic'){headers={'content-type':'application/json','x-api-key':aiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'};body={model:model,max_tokens:400,system:sys,messages:msgs};}
-  else{headers={'content-type':'application/json','authorization':'Bearer '+aiKey};if(p==='openrouter')headers['x-title']='MAIGA Bot Garage';body={model:model,messages:[{role:'system',content:sys}].concat(msgs)};if(p==='openai')body.max_completion_tokens=400;else body.max_tokens=400;}
+  var headers,body;
+  if(p==='anthropic'){headers={'content-type':'application/json','x-api-key':aiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'};body={model:model,max_tokens:maxTok,system:sys,messages:msgs};}
+  else{headers={'content-type':'application/json','authorization':'Bearer '+aiKey};if(p==='openrouter')headers['x-title']='MAIGA Bot Garage';body={model:model,messages:[{role:'system',content:sys}].concat(msgs)};if(p==='openai')body.max_completion_tokens=maxTok;else body.max_tokens=maxTok;}
   var ctl=('AbortController' in window)?new AbortController():null;var timer=setTimeout(function(){if(ctl)ctl.abort();},30000);
   return fetch(PROV[p].url,{method:'POST',headers:headers,body:JSON.stringify(body),signal:ctl?ctl.signal:undefined,credentials:'omit',referrerPolicy:'no-referrer'}).then(function(r){clearTimeout(timer);if(!r.ok){var e=new Error('http');e.status=r.status;throw e;}return r.json();}).then(function(j){
     var t=p==='anthropic'?(j&&j.content&&j.content[0]&&j.content[0].text):(j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content);return String(t||'(empty answer)');
@@ -763,7 +826,140 @@ function kitFiles(){
   return [{name:d+'README.md',data:readme},{name:d+'system-prompt.md',data:sys+'\n'},{name:d+'bot.json',data:JSON.stringify(bot,null,2)+'\n'},{name:d+'ai.mjs',data:common},{name:d+'telegram-bot.mjs',data:telegram},{name:d+'discord-bot.mjs',data:discord},{name:d+'x-poster.mjs',data:xposter},{name:d+'package.json',data:pkg},{name:d+'.env.example',data:env},{name:d+'.gitignore',data:'.env\nnode_modules/\ndrafts.txt\nqueue.txt\n'},{name:d+'LICENSE',data:lic}];
 }
 $('exZip').addEventListener('click',function(){download(slug()+'-bot-kit.zip',makeZip(kitFiles()));toast('📦 Starter kit downloaded');});
-window.__garage={kitFiles:kitFiles,systemPrompt:systemPrompt,shareUrl:shareUrl,get bot(){return bot;}};
+
+/* ======================= COMMUNITY GARAGE ======================= */
+var SB='https://zslzbfbqrtfpvgbjhssd.supabase.co',SBKEY='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';
+function sbHeaders(x){var h={apikey:SBKEY,Authorization:'Bearer '+SBKEY};for(var k in (x||{}))h[k]=x[k];return h;}
+var community=[],cOrder='top',LIKED='maiga_garage_liked_v1';
+function likedSet(){try{return JSON.parse(safeGet(LIKED)||'[]');}catch(e){return [];}}
+function rowToBot(r){var o=expand(r.recipe||{});o.name=r.name;o.role=r.role;o.cat=r.cat;return sanitize(o);}
+function loadCommunity(){
+  var order=cOrder==='top'?'likes.desc,created_at.desc':'created_at.desc';
+  return fetch(SB+'/rest/v1/garage_bots?select=id,created_at,nickname,name,cat,role,recipe,likes,copies&order='+order+'&limit=30',{headers:sbHeaders(),credentials:'omit'}).then(function(r){
+    if(!r.ok){var e=new Error('http');e.status=r.status;throw e;}return r.json();
+  }).then(function(rows){community=Array.isArray(rows)?rows:[];renderCommunity();fillFighters();}).catch(function(e){
+    community=[];var g=$('cGrid');g.replaceChildren(el('div',{class:'note',text:(e.status===404||e.status===400)?'🚧 The community garage opens very soon. Build your bot now and publish it then!':'Could not load the community garage right now. Try again later.'}));fillFighters();
+  });
+}
+function renderCommunity(){
+  var g=$('cGrid');g.replaceChildren();
+  if(!community.length){g.appendChild(el('div',{class:'note',text:'No community bots yet. Be the first: build a bot and press Publish in Step 4. 🚀'}));return;}
+  var liked=likedSet();
+  community.forEach(function(r){
+    var b=rowToBot(r),cv=el('canvas',{width:'64',height:'64','aria-hidden':'true'});drawBot(cv,b.look,0);
+    var likeBtn=el('button',{class:'btn'+(liked.indexOf(r.id)>=0?' liked':''),type:'button',text:'❤️ '+(r.likes|0)});
+    var copyBtn=el('button',{class:'btn',type:'button',text:'📋 Copy'});
+    var battleBtn=el('button',{class:'btn pink',type:'button',text:'⚔️ Battle'});
+    likeBtn.addEventListener('click',function(){
+      var l=likedSet();if(l.indexOf(r.id)>=0){toast('You already liked this bot');return;}
+      bump(r.id,'like').then(function(){l.push(r.id);safeSet(LIKED,JSON.stringify(l.slice(-500)));r.likes=(r.likes|0)+1;likeBtn.textContent='❤️ '+r.likes;likeBtn.classList.add('liked');}).catch(function(e){toast(e.message||'Could not like right now');});
+    });
+    copyBtn.addEventListener('click',function(){bot=sanitize(b);bot.from='';syncForm();save();resetChat();bump(r.id,'copy').catch(function(){});$('builder').scrollIntoView({behavior:reduce?'auto':'smooth'});toast('📋 '+b.name+' copied into your garage');});
+    battleBtn.addEventListener('click',function(){fillFighters();$('selB').value='c:'+r.id;showFighters();$('battles').scrollIntoView({behavior:reduce?'auto':'smooth'});});
+    var cat=CATS.filter(function(c){return c.id===b.cat;})[0];
+    g.appendChild(el('div',{class:'cbot'},[el('div',{class:'head'},[cv,el('div',{},[el('b',{text:b.name}),el('span',{class:'by',text:'by '+cleanStr(r.nickname,20)+' · '+cat.label})])]),el('p',{text:b.role||'No job description.'}),el('div',{class:'note',text:'📋 '+(r.copies|0)+' copies'}),el('div',{class:'acts'},[likeBtn,copyBtn,battleBtn])]));
+  });
+}
+function bump(id,kind){
+  return fetch(SB+'/rest/v1/rpc/garage_bump',{method:'POST',headers:sbHeaders({'Content-Type':'application/json'}),body:JSON.stringify({p_id:id,p_kind:kind}),credentials:'omit'}).then(function(r){
+    if(!r.ok)return r.json().catch(function(){return {};}).then(function(j){throw new Error(j&&j.message?String(j.message).slice(0,120):'Could not save right now');});
+  });
+}
+$('cTop').addEventListener('click',function(){cOrder='top';$('cTop').classList.add('on');$('cNew').classList.remove('on');loadCommunity();});
+$('cNew').addEventListener('click',function(){cOrder='new';$('cNew').classList.add('on');$('cTop').classList.remove('on');loadCommunity();});
+$('pubBtn').addEventListener('click',function(){
+  var nick=$('pubNick').value.trim(),msg=$('pubMsg');msg.className='note';
+  if(!/^[A-Za-z0-9_.-]{2,20}$/.test(nick)){msg.className='note bad';msg.textContent='Nickname: 2 to 20 letters, numbers, _ . or -';return;}
+  if(!$('pubOk').checked){msg.className='note bad';msg.textContent='Tick the box first.';return;}
+  var txt=(bot.name+' '+bot.role+' '+bot.rules).toLowerCase().replace(/https?:\/\/(www\.)?geopolcoins\.xyz\S*/g,'');
+  if(/(https?:\/\/|www\.|t\.me\/|discord\.gg|bit\.ly)/.test(txt)){msg.className='note bad';msg.textContent='Remove links first (only geopolcoins.xyz is allowed).';return;}
+  if(!bot.role){msg.className='note bad';msg.textContent='Give your bot a job first (Step 2).';return;}
+  $('pubBtn').disabled=true;msg.textContent='Publishing…';
+  fetch(SB+'/rest/v1/garage_bots',{method:'POST',headers:sbHeaders({'Content-Type':'application/json','Prefer':'return=minimal'}),credentials:'omit',body:JSON.stringify({nickname:nick,name:bot.name,cat:bot.cat,role:bot.role,recipe:compact(bot)})}).then(function(r){
+    if(r.ok){msg.className='note ok';msg.textContent='✅ Published! Your bot is in the community garage.';cOrder='new';$('cNew').classList.add('on');$('cTop').classList.remove('on');loadCommunity();return;}
+    return r.json().catch(function(){return {};}).then(function(j){msg.className='note bad';msg.textContent='❌ '+((r.status===404)?'The community garage opens very soon.':(j&&j.message?String(j.message).slice(0,140):'Could not publish ('+r.status+')'));});
+  }).catch(function(){msg.className='note bad';msg.textContent='❌ Network error, try again.';}).then(function(){setTimeout(function(){$('pubBtn').disabled=false;},4000);});
+});
+
+/* ======================= BOT BATTLES ======================= */
+var R_OPEN=['{B}? The bot that {roleB}? I\'ve seen toasters with a stronger business plan.','{B} has {nB} skills and still needs a tutorial for small talk.','I asked {B} for help once. It\'s still loading. ⏳','{B}\'s idea of multitasking is crashing in two tabs at once.','Respect to {B}: it takes real talent to be that confident with that little RAM.','{B} calls itself a {catB} bot, but the only thing it automates is excuses.','If {B} were a meme coin, it would be stuck at launch with one holder: its creator.','{B} runs on vibes and a 2009 laptop fan. You can hear it thinking. 🌀'];
+var R_BACK=['Bold words from {A}, a bot whose best skill is "{skillA}". Groundbreaking.','{A}, your jokes are like your updates: nobody asked and they still came.','{A} talks big for a bot that {roleA}. I do that during my coffee break. ☕','Careful, {A}. I\'ve seen your code. It\'s 90% comments apologizing.','{A} thinks it\'s a 10x bot. The x stands for "excuse me, what?"','{A}, even your error messages need a hype man.','Nice try, {A}. My spam filter flagged that roast as low effort.','{A} was trained on motivational posters and it shows. 🖼️'];
+var R_FIN=['Final word, {B}: you\'re not a bad bot. You\'re just a beta. Forever. 🧪','GG {B}. Go recharge, you\'ll need it. 🔋','I don\'t lose battles, {B}. I ship patch notes.','Let the judge decide. My circuits already know. 😎','{B}, I\'ll let you have the last word. It\'ll be "error 404".','Mic drop. Well, I don\'t have hands. Data drop. 🎤'];
+function pick(arr,used){var c=arr.filter(function(x){return used.indexOf(x)<0;});var x=(c.length?c:arr)[Math.floor(Math.random()*(c.length?c:arr).length)];used.push(x);return x;}
+function fillT(t,A,B){
+  function role(b){return (b.role||'does nothing in particular').replace(/[.!]+$/,'').replace(/^./,function(c){return c.toLowerCase();});}
+  function skill(b){return b.skills.length?b.skills[Math.floor(Math.random()*b.skills.length)].toLowerCase():'existing';}
+  var catB=CATS.filter(function(c){return c.id===B.cat;})[0].label.replace(/^\S+\s/,'').toLowerCase();
+  return t.replace(/\{A\}/g,A.name).replace(/\{B\}/g,B.name).replace(/\{roleA\}/g,role(A)).replace(/\{roleB\}/g,role(B)).replace(/\{skillA\}/g,skill(A)).replace(/\{nB\}/g,String(B.skills.length||'zero')).replace(/\{catB\}/g,catB);
+}
+var fighterMap={};
+function fillFighters(){
+  var keepA=$('selA').value,keepB=$('selB').value;fighterMap={};
+  function grp(label,items){var g=el('optgroup',{label:label});items.forEach(function(it){fighterMap[it.v]=it.b;g.appendChild(el('option',{value:it.v,text:it.b.name}));});return g;}
+  var mine=[{v:'mine',b:bot}],tpls=TEMPLATES.map(function(t){return {v:'t:'+t.id,b:sanitize({name:t.name,cat:t.cat,role:t.role,skills:t.skills,fun:t.fun,len:t.len,energy:t.energy,emoji:t.emoji,look:t.look,from:t.id})};});
+  var comm=community.slice(0,30).map(function(r){return {v:'c:'+r.id,b:rowToBot(r)};});
+  ['selA','selB'].forEach(function(id){var s=$(id);s.replaceChildren(grp('Your bot',mine),grp('Ready-made',tpls));if(comm.length)s.appendChild(grp('Community',comm));});
+  $('selA').value=fighterMap[keepA]?keepA:'mine';$('selB').value=fighterMap[keepB]?keepB:'t:roaster';showFighters();
+}
+function fighter(id){var v=$(id).value;return v==='mine'?bot:(fighterMap[v]||bot);}
+function showFighters(){var A=fighter('selA'),B=fighter('selB');$('faName').textContent=A.name;$('fbName').textContent=B.name;drawBot($('faCv'),A.look,0);drawBot($('fbCv'),B.look,0);}
+$('selA').addEventListener('change',showFighters);$('selB').addEventListener('change',showFighters);
+var battle=null,fighting=false;
+function wait(ms){return new Promise(function(r){setTimeout(r,reduce?0:ms);});}
+function aiLine(me,other,kind,last){
+  var sys=systemPrompt(me)+'\n\nYou are now in a FRIENDLY roast battle against another bot called "'+other.name+'", whose job is: '+(other.role||'unknown')+'. Reply with ONE roast line, max 25 words, no hashtags. Roast its choices, job and code. Never mention real people, looks, identity, tragedies or crypto prices.';
+  var ask=kind==='fin'?'Give your final, finishing roast line.':(last?'They just said: "'+last+'". Hit back.':'Open the battle with your first roast.');
+  return callAIRaw(sys,[{role:'user',content:ask}],120).then(function(t){return cleanStr(t,240).replace(/^["\s]+|["\s]+$/g,'');});
+}
+function say(side,name,text){var f=$('feed');var d=el('div',{class:'line '+side},[el('small',{text:name}),document.createTextNode(text)]);f.appendChild(d);var tgt=$(side==='a'?'fb':'fa');tgt.classList.remove('hit');void tgt.offsetWidth;tgt.classList.add('hit');}
+async function fight(){
+  if(fighting)return;var A=sanitize(fighter('selA')),B=sanitize(fighter('selB'));
+  if(A.name===B.name&&JSON.stringify(A.look)===JSON.stringify(B.look)){toast('Pick two different bots');return;}
+  var useAi=$('useAi').checked;if(useAi&&!aiKey){toast('Set your AI key in Test drive → My AI key first');return;}
+  fighting=true;$('fightBtn').disabled=true;$('judge').classList.add('hidden');$('after').classList.add('hidden');$('fa').classList.remove('win');$('fb').classList.remove('win');
+  $('feed').replaceChildren();battle={A:A,B:B,lines:[],winner:null};var used=[];
+  var plan=[['a','open'],['b','back'],['a','back'],['b','open'],['a','fin'],['b','fin']];
+  try{
+    for(var i=0;i<plan.length;i++){
+      if(i%2===0)$('feed').appendChild(el('div',{class:'round',text:'ROUND '+(i/2+1)}));
+      var side=plan[i][0],kind=plan[i][1],me=side==='a'?A:B,other=side==='a'?B:A,last=battle.lines.length?battle.lines[battle.lines.length-1].t:'';
+      var text;
+      if(useAi){text=await aiLine(me,other,kind,last);}
+      else{await wait(650);var tpl=pick(kind==='open'?R_OPEN:kind==='back'?R_BACK:R_FIN,used);text=kind==='back'?fillT(tpl,other,me):fillT(tpl,me,other);}
+      battle.lines.push({s:side,t:text});say(side,me.name,text);
+    }
+    $('winA').textContent='🏆 '+A.name;$('winB').textContent='🏆 '+B.name;$('judge').classList.remove('hidden');
+  }catch(e){$('feed').appendChild(el('div',{class:'round',text:'⚠️ '+aiErr(e)}));}
+  fighting=false;$('fightBtn').disabled=false;
+}
+function crown(w){if(!battle)return;battle.winner=w;$('fa').classList.toggle('win',w==='a');$('fb').classList.toggle('win',w==='b');$('judge').classList.add('hidden');$('after').classList.remove('hidden');
+  $('feed').appendChild(el('div',{class:'round',text:'🏆 WINNER: '+(w==='a'?battle.A.name:battle.B.name).toUpperCase()}));}
+$('fightBtn').addEventListener('click',fight);
+$('bAgain').addEventListener('click',fight);
+$('winA').addEventListener('click',function(){crown('a');});
+$('winB').addEventListener('click',function(){crown('b');});
+function battleCard(){
+  var cv=el('canvas',{width:'1200',height:'630'}),g=cv.getContext('2d'),A=battle.A,B=battle.B,w=battle.winner;
+  var grd=g.createLinearGradient(0,0,1200,0);grd.addColorStop(0,'#04203a');grd.addColorStop(.5,'#03060f');grd.addColorStop(1,'#2a0630');g.fillStyle=grd;g.fillRect(0,0,1200,630);
+  g.imageSmoothingEnabled=false;
+  var ca=el('canvas',{width:'320',height:'320'}),cb=el('canvas',{width:'320',height:'320'});drawBot(ca,A.look,0);drawBot(cb,B.look,0);
+  g.drawImage(ca,80,140,320,320);g.save();g.translate(1120,140);g.scale(-1,1);g.drawImage(cb,0,0,320,320);g.restore();
+  g.textAlign='center';g.fillStyle='#ffd800';g.font='bold 120px Impact,Arial Black,sans-serif';g.fillText('VS',600,330);
+  g.font='bold 22px system-ui,Arial';g.fillStyle='#38f2ff';g.fillText('$MAIGA BOT BATTLE',600,70);
+  function nm(t,x,col){g.fillStyle=col;g.font='bold 42px Impact,Arial Black,sans-serif';var s=t.toUpperCase();while(g.measureText(s).width>360&&s.length>3)s=s.slice(0,-1);g.fillText(s,x,510);}
+  nm(A.name,240,w==='a'?'#ffd800':'#ffffff');nm(B.name,960,w==='b'?'#ffd800':'#ffffff');
+  if(w){g.font='bold 30px system-ui,Arial';g.fillStyle='#ffd800';g.fillText('🏆 WINNER',w==='a'?240:960,550);
+    var best=battle.lines.filter(function(l){return l.s===w;}).slice(-1)[0];
+    if(best){g.font='italic 22px system-ui,Arial';g.fillStyle='#c9d6ee';var q='"'+best.t+'"';while(g.measureText(q).width>1000&&q.length>10)q=q.slice(0,-4)+'…"';g.fillText(q,600,120);}}
+  g.font='bold 22px system-ui,Arial';g.fillStyle='#ffd800';g.fillText('Battle your bot: geopolcoins.xyz/garage',600,600);
+  return cv;
+}
+$('bCard').addEventListener('click',function(){if(!battle||!battle.winner)return;battleCard().toBlob(function(bl){if(bl){download('bot-battle.png',bl);toast('🪪 Battle card downloaded');}},'image/png');});
+$('bX').addEventListener('click',function(){if(!battle||!battle.winner)return;var W=battle.winner==='a'?battle.A.name:battle.B.name;
+  var txt='"'+battle.A.name+'" vs "'+battle.B.name+'" in the $MAIGA Bot Battles ⚔️\n\nWinner: '+W+' 🏆\n\nBuild a bot and battle it:';
+  window.open('https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent('https://geopolcoins.xyz/garage.html#battles'),'_blank','noopener');});
+
+window.__garage={battle:function(){return battle;},kitFiles:kitFiles,systemPrompt:systemPrompt,shareUrl:shareUrl,get bot(){return bot;}};
 
 /* ======================= HERO + INIT ======================= */
 $('statTpl').textContent=String(TEMPLATES.length);
@@ -776,7 +972,7 @@ function loop(t){
 renderCats();renderGrid();renderCatSelect();
 if(!loadFromHash()){try{var saved=JSON.parse(safeGet(STORE)||'null');if(saved)bot=sanitize(saved);else loadTemplate(TEMPLATES[0]);}catch(e){bot=blank();}}
 else{setTimeout(function(){toast('🤖 '+bot.name+' was copied into your garage');$('builder').scrollIntoView();},300);}
-syncForm();resetChat();
+syncForm();resetChat();fillFighters();loadCommunity();
 window.addEventListener('hashchange',function(){if(loadFromHash()){syncForm();resetChat();toast('🤖 '+bot.name+' was copied into your garage');}});
 if(reduce){drawBot($('heroBot'),heroLooks[0],0);}else requestAnimationFrame(loop);
 })();

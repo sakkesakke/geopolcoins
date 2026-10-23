@@ -1,0 +1,14 @@
+name: Idea or new bot
+description: Suggest a feature, game or ready-made bot for the Bot Garage
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Who is it for and why would they use it?

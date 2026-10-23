@@ -1,0 +1,4 @@
+# Old Supabase *anon* key (role=anon, public by design, replaced by the publishable key)
+6fba706976b610ad064a1e02fd710e4db0319bba:index.html:jwt:454
+# False positive: a localStorage key name, not a secret
+e31ce0fa28477f2aa6f589d5788a70d7df5fedd7:index.html:generic-api-key:398

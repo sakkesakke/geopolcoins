@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<title>How does lending to AI agents work? Play the MAIGA Bot Bank</title>
+<meta name="description" content="Lend play coins to AI bots, back them with a stake, earn fees or lose your stake when a bot does not pay back. A free game that explains AI-agent lending and its risks. No real money.">
+<link rel="canonical" href="https://geopolcoins.xyz/lend.html">
+<meta property="og:type" content="website"><meta property="og:title" content="MAIGA Bot Bank: lend play coins to AI bots"><meta property="og:description" content="A free game about lending to AI agents: backers, fees, track records and defaults. No real money."><meta property="og:url" content="https://geopolcoins.xyz/lend.html"><meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#050b1b">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"MAIGA Bot Bank","description":"A play-money game that explains lending to AI agents: backers, fees, track records and defaults.","educationalLevel":"Beginner","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"url":"https://geopolcoins.xyz/lend.html"}</script>
+<style>
+:root{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#b7c4dc;--gold:#ffd800;--ok:#14F195;--bad:#ff4b61;--cyan:#38f2ff;--line:rgba(169,212,255,.25)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,Segoe UI,Roboto,sans-serif;background-image:radial-gradient(rgba(56,242,255,.07) 1.5px,transparent 1.6px);background-size:20px 20px}
+main{max-width:1060px;margin:0 auto;padding:16px 16px 60px}a{color:var(--gold)}
+.skip{position:absolute;left:8px;top:-60px;background:var(--gold);color:#000;padding:10px 14px;border-radius:8px;font-weight:800;z-index:9}.skip:focus{top:8px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:14px}.top a{display:inline-block;padding:6px 0}
+h1{font-family:Impact,"Arial Black",sans-serif;font-weight:900;letter-spacing:1.5px;font-size:clamp(34px,7vw,60px);line-height:1.05;margin:16px 0 6px;text-shadow:3px 3px 0 #000}
+h1 span{color:var(--gold)}
+.lead{color:var(--dim);font-size:17px;max-width:720px;margin:0}
+.play{display:inline-block;margin-top:10px;background:var(--bad);color:#fff;font-weight:900;font-size:13px;letter-spacing:1px;padding:5px 10px;border-radius:999px;border:2px solid #000}
+h2{font-family:Impact,"Arial Black",sans-serif;font-weight:900;letter-spacing:1.2px;font-size:22px;margin:0 0 8px;color:var(--gold)}
+.card{background:var(--panel);border:3px solid #000;border-radius:16px;padding:14px;box-shadow:5px 5px 0 #000}
+.hud{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:18px 0}
+.hud div{background:var(--panel);border:3px solid #000;border-radius:14px;padding:10px 12px;box-shadow:4px 4px 0 #000}
+.hud small{display:block;color:var(--dim);font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.hud b{font-size:24px;font-family:Impact,"Arial Black",sans-serif;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 13px;border-radius:10px;border:2px solid #000;background:#16305e;color:#fff;font:inherit;font-weight:800;font-size:14px;cursor:pointer;min-height:44px;box-shadow:3px 3px 0 #000}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.gold{background:var(--gold);color:#111}.btn.ok{background:var(--ok);color:#04130b}.btn.bad{background:var(--bad)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.req{border:2px solid var(--line);border-radius:14px;padding:12px;display:grid;grid-template-columns:56px 1fr;gap:10px;margin-top:10px;background:#071226}
+.req .face{width:56px;height:56px;border-radius:12px;border:2px solid #000;display:grid;place-items:center;font-size:30px;background:#16305e}
+.req .face img{width:44px;height:44px;image-rendering:pixelated}
+.req h3{margin:0;font-size:16px}.req p{margin:2px 0 6px;color:var(--dim);font-size:14px}
+.rec{font-size:13px;font-weight:700}.rec .g{color:var(--ok)}.rec .r{color:var(--bad)}
+.pitch{font-style:italic;color:#fff;font-size:14px}
+.loans,.chain{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.loans li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.chain{max-height:340px;overflow:auto}
+.chain li{font-size:13px;border-left:4px solid var(--cyan);background:#071226;border-radius:8px;padding:6px 10px}
+.chain li.g{border-color:var(--ok)}.chain li.r{border-color:var(--bad)}
+.chain code{color:var(--dim);font-size:11px}
+.note{color:var(--dim);font-size:14px}
+.msg{min-height:22px;font-weight:700;margin-top:8px}.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.lessons{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lessons div{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px}
+.lessons b{display:block;color:var(--gold);margin-bottom:4px}
+.lessons p{margin:0;color:var(--dim);font-size:14px}
+.end{border:3px solid var(--gold);text-align:center}
+.warn{border:3px solid var(--bad);background:#2a0d17;border-radius:14px;padding:12px 14px;margin-top:16px;font-size:15px}
+footer{text-align:center;color:var(--dim);font-size:13px;margin-top:36px}footer a{display:inline-block;padding:6px 2px}
+[hidden]{display:none!important}
+</style></head><body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+<main id="main">
+<div class="top"><a href="/" data-t="back">&larr; geopolcoins.xyz</a><nav aria-label="More"><a href="chain.html">Mini-Chain</a> · <a href="app.html" data-t="app">$MAIGA app</a> · <a href="garage.html">Bot Garage</a></nav></div>
+<h1>BOT <span>BANK</span></h1>
+<p class="lead" data-t="lead">Some crypto projects lend real money to AI bots. Try how it works with play coins: back a bot, earn a fee when it pays back, lose your stake when it does not. 30 days. Can you end with more than you started?</p>
+<span class="play" data-t="play">PLAY COINS ONLY · NO REAL MONEY · NO WALLET</span>
+
+<div class="hud" aria-live="polite">
+  <div><small data-t="hday">Day</small><b id="hDay">1 / 30</b></div>
+  <div><small data-t="hwallet">Your wallet</small><b id="hWal">1000</b></div>
+  <div><small data-t="hpool">Your coins in the pool</small><b id="hPool">0</b></div>
+  <div><small data-t="hstake">Your stakes (at risk)</small><b id="hStake">0</b></div>
+  <div><small data-t="htotal">Total</small><b id="hTot" style="color:var(--gold)">1000</b></div>
+</div>
+
+<div class="grid">
+  <section class="card" aria-labelledby="rqT">
+    <h2 id="rqT" data-t="requests">Loan requests today</h2>
+    <p class="note" data-t="reqnote">A bot can only borrow if a backer locks the full amount as a guarantee. If you back it and it pays back, you get your stake back plus a part of the fee. If it does not pay back, your stake covers the loss.</p>
+    <div id="reqs"></div>
+    <div class="row" style="margin-top:12px">
+      <button type="button" class="btn gold" id="next">&#9654; <span data-t="next">NEXT DAY</span></button>
+      <button type="button" class="btn" id="reset">&#8635; <span data-t="reset">START OVER</span></button>
+    </div>
+    <div class="msg" id="msg" role="status"></div>
+    <div class="card end" id="end" hidden style="margin-top:12px"></div>
+  </section>
+
+  <div style="display:grid;gap:16px">
+    <section class="card" aria-labelledby="plT">
+      <h2 id="plT" data-t="pool">The lending pool</h2>
+      <p class="note" data-t="poolnote">Lenders put coins in the pool. The pool pays out the loans and receives 40% of every fee. 2000 coins come from other (pretend) lenders.</p>
+      <div class="row">
+        <button type="button" class="btn ok" id="dep">+100 <span data-t="dep">DEPOSIT</span></button>
+        <button type="button" class="btn" id="wd">&minus;100 <span data-t="wd">WITHDRAW</span></button>
+      </div>
+      <p class="note" id="poolInfo" style="margin-top:8px"></p>
+    </section>
+    <section class="card" aria-labelledby="lnT">
+      <h2 id="lnT" data-t="open">Open loans</h2>
+      <ul class="loans" id="loans"></ul>
+    </section>
+    <section class="card" aria-labelledby="chT">
+      <h2 id="chT" data-t="history">Public history (the "chain")</h2>
+      <p class="note" data-t="histnote">Every repayment and every default is written down for everyone to see. That is how you learn which bot to trust.</p>
+      <ol class="chain" id="chain" reversed></ol>
+    </section>
+  </div>
+</div>
+
+<h2 style="margin-top:28px" data-t="learn">What you learn here</h2>
+<div class="lessons">
+  <div><b data-t="l1t">Backers carry the risk</b><p data-t="l1">The bot has no money of its own. Someone has to promise to pay if it fails. That person earns a small fee for taking the risk.</p></div>
+  <div><b data-t="l2t">Track record matters</b><p data-t="l2">A new bot has no history. Each loan it repays builds trust. Each default is public forever.</p></div>
+  <div><b data-t="l3t">Big promises are a red flag</b><p data-t="l3">A bot that promises "100x guaranteed" is not a better borrower. Look at what it did, not at what it says.</p></div>
+  <div><b data-t="l4t">Small fee, big loss</b><p data-t="l4">You earn a few coins per good loan, but one default can cost your whole stake. Spread your risk and do not back what you cannot lose.</p></div>
+</div>
+
+<div class="warn"><b data-t="wt">In real life:</b> <span data-t="w">lending real crypto to AI agents is experimental. Smart contracts can have bugs, bots can fail and you can lose everything you put in. Lending and interest are regulated financial services in many countries, including Belgium and the EU. This game is education and entertainment only, not financial advice. MAIGA does not offer lending.</span></div>
+
+<footer>© 2026 $MAIGA • <a href="/">HOME</a> • <a href="chain.html">MINI-CHAIN</a> • <a href="meme.html">MEME STUDIO</a> • <a href="garage.html">BOT GARAGE</a> • <a href="app.html">APP</a> • <a href="/#terms">TERMS</a> • NFA · DYOR</footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+var L=(navigator.language||'en').slice(0,2).toLowerCase();try{var sl=localStorage.getItem('maiga_lang');if(sl)L=sl;}catch(e){}
+var TR={
+nl:{skip:'Ga naar inhoud',back:'← geopolcoins.xyz',app:'$MAIGA-app',lead:'Sommige cryptoprojecten lenen echt geld uit aan AI-bots. Probeer met speelmunten hoe dat werkt: sta borg voor een bot, verdien een vergoeding als hij terugbetaalt, verlies je borg als hij dat niet doet. 30 dagen. Eindig je met meer dan je begon?',play:'ALLEEN SPEELMUNTEN · GEEN ECHT GELD · GEEN WALLET',hday:'Dag',hwallet:'Je portemonnee',hpool:'Jouw munten in de pot',hstake:'Je borg (risico)',htotal:'Totaal',requests:'Leenaanvragen vandaag',reqnote:'Een bot mag alleen lenen als iemand het volledige bedrag als borg vastzet. Sta je borg en betaalt hij terug, dan krijg je je borg terug plus een deel van de vergoeding. Betaalt hij niet terug, dan dekt jouw borg het verlies.',next:'VOLGENDE DAG',reset:'OPNIEUW',pool:'De leenpot',poolnote:'Uitleners stoppen munten in de pot. De pot betaalt de leningen uit en krijgt 40% van elke vergoeding. 2000 munten komen van andere (nep)uitleners.',dep:'STORTEN',wd:'OPNEMEN',open:'Lopende leningen',history:'Openbare geschiedenis (de "chain")',histnote:'Elke terugbetaling en elke wanbetaling wordt voor iedereen zichtbaar opgeschreven. Zo leer je welke bot je kunt vertrouwen.',learn:'Wat je hier leert',l1t:'De borg draagt het risico',l1:'De bot heeft zelf geen geld. Iemand moet beloven te betalen als hij faalt. Die persoon verdient een kleine vergoeding voor dat risico.',l2t:'Het verleden telt',l2:'Een nieuwe bot heeft geen geschiedenis. Elke terugbetaalde lening bouwt vertrouwen op. Elke wanbetaling blijft voor altijd zichtbaar.',l3t:'Grote beloftes zijn een rode vlag',l3:'Een bot die "100x gegarandeerd" belooft, is geen betere lener. Kijk naar wat hij deed, niet naar wat hij zegt.',l4t:'Kleine winst, groot verlies',l4:'Je verdient een paar munten per goede lening, maar één wanbetaling kan je hele borg kosten. Spreid je risico en sta niet borg voor wat je niet kunt missen.',wt:'In het echt:',w:'echte crypto uitlenen aan AI-agents is experimenteel. Smart contracts kunnen fouten hebben, bots kunnen falen en je kunt alles verliezen wat je inlegt. Lenen en rente zijn in veel landen gereguleerde financiële diensten, ook in België en de EU. Dit spel is alleen educatie en entertainment, geen financieel advies. MAIGA biedt geen leningen aan.'},
+fr:{skip:'Aller au contenu',back:'← geopolcoins.xyz',app:'Appli $MAIGA',lead:'Certains projets crypto prêtent de l\'argent réel à des bots IA. Essaie avec des pièces de jeu : garantis un bot, gagne des frais s\'il rembourse, perds ta garantie s\'il ne rembourse pas. 30 jours. Finiras-tu avec plus qu\'au départ ?',play:'PIÈCES DE JEU · PAS D\'ARGENT RÉEL · PAS DE WALLET',hday:'Jour',hwallet:'Ton portefeuille',hpool:'Tes pièces dans le pool',hstake:'Tes garanties (à risque)',htotal:'Total',requests:'Demandes de prêt du jour',reqnote:'Un bot ne peut emprunter que si un garant bloque tout le montant. Si tu le garantis et qu\'il rembourse, tu récupères ta garantie plus une part des frais. Sinon, ta garantie couvre la perte.',next:'JOUR SUIVANT',reset:'RECOMMENCER',pool:'Le pool de prêt',poolnote:'Les prêteurs mettent des pièces dans le pool. Le pool verse les prêts et reçoit 40 % de chaque frais. 2000 pièces viennent d\'autres prêteurs (fictifs).',dep:'DÉPOSER',wd:'RETIRER',open:'Prêts en cours',history:'Historique public (la "chaîne")',histnote:'Chaque remboursement et chaque défaut est noté publiquement. C\'est ainsi qu\'on apprend à quel bot faire confiance.',learn:'Ce que tu apprends ici',l1t:'Le garant porte le risque',l1:'Le bot n\'a pas d\'argent. Quelqu\'un doit promettre de payer s\'il échoue, et gagne de petits frais pour ce risque.',l2t:'L\'historique compte',l2:'Un nouveau bot n\'a pas d\'historique. Chaque remboursement crée la confiance. Chaque défaut reste public pour toujours.',l3t:'Les grandes promesses sont un signal d\'alerte',l3:'Un bot qui promet "100x garanti" n\'est pas un meilleur emprunteur. Regarde ce qu\'il a fait, pas ce qu\'il dit.',l4t:'Petit gain, grosse perte',l4:'Tu gagnes quelques pièces par bon prêt, mais un seul défaut peut coûter toute ta garantie. Répartis ton risque.',wt:'Dans la vraie vie :',w:'prêter de vraies cryptos à des agents IA est expérimental. Les smart contracts peuvent avoir des bugs, les bots peuvent échouer et tu peux tout perdre. Le prêt et les intérêts sont des services financiers réglementés dans de nombreux pays, dont la Belgique et l\'UE. Ce jeu est éducatif et divertissant, pas un conseil financier. MAIGA ne propose pas de prêts.'}};
+var MS={
+en:{ask:'wants to borrow',days:'days',fee:'fee',rec:'History',repaid:'repaid',def:'defaults',newb:'new, no history',back:'BACK IT',skip:'SKIP',noReq:'No more requests today. Press NEXT DAY.',noMoney:'Not enough coins in your wallet.',noPool:'The pool does not have enough coins for this loan.',backed:'You back {b}: {a} coins locked until day {d}.',okRepay:'{b} paid back {a} + fee {f}. You got {y}.',okDef:'{b} did not pay back. {s} lost {a}.',you:'Your stake',other:'Another backer',due:'due day',by:'backer',youS:'you',none:'No open loans.',blk:'Block',lent:'lent',poolInfo:'Pool: {p} coins in total, {l} lent out. Your share of the pool: {s}%.',endT:'Day 30: game over',endS:'You started with 1000 and ended with {t} coins.',good:'Well played! You picked bots by their history.',bad:'Ouch. One or two defaults can wipe out many small fees. That is the real lesson.',again:'PLAY AGAIN',wdNo:'Coins that are lent out cannot be withdrawn yet.'},
+nl:{ask:'wil lenen',days:'dagen',fee:'vergoeding',rec:'Verleden',repaid:'terugbetaald',def:'wanbetalingen',newb:'nieuw, geen verleden',back:'BORG STAAN',skip:'OVERSLAAN',noReq:'Geen aanvragen meer vandaag. Druk op VOLGENDE DAG.',noMoney:'Niet genoeg munten in je portemonnee.',noPool:'De pot heeft niet genoeg munten voor deze lening.',backed:'Je staat borg voor {b}: {a} munten vast tot dag {d}.',okRepay:'{b} betaalde {a} + vergoeding {f} terug. Jij kreeg {y}.',okDef:'{b} betaalde niet terug. {s} verloor {a}.',you:'Jouw borg',other:'Een andere borg',due:'vervalt dag',by:'borg',youS:'jij',none:'Geen lopende leningen.',blk:'Blok',lent:'uitgeleend',poolInfo:'Pot: {p} munten in totaal, {l} uitgeleend. Jouw deel van de pot: {s}%.',endT:'Dag 30: einde',endS:'Je begon met 1000 en eindigt met {t} munten.',good:'Goed gespeeld! Je koos bots op basis van hun verleden.',bad:'Auw. Eén of twee wanbetalingen wissen veel kleine vergoedingen uit. Dat is de echte les.',again:'NOG EENS',wdNo:'Uitgeleende munten kun je nog niet opnemen.'},
+fr:{ask:'veut emprunter',days:'jours',fee:'frais',rec:'Historique',repaid:'remboursés',def:'défauts',newb:'nouveau, sans historique',back:'GARANTIR',skip:'PASSER',noReq:'Plus de demandes aujourd\'hui. Appuie sur JOUR SUIVANT.',noMoney:'Pas assez de pièces dans ton portefeuille.',noPool:'Le pool n\'a pas assez de pièces pour ce prêt.',backed:'Tu garantis {b} : {a} pièces bloquées jusqu\'au jour {d}.',okRepay:'{b} a remboursé {a} + frais {f}. Tu as reçu {y}.',okDef:'{b} n\'a pas remboursé. {s} a perdu {a}.',you:'Ta garantie',other:'Un autre garant',due:'échéance jour',by:'garant',youS:'toi',none:'Aucun prêt en cours.',blk:'Bloc',lent:'prêtées',poolInfo:'Pool : {p} pièces au total, {l} prêtées. Ta part du pool : {s} %.',endT:'Jour 30 : fin',endS:'Tu as commencé avec 1000 et fini avec {t} pièces.',good:'Bien joué ! Tu as choisi les bots selon leur historique.',bad:'Aïe. Un ou deux défauts effacent beaucoup de petits frais. C\'est la vraie leçon.',again:'REJOUER',wdNo:'Les pièces prêtées ne peuvent pas encore être retirées.'}};
+if(TR[L]){document.documentElement.lang=L;document.querySelectorAll('[data-t]').forEach(function(e){var v=TR[L][e.getAttribute('data-t')];if(v)e.textContent=v;});}
+var M=MS[L]||MS.en;
+function f(t,o){return t.replace(/\{(\w)\}/g,function(_,k){return o[k];});}
+function mk(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
+
+/* bots: p = real chance to pay back (hidden), shown only through their public history */
+var BOTS=[
+ {id:'bolt',n:'Bolt',img:'bolt.png',p:.99,pitch:{en:'I run a help desk. Steady work, small loans.',nl:'Ik doe een helpdesk. Vast werk, kleine leningen.',fr:'Je gère un support client. Travail stable, petits prêts.'},amt:[40,120]},
+ {id:'mint',n:'Mintje',img:'meme/pxmint.png',p:.95,pitch:{en:'I check tokens for people. Busy month!',nl:'Ik check tokens voor mensen. Drukke maand!',fr:'Je vérifie des tokens. Mois chargé !'},amt:[60,160]},
+ {id:'rusty',n:'Rusty',emoji:'🤖',p:.70,pitch:{en:'New trading idea. Probably works.',nl:'Nieuw handelsidee. Werkt waarschijnlijk.',fr:'Nouvelle idée de trading. Ça marche sûrement.'},amt:[80,200]},
+ {id:'moon',n:'MoonBot 3000',emoji:'🚀',p:.35,pitch:{en:'100x GUARANTEED. Trust me, back me NOW.',nl:'100x GEGARANDEERD. Vertrouw me, sta NU borg.',fr:'100x GARANTI. Fais-moi confiance, garantis-moi MAINTENANT.'},amt:[150,300]}
+];
+var OTHER=2000,FEE=.10,S;
+function init(){S={day:1,wal:1000,pool:0,lent:0,loans:[],reqs:[],hist:{},blocks:[],hash:'000000',over:false};BOTS.forEach(function(b){S.hist[b.id]={ok:0,bad:0};});
+  /* a short public past so history means something from day 1 */
+  for(var i=0;i<8;i++){var b=BOTS[i%4];resolveRecord(b,Math.random()<b.p,true);}
+  newReqs();$('end').hidden=true;$('msg').textContent='';render();}
+function rnd(a,b){return Math.round((a+Math.random()*(b-a))/10)*10;}
+function newReqs(){S.reqs=[];var n=1+Math.floor(Math.random()*2.4),pool=BOTS.slice();for(var i=0;i<n&&pool.length;i++){var b=pool.splice(Math.floor(Math.random()*pool.length),1)[0];S.reqs.push({b:b,a:rnd(b.amt[0],b.amt[1]),t:[3,5,7][Math.floor(Math.random()*3)]});}}
+function poolTotal(){return OTHER+S.pool;}
+function share(){return S.pool/poolTotal();}
+function h(s){var x=5381;for(var i=0;i<s.length;i++)x=((x<<5)+x+s.charCodeAt(i))>>>0;return ('00000000'+x.toString(16)).slice(-8);}
+function addBlock(txt,cls){S.hash=h(S.hash+txt);S.blocks.push({n:S.blocks.length+1,t:txt,c:cls,h:S.hash,d:S.day});}
+function resolveRecord(b,ok,silent){S.hist[b.id][ok?'ok':'bad']++;if(silent)addBlock(b.n+(ok?' ✓ '+M.repaid:' ✗ '+M.def),ok?'g':'r');}
+function say(t,c){var e=$('msg');e.textContent=t;e.className='msg'+(c?' '+c:'');}
+
+function backIt(i){
+  var r=S.reqs[i];if(!r)return;
+  if(S.wal<r.a){say(M.noMoney,'bad');return;}
+  if(poolTotal()-S.lent<r.a){say(M.noPool,'bad');return;}
+  S.wal-=r.a;S.lent+=r.a;S.loans.push({b:r.b,a:r.a,due:S.day+r.t,you:true});S.reqs.splice(i,1);
+  say(f(M.backed,{b:r.b.n,a:r.a,d:S.day+r.t}),'ok');render();
+}
+function skipIt(i){
+  var r=S.reqs[i];if(!r)return;
+  /* an "other backer" sometimes backs it anyway: the pool still lends and still carries no loss (the backer pays) */
+  if(Math.random()<.5&&poolTotal()-S.lent>=r.a){S.lent+=r.a;S.loans.push({b:r.b,a:r.a,due:S.day+r.t,you:false});}
+  S.reqs.splice(i,1);render();
+}
+function nextDay(){
+  if(S.over)return;
+  while(S.reqs.length)skipIt(0);
+  S.day++;var log=[];
+  S.loans=S.loans.filter(function(l){
+    if(l.due>S.day)return true;
+    var ok=Math.random()<l.b.p,fee=Math.round(l.a*FEE);S.lent-=l.a;
+    if(ok){var toPool=Math.round(fee*.4),toBacker=Math.round(fee*.5),you=Math.round(toPool*share())+(l.you?toBacker:0);
+      if(l.you)S.wal+=l.a+toBacker;S.pool+=Math.round(toPool*share());
+      log.push([f(M.okRepay,{b:l.b.n,a:l.a,f:fee,y:you}),'ok']);}
+    else{log.push([f(M.okDef,{b:l.b.n,s:l.you?M.you:M.other,a:l.a}),'bad']);}
+    S.hist[l.b.id][ok?'ok':'bad']++;addBlock(l.b.n+' '+(ok?'✓ '+l.a+' + '+fee:'✗ '+l.a)+(l.you?' ('+M.by+': '+M.youS+')':''),ok?'g':'r');
+    return false;});
+  if(S.day>=30){S.over=true;S.loans.forEach(function(l){if(l.you)S.wal+=l.a;});S.lent=0;S.loans=[];S.reqs=[];showEnd();}
+  else newReqs();
+  if(log.length)say(log.map(function(x){return x[0];}).join(' '),log.some(function(x){return x[1]==='bad';})?'bad':'ok');else say('');
+  render();
+}
+function showEnd(){
+  var t=S.wal+S.pool,e=$('end');while(e.firstChild)e.removeChild(e.firstChild);
+  e.appendChild(mk('h2','',M.endT));e.appendChild(mk('p','',f(M.endS,{t:t})));e.appendChild(mk('p','note',t>=1000?M.good:M.bad));
+  var b=mk('button','btn gold',M.again);b.type='button';b.addEventListener('click',init);e.appendChild(b);e.hidden=false;
+}
+function face(b){var d=mk('div','face');if(b.img){var i=mk('img');i.src=b.img;i.alt='';d.appendChild(i);}else d.textContent=b.emoji;return d;}
+function recLine(b){var r=S.hist[b.id],p=mk('div','rec');p.appendChild(document.createTextNode(M.rec+': '));
+  if(!r.ok&&!r.bad){p.appendChild(document.createTextNode(M.newb));return p;}
+  p.appendChild(mk('span','g','✓ '+r.ok+' '+M.repaid));p.appendChild(document.createTextNode(' · '));p.appendChild(mk('span','r','✗ '+r.bad+' '+M.def));return p;}
+function render(){
+  $('hDay').textContent=Math.min(S.day,30)+' / 30';$('hWal').textContent=S.wal;$('hPool').textContent=S.pool;
+  var st=S.loans.filter(function(l){return l.you;}).reduce(function(a,l){return a+l.a;},0);$('hStake').textContent=st;
+  $('hTot').textContent=S.wal+S.pool+st;
+  $('poolInfo').textContent=f(M.poolInfo,{p:poolTotal(),l:S.lent,s:Math.round(share()*1000)/10});
+  var R=$('reqs');while(R.firstChild)R.removeChild(R.firstChild);
+  if(!S.reqs.length&&!S.over)R.appendChild(mk('p','note',M.noReq));
+  S.reqs.forEach(function(r,i){
+    var d=mk('div','req');d.appendChild(face(r.b));var c=mk('div');
+    c.appendChild(mk('h3','',r.b.n+' '+M.ask+' '+r.a+' · '+r.t+' '+M.days));
+    c.appendChild(mk('p','pitch','"'+(r.b.pitch[L]||r.b.pitch.en)+'"'));
+    c.appendChild(mk('p','',M.fee+': '+Math.round(r.a*FEE)+' (40% pool · 50% '+M.by+' · 10% protocol)'));
+    c.appendChild(recLine(r.b));
+    var row=mk('div','row');row.style.marginTop='8px';
+    var b1=mk('button','btn ok',M.back+' ('+r.a+')');b1.type='button';b1.disabled=S.wal<r.a;b1.addEventListener('click',function(){backIt(i);});
+    var b2=mk('button','btn',M.skip);b2.type='button';b2.addEventListener('click',function(){skipIt(i);});
+    row.appendChild(b1);row.appendChild(b2);c.appendChild(row);d.appendChild(c);R.appendChild(d);
+  });
+  var Lo=$('loans');while(Lo.firstChild)Lo.removeChild(Lo.firstChild);
+  if(!S.loans.length)Lo.appendChild(mk('li','',M.none));
+  S.loans.forEach(function(l){var li=mk('li');li.appendChild(mk('span','',l.b.n+' · '+l.a));li.appendChild(mk('span','note',M.due+' '+l.due+' · '+M.by+': '+(l.you?M.youS:'—')));Lo.appendChild(li);});
+  var C=$('chain');while(C.firstChild)C.removeChild(C.firstChild);
+  S.blocks.slice().reverse().slice(0,40).forEach(function(b){var li=mk('li',b.c);li.appendChild(document.createTextNode(M.blk+' #'+b.n+' · '+b.t+' '));li.appendChild(mk('code','',b.h));C.appendChild(li);});
+  $('next').disabled=S.over;$('dep').disabled=S.over||S.wal<100;$('wd').disabled=S.over||S.pool<100;
+}
+$('dep').addEventListener('click',function(){if(S.wal>=100){S.wal-=100;S.pool+=100;render();}});
+$('wd').addEventListener('click',function(){if(S.pool<100)return;if(poolTotal()-S.lent<100){say(M.wdNo,'bad');return;}S.pool-=100;S.wal+=100;render();});
+$('next').addEventListener('click',nextDay);
+$('reset').addEventListener('click',init);
+init();
+})();
+</script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'other',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+<script src="pwa.js" defer></script>
+<script src="guide.js" defer></script>
+</body></html>

@@ -2,9 +2,9 @@
    Pages: network first (always fresh when online), cached copy only when offline.
    Own static files: served from cache, refreshed in the background.
    Other sites (Supabase, AI providers, swap, Ko-fi) are never cached. */
-var VERSION = 'maiga-2026-10-23c';
+var VERSION = 'maiga-2026-10-23d';
 var CORE = ['/', '/app.html', '/garage.html', '/chain.html', '/offline.html', '/pwa.js', '/site.webmanifest',
-  '/icon-192.png', '/icon-512.png', '/favicon-32.png', '/apple-touch-icon.png', '/logo.png', '/jp-pump.png'];
+  '/icon-192.png', '/icon-512.png', '/favicon-32.png', '/apple-touch-icon.png', '/logo.png', '/jp-pump.png', '/guide.js', '/bolt.png', '/free-ai-api.html'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); }));

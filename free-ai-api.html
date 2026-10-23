@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free AI API keys for your bot (2026 guide) | $MAIGA</title>
+<meta name="description" content="Where to get a free or cheap AI API key for your bot, how to keep it safe, and how to use it in the free Bot Garage. Honest notes on limits and data use.">
+<link rel="canonical" href="https://geopolcoins.xyz/free-ai-api.html">
+<meta property="og:type" content="article"><meta property="og:title" content="Free AI API keys for your bot (2026 guide)"><meta property="og:description" content="Free and cheap AI API options for bots, with honest notes on limits, data use and safety."><meta property="og:url" content="https://geopolcoins.xyz/free-ai-api.html"><meta property="og:image" content="https://geopolcoins.xyz/og-garage.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#050b1b">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI API key?","acceptedAnswer":{"@type":"Answer","text":"A secret code that lets your bot use an AI model from a provider. Treat it like a password and give it a spending limit."}},{"@type":"Question","name":"Can I use AI for free in my bot?","acceptedAnswer":{"@type":"Answer","text":"Yes, several providers have free tiers or free models with daily limits, such as OpenRouter free models, Groq, Mistral's Experiment plan and Cloudflare Workers AI. You can also run a model on your own computer with Ollama. Limits and conditions change, so check the provider's page."}},{"@type":"Question","name":"Is my key safe in the Bot Garage?","acceptedAnswer":{"@type":"Answer","text":"The Bot Garage keeps your key in the browser tab only and sends it directly to the provider you choose. Still, use a key with a spending limit and never share it."}}]}</script>
+<style>
+:root{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#b7c4dc;--gold:#ffd700;--cyan:#38f2ff;--line:rgba(169,212,255,.25)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:900px;margin:0 auto;padding:18px 16px 60px}a{color:var(--gold)}
+.skip{position:absolute;left:8px;top:-60px;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800}.skip:focus{top:8px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:14px}.top a{display:inline-block;padding:6px 0}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:18px 0 8px}h2{font-size:22px;margin:32px 0 8px}p,li{color:var(--dim)}li b,p b{color:#fff}
+.lead{font-size:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+.warn{border-color:#ff4b61}.tip{border-color:var(--gold)}
+.opts{display:grid;gap:12px}.opt{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}.opt h3{margin:0 0 4px;font-size:18px}.opt p{margin:4px 0}
+.tag{display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:999px;background:rgba(20,241,149,.15);color:#14F195;margin-right:6px}
+ol.steps li{margin:6px 0}.btn{display:inline-block;margin-top:6px;padding:10px 14px;border-radius:10px;background:var(--gold);color:#111;font-weight:800;text-decoration:none}
+.small{font-size:13px}footer{text-align:center;color:var(--dim);font-size:13px;margin-top:40px}footer a{display:inline-block;padding:6px 2px}
+code{background:#071226;padding:1px 6px;border-radius:6px;color:#fff}
+</style></head><body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+<main id="main">
+<div class="top"><a href="/" data-t="back">&larr; geopolcoins.xyz</a><nav aria-label="More"><a href="garage.html">Bot Garage</a> · <a href="app.html" data-t="app">$MAIGA app</a></nav></div>
+<h1 data-t="h1">Free AI for your bot: where to get an API key</h1>
+<p class="lead" data-t="lead">Your bot needs an AI model to think. You connect one with an API key. Here are free and cheap options, how to keep your key safe, and how to use it in the free Bot Garage.</p>
+
+<h2 data-t="h_what">What is an API key?</h2>
+<p data-t="what">A secret code from an AI provider that lets your bot use their model. Whoever has the key can spend your credit, so treat it like a password.</p>
+<div class="card warn"><ul>
+<li data-t="s1"><b>Never share your key</b> or post it on GitHub, X, Discord or a website.</li>
+<li data-t="s2"><b>Set a spending limit</b> at the provider, or use free models only.</li>
+<li data-t="s3"><b>Do not put personal or customer data</b> into free tiers: several providers may use free-tier data to improve their models.</li>
+<li data-t="s4"><b>Lost or leaked?</b> Delete the key at the provider and make a new one.</li>
+</ul></div>
+
+<h2 data-t="h_opts">Free and cheap options (checked 23 October 2026)</h2>
+<p class="small" data-t="opts_note">Free tiers change often. Always check the current limits and terms on the provider's own page before you build on it.</p>
+<div class="opts">
+  <div class="opt"><h3>OpenRouter <span class="tag" data-t="easy">Easiest with the Bot Garage</span></h3>
+    <p data-t="or1">One key for many models. Some models are free: their ID ends in <code>:free</code>. Without buying credit you get a small number of free requests per day; buying a little credit once raises that limit.</p>
+    <p class="small"><a href="https://openrouter.ai/models" target="_blank" rel="noopener noreferrer" data-t="or_l">openrouter.ai/models (filter on free)</a></p></div>
+  <div class="opt"><h3>Groq</h3>
+    <p data-t="gq1">Very fast open models with a free plan that has per-minute and per-day limits. Works with the Bot Garage starter kit (any OpenAI-compatible API).</p>
+    <p class="small"><a href="https://console.groq.com" target="_blank" rel="noopener noreferrer">console.groq.com</a></p></div>
+  <div class="opt"><h3>Mistral (Experiment plan)</h3>
+    <p data-t="ms1">A free plan to try the API, no credit card, but you need to verify a phone number. Requests on this plan may be used to train Mistral's models.</p>
+    <p class="small"><a href="https://console.mistral.ai" target="_blank" rel="noopener noreferrer">console.mistral.ai</a></p></div>
+  <div class="opt"><h3>Google Gemini API</h3>
+    <p data-t="gm1">Has a free tier for some Flash models with small daily limits. Free-tier data is used to improve Google's products, and apps that serve users in the EU, Switzerland or the UK must use the paid tier. Fine for learning, not for a customer bot in Europe.</p>
+    <p class="small"><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a></p></div>
+  <div class="opt"><h3>Cloudflare Workers AI</h3>
+    <p data-t="cf1">A free daily allowance (10,000 "neurons" per day) for open models, for people who can deploy a small Cloudflare Worker.</p>
+    <p class="small"><a href="https://developers.cloudflare.com/workers-ai/" target="_blank" rel="noopener noreferrer">developers.cloudflare.com/workers-ai</a></p></div>
+  <div class="opt"><h3>Ollama <span class="tag" data-t="private">Free and private</span></h3>
+    <p data-t="ol1">Run an open model on your own computer. No key, no limits, nothing leaves your machine. You need a reasonably strong computer, and it only works while that computer is on.</p>
+    <p class="small"><a href="https://ollama.com" target="_blank" rel="noopener noreferrer">ollama.com</a></p></div>
+  <div class="opt"><h3 data-t="paid_h">Paid, low cost: Anthropic (Claude) and OpenAI</h3>
+    <p data-t="paid1">No free tier, but small models cost very little per message and you can set a monthly limit. Best for a bot real customers will use.</p>
+    <p class="small"><a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a> · <a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a></p></div>
+</div>
+
+<h2 data-t="h_how">Use a free model in the Bot Garage (5 steps)</h2>
+<ol class="steps">
+<li data-t="h1s">Make a free account on openrouter.ai and create an API key.</li>
+<li data-t="h2s">On openrouter.ai/models, filter on free and copy a model ID that ends in :free.</li>
+<li data-t="h3s">Open the Bot Garage, pick or build a bot, and go to Step 3: Test drive.</li>
+<li data-t="h4s">Choose "Use my own AI key", provider OpenRouter, paste the model ID in Model and your key in "Your API key".</li>
+<li data-t="h5s">Chat with your bot. Your key stays in that browser tab and goes only to OpenRouter.</li>
+</ol>
+<p><a class="btn" href="garage.html#test" data-t="cta">Open the Bot Garage</a></p>
+
+<h2 data-t="h_run">Run your bot 24/7</h2>
+<p data-t="run">In the Bot Garage, download the starter kit (.zip): ready code for Telegram and Discord. Put your key in the .env file as AI_API_KEY, and set AI_BASE_URL to your provider (OpenRouter, Groq or a local Ollama server). It runs on your own computer or a small server; nothing is posted or bought for you.</p>
+<div class="card tip"><p data-t="help">Want it done for you? We set up a bot for your business: <a href="ai-bot-op-maat.html">NL</a> · <a href="custom-ai-bot.html">EN</a> · <a href="bot-ia-sur-mesure.html">FR</a></p></div>
+<footer>&copy; 2026 $MAIGA · <a href="index.html#terms">Terms</a><br><span data-t="foot">Information only. Provider terms and limits change; check their pages. We are not affiliated with these providers.</span></footer>
+</main>
+<script>
+(function(){
+var L=(navigator.language||'').slice(0,2).toLowerCase();
+var T={nl:{skip:'Ga naar inhoud',back:'← geopolcoins.xyz',app:'$MAIGA-app',h1:'Gratis AI voor je bot: waar haal je een API-sleutel?',lead:'Je bot heeft een AI-model nodig om te denken. Dat koppel je met een API-sleutel. Hier vind je gratis en goedkope opties, hoe je je sleutel veilig houdt en hoe je hem gebruikt in de gratis Bot Garage.',h_what:'Wat is een API-sleutel?',what:'Een geheime code van een AI-aanbieder waarmee je bot hun model mag gebruiken. Wie de sleutel heeft, kan je tegoed opmaken, dus behandel hem als een wachtwoord.',s1:'Deel je sleutel nooit en zet hem niet op GitHub, X, Discord of een website.',s2:'Stel een uitgavelimiet in bij de aanbieder, of gebruik alleen gratis modellen.',s3:'Zet geen persoonlijke of klantgegevens in gratis niveaus: verschillende aanbieders mogen gratis gegevens gebruiken om hun modellen te verbeteren.',s4:'Kwijt of gelekt? Verwijder de sleutel bij de aanbieder en maak een nieuwe.',h_opts:'Gratis en goedkope opties (nagekeken op 23 oktober 2026)',opts_note:'Gratis niveaus veranderen vaak. Kijk altijd de actuele limieten en voorwaarden na op de pagina van de aanbieder zelf voor je erop bouwt.',easy:'Makkelijkst met de Bot Garage',or1:'Eén sleutel voor veel modellen. Sommige modellen zijn gratis: hun ID eindigt op :free. Zonder tegoed te kopen krijg je een klein aantal gratis aanvragen per dag; één keer een beetje tegoed kopen verhoogt die limiet.',or_l:'openrouter.ai/models (filter op free)',gq1:'Zeer snelle open modellen met een gratis plan met limieten per minuut en per dag. Werkt met het startpakket van de Bot Garage (elke OpenAI-compatibele API).',ms1:'Een gratis plan om de API te proberen, zonder kredietkaart, maar je moet een telefoonnummer bevestigen. Aanvragen op dit plan kunnen gebruikt worden om Mistrals modellen te trainen.',gm1:'Heeft een gratis niveau voor sommige Flash-modellen met kleine daglimieten. Gratis gegevens worden gebruikt om Googles producten te verbeteren, en apps die gebruikers in de EU, Zwitserland of het VK bedienen, moeten het betaalde niveau gebruiken. Goed om te leren, niet voor een klantenbot in Europa.',cf1:'Een gratis dagtegoed (10.000 "neurons" per dag) voor open modellen, voor wie een kleine Cloudflare Worker kan opzetten.',private:'Gratis en privé',ol1:'Draai een open model op je eigen computer. Geen sleutel, geen limieten, niets verlaat je toestel. Je hebt een vrij sterke computer nodig, en het werkt alleen als die computer aanstaat.',paid_h:'Betaald, goedkoop: Anthropic (Claude) en OpenAI',paid1:'Geen gratis niveau, maar kleine modellen kosten heel weinig per bericht en je kunt een maandlimiet instellen. Het beste voor een bot die echte klanten gebruiken.',h_how:'Een gratis model gebruiken in de Bot Garage (5 stappen)',h1s:'Maak een gratis account op openrouter.ai en maak een API-sleutel.',h2s:'Filter op openrouter.ai/models op free en kopieer een model-ID dat eindigt op :free.',h3s:'Open de Bot Garage, kies of bouw een bot en ga naar stap 3: Test drive.',h4s:'Kies "Use my own AI key", aanbieder OpenRouter, plak het model-ID bij Model en je sleutel bij "Your API key".',h5s:'Chat met je bot. Je sleutel blijft in dat browsertabblad en gaat alleen naar OpenRouter.',cta:'Open de Bot Garage',h_run:'Je bot 24/7 laten draaien',run:'Download in de Bot Garage het startpakket (.zip): kant-en-klare code voor Telegram en Discord. Zet je sleutel in het .env-bestand als AI_API_KEY en zet AI_BASE_URL op je aanbieder (OpenRouter, Groq of een lokale Ollama-server). Het draait op je eigen computer of een kleine server; er wordt niets voor je gepost of gekocht.',help:'Liever dat wij het doen? Wij stellen een bot in voor je zaak:',foot:'Alleen ter info. Voorwaarden en limieten van aanbieders veranderen; kijk hun pagina\'s na. We zijn niet verbonden aan deze aanbieders.'},
+ fr:{skip:'Aller au contenu',back:'← geopolcoins.xyz',app:'Appli $MAIGA',h1:'IA gratuite pour votre bot : où obtenir une clé API ?',lead:"Votre bot a besoin d'un modèle d'IA pour réfléchir. On le connecte avec une clé API. Voici des options gratuites et bon marché, comment protéger votre clé et comment l'utiliser dans le Bot Garage gratuit.",h_what:"Qu'est-ce qu'une clé API ?",what:"Un code secret d'un fournisseur d'IA qui permet à votre bot d'utiliser son modèle. Celui qui a la clé peut dépenser votre crédit : traitez-la comme un mot de passe.",s1:'Ne partagez jamais votre clé et ne la publiez pas sur GitHub, X, Discord ou un site web.',s2:'Fixez une limite de dépenses chez le fournisseur, ou utilisez seulement des modèles gratuits.',s3:"N'envoyez pas de données personnelles ou de clients dans les offres gratuites : plusieurs fournisseurs peuvent les utiliser pour améliorer leurs modèles.",s4:'Perdue ou divulguée ? Supprimez la clé chez le fournisseur et créez-en une nouvelle.',h_opts:'Options gratuites et bon marché (vérifiées le 23 octobre 2026)',opts_note:"Les offres gratuites changent souvent. Vérifiez toujours les limites et conditions actuelles sur la page du fournisseur avant de construire dessus.",easy:'Le plus simple avec le Bot Garage',or1:"Une clé pour de nombreux modèles. Certains sont gratuits : leur identifiant se termine par :free. Sans acheter de crédit, vous avez un petit nombre de requêtes gratuites par jour ; acheter un peu de crédit une fois augmente cette limite.",or_l:'openrouter.ai/models (filtrer sur free)',gq1:"Des modèles ouverts très rapides avec une offre gratuite limitée par minute et par jour. Fonctionne avec le kit de démarrage du Bot Garage (toute API compatible OpenAI).",ms1:"Une offre gratuite pour essayer l'API, sans carte bancaire, mais avec vérification du numéro de téléphone. Les requêtes de cette offre peuvent servir à entraîner les modèles de Mistral.",gm1:"Offre gratuite pour certains modèles Flash avec de petites limites quotidiennes. Les données gratuites servent à améliorer les produits Google, et les applis destinées aux utilisateurs de l'UE, de la Suisse ou du Royaume-Uni doivent utiliser l'offre payante. Bien pour apprendre, pas pour un bot client en Europe.",cf1:'Une allocation quotidienne gratuite (10 000 « neurons » par jour) pour des modèles ouverts, pour qui sait déployer un petit Worker Cloudflare.',private:'Gratuit et privé',ol1:"Faites tourner un modèle ouvert sur votre ordinateur. Pas de clé, pas de limite, rien ne quitte votre machine. Il faut un ordinateur assez puissant, allumé.",paid_h:'Payant, petit prix : Anthropic (Claude) et OpenAI',paid1:"Pas d'offre gratuite, mais les petits modèles coûtent très peu par message et vous pouvez fixer une limite mensuelle. Le meilleur choix pour un bot utilisé par de vrais clients.",h_how:'Utiliser un modèle gratuit dans le Bot Garage (5 étapes)',h1s:'Créez un compte gratuit sur openrouter.ai et une clé API.',h2s:'Sur openrouter.ai/models, filtrez sur free et copiez un identifiant de modèle qui se termine par :free.',h3s:"Ouvrez le Bot Garage, choisissez ou créez un bot, puis allez à l'étape 3 : Test drive.",h4s:'Choisissez « Use my own AI key », le fournisseur OpenRouter, collez l\'identifiant dans Model et votre clé dans « Your API key ».',h5s:"Discutez avec votre bot. Votre clé reste dans cet onglet et ne va qu'à OpenRouter.",cta:'Ouvrir le Bot Garage',h_run:'Faire tourner votre bot 24 h/24',run:"Dans le Bot Garage, téléchargez le kit de démarrage (.zip) : du code prêt pour Telegram et Discord. Mettez votre clé dans le fichier .env (AI_API_KEY) et réglez AI_BASE_URL sur votre fournisseur (OpenRouter, Groq ou un serveur Ollama local). Il tourne sur votre ordinateur ou un petit serveur ; rien n'est publié ni acheté pour vous.",help:'Vous préférez que nous le fassions ? Nous installons un bot pour votre entreprise :',foot:"Information uniquement. Les conditions et limites des fournisseurs changent ; vérifiez leurs pages. Nous ne sommes pas affiliés à ces fournisseurs."}}[L];
+if(!T)return;document.documentElement.lang=L;document.title=T.h1;
+document.querySelectorAll('[data-t]').forEach(function(e){var v=T[e.dataset.t];if(!v)return;
+  if(e.tagName==='LI'&&e.querySelector('b')){var b=e.querySelector('b'),i=v.search(/[.:]\s/);if(i>0){b.textContent=v.slice(0,i+1);e.replaceChildren(b,document.createTextNode(' '+v.slice(i+2)));return;}}
+  if(e.dataset.t==='help'){e.firstChild.textContent=v+' ';return;}
+  var code=e.querySelector('code');if(code&&v.indexOf(':free')>=0){var parts=v.split(':free');e.replaceChildren(document.createTextNode(parts[0]),code,document.createTextNode(parts.slice(1).join(':free')));return;}
+  e.textContent=v;});
+})();
+</script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'ai',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+<script src="pwa.js" defer></script>
+<script src="guide.js" defer></script>
+</body></html>

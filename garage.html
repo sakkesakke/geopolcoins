@@ -259,6 +259,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
         </div>
         <div class="full"><label for="aiKey">Your API key</label><input id="aiKey" type="password" autocomplete="off" spellcheck="false" maxlength="300" placeholder="paste your key (kept in this tab only)"></div>
         <div class="warn">Your key is only sent from this page to the provider you pick. A browser rule on this page blocks every other destination. We never see it or store it. Use a key with a spending limit. Max 20 test messages per day from this page.</div>
+        <div class="warn" style="border-color:#14F195">💡 Free option: choose OpenRouter and use a model ID that ends in <b>:free</b>. <a href="free-ai-api.html">Free AI guide</a></div>
       </div>
       <div class="chat" id="chat" aria-live="polite"></div>
       <div class="suggest" id="suggest"></div>
@@ -1059,5 +1060,6 @@ var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.r
 var k='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:k,Authorization:'Bearer '+k,'Content-Type':'application/json'},body:JSON.stringify({p_page:p,p_ref:r.slice(0,60)})}).catch(function(){});}catch(e){}})();
 </script>
 <script src="pwa.js" defer></script>
+<script src="guide.js" defer></script>
 </body>
 </html>

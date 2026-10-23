@@ -33,6 +33,11 @@ details{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;backgr
 details div{padding:0 12px 12px}
 .rules li{margin-bottom:4px}
 </style>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#050b1b">
 </head>
 <body>
 <div class="wrap">
@@ -53,7 +58,7 @@ details div{padding:0 12px 12px}
           <option value="team">Team call</option>
         </select></div>
       <div id="extraWrap"><label for="extra" id="extraLbl">AGENT</label>
-        <select id="extraSel"><option value="arcade">Arcade Agent</option><option value="launchcheck">Launch Check Agent</option><option value="meme">Meme Agent</option><option value="teammatch">Team Match Agent</option></select>
+        <select id="extraSel" aria-label="Choose an extra agent"><option value="arcade">Arcade Agent</option><option value="launchcheck">Launch Check Agent</option><option value="meme">Meme Agent</option><option value="teammatch">Team Match Agent</option></select>
         <input type="text" id="extra" maxlength="100" placeholder="" style="display:none"></div>
     </div>
     <div class="chk">

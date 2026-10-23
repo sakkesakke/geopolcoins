@@ -41,7 +41,7 @@ jobs:
             skillspector scan "$d" --no-llm --format json --output "reports/$n.json"
             code=$?
             set -e
-            rec=$(python3 -c "import json,sys;r=json.load(open('reports/$n.json'));print(r.get('recommendation','?'),'· risk',r.get('risk_score','?'))" 2>/dev/null || echo "error")
+            rec=$(python3 -c "import json,sys;r=json.load(open('reports/$n.json'));a=r.get('risk_assessment',{});print(a.get('recommendation','?'),'· risk',a.get('score','?'),'·',len(r.get('issues') or []),'issue(s)')" 2>/dev/null || echo "error")
             echo "| $n | $rec (exit $code) |" >> reports/summary.md
             if [ "$code" != "0" ]; then python3 -c "import json;r=json.load(open('reports/$n.json'));[print('  -',f.get('severity'),f.get('rule_id') or f.get('id'),'|',(f.get('title') or f.get('message') or '')[:120],'|',f.get('file') or f.get('location','')) for f in (r.get('findings') or [])[:15]]" >> reports/summary.md 2>/dev/null || true; fi
             if [ "$code" != "0" ]; then status=1; fi

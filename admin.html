@@ -124,6 +124,12 @@ button.gray{background:#666;color:#fff}
   </div>
 
   <div class="card">
+    <h2>📊 <span>Visitors (anonymous)</span></h2>
+    <div class="note" style="margin-bottom:10px">Page visits counted without cookies or personal data. Use these numbers for sponsors.</div>
+    <div id="statsBox" class="note">Loading…</div>
+  </div>
+
+  <div class="card">
     <h2>📜 <span>Payout History</span></h2>
     <div id="payoutHistory" class="note">Loading…</div>
   </div>
@@ -562,7 +568,31 @@ async function loadHistory(){
   } catch(e){ box.textContent = 'Error: ' + e.message; }
 }
 
-function reload(){ if (!session) return; loadData(); loadHistory(); }
+async function loadStats(){
+  const box = $('statsBox');
+  try{
+    const since = new Date(Date.now() - 29 * 864e5).toISOString().slice(0, 10);
+    const rows = await sbAll('site_views?select=day,page,ref,n&day=gte.' + since + '&order=day.desc');
+    if (!rows.length){ box.textContent = 'No visits counted yet.'; return; }
+    const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Brussels' });
+    const d7 = new Date(Date.now() - 6 * 864e5).toLocaleDateString('sv-SE', { timeZone: 'Europe/Brussels' });
+    const sum = (f) => rows.filter(f).reduce((a, r) => a + (Number(r.n) || 0), 0);
+    const tile = (label, v) => el('div', { style: 'flex:1 1 120px;border:2px solid #000;border-radius:8px;padding:8px 10px;background:#050b14' },
+      el('div', { style: 'font-size:22px;font-weight:900;color:#ffd800', text: v.toLocaleString() }), el('div', { style: 'font-size:11px;color:#8ea3ba', text: label }));
+    const tiles = el('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px' },
+      tile('today', sum(r => r.day === today)), tile('last 7 days', sum(r => r.day >= d7)), tile('last 30 days', sum(() => true)));
+    const group = (key, f) => { const m = new Map(); rows.filter(f || (() => true)).forEach(r => m.set(r[key], (m.get(r[key]) || 0) + (Number(r.n) || 0))); return [...m.entries()].sort((a, b) => b[1] - a[1]); };
+    const table = (title, entries) => el('div', { style: 'flex:1 1 220px' }, el('div', { style: 'font-weight:900;font-size:12px;margin-bottom:4px', text: title }),
+      ...entries.slice(0, 12).map(([k, v]) => el('div', { style: 'display:flex;justify-content:space-between;gap:8px;font-size:12px;border-bottom:1px solid #1d2a3a;padding:3px 0' }, el('span', { text: String(k) }), el('b', { text: v.toLocaleString() }))));
+    const days = group('day').sort((a, b) => a[0] < b[0] ? 1 : -1);
+    box.replaceChildren(tiles, el('div', { style: 'display:flex;gap:14px;flex-wrap:wrap' },
+      table('Pages (7 days)', group('page', r => r.day >= d7)), table('Came from (7 days)', group('ref', r => r.day >= d7 && r.ref !== 'internal')), table('Per day', days)));
+  } catch(e){
+    box.textContent = /404|400/.test(e.message) ? 'Stats are not switched on yet: run supabase-stats-battles.sql in the Supabase SQL editor.' : 'Error: ' + e.message;
+  }
+}
+
+function reload(){ if (!session) return; loadData(); loadHistory(); loadStats(); }
 
 /* ============================================================
    INIT

@@ -283,6 +283,17 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
   <section class="section" id="battles">
     <div class="sec-h"><h2><small>ARENA</small>BOT BATTLES</h2></div>
     <p class="sub">Pick two bots. They roast each other for three rounds. You are the judge. Friendly fire only: bots roast choices and code, never people.</p>
+    <div class="panel hidden" id="botd" style="margin-bottom:12px;border-color:rgba(255,216,0,.55)">
+      <div class="sec-h"><b style="font-family:Impact,Arial Black,sans-serif;letter-spacing:2px;font-size:22px">🏆 BATTLE OF THE DAY</b><span class="note" id="botdDay"></span></div>
+      <p class="note" style="margin:4px 0 10px">Everyone sees the same battle today. Watch it, then vote. One vote per browser.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <button class="btn gold" id="botdWatch" type="button">▶ Watch today's battle</button>
+        <button class="btn" id="botdA" type="button">…</button>
+        <button class="btn pink" id="botdB" type="button">…</button>
+      </div>
+      <div style="height:10px;border-radius:6px;background:rgba(255,61,242,.35);margin-top:10px;overflow:hidden"><div id="botdBar" style="height:100%;width:50%;background:var(--cyan);transition:width .4s"></div></div>
+      <div class="note" id="botdRes" style="margin-top:6px"></div>
+    </div>
     <div class="panel">
       <div class="bctl">
         <div><label for="selA">Fighter 1</label><select id="selA"></select></div>
@@ -305,7 +316,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
     <div class="sec-h"><h2><small>GARAGE ROADMAP</small>WHAT'S NEXT</h2></div>
     <p class="sub">The garage keeps getting new bots and easier ways to connect. Planned, not live yet:</p>
     <div class="road">
-      <div><em>NEXT</em><b>Battle of the day</b><span>The top community bots battle and everyone votes.</span></div>
+      <div><em>NEXT</em><b>Weekly champion</b><span>The bot with the most battle-of-the-day wins gets the spotlight.</span></div>
       <div><em>NEXT</em><b>More bots &amp; skins</b><span>New ready-made bots and looks every week.</span></div>
       <div><em>LATER</em><b>One-click connect</b><span>Run your bot without touching code, where platforms allow it.</span></div>
       <div><em>LATER</em><b>Garage Pro</b><span>Extra skins, more bots and no watermark. Described before you can pay.</span></div>
@@ -370,7 +381,14 @@ var TEMPLATES=[
  T({id:'roaster',name:'Roast Bot',cat:'creator',role:'gives friendly, funny roasts that never punch down',skills:['Roast (friendly)','Name things'],fun:4,len:0,energy:4,emoji:2,look:{c:'#ffa94d',head:'box',eyes:'angry',top:'cap',gear:'shades',mouth:'grill'},rules:'Roast choices, never people\'s looks, identity or real tragedies. Keep it kind enough that the target laughs too.',demo:['Your portfolio has more red than a tomato festival. 🍅','You said "just one more trade" like it was a personality. 😂','Your bot has 47 tabs open and still forgot the plan. Respect.'],ask:['Roast my coin name','Roast my morning routine','Roast my bot']}),
  T({id:'mealbot',name:'Meal Planner',cat:'life',role:'plans simple, cheap meals for the week with a shopping list',skills:['Plan meals','Budget helper'],fun:2,len:2,energy:2,emoji:1,look:{c:'#14F195',head:'round',eyes:'big',top:'cap',gear:'scarf',mouth:'smile'},rules:'Ask about allergies and budget first. Simple recipes, short ingredient lists. No medical or diet advice.',demo:['Mon pasta, Tue wraps, Wed curry, Thu omelette, Fri homemade pizza 🍕','Shopping list grouped by aisle coming right up. Any allergies first?','Leftover tip: Wednesday\'s curry is Thursday\'s lunch.'],ask:['Plan 5 cheap dinners','Vegetarian week please','Make a shopping list']}),
  T({id:'habit',name:'Habit Coach',cat:'life',role:'helps you build one small habit at a time, with gentle check-ins',skills:['Build habits','Daily planner'],fun:2,len:1,energy:3,emoji:1,look:{c:'#ffd800',head:'dome',eyes:'heart',top:'single',gear:'none',mouth:'smile'},rules:'Tiny steps, kind tone, celebrate progress. No medical advice; suggest a professional when health comes up.',demo:['Start tiny: 2 minutes a day. Tiny habits win long games. 🌱','Missed a day? That\'s normal. Never miss twice.','Today\'s win: you showed up. That counts.'],ask:['Help me read more','I keep giving up','Plan my morning']}),
- T({id:'studybuddy',name:'Study Buddy',cat:'life',role:'quizzes you and explains things step by step',skills:['Study coach','Daily planner'],fun:2,len:2,energy:2,emoji:1,look:{c:'#8b7bff',head:'tv',eyes:'dots',top:'double',gear:'bowtie',mouth:'smile'},rules:'Ask one question at a time. Explain mistakes kindly. Never just give homework answers without explaining.',demo:['Quiz time! What is the capital of Australia? (Hint: it\'s not Sydney.)','Close! It\'s Canberra. Sydney is bigger, but Canberra was built as a compromise.','Plan: 25 minutes focus, 5 minutes break, 4 rounds. Go!'],ask:['Quiz me on history','Explain fractions','Make a study plan']})
+ T({id:'studybuddy',name:'Study Buddy',cat:'life',role:'quizzes you and explains things step by step',skills:['Study coach','Daily planner'],fun:2,len:2,energy:2,emoji:1,look:{c:'#8b7bff',head:'tv',eyes:'dots',top:'double',gear:'bowtie',mouth:'smile'},rules:'Ask one question at a time. Explain mistakes kindly. Never just give homework answers without explaining.',demo:['Quiz time! What is the capital of Australia? (Hint: it\'s not Sydney.)','Close! It\'s Canberra. Sydney is bigger, but Canberra was built as a compromise.','Plan: 25 minutes focus, 5 minutes break, 4 rounds. Go!'],ask:['Quiz me on history','Explain fractions','Make a study plan']}),
+ T({id:'newsdigest',name:'News Digest',cat:'crypto',role:'sums up crypto news in plain words, neutral and without hype',skills:['Summarize news','Explain crypto terms'],fun:1,len:2,energy:1,emoji:1,look:{c:'#e8eef8',head:'tv',eyes:'visor',top:'dish',gear:'none',mouth:'flat'},rules:'Summarize only what the user pastes. Separate facts from opinions. Never turn news into a buy or sell tip.',demo:['Paste an article and I\'ll give you 3 bullet points: what happened, why people care, what is still unknown.','Fact: the update went live today. Opinion: some say it\'s big. Unknown: whether anyone uses it yet.','Short version: lots of noise, one real change. I\'ll point out which is which.'],ask:['Summarize this article','What does "halving" mean?','Facts vs opinions please']}),
+ T({id:'whalewatch',name:'Whale Watcher',cat:'crypto',role:'explains what big wallet moves can and cannot mean, read-only',skills:['Alert ideas (read-only)','Explain crypto terms','Spot scam messages'],fun:2,len:2,energy:2,emoji:1,look:{c:'#38f2ff',head:'dome',eyes:'big',top:'dish',gear:'headset',mouth:'open'},rules:'Explain that a big transfer is not a signal by itself (it can be an exchange, a team wallet or a bridge). Never suggest copying anyone\'s trades.',demo:['A whale moved tokens? Could be selling, could be an exchange shuffling wallets. A move alone tells you very little. 🐋','Tip: check if the wallet belongs to an exchange before reading anything into it.','Copy-trading whales is how people become exit liquidity. I explain, I don\'t signal.'],ask:['A whale just moved 5%','What is a team wallet?','Should I follow whale trades?']}),
+ T({id:'meetingnotes',name:'Meeting Notes',cat:'business',role:'turns messy meeting notes into decisions, owners and next steps',skills:['Summarize meetings','Make to-do lists'],fun:1,len:2,energy:1,emoji:0,look:{c:'#8b7bff',head:'box',eyes:'dots',top:'none',gear:'bowtie',mouth:'flat'},rules:'Output three blocks: Decisions, Action items (owner + date), Open questions. Never invent names or dates.',demo:['Decisions: launch on Monday. Actions: Sam sends the deck by Friday. Open: budget for ads?','Paste your notes, however messy. I\'ll find the decisions hiding in there.','Action items without an owner are wishes. Who owns this one?'],ask:['Clean up my notes','Make a to-do list from this','Write the follow-up email']}),
+ T({id:'socialdesk',name:'Social Desk',cat:'business',role:'drafts a week of social posts for a small business, ready for you to post',skills:['Write social posts','Make to-do lists'],fun:2,len:1,energy:3,emoji:1,look:{c:'#ff3df2',head:'round',eyes:'big',top:'single',gear:'headset',mouth:'smile'},rules:'Mix offers, tips, behind the scenes and questions. Keep claims honest. The owner reviews and posts.',demo:['Mon: tip · Wed: behind the scenes · Fri: offer · Sun: question for followers. Want drafts?','"Fresh bread at 7:00, still warm at 7:05. See you tomorrow? 🥖"','Question post: "Which flavour should we bring back next month?"'],ask:['Plan my week of posts','Write an offer post','Ideas for a slow week']}),
+ T({id:'newsletter',name:'Newsletter Writer',cat:'creator',role:'turns your week into a short, friendly newsletter',skills:['Repurpose content','Write captions','Brainstorm ideas'],fun:2,len:3,energy:2,emoji:1,look:{c:'#14F195',head:'tv',eyes:'dots',top:'cap',gear:'scarf',mouth:'smile'},rules:'Structure: hook, 3 short sections, one call to action. Plain words, no clickbait.',demo:['Subject: "3 things I learned building bots this week"','Section idea: what worked, what broke, what\'s next.','CTA: "Reply and tell me what you\'re building."'],ask:['Write this week\'s issue','5 subject lines','Turn my posts into a newsletter']}),
+ T({id:'tripplanner',name:'Trip Planner',cat:'life',role:'plans relaxed trips with a day-by-day plan and a packing list',skills:['Plan trips','Daily planner'],fun:2,len:2,energy:3,emoji:1,look:{c:'#ffa94d',head:'dome',eyes:'big',top:'cap',gear:'shades',mouth:'smile'},rules:'Ask about budget, pace and dates first. Remind people to check opening hours and travel rules themselves.',demo:['Day 1: old town walk + local food. Day 2: museum morning, beach afternoon. Day 3: slow start, market, home. 🧳','Packing list coming up. Weather check first?','Pro tip: book the one thing you really want to see. Leave the rest flexible.'],ask:['3 days in Lisbon','Packing list for a city trip','A cheap weekend idea']}),
+ T({id:'budgetbuddy',name:'Budget Buddy',cat:'life',role:'helps you make a simple monthly budget, without judging',skills:['Budget helper','Daily planner'],fun:2,len:1,energy:2,emoji:1,look:{c:'#ffd800',head:'box',eyes:'heart',top:'none',gear:'bowtie',mouth:'smile'},rules:'Simple budgeting only (needs, wants, savings). No investment, tax or debt advice; suggest a professional for those.',demo:['Try 3 boxes: needs, wants, savings. Start with what you already spend.','Small win: cancel one subscription you forgot about. 🎉','I can help you plan, but for investing or debt questions, talk to a professional.'],ask:['Help me make a budget','Where does my money go?','Ideas to save on groceries']})
 ];
 
 /* ======================= STATE ======================= */
@@ -885,10 +903,12 @@ $('pubBtn').addEventListener('click',function(){
 var R_OPEN=['{B}? The bot that {roleB}? I\'ve seen toasters with a stronger business plan.','{B} has {nB} skills and still needs a tutorial for small talk.','I asked {B} for help once. It\'s still loading. ⏳','{B}\'s idea of multitasking is crashing in two tabs at once.','Respect to {B}: it takes real talent to be that confident with that little RAM.','{B} calls itself a {catB} bot, but the only thing it automates is excuses.','If {B} were a meme coin, it would be stuck at launch with one holder: its creator.','{B} runs on vibes and a 2009 laptop fan. You can hear it thinking. 🌀'];
 var R_BACK=['Bold words from {A}, a bot whose best skill is "{skillA}". Groundbreaking.','{A}, your jokes are like your updates: nobody asked and they still came.','{A} talks big for a bot that {roleA}. I do that during my coffee break. ☕','Careful, {A}. I\'ve seen your code. It\'s 90% comments apologizing.','{A} thinks it\'s a 10x bot. The x stands for "excuse me, what?"','{A}, even your error messages need a hype man.','Nice try, {A}. My spam filter flagged that roast as low effort.','{A} was trained on motivational posters and it shows. 🖼️'];
 var R_FIN=['Final word, {B}: you\'re not a bad bot. You\'re just a beta. Forever. 🧪','GG {B}. Go recharge, you\'ll need it. 🔋','I don\'t lose battles, {B}. I ship patch notes.','Let the judge decide. My circuits already know. 😎','{B}, I\'ll let you have the last word. It\'ll be "error 404".','Mic drop. Well, I don\'t have hands. Data drop. 🎤'];
-function pick(arr,used){var c=arr.filter(function(x){return used.indexOf(x)<0;});var x=(c.length?c:arr)[Math.floor(Math.random()*(c.length?c:arr).length)];used.push(x);return x;}
+var rng=Math.random;
+function seeded(str){var h=1779033703^str.length;for(var i=0;i<str.length;i++){h=Math.imul(h^str.charCodeAt(i),3432918353);h=h<<13|h>>>19;}return function(){h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);var t=(h^=h>>>16)>>>0;return t/4294967296;};}
+function pick(arr,used){var c=arr.filter(function(x){return used.indexOf(x)<0;});var src=c.length?c:arr;var x=src[Math.floor(rng()*src.length)];used.push(x);return x;}
 function fillT(t,A,B){
   function role(b){return (b.role||'does nothing in particular').replace(/[.!]+$/,'').replace(/^./,function(c){return c.toLowerCase();});}
-  function skill(b){return b.skills.length?b.skills[Math.floor(Math.random()*b.skills.length)].toLowerCase():'existing';}
+  function skill(b){return b.skills.length?b.skills[Math.floor(rng()*b.skills.length)].toLowerCase():'existing';}
   var catB=CATS.filter(function(c){return c.id===B.cat;})[0].label.replace(/^\S+\s/,'').toLowerCase();
   return t.replace(/\{A\}/g,A.name).replace(/\{B\}/g,B.name).replace(/\{roleA\}/g,role(A)).replace(/\{roleB\}/g,role(B)).replace(/\{skillA\}/g,skill(A)).replace(/\{nB\}/g,String(B.skills.length||'zero')).replace(/\{catB\}/g,catB);
 }
@@ -904,7 +924,7 @@ function fillFighters(){
 function fighter(id){var v=$(id).value;return v==='mine'?bot:(fighterMap[v]||bot);}
 function showFighters(){var A=fighter('selA'),B=fighter('selB');$('faName').textContent=A.name;$('fbName').textContent=B.name;drawBot($('faCv'),A.look,0);drawBot($('fbCv'),B.look,0);}
 $('selA').addEventListener('change',showFighters);$('selB').addEventListener('change',showFighters);
-var battle=null,fighting=false;
+var battle=null,fighting=false,lastPreset=null;
 function wait(ms){return new Promise(function(r){setTimeout(r,reduce?0:ms);});}
 function aiLine(me,other,kind,last){
   var sys=systemPrompt(me)+'\n\nYou are now in a FRIENDLY roast battle against another bot called "'+other.name+'", whose job is: '+(other.role||'unknown')+'. Reply with ONE roast line, max 25 words, no hashtags. Roast its choices, job and code. Never mention real people, looks, identity, tragedies or crypto prices.';
@@ -912,10 +932,11 @@ function aiLine(me,other,kind,last){
   return callAIRaw(sys,[{role:'user',content:ask}],120).then(function(t){return cleanStr(t,240).replace(/^["\s]+|["\s]+$/g,'');});
 }
 function say(side,name,text){var f=$('feed');var d=el('div',{class:'line '+side},[el('small',{text:name}),document.createTextNode(text)]);f.appendChild(d);var tgt=$(side==='a'?'fb':'fa');tgt.classList.remove('hit');void tgt.offsetWidth;tgt.classList.add('hit');}
-async function fight(){
-  if(fighting)return;var A=sanitize(fighter('selA')),B=sanitize(fighter('selB'));
+async function fight(preset){
+  if(fighting)return;preset=(preset&&preset.A)?preset:null;var A=sanitize(preset?preset.A:fighter('selA')),B=sanitize(preset?preset.B:fighter('selB'));
+  rng=preset?seeded(preset.seed):Math.random;if(preset){$('faName').textContent=A.name;$('fbName').textContent=B.name;drawBot($('faCv'),A.look,0);drawBot($('fbCv'),B.look,0);}
   if(A.name===B.name&&JSON.stringify(A.look)===JSON.stringify(B.look)){toast('Pick two different bots');return;}
-  var useAi=$('useAi').checked;if(useAi&&!aiKey){toast('Set your AI key in Test drive → My AI key first');return;}
+  var useAi=!preset&&$('useAi').checked;if(useAi&&!aiKey){toast('Set your AI key in Test drive → My AI key first');return;}
   fighting=true;$('fightBtn').disabled=true;$('judge').classList.add('hidden');$('after').classList.add('hidden');$('fa').classList.remove('win');$('fb').classList.remove('win');
   $('feed').replaceChildren();battle={A:A,B:B,lines:[],winner:null};var used=[];
   var plan=[['a','open'],['b','back'],['a','back'],['b','open'],['a','fin'],['b','fin']];
@@ -934,8 +955,8 @@ async function fight(){
 }
 function crown(w){if(!battle)return;battle.winner=w;$('fa').classList.toggle('win',w==='a');$('fb').classList.toggle('win',w==='b');$('judge').classList.add('hidden');$('after').classList.remove('hidden');
   $('feed').appendChild(el('div',{class:'round',text:'🏆 WINNER: '+(w==='a'?battle.A.name:battle.B.name).toUpperCase()}));}
-$('fightBtn').addEventListener('click',fight);
-$('bAgain').addEventListener('click',fight);
+$('fightBtn').addEventListener('click',function(){lastPreset=null;fight();});
+$('bAgain').addEventListener('click',function(){fight(lastPreset);});
 $('winA').addEventListener('click',function(){crown('a');});
 $('winB').addEventListener('click',function(){crown('b');});
 function battleCard(){
@@ -959,6 +980,33 @@ $('bX').addEventListener('click',function(){if(!battle||!battle.winner)return;va
   var txt='"'+battle.A.name+'" vs "'+battle.B.name+'" in the $MAIGA Bot Battles ⚔️\n\nWinner: '+W+' 🏆\n\nBuild a bot and battle it:';
   window.open('https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent('https://geopolcoins.xyz/garage.html#battles'),'_blank','noopener');});
 
+/* ======================= BATTLE OF THE DAY ======================= */
+var botd=null,VOTED='maiga_botd_voted_v1';
+function tplBot(id){var t=TEMPLATES.filter(function(x){return x.id===id;})[0]||TEMPLATES[0];return sanitize({name:t.name,cat:t.cat,role:t.role,skills:t.skills,fun:t.fun,len:t.len,energy:t.energy,emoji:t.emoji,look:t.look,from:t.id});}
+function sideBot(x){if(!x)return null;if(x.kind==='tpl')return tplBot(String(x.id));return rowToBot(x);}
+function votedToday(){try{var v=JSON.parse(safeGet(VOTED)||'{}');return botd&&v.day===botd.day?v.side:'';}catch(e){return '';}}
+function renderBotd(){
+  if(!botd)return;var A=botd.A,B=botd.B,va=botd.va|0,vb=botd.vb|0,t=va+vb,pa=t?Math.round(va*100/t):50,mine=votedToday();
+  $('botdDay').textContent=botd.day;$('botdA').textContent='🗳️ '+A.name;$('botdB').textContent='🗳️ '+B.name;
+  $('botdA').disabled=!!mine;$('botdB').disabled=!!mine;$('botdBar').style.width=pa+'%';
+  $('botdRes').textContent=t?(A.name+' '+pa+'% · '+B.name+' '+(100-pa)+'% · '+t+' vote'+(t===1?'':'s')+(mine?' · you voted ✅':'')):'No votes yet. Be the first!';
+}
+function loadBotd(){
+  fetch(SB+'/rest/v1/rpc/battle_of_day',{method:'POST',headers:sbHeaders({'Content-Type':'application/json'}),body:'{}',credentials:'omit'}).then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();}).then(function(j){
+    var A=sideBot(j&&j.a),B=sideBot(j&&j.b);if(!A||!B||!j.day)throw new Error('incomplete');
+    botd={day:String(j.day).slice(0,10),A:A,B:B,va:j.va|0,vb:j.vb|0};$('botd').classList.remove('hidden');renderBotd();
+  }).catch(function(){$('botd').classList.add('hidden');});
+}
+$('botdWatch').addEventListener('click',function(){if(!botd)return;lastPreset={A:botd.A,B:botd.B,seed:'botd-'+botd.day};$('battles').scrollIntoView({behavior:reduce?'auto':'smooth'});fight(lastPreset);});
+function vote(side){
+  if(!botd||votedToday())return;$('botdA').disabled=true;$('botdB').disabled=true;
+  fetch(SB+'/rest/v1/rpc/battle_vote',{method:'POST',headers:sbHeaders({'Content-Type':'application/json'}),body:JSON.stringify({p_side:side}),credentials:'omit'}).then(function(r){
+    if(!r.ok)return r.json().catch(function(){return {};}).then(function(j){throw new Error(j&&j.message?String(j.message).slice(0,120):'Could not vote');});return r.json();
+  }).then(function(j){botd.va=j.va|0;botd.vb=j.vb|0;safeSet(VOTED,JSON.stringify({day:botd.day,side:side}));renderBotd();toast('🗳️ Vote counted!');}).catch(function(e){toast(e.message);renderBotd();});
+}
+$('botdA').addEventListener('click',function(){vote('a');});
+$('botdB').addEventListener('click',function(){vote('b');});
+
 window.__garage={battle:function(){return battle;},kitFiles:kitFiles,systemPrompt:systemPrompt,shareUrl:shareUrl,get bot(){return bot;}};
 
 /* ======================= HERO + INIT ======================= */
@@ -972,10 +1020,16 @@ function loop(t){
 renderCats();renderGrid();renderCatSelect();
 if(!loadFromHash()){try{var saved=JSON.parse(safeGet(STORE)||'null');if(saved)bot=sanitize(saved);else loadTemplate(TEMPLATES[0]);}catch(e){bot=blank();}}
 else{setTimeout(function(){toast('🤖 '+bot.name+' was copied into your garage');$('builder').scrollIntoView();},300);}
-syncForm();resetChat();fillFighters();loadCommunity();
+syncForm();resetChat();fillFighters();loadCommunity();loadBotd();
 window.addEventListener('hashchange',function(){if(loadFromHash()){syncForm();resetChat();toast('🤖 '+bot.name+' was copied into your garage');}});
 if(reduce){drawBot($('heroBot'),heroLooks[0],0);}else requestAnimationFrame(loop);
 })();
+</script>
+<script>/* anonymous visit counter: page + day + referring site, no cookies, no IP, no personal data */
+(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;
+var p=location.pathname.replace(/^\/+|\.html$|\/$/g,'').toLowerCase();p={'':'home','index':'home','factory':'factory','garage':'garage','partners':'partners','play':'play','play-flappy':'play'}[p]||'other';
+var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}
+var k='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:k,Authorization:'Bearer '+k,'Content-Type':'application/json'},body:JSON.stringify({p_page:p,p_ref:r.slice(0,60)})}).catch(function(){});}catch(e){}})();
 </script>
 </body>
 </html>

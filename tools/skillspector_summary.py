@@ -8,7 +8,8 @@ except Exception as e:
     print(f"| {name} | could not read report ({type(e).__name__}) (exit {code}) |"); sys.exit(0)
 a = r.get('risk_assessment') or {}
 issues = r.get('issues') or []
-print(f"| {name} | {a.get('recommendation','?')} · risk {a.get('score','?')} · {len(issues)} issue(s) (exit {code}) |")
+sup = r.get('suppressed_count') or len(r.get('suppressed') or [])
+print(f"| {name} | {a.get('recommendation','?')} · risk {a.get('score','?')} · {len(issues)} issue(s)" + (f" · {sup} reviewed and accepted" if sup else "") + f" (exit {code}) |")
 for f in issues[:25]:
     loc = f.get('location') or {}
     text = str(f.get('title') or f.get('description') or f.get('message') or '')[:160].replace('|', '/').replace('\n', ' ')

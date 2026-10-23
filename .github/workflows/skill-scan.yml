@@ -38,7 +38,8 @@ jobs:
             [ -d "$d" ] || continue
             n=$(basename "$d")
             set +e
-            skillspector scan "$d" --no-llm --format json --output "reports/$n.json"
+            bl=""; [ -f ".skillspector/$n.yaml" ] && bl="--baseline .skillspector/$n.yaml"
+            skillspector scan "$d" --no-llm $bl --format json --output "reports/$n.json"
             code=$?
             set -e
             python3 tools/skillspector_summary.py "$n" "reports/$n.json" "$code" >> reports/summary.md

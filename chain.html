@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How does a blockchain work? Try the MAIGA Mini-Chain</title>
+<meta name="description" content="Learn how a blockchain works by doing it: type data, mine blocks, and see why one changed letter breaks the whole chain. Free, interactive, in your browser.">
+<link rel="canonical" href="https://geopolcoins.xyz/chain.html">
+<meta property="og:type" content="website"><meta property="og:title" content="How does a blockchain work? Try the MAIGA Mini-Chain"><meta property="og:description" content="Mine blocks in your browser and see why a blockchain cannot be faked. Free and interactive."><meta property="og:url" content="https://geopolcoins.xyz/chain.html"><meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#050b1b">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"MAIGA Mini-Chain","description":"An interactive explainer of hashes, mining and chained blocks.","educationalLevel":"Beginner","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"url":"https://geopolcoins.xyz/chain.html"}</script>
+<style>
+:root{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#b7c4dc;--gold:#ffd700;--cyan:#38f2ff;--ok:#14F195;--bad:#ff4b61;--line:rgba(169,212,255,.25)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:18px 16px 60px}a{color:var(--gold)}
+.skip{position:absolute;left:8px;top:-60px;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800}.skip:focus{top:8px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:14px}.top a{display:inline-block;padding:6px 0}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:18px 0 8px}h2{font-size:22px;margin:34px 0 8px}
+.lead{font-size:18px;color:var(--dim)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+label{display:block;font-weight:700;margin-bottom:4px}
+input,textarea{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#071226;color:#fff}
+textarea{min-height:64px;resize:vertical}
+.hash{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;word-break:break-all;background:#071226;border-radius:10px;padding:8px 10px;border:1px solid var(--line)}
+.hash b{color:var(--ok)}
+.chain{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.block{border:2px solid var(--ok);border-radius:16px;padding:14px;background:var(--panel);display:grid;gap:8px;position:relative}
+.block.bad{border-color:var(--bad);background:#2a0d17}
+.block h3{margin:0;font-size:18px;display:flex;justify-content:space-between;align-items:center}
+.badge{font-size:12px;font-weight:900;padding:3px 8px;border-radius:999px;background:var(--ok);color:#04130b}.bad .badge{background:var(--bad);color:#fff}
+.row{display:grid;grid-template-columns:90px 1fr;gap:8px;align-items:center}.row small{color:var(--dim)}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--cyan);background:rgba(56,242,255,.1);color:#fff;font:inherit;font-weight:800;font-size:14px;cursor:pointer;min-height:44px}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#111}.btn:disabled{opacity:.6;cursor:wait}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:10px}.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 50px;position:relative;color:var(--dim)}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#111;font-weight:900;display:grid;place-items:center}
+.steps b{color:#fff}.note{color:var(--dim);font-size:14px}
+footer{text-align:center;color:var(--dim);font-size:13px;margin-top:40px}footer a{display:inline-block;padding:6px 2px}
+</style></head><body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+<main id="main">
+<div class="top"><a href="/" data-t="back">&larr; geopolcoins.xyz</a><nav aria-label="More"><a href="app.html" data-t="app">$MAIGA app</a> · <a href="garage.html">Bot Garage</a></nav></div>
+<h1 data-t="h1">How does a blockchain work? Try it yourself.</h1>
+<p class="lead" data-t="lead">No theory first: type, mine and break a tiny blockchain right here in your browser. Nothing is sent anywhere and no real coins are involved.</p>
+
+<h2 data-t="h_hash">1. A hash: the fingerprint of data</h2>
+<div class="card">
+  <label for="hin" data-t="hin">Type anything</label>
+  <input id="hin" value="Jean-Phil loves memes">
+  <p class="note" data-t="hnote">The SHA-256 fingerprint below changes completely if you change even one letter. You cannot guess the text back from the fingerprint.</p>
+  <div class="hash" id="hout" aria-live="polite">…</div>
+</div>
+
+<h2 data-t="h_chain">2. Blocks linked by fingerprints</h2>
+<p class="note" data-t="cnote">Each block stores its data, a number called the nonce, and the fingerprint of the block before it. A block is "mined" when its fingerprint starts with 000. Change data in block 2 and watch blocks 2, 3 and 4 turn red. Then press Mine to repair them one by one.</p>
+<div class="chain" id="chain"></div>
+<p style="margin-top:12px"><button class="btn" type="button" id="reset" data-t="reset">Reset the chain</button></p>
+
+<h2 data-t="h_why">3. Why nobody can secretly change it</h2>
+<ol class="steps">
+  <li data-t="w1"><b>Every block points to the one before.</b> Changing an old block changes its fingerprint, which breaks every block after it.</li>
+  <li data-t="w2"><b>Repairing costs work.</b> Each broken block must be mined again. Here it takes a second; on a real network it would take enormous computing power or stake.</li>
+  <li data-t="w3"><b>Thousands of copies.</b> Real blockchains are copied on thousands of computers. A faked copy does not match the others and is ignored.</li>
+  <li data-t="w4"><b>That is why you can check, not trust.</b> Tools like the Token Checkup read this public data so you can verify things yourself.</li>
+</ol>
+<p class="note" data-t="simple">This is a simplified teaching model. Solana, which $MAIGA runs on, uses proof of stake and proof of history instead of this kind of mining, but the idea of chained, verifiable data is the same.</p>
+<p><a class="btn gold" href="/#checkup" data-t="cta1">Try the Token Checkup</a> <a class="btn" href="app.html" data-t="cta2">Open the $MAIGA app</a></p>
+<footer>&copy; 2026 $MAIGA · <a href="index.html#terms">Terms</a><br><span data-t="foot">Education and entertainment only. Not financial advice.</span></footer>
+</main>
+<script>
+(function(){
+var L=(navigator.language||'').slice(0,2).toLowerCase();
+var T={nl:{skip:'Ga naar inhoud',back:'← geopolcoins.xyz',app:'$MAIGA-app',h1:'Hoe werkt een blockchain? Probeer het zelf.',lead:'Eerst doen, dan begrijpen: typ, "mine" en breek een mini-blockchain hier in je browser. Er wordt niets verstuurd en er zijn geen echte munten in het spel.',h_hash:'1. Een hash: de vingerafdruk van gegevens',hin:'Typ iets',hnote:'De SHA-256-vingerafdruk hieronder verandert volledig als je ook maar één letter aanpast. Je kunt de tekst niet terugrekenen uit de vingerafdruk.',h_chain:'2. Blokken, aan elkaar gekoppeld met vingerafdrukken',cnote:'Elk blok bewaart zijn gegevens, een getal (de nonce) en de vingerafdruk van het vorige blok. Een blok is "gemined" als zijn vingerafdruk met 000 begint. Pas de tekst in blok 2 aan en zie blok 2, 3 en 4 rood worden. Druk daarna op Mine om ze één voor één te herstellen.',reset:'Ketting opnieuw',h_why:'3. Waarom niemand het stiekem kan aanpassen',w1:'Elk blok wijst naar het vorige. Pas je een oud blok aan, dan verandert zijn vingerafdruk en breekt elk blok erna.',w2:'Herstellen kost werk. Elk gebroken blok moet opnieuw gemined worden. Hier duurt dat een seconde; op een echt netwerk zou het enorm veel rekenkracht of inzet vragen.',w3:'Duizenden kopieën. Echte blockchains staan op duizenden computers. Een vervalste kopie klopt niet met de andere en wordt genegeerd.',w4:'Daarom kun je controleren in plaats van vertrouwen. Tools zoals de Token Checkup lezen die openbare gegevens zodat je zelf kunt nakijken.',simple:'Dit is een vereenvoudigd lesmodel. Solana, waar $MAIGA op draait, werkt met proof of stake en proof of history in plaats van dit soort mining, maar het idee van gekoppelde, controleerbare gegevens is hetzelfde.',cta1:'Probeer de Token Checkup',cta2:'Open de $MAIGA-app',foot:'Alleen voor uitleg en plezier. Geen financieel advies.',block:'Blok',data:'Gegevens',prev:'Vorige',hash:'Hash',mine:'Mine',mining:'Bezig…',valid:'GELDIG',broken:'GEBROKEN',d1:'Genesis: Jean-Phil start de keten',d2:'Bolt betaalt Mintje 5 pixels',d3:'Mintje controleert alles twee keer',d4:'Cap\'n Eagle zegt: DYOR'},
+ fr:{skip:'Aller au contenu',back:'← geopolcoins.xyz',app:'Appli $MAIGA',h1:'Comment fonctionne une blockchain ? Essayez vous-même.',lead:"D'abord faire, ensuite comprendre : tapez, minez et cassez une mini-blockchain ici, dans votre navigateur. Rien n'est envoyé et aucune vraie crypto n'est en jeu.",h_hash:"1. Un hash : l'empreinte des données",hin:"Tapez n'importe quoi",hnote:"L'empreinte SHA-256 ci-dessous change complètement si vous modifiez une seule lettre. Impossible de retrouver le texte à partir de l'empreinte.",h_chain:'2. Des blocs reliés par leurs empreintes',cnote:"Chaque bloc contient ses données, un nombre (le nonce) et l'empreinte du bloc précédent. Un bloc est « miné » quand son empreinte commence par 000. Modifiez le bloc 2 et regardez les blocs 2, 3 et 4 passer au rouge. Puis appuyez sur Miner pour les réparer un par un.",reset:'Réinitialiser',h_why:'3. Pourquoi personne ne peut la modifier en secret',w1:"Chaque bloc pointe vers le précédent. Modifier un ancien bloc change son empreinte et casse tous les blocs suivants.",w2:"Réparer demande du travail. Chaque bloc cassé doit être miné à nouveau. Ici, cela prend une seconde ; sur un vrai réseau, il faudrait une puissance de calcul ou une mise énorme.",w3:"Des milliers de copies. Les vraies blockchains sont copiées sur des milliers d'ordinateurs. Une copie falsifiée ne correspond pas aux autres et est ignorée.",w4:"C'est pour cela qu'on peut vérifier au lieu de croire. Des outils comme le Token Checkup lisent ces données publiques pour que vous vérifiiez vous-même.",simple:"Ceci est un modèle pédagogique simplifié. Solana, sur laquelle tourne $MAIGA, utilise la preuve d'enjeu et la preuve d'historique plutôt que ce type de minage, mais l'idée de données chaînées et vérifiables est la même.",cta1:'Essayer le Token Checkup',cta2:"Ouvrir l'appli $MAIGA",foot:'Pédagogie et divertissement uniquement. Pas un conseil financier.',block:'Bloc',data:'Données',prev:'Précédent',hash:'Hash',mine:'Miner',mining:'Minage…',valid:'VALIDE',broken:'CASSÉ',d1:'Genèse : Jean-Phil lance la chaîne',d2:'Bolt paie 5 pixels à Mintje',d3:'Mintje vérifie tout deux fois',d4:'Cap\'n Eagle dit : DYOR'}}[L];
+var EN={block:'Block',data:'Data',prev:'Previous',hash:'Hash',mine:'Mine',mining:'Mining…',valid:'VALID',broken:'BROKEN',d1:'Genesis: Jean-Phil starts the chain',d2:'Bolt pays Mintje 5 pixels',d3:'Mintje double-checks everything',d4:"Cap'n Eagle says: DYOR"};
+function t(k){return (T&&T[k])||EN[k];}
+if(T){document.documentElement.lang=L;document.querySelectorAll('[data-t]').forEach(function(e){var v=T[e.dataset.t];if(!v)return;var b=e.querySelector('b');if(b&&e.tagName==='LI'){var dot=v.indexOf('. ');b.textContent=v.slice(0,dot+1);e.replaceChildren(b,document.createTextNode(' '+v.slice(dot+2)));}else e.textContent=v;});document.title=T.h1;}
+
+var enc=new TextEncoder();
+function sha(s){return crypto.subtle.digest('SHA-256',enc.encode(s)).then(function(b){return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2);}).join('');});}
+function showHash(el,h){el.replaceChildren();var ok=h.slice(0,3)==='000';if(ok){var b=document.createElement('b');b.textContent=h.slice(0,3);el.append(b,document.createTextNode(h.slice(3)));}else el.textContent=h;}
+
+/* 1. hash playground */
+var hin=document.getElementById('hin'),hout=document.getElementById('hout');
+function upd(){sha(hin.value).then(function(h){hout.textContent=h;});}hin.addEventListener('input',upd);upd();
+
+/* 2. chain */
+var DIFF='000',chainEl=document.getElementById('chain'),blocks=[];
+function make(i,data){
+  var b={i:i,data:data,nonce:0,hash:'',prev:'0'.repeat(64)};
+  var el=document.createElement('section');el.className='block';el.setAttribute('aria-label',t('block')+' '+(i+1));
+  var h=document.createElement('h3');var ttl=document.createElement('span');ttl.textContent=t('block')+' #'+(i+1);var badge=document.createElement('span');badge.className='badge';h.append(ttl,badge);
+  var dl=document.createElement('label');dl.textContent=t('data');var id='bd'+i;dl.htmlFor=id;
+  var ta=document.createElement('textarea');ta.id=id;ta.value=data;ta.maxLength=200;
+  var nr=document.createElement('div');nr.className='row';var nl=document.createElement('small');nl.textContent='Nonce';var nv=document.createElement('div');nv.className='hash';nr.append(nl,nv);
+  var pr=document.createElement('div');pr.className='row';var pl=document.createElement('small');pl.textContent=t('prev');var pv=document.createElement('div');pv.className='hash';pr.append(pl,pv);
+  var hr=document.createElement('div');hr.className='row';var hl=document.createElement('small');hl.textContent=t('hash');var hv=document.createElement('div');hv.className='hash';hr.append(hl,hv);
+  var mb=document.createElement('button');mb.className='btn gold';mb.type='button';mb.textContent=t('mine');
+  el.append(h,dl,ta,nr,pr,hr,mb);chainEl.append(el);
+  b.el=el;b.badge=badge;b.nv=nv;b.pv=pv;b.hv=hv;b.mb=mb;
+  ta.addEventListener('input',function(){b.data=ta.value;refresh(i);});
+  mb.addEventListener('click',function(){mine(b);});
+  return b;
+}
+function content(b){return b.i+'|'+b.prev+'|'+b.data+'|'+b.nonce;}
+function refresh(from){
+  var p=Promise.resolve();
+  blocks.slice(from).forEach(function(b){p=p.then(function(){b.prev=b.i?blocks[b.i-1].hash:'0'.repeat(64);return sha(content(b));}).then(function(h){b.hash=h;render(b);});});
+  return p;
+}
+function render(b){
+  b.nv.textContent=b.nonce;b.pv.textContent=b.prev.slice(0,16)+'…';showHash(b.hv,b.hash);
+  var ok=b.hash.slice(0,DIFF.length)===DIFF&&(b.i===0||b.prev===blocks[b.i-1].hash)&&(b.i===0||!blocks[b.i-1].el.classList.contains('bad'));
+  b.el.classList.toggle('bad',!ok);b.badge.textContent=ok?t('valid'):t('broken');
+}
+function mine(b){
+  b.mb.disabled=true;b.mb.textContent=t('mining');b.nonce=0;
+  function step(){
+    var tries=[];for(var k=0;k<200;k++){tries.push(b.nonce+k);}
+    return Promise.all(tries.map(function(n){return sha(b.i+'|'+b.prev+'|'+b.data+'|'+n).then(function(h){return [n,h];});})).then(function(res){
+      for(var r=0;r<res.length;r++){if(res[r][1].slice(0,DIFF.length)===DIFF){b.nonce=res[r][0];return true;}}
+      b.nonce+=200;b.nv.textContent=b.nonce;return b.nonce>2e6?true:step();
+    });
+  }
+  return step().then(function(){return refresh(b.i);}).then(function(){b.mb.disabled=false;b.mb.textContent=t('mine');});
+}
+function build(){
+  chainEl.replaceChildren();blocks=[t('d1'),t('d2'),t('d3'),t('d4')].map(function(d,i){return make(i,d);});
+  return blocks.reduce(function(p,b){return p.then(function(){b.prev=b.i?blocks[b.i-1].hash:'0'.repeat(64);return mine(b);});},Promise.resolve());
+}
+document.getElementById('reset').addEventListener('click',build);
+build();
+})();
+</script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'other',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+<script src="pwa.js" defer></script>
+</body></html>

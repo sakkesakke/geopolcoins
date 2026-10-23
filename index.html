@@ -2230,7 +2230,7 @@ window.addEventListener('load',function(){
   var CA="3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump", API="https://api.geckoterminal.com/api/v2/networks/solana";
   var $=function(id){return document.getElementById(id);};
   var b58=/^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
-  function num(x){var n=Number(x);return isFinite(n)?n:null;}
+  function num(x){if(x===null||x===undefined||x==='')return null;var n=Number(x);return isFinite(n)?n:null;}
   function usd(n,small){
     if(n===null)return "\u2014";
     if(n>=1e9)return "$"+(n/1e9).toFixed(2)+"B";

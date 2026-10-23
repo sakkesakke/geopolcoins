@@ -1,0 +1,7 @@
+# The Supabase publishable key is public by design (it is meant to be in the browser).
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Public-by-design values"
+regexes = ['''sb_publishable_[A-Za-z0-9_-]+''']

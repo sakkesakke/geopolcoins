@@ -1,0 +1,24 @@
+name: Something is broken
+description: A page, game or tool on geopolcoins.xyz does not work
+labels: [bug]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      placeholder: https://geopolcoins.xyz/garage.html
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Phone or computer, and which browser?
+  - type: markdown
+    attributes:
+      value: "Never paste a seed phrase, private key, password or API key here."

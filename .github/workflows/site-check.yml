@@ -26,10 +26,16 @@ jobs:
           check "https://geopolcoins.xyz/" 'id="factory"'
           check "https://geopolcoins.xyz/factory.html" "Meme Factory"
           check "https://geopolcoins.xyz/partners.html" "Partner"
+          check "https://geopolcoins.xyz/garage.html" "BOT GARAGE"
           check "https://geopolcoins.xyz/sitemap.xml" "geopolcoins.xyz"
           # the public database must still answer (publishable key is public by design)
           code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
             -H "apikey: sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN" \
             "https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/tournaments?select=id&limit=1")
           if [ "$code" != "200" ]; then echo "::error::Supabase REST returned $code"; fail=1; else echo "OK supabase"; fi
+          # Battle of the day table must be readable by visitors (read-only check)
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
+            -H "apikey: sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN" \
+            "https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/battle_days?select=day&limit=1")
+          if [ "$code" != "200" ]; then echo "::error::battle_days returned $code"; fail=1; else echo "OK battles"; fi
           exit $fail

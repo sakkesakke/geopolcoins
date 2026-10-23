@@ -98,7 +98,7 @@ button.gray{background:#666;color:#fff}
 
   <div class="card">
     <h2>🏆 <span>Top 3</span> Winners</h2>
-    <div class="note" style="margin-bottom:12px">Ranked by total points across all games (same as the website). If a pilot name has more than one wallet attached, you must pick the right one — pilot names are not verified, so someone could try to hijack a winner's prize.</div>
+    <div class="note" style="margin-bottom:12px">Ranked by total points across all games. Wheel scores above 2,500 are ignored (fake), the owner account 'geopolcoins' and winners without a wallet are skipped. If a pilot name has more than one wallet attached, you must pick the right one — pilot names are not verified, so someone could try to hijack a winner's prize.</div>
     <div id="winnersList"><div class="info-cell">Loading winners…</div></div>
   </div>
 
@@ -155,13 +155,17 @@ const RPC_URL = 'https://api.mainnet-beta.solana.com';
 const PRIZES = [1000000, 500000, 250000];
 const SESSION_KEY = 'maiga_admin_session';
 const WALLET_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+// Fair-play rules (decided 23-10-2026):
+const WHEEL_MAX = 2500;               // the real wheel never paid more; higher 'wheel' scores were injected through the old open API
+const SKIP_NAMES = ['geopolcoins'];   // the project owner's own test account never receives prizes
 
 /* ============================================================
    STATE
    ============================================================ */
 let session = null;            // { token, exp, email }
 let tournament = null;
-let winners = [];              // [{ name, total, wallets:[], chosen:'', paid:bool }]
+let winners = [];              // [{ name, total, wallets:[], chosen:'', paid:bool, skip:''|'owner'|'nowallet' }]
+let ignoredCount = 0;          // fake wheel entries left out of the ranking
 let provider = null;
 let connectedKey = null;
 let busy = false;
@@ -319,7 +323,9 @@ async function loadData(){
 
     const entries = await sbAll('tournament_entries?tournament_id=eq.' + encodeURIComponent(tournament.id) + '&select=pilot_name,score,wallet_address,game_type&order=pilot_name.asc');
     const byName = new Map();
+    ignoredCount = 0;
     for (const e of entries){
+      if (e.game_type === 'wheel' && (Number(e.score) || 0) > WHEEL_MAX){ ignoredCount++; continue; }
       const n = String(e.pilot_name || '');
       if (!byName.has(n)) byName.set(n, { name: n, total: 0, wallets: [] });
       const p = byName.get(n);
@@ -331,7 +337,8 @@ async function loadData(){
     const paidRows = await sbJson('payouts?tournament_id=eq.' + encodeURIComponent(tournament.id) + '&select=winner_wallet,amount,tx_hash');
     winners = ranked.map((p, i) => {
       const paidRow = paidRows.find(r => Number(r.amount) === PRIZES[i] && p.wallets.includes(r.winner_wallet));
-      return { name: p.name, total: p.total, wallets: p.wallets, chosen: p.wallets.length === 1 ? p.wallets[0] : (paidRow ? paidRow.winner_wallet : ''), paid: !!paidRow, tx: paidRow ? paidRow.tx_hash : '' };
+      return { name: p.name, total: p.total, wallets: p.wallets, chosen: p.wallets.length === 1 ? p.wallets[0] : (paidRow ? paidRow.winner_wallet : ''), paid: !!paidRow, tx: paidRow ? paidRow.tx_hash : '',
+        skip: paidRow ? '' : (SKIP_NAMES.includes(p.name.trim().toLowerCase()) ? 'owner' : (!p.wallets.length ? 'nowallet' : '')) };
     });
     renderWinners();
   } catch(e){
@@ -345,10 +352,13 @@ function renderWinners(){
   const box = $('winnersList');
   if (!winners.length){ box.replaceChildren(el('div', { class: 'info-cell', style: 'text-align:center;padding:24px;', text: 'No entries in this tournament.' })); return; }
   const medals = ['🥇', '🥈', '🥉'], cls = ['r1', 'r2', 'r3'];
-  box.replaceChildren(...winners.map((w, i) => {
+  const head = [];
+  if (ignoredCount) head.push(el('div', { class: 'note', style: 'margin-bottom:10px;color:#ffb020', text: '⚠️ ' + ignoredCount + ' wheel score(s) above ' + WHEEL_MAX.toLocaleString() + ' ignored (no real spin behind them).' }));
+  box.replaceChildren(...head, ...winners.map((w, i) => {
     const nameEl = el('div', { class: 'name', text: w.name });
     if (w.paid) nameEl.appendChild(el('span', { class: 'tag ok', text: 'PAID' }));
-    else if (!w.wallets.length) nameEl.appendChild(el('span', { class: 'tag bad', text: 'NO WALLET' }));
+    else if (w.skip === 'owner') nameEl.appendChild(el('span', { class: 'tag warn', text: 'SKIPPED · OWNER' }));
+    else if (!w.wallets.length) nameEl.appendChild(el('span', { class: 'tag bad', text: 'NO WALLET · SKIPPED' }));
     else if (w.wallets.length > 1) nameEl.appendChild(el('span', { class: 'tag warn', text: 'PICK WALLET' }));
     const info = el('div', { class: 'info' }, nameEl);
     if (w.wallets.length > 1 && !w.paid){
@@ -363,17 +373,17 @@ function renderWinners(){
     }
     info.appendChild(el('div', { style: 'font-size:11px;margin-top:4px;opacity:.7;', text: 'Total points: ' + w.total.toLocaleString() }));
     return el('div', { class: 'winner ' + cls[i] }, el('div', { class: 'rank', text: medals[i] }), info,
-      el('div', { class: 'prize', text: PRIZES[i].toLocaleString() }));
+      el('div', { class: 'prize', style: w.skip ? 'text-decoration:line-through;opacity:.5' : '', text: PRIZES[i].toLocaleString() }));
   }));
 }
 
 function updatePayBtn(){
   const warn = $('payWarn');
   let msg = '';
-  const todo = winners.filter(w => !w.paid);
+  const todo = winners.filter(w => !w.paid && !w.skip);
   if (!tournament || !winners.length) msg = '';
-  else if (!todo.length) msg = 'Every winner of this tournament is already paid.';
-  else if (todo.some(w => !w.chosen)) msg = 'Some winners have no wallet (or you still need to pick one). Payouts stay locked until every unpaid winner has exactly one wallet.';
+  else if (!todo.length) msg = 'Nothing left to pay in this tournament (paid or skipped).';
+  else if (todo.some(w => !w.chosen)) msg = 'A winner has more than one wallet: pick the right one first.';
   else if (!connectedKey) msg = 'Connect Phantom first.';
   warn.textContent = msg;
   warn.classList.toggle('hidden', !msg);
@@ -405,7 +415,7 @@ async function connectPhantom(){
 async function sendPayouts(){
   if (busy || !tournament) return;
   if (!provider || !connectedKey){ alert('Connect Phantom first'); return; }
-  const todo = winners.map((w, i) => ({ w, i, amount: PRIZES[i] })).filter(x => !x.w.paid);
+  const todo = winners.map((w, i) => ({ w, i, amount: PRIZES[i] })).filter(x => !x.w.paid && !x.w.skip);
   if (!todo.length || todo.some(x => !x.w.chosen)) return;
 
   const summary = todo.map(x => (x.i + 1) + '. ' + x.w.name + ' — ' + x.amount.toLocaleString() + ' $MAIGA → ' + short(x.w.chosen)).join('\n');
@@ -488,7 +498,7 @@ async function sendPayouts(){
       x.w.paid = true;
     }
 
-    if (!halted && winners.every(w => w.paid)){
+    if (!halted && winners.every(w => w.paid || w.skip)){
       const r = await sb('tournaments?id=eq.' + encodeURIComponent(tournament.id), {
         method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'paid' })
       });

@@ -1,0 +1,3 @@
+# GitHub Pages (Jekyll) settings: keep planning files off the public site.
+exclude:
+  - specs

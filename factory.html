@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: https://api.memegen.link; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'unsafe-inline'; img-src 'self' data: https://api.memegen.link; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>$MAIGA Meme Factory: build a launch pack from 1 word</title>
 <meta name="description" content="Type one word and get a meme-coin launch pack: name, ticker, meme, safety check and post ideas. Free, nothing is posted or launched for you. Entertainment only.">
@@ -864,5 +864,6 @@ var p=location.pathname.replace(/^\/+|\.html$|\/$/g,'').toLowerCase();p={'':'hom
 var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}
 var k='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:k,Authorization:'Bearer '+k,'Content-Type':'application/json'},body:JSON.stringify({p_page:p,p_ref:r.slice(0,60)})}).catch(function(){});}catch(e){}})();
 </script>
+<script src="pwa.js" defer></script>
 </body>
 </html>

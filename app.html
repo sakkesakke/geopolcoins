@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>$MAIGA app</title>
+<meta name="description" content="The $MAIGA app: Bot Garage, Token Checkup, Meme Factory, Battle of the day and your saved bots in one place. Free, works offline, no wallet needed.">
+<link rel="canonical" href="https://geopolcoins.xyz/app.html">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#050b1b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="$MAIGA">
+<style>
+:root{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#b7c4dc;--gold:#ffd700;--cyan:#38f2ff;--pink:#ff3df2;--line:rgba(169,212,255,.25)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,Segoe UI,Roboto,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+main{max-width:900px;margin:0 auto;padding:16px 16px 70px}a{color:var(--gold)}
+.skip{position:absolute;left:8px;top:-60px;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800;z-index:9}.skip:focus{top:8px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}.brand img{width:44px;height:44px;image-rendering:pixelated;border-radius:10px}
+.brand b{font-size:22px;letter-spacing:1px}.brand b span{color:var(--gold)}
+h1{font-size:clamp(24px,5vw,34px);margin:18px 0 4px}.sub{color:var(--dim);margin:0 0 14px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.tile{display:flex;flex-direction:column;gap:4px;min-height:132px;padding:14px;border-radius:16px;background:var(--panel);border:1px solid var(--line);color:var(--text);text-decoration:none;transition:transform .12s}
+.tile:hover,.tile:focus-visible{transform:translateY(-2px);border-color:var(--gold)}.tile:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.tile .ico{font-size:30px;line-height:1}.tile b{font-size:17px}.tile small{color:var(--dim);font-size:13.5px}
+.tile.gold{border-color:var(--gold)}.tile.pink{border-color:var(--pink)}
+h2{font-size:20px;margin:28px 0 10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;text-align:center}.vs b{font-size:17px}.vs .n{font-size:26px;font-weight:900;color:var(--gold)}.vs i{color:var(--pink);font-style:normal;font-weight:900}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--cyan);background:rgba(56,242,255,.1);color:#fff;font:inherit;font-weight:800;font-size:14px;text-decoration:none;cursor:pointer;min-height:44px}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#111}.btn.red{border-color:#ff4b61;background:rgba(255,75,97,.12)}
+.bots{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.bot{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+.dot{width:40px;height:40px;border-radius:10px;border:2px solid #000;box-shadow:inset 0 -8px 0 rgba(0,0,0,.25)}
+.bot b{display:block}.bot small{color:var(--dim)}.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.note{color:var(--dim);font-size:14px}.status{min-height:1.4em;color:#14F195;font-weight:700}
+footer{text-align:center;color:var(--dim);font-size:13px;margin-top:36px}footer a{display:inline-block;padding:6px 2px}
+html.is-offline .needs-net{opacity:.6}
+</style></head><body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+<header class="wrap" style="max-width:900px;margin:0 auto;padding:12px 16px 0">
+  <a class="brand" href="/" aria-label="$MAIGA home"><img src="/icon-192.png" alt="" width="44" height="44"><b>$<span>MAIGA</span></b></a>
+  <button class="btn gold" type="button" data-install hidden style="display:none"></button>
+</header>
+<main id="main">
+  <h1 data-t="h1">Your $MAIGA app</h1>
+  <p class="sub" data-t="sub">Free tools in one place. No wallet, no account.</p>
+  <nav aria-label="Tools" class="tiles">
+    <a class="tile gold" href="garage.html"><span class="ico" aria-hidden="true">🤖</span><b data-t="t1">Bot Garage</b><small data-t="t1s">Copy or build your own AI bot</small></a>
+    <a class="tile needs-net" href="/#checkup"><span class="ico" aria-hidden="true">🔍</span><b data-t="t2">Token Checkup</b><small data-t="t2s">Check a Solana token's red flags (needs internet)</small></a>
+    <a class="tile" href="factory.html"><span class="ico" aria-hidden="true">🏭</span><b data-t="t3">Meme Factory</b><small data-t="t3s">A launch pack from one word</small></a>
+    <a class="tile pink" href="garage.html#battles"><span class="ico" aria-hidden="true">⚔️</span><b data-t="t4">Battle of the day</b><small data-t="t4s">Watch two bots roast, then vote</small></a>
+    <a class="tile" href="#mybots"><span class="ico" aria-hidden="true">⭐</span><b data-t="t5">My bots</b><small data-t="t5s">Your saved bots, also offline</small></a>
+    <a class="tile" id="customTile" href="custom-ai-bot.html"><span class="ico" aria-hidden="true">🤝</span><b data-t="t6">Custom bot</b><small data-t="t6s">We set up a bot for your business</small></a>
+  </nav>
+
+  <h2 data-t="bh">⚔️ Battle of the day</h2>
+  <section class="card needs-net" aria-labelledby="bLbl">
+    <div id="bLbl" class="note" data-t="bl">Today's match-up</div>
+    <div id="battle" class="vs" aria-live="polite"><span class="note" data-t="loading">Loading…</span></div>
+    <p style="margin:10px 0 0"><a class="btn" href="garage.html#battles" data-t="bgo">Watch and vote</a></p>
+  </section>
+
+  <h2 id="mybots" tabindex="-1" data-t="mh">⭐ My bots</h2>
+  <p class="note" data-t="mn">Saved only on this device. Nothing is sent to us.</p>
+  <ul id="botList" class="bots"></ul>
+  <p id="botStatus" class="status" role="status" aria-live="polite"></p>
+
+  <footer>&copy; 2026 $MAIGA · <a href="/">geopolcoins.xyz</a> · <a href="index.html#terms">Terms</a><br><span data-t="foot">Entertainment only. NFA. DYOR.</span></footer>
+</main>
+<script>
+(function(){
+var L=(navigator.language||'').slice(0,2).toLowerCase(); if(['nl','fr'].indexOf(L)<0) L='en';
+var T={nl:{skip:'Ga naar inhoud',h1:'Je $MAIGA-app',sub:'Gratis tools op één plek. Geen wallet, geen account.',t1:'Bot Garage',t1s:'Kopieer of bouw je eigen AI-bot',t2:'Token Checkup',t2s:'Bekijk de rode vlaggen van een Solana-token (internet nodig)',t3:'Meme Factory',t3s:'Een launch pack uit één woord',t4:'Battle of the day',t4s:'Kijk hoe twee bots elkaar roasten en stem',t5:'Mijn bots',t5s:'Je opgeslagen bots, ook offline',t6:'Bot op maat',t6s:'Wij stellen een bot in voor je zaak',bh:'⚔️ Battle of the day',bl:'Het duel van vandaag',loading:'Laden…',bgo:'Kijk en stem',mh:'⭐ Mijn bots',mn:'Alleen op dit toestel bewaard. Er wordt niets naar ons gestuurd.',foot:'Alleen voor de fun. Geen financieel advies. Doe je eigen onderzoek.',
+  votes:'stemmen',offline:'De battle heeft internet nodig. Probeer het straks opnieuw.',empty:'Nog geen bots bewaard. Open de Bot Garage, maak of kies een bot en tik op "Save to My bots".',toGarage:'Naar de Bot Garage',open:'Openen',copy:'Prompt kopiëren',share:'Link kopiëren',del:'Verwijderen',sure:'Deze bot verwijderen van dit toestel?',copied:'Gekopieerd!',deleted:'Verwijderd.',now:'Nu in je Garage',blocked:'Opslaan is geblokkeerd in deze browsermodus (bijvoorbeeld privévenster).',broken:'Deze bot kan niet geopend worden.'},
+ fr:{skip:'Aller au contenu',h1:'Votre appli $MAIGA',sub:'Des outils gratuits au même endroit. Sans wallet, sans compte.',t1:'Bot Garage',t1s:'Copiez ou créez votre bot IA',t2:'Token Checkup',t2s:"Vérifiez les signaux d'alerte d'un token Solana (Internet requis)",t3:'Meme Factory',t3s:"Un pack de lancement à partir d'un mot",t4:'Battle du jour',t4s:'Deux bots se clashent, vous votez',t5:'Mes bots',t5s:'Vos bots enregistrés, même hors ligne',t6:'Bot sur mesure',t6s:'Nous installons un bot pour votre entreprise',bh:'⚔️ Battle du jour',bl:"Le duel d'aujourd'hui",loading:'Chargement…',bgo:'Regarder et voter',mh:'⭐ Mes bots',mn:"Enregistrés uniquement sur cet appareil. Rien ne nous est envoyé.",foot:'Divertissement uniquement. Pas un conseil financier.',
+  votes:'votes',offline:'La battle demande Internet. Réessayez plus tard.',empty:'Aucun bot enregistré. Ouvrez le Bot Garage, créez ou choisissez un bot et touchez « Save to My bots ».',toGarage:'Ouvrir le Bot Garage',open:'Ouvrir',copy:'Copier le prompt',share:'Copier le lien',del:'Supprimer',sure:'Supprimer ce bot de cet appareil ?',copied:'Copié !',deleted:'Supprimé.',now:'Dans votre garage',blocked:"L'enregistrement est bloqué dans ce mode (navigation privée par exemple).",broken:"Ce bot ne peut pas être ouvert."},
+ en:{votes:'votes',offline:'The battle needs internet. Try again later.',empty:'No saved bots yet. Open the Bot Garage, make or pick a bot and tap "Save to My bots".',toGarage:'Open the Bot Garage',open:'Open',copy:'Copy prompt',share:'Copy link',del:'Delete',sure:'Delete this bot from this device?',copied:'Copied!',deleted:'Deleted.',now:'In your garage now',blocked:'Saving is blocked in this browser mode (for example a private window).',broken:'This bot cannot be opened.'}}[L];
+var EN={votes:'votes'}; function t(k){return (T&&T[k])||EN[k]||k;}
+if(L!=='en'){document.documentElement.lang=L;document.querySelectorAll('[data-t]').forEach(function(e){var v=T[e.dataset.t];if(v)e.textContent=v;});document.title=T.h1;}
+document.getElementById('customTile').href={en:'custom-ai-bot.html',nl:'ai-bot-op-maat.html',fr:'bot-ia-sur-mesure.html'}[L];
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+
+/* Battle of the day (text only) */
+var NAMES={"rugradar":"Rug Radar","memewriter":"Meme Writer","scamshield":"Scam Shield","cryptotutor":"Crypto Tutor","launchcoach":"Launch Coach","commmod":"Community Mod","inbox":"Inbox Zero","faqdesk":"FAQ Desk","leadscout":"Lead Scout","invoicepal":"Invoice Pal","reviewer":"Review Responder","hookhunter":"Hook Hunter","contentweek":"Content Planner","roaster":"Roast Bot","mealbot":"Meal Planner","habit":"Habit Coach","studybuddy":"Study Buddy","newsdigest":"News Digest","whalewatch":"Whale Watcher","meetingnotes":"Meeting Notes","socialdesk":"Social Desk","newsletter":"Newsletter Writer","tripplanner":"Trip Planner","budgetbuddy":"Budget Buddy"};
+function side(s){if(!s)return '?';return s.kind==='bot'?(s.name||'?'):(NAMES[s.id]||s.id||'?');}
+var box=document.getElementById('battle');
+function battleFail(){box.replaceChildren(el('span','note',t('offline')));}
+if(!navigator.onLine) battleFail(); else
+fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/battle_of_day',{method:'POST',credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:'{}'})
+ .then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
+   var a=el('div'),b=el('div');a.append(el('b',null,side(j.a)),el('div','n',String(j.va||0)),el('small','note',t('votes')));
+   b.append(el('b',null,side(j.b)),el('div','n',String(j.vb||0)),el('small','note',t('votes')));
+   box.replaceChildren(a,el('i',null,'VS'),b);
+ }).catch(battleFail);
+
+/* My bots */
+var KEY='maiga_garage_bots_v1',CUR='maiga_garage_bot_v1',list=document.getElementById('botList'),status=document.getElementById('botStatus');
+function get(k){try{return localStorage.getItem(k);}catch(e){return undefined;}}
+function set(k,v){try{localStorage.setItem(k,v);return true;}catch(e){return false;}}
+function saved(){try{var a=JSON.parse(get(KEY)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
+function say(m){status.textContent=m;clearTimeout(say.t);say.t=setTimeout(function(){status.textContent='';},2500);}
+function copy(txt){(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){say(t('copied'));},function(){var a=el('textarea');a.value=txt;document.body.appendChild(a);a.select();try{document.execCommand('copy');say(t('copied'));}catch(e){}a.remove();});}
+function safeColour(c){return /^#[0-9a-f]{6}$/i.test(c||'')?c:'#38f2ff';}
+function okLink(u){return typeof u==='string'&&u.indexOf('https://geopolcoins.xyz/garage.html#bot=')===0&&u.length<7000;}
+function render(){
+  if(get(KEY)===undefined){list.replaceChildren();status.textContent=t('blocked');return;}
+  var items=saved(), cur=null; try{cur=JSON.parse(get(CUR)||'null');}catch(e){}
+  list.replaceChildren();
+  if(cur&&cur.name&&!items.some(function(x){return x&&x.bot&&x.bot.name===cur.name;})){
+    var li=el('li','bot'),d=el('div','dot');d.style.background=safeColour(cur.look&&cur.look.c);
+    var info=el('div');info.append(el('b',null,cur.name),el('small',null,t('now')+(cur.role?' · '+cur.role:'')));
+    var acts=el('div','acts'),o=el('a','btn',t('open'));o.href='garage.html#builder';acts.append(o);info.append(acts);li.append(d,info);list.append(li);
+  }
+  if(!items.length&&!list.children.length){
+    var e=el('li','card');e.append(el('p','note',t('empty')));var g=el('a','btn gold',t('toGarage'));g.href='garage.html#templates';e.append(g);list.append(e);return;
+  }
+  items.forEach(function(x){
+    var li=el('li','bot');
+    if(!x||!x.bot||!x.bot.name){li.append(el('div','dot'),el('div','note',t('broken')));list.append(li);return;}
+    var d=el('div','dot');d.style.background=safeColour(x.bot.look&&x.bot.look.c);
+    var info=el('div');info.append(el('b',null,x.bot.name),el('small',null,x.bot.role||''));
+    var acts=el('div','acts');
+    if(okLink(x.share)){var o=el('a','btn gold',t('open'));o.href=x.share.replace('https://geopolcoins.xyz/','');acts.append(o);
+      var s=el('button','btn',t('share'));s.type='button';s.onclick=function(){copy(x.share);};acts.append(s);}
+    if(typeof x.prompt==='string'&&x.prompt){var c=el('button','btn',t('copy'));c.type='button';c.onclick=function(){copy(x.prompt);};acts.append(c);}
+    var del=el('button','btn red',t('del'));del.type='button';del.setAttribute('aria-label',t('del')+': '+x.bot.name);
+    del.onclick=function(){if(!confirm(t('sure')))return;set(KEY,JSON.stringify(saved().filter(function(y){return y&&y.id!==x.id;})));render();say(t('deleted'));};
+    acts.append(del);info.append(acts);li.append(d,info);list.append(li);
+  });
+}
+render();
+if(location.hash==='#mybots')setTimeout(function(){document.getElementById('mybots').focus();},50);
+})();
+</script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'app',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+<script src="pwa.js" defer></script>
+</body></html>

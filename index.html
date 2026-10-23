@@ -517,6 +517,7 @@ body.playing .hp{display:none!important}
 
 @media(min-width:901px){.hub{grid-template-columns:repeat(4,1fr)}}
 
+.tools-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:22px 0 6px}.tools-strip a{display:grid;gap:2px;padding:14px;border:3px solid #000;border-radius:14px;background:linear-gradient(160deg,#16305e,#0a1730);color:#fff;text-decoration:none;box-shadow:4px 4px 0 #000;transition:transform .15s}.tools-strip a:hover{transform:translate(-2px,-2px) rotate(-1deg)}.tools-strip span{font-size:26px}.tools-strip b{font-family:Impact,"Arial Black",sans-serif;letter-spacing:1.5px;color:#ffd800;font-size:17px}.tools-strip small{color:#c9d6ee;font-size:13px;line-height:1.35}
 /* ===== pixel characters, token checkup, meme of the week ===== */
 .pxmint{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAdCAYAAACwuqxLAAABgklEQVR42r2WLXDCQBCF3zFRIPkRCBQCVREVgYqoRiHQVRVREcHW1KAQKHRFVHVFFAKFQCGqIiraVCb2ahrm2FxyezDDU7nJ5ntvL7eZCDDUbvekui6KTIApwYG7mwBTfwoA2CU7HJ7XZxN5hBQP9ZwWJ0UJp9fyCNnxerd1oNsiAMj3GTpez7hdwgaqk7VBCQ5OMeslrifzRiNB4VywzkhnIii8TKSKmtbV6EwE3Zrv35/Kw4Nu/2LdVEMNtMd00O1XoMEpvuhEV3P1HNyiFk2ppipTqsk5NaqcygC9bLCcN08nhb3GGZY1tRUDCtedGGrSFKilTmTTEc1nC+SzBeqG0DgHd5nku36LVk97Vgfh1rP7Fqngw+kAd+JiERUss+HYrxg5dXCqj/e3Rvjj/wEwHtM0TAEAo9WIBTDJ4RYOxz4A4OszOV+XaysDmlwHMkFv6oB2we6gKDIRbr3aF01B3C4c2/S2EtdO8DV/eRcmUZrIKE2kztB037oDNaXpPtUfz2fQ9+rElvsAAAAASUVORK5CYII=);aspect-ratio:24/29}
 .ck-head .pxmint{width:64px;margin:0 auto 6px;display:block;animation:jpBob 3s ease-in-out infinite}.ck-top .pxmint{width:52px}
@@ -604,6 +605,8 @@ body.playing .hp{display:none!important}
       <button class="nav-btn" onclick="document.getElementById('live').scrollIntoView({behavior:'smooth'})">🪙 COIN INFO</button>
       <a class="nav-btn gold" href="#factory" onclick="document.getElementById('factory').scrollIntoView({behavior:'smooth'});return false;">🏭 FACTORY</a>
       <a class="nav-btn gold" href="garage.html">🤖 BOT GARAGE</a>
+      <a class="nav-btn yellow" href="meme.html">🖼️ MEME STUDIO</a>
+      <a class="nav-btn" href="chain.html">⛓️ MINI-CHAIN</a>
       <button class="nav-btn" onclick="document.getElementById('checkup').scrollIntoView({behavior:'smooth'})">🔍 CHECKUP</button>
       <button class="nav-btn yellow" onclick="document.getElementById('swap').scrollIntoView({behavior:'smooth'})">SWAP</button>
       <button class="nav-btn pink" onclick="document.getElementById('arcade').scrollIntoView({behavior:'smooth'})">🎮 GAMES</button>
@@ -649,6 +652,13 @@ body.playing .hp{display:none!important}
       </div>
     </div>
   </section>
+  <nav class="tools-strip hp" aria-label="Free tools">
+    <a href="meme.html"><span aria-hidden="true">🖼️</span><b>MEME STUDIO</b><small>190+ templates, pixel stickers, download PNG</small></a>
+    <a href="chain.html"><span aria-hidden="true">⛓️</span><b>MINI-CHAIN</b><small>Mine blocks and see how a blockchain works</small></a>
+    <a href="garage.html"><span aria-hidden="true">🤖</span><b>BOT GARAGE</b><small>Copy or build your own AI bot</small></a>
+    <a href="free-ai-api.html"><span aria-hidden="true">🔑</span><b>FREE AI KEYS</b><small>Free and cheap AI options for your bot</small></a>
+    <a href="app.html"><span aria-hidden="true">📱</span><b>THE APP</b><small>All tools in your pocket</small></a>
+  </nav>
 
 <section id="live" class="live coin hp">
   <div class="lv-head">
@@ -702,7 +712,7 @@ body.playing .hp{display:none!important}
       </form>
       <div class="fx-chips" aria-label="Idea examples"><button type="button">frog</button><button type="button">sleepy cat</button><button type="button">toaster</button><button type="button">moon tax</button><button type="button">dancing potato</button></div>
       <div class="fx-steps"><span>1 IDEA</span><span>2 NAME + MEME</span><span>3 SAFETY CHECK</span><span>4 X POSTS</span><span>5 TEAM CALL</span><span class="new">6 SHARE CARD · NEW</span></div>
-      <p class="fx-note">Nothing is posted or launched for you, and your AI key (if you add one) goes only to the provider you pick. A community hub shows the best packs. <a href="factory.html" style="color:#ffd800;text-decoration:underline">Open the full Factory</a></p>
+      <p class="fx-note">Nothing is posted or launched for you, and your AI key (if you add one) goes only to the provider you pick. A community hub shows the best packs. <a href="factory.html" style="color:#ffd800;text-decoration:underline">Open the full Factory</a> · <a href="meme.html" style="color:#ffd800;text-decoration:underline">Meme Studio: 190+ templates</a></p>
     </div>
     <div class="fx-belt" aria-hidden="true">
       <div class="fx-sign">⚙ MAIGA FACTORY</div>
@@ -1102,7 +1112,7 @@ body.playing .hp{display:none!important}
 </div>
 
 </main>
-<footer>© 2026 $MAIGA — MAKE AI GREAT AGAIN • <a href="garage.html">BOT GARAGE</a> • <a href="ai-bots-salon.html">AI FOR SALONS</a> • <a href="ai-bots-real-estate.html">AI FOR REAL ESTATE</a> • <a href="ai-bots-restaurant.html">AI FOR RESTAURANTS</a> • <a href="custom-ai-bot.html">CUSTOM AI BOT</a> • <a href="app.html">APP</a> • <a href="chain.html">HOW A BLOCKCHAIN WORKS</a> • <button type="button" data-install hidden style="background:none;border:0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;padding:6px 2px"></button> <a href="#support">PARTNERS</a> • <a href="#terms">TERMS &amp; DISCLAIMERS</a></footer>
+<footer>© 2026 $MAIGA — MAKE AI GREAT AGAIN • <a href="garage.html">BOT GARAGE</a> • <a href="ai-bots-salon.html">AI FOR SALONS</a> • <a href="ai-bots-real-estate.html">AI FOR REAL ESTATE</a> • <a href="ai-bots-restaurant.html">AI FOR RESTAURANTS</a> • <a href="custom-ai-bot.html">CUSTOM AI BOT</a> • <a href="app.html">APP</a> • <a href="meme.html">MEME STUDIO</a> • <a href="chain.html">HOW A BLOCKCHAIN WORKS</a> • <button type="button" data-install hidden style="background:none;border:0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;padding:6px 2px"></button> <a href="#support">PARTNERS</a> • <a href="#terms">TERMS &amp; DISCLAIMERS</a></footer>
 
 <script>
 /* ============================================================

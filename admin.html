@@ -135,6 +135,12 @@ button.gray{background:#666;color:#fff}
   </div>
 
   <div class="card">
+    <h2>🤝 <span>Custom bot requests</span></h2>
+    <div class="note" style="margin-bottom:10px">Requests from the "custom AI bot" pages. Reply by email, then mark them. Delete old ones within 12 months (privacy promise on the page).</div>
+    <div id="reqBox" class="note">Loading…</div>
+  </div>
+
+  <div class="card">
     <h2>📜 <span>Payout History</span></h2>
     <div id="payoutHistory" class="note">Loading…</div>
   </div>
@@ -597,7 +603,30 @@ async function loadStats(){
   }
 }
 
-function reload(){ if (!session) return; loadData(); loadHistory(); loadStats(); }
+async function loadRequests(){
+  const box = $('reqBox');
+  try{
+    const rows = await sbJson('bot_requests?select=*&status=neq.spam&order=created_at.desc&limit=50');
+    if (!rows.length){ box.textContent = 'No requests yet.'; return; }
+    const setStatus = async (id, st) => {
+      const res = await sb('bot_requests?id=eq.' + id, { method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify({ status: st }) });
+      if (!res.ok) { alert('Could not update: HTTP ' + res.status); return; }
+      loadRequests();
+    };
+    const btn = (label, id, st) => { const b = el('button', { text: label, style: 'margin:4px 6px 0 0;padding:4px 8px;font-size:11px' }); b.addEventListener('click', () => setStatus(id, st)); return b; };
+    const colour = { new: '#ffd800', replied: '#38f2ff', done: '#28c76f' };
+    box.replaceChildren(...rows.map(r => el('div', { style: 'padding:8px 10px;border:2px solid #000;border-radius:8px;margin-bottom:6px;background:#050b14;font-size:12px;' },
+      el('div', { style: 'font-weight:900;color:' + (colour[r.status] || '#fff'), text: r.status.toUpperCase() + ' · ' + r.business + ' (' + r.btype + ', ' + r.lang.toUpperCase() + ')' }),
+      el('div', { text: r.name + ' · ' + r.email + ' · ' + new Date(r.created_at).toLocaleString('nl-BE') }),
+      el('div', { style: 'white-space:pre-wrap;color:#cfd8e3;margin-top:4px', text: r.message || '(no message)' }),
+      el('a', { href: 'mailto:' + encodeURIComponent(r.email) + '?subject=' + encodeURIComponent('Your AI assistant for ' + r.business), text: 'Reply by email', style: 'color:#ffd800;margin-right:8px' }),
+      btn('Replied', r.id, 'replied'), btn('Done', r.id, 'done'), btn('Spam', r.id, 'spam'))));
+  } catch(e){
+    box.textContent = /404|400/.test(e.message) ? 'Requests are not switched on yet: run supabase-requests.sql in the Supabase SQL editor.' : 'Error: ' + e.message;
+  }
+}
+
+function reload(){ if (!session) return; loadData(); loadHistory(); loadStats(); loadRequests(); }
 
 /* ============================================================
    INIT

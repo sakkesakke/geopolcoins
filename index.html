@@ -518,7 +518,9 @@ body.playing .hp{display:none!important}
 @media(min-width:901px){.hub{grid-template-columns:repeat(4,1fr)}}
 
 /* ===== pixel characters, token checkup, meme of the week ===== */
-.pxjp,.pxeg{image-rendering:pixelated;background-repeat:no-repeat;background-position:center bottom;background-size:contain;flex:0 0 auto}
+.pxmint{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAdCAYAAACwuqxLAAABgklEQVR42r2WLXDCQBCF3zFRIPkRCBQCVREVgYqoRiHQVRVREcHW1KAQKHRFVHVFFAKFQCGqIiraVCb2ahrm2FxyezDDU7nJ5ntvL7eZCDDUbvekui6KTIApwYG7mwBTfwoA2CU7HJ7XZxN5hBQP9ZwWJ0UJp9fyCNnxerd1oNsiAMj3GTpez7hdwgaqk7VBCQ5OMeslrifzRiNB4VywzkhnIii8TKSKmtbV6EwE3Zrv35/Kw4Nu/2LdVEMNtMd00O1XoMEpvuhEV3P1HNyiFk2ppipTqsk5NaqcygC9bLCcN08nhb3GGZY1tRUDCtedGGrSFKilTmTTEc1nC+SzBeqG0DgHd5nku36LVk97Vgfh1rP7Fqngw+kAd+JiERUss+HYrxg5dXCqj/e3Rvjj/wEwHtM0TAEAo9WIBTDJ4RYOxz4A4OszOV+XaysDmlwHMkFv6oB2we6gKDIRbr3aF01B3C4c2/S2EtdO8DV/eRcmUZrIKE2kztB037oDNaXpPtUfz2fQ9+rElvsAAAAASUVORK5CYII=);aspect-ratio:24/29}
+.ck-head .pxmint{width:64px;margin:0 auto 6px;display:block;animation:jpBob 3s ease-in-out infinite}.ck-top .pxmint{width:52px}
+.pxjp,.pxeg,.pxmint{image-rendering:pixelated;background-repeat:no-repeat;background-position:center bottom;background-size:contain;flex:0 0 auto}
 .pxjp{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAgCAYAAAAMq2gFAAAB8klEQVR42s2WMUjDQBSG/wsZJDpYREGFooM6SgWLRZycRbs4tHsHpw6Ngs4Kmg7FwaG7GURQEdycRJEKFocObYdKoBYKUgcNDkIcJGdT75JcW9S35HL37r579969dwQuoiiKBQExTZPwxogbIJ8ZF+EglKxwgYQFsQHDwTEhUM14pMBWGGFBRAEsYCtM6jbEPol8ZtzhYwm/JH8PqhmP1Ll+/eKmL/MGRqY3hXY8Evj6Wg39nx4dAPSFY5iKqp6LTEVV9IVj7YNeczqKJ5onqHii4TWnu+rIIuY/lUtOv0xM+p7rCbo+3OaOVXLf7fn4Vmf3yGsBvzrcXEcCsbaiy2rozFzn20e86PMTLK5lQvTC0oB52GGWCYlVJUPJyo8I8xuVLAi3wlLLsqpnKDdvKJTQuOWc+H0z5LPqD9hTuYRQQuv8zbA4O0H7js5OAQBnc3EAwPLtIQBgdXmF6lzelblAmQWxAcHRIdqfWksgfZB16KbWEg6dxW+g1WolYUGaJ7fKwv0bAOBqpperk44UaHtg4wWmaRJJBOJH0pECepaS9P95tx+KoljcFGRU68IQtzlcUDuW2XPezzPi2duo1j2hRrUOfW8dAPBhL5xT2T7qxDKWzurxIIW4WsSzhBdtXilL7paP9i9uxOpRN18+zRniE1m02oJHSUYrAAAAAElFTkSuQmCC);aspect-ratio:26/32}
 .pxeg{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAA+klEQVR42mNkwAG4uLj+YxP/9u0bIwMewIjLoK9fv2LVwM3NTZTBcMOIBbh8QJZh+AxlYqAAfP36FSOsWfBpEBISImgoOzs7AwMDw39YuBJ04bt37wi7dIcAw9cdAgxcXFz/WQgZhs+V7zZyYoixkOXCw9I41ZMeKTgMe3jiGXEuJARgBmk1cKFGyrdv3xhhuQAvsH2K0zDy0yGSociG0SSnoIRhtbcypUEK8TIXF9f/AgcJuOCDl59xakCWK3CQIC7rKYjzwtk571VQJdkYGBjeMzBMEbxDfjqUPLYTg4ZZhO5KRlxeRnYlPjDhwAuUWGYkVOQTAuhJBgC8Hu5TFzsm+QAAAABJRU5ErkJggg==);aspect-ratio:20/20}
 .arc-chars{display:flex;justify-content:center;align-items:flex-end;gap:26px;margin-bottom:6px}
@@ -707,10 +709,10 @@ body.playing .hp{display:none!important}
 
 <section id="checkup" class="ck-sec hp">
   <div class="ck-head">
-    <div class="pxjp" role="img" aria-label="Jean-Phil in pixels"></div>
+    <div class="pxmint" role="img" aria-label="Mevrouw Mintje, the checkup accountant, in pixels"></div>
     <span class="sec-pill" style="border-color:#18b6ff;color:#18b6ff;background:rgba(24,182,255,.1)">NEW · FREE · NO WALLET</span>
     <h2>TOKEN <span>CHECKUP</span></h2>
-    <p>Paste any Solana token address. Jean-Phil reads the public data and lists what looks fine, what looks risky and what he cannot see. Big claims about "real assets" or yield get extra questions. It is a checklist, not advice, and it can miss things.</p>
+    <p>Paste any Solana token address. Mevrouw Mintje, our pixel accountant, reads the public data and lists what looks fine, what looks risky and what she cannot see. Big claims about "real assets" or yield get extra questions. It is a checklist, not advice, and it can miss things.</p>
   </div>
   <form class="ck-form" id="ckForm" autocomplete="off">
     <input id="ckInput" maxlength="44" placeholder="PASTE TOKEN ADDRESS (MINT)" aria-label="Solana token address" spellcheck="false">
@@ -2452,9 +2454,9 @@ window.addEventListener('load',function(){
   function short(m){return m.slice(0,5)+"…"+m.slice(-5);}
   function render(o){
     var box=$("ckOut");while(box.firstChild)box.removeChild(box.firstChild);box.hidden=false;
-    var top=el("div","ck-top");top.appendChild(el("div","pxjp"));
+    var top=el("div","ck-top");top.appendChild(el("div","pxmint"));
     var mid=el("div");mid.appendChild(el("div","ck-name",o.name+(o.sym?"  ($"+o.sym+")":"")));mid.appendChild(el("div","ck-mint",o.mint));top.appendChild(mid);
-    var v=verdict(o);top.appendChild(el("div","ck-verdict "+v.c,"Jean-Phil: "+v.t));box.appendChild(top);
+    var v=verdict(o);top.appendChild(el("div","ck-verdict "+v.c,"Mintje: "+v.t));box.appendChild(top);
     var ul=el("ul","ck-list");
     o.checks.forEach(function(c){var li=document.createElement("li");li.appendChild(el("span","ck-dot "+(c.l==="unk"?"unk":c.l)));var d=document.createElement("div");d.appendChild(el("b","",c.t));d.appendChild(document.createTextNode(" — "+c.x));li.appendChild(d);ul.appendChild(li);});
     box.appendChild(ul);

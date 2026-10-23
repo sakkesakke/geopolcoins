@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'unsafe-inline'; img-src 'self' data: blob:; connect-src https://api.anthropic.com https://api.openai.com https://openrouter.ai https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>$MAIGA Bot Garage: build, test and export your own AI bot</title>
 <meta name="description" content="Copy a ready-made AI bot or build your own for free: test it, share it with a link and export it to ChatGPT, Claude, Discord or Telegram. No account needed.">
@@ -168,7 +168,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
 
 <div class="top">
   <b>$<span>MAIGA</span> BOT GARAGE</b>
-  <nav aria-label="Garage menu"><a href="#community">COMMUNITY</a><a href="#battles">BATTLES</a><a href="index.html">HOME</a><a href="factory.html">FACTORY</a><a href="index.html#checkup">CHECKUP</a><a href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a></nav>
+  <nav aria-label="Garage menu"><a href="app.html#mybots">MY BOTS</a><a href="#community">COMMUNITY</a><a href="#battles">BATTLES</a><a href="index.html">HOME</a><a href="factory.html">FACTORY</a><a href="index.html#checkup">CHECKUP</a><a href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a><button class="btn small" type="button" data-install hidden style="display:none"></button></nav>
 </div>
 
 <main class="wrap" id="main">
@@ -270,6 +270,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;padding:24px 16px;borde
     <div class="sec-h"><h2><small>STEP 4</small>SHARE &amp; EXPORT</h2></div>
     <p class="sub">Take your bot anywhere it can live. You stay in control: nothing is posted, sent or bought for you.</p>
     <div class="export">
+      <div class="exp"><b>⭐ My bots</b><p>Keep this bot on your device and find it in the $MAIGA app, also offline.</p><button class="btn small gold" id="exSave" type="button">Save to My bots</button> <a class="btn small" href="app.html#mybots">Open My bots</a></div>
       <div class="exp"><b>🔗 Share link</b><p>Anyone who opens it gets a copy of your bot in their garage.</p><button class="btn small" id="exLink" type="button">Copy link</button></div>
       <div class="exp"><b>🪪 Bot card</b><p>A 1200×630 card of your bot, made in your browser. Great for X.</p><button class="btn small" id="exCard" type="button">Download PNG</button></div>
       <div class="exp"><b>💬 ChatGPT · Claude · Grok · Gemini</b><p>Copy the ready prompt into a Custom GPT, a Claude Project, Grok or a Gemini Gem.</p><button class="btn small" id="exPrompt" type="button">Copy prompt</button></div>
@@ -658,6 +659,14 @@ function slug(){return (bot.name||'bot').toLowerCase().replace(/[^a-z0-9]+/g,'-'
 function download(name,blob){var u=URL.createObjectURL(blob),a=el('a',{href:u,download:name});document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove();},1500);}
 $('exJson').addEventListener('click',function(){download(slug()+'.bot.json',new Blob([JSON.stringify(bot,null,2)],{type:'application/json'}));toast('🧾 Bot file downloaded');});
 $('exPrompt').addEventListener('click',function(){copyText(systemPrompt(),'💬 Prompt copied. Paste it as your assistant\'s instructions.');});
+var MYBOTS='maiga_garage_bots_v1';
+function myBots(){try{var a=JSON.parse(safeGet(MYBOTS)||'[]');return Array.isArray(a)?a:[];}catch(e){return [];}}
+$('exSave').addEventListener('click',function(){
+  var b=sanitize(bot),list=myBots().filter(function(x){return x&&x.bot&&x.bot.name!==b.name;});
+  list.unshift({id:Date.now().toString(36),savedAt:new Date().toISOString(),bot:b,share:shareUrl(),prompt:systemPrompt(b)});
+  safeSet(MYBOTS,JSON.stringify(list.slice(0,20)));
+  toast(myBots().length?'⭐ Saved to My bots ('+myBots().length+'/20)':'Saving is blocked in this browser mode');
+});
 $('exX').addEventListener('click',function(){
   var txt='I built "'+bot.name+'", my own AI bot, in the $MAIGA Bot Garage 🤖\n\nCopy it or build yours (free):';
   var u='https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(shareUrl());
@@ -1049,5 +1058,6 @@ var p=location.pathname.replace(/^\/+|\.html$|\/$/g,'').toLowerCase();p={'':'hom
 var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}
 var k='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:k,Authorization:'Bearer '+k,'Content-Type':'application/json'},body:JSON.stringify({p_page:p,p_ref:r.slice(0,60)})}).catch(function(){});}catch(e){}})();
 </script>
+<script src="pwa.js" defer></script>
 </body>
 </html>

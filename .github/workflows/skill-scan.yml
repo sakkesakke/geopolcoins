@@ -1,0 +1,61 @@
+name: Skill scan
+
+# Scans every Claude skill and agent in .claude/ with NVIDIA SkillSpector (static, no AI, no keys).
+# Fails when a skill gets a risk score above 50 (recommendation not SAFE/CAUTION).
+on:
+  pull_request:
+    paths: [".claude/**", ".github/workflows/skill-scan.yml"]
+  push:
+    branches: [main]
+    paths: [".claude/**"]
+  schedule:
+    - cron: "17 6 * * 1"        # every Monday 06:17 UTC (new vulnerability patterns)
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SkillSpector (pinned commit)
+        run: pip install "skillspector @ git+https://github.com/NVIDIA/SkillSpector.git@d7338f58200a9ae2a24810cee08911ab68b107a7"
+      - name: Scan skills and agents
+        run: |
+          mkdir -p reports
+          status=0
+          echo "## SkillSpector report" > reports/summary.md
+          echo "| Skill / agents | Result |" >> reports/summary.md
+          echo "|---|---|" >> reports/summary.md
+          for d in .claude/skills/*/ .claude/agents/; do
+            [ -d "$d" ] || continue
+            n=$(basename "$d")
+            set +e
+            bl=""; [ -f ".skillspector/$n.yaml" ] && bl="--baseline .skillspector/$n.yaml"
+            skillspector scan "$d" --no-llm $bl --format json --output "reports/$n.json"
+            code=$?
+            set -e
+            python3 tools/skillspector_summary.py "$n" "reports/$n.json" "$code" >> reports/summary.md
+            if [ "$code" != "0" ]; then status=1; fi
+          done
+          cat reports/summary.md >> "$GITHUB_STEP_SUMMARY"
+          exit $status
+      - name: Post the report on the pull request
+        if: always() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr comment ${{ github.event.pull_request.number }} --body-file reports/summary.md
+      - name: Keep the reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skillspector-reports
+          path: reports/
+          retention-days: 14

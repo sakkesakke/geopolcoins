@@ -1,0 +1,20 @@
+# Reviewed by hand on 2026-10-23: official supabase/agent-skills "supabase" skill (MIT).
+# Static scan flags security ADVICE about tokens as privilege escalation. Each rule below is scoped to this skill only.
+version: 2
+rules:
+  - id: "PE3"
+    reason: "False positive: the text warns to use scoped access tokens and short JWT expiry; it does not ask for more privileges."
+  - id: "PE1"
+    message: "*scoped token*"
+    reason: "False positive: troubleshooting step for scoped token permissions."
+  - id: "PE1"
+    reason: "Reviewed: troubleshooting heading about token permissions, no privilege request."
+  - id: "YR1"
+    path: "*SKILL.md"
+    reason: "Broad trigger description ('ANY task involving Supabase') matched a YARA trigger-abuse rule; acceptable for an official vendor skill."
+  - id: "AS2"
+    path: "*SKILL.md"
+    reason: "Reviewed: .mcp.json troubleshooting step. This repo has no .mcp.json and Claude must not create one without the user."
+  - id: "EA2"
+    path: "*SKILL.md"
+    reason: "Reviewed: 'run a test query to confirm the change works' is verification advice."

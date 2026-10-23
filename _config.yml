@@ -1,3 +1,4 @@
-# GitHub Pages (Jekyll) settings: keep planning files off the public site.
+# GitHub Pages (Jekyll) settings: keep planning files and build scripts off the public site.
 exclude:
   - specs
+  - tools

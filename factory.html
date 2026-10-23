@@ -82,6 +82,33 @@ details>summary::-webkit-details-marker{display:none}
 .tabs button.on{border-color:var(--yellow);color:var(--yellow)}
 ul.rules{margin:8px 0 0;padding-left:20px;font-size:13.5px;color:#dbe7ff}
 footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
+.top nav a.dlnav{background:var(--yellow);color:#000;border-color:#000}
+.hazard{height:10px;margin:-16px -16px 12px;border-radius:14px 14px 0 0;background:repeating-linear-gradient(-45deg,#ffd800 0 14px,#111 14px 28px)}
+.ctabs{flex-wrap:wrap}.ctabs button{min-height:40px}
+.crew{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ag{background:#050b1b;border:2px solid #24457d;border-radius:12px;padding:10px;display:grid;gap:4px;transition:border-color .2s,box-shadow .2s}
+.ag .hd{display:flex;align-items:center;gap:8px}.ag .dot{width:10px;height:10px;border-radius:3px;background:#33405e;flex:none}
+.ag b{font-family:Impact,"Arial Black",sans-serif;letter-spacing:1.5px;font-size:15px}
+.ag p{margin:0;font-size:12.5px;color:var(--dim)}.ag .gear{font-size:11px;color:#9fb3d6}.ag .gear::before{content:"\2699  "}
+.ag .stt{font-size:11px;font-weight:900;letter-spacing:1.5px}
+.ag.work{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,216,0,.25)}.ag.work .dot{background:var(--yellow)}.ag.work .stt{color:var(--yellow)}
+.ag.done{border-color:var(--green)}.ag.done .dot{background:var(--green)}.ag.done .stt{color:var(--green)}
+.ag.alert{border-color:var(--red)}.ag.alert .dot{background:var(--red)}.ag.alert .stt{color:#ff9aa6}
+.flow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flow li{padding:8px 10px;border:2px solid #24457d;border-radius:10px;font-weight:800;font-size:12px;letter-spacing:1px;background:#050b1b}
+.flow li.work{border-color:var(--yellow);color:var(--yellow)}.flow li.done{border-color:var(--green);color:var(--green)}.flow li.alert{border-color:var(--red);color:#ff9aa6}
+.flow li.arr{border:0;background:none;padding:0 2px;color:var(--dim)}
+.bud{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bud>div{background:#050b1b;border:2px solid #24457d;border-radius:12px;padding:10px}
+.bud small{display:block;font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--dim)}.bud b{font-size:18px}
+.bar{height:8px;background:#1a2547;border-radius:6px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--green)}
+.steps3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;counter-reset:s}
+.steps3 li{counter-increment:s;background:#050b1b;border:2px solid #24457d;border-radius:12px;padding:12px 12px 12px 52px;position:relative;display:grid;gap:2px}
+.steps3 li::before{content:counter(s);position:absolute;left:12px;top:12px;width:28px;height:28px;border-radius:8px;background:var(--yellow);color:#000;font-family:Impact,"Arial Black",sans-serif;display:grid;place-items:center;border:2px solid #000}
+.steps3 b{font-family:Impact,"Arial Black",sans-serif;letter-spacing:2px}.steps3 span{font-size:13px;color:var(--dim)}
+.faqh{margin:16px 0 6px;font-size:15px;letter-spacing:2px}
+.faq{border-top:1px solid rgba(255,255,255,.1);padding:8px 0}.faq summary{font-family:system-ui,sans-serif!important;letter-spacing:0!important;font-size:15px!important;font-weight:800}.faq p{margin:6px 0 0;font-size:14px;color:var(--dim)}
+[hidden]{display:none!important}
 @media(max-width:760px){.controls{grid-template-columns:1fr}.grid2,.grid3{grid-template-columns:1fr}.ledger li{grid-template-columns:22px 1fr}.ledger li .t{grid-column:2}.verdict{flex-direction:column;text-align:center}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 .skip{position:absolute;left:8px;top:-60px;z-index:9999;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800;text-decoration:none}.skip:focus{top:8px}footer a{display:inline-block;padding:6px 2px}</style>
@@ -99,8 +126,10 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
   <b>$MAIGA <span style="color:var(--yellow)">FACTORY</span></b>
   <nav>
     <a href="index.html">&larr; SITE</a>
+    <a href="meme.html">MEME STUDIO</a>
     <a href="index.html#launch-hub">LAUNCH HUB</a>
     <a href="https://discord.gg/KFYCT4xVk" target="_blank" rel="noopener noreferrer">DISCORD</a>
+    <a href="#boot" class="dlnav">&#11015; DOWNLOAD</a>
   </nav>
 </header>
 <main class="wrap" id="main">
@@ -121,6 +150,7 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
     <div><label>MODE</label><div class="mode" role="group" aria-label="Mode"><button type="button" id="modeFree" class="on" aria-pressed="true">FREE TEMPLATES</button><button type="button" id="modeAi" aria-pressed="false">MY AI KEY</button></div></div>
     <button type="button" class="btn big" id="runBtn">&#9654; RUN THE LINE</button>
   </div>
+  <div class="row"><button type="button" class="btn red" id="stopBtn" hidden>&#9632; STOP THE LINE</button><button type="button" class="btn alt" id="demoBtn">&#128064; WATCH A DEMO</button></div>
   <div class="msg" id="liveMsg" aria-live="polite"></div>
 </section>
 
@@ -142,11 +172,31 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
   <div class="warn"><strong>How your key is handled.</strong> It goes straight from this page to the provider you choose. We never receive it and never store it on a server. This page is only allowed to talk to api.anthropic.com, api.openai.com, openrouter.ai and our own database (a browser rule on this page enforces it). Use a key with a spending limit, never on a shared computer, and delete it at your provider if you ever doubt it. Your provider charges you, not us. Each run makes at most 2 small calls.</div>
 </details>
 
-<section class="card" aria-labelledby="ldTitle">
-  <h2 id="ldTitle">LEDGER</h2>
-  <p class="sub">What every agent did on this run.</p>
-  <ul class="ledger" id="ledger"><li><span>&middot;</span><span class="t">waiting</span><span>Type an idea and press RUN THE LINE.</span></li></ul>
-  <div class="note" id="usage"></div>
+<section class="card console" aria-labelledby="ldTitle">
+  <div class="hazard" aria-hidden="true"></div>
+  <h2 id="ldTitle">CONTROL ROOM</h2>
+  <p class="sub">Watch the crew live: who is working, how the line flows, what it costs you and what every agent did.</p>
+  <div class="tabs ctabs" role="tablist" aria-label="Control room">
+    <button type="button" role="tab" id="tb-crew" aria-controls="pn-crew" aria-selected="true" class="on">CREW</button>
+    <button type="button" role="tab" id="tb-flow" aria-controls="pn-flow" aria-selected="false">WORKFLOW</button>
+    <button type="button" role="tab" id="tb-budget" aria-controls="pn-budget" aria-selected="false">BUDGET</button>
+    <button type="button" role="tab" id="tb-ledger" aria-controls="pn-ledger" aria-selected="false">LEDGER</button>
+  </div>
+  <div role="tabpanel" id="pn-crew" aria-labelledby="tb-crew"><div class="crew" id="crew"></div></div>
+  <div role="tabpanel" id="pn-flow" aria-labelledby="tb-flow" hidden><ol class="flow" id="flow"></ol><p class="note">Each agent hands its work to the next one. The Launch Check can raise a flag, and you can press STOP at any moment.</p></div>
+  <div role="tabpanel" id="pn-budget" aria-labelledby="tb-budget" hidden>
+    <div class="bud">
+      <div><small>MODE</small><b id="bMode">Free templates</b></div>
+      <div><small>AI CALLS TODAY</small><b id="bCalls">0 / 10</b><div class="bar"><i id="bBar"></i></div></div>
+      <div><small>THIS RUN</small><b id="bRun">0 calls</b></div>
+      <div><small>TOKENS IN / OUT</small><b id="bTok">0 / 0</b></div>
+    </div>
+    <p class="note">Free templates cost nothing. With your own key, each run makes at most 2 small calls, and the daily limit (set under CONNECT YOUR AI KEY) stops the line before it spends more. Your provider bills you directly; we add nothing on top.</p>
+  </div>
+  <div role="tabpanel" id="pn-ledger" aria-labelledby="tb-ledger" hidden>
+    <ul class="ledger" id="ledger"><li><span>&middot;</span><span class="t">waiting</span><span>Type an idea and press RUN THE LINE.</span></li></ul>
+    <div class="note" id="usage"></div>
+  </div>
 </section>
 
 <section class="card" id="packBox" hidden aria-labelledby="pkTitle">
@@ -202,6 +252,27 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
     </div>
     <div class="note">Only the coin name, ticker, meme text, description and nickname are shared. No links, no wallets, no handles. A pack with red flags cannot be shared.</div>
   </div>
+</section>
+
+<section class="card boot" id="boot" aria-labelledby="btTitle">
+  <div class="hazard" aria-hidden="true"></div>
+  <h2 id="btTitle">BOOT YOUR OWN FACTORY</h2>
+  <p class="sub">Take the Factory and the Meme Studio home. One free download, no account, no installer.</p>
+  <ol class="steps3">
+    <li><b>DOWNLOAD</b><span>Get the zip below and unzip it anywhere on your computer.</span></li>
+    <li><b>OPEN</b><span>Double-click <code>maiga-factory.html</code>. It opens in your browser.</span></li>
+    <li><b>RUN</b><span>Type an idea. Free templates work without internet; add your own AI key for smarter packs.</span></li>
+  </ol>
+  <div class="row">
+    <a class="btn big" id="dlZip" href="downloads/maiga-factory-offline.zip" download>&#11015; DOWNLOAD THE FACTORY (.ZIP)</a>
+    <button type="button" class="btn alt" data-install hidden></button>
+  </div>
+  <p class="note">Windows, Mac, Linux and Chromebook. The zip only contains HTML pages and pictures, nothing to install. The community hub, classic meme templates and AI need internet.</p>
+  <h3 class="faqh">QUESTIONS</h3>
+  <details class="faq"><summary>Is it free?</summary><p>Yes. Free templates cost nothing. If you connect your own AI key, your provider charges you for the calls you make, and you set the daily limit.</p></details>
+  <details class="faq"><summary>Where does my data go?</summary><p>Your ideas and packs stay in your browser. Only in AI mode is your idea sent to the provider you picked. A pack goes to the public hub only when you press SHARE.</p></details>
+  <details class="faq"><summary>Does it launch a coin or post for me?</summary><p>No. It only writes drafts. You decide what you do with them, and you stay responsible for your coin, your pictures and the law where you live.</p></details>
+  <details class="faq"><summary>My computer warns about the file. Is it safe?</summary><p>The zip only holds .html, .png and .txt files that open in your browser. Download it only from geopolcoins.xyz. If anything asks to "run" or "install" a program, it is not ours.</p></details>
 </section>
 
 <section class="card" aria-labelledby="rlTitle">
@@ -570,8 +641,10 @@ function led(icon,who,text){
 }
 function Stop(msg){this.msg=msg;}
 async function station(i,bubbleTxt,fn){
+  if(st.stopReq){led('■','You','Stopped the line. Nothing was saved or posted.');throw new Stop();}
   st.active=i;st.bubble=bubbleTxt;await stationTo(i);redraw();
   await wait(650);
+  if(st.stopReq){led('■','You','Stopped the line. Nothing was saved or posted.');throw new Stop();}
   try{await fn();}catch(e){if(e instanceof Stop){st.alert[i]=true;st.bubble='!';redraw();throw e;}throw e;}
   st.done[i]=true;st.bubble='done';redraw();await wait(250);
 }
@@ -582,7 +655,7 @@ async function run(){
   say('');
   if(idea.length<2){say('Type your idea first, 1 to 3 words (for example: frog).','bad');return;}
   if(mode==='ai'&&!ai.key){setMode('ai');say('Add your API key first, or switch to FREE TEMPLATES.','bad');return;}
-  st.running=true;$('runBtn').disabled=true;
+  st.running=true;st.stopReq=false;$('runBtn').disabled=true;$('stopBtn').hidden=false;
   usage={calls:0,tin:0,tout:0};ledClear();$('packBox').hidden=true;$('pMeme').textContent='';
   st.done={};st.alert={};st.active=-1;st.pkgX=14;st.pkgTarget=14;st.bubble='';st.confetti=[];redraw();
   pack={idea:idea,tone:tone,mode:mode,name:'',ticker:'',desc:'',top:'',bottom:'',posts:[],team:null};
@@ -619,14 +692,50 @@ async function run(){
     await pkgTo(458);
   }catch(e){
     if(!(e instanceof Stop)){led('⚠','Factory','Something went wrong. Nothing was saved or posted. Try again.');say('Something went wrong. Try again.','bad');}
-    st.running=false;$('runBtn').disabled=false;st.active=-1;redraw();updateCapLine();return;
+    st.running=false;$('runBtn').disabled=false;$('stopBtn').hidden=true;st.active=-1;redraw();updateCapLine();return;
   }
   await wait(300);st.active=-1;st.bubble='';confettiBurst();redraw();
   renderPack();updateCapLine();
-  st.running=false;$('runBtn').disabled=false;
+  st.running=false;$('runBtn').disabled=false;$('stopBtn').hidden=true;
   say('Your launch pack is ready below. Read it, edit it, check it.','ok');
 }
 $('runBtn').addEventListener('click',run);
+/* ---------- control room: crew, workflow, budget (reads the same state as the pixel line) ---------- */
+var CREW=[
+ {n:'INTAKE',d:'Reads your idea and blocks known brands, people and projects.',g:'Name blocklist'},
+ {n:'MEME AGENT',d:'Invents the name, ticker, description and meme text.',g:'Templates or your AI key'},
+ {n:'LAUNCH CHECK',d:'Scans every word for scam phrases and look-alikes.',g:'Scam word list'},
+ {n:'MARKETING',d:'Drafts X posts and flags risky wording.',g:'Post linter'},
+ {n:'TEAM MATCH',d:'Writes a call for helpers with clear roles.',g:'Role cards'},
+ {n:'JEAN-PHIL',d:'The boss. Gives the final verdict.',g:'Strong opinions'}
+];
+function agState(i){return st.alert[i]?'alert':(st.active===i?'work':(st.done[i]?'done':'idle'));}
+var STT={idle:'IDLE',work:'WORKING',done:'DONE',alert:'FLAG'};
+(function(){
+  var cw=$('crew'),fl=$('flow');
+  CREW.forEach(function(c,i){
+    var a=mk('div','ag');a.id='ag'+i;var hd=mk('div','hd');hd.appendChild(mk('span','dot'));hd.appendChild(mk('b','',c.n));a.appendChild(hd);
+    a.appendChild(mk('span','stt',STT.idle));a.appendChild(mk('p','',c.d));a.appendChild(mk('span','gear',c.g));cw.appendChild(a);
+    if(i)fl.appendChild(mk('li','arr','→'));var f=mk('li','',c.n);f.id='fl'+i;fl.appendChild(f);
+  });
+  var sig='';
+  function upd(){
+    var s=CREW.map(function(c,i){return agState(i);}).join()+'|'+usage.calls+'|'+usage.tin+'|'+callsToday()+'|'+mode+'|'+ai.cap;
+    if(s===sig)return;sig=s;
+    CREW.forEach(function(c,i){var k=agState(i),a=$('ag'+i);a.className='ag '+k;a.querySelector('.stt').textContent=STT[k];$('fl'+i).className=k;});
+    var ct=callsToday();$('bMode').textContent=mode==='ai'?'My AI key ('+ai.model+')':'Free templates';
+    $('bCalls').textContent=ct+' / '+ai.cap;$('bBar').style.width=Math.min(100,ct/Math.max(1,ai.cap)*100)+'%';$('bBar').style.background=ct>=ai.cap?'var(--red)':'var(--green)';
+    $('bRun').textContent=usage.calls+' call'+(usage.calls===1?'':'s');$('bTok').textContent=usage.tin+' / '+usage.tout;
+  }
+  setInterval(upd,250);upd();
+  var tabs=['crew','flow','budget','ledger'];
+  tabs.forEach(function(t,ti){$('tb-'+t).addEventListener('click',function(){show(t);});$('tb-'+t).addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){var n=tabs[(ti+d+tabs.length)%tabs.length];show(n);$('tb-'+n).focus();}});});
+  function show(t){tabs.forEach(function(x){var on=x===t;$('tb-'+x).className=on?'on':'';$('tb-'+x).setAttribute('aria-selected',on);$('tb-'+x).tabIndex=on?0:-1;$('pn-'+x).hidden=!on;});}
+  show('crew');
+  $('stopBtn').addEventListener('click',function(){st.stopReq=true;say('Stopping after this step…');});
+  $('demoBtn').addEventListener('click',function(){if(st.running)return;setMode('free');$('idea').value=['frog','sleepy cat','toaster','dancing potato'][Math.floor(Math.random()*4)];$('stage').scrollIntoView({behavior:'smooth',block:'center'});run();});
+})();
+
 $('idea').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();run();}});
 
 /* ======================= LAUNCH PACK ======================= */

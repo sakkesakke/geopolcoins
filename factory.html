@@ -108,6 +108,7 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
   <span class="pill">NEW &middot; BETA</span>
   <h1>MEME <span>FACTORY</span></h1>
   <p>Type one idea. Watch a small crew of agents build a complete meme-coin launch pack: name, ticker, meme, safety check, X posts and a team call. Free with templates, or smarter with your own AI key.</p>
+  <p style="margin-top:10px"><a class="btn" href="meme.html" style="text-decoration:none">&#127912; NEW: MEME STUDIO &middot; 190+ templates, stickers, download</a></p>
 </section>
 
 <section class="card" aria-labelledby="stTitle">
@@ -167,6 +168,7 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
   <div class="row">
     <button type="button" class="btn alt" id="pCheck">&#128737; RE-CHECK</button>
     <button type="button" class="btn alt" id="pPreview">&#128247; PREVIEW MEME</button>
+    <button type="button" class="btn" id="pStudio">&#127912; EDIT IN MEME STUDIO</button>
     <button type="button" class="btn alt" id="pCopy">COPY PACK</button>
     <button type="button" class="btn alt" id="pDl">&#11015; DOWNLOAD .TXT</button>
     <button type="button" class="btn" id="pCard">&#127912; SHARE CARD (PNG) &middot; NEW</button>
@@ -700,6 +702,10 @@ $('pPreview').addEventListener('click',function(){
   img.onload=function(){clear(box);img.alt='Your meme';box.appendChild(img);packMsg('Meme ready. Right-click or long-press to save it.','ok');};
   img.onerror=function(){packMsg('Could not load the meme. Check the text and the image link.','bad');};
   img.src=url;
+});
+$('pStudio').addEventListener('click',function(){
+  readPack();var tpl=$('pTpl').value;if(tpl==='changemind')tpl='cmm';
+  location.href='meme.html#'+new URLSearchParams({tpl:tpl,top:pack.top||'',bottom:pack.bottom||''}).toString();
 });
 function packText(){
   readPack();var L=[];

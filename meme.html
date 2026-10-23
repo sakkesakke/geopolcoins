@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'unsafe-inline'; img-src 'self' data: blob: https://api.memegen.link; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<title>Free Meme Generator: MAIGA Meme Studio</title>
+<meta name="description" content="Make a meme in seconds: 190+ classic templates, MAIGA pixel scenes, your own photo, draggable text and pixel stickers. Download as PNG. Free, no account, nothing uploaded.">
+<link rel="canonical" href="https://geopolcoins.xyz/meme.html">
+<meta property="og:type" content="website"><meta property="og:title" content="MAIGA Meme Studio: free meme generator"><meta property="og:description" content="190+ templates, pixel stickers, your own photo. Download as PNG. Free, in your browser."><meta property="og:url" content="https://geopolcoins.xyz/meme.html"><meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#050b1b">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MAIGA Meme Studio","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://geopolcoins.xyz/meme.html","inLanguage":["en","nl","fr"]}</script>
+<style>
+:root{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#b7c4dc;--gold:#ffd800;--pink:#ff4b61;--ok:#14F195;--cyan:#38f2ff;--line:rgba(169,212,255,.25)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--text);font:16px/1.55 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);
+  background-image:radial-gradient(rgba(255,216,0,.09) 1.5px,transparent 1.6px),radial-gradient(circle at 15% 0,#13306a 0,transparent 45%),radial-gradient(circle at 90% 20%,#4a1030 0,transparent 40%);background-size:18px 18px,auto,auto}
+main{max-width:1180px;margin:0 auto;padding:16px 16px 60px}a{color:var(--gold)}
+.skip{position:absolute;left:8px;top:-60px;background:var(--gold);color:#000;padding:10px 14px;border-radius:8px;font-weight:800;z-index:9}.skip:focus{top:8px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:14px}.top a{display:inline-block;padding:6px 0}
+.hero{text-align:center;margin:14px 0 18px;position:relative}
+.hero h1{font-family:Impact,Haettenschweiler,"Arial Narrow Bold","Arial Black",sans-serif;font-weight:900;font-size:clamp(40px,9vw,84px);line-height:1;margin:6px 0;letter-spacing:2px;text-transform:uppercase;color:#fff;
+  -webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 var(--pink)}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--dim);max-width:640px;margin:8px auto 0;font-size:17px}
+.stk{position:absolute;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 #000);animation:bob 3s ease-in-out infinite}
+.stk.l{left:2%;top:4px;width:60px;transform:rotate(-8deg)}.stk.r{right:3%;top:10px;width:58px;animation-delay:-1.4s}
+@keyframes bob{50%{translate:0 -6px}}
+@media(max-width:700px){.stk{display:none}}
+@media(prefers-reduced-motion:reduce){.stk{animation:none}}
+.studio{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.studio{grid-template-columns:1fr}}
+.card{background:var(--panel);border:3px solid #000;border-radius:16px;padding:14px;box-shadow:5px 5px 0 #000}
+.stage{position:sticky;top:10px}
+@media(max-width:860px){.stage{position:static}}
+.cvwrap{background:#000 repeating-conic-gradient(#111 0 25%,#1a1a1a 0 50%) 0 0/20px 20px;border-radius:10px;display:grid;place-items:center;overflow:hidden;touch-action:none}
+#cv{max-width:100%;max-height:70vh;height:auto;display:block;cursor:grab}
+#cv.drag{cursor:grabbing}
+.hint{font-size:13px;color:var(--dim);margin:8px 0 0;text-align:center}
+h2{font-family:Impact,Haettenschweiler,"Arial Black",sans-serif;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;font-size:22px;margin:0 0 8px;color:var(--gold)}
+h3{font-size:14px;letter-spacing:1.5px;text-transform:uppercase;margin:14px 0 6px;color:#fff}
+label{display:block;font-weight:700;font-size:13px;letter-spacing:.5px;margin:8px 0 3px}
+input[type=text],input[type=search],select{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:2px solid #000;background:#071226;color:#fff;min-height:44px}
+input[type=range]{width:100%;accent-color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border-radius:10px;border:2px solid #000;background:#16305e;color:#fff;font:inherit;font-weight:800;font-size:14px;cursor:pointer;min-height:44px;box-shadow:3px 3px 0 #000;text-decoration:none}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+.btn.gold{background:var(--gold);color:#111}.btn.pink{background:var(--pink)}.btn.ok{background:var(--ok);color:#04130b}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.lines{display:grid;gap:4px}
+.sticks{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px}
+.sticks button{height:58px;border-radius:10px;border:2px solid #000;background:#16305e;cursor:pointer;display:grid;place-items:center;padding:4px;box-shadow:2px 2px 0 #000;color:#fff;font:900 13px Impact,"Arial Black",sans-serif;letter-spacing:.5px}
+.sticks img{max-width:44px;max-height:44px;image-rendering:pixelated}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:600;font-size:14px;margin-top:8px}.chk input{width:20px;height:20px;accent-color:var(--gold)}
+.msg{font-size:14px;min-height:20px;margin-top:8px;color:var(--dim)}.msg.ok{color:var(--ok)}.msg.bad{color:var(--pink)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tabs button{padding:8px 12px;border-radius:999px;border:2px solid #000;background:#16305e;color:#fff;font-weight:800;cursor:pointer;min-height:40px}
+.tabs button[aria-pressed=true]{background:var(--gold);color:#111}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:10px}
+.gal button{border:2px solid #000;border-radius:10px;background:#071226;padding:0;cursor:pointer;overflow:hidden;color:#fff;text-align:left;box-shadow:3px 3px 0 #000;display:flex;flex-direction:column}
+.gal button.on{outline:3px solid var(--gold);outline-offset:1px}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#0b1a35}
+.gal img.px{image-rendering:pixelated;object-fit:contain;background:linear-gradient(160deg,#1e4c96,#0a1730)}
+.gal span{font-size:12px;font-weight:700;padding:6px 7px;line-height:1.25;min-height:40px}
+.more{margin-top:12px;text-align:center}
+.note{color:var(--dim);font-size:13px}
+footer{text-align:center;color:var(--dim);font-size:13px;margin-top:36px}footer a{display:inline-block;padding:6px 2px}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style></head><body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+<main id="main">
+<div class="top"><a href="/" data-t="back">&larr; geopolcoins.xyz</a><nav aria-label="More"><a href="factory.html">Meme Factory</a> · <a href="app.html" data-t="app">$MAIGA app</a> · <a href="chain.html">Mini-Chain</a></nav></div>
+
+<header class="hero">
+  <img class="stk l" src="meme/pxjp.png" alt=""><img class="stk r" src="meme/pxeg.png" alt="">
+  <h1>MEME <span>STUDIO</span></h1>
+  <p data-t="lead">190+ classic templates, MAIGA pixel scenes or your own photo. Type, drag, add stickers, download. Free, no account, nothing is uploaded.</p>
+</header>
+
+<div class="studio">
+  <section class="card stage" aria-labelledby="pvT">
+    <h2 id="pvT" class="sr">Preview</h2>
+    <div class="cvwrap"><canvas id="cv" width="800" height="800" role="img" aria-label="Your meme preview"></canvas></div>
+    <p class="hint" data-t="hint">Tip: drag text and stickers on the picture to move them.</p>
+    <div class="row" style="justify-content:center">
+      <button type="button" class="btn gold" id="dl">&#11015; <span data-t="dl">DOWNLOAD PNG</span></button>
+      <button type="button" class="btn" id="share" hidden>&#128228; <span data-t="share">SHARE</span></button>
+      <button type="button" class="btn" id="copy" hidden>&#128203; <span data-t="copy">COPY IMAGE</span></button>
+    </div>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+  </section>
+
+  <section class="card" aria-labelledby="edT">
+    <h2 id="edT" data-t="edit">Edit</h2>
+    <div class="note" id="tplName"></div>
+    <h3 data-t="text">Text</h3>
+    <div class="lines" id="lines"></div>
+    <div class="row">
+      <button type="button" class="btn" id="exBtn">&#128161; <span data-t="ex">EXAMPLE</span></button>
+      <button type="button" class="btn" id="jokeBtn">&#127922; <span data-t="joke">CRYPTO JOKE</span></button>
+      <button type="button" class="btn" id="addTxt">+ <span data-t="addtxt">TEXT BOX</span></button>
+    </div>
+    <h3 data-t="style">Style</h3>
+    <div class="opts">
+      <div><label for="col" data-t="color">Text color</label><select id="col"><option value="#ffffff">White</option><option value="#ffd800">Gold</option><option value="#000000">Black</option><option value="#14F195">Green</option><option value="#ff4b61">Pink</option></select></div>
+      <div><label for="sz" data-t="size">Text size</label><input type="range" id="sz" min="60" max="140" value="100"></div>
+    </div>
+    <label class="chk"><input type="checkbox" id="caps" checked> <span data-t="caps">ALL CAPS</span></label>
+    <label class="chk"><input type="checkbox" id="wm" checked> <span data-t="wm">Small "geopolcoins.xyz" in the corner</span></label>
+    <h3 data-t="stickers">Pixel stickers</h3>
+    <div class="sticks" id="sticks"></div>
+    <div class="row">
+      <button type="button" class="btn" id="bigger">&#10133; <span data-t="bigger">BIGGER</span></button>
+      <button type="button" class="btn" id="smaller">&#10134; <span data-t="smaller">SMALLER</span></button>
+      <button type="button" class="btn pink" id="del">&#128465; <span data-t="del">REMOVE SELECTED</span></button>
+    </div>
+    <h3 data-t="own">Your own picture</h3>
+    <label class="btn" for="file" style="display:inline-flex;margin:0">&#128247; <span data-t="upload">USE MY PHOTO</span></label>
+    <input type="file" id="file" accept="image/*" class="sr">
+    <p class="note" data-t="ownnote">Your photo stays on your device. Only use pictures you are allowed to use.</p>
+  </section>
+</div>
+
+<section class="card" style="margin-top:16px" aria-labelledby="gT">
+  <h2 id="gT" data-t="pick">Pick a template</h2>
+  <div class="tabs" role="group" aria-label="Template sets">
+    <button type="button" id="tabMaiga" aria-pressed="true" data-t="tmaiga">MAIGA PIXEL</button>
+    <button type="button" id="tabMemes" aria-pressed="false" data-t="tmemes">CLASSIC MEMES (190+)</button>
+  </div>
+  <label for="q" class="sr">Search templates</label>
+  <input type="search" id="q" placeholder="Search: drake, doge, cat, fine..." hidden>
+  <div class="gal" id="gal"></div>
+  <div class="more"><button type="button" class="btn" id="moreBtn" hidden data-t="more">SHOW MORE</button></div>
+</section>
+
+<section class="card" style="margin-top:16px" aria-labelledby="rT">
+  <h2 id="rT" data-t="rules">Meme rules</h2>
+  <ul class="note" style="margin:0;padding-left:20px;font-size:14px">
+    <li data-t="r1">Make people laugh, not lose money: no price promises, no fake giveaways, no "buy now".</li>
+    <li data-t="r2">Do not make fake screenshots or put words in real people's mouths.</li>
+    <li data-t="r3">Classic templates are well-known internet memes. The pictures belong to their owners.</li>
+    <li data-t="r4">Everything happens in your browser. We do not see or keep your memes.</li>
+  </ul>
+  <p class="note" style="margin-top:10px">Classic templates and their text layout come from <a href="https://github.com/jacebrowning/memegen" target="_blank" rel="noopener noreferrer">memegen</a> by Jace Browning (MIT license), served by memegen.link. Entertainment only. NFA. DYOR.</p>
+</section>
+
+<footer>© 2026 $MAIGA • <a href="/">HOME</a> • <a href="factory.html">MEME FACTORY</a> • <a href="garage.html">BOT GARAGE</a> • <a href="chain.html">MINI-CHAIN</a> • <a href="app.html">APP</a> • <a href="/#terms">TERMS</a></footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+var cv=$('cv'),cx=cv.getContext('2d');
+var FONT='Impact,Haettenschweiler,"Arial Narrow Bold","Arial Black",sans-serif';
+var MG='https://api.memegen.link/images/';
+
+/* ---------- languages ---------- */
+var lang=(navigator.language||'en').slice(0,2);try{var sl=localStorage.getItem('maiga_lang');if(sl)lang=sl;}catch(e){}
+var TR={
+ nl:{skip:'Ga naar inhoud',back:'← geopolcoins.xyz',app:'$MAIGA-app',lead:'190+ klassieke sjablonen, MAIGA-pixelscènes of je eigen foto. Typ, sleep, plak stickers, download. Gratis, zonder account, er wordt niets geüpload.',hint:'Tip: sleep tekst en stickers op de afbeelding om ze te verplaatsen.',dl:'DOWNLOAD PNG',share:'DELEN',copy:'KOPIEER AFBEELDING',edit:'Bewerken',text:'Tekst',ex:'VOORBEELD',joke:'CRYPTO-GRAP',addtxt:'TEKSTVAK',style:'Stijl',color:'Tekstkleur',size:'Tekstgrootte',caps:'HOOFDLETTERS',wm:'Klein "geopolcoins.xyz" in de hoek',stickers:'Pixelstickers',bigger:'GROTER',smaller:'KLEINER',del:'VERWIJDER GESELECTEERD',own:'Je eigen foto',upload:'GEBRUIK MIJN FOTO',ownnote:'Je foto blijft op je toestel. Gebruik alleen afbeeldingen die je mag gebruiken.',pick:'Kies een sjabloon',tmaiga:'MAIGA PIXEL',tmemes:'KLASSIEKE MEMES (190+)',more:'TOON MEER',rules:'Meme-regels',r1:'Laat mensen lachen, niet geld verliezen: geen koersbeloftes, geen nep-giveaways, geen "koop nu".',r2:'Maak geen valse screenshots en leg geen woorden in de mond van echte mensen.',r3:'Klassieke sjablonen zijn bekende internetmemes. De afbeeldingen zijn van hun eigenaars.',r4:'Alles gebeurt in je browser. Wij zien of bewaren je memes niet.'},
+ fr:{skip:'Aller au contenu',back:'← geopolcoins.xyz',app:'Appli $MAIGA',lead:'190+ modèles classiques, scènes pixel MAIGA ou ta propre photo. Écris, déplace, ajoute des stickers, télécharge. Gratuit, sans compte, rien n\'est envoyé.',hint:'Astuce : fais glisser le texte et les stickers sur l\'image pour les déplacer.',dl:'TÉLÉCHARGER PNG',share:'PARTAGER',copy:'COPIER L\'IMAGE',edit:'Modifier',text:'Texte',ex:'EXEMPLE',joke:'BLAGUE CRYPTO',addtxt:'ZONE DE TEXTE',style:'Style',color:'Couleur du texte',size:'Taille du texte',caps:'MAJUSCULES',wm:'Petit "geopolcoins.xyz" dans le coin',stickers:'Stickers pixel',bigger:'PLUS GRAND',smaller:'PLUS PETIT',del:'SUPPRIMER LA SÉLECTION',own:'Ta propre image',upload:'UTILISER MA PHOTO',ownnote:'Ta photo reste sur ton appareil. Utilise seulement des images que tu as le droit d\'utiliser.',pick:'Choisis un modèle',tmaiga:'MAIGA PIXEL',tmemes:'MÈMES CLASSIQUES (190+)',more:'VOIR PLUS',rules:'Règles des mèmes',r1:'Fais rire, pas perdre de l\'argent : pas de promesse de prix, pas de faux giveaways, pas de "achète maintenant".',r2:'Pas de fausses captures d\'écran, ne fais pas parler de vraies personnes.',r3:'Les modèles classiques sont des mèmes connus d\'internet. Les images appartiennent à leurs propriétaires.',r4:'Tout se passe dans ton navigateur. Nous ne voyons ni ne gardons tes mèmes.'}
+};
+var MSG={
+ en:{ready:'Meme ready. Saved as maiga-meme.png',loading:'Loading the template…',fail:'This template could not be loaded. Try another one or use your own photo.',copied:'Image copied.',nocopy:'Copy is not supported here. Use download.',line:'Line',sel:'Tap a sticker or text box first.',tainted:'This picture cannot be saved from here. Try another template.'},
+ nl:{ready:'Meme klaar. Opgeslagen als maiga-meme.png',loading:'Sjabloon laden…',fail:'Dit sjabloon kon niet laden. Kies een ander of gebruik je eigen foto.',copied:'Afbeelding gekopieerd.',nocopy:'Kopiëren lukt hier niet. Gebruik downloaden.',line:'Regel',sel:'Tik eerst op een sticker of tekstvak.',tainted:'Deze afbeelding kan hier niet opgeslagen worden. Kies een ander sjabloon.'},
+ fr:{ready:'Mème prêt. Enregistré sous maiga-meme.png',loading:'Chargement du modèle…',fail:'Ce modèle n\'a pas pu être chargé. Essaie un autre ou ta propre photo.',copied:'Image copiée.',nocopy:'La copie n\'est pas possible ici. Utilise le téléchargement.',line:'Ligne',sel:'Touche d\'abord un sticker ou une zone de texte.',tainted:'Cette image ne peut pas être enregistrée ici. Essaie un autre modèle.'}
+};
+if(!MSG[lang])lang='en';
+var M=MSG[lang];
+if(TR[lang]){document.documentElement.lang=lang;document.querySelectorAll('[data-t]').forEach(function(e){var v=TR[lang][e.getAttribute('data-t')];if(v)e.textContent=v;});}
+function say(t,c){var e=$('msg');e.textContent=t||'';e.className='msg'+(c?' '+c:'');}
+
+/* ---------- MAIGA pixel templates (own art) ---------- */
+var PIX=[
+ {id:'mw1',n:'Checking the CA',g:['#1e4c96','#0a1730'],e:['When the CA looks different','Check it. Letter by letter.']},
+ {id:'mw2',n:'Just one game',g:['#a8283a','#3a0d17'],e:['Me: just one game','3 hours later']},
+ {id:'mw3',n:'3am coin idea',g:['#2b1d5c','#0b0820'],e:['Coin idea at 3am','Factory, do your thing']},
+ {id:'mw4',n:'Trust me bro',g:['#0f6b4f','#05261c'],e:['"Trust me bro"','I said Solscan']},
+ {id:'mw5',n:'Trending is not a tip',g:['#8a5a00','#2a1a00'],e:['Trending is not a tip','DYOR, frens']},
+ {id:'mw6',n:'Seed phrase? Nobody.',g:['#3b3b55','#101018'],e:['Who asked for my seed phrase?','Nobody. Ever.']}
+];
+var JOKES=[['Me checking the contract','letter by letter'],['Read the whitepaper','it was a meme'],['Dev: trust me','Me: Solscan'],['Stranger in my DMs wants my seed phrase','Blocked. Reported.'],['Chart goes up','I did not buy'],['Chart goes down','I bought'],['Not financial advice','just vibes'],['When the bot works','on the first try'],['Me after one game','3 hours later'],['My portfolio','entertainment only'],['DYOR','Do Your Own Reading'],['Coin idea at 3am','Factory, do your thing'],['"Guaranteed 100x"','Scam detected'],['Paper hands','pixel hands'],['Built a blockchain','in my browser']];
+
+/* ---------- state ---------- */
+var S={tpl:null,img:null,pixel:false,grad:null,boxes:[],stickers:[],sel:null,W:800,H:800};
+var IMGS={};
+function loadImg(src,cors){return new Promise(function(res,rej){var i=new Image();if(cors)i.crossOrigin='anonymous';i.onload=function(){res(i);};i.onerror=rej;i.src=src;});}
+
+/* ---------- text boxes ---------- */
+function setBoxes(list,texts){
+  S.boxes=list.map(function(b,i){return {x:b[0],y:b[1],w:b[2],h:b[3],c:b[4]||null,t:(texts&&texts[i])||''};});
+  buildLines();
+}
+function buildLines(){
+  var box=$('lines');while(box.firstChild)box.removeChild(box.firstChild);
+  S.boxes.forEach(function(b,i){
+    var l=document.createElement('label');l.textContent=M.line+' '+(i+1);l.htmlFor='ln'+i;
+    var inp=document.createElement('input');inp.type='text';inp.id='ln'+i;inp.maxLength=120;inp.value=b.t;inp.autocomplete='off';
+    inp.addEventListener('input',function(){b.t=inp.value;draw();});
+    inp.addEventListener('focus',function(){S.sel={k:'b',i:i};draw();});
+    box.appendChild(l);box.appendChild(inp);
+  });
+}
+function wrap(text,maxW){
+  var words=text.split(/\s+/).filter(Boolean),lines=[],cur='';
+  words.forEach(function(w){var t=cur?cur+' '+w:w;if(cx.measureText(t).width>maxW&&cur){lines.push(cur);cur=w;}else cur=t;});
+  if(cur)lines.push(cur);return lines;
+}
+function drawText(b){
+  var t=b.t.trim();if(!t)return;if($('caps').checked)t=t.toUpperCase();
+  var W=S.W,H=S.H,bx=b.x*W,by=b.y*H,bw=b.w*W,bh=b.h*H,pad=bw*.03;
+  var scale=$('sz').value/100,size=Math.min(bh*.9,W*.12)*scale,lines,lh;
+  for(;size>10;size-=2){cx.font='900 '+size+'px '+FONT;lines=wrap(t,bw-pad*2);lh=size*1.08;var widest=Math.max.apply(null,lines.map(function(l){return cx.measureText(l).width;}));if(lines.length*lh<=bh*scale+2&&widest<=bw-pad*2)break;}
+  var col=b.c||$('col').value;
+  cx.textAlign='center';cx.textBaseline='middle';cx.lineJoin='round';cx.miterLimit=2;
+  cx.lineWidth=Math.max(2,size/7);cx.strokeStyle=(col==='#000000'||col==='black')?'#fff':'#000';cx.fillStyle=col==='black'?'#000':col;
+  var top=by+bh/2-(lines.length-1)*lh/2;
+  lines.forEach(function(l,i){cx.strokeText(l,bx+bw/2,top+i*lh);cx.fillText(l,bx+bw/2,top+i*lh);});
+}
+
+/* ---------- stickers ---------- */
+var STK=[{k:'pxjp',a:'Jean-Phil'},{k:'pxeg',a:"Cap'n Eagle"},{k:'pxmint',a:'Mintje'},{k:'bolt',a:'Bolt',src:'bolt.png'},{k:'shades',a:'Pixel sunglasses'},{k:'crown',a:'Pixel crown'},{k:'logo',a:'MAIGA logo',src:'logo.png',smooth:true},{k:'t:$MAIGA',a:'$MAIGA'},{k:'t:NFA',a:'NFA'},{k:'t:DYOR',a:'DYOR'},{k:'t:LOL',a:'LOL'},{k:'t:WAGMI',a:'WAGMI'}];
+function stickerSrc(s){return s.src||('meme/'+s.k+'.png');}
+function buildStickers(){
+  var box=$('sticks');
+  STK.forEach(function(s){
+    var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Add sticker: '+s.a);
+    if(s.k.indexOf('t:')===0){b.textContent=s.k.slice(2);}else{var i=document.createElement('img');i.src=stickerSrc(s);i.alt='';b.appendChild(i);}
+    b.addEventListener('click',function(){addSticker(s);});box.appendChild(b);
+  });
+}
+function addSticker(s){
+  var st={k:s.k,x:.5+(Math.random()-.5)*.3,y:.5+(Math.random()-.5)*.3,s:s.k.indexOf('t:')===0?.12:.22,smooth:!!s.smooth};
+  if(s.k.indexOf('t:')===0){S.stickers.push(st);S.sel={k:'s',i:S.stickers.length-1};draw();return;}
+  var src=stickerSrc(s);
+  (IMGS[src]?Promise.resolve(IMGS[src]):loadImg(src).then(function(i){IMGS[src]=i;return i;})).then(function(i){st.img=i;S.stickers.push(st);S.sel={k:'s',i:S.stickers.length-1};draw();});
+}
+function stickerRect(st){
+  var W=S.W,w=st.s*W,h;
+  if(st.img){h=w*st.img.naturalHeight/st.img.naturalWidth;}
+  else{cx.font='900 '+(w*.5)+'px '+FONT;var tw=cx.measureText(st.k.slice(2)).width;w=tw+w*.4;h=st.s*W*.75;}
+  return {x:st.x*W-w/2,y:st.y*S.H-h/2,w:w,h:h};
+}
+function drawSticker(st){
+  var r=stickerRect(st);
+  if(st.img){cx.imageSmoothingEnabled=!!st.smooth;cx.drawImage(st.img,r.x,r.y,r.w,r.h);cx.imageSmoothingEnabled=true;return;}
+  var fs=st.s*S.W*.5;cx.save();cx.translate(r.x+r.w/2,r.y+r.h/2);cx.rotate(-.06);
+  cx.fillStyle='#000';cx.fillRect(-r.w/2+6,-r.h/2+6,r.w,r.h);
+  cx.fillStyle='#ffd800';cx.fillRect(-r.w/2,-r.h/2,r.w,r.h);cx.lineWidth=Math.max(3,fs/10);cx.strokeStyle='#000';cx.strokeRect(-r.w/2,-r.h/2,r.w,r.h);
+  cx.fillStyle='#111';cx.font='900 '+fs+'px '+FONT;cx.textAlign='center';cx.textBaseline='middle';cx.fillText(st.k.slice(2),0,2);cx.restore();
+}
+
+/* ---------- draw ---------- */
+function draw(forExport){
+  var W=S.W,H=S.H;cx.clearRect(0,0,W,H);
+  if(S.pixel){
+    var g=cx.createLinearGradient(0,0,W*.4,H);g.addColorStop(0,S.grad[0]);g.addColorStop(1,S.grad[1]);cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    if(S.img){var k=Math.floor(Math.min(W*.86/S.img.naturalWidth,H*.6/S.img.naturalHeight));var iw=S.img.naturalWidth*k,ih=S.img.naturalHeight*k;cx.imageSmoothingEnabled=false;cx.drawImage(S.img,(W-iw)/2,H*.2+(H*.62-ih)/2,iw,ih);cx.imageSmoothingEnabled=true;}
+  }else if(S.img){cx.drawImage(S.img,0,0,W,H);}
+  else{cx.fillStyle='#0b1a35';cx.fillRect(0,0,W,H);}
+  S.boxes.forEach(drawText);
+  S.stickers.forEach(drawSticker);
+  if($('wm').checked){var f=Math.max(12,W*.022);cx.font='700 '+f+'px system-ui,sans-serif';cx.textAlign='right';cx.textBaseline='bottom';cx.lineWidth=3;cx.strokeStyle='rgba(0,0,0,.6)';cx.fillStyle='rgba(255,255,255,.85)';cx.strokeText('geopolcoins.xyz',W-f*.5,H-f*.4);cx.fillText('geopolcoins.xyz',W-f*.5,H-f*.4);}
+  if(!forExport&&S.sel){var r=selRect();if(r){cx.save();cx.setLineDash([10,6]);cx.lineWidth=3;cx.strokeStyle='#38f2ff';cx.strokeRect(r.x,r.y,r.w,r.h);cx.restore();}}
+}
+function selRect(){
+  if(!S.sel)return null;
+  if(S.sel.k==='s'){var st=S.stickers[S.sel.i];return st?stickerRect(st):null;}
+  var b=S.boxes[S.sel.i];return b?{x:b.x*S.W,y:b.y*S.H,w:b.w*S.W,h:b.h*S.H}:null;
+}
+
+/* ---------- choose template ---------- */
+function setSize(w,h){var max=900,k=Math.min(1,max/Math.max(w,h));S.W=Math.round(w*k);S.H=Math.round(h*k);cv.width=S.W;cv.height=S.H;}
+function choosePixel(p,texts){
+  S.pixel=true;S.grad=p.g;S.tpl=p;S.stickers=[];S.sel=null;setSize(800,800);
+  $('tplName').textContent='MAIGA: '+p.n;
+  setBoxes([[0,.02,1,.18],[0,.82,1,.16]],texts||p.e);
+  var src='meme/'+p.id+'.png';
+  loadImg(src).then(function(i){S.img=i;draw();say('');});draw();
+}
+function chooseMeme(t,texts){
+  S.pixel=false;S.tpl=t;S.sel=null;S.img=null;$('tplName').textContent=t.n;
+  say(M.loading);
+  loadImg(MG+t.id+'.jpg?width=900',true).then(function(i){
+    S.img=i;setSize(i.naturalWidth,i.naturalHeight);setBoxes(t.b.length?t.b:[[0,0,1,.2],[0,.8,1,.2]],texts||[]);draw();say('');
+  }).catch(function(){say(M.fail,'bad');});
+}
+function chooseOwn(file){
+  var u=URL.createObjectURL(file);
+  loadImg(u).then(function(i){S.pixel=false;S.img=i;S.tpl={n:'My photo',e:[]};setSize(i.naturalWidth,i.naturalHeight);
+    var old=S.boxes.map(function(b){return b.t;});setBoxes([[0,.02,1,.2],[0,.78,1,.2]],old);$('tplName').textContent='My photo';draw();say('');})
+  .catch(function(){say(M.fail,'bad');});
+}
+
+/* ---------- gallery ---------- */
+var ALL=[],shown=0,filtered=[],mode='maiga';
+function card(label,src,px,onPick){
+  var b=document.createElement('button');b.type='button';
+  var i=document.createElement('img');i.loading='lazy';i.alt='';i.src=src;if(px)i.className='px';
+  var s=document.createElement('span');s.textContent=label;b.appendChild(i);b.appendChild(s);
+  b.addEventListener('click',function(){document.querySelectorAll('.gal button.on').forEach(function(x){x.classList.remove('on');});b.classList.add('on');onPick();$('cv').scrollIntoView({behavior:'smooth',block:'center'});});
+  return b;
+}
+function renderGal(reset){
+  var g=$('gal');if(reset){while(g.firstChild)g.removeChild(g.firstChild);shown=0;}
+  if(mode==='maiga'){PIX.forEach(function(p){g.appendChild(card(p.n,'meme/'+p.id+'.png',true,function(){choosePixel(p);}));});$('moreBtn').hidden=true;return;}
+  var next=filtered.slice(shown,shown+24);
+  next.forEach(function(t){g.appendChild(card(t.n,MG+t.id+'.jpg?width=200',false,function(){chooseMeme(t);}));});
+  shown+=next.length;$('moreBtn').hidden=shown>=filtered.length;
+}
+function filter(){
+  var q=$('q').value.toLowerCase().trim();
+  filtered=!q?ALL:ALL.filter(function(t){return (t.n+' '+t.id+' '+t.k.join(' ')).toLowerCase().indexOf(q)>=0;});
+  renderGal(true);
+}
+function setTab(m){mode=m;$('tabMaiga').setAttribute('aria-pressed',m==='maiga');$('tabMemes').setAttribute('aria-pressed',m==='memes');$('q').hidden=m!=='memes';
+  if(m==='memes'&&!ALL.length){fetch('meme/templates.json').then(function(r){return r.json();}).then(function(d){ALL=d;filter();}).catch(function(){say(M.fail,'bad');});}
+  else if(m==='memes')filter();else renderGal(true);}
+$('tabMaiga').addEventListener('click',function(){setTab('maiga');});
+$('tabMemes').addEventListener('click',function(){setTab('memes');});
+$('q').addEventListener('input',filter);
+$('moreBtn').addEventListener('click',function(){renderGal(false);});
+
+/* ---------- drag ---------- */
+function pt(e){var r=cv.getBoundingClientRect();return {x:(e.clientX-r.left)*S.W/r.width,y:(e.clientY-r.top)*S.H/r.height};}
+function hit(p){
+  for(var i=S.stickers.length-1;i>=0;i--){var r=stickerRect(S.stickers[i]);if(p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h)return {k:'s',i:i};}
+  for(var j=S.boxes.length-1;j>=0;j--){var b=S.boxes[j];if(p.x>=b.x*S.W&&p.x<=(b.x+b.w)*S.W&&p.y>=b.y*S.H&&p.y<=(b.y+b.h)*S.H)return {k:'b',i:j};}
+  return null;
+}
+var drag=null;
+cv.addEventListener('pointerdown',function(e){var p=pt(e),h=hit(p);S.sel=h;if(h){var o=h.k==='s'?S.stickers[h.i]:S.boxes[h.i];drag={o:o,p:p,x:o.x,y:o.y,k:h.k};cv.setPointerCapture(e.pointerId);cv.classList.add('drag');}else drag=null;draw();});
+cv.addEventListener('pointermove',function(e){if(!drag)return;var p=pt(e);drag.o.x=drag.x+(p.x-drag.p.x)/S.W;drag.o.y=drag.y+(p.y-drag.p.y)/S.H;draw();});
+function endDrag(){drag=null;cv.classList.remove('drag');if(S.sel&&S.sel.k==='b'){var inp=$('ln'+S.sel.i);if(inp)inp.focus({preventScroll:true});}}
+cv.addEventListener('pointerup',endDrag);cv.addEventListener('pointercancel',endDrag);
+
+/* ---------- controls ---------- */
+['col','sz','caps','wm'].forEach(function(id){$(id).addEventListener('input',function(){draw();});});
+$('exBtn').addEventListener('click',function(){var e=(S.tpl&&S.tpl.e)||[];S.boxes.forEach(function(b,i){b.t=e[i]||'';});buildLines();draw();});
+$('jokeBtn').addEventListener('click',function(){var j=JOKES[Math.floor(Math.random()*JOKES.length)];var n=S.boxes.length;S.boxes.forEach(function(b,i){b.t=i===0?j[0]:(i===n-1?j[1]:'');});buildLines();draw();});
+$('addTxt').addEventListener('click',function(){if(S.boxes.length>=8)return;S.boxes.push({x:.1,y:.4,w:.8,h:.18,c:null,t:''});buildLines();S.sel={k:'b',i:S.boxes.length-1};draw();var inp=$('ln'+(S.boxes.length-1));if(inp)inp.focus();});
+function resizeSel(f){if(!S.sel){say(M.sel,'bad');return;}if(S.sel.k==='s'){var st=S.stickers[S.sel.i];st.s=Math.max(.05,Math.min(.9,st.s*f));}else{var b=S.boxes[S.sel.i];var nw=Math.max(.1,Math.min(1,b.w*f)),nh=Math.max(.06,Math.min(.6,b.h*f));b.x+=(b.w-nw)/2;b.y+=(b.h-nh)/2;b.w=nw;b.h=nh;}draw();}
+$('bigger').addEventListener('click',function(){resizeSel(1.15);});
+$('smaller').addEventListener('click',function(){resizeSel(1/1.15);});
+$('del').addEventListener('click',function(){if(!S.sel){say(M.sel,'bad');return;}if(S.sel.k==='s')S.stickers.splice(S.sel.i,1);else{S.boxes.splice(S.sel.i,1);buildLines();}S.sel=null;draw();});
+document.addEventListener('keydown',function(e){if((e.key==='Delete'||e.key==='Backspace')&&S.sel&&S.sel.k==='s'&&document.activeElement===document.body){S.stickers.splice(S.sel.i,1);S.sel=null;draw();}});
+$('file').addEventListener('change',function(){var f=this.files&&this.files[0];if(f&&/^image\//.test(f.type))chooseOwn(f);this.value='';});
+
+/* ---------- export ---------- */
+function blob(){return new Promise(function(res,rej){draw(true);try{cv.toBlob(function(b){draw();b?res(b):rej();},'image/png');}catch(e){draw();rej(e);}});}
+$('dl').addEventListener('click',function(){blob().then(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='maiga-meme.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u);},2000);say(M.ready,'ok');}).catch(function(){say(M.tainted,'bad');});});
+if(navigator.canShare&&window.File){try{if(navigator.canShare({files:[new File(['x'],'t.png',{type:'image/png'})]}))$('share').hidden=false;}catch(e){}}
+$('share').addEventListener('click',function(){blob().then(function(b){return navigator.share({files:[new File([b],'maiga-meme.png',{type:'image/png'})],title:'My meme',text:'Made with MAIGA Meme Studio geopolcoins.xyz/meme.html'});}).catch(function(e){if(e&&e.name==='AbortError')return;say(M.tainted,'bad');});});
+if(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write)$('copy').hidden=false;
+$('copy').addEventListener('click',function(){navigator.clipboard.write([new ClipboardItem({'image/png':blob()})]).then(function(){say(M.copied,'ok');}).catch(function(){say(M.nocopy,'bad');});});
+
+/* ---------- start (supports links from the Factory: #tpl=drake&top=..&bottom=..) ---------- */
+buildStickers();
+var h=new URLSearchParams(location.hash.slice(1)),ht=[h.get('top')||'',h.get('bottom')||''].map(function(s){return s.slice(0,120);});
+var htpl=(h.get('tpl')||'').replace(/[^a-z0-9-]/gi,'');
+if(htpl&&htpl!=='custom'&&!/^mw\d$/.test(htpl)){
+  setTab('memes');
+  fetch('meme/templates.json').then(function(r){return r.json();}).then(function(d){ALL=d;filter();var t=d.filter(function(x){return x.id===htpl;})[0];if(t)chooseMeme(t,ht);else choosePixel(PIX[0],ht);}).catch(function(){choosePixel(PIX[0],ht);});
+}else{
+  var p0=PIX.filter(function(p){return p.id===htpl;})[0]||PIX[Math.floor(Math.random()*PIX.length)];
+  choosePixel(p0,(ht[0]||ht[1])?ht:null);setTab('maiga');
+}
+})();
+</script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'factory',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+<script src="pwa.js" defer></script>
+<script src="guide.js" defer></script>
+</body></html>

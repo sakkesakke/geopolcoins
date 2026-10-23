@@ -44,6 +44,11 @@
         nl: 'Typ één woord en de Meme Factory maakt een launch pack: naam, ticker, meme, een veiligheidscheck en post-ideeën. Voor de fun en om te plannen; er wordt niets gelanceerd of gepost.',
         fr: 'Tapez un mot et la Meme Factory prépare un pack de lancement : nom, ticker, meme, un contrôle de sécurité et des idées de posts. Pour le fun et la préparation ; rien n\'est lancé ni publié.' },
       [['factory.html', { en: 'Open the Factory', nl: 'Open de Factory', fr: 'Ouvrir la Factory' }]]],
+    ['meme', 'meme memes generator maker studio template sjabloon modele image picture foto photo sticker download telecharger', { en: 'Make a meme', nl: 'Een meme maken', fr: 'Faire un mème' },
+      { en: 'The Meme Studio has 190+ classic templates, MAIGA pixel scenes and your own photo. Type your text, drag it, add pixel stickers and download a PNG. It all happens in your browser.',
+        nl: 'De Meme Studio heeft 190+ klassieke sjablonen, MAIGA-pixelscènes en je eigen foto. Typ je tekst, sleep hem, plak pixelstickers en download een PNG. Alles gebeurt in je browser.',
+        fr: 'Le Meme Studio propose 190+ modèles classiques, des scènes pixel MAIGA et ta propre photo. Écris ton texte, déplace-le, ajoute des stickers pixel et télécharge un PNG. Tout se passe dans ton navigateur.' },
+      [['meme.html', { en: 'Open the Meme Studio', nl: 'Open de Meme Studio', fr: 'Ouvrir le Meme Studio' }]]],
     ['check', 'token checkup check scam rug safe veilig sur arnaque oplichting red flag contract address ca', { en: 'Check a token', nl: 'Een token checken', fr: 'Vérifier un token' },
       { en: 'Paste a Solana token address in the Token Checkup. It reads public data and lists what looks fine, risky or unknown. "Nothing alarming" never means safe. Always do your own research.',
         nl: 'Plak een Solana-tokenadres in de Token Checkup. Hij leest openbare gegevens en toont wat goed, riskant of onbekend is. "Niets alarmerends" betekent nooit veilig. Doe altijd je eigen onderzoek.',
@@ -75,7 +80,7 @@
         fr: 'Essayez la Mini-Chain : tapez des données, minez des blocs et voyez pourquoi une seule lettre modifiée casse toute la chaîne. Tout se passe dans votre navigateur.' },
       [['chain.html', { en: 'Open the Mini-Chain', nl: 'Open de Mini-Chain', fr: 'Ouvrir la Mini-Chain' }]]]
   ];
-  var QUICK = ['bot', 'free', 'key', 'run', 'check', 'custom'];
+  var QUICK = ['bot', 'meme', 'free', 'key', 'run', 'check', 'custom'];
 
   function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9: ]+/g, ' '); }
   function match(q) {
@@ -86,6 +91,7 @@
       words.forEach(function (w) { if (kw.indexOf(' ' + w + ' ') >= 0) s += 2; else if (w.length > 3 && kw.indexOf(w) >= 0) s += 1; });
       if (k[0] === 'safe' && /\b(seed|phrase|private|password|wachtwoord|passe|scam|scammer|oplichter|arnaque|hack|phishing|dm)\b/.test(norm(q))) s += 3;  // safety questions win
       if (k[0] === 'custom' && /\b(zaak|bedrijf|business|entreprise|kapsalon|salon|restaurant|horeca|winkel|shop|boutique|makelaar|agence|klanten|clients|customers)\b/.test(norm(q))) s += 3;
+      if (k[0] === 'meme' && /\b(meme|memes|meme's|template|sjabloon|modele|sticker|stickers)\b/.test(norm(q)) && !/\b(launch|lancer|lancement|ticker|pack|coin|token)\b/.test(norm(q))) s += 2;
       if (k[0] === 'free' && /\b(free|gratis|gratuit|gratuite|goedkoop|cheap)\b/.test(norm(q))) s += 3;
       if (s > score) { score = s; best = k; }
     });

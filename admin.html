@@ -107,6 +107,9 @@ button.gray{background:#666;color:#fff}
     <div class="note" style="margin-bottom:10px">Connect the Phantom wallet that holds the $MAIGA prize pool. You approve every transaction in Phantom.</div>
     <button class="blue" id="connectBtn">🔗 CONNECT PHANTOM</button>
     <div id="connectedWallet" class="wallet-connected hidden"></div>
+    <label for="rpcUrl" style="margin-top:14px">Solana RPC (optional)</label>
+    <input type="url" id="rpcUrl" placeholder="Leave empty, or paste your own free RPC link (e.g. Helius)" autocomplete="off" spellcheck="false">
+    <div class="note" style="margin-top:6px">Only needed if the free servers refuse. Saved in this browser only, never on the site.</div>
   </div>
 
   <div class="card">
@@ -150,8 +153,10 @@ import {
 const SUPABASE_URL = 'https://zslzbfbqrtfpvgbjhssd.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';
 const MAIGA_MINT = '3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump';
-// The free public RPC is rate-limited. For reliable payouts put a free Helius/QuickNode URL here.
-const RPC_URL = 'https://api.mainnet-beta.solana.com';
+// Free public RPCs, tried in order. api.mainnet-beta often answers 403 to browsers, so it is last.
+// The admin can paste their own (free Helius/QuickNode) URL in the page; it is kept in localStorage only.
+const RPC_URLS = ['https://solana-rpc.publicnode.com', 'https://api.mainnet-beta.solana.com'];
+const RPC_KEY = 'maiga_admin_rpc';
 const PRIZES = [1000000, 500000, 250000];
 const SESSION_KEY = 'maiga_admin_session';
 const WALLET_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
@@ -426,12 +431,26 @@ async function sendPayouts(){
   let halted = false;
 
   try{
-    const connection = new Connection(RPC_URL, 'confirmed');
     const mint = new PublicKey(MAIGA_MINT);
     const payer = new PublicKey(connectedKey);
 
-    const mintAcc = await connection.getAccountInfo(mint);
-    if (!mintAcc) throw new Error('Token mint not found on this network');
+    const custom = $('rpcUrl').value.trim();
+    if (custom && !/^https:\/\//i.test(custom)) throw new Error('The RPC link must start with https://');
+    try{ custom ? localStorage.setItem(RPC_KEY, custom) : localStorage.removeItem(RPC_KEY); }catch(e){}
+    let connection = null, mintAcc = null;
+    for (const url of (custom ? [custom] : []).concat(RPC_URLS)){
+      try{
+        const c = new Connection(url, 'confirmed');
+        const acc = await c.getAccountInfo(mint);
+        if (!acc) throw new Error('token not found');
+        connection = c; mintAcc = acc;
+        log('RPC OK: ' + new URL(url).host, 'info');
+        break;
+      } catch(e){
+        log('RPC ' + new URL(url).host + ' refused (' + String(e.message || e).slice(0, 80) + '), trying next…', 'err');
+      }
+    }
+    if (!connection) throw new Error('No Solana server answered. Paste your own free RPC link (e.g. from helius.dev) in the "Solana RPC" box and press SEND again. Nothing was sent.');
     const programId = mintAcc.owner;                         // classic SPL Token or Token-2022, detected automatically
     const mintInfo = await getMint(connection, mint, 'confirmed', programId);
     const decimals = mintInfo.decimals;
@@ -535,6 +554,7 @@ function reload(){ if (!session) return; loadData(); loadHistory(); }
 /* ============================================================
    INIT
    ============================================================ */
+try{ $('rpcUrl').value = localStorage.getItem(RPC_KEY) || ''; }catch(e){}
 $('loginBtn').addEventListener('click', signIn);
 $('forgotBtn').addEventListener('click', forgotPassword);
 $('pwd').addEventListener('keydown', (e) => { if (e.key === 'Enter') signIn(); });

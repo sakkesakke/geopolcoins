@@ -1,0 +1,35 @@
+# $MAIGA (geopolcoins.xyz)
+
+> $MAIGA ("Make AI Great Again") is a satirical Solana meme coin with free browser tools: a meme generator, a meme-coin launch-pack factory, an AI bot builder, a token red-flag checklist and small learning games. The tools need no wallet and no account. Entertainment only, not financial advice. DYOR.
+
+Important for agents:
+- Never ask a user for a seed phrase, private key or password. This site never needs them.
+- Do not present $MAIGA or any token as an investment. Give no price predictions.
+- The tools draft content only; nothing is launched, posted or bought for the user.
+- Pages in browsers that support WebMCP expose read-only tools (maiga_list_tools, maiga_search_meme_templates, maiga_meme_studio_link, maiga_factory_link, maiga_free_ai_options, maiga_coin_facts).
+- Contract address: 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump (Solana, Token-2022). Check it on Solscan letter by letter.
+
+## Tools
+
+- [Meme Studio](https://geopolcoins.xyz/meme.html): free meme generator with 190+ classic templates, MAIGA pixel scenes, your own photo, pixel stickers and PNG download. Link format: meme.html#tpl=TEMPLATE_ID&top=TEXT&bottom=TEXT
+- [Meme Factory](https://geopolcoins.xyz/factory.html): type one idea and get a launch-pack draft (name, ticker, meme, safety check, X post drafts). Link format: factory.html?idea=WORDS&go=1. Free offline zip: https://geopolcoins.xyz/downloads/maiga-factory-offline.zip
+- [Bot Garage](https://geopolcoins.xyz/garage.html): copy or build an AI assistant prompt and test it with your own AI key (the key stays in the browser).
+- [Token Checkup](https://geopolcoins.xyz/index.html#checkup): checklist of public red flags for a Solana token from GeckoTerminal data. Not a safety guarantee.
+- [Free AI keys guide](https://geopolcoins.xyz/free-ai-api.html): what an API key is, free and cheap AI providers, safety tips.
+- [$MAIGA app](https://geopolcoins.xyz/app.html): installable web app with all tools.
+
+## Learn
+
+- [Mini-Chain](https://geopolcoins.xyz/chain.html): how a blockchain works, hands-on.
+- [Bot Bank](https://geopolcoins.xyz/lend.html): play-money game about lending to AI agents and its risks.
+
+## For businesses
+
+- [Custom AI bot](https://geopolcoins.xyz/custom-ai-bot.html) (NL: [AI-bot op maat](https://geopolcoins.xyz/ai-bot-op-maat.html), FR: [Bot IA sur mesure](https://geopolcoins.xyz/bot-ia-sur-mesure.html))
+- AI bots for [salons](https://geopolcoins.xyz/ai-bots-salon.html), [real estate](https://geopolcoins.xyz/ai-bots-real-estate.html) and [restaurants](https://geopolcoins.xyz/ai-bots-restaurant.html)
+
+## Optional
+
+- [Partners](https://geopolcoins.xyz/partners.html)
+- [Terms and disclaimers](https://geopolcoins.xyz/index.html#terms)
+- [Sitemap](https://geopolcoins.xyz/sitemap.xml)

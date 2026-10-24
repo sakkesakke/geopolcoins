@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://esm.sh; connect-src https:; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
 <title>$MAIGA — Admin Payout Dashboard</title>
 <style>
 :root{--yellow:#ffd800;--red:#d92736;--blue:#2457a6;--green:#28c76f;--silver:#c0c8d4;--bronze:#cd7f32}
@@ -76,6 +78,19 @@ button.gray{background:#666;color:#fff}
     <button class="gray" id="forgotBtn" type="button" style="margin-top:10px">FORGOT PASSWORD? SEND RESET EMAIL</button>
     <div id="forgotMsg" style="margin-top:10px;font-size:13px;"></div>
     <p class="note" style="margin-top:14px">This page contains no secrets. Only the one Supabase account you create (see README) can read wallets or write payouts.</p>
+  </div>
+  <div class="card hidden" id="mfaCard">
+    <h2>🔐 Two-step <span>verification</span></h2>
+    <div id="mfaEnroll" class="hidden">
+      <p class="note">One-time setup. Open an authenticator app on your phone (Google Authenticator, Microsoft Authenticator, Authy or 1Password), tap +, and scan this QR code. No camera? Type the key below the code.</p>
+      <div style="background:#fff;border-radius:12px;padding:10px;width:max-content;max-width:100%;margin:10px 0"><img id="mfaQr" alt="QR code for your authenticator app" style="width:200px;height:200px;display:block"></div>
+      <p class="note">Key: <code id="mfaSecret" style="word-break:break-all;color:#fff"></code></p>
+    </div>
+    <label for="mfaCode">6-digit code from your authenticator app</label>
+    <input type="text" id="mfaCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="123456">
+    <button id="mfaBtn">VERIFY</button>
+    <button class="gray" id="mfaCancel" type="button" style="margin-top:10px">CANCEL</button>
+    <div id="mfaError" style="color:#ff3d3d;margin-top:12px;font-size:13px;"></div>
   </div>
 </div>
 
@@ -259,14 +274,66 @@ async function signIn(){
     });
     const j = await res.json();
     if (!res.ok) throw new Error(j.error_description || j.msg || 'Login failed');
-    session = { token: j.access_token, exp: Date.now() + (j.expires_in || 3600) * 1000, email: (j.user && j.user.email) || email };
-    try{ sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); }catch(e){}
     $('pwd').value = '';
-    showDash();
+    await startMfa(j.access_token, (j.user && j.user.email) || email);
   } catch(e){
     $('loginError').textContent = '❌ ' + e.message;
   } finally { $('loginBtn').disabled = false; }
 }
+
+/* ============================================================
+   TWO-STEP VERIFICATION (TOTP). The dashboard only opens with an aal2 session.
+   ============================================================ */
+let pending = null;            // { token, email, factorId, challengeId }
+async function authFetch(path, token, opts){
+  const res = await fetch(SUPABASE_URL + '/auth/v1/' + path, Object.assign({ headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' } }, opts || {}));
+  let j = {}; try{ j = await res.json(); }catch(e){}
+  if (!res.ok) throw new Error(j.msg || j.error_description || j.message || ('HTTP ' + res.status));
+  return j;
+}
+async function startMfa(token, email){
+  pending = { token, email };
+  $('mfaError').textContent = ''; $('mfaCode').value = '';
+  const user = await authFetch('user', token);
+  const factors = (user.factors || []).filter(f => f.factor_type === 'totp');
+  let f = factors.find(x => x.status === 'verified');
+  if (f){
+    $('mfaEnroll').classList.add('hidden');
+  } else {
+    for (const u of factors){ try{ await authFetch('factors/' + u.id, token, { method: 'DELETE' }); }catch(e){} }
+    const en = await authFetch('factors', token, { method: 'POST', body: JSON.stringify({ factor_type: 'totp', friendly_name: 'MAIGA admin ' + new Date().toISOString().slice(0, 16) }) });
+    f = { id: en.id };
+    $('mfaQr').src = en.totp.qr_code;
+    $('mfaSecret').textContent = en.totp.secret;
+    $('mfaEnroll').classList.remove('hidden');
+  }
+  const ch = await authFetch('factors/' + f.id + '/challenge', token, { method: 'POST', body: '{}' });
+  pending.factorId = f.id; pending.challengeId = ch.id;
+  $('mfaCard').classList.remove('hidden');
+  $('mfaCode').focus();
+}
+async function verifyMfa(){
+  const code = $('mfaCode').value.trim();
+  $('mfaError').textContent = '';
+  if (!pending){ $('mfaError').textContent = 'Sign in first.'; return; }
+  if (!/^[0-9]{6}$/.test(code)){ $('mfaError').textContent = 'Type the 6 digits from your app.'; return; }
+  $('mfaBtn').disabled = true;
+  try{
+    const j = await authFetch('factors/' + pending.factorId + '/verify', pending.token, { method: 'POST', body: JSON.stringify({ challenge_id: pending.challengeId, code }) });
+    session = { token: j.access_token, exp: Date.now() + (j.expires_in || 3600) * 1000, email: pending.email, aal: 'aal2' };
+    try{ sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); }catch(e){}
+    pending = null; $('mfaCard').classList.add('hidden'); $('mfaCode').value = '';
+    showDash();
+  } catch(e){
+    $('mfaError').textContent = '❌ ' + e.message + ' Wait for a new code and try again.';
+    try{ const ch = await authFetch('factors/' + pending.factorId + '/challenge', pending.token, { method: 'POST', body: '{}' }); pending.challengeId = ch.id; }catch(e2){}
+  } finally { $('mfaBtn').disabled = false; }
+}
+function cancelMfa(){ pending = null; $('mfaCard').classList.add('hidden'); $('mfaCode').value = ''; }
+/* sign out after 20 minutes without activity */
+let idleTimer = null;
+function resetIdle(){ if (!session) return; clearTimeout(idleTimer); idleTimer = setTimeout(() => { signOut(); $('loginError').textContent = 'Signed out after 20 minutes without activity.'; }, 20 * 60 * 1000); }
+['click','keydown','pointermove','scroll'].forEach(ev => document.addEventListener(ev, resetIdle, { passive: true }));
 async function forgotPassword(){
   const email = $('email').value.trim();
   const msg = $('forgotMsg');
@@ -288,7 +355,8 @@ async function forgotPassword(){
   } finally { setTimeout(() => { $('forgotBtn').disabled = false; }, 30000); }
 }
 function signOut(){
-  session = null;
+  if (session && session.token){ fetch(SUPABASE_URL + '/auth/v1/logout', { method: 'POST', headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + session.token } }).catch(() => {}); }
+  session = null; clearTimeout(idleTimer);
   try{ sessionStorage.removeItem(SESSION_KEY); }catch(e){}
   $('dashView').classList.add('hidden');
   $('loginView').classList.remove('hidden');
@@ -297,6 +365,7 @@ function showDash(){
   $('loginView').classList.add('hidden');
   $('dashView').classList.remove('hidden');
   $('whoami').textContent = session.email;
+  resetIdle();
   reload();
 }
 
@@ -636,6 +705,9 @@ $('loginBtn').addEventListener('click', signIn);
 $('forgotBtn').addEventListener('click', forgotPassword);
 $('pwd').addEventListener('keydown', (e) => { if (e.key === 'Enter') signIn(); });
 $('logoutBtn').addEventListener('click', signOut);
+$('mfaBtn').addEventListener('click', verifyMfa);
+$('mfaCode').addEventListener('keydown', (e) => { if (e.key === 'Enter') verifyMfa(); });
+$('mfaCancel').addEventListener('click', cancelMfa);
 $('connectBtn').addEventListener('click', connectPhantom);
 $('payBtn').addEventListener('click', sendPayouts);
 $('reloadBtn').addEventListener('click', reload);
@@ -643,7 +715,8 @@ $('tSel').addEventListener('change', (e) => { if (busy) { e.target.value = Strin
 
 try{
   const saved = JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null');
-  if (saved && saved.token && saved.exp > Date.now() + 60000){ session = saved; showDash(); }
+  if (saved && saved.token && saved.aal === 'aal2' && saved.exp > Date.now() + 60000){ session = saved; showDash(); }
+  else if (saved) sessionStorage.removeItem(SESSION_KEY);
 } catch(e){}
 </script>
 </body>

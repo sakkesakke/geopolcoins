@@ -20,6 +20,7 @@ def page(slug,title,desc,h1,body):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="https://geopolcoins.xyz/{slug}">
+<meta property="og:type" content="website"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta property="og:url" content="https://geopolcoins.xyz/{slug}"><meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg"><meta name="twitter:card" content="summary">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#050b1b">
 <style>
 :root{{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#c3cfe4;--gold:#ffd800;--line:rgba(169,212,255,.25)}}

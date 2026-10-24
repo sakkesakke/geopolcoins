@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+
+# Plain-text guide for AI agents and assistants
+# https://geopolcoins.xyz/llms.txt
+
 Sitemap: https://geopolcoins.xyz/sitemap.xml

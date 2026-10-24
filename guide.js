@@ -165,4 +165,8 @@
   function mount() { document.body.appendChild(root); var off = document.getElementById('maiga-offline'); if (off) root.style.bottom = '64px'; }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
   window.addEventListener('offline', function () { root.style.bottom = '64px'; }); window.addEventListener('online', function () { root.style.bottom = '14px'; });
+  /* read-only tools for AI agents (WebMCP), only in browsers that support it */
+  if ((document.modelContext || navigator.modelContext) && !document.getElementById('maiga-agent-tools')) {
+    var at = document.createElement('script'); at.id = 'maiga-agent-tools'; at.src = '/agent-tools.js'; at.defer = true; document.head.appendChild(at);
+  }
 })();

@@ -32,4 +32,5 @@ Important for agents:
 
 - [Partners](https://geopolcoins.xyz/partners.html)
 - [Terms and disclaimers](https://geopolcoins.xyz/index.html#terms)
+- [Privacy policy](https://geopolcoins.xyz/privacy.html), [Cookie policy](https://geopolcoins.xyz/cookies.html), [Legal notice](https://geopolcoins.xyz/legal.html)
 - [Sitemap](https://geopolcoins.xyz/sitemap.xml)

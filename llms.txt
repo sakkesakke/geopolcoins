@@ -28,6 +28,10 @@ Important for agents:
 - [Custom AI bot](https://geopolcoins.xyz/custom-ai-bot.html) (NL: [AI-bot op maat](https://geopolcoins.xyz/ai-bot-op-maat.html), FR: [Bot IA sur mesure](https://geopolcoins.xyz/bot-ia-sur-mesure.html))
 - AI bots for [salons](https://geopolcoins.xyz/ai-bots-salon.html), [real estate](https://geopolcoins.xyz/ai-bots-real-estate.html) and [restaurants](https://geopolcoins.xyz/ai-bots-restaurant.html)
 
+## Shop
+
+- [Ko-fi shop](https://ko-fi.com/geopolcoins/shop): ready-made AI bot packs (prompts + PDF guide) for small businesses, salons, real estate and restaurants, in English, Dutch and French. Digital download, from $5.
+
 ## Optional
 
 - [Partners](https://geopolcoins.xyz/partners.html)

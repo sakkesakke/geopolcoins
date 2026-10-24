@@ -76,7 +76,7 @@ privacy=f'''
 <p>We do not use your data for advertising, we do not build profiles, and we make no automated decisions that have legal or similarly significant effects on you. The Launch Check in the Factory is a word list that runs in your browser; it does not decide anything about you.</p>
 
 <h2 id="device">3. What stays on your device</h2>
-<p>Many tools work only in your browser and keep their settings in your browser's local storage on your own device. We cannot see this data. Examples: language choice, your saved bots, recent token checks, game best scores, and, only if you choose "remember", your own AI key. See the <a href="cookies.html">Cookie and storage policy</a> for the full list and how to delete it.</p>
+<p>Many tools work only in your browser and keep their settings in your browser's local storage on your own device. We cannot see this data. Examples: language choice, your saved bots, your bot business card on the buyer start page, recent token checks, game best scores, and, only if you choose "remember", your own AI key. See the <a href="cookies.html">Cookie and storage policy</a> for the full list and how to delete it.</p>
 <p><strong>Your AI key</strong> (Meme Factory, Bot Garage): it is sent directly from your browser to the AI provider you pick (Anthropic, OpenAI or OpenRouter), never to us. Your idea or prompt then goes to that provider under its own privacy policy, and that provider bills you.</p>
 <p><strong>Meme Studio</strong>: your photo and your meme are made on your device and are not uploaded to us.</p>
 
@@ -160,6 +160,7 @@ cookies=f'''
 <tr><td><code>maiga_factory_calls_&lt;date&gt;</code></td><td>How many AI calls you made today, so your daily limit works.</td><td>Per day.</td></tr>
 <tr><td><code>maiga_factory_share</code>, <code>maiga_tm_last</code></td><td>Remembers your last share or post, to prevent double posting.</td><td>Until you clear it.</td></tr>
 <tr><td><code>maiga_flappy_best</code>, <code>maiga_total_…</code></td><td>Your best game scores and daily totals.</td><td>Until you clear it.</td></tr>
+<tr><td><code>maiga_start_card</code>, <code>maiga_start_steps</code>, <code>maiga_start_pack</code></td><td>Buyer start page: the business details you type for your bot card, your finished steps and which pack you bought. Never sent to us.</td><td>Until you clear it.</td></tr>
 <tr><td>Token Checkup history</td><td>Your recent token checks.</td><td>Until you clear it.</td></tr>
 <tr><td>App cache (service worker)</td><td>Saves copies of our own pages and images so the app opens fast and works offline. It never stores other websites.</td><td>Replaced at each update.</td></tr>
 <tr><td>Admin login (admin page only)</td><td>Keeps the site admin logged in.</td><td>Until logout.</td></tr>

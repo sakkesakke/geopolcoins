@@ -43,6 +43,7 @@
 <script>
 (function(){
 var f=document.getElementById('reqForm'),m=document.getElementById('msg'),b=document.getElementById('reqSend'),L=f.dataset.lang;
+var qt=new URLSearchParams(location.search).get('type');Array.prototype.forEach.call(f.elements.type.options,function(o){if(o.value===qt)f.elements.type.value=qt;});
 f.addEventListener('submit',function(e){
   e.preventDefault();if(!f.reportValidity())return;
   var d=new FormData(f);b.disabled=true;b.textContent=f.dataset.sending;m.className='';m.textContent='';

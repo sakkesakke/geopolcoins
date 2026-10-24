@@ -27,7 +27,7 @@ create or replace function public.track_view(p_page text, p_ref text) returns vo
 language plpgsql security definer set search_path = public as $$
 declare m timestamptz := date_trunc('minute', now()); c integer; d date := (now() at time zone 'Europe/Brussels')::date; r text;
 begin
-  if p_page is null or p_page !~ '^(home|factory|garage|partners|play|ai|app|other)$' then return; end if;
+  if p_page is null or p_page !~ '^(home|factory|garage|partners|play|ai|app|meme|chain|lend|other)$' then return; end if;
   r := lower(coalesce(p_ref, 'direct'));
   if r !~ '^[a-z0-9.-]{1,60}$' then r := 'other'; end if;
   insert into public.views_brake(minute, n) values (m, 0) on conflict (minute) do nothing;

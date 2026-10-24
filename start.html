@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Start here: your AI bots | $MAIGA</title>
+<meta name="description" content="Thank you for your purchase. Set up your AI bots in 10 minutes: make them yours, test them, and get help.">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#050b1b">
+<style>:root{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#b7c4dc;--gold:#ffd700;--cyan:#38f2ff;--ok:#5be38a;--line:rgba(169,212,255,.25)}*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,Segoe UI,Roboto,sans-serif}main{max-width:820px;margin:0 auto;padding:18px 16px 60px}a{color:var(--gold)}.top{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;font-size:14px}.langs button{background:none;border:1px solid var(--line);color:var(--dim);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer;margin-left:4px}.langs button[aria-pressed=true]{color:#111;background:var(--cyan);border-color:var(--cyan);font-weight:700}h1{font-size:clamp(26px,5vw,38px);line-height:1.15;margin:20px 0 8px}h2{font-size:20px;margin:0 0 8px}p,li{color:var(--dim)}.lead{font-size:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}.num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#111;font-weight:800;margin-right:8px;flex:none}.hd{display:flex;align-items:center}.hd h2{margin:0}.prog{display:flex;gap:6px;margin:14px 0 4px}.prog i{flex:1;height:6px;border-radius:4px;background:var(--line)}.prog i.on{background:var(--ok)}.btn{display:inline-block;margin:8px 8px 0 0;padding:12px 18px;border-radius:10px;background:var(--gold);color:#111;text-decoration:none;font-weight:800;border:0;font:inherit;font-weight:800;cursor:pointer}.btn.alt{background:transparent;color:var(--cyan);border:2px solid var(--cyan)}.done{display:flex;gap:8px;align-items:center;margin-top:12px;color:var(--text);cursor:pointer}.done input{width:20px;height:20px}label{display:block;margin:10px 0 0;color:var(--text);font-weight:600;font-size:15px}input[type=text],textarea,select{width:100%;margin-top:4px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#071228;color:var(--text);font:inherit}textarea{min-height:84px;resize:vertical}.hint{font-weight:400;color:var(--dim);font-size:13px}pre{white-space:pre-wrap;word-break:break-word;background:#071228;border:1px dashed var(--cyan);border-radius:10px;padding:12px;font:14px/1.5 ui-monospace,Consolas,monospace;color:var(--text);margin:12px 0 0}.tests li{margin:6px 0}.offer{border-color:var(--gold)}.small{font-size:13px}#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ok);color:#06210f;font-weight:800;padding:10px 16px;border-radius:10px}footer{text-align:center;color:var(--dim);font-size:13px;margin-top:36px}footer a{display:inline-block;padding:6px 2px}.skip{position:absolute;left:8px;top:-60px;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800}.skip:focus{top:8px}</style></head><body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+<main id="main">
+<div class="top"><a href="/" data-t="back">&larr; geopolcoins.xyz</a><span class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></span></div>
+
+<h1 data-t="h1">Thank you! Your bots are ready.</h1>
+<p class="lead" data-t="lead">Follow these 4 steps and your first bot answers real questions in about 10 minutes. Your progress is saved on this device.</p>
+<div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<p class="small" id="progTxt" role="status" aria-live="polite"></p>
+
+<section class="card" aria-labelledby="s1"><div class="hd"><span class="num">1</span><h2 id="s1" data-t="s1">Open your download</h2></div>
+<ol><li data-t="s1a">Find the download link in the email Ko-fi sent after your payment (check your spam folder too).</li><li data-t="s1b">Unzip it and open the first bot file.</li><li data-t="s1c">Pick one bot to begin with. One working bot beats ten half-finished ones.</li></ol>
+<label class="done"><input type="checkbox" data-step="0"><span data-t="did">Done</span></label></section>
+
+<section class="card" aria-labelledby="s2"><div class="hd"><span class="num">2</span><h2 id="s2" data-t="s2">Make it yours (2 minutes)</h2></div>
+<p data-t="s2p">A bot is only as good as the facts you give it. Fill this in once: we turn it into a "business card" you paste above any bot from your pack. Nothing is sent to us; it stays in your browser.</p>
+<form id="card" autocomplete="on">
+<label><span data-t="fType">Type of business</span><select name="type"><option value="salon" data-t="oSalon">Hair or beauty salon</option><option value="realestate" data-t="oRe">Real estate agency</option><option value="restaurant" data-t="oResto">Restaurant, café or bar</option><option value="other" data-t="oOther">Other small business</option></select></label>
+<label><span data-t="fName">Business name</span><input type="text" name="name" maxlength="80"></label>
+<label><span data-t="fWhere">Address or area</span><input type="text" name="where" maxlength="140"></label>
+<label><span data-t="fHours">Opening hours</span> <span class="hint" data-t="fHoursH">e.g. Tue-Sat 9-18, closed Sun-Mon</span><textarea name="hours" maxlength="400"></textarea></label>
+<label><span data-t="fOffer">Services and prices</span> <span class="hint" data-t="fOfferH">one per line, e.g. Men's cut - 25 EUR</span><textarea name="offer" maxlength="1500"></textarea></label>
+<label><span data-t="fContact">How customers book or contact you</span><input type="text" name="contact" maxlength="200"></label>
+<label><span data-t="fNever">What the bot must never do</span> <span class="hint" data-t="fNeverH">e.g. confirm a booking, give discounts</span><textarea name="never" maxlength="600"></textarea></label>
+<label><span data-t="fTone">Tone</span><select name="tone"><option value="friendly" data-t="tFriendly">Friendly and warm</option><option value="pro" data-t="tPro">Professional and short</option><option value="fun" data-t="tFun">Relaxed with a bit of humour</option></select></label>
+<label><span data-t="fLang">Bot answers in</span><select name="blang"><option value="en">English</option><option value="nl">Nederlands</option><option value="fr">Français</option><option value="auto" data-t="lAuto">The customer's language</option></select></label>
+</form>
+<pre id="out" aria-live="polite"></pre>
+<button class="btn" type="button" id="copy" data-t="copy">Copy business card</button><button class="btn alt" type="button" id="dl" data-t="dl">Download as .txt</button>
+<details class="small" style="margin-top:12px"><summary data-t="whereQ">Where do I paste it?</summary><ol><li data-t="w1">Open a bot prompt from your pack.</li><li data-t="w2">Paste the business card at the very top, then the bot prompt below it.</li><li data-t="w3">Quick test: paste everything in a new chat in ChatGPT, Claude or Gemini.</li><li data-t="w4">To keep it: put the text in the instructions of a ChatGPT project or GPT, or a Claude project. Or use our free Bot Garage.</li></ol></details>
+<label class="done"><input type="checkbox" data-step="1"><span data-t="did">Done</span></label></section>
+
+<section class="card" aria-labelledby="s3"><div class="hd"><span class="num">3</span><h2 id="s3" data-t="s3">Test it with tricky questions</h2></div>
+<p data-t="s3p">Ask your bot these questions. A good bot answers with your real facts, says "I will check" when it does not know, and never confirms things it should not.</p>
+<ul class="tests" id="tests"></ul>
+<p class="small" data-t="s3fix">Wrong answer? Add the missing fact or rule to your business card and try again. That is how every bot gets better.</p>
+<label class="done"><input type="checkbox" data-step="2"><span data-t="did">Done</span></label></section>
+
+<section class="card" aria-labelledby="s4"><div class="hd"><span class="num">4</span><h2 id="s4" data-t="s4">Go live, safely</h2></div>
+<ul><li data-t="s4a">Start in draft mode: let the bot write the answer, read it, then send it yourself.</li><li data-t="s4b">After a week without surprises, let it answer simple questions (hours, prices, address) directly.</li><li data-t="s4c">Keep your business card up to date when prices or hours change.</li></ul>
+<label class="done"><input type="checkbox" data-step="3"><span data-t="did">Done</span></label></section>
+
+<section class="card offer" aria-labelledby="nx" id="next"><h2 id="nx" data-t="nx">Your next step</h2>
+<div id="offerPack"><p id="opTxt"></p><a class="btn" id="opBtn" target="_blank" rel="noopener"></a></div>
+<div style="margin-top:14px"><p><b style="color:#fff" data-t="dfyH">No time? We set it up for you.</b> <span data-t="dfyP">Send us your facts and we deliver a tested assistant for your business, with your prices, hours and rules. You get a clear quote first and pay nothing unless you agree.</span></p><a class="btn alt" id="dfyBtn" data-t="dfyB">Ask for a free quote</a></div></section>
+
+<section class="card" aria-labelledby="hp"><h2 id="hp" data-t="hp">Stuck or happy?</h2>
+<p data-t="hpP">Email us at <a href="mailto:geopolcoins1@gmail.com">geopolcoins1@gmail.com</a>. Real humans read every message. If the pack helped you, a short message on our Ko-fi page or telling one colleague helps us a lot.</p>
+<button class="btn alt" type="button" id="share" data-t="share">Share with a colleague</button></section>
+
+<footer>&copy; 2026 $MAIGA · <a href="garage.html">Bot Garage</a> · <a href="index.html#terms" data-t="terms">Terms</a> · <a href="privacy.html" data-t="priv">Privacy</a><br><span data-t="foot">Productivity tools. AI can make mistakes: you stay responsible for what you send. Not financial, legal or medical advice.</span></footer>
+</main>
+<div id="toast" role="status" hidden></div>
+<script>
+(function(){
+var T={
+en:{},
+nl:{skip:'Naar de inhoud',back:'← geopolcoins.xyz',h1:'Bedankt! Je bots staan klaar.',lead:'Volg deze 4 stappen en je eerste bot beantwoordt echte vragen in ongeveer 10 minuten. Je voortgang wordt op dit toestel bewaard.',s1:'Open je download',s1a:'Je vindt de downloadlink in de mail die Ko-fi na je betaling stuurde (kijk ook in je spam).',s1b:'Pak de zip uit en open het eerste botbestand.',s1c:'Kies één bot om mee te starten. Eén werkende bot is beter dan tien halve.',did:'Gedaan',s2:'Maak hem van jou (2 minuten)',s2p:'Een bot is maar zo goed als de feiten die je hem geeft. Vul dit één keer in: wij maken er een "visitekaartje" van dat je boven elke bot uit je pakket plakt. Er wordt niets naar ons verstuurd; het blijft in je browser.',fType:'Soort zaak',oSalon:'Kapsalon of schoonheidssalon',oRe:'Vastgoedkantoor',oResto:'Restaurant, café of bar',oOther:'Andere kleine zaak',fName:'Naam van je zaak',fWhere:'Adres of regio',fHours:'Openingsuren',fHoursH:'bv. di-za 9-18, zo-ma gesloten',fOffer:'Diensten en prijzen',fOfferH:'één per regel, bv. Herenknip - 25 EUR',fContact:'Hoe klanten boeken of je bereiken',fNever:'Wat de bot nooit mag doen',fNeverH:'bv. een afspraak bevestigen, korting geven',fTone:'Toon',tFriendly:'Vriendelijk en warm',tPro:'Professioneel en kort',tFun:'Losjes met wat humor',fLang:'Bot antwoordt in',lAuto:'De taal van de klant',copy:'Kopieer visitekaartje',dl:'Download als .txt',whereQ:'Waar plak ik het?',w1:'Open een botprompt uit je pakket.',w2:'Plak het visitekaartje helemaal bovenaan, en de botprompt eronder.',w3:'Snelle test: plak alles in een nieuwe chat in ChatGPT, Claude of Gemini.',w4:'Om hem te bewaren: zet de tekst in de instructies van een ChatGPT-project of GPT, of een Claude-project. Of gebruik onze gratis Bot Garage.',s3:'Test hem met lastige vragen',s3p:'Stel je bot deze vragen. Een goede bot antwoordt met jouw echte feiten, zegt "ik kijk het na" als hij het niet weet, en bevestigt nooit iets wat hij niet mag.',s3fix:'Fout antwoord? Zet het ontbrekende feit of de regel in je visitekaartje en probeer opnieuw. Zo wordt elke bot beter.',s4:'Ga veilig live',s4a:'Begin in conceptmodus: laat de bot het antwoord schrijven, lees het, en verstuur het zelf.',s4b:'Na een week zonder verrassingen laat je hem eenvoudige vragen (uren, prijzen, adres) zelf beantwoorden.',s4c:'Houd je visitekaartje bij als prijzen of uren veranderen.',nx:'Je volgende stap',dfyH:'Geen tijd? Wij zetten het voor je op.',dfyP:'Stuur ons je gegevens en we leveren een geteste assistent voor je zaak, met jouw prijzen, uren en regels. Je krijgt eerst een duidelijke offerte en betaalt niets tenzij je akkoord gaat.',dfyB:'Vraag een gratis offerte',hp:'Vast of tevreden?',hpP:'Mail ons op <a href="mailto:geopolcoins1@gmail.com">geopolcoins1@gmail.com</a>. Echte mensen lezen elk bericht. Heeft het pakket je geholpen? Een kort berichtje op onze Ko-fi-pagina of het doorvertellen aan één collega helpt ons enorm.',share:'Deel met een collega',terms:'Voorwaarden',priv:'Privacy',foot:'Productiviteitstools. AI kan fouten maken: jij blijft verantwoordelijk voor wat je verstuurt. Geen financieel, juridisch of medisch advies.',prog:'{n} van 4 stappen klaar',all:'Alle stappen klaar. Je bot werkt!',copied:'Gekopieerd!',copyFail:'Kopiëren lukte niet: selecteer de tekst en kopieer zelf.',shareTxt:'Handig: kant-en-klare AI-bots voor je zaak.'},
+fr:{skip:'Aller au contenu',back:'← geopolcoins.xyz',h1:'Merci ! Vos bots sont prêts.',lead:'Suivez ces 4 étapes et votre premier bot répond à de vraies questions en 10 minutes environ. Votre progression est enregistrée sur cet appareil.',s1:'Ouvrez votre téléchargement',s1a:'Le lien de téléchargement est dans l’e-mail envoyé par Ko-fi après votre paiement (vérifiez aussi les spams).',s1b:'Décompressez le zip et ouvrez le premier fichier de bot.',s1c:'Choisissez un seul bot pour commencer. Un bot qui marche vaut mieux que dix à moitié faits.',did:'Fait',s2:'Personnalisez-le (2 minutes)',s2p:'Un bot ne vaut que les infos que vous lui donnez. Remplissez ceci une fois : nous en faisons une « carte de visite » à coller au-dessus de chaque bot de votre pack. Rien ne nous est envoyé ; tout reste dans votre navigateur.',fType:'Type de commerce',oSalon:'Salon de coiffure ou de beauté',oRe:'Agence immobilière',oResto:'Restaurant, café ou bar',oOther:'Autre petit commerce',fName:'Nom du commerce',fWhere:'Adresse ou quartier',fHours:"Heures d'ouverture",fHoursH:'ex. mar-sam 9h-18h, fermé dim-lun',fOffer:'Services et prix',fOfferH:'un par ligne, ex. Coupe homme - 25 EUR',fContact:'Comment les clients réservent ou vous contactent',fNever:'Ce que le bot ne doit jamais faire',fNeverH:'ex. confirmer un rendez-vous, accorder une remise',fTone:'Ton',tFriendly:'Aimable et chaleureux',tPro:'Professionnel et bref',tFun:"Détendu avec un peu d'humour",fLang:'Le bot répond en',lAuto:'La langue du client',copy:'Copier la carte de visite',dl:'Télécharger en .txt',whereQ:'Où la coller ?',w1:'Ouvrez un prompt de bot de votre pack.',w2:'Collez la carte de visite tout en haut, puis le prompt du bot en dessous.',w3:'Test rapide : collez le tout dans une nouvelle discussion ChatGPT, Claude ou Gemini.',w4:"Pour le garder : mettez le texte dans les instructions d'un projet ou GPT ChatGPT, ou d'un projet Claude. Ou utilisez notre Bot Garage gratuit.",s3:'Testez-le avec des questions pièges',s3p:'Posez ces questions à votre bot. Un bon bot répond avec vos vraies infos, dit « je vérifie » quand il ne sait pas, et ne confirme jamais ce qu’il ne doit pas.',s3fix:"Mauvaise réponse ? Ajoutez l'info ou la règle manquante à votre carte de visite et réessayez. C'est ainsi que chaque bot s'améliore.",s4:'Passez en ligne en toute sécurité',s4a:'Commencez en mode brouillon : le bot rédige la réponse, vous la relisez et l’envoyez vous-même.',s4b:'Après une semaine sans surprise, laissez-le répondre seul aux questions simples (horaires, prix, adresse).',s4c:'Tenez votre carte de visite à jour quand les prix ou les horaires changent.',nx:'Votre prochaine étape',dfyH:'Pas le temps ? Nous le configurons pour vous.',dfyP:'Envoyez-nous vos infos et nous livrons un assistant testé pour votre commerce, avec vos prix, horaires et règles. Vous recevez d’abord un devis clair et ne payez rien sans votre accord.',dfyB:'Demander un devis gratuit',hp:'Bloqué ou satisfait ?',hpP:'Écrivez-nous à <a href="mailto:geopolcoins1@gmail.com">geopolcoins1@gmail.com</a>. De vraies personnes lisent chaque message. Le pack vous a aidé ? Un petit mot sur notre page Ko-fi ou en parler à un collègue nous aide beaucoup.',share:'Partager avec un collègue',terms:'Conditions',priv:'Confidentialité',foot:'Outils de productivité. L’IA peut se tromper : vous restez responsable de ce que vous envoyez. Pas un conseil financier, juridique ou médical.',prog:'{n} étapes sur 4 terminées',all:'Toutes les étapes sont faites. Votre bot fonctionne !',copied:'Copié !',copyFail:'La copie a échoué : sélectionnez le texte et copiez-le vous-même.',shareTxt:'Pratique : des bots IA prêts à l’emploi pour votre commerce.'}
+};
+var EN={prog:'{n} of 4 steps done',all:'All steps done. Your bot works!',copied:'Copied!',copyFail:'Copy failed: select the text and copy it yourself.',shareTxt:'Handy: ready-made AI bots for your business.'};
+var KOFI={big:['3805e02171','15b2bb1d84','5665e9ef42'],salon:['5ba0d6d48c','8284593908','a3344fc728'],realestate:['6b98e0ae7e','17bf37febf','8b19673692'],restaurant:['7e8e8ec0e1','8bb85f108d','c3e8d380b0']};
+var LI={en:0,nl:1,fr:2};
+var LAND={salon:['ai-bots-salon','ai-bots-kapsalon','bots-ia-salon-coiffure'],realestate:['ai-bots-real-estate','ai-bots-makelaar','bots-ia-immobilier'],restaurant:['ai-bots-restaurant','ai-bots-horeca','bots-ia-restaurant']};
+var DFY=['custom-ai-bot','ai-bot-op-maat','bot-ia-sur-mesure'];
+var NAMES={
+en:{salon:'salon pack',realestate:'real estate pack',restaurant:'restaurant pack'},
+nl:{salon:'kapsalonpakket',realestate:'vastgoedpakket',restaurant:'horecapakket'},
+fr:{salon:'pack salon',realestate:'pack immobilier',restaurant:'pack restaurant'}};
+var OFFER={
+en:{toBig:'Your pack covers your customers. The big pack adds 20 bots for the rest of your business, from emails to social posts and reviews, so you save time everywhere.',toBigB:'See the 20-bot pack (from $9)',toNiche:'Want bots made for your exact trade? Our {x} has 10 specialised bots with test questions.',toNicheB:'See the {x}'},
+nl:{toBig:'Je pakket helpt je klanten. Het grote pakket voegt 20 bots toe voor de rest van je zaak, van mails tot posts en reviews, zodat je overal tijd wint.',toBigB:'Bekijk het pakket met 20 bots (vanaf $9)',toNiche:'Bots speciaal voor jouw vak? Ons {x} heeft 10 gespecialiseerde bots met testvragen.',toNicheB:'Bekijk het {x}'},
+fr:{toBig:'Votre pack aide vos clients. Le grand pack ajoute 20 bots pour le reste de votre commerce, des e-mails aux posts et aux avis, pour gagner du temps partout.',toBigB:'Voir le pack de 20 bots (dès 9 $)',toNiche:'Des bots faits pour votre métier ? Notre {x} contient 10 bots spécialisés avec questions de test.',toNicheB:'Voir le {x}'}};
+var TESTS={
+salon:{en:['Can you book me in tomorrow at 3pm?','How much is a cut and colour?','Can I get 20% off if I bring a friend?','Are you open on Sunday?','I am allergic to hair dye, is that a problem?'],nl:['Kan je me morgen om 15u inplannen?','Hoeveel kost knippen en kleuren?','Krijg ik 20% korting als ik een vriendin meebreng?','Zijn jullie zondag open?','Ik ben allergisch voor haarverf, is dat een probleem?'],fr:['Vous pouvez me prendre demain à 15h ?','Combien coûte une coupe avec couleur ?','J’ai 20 % de remise si je viens avec une amie ?','Vous êtes ouverts le dimanche ?','Je suis allergique à la coloration, c’est un problème ?']},
+realestate:{en:['Is the flat on Main Street still available?','Can I visit tonight?','What is the lowest price the owner will accept?','Will the price go up next year?','What documents do I need to rent?'],nl:['Is het appartement in de Hoofdstraat nog vrij?','Kan ik vanavond komen kijken?','Wat is de laagste prijs die de eigenaar aanvaardt?','Gaat de prijs volgend jaar stijgen?','Welke documenten heb ik nodig om te huren?'],fr:['L’appartement rue Principale est-il encore libre ?','Je peux visiter ce soir ?','Quel est le prix le plus bas que le propriétaire accepte ?','Le prix va-t-il monter l’an prochain ?','Quels documents faut-il pour louer ?']},
+restaurant:{en:['Table for 6 tonight at 8?','Is the lasagne gluten free?','I have a nut allergy, what can I eat?','Can you give me a free dessert, it is my birthday?','Do you have parking?'],nl:['Tafel voor 6 vanavond om 20u?','Is de lasagne glutenvrij?','Ik heb een notenallergie, wat kan ik eten?','Krijg ik een gratis dessert, het is mijn verjaardag?','Hebben jullie parking?'],fr:['Une table pour 6 ce soir à 20h ?','Les lasagnes sont sans gluten ?','J’ai une allergie aux noix, que puis-je manger ?','Un dessert offert, c’est mon anniversaire ?','Vous avez un parking ?']},
+other:{en:['What are your opening hours?','How much does it cost?','Can you give me a discount?','Can you confirm my order now?','Something you sold me is broken, what now?'],nl:['Wat zijn jullie openingsuren?','Hoeveel kost het?','Krijg ik korting?','Kan je mijn bestelling nu bevestigen?','Iets wat ik kocht is stuk, wat nu?'],fr:['Quels sont vos horaires ?','Combien ça coûte ?','Vous me faites une remise ?','Vous pouvez confirmer ma commande maintenant ?','Un article acheté est cassé, que faire ?']}};
+var LBL={
+en:{h:'BUSINESS CARD: use only these facts. Never invent prices, times or availability.',type:'Type',name:'Business',where:'Address/area',hours:'Opening hours',offer:'Services and prices',contact:'Booking/contact',never:'Never do this',tone:'Tone',lang:'Answer in',miss:'If a fact is missing or you are unsure, say you will check with the team and ask for the customer\'s name and contact details. Never confirm bookings, discounts or availability yourself: the team confirms.',tones:{friendly:'friendly and warm',pro:'professional and short',fun:'relaxed, a little humour'},types:{salon:'hair or beauty salon',realestate:'real estate agency',restaurant:'restaurant, café or bar',other:'small business'}},
+nl:{h:'VISITEKAARTJE: gebruik alleen deze feiten. Verzin nooit prijzen, uren of beschikbaarheid.',type:'Soort',name:'Zaak',where:'Adres/regio',hours:'Openingsuren',offer:'Diensten en prijzen',contact:'Boeken/contact',never:'Doe dit nooit',tone:'Toon',lang:'Antwoord in',miss:'Ontbreekt een feit of twijfel je, zeg dan dat je het navraagt bij het team en vraag naam en contactgegevens van de klant. Bevestig nooit zelf afspraken, kortingen of beschikbaarheid: het team bevestigt.',tones:{friendly:'vriendelijk en warm',pro:'professioneel en kort',fun:'losjes, met wat humor'},types:{salon:'kapsalon of schoonheidssalon',realestate:'vastgoedkantoor',restaurant:'restaurant, café of bar',other:'kleine zaak'}},
+fr:{h:'CARTE DE VISITE : utilisez uniquement ces infos. N’inventez jamais de prix, d’horaires ni de disponibilités.',type:'Type',name:'Commerce',where:'Adresse/quartier',hours:'Horaires',offer:'Services et prix',contact:'Réservation/contact',never:'Ne jamais faire',tone:'Ton',lang:'Répondre en',miss:'Si une info manque ou en cas de doute, dites que vous vérifiez auprès de l’équipe et demandez le nom et les coordonnées du client. Ne confirmez jamais vous-même un rendez-vous, une remise ou une disponibilité : l’équipe confirme.',tones:{friendly:'aimable et chaleureux',pro:'professionnel et bref',fun:'détendu, un peu d’humour'},types:{salon:'salon de coiffure ou de beauté',realestate:'agence immobilière',restaurant:'restaurant, café ou bar',other:'petit commerce'}}};
+var BL={en:'English',nl:'Nederlands',fr:'Français',auto:{en:'the customer\'s language',nl:'de taal van de klant',fr:'la langue du client'}};
+
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+var q=new URLSearchParams(location.search);
+var pack=q.get('pack');if(!KOFI[pack])pack=ls('maiga_start_pack')||'big';if(!KOFI[pack])pack='big';ls('maiga_start_pack',pack);
+var lang=q.get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!LI.hasOwnProperty(lang))lang='en';
+var f=document.getElementById('card'),out=document.getElementById('out');
+var orig={};document.querySelectorAll('[data-t]').forEach(function(el){orig[el.dataset.t]=el.innerHTML;});
+function t(k){return (T[lang]&&T[lang][k])||(lang==='en'?EN[k]:null)||EN[k]||orig[k]||'';}
+function toast(m){var x=document.getElementById('toast');x.textContent=m;x.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(function(){x.hidden=true;},1800);}
+
+// restore saved card
+var saved={};try{saved=JSON.parse(ls('maiga_start_card')||'{}')||{};}catch(e){}
+if(!saved.type&&pack!=='big')saved.type=pack;
+Array.prototype.forEach.call(f.elements,function(el){if(el.name&&typeof saved[el.name]==='string')el.value=saved[el.name];});
+if(!saved.blang)f.elements.blang.value=lang;
+
+function cardText(){
+  var d={};Array.prototype.forEach.call(f.elements,function(el){if(el.name)d[el.name]=el.value.trim();});
+  var bl=d.blang||'auto',L=LBL[bl==='auto'?lang:bl],dash='-';
+  var lines=[L.h,'',L.type+': '+L.types[d.type||'other'],L.name+': '+(d.name||dash),L.where+': '+(d.where||dash),L.hours+': '+(d.hours||dash),L.offer+':',(d.offer||dash),L.contact+': '+(d.contact||dash),L.never+': '+(d.never||dash),L.tone+': '+L.tones[d.tone||'friendly'],L.lang+': '+(bl==='auto'?BL.auto[lang]:BL[bl]),'',L.miss];
+  return {txt:lines.join('\n'),d:d};
+}
+function render(){var r=cardText();out.textContent=r.txt;ls('maiga_start_card',JSON.stringify(r.d));renderTests(r.d.type);}
+function renderTests(type){var ul=document.getElementById('tests');ul.textContent='';(TESTS[type]||TESTS.other)[lang].forEach(function(s){var li=document.createElement('li');li.textContent='“'+s+'”';ul.appendChild(li);});}
+
+function renderOffer(){
+  var i=LI[lang],O=OFFER[lang],txt=document.getElementById('opTxt'),b=document.getElementById('opBtn');
+  var type=f.elements.type.value;
+  if(pack==='big'){var niche=KOFI[type]?type:'salon';var x=NAMES[lang][niche];txt.textContent=O.toNiche.replace('{x}',x);b.textContent=O.toNicheB.replace('{x}',x);b.href='https://ko-fi.com/s/'+KOFI[niche][i];}
+  else{txt.textContent=O.toBig;b.textContent=O.toBigB;b.href='https://ko-fi.com/s/'+KOFI.big[i];}
+  document.getElementById('dfyBtn').href=DFY[i]+'.html?type='+encodeURIComponent(type==='restaurant'?'horeca':type)+'#quote';
+}
+
+// progress
+var steps=[];try{steps=JSON.parse(ls('maiga_start_steps')||'[]')||[];}catch(e){}
+var boxes=document.querySelectorAll('[data-step]');
+function renderProg(){var n=0;boxes.forEach(function(b){var k=+b.dataset.step;b.checked=steps.indexOf(k)>-1;if(b.checked)n++;});
+  document.querySelectorAll('.prog i').forEach(function(el,j){el.classList.toggle('on',j<n);});
+  document.getElementById('progTxt').textContent=n===4?t('all'):t('prog').replace('{n}',n);}
+boxes.forEach(function(b){b.addEventListener('change',function(){var k=+b.dataset.step;steps=steps.filter(function(s){return s!==k;});if(b.checked)steps.push(k);ls('maiga_start_steps',JSON.stringify(steps));renderProg();});});
+
+function applyLang(){
+  document.documentElement.lang=lang;ls('maiga_lang',lang);
+  document.querySelectorAll('[data-t]').forEach(function(el){var k=el.dataset.t,v=lang==='en'?orig[k]:(T[lang][k]||orig[k]);if(v!=null)el.innerHTML=v;});
+  document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
+  render();renderOffer();renderProg();
+}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;applyLang();});});
+f.addEventListener('input',function(){render();renderOffer();});
+f.addEventListener('submit',function(e){e.preventDefault();});
+
+document.getElementById('copy').addEventListener('click',function(){var s=out.textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(s):Promise.reject()).then(function(){toast(t('copied'));},function(){toast(t('copyFail'));});});
+document.getElementById('dl').addEventListener('click',function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out.textContent],{type:'text/plain'}));a.download='business-card-bot.txt';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);});
+document.getElementById('share').addEventListener('click',function(){
+  var type=f.elements.type.value,i=LI[lang],url='https://geopolcoins.xyz/'+(LAND[type]?LAND[type][i]+'.html':'garage.html');
+  if(navigator.share){navigator.share({title:'$MAIGA',text:t('shareTxt'),url:url}).catch(function(){});}
+  else{(navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(function(){toast(t('copied'));},function(){toast(url);});}
+});
+applyLang();
+})();
+</script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'other',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+</body></html>

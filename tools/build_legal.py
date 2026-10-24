@@ -200,7 +200,7 @@ legal=f'''
 <p>If you have a problem, email us first and we will try to solve it quickly and fairly. Nothing in these texts takes away the protection that the mandatory consumer and privacy laws of the country where you live give you. See also our <a href="/#terms">Terms and disclaimers</a>, <a href="privacy.html">Privacy policy</a> and <a href="cookies.html">Cookie policy</a>.</p>
 '''
 
-open(OUT+'privacy.html','w').write(page('privacy.html','Privacy policy | $MAIGA geopolcoins.xyz','How geopolcoins.xyz handles personal data: what we collect, why, how long, and your rights under GDPR, CCPA and other privacy laws. No cookies, no trackers, no selling.','Privacy policy',privacy))
+open(OUT+'privacy.html','w').write(page('privacy.html','Privacy policy | $MAIGA geopolcoins.xyz','How geopolcoins.xyz handles personal data: what we collect, why, how long, and your rights under GDPR, CCPA and other laws. No cookies, no trackers.','Privacy policy',privacy))
 open(OUT+'cookies.html','w').write(page('cookies.html','Cookie policy | $MAIGA geopolcoins.xyz','geopolcoins.xyz sets no cookies and uses no trackers. This page lists the local storage our tools use and how to delete it.','Cookie and storage policy',cookies))
 open(OUT+'legal.html','w').write(page('legal.html','Legal notice | $MAIGA geopolcoins.xyz','Who runs geopolcoins.xyz, how to contact us, how to report content, and important legal information about this satirical meme project.','Legal notice',legal))
 print('ok', 'placeholders' if not OP_NAME else 'filled')

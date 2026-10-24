@@ -10,7 +10,7 @@ OP_ADDR=sys.argv[2] if len(sys.argv)>2 else ''
 OP_MAIL=sys.argv[3] if len(sys.argv)>3 else ''
 OP_KBO =sys.argv[4] if len(sys.argv)>4 else ''
 def f(v,label): return v if v else f'<span class="fill">[{label}]</span>'
-NAME=f(OP_NAME,'operator name'); ADDR=f(OP_ADDR,'postal address'); MAIL=(f'<a href="mailto:{OP_MAIL}">{OP_MAIL}</a>' if OP_MAIL else f(OP_MAIL,'contact email'))
+NAME=OP_NAME or 'The GEOPOLCOINS / $MAIGA project team'; ADDR=(OP_ADDR+'<br>') if OP_ADDR else ''; MAIL=(f'<a href="mailto:{OP_MAIL}">{OP_MAIL}</a>' if OP_MAIL else f(OP_MAIL,'contact email'))
 KBO=(f'Enterprise number (KBO/BCE): {OP_KBO}<br>' if OP_KBO else '')
 
 def page(slug,title,desc,h1,body):
@@ -56,8 +56,8 @@ privacy=f'''
 
 <h2 id="who">1. Who is responsible</h2>
 <p>The controller of your personal data (the one who decides why and how it is used) is:</p>
-<p class="box">{NAME}<br>{ADDR}<br>{KBO}Email: {MAIL}<br>Website: geopolcoins.xyz</p>
-<p>We have no data protection officer because we do not process data on a large scale. For any privacy question or request, email us at the address above.</p>
+<p class="box">{NAME}<br>{ADDR}{KBO}Email: {MAIL}<br>Website: geopolcoins.xyz</p>
+<p>The project is run by a small team based outside the European Union. Because the site is also used by people in the EU and the UK, we follow the EU and UK GDPR. We have not appointed an EU representative, because our processing is occasional, small-scale and unlikely to put your rights at risk (Art. 27(2) GDPR); this may change if the project grows. We have no data protection officer because we do not process data on a large scale. For any privacy question or request, email us at the address above.</p>
 
 <h2 id="what">2. What we collect and why</h2>
 <div class="tbl"><table>
@@ -124,7 +124,7 @@ privacy=f'''
 <li><strong>withdraw consent</strong> at any time (for example remove your public post), without affecting earlier use.</li>
 </ul>
 <p>Email us at {MAIL} and tell us your pilot name, nickname or email so we can find your data. We may ask for proof that the data is yours (for example a signed message from the same wallet). We answer within one month (extendable by two months for complex requests, as the GDPR allows) and free of charge.</p>
-<p>If you think we got it wrong, you can complain to a data protection authority: in Belgium the <strong>Gegevensbeschermingsautoriteit / Autorité de protection des données</strong> (dataprotectionauthority.be), or the authority where you live or work (for example the ICO in the UK, the ANPD in Brazil, or the Office of the Privacy Commissioner in Canada). We would appreciate the chance to fix it first.</p>
+<p>If you think we got it wrong, you can complain to a data protection authority: the authority in the country where you live or work (for example any EU data protection authority, the ICO in the UK, the ANPD in Brazil, or the Office of the Privacy Commissioner in Canada). We would appreciate the chance to fix it first.</p>
 <p>These rights follow the EU and UK GDPR, Brazil's LGPD, Canada's PIPEDA, Switzerland's FADP and similar laws. We give the same rights to everyone.</p>
 
 <h2 id="us">9. California and other US states</h2>
@@ -177,8 +177,8 @@ cookies=f'''
 
 legal=f'''
 <h2>Operator</h2>
-<p class="box">{NAME}<br>{ADDR}<br>{KBO}Email: {MAIL}<br>Website: geopolcoins.xyz</p>
-<p>Hosting: GitHub Pages, GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Database: Supabase (EU, Frankfurt).</p>
+<p class="box">{NAME}<br>{ADDR}{KBO}Email: {MAIL}<br>Website: geopolcoins.xyz</p>
+<p>The team is based outside the European Union. Hosting: GitHub Pages, GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Database: Supabase (EU, Frankfurt).</p>
 
 <h2>What this site is</h2>
 <p>$MAIGA and GEOPOLCOINS are satirical entertainment and meme projects, with free tools and games. <strong>Nothing on this site is financial, investment, legal or tax advice</strong>, and nothing is an offer or a solicitation to buy or sell any token or financial product. We do not issue, sell or hold tokens for you through this site, we do not provide lending, custody or exchange services, and we never ask for your seed phrase or private keys. Swaps on the home page run through Jupiter directly from your own wallet. Crypto assets are highly risky and you can lose everything.</p>
@@ -197,7 +197,7 @@ legal=f'''
 <p>The site and its tools are provided "as is" and may contain mistakes or be unavailable. To the extent the law allows, we are not liable for losses from using this site or linked third-party services. Nothing in these texts limits rights you have under mandatory consumer law where you live.</p>
 
 <h2>Applicable law</h2>
-<p>These texts are governed by Belgian law, without depriving consumers of the protection of the mandatory rules of the country where they live. See also our <a href="/#terms">Terms and disclaimers</a>, <a href="privacy.html">Privacy policy</a> and <a href="cookies.html">Cookie policy</a>.</p>
+<p>If you have a problem, email us first and we will try to solve it quickly and fairly. Nothing in these texts takes away the protection that the mandatory consumer and privacy laws of the country where you live give you. See also our <a href="/#terms">Terms and disclaimers</a>, <a href="privacy.html">Privacy policy</a> and <a href="cookies.html">Cookie policy</a>.</p>
 '''
 
 open(OUT+'privacy.html','w').write(page('privacy.html','Privacy policy | $MAIGA geopolcoins.xyz','How geopolcoins.xyz handles personal data: what we collect, why, how long, and your rights under GDPR, CCPA and other privacy laws. No cookies, no trackers, no selling.','Privacy policy',privacy))

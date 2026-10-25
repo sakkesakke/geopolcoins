@@ -15,6 +15,7 @@ Important for agents:
 - [$MAIGA HQ](https://geopolcoins.xyz/hq.html): coin info, Token Checkup, meme arcade (8 games, daily tournament), Launch Hub and AI agents.
 - [Meme Studio](https://geopolcoins.xyz/meme.html): free meme generator with 190+ classic templates, MAIGA pixel scenes, your own photo, pixel stickers and PNG download. Link format: meme.html#tpl=TEMPLATE_ID&top=TEXT&bottom=TEXT
 - [Meme Factory](https://geopolcoins.xyz/factory.html): type one idea and get a launch-pack draft (name, ticker, meme, safety check, X post drafts). Link format: factory.html?idea=WORDS&go=1. Free offline zip: https://geopolcoins.xyz/downloads/maiga-factory-offline.zip
+- [Chart School](https://geopolcoins.xyz/chart.html): learn to read price charts (candles, volume, moving average, support/resistance, RSI, pump-and-dump) on made-up practice data; no signals or predictions.
 - [Bot Garage](https://geopolcoins.xyz/garage.html): copy or build an AI assistant prompt and test it with your own AI key (the key stays in the browser).
 - [Token Checkup](https://geopolcoins.xyz/index.html#checkup): checklist of public red flags for a Solana token from GeckoTerminal data. Not a safety guarantee.
 - [Free AI keys guide](https://geopolcoins.xyz/free-ai-api.html): what an API key is, free and cheap AI providers, safety tips.

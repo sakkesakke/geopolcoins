@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Chart School: learn to read crypto charts, no predictions | geopolcoins.xyz</title>
+<meta name="description" content="Free interactive lessons: candles, volume, moving averages, support and resistance, RSI and pump-and-dump patterns, with practice charts and a quiz. Learn why short-term price predictions fail. No signals, no advice.">
+<link rel="canonical" href="https://geopolcoins.xyz/chart.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Chart School: learn to read charts"><meta property="og:description" content="Interactive lessons with practice charts. Learn what candles, volume and RSI show, and why nobody can reliably predict the next candle."><meta property="og:url" content="https://geopolcoins.xyz/chart.html"><meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a1630">
+<style>
+:root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.16);--up:#3ddc97;--down:#ff5a5f}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ink);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brass)}a:focus-visible,button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--brass);color:#111;padding:10px 14px;border-radius:8px;font-weight:800;z-index:9}.skip:focus{top:8px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;gap:16px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand img{width:34px;height:34px;border-radius:9px}
+.top a.nav{color:var(--dim);text-decoration:none;font-size:15px}
+.cut{image-rendering:pixelated;filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 7px 0 rgba(0,0,0,.35))}
+.hero{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding:26px 0 22px}
+h1{font-size:clamp(36px,5.6vw,64px);line-height:1;letter-spacing:-.035em;margin:0 0 14px;font-weight:900}
+.lead{color:var(--dim);font-size:clamp(17px,1.9vw,20px);max-width:36em;margin:0}
+.warn{display:flex;gap:12px;align-items:flex-start;background:#1b1209;border:2px dashed rgba(224,180,58,.55);border-radius:16px;padding:12px 16px;margin:20px 0 0;font-size:15px;color:var(--cream);max-width:44em}
+.jp{width:120px}
+/* layout */
+.school{display:grid;grid-template-columns:270px 1fr;gap:24px;padding:20px 0 60px}
+.lessons{list-style:none;margin:0;padding:0;display:grid;gap:8px;align-content:start;counter-reset:l}
+.lessons button{counter-increment:l;width:100%;display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:center;text-align:left;background:var(--panel2);border:2px solid var(--line);border-radius:14px;padding:11px 12px;color:var(--text);font:inherit;font-size:15.5px;font-weight:700;cursor:pointer}
+.lessons button::before{content:counter(l);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--brass);color:var(--brass);font-size:14px;font-weight:900}
+.lessons button[aria-current=step]{background:var(--cream);color:#1d1a14;border-color:var(--cream)}
+.lessons button[aria-current=step]::before{background:var(--brass);color:#14110a}
+.lessons .done{color:var(--up);font-size:14px}
+.main{min-width:0}
+.card{background:var(--panel2);border:1px solid var(--line);border-radius:22px;padding:20px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+.tip{position:absolute;pointer-events:none;background:var(--cream);color:#1d1a14;border-radius:10px;padding:6px 10px;font:600 12.5px/1.4 ui-monospace,Consolas,monospace;white-space:nowrap;transform:translate(-50%,-110%)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13.5px;color:var(--dim);margin:10px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:16px;height:4px;border-radius:2px;display:inline-block}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.bar .tag{font-size:13.5px;color:var(--dim)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:12px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;border:2px solid transparent;text-decoration:none}
+.btn.main{background:var(--brass);color:#14110a;box-shadow:0 4px 0 var(--brass-d)}.btn.main:active{transform:translateY(2px);box-shadow:0 2px 0 var(--brass-d)}
+.btn.ghost{background:none;color:var(--text);border-color:var(--line)}.btn.ghost:hover{border-color:var(--cream)}
+.btn.up{background:var(--up);color:#06210f}.btn.down{background:var(--down);color:#2a0608}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.lesson{display:grid;grid-template-columns:1fr 300px;gap:22px;margin-top:18px}
+.lesson h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;line-height:1.1;margin:0 0 10px}
+.lesson p{color:var(--dim);margin:0 0 12px}.lesson p b{color:var(--text)}
+.say{display:flex;gap:12px;align-items:flex-end;margin-top:8px}.say img{width:56px;flex:none}
+.say p{background:#fff;color:#111;border:3px solid #111;border-radius:16px 16px 16px 4px;padding:10px 13px;font-weight:700;font-size:14.5px;margin:0}
+.quiz{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;align-self:start}
+.quiz h3{margin:0 0 10px;font-size:16px}
+.quiz .opts{display:grid;gap:8px}
+.quiz button{text-align:left;background:var(--panel2);border:2px solid var(--line);color:var(--text);border-radius:12px;padding:10px 12px;font:inherit;font-size:15px;cursor:pointer}
+.quiz button.ok{border-color:var(--up);background:rgba(61,220,151,.12)}.quiz button.no{border-color:var(--down);background:rgba(255,90,95,.12)}
+.quiz .fb{margin:10px 0 0;font-size:14.5px;color:var(--dim)}
+.game{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px}.stat b{display:block;font-size:24px;letter-spacing:-.02em}.stat span{font-size:13px;color:var(--dim)}
+.gctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.result{margin-top:12px;font-weight:700}
+footer{border-top:1px solid var(--line);padding:28px 0 44px;color:var(--dim);font-size:14px;text-align:center}footer a{color:var(--dim);display:inline-block;padding:6px 4px}
+@media (max-width:900px){.school{grid-template-columns:1fr}.lessons{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.lesson{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.jp{display:none}}
+@media (max-width:480px){.lessons{grid-template-columns:1fr 1fr}.lessons button{font-size:14px;padding:9px;grid-template-columns:26px 1fr auto;gap:8px}.lessons button::before{width:24px;height:24px;font-size:12px}.card{padding:12px}.game{grid-template-columns:1fr 1fr 1fr}.stat b{font-size:20px}}
+</style></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><img src="logo.png" alt="" width="34" height="34">geopolcoins.xyz</a><a class="nav" href="chain.html">Mini-Chain</a><a class="nav" href="lend.html">Bot Bank</a></header>
+<main id="main">
+<section class="hero">
+ <div>
+  <h1>Chart School</h1>
+  <p class="lead">Learn to read a price chart in seven short lessons: candles, volume, averages, support, RSI and the pump-and-dump. Then try to guess the next candle and see why nobody can do it reliably.</p>
+  <p class="warn"><span aria-hidden="true">⚠️</span><span>Practice charts only. The prices here are made up and change every time you press "New chart". Nothing on this page is a signal, a prediction or financial advice.</span></p>
+ </div>
+ <img class="cut jp" src="meme/pxjp.png" alt="" width="120" height="148">
+</section>
+
+<div class="school">
+ <nav aria-label="Lessons"><ol class="lessons" id="lessons"></ol></nav>
+ <div class="main">
+  <div class="card">
+   <div class="bar"><span class="tag" id="ctag">Practice chart · made-up coin $PRACTICE</span><button class="btn ghost" type="button" id="newc">New chart</button></div>
+   <div class="chart" id="chartBox"><svg id="svg" viewBox="0 0 900 470" role="img" aria-labelledby="chartDesc"><desc id="chartDesc">Candlestick practice chart with made-up prices.</desc></svg><div class="tip" id="tip" hidden></div></div>
+   <div class="legend" id="legend"></div>
+  </div>
+  <section class="lesson" aria-live="polite">
+   <div><h2 id="lt"></h2><div id="lb"></div><div class="say"><img class="cut" id="sayImg" src="meme/pxjp.png" alt="" width="56" height="69"><p id="say"></p></div></div>
+   <div class="quiz" id="quiz"><h3 id="qq"></h3><div class="opts" id="qo"></div><p class="fb" id="qf" role="status"></p></div>
+  </section>
+ </div>
+</div>
+</main>
+<footer>© 2026 geopolcoins.xyz · <a href="/">Home</a> · <a href="chain.html">Mini-Chain</a> · <a href="lend.html">Bot Bank</a> · <a href="hq.html#checkup">Token Checkup</a> · <a href="privacy.html">Privacy</a><br>Education only. Made-up data. Not financial advice. Never buy because a chart, a bot or a cartoon told you to.</footer>
+</div>
+<script>
+(function(){
+var NS='http://www.w3.org/2000/svg';
+function sv(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+var N=120,data=[],seed=Date.now()%100000;
+function gen(){var r=rng(seed),p=100,out=[];var pumpAt=70+Math.floor(r()*20);
+ for(var i=0;i<N;i++){var drift=i<35?.004:i<pumpAt?-.0005:0, vol=.022;
+  if(i>=pumpAt&&i<pumpAt+6){drift=.045;vol=.026}
+  if(i>=pumpAt+6&&i<pumpAt+12){drift=-.048;vol=.03}
+  var o=p,c=o*(1+drift+(r()-.5)*2*vol),h=Math.max(o,c)*(1+r()*vol*.8),l=Math.min(o,c)*(1-r()*vol*.8);
+  var v=(40+r()*60)*(i>=pumpAt&&i<pumpAt+12?5+r()*4:1);
+  out.push({o:o,h:h,l:l,c:c,v:v});p=c;}
+ out.pump=pumpAt;return out;}
+function sma(n){return data.map(function(d,i){if(i<n-1)return null;var s=0;for(var j=i-n+1;j<=i;j++)s+=data[j].c;return s/n;});}
+function rsi(n){var out=[],g=0,l=0;for(var i=0;i<data.length;i++){if(i===0){out.push(null);continue;}var ch=data[i].c-data[i-1].c,up=Math.max(ch,0),dn=Math.max(-ch,0);
+ if(i<=n){g+=up;l+=dn;out.push(i===n?100-100/(1+(g/n)/((l/n)||1e-9)):null);if(i===n){g/=n;l/=n;}continue;}
+ g=(g*(n-1)+up)/n;l=(l*(n-1)+dn)/n;out.push(100-100/(1+g/(l||1e-9)));}return out;}
+function wickiest(){var b=40,bv=0;for(var i=30;i<60;i++){var d=data[i],w=(d.h-Math.max(d.o,d.c))/d.c;if(w>bv){bv=w;b=i;}}return b;}
+function levels(){var lo=Infinity,hi=-Infinity,end=data.pump||N;for(var i=10;i<end;i++){lo=Math.min(lo,data[i].l);hi=Math.max(hi,data[i].h);}return [lo,hi];}
+// layout
+var W=900,PL=10,PR=62,TOP=12,MAINH=290,VOLT=310,VOLH=60,RT=385,RH=70;
+var svg=document.getElementById('svg'),tip=document.getElementById('tip');
+var L={show:{candles:1}},visible=N,hiPump=false;
+function draw(){
+ while(svg.lastChild&&svg.lastChild.tagName!=='desc')svg.removeChild(svg.lastChild);
+ var S=L.show,st=S.focusCandle!=null?Math.max(0,S.focusCandle-16):0,en=S.focusCandle!=null?Math.min(N,S.focusCandle+5):visible,ds=data.slice(st,en),cw=(W-PL-PR)/(S.focusCandle!=null?en-st:N);
+ var mx=-Infinity,mn=Infinity;ds.forEach(function(d){mx=Math.max(mx,d.h);mn=Math.min(mn,d.l);});var pad=(mx-mn)*.06;mx+=pad;mn-=pad;
+ var y=function(p){return TOP+(mx-p)/(mx-mn)*MAINH;};
+ // grid + price axis
+ for(var g=0;g<=4;g++){var pv=mn+(mx-mn)*g/4,yy=y(pv);sv('line',{x1:PL,x2:W-PR,y1:yy,y2:yy,stroke:'rgba(243,236,217,.08)'},svg);var t=sv('text',{x:W-PR+8,y:yy+4,fill:'#a9b6d3','font-size':12,'font-family':'ui-monospace,monospace'},svg);t.textContent=pv.toFixed(pv<10?3:1);}
+ if(hiPump&&data.pump){sv('rect',{x:PL+(data.pump-st)*cw,y:TOP,width:12*cw,height:MAINH+VOLH+20,fill:'rgba(255,90,95,.13)',stroke:'rgba(255,90,95,.6)','stroke-dasharray':'5 4'},svg);
+  var tt=sv('text',{x:PL+(data.pump-st)*cw+4,y:TOP+16,fill:'#ff8a8d','font-size':13,'font-weight':700},svg);tt.textContent='pump → dump';}
+ if(S.levels){var lv=levels();[[lv[0],'support','#3ddc97'],[lv[1],'resistance','#ff9f43']].forEach(function(a){var yy=y(a[0]);sv('rect',{x:PL,y:yy-5,width:W-PL-PR,height:10,fill:a[2],opacity:.16},svg);sv('line',{x1:PL,x2:W-PR,y1:yy,y2:yy,stroke:a[2],'stroke-width':2,'stroke-dasharray':'8 6'},svg);var t=sv('text',{x:PL+6,y:yy-9,fill:a[2],'font-size':13,'font-weight':700},svg);t.textContent=a[1];});}
+ // candles
+ ds.forEach(function(d,i){var x=PL+i*cw+cw/2,up=d.c>=d.o,col=up?'#3ddc97':'#ff5a5f',dim=S.focusCandle!=null&&i+st!==S.focusCandle?.35:1;
+  sv('line',{x1:x,x2:x,y1:y(d.h),y2:y(d.l),stroke:col,'stroke-width':1.4,opacity:dim},svg);
+  var bt=y(Math.max(d.o,d.c)),bh=Math.max(1.5,Math.abs(y(d.o)-y(d.c)));sv('rect',{x:x-cw*.36,y:bt,width:cw*.72,height:bh,fill:col,opacity:dim,rx:1},svg);});
+ if(S.focusCandle!=null){var d=data[S.focusCandle],x=PL+(S.focusCandle-st)*cw+cw/2,up2=d.c>=d.o;
+  var lab=[['high',d.h],[up2?'close':'open',Math.max(d.o,d.c)],[up2?'open':'close',Math.min(d.o,d.c)],['low',d.l]],ly=-99;
+  lab.forEach(function(a){var yy=y(a[1]),ty=Math.max(yy,ly+18);ly=ty;sv('line',{x1:x+cw*.45,x2:x+cw*1.4,y1:yy,y2:ty,stroke:'#f3ecd9','stroke-width':1.2},svg);var t=sv('text',{x:x+cw*1.5,y:ty+4.5,fill:'#f3ecd9','font-size':15,'font-weight':800},svg);t.textContent=a[0];});}
+ if(S.sma){var m=sma(20);var pts=[];m.forEach(function(v,i){if(v!=null&&i>=st&&i<en)pts.push((PL+(i-st)*cw+cw/2)+','+y(v));});sv('polyline',{points:pts.join(' '),fill:'none',stroke:'#38f2ff','stroke-width':2.5},svg);}
+ // volume
+ var vm=0;ds.forEach(function(d){vm=Math.max(vm,d.v);});
+ sv('text',{x:PL,y:VOLT-2,fill:'#a9b6d3','font-size':12},svg).textContent='Volume';
+ ds.forEach(function(d,i){var h=d.v/vm*VOLH;sv('rect',{x:PL+i*cw+cw*.14,y:VOLT+VOLH-h,width:cw*.72,height:h,fill:d.c>=d.o?'#3ddc97':'#ff5a5f',opacity:S.volume?.75:.25},svg);});
+ // RSI
+ sv('text',{x:PL,y:RT-2,fill:'#a9b6d3','font-size':12},svg).textContent=S.rsi?'RSI (14)':'';
+ if(S.rsi){var r=rsi(14),yr=function(v){return RT+(100-v)/100*RH;};
+  sv('rect',{x:PL,y:yr(70),width:W-PL-PR,height:yr(30)-yr(70),fill:'rgba(243,236,217,.05)'},svg);
+  [70,30].forEach(function(v){sv('line',{x1:PL,x2:W-PR,y1:yr(v),y2:yr(v),stroke:'rgba(243,236,217,.3)','stroke-dasharray':'4 4'},svg);sv('text',{x:W-PR+8,y:yr(v)+4,fill:'#a9b6d3','font-size':12},svg).textContent=v;});
+  var pts=[];r.forEach(function(v,i){if(v!=null&&i>=st&&i<en)pts.push((PL+(i-st)*cw+cw/2)+','+yr(v));});sv('polyline',{points:pts.join(' '),fill:'none',stroke:'#c084fc','stroke-width':2},svg);}
+ if(en<N&&S.focusCandle==null){var xf=PL+en*cw;sv('rect',{x:xf,y:TOP,width:W-PR-xf,height:RT+RH-TOP,fill:'rgba(10,22,48,.85)'},svg);var q=sv('text',{x:xf+(W-PR-xf)/2,y:TOP+MAINH/2,fill:'#f3ecd9','font-size':46,'font-weight':900,'text-anchor':'middle'},svg);q.textContent='?';}
+ svg._y=y;svg._cw=cw;svg._st=st;svg._en=en;
+ var lg=document.getElementById('legend');lg.textContent='';
+ [['#3ddc97','Candle closed higher',1],['#ff5a5f','Candle closed lower',1],['#38f2ff','20-candle average',S.sma],['#c084fc','RSI',S.rsi]].forEach(function(a){if(!a[2])return;var s=el('span');var i=el('i');i.style.background=a[0];s.appendChild(i);s.appendChild(document.createTextNode(a[1]));lg.appendChild(s);});
+}
+// hover tooltip
+function hover(ev){var r=svg.getBoundingClientRect(),sx=(ev.clientX-r.left)/r.width*W,i=Math.floor((sx-PL)/svg._cw)+svg._st;if(i<svg._st||i>=svg._en){tip.hidden=true;return;}var d=data[i];
+ tip.hidden=false;tip.textContent='#'+(i+1)+'  O '+d.o.toFixed(2)+'  H '+d.h.toFixed(2)+'  L '+d.l.toFixed(2)+'  C '+d.c.toFixed(2);
+ var bx=ev.clientX-r.left;tip.style.left=Math.max(110,Math.min(r.width-110,bx))+'px';tip.style.top=(svg._y(d.h)/470*r.height)+'px';}
+svg.addEventListener('pointermove',hover);svg.addEventListener('pointerleave',function(){tip.hidden=true;});
+// lessons
+var JP='meme/pxjp.png',BOLT='bolt.png',EG='meme/pxeg.png',MINT='meme/pxmint.png';
+var LESSONS=[
+ {n:'Candles',show:{focus:1},t:'One candle, one moment',b:['Each <b>candle</b> shows one time period, like an hour or a day.','The thick <b>body</b> goes from the opening price to the closing price. <b>Green</b> means it closed higher than it opened, <b>red</b> means lower.','The thin lines are <b>wicks</b>: the highest and lowest price in that period. Hover over the chart to see the numbers.'],s:[MINT,'A candle is history. It tells you what happened, not what happens next.'],
+  q:['A candle with a long wick on top means…',[['The price went up during the period, then fell back',1],['The price will go up next',0],['Somebody made a mistake',0]],'Right: the wick is where the price went and could not stay. That is all it tells you.']},
+ {n:'Volume',show:{volume:1},t:'Volume: how much was traded',b:['The bars under the chart show <b>volume</b>: how many coins changed hands in each period.','A big move on <b>low volume</b> means few people took part. A move on <b>high volume</b> means many did.','Volume shows activity, not direction. Big volume can come from buyers and sellers at the same time.'],s:[BOLT,'High volume means lots of people are busy. It does not tell you who is right.'],
+  q:['A green candle on very high volume tells you…',[['Many trades happened while the price rose in that period',1],['The price must keep rising',0],['Only buyers were active',0]],'Correct. Every trade has a buyer and a seller; volume counts both.']},
+ {n:'Moving average',show:{sma:1},t:'The moving average smooths the noise',b:['The cyan line is a <b>20-candle moving average</b>: the average closing price of the last 20 candles.','It makes the general direction easier to see. Price above a rising average is often called an uptrend.','Because it uses old prices, it is always <b>late</b>. It shows a turn only after the turn already happened.'],s:[JP,'I follow the moving average. It\'s like following a friend who is always 20 minutes late.'],
+  q:['Why is a moving average always late?',[['It is built from past prices',1],['The site is slow',0],['Traders move it by hand',0]],'Yes. An average of the past can only describe the past.']},
+ {n:'Support & resistance',show:{levels:1},t:'Support and resistance are zones, not walls',b:['<b>Support</b> is a price area where the price stopped falling before. <b>Resistance</b> is where it stopped rising before.','Traders watch these zones because other traders watch them too.','They are fuzzy and they <b>break often</b>. Look at the right side of the chart: price can blow straight through.'],s:[EG,'A support line is a suggestion. The market is not obliged to read it.'],
+  q:['What happens when a support zone breaks?',[['Price falls through it; there is no guarantee it holds',1],['Price always bounces',0],['Trading stops',0]],'Exactly. Lines on a chart have no power over buyers and sellers.']},
+ {n:'RSI',show:{rsi:1},t:'RSI measures speed, not the future',b:['The purple line is the <b>RSI</b>, from 0 to 100. It compares recent up-moves with recent down-moves.','Above 70 people call it <b>overbought</b>, below 30 <b>oversold</b>. Those are just names for "it moved fast".','Price can stay "overbought" for a long time and keep rising, or stay "oversold" and keep falling.'],s:[MINT,'RSI 85 does not mean "sell now". It means "wow, that went fast".'],
+  q:['The RSI is at 80. What do you know for sure?',[['Recent up-moves were much bigger than down-moves',1],['The price will drop soon',0],['It is a good moment to buy',0]],'Right. RSI describes the recent past; it has no view of tomorrow.']},
+ {n:'Pump & dump',show:{volume:1,pump:1},t:'The pump-and-dump pattern',b:['The red zone shows a classic <b>pump and dump</b>: a sudden spike on huge volume, then a crash just as fast.','Often a small group buys cheap, hypes the coin, and sells to the people who arrive late.','Red flags: anonymous team, "guaranteed" gains, pressure to buy now, one wallet holding most of the coins. Check them in the <a href="hq.html#checkup">Token Checkup</a>.'],s:[EG,'If the chart looks like a rocket and a cliff, you were probably the fuel.'],
+  q:['Who usually loses in a pump and dump?',[['People who buy near the top after the hype',1],['The people who started it',0],['Nobody',0]],'Sadly yes. The late buyers pay for the early sellers\' exit.']},
+ {n:'Guess the candle',show:{game:1},t:'Try it: guess the next candle',b:['Now hide the future. Look at the chart and guess: will the <b>next candle close higher or lower</b> than the last one?','Our practice prices are random on purpose. Real markets are not fully random, but short-term moves are very hard to predict, and every real trade costs fees.','Play 20 rounds and watch your hit rate.'],s:[JP,'I tried this for a week. I was right exactly as often as my coin flip.'],game:1}
+];
+var cur=0,done={};
+try{done=JSON.parse(localStorage.getItem('maiga_chart_done')||'{}')||{};}catch(e){}
+var ol=document.getElementById('lessons');
+LESSONS.forEach(function(ls,i){var li=el('li'),b=el('button');b.type='button';b.appendChild(el('span',null,ls.n));var d=el('span','done',done[i]?'✓':'');b.appendChild(d);b.addEventListener('click',function(){open(i);});li.appendChild(b);ol.appendChild(li);});
+function mark(i){done[i]=1;try{localStorage.setItem('maiga_chart_done',JSON.stringify(done));}catch(e){}ol.children[i].querySelector('.done').textContent='✓';}
+// game state
+var G=null;
+function open(i){cur=i;var ls=LESSONS[i];
+ Array.prototype.forEach.call(ol.children,function(li,j){var b=li.firstChild;if(j===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+ var s=ls.show;L.show={candles:1,sma:s.sma,volume:s.volume,levels:s.levels,rsi:s.rsi,focusCandle:s.focus?wickiest():null};hiPump=!!s.pump;
+ document.getElementById('lt').textContent=ls.t;var lb=document.getElementById('lb');lb.textContent='';ls.b.forEach(function(h){var p=el('p');p.innerHTML=h;lb.appendChild(p);});
+ document.getElementById('sayImg').src=ls.s[0];document.getElementById('say').textContent=ls.s[1];
+ var Q=document.getElementById('quiz');
+ if(ls.game){startGame();}else{G=null;visible=N;renderQuiz(ls);}
+ draw();
+}
+function renderQuiz(ls){var Q=document.getElementById('quiz');Q.hidden=false;document.getElementById('qq').textContent=ls.q[0];var o=document.getElementById('qo');o.textContent='';var f=document.getElementById('qf');f.textContent='';
+ ls.q[1].slice().sort(function(){return Math.random()-.5;}).forEach(function(a){var b=el('button',null,a[0]);b.type='button';b.addEventListener('click',function(){Array.prototype.forEach.call(o.children,function(x){x.className='';});b.className=a[1]?'ok':'no';f.textContent=a[1]?ls.q[2]:'Not quite. Try another answer.';if(a[1])mark(cur);});o.appendChild(b);});}
+function startGame(){G={round:0,hits:0,max:20};visible=60;renderGame();}
+function renderGame(){var Q=document.getElementById('quiz');Q.hidden=false;document.getElementById('qq').textContent='Round '+Math.min(G.round+1,G.max)+' of '+G.max;
+ var o=document.getElementById('qo');o.textContent='';var f=document.getElementById('qf');
+ var st=el('div','game');[['Right',G.hits],['Wrong',G.round-G.hits],['Hit rate',G.round?Math.round(G.hits/G.round*100)+'%':'–']].forEach(function(a){var d=el('div','stat');d.appendChild(el('b',null,String(a[1])));d.appendChild(el('span',null,a[0]));st.appendChild(d);});o.appendChild(st);
+ if(G.round>=G.max){f.textContent='';var r=el('p','result','You got '+G.hits+' of '+G.max+' ('+Math.round(G.hits/G.max*100)+'%). Close to a coin flip, as expected. Add real-world fees on every trade and guessing loses money over time. That is why "100% accurate signal" bots are a red flag.');o.appendChild(r);
+  var again=el('button','btn main','Play again');again.type='button';again.style.marginTop='10px';again.addEventListener('click',function(){seed=(seed*7+13)%100000;data=gen();startGame();draw();});o.appendChild(again);mark(cur);return;}
+ var c=el('div','gctl');var up=el('button','btn up','▲ Higher');up.type='button';var dn=el('button','btn down','▼ Lower');dn.type='button';
+ up.addEventListener('click',function(){guess(1);});dn.addEventListener('click',function(){guess(0);});c.appendChild(up);c.appendChild(dn);o.appendChild(c);}
+function guess(u){var prev=data[visible-1].c,next=data[visible].c,isUp=next>=prev,ok=(u===1)===isUp;G.round++;if(ok)G.hits++;visible++;draw();renderGame();
+ document.getElementById('qf').textContent=(ok?'Right! ':'Wrong. ')+'It closed '+(isUp?'higher':'lower')+' ('+(next/prev*100-100).toFixed(2)+'%).';}
+document.getElementById('newc').addEventListener('click',function(){seed=(seed*31+7)%100000;data=gen();open(cur);});
+data=gen();open(0);
+document.addEventListener('keydown',function(e){if(!G||G.round>=G.max||e.target.tagName==='INPUT')return;if(e.key==='ArrowUp'){e.preventDefault();guess(1);}if(e.key==='ArrowDown'){e.preventDefault();guess(0);}});
+})();
+</script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'other',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+</body></html>

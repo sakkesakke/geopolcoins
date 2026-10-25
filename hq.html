@@ -1805,7 +1805,7 @@ window.addEventListener('load',function(){
     );
   }
   function generateMeme(){
-    var top=$('launchTop').value,bottom=$('launchBottom').value,tpl=$('launchTemplate').value;
+    var top=$('launchTop').value,bottom=$('launchBottom').value,tpl=String($('launchTemplate').value).replace(/[^a-z0-9_-]/gi,'');
     var res=$('launchMemeResult');
     if(!top.trim()&&!bottom.trim()){res.innerHTML='<p style="color:#ff4b61;font-size:12px">Enter at least one line of text.</p>';return;}
     var url='https://api.memegen.link/images/'+tpl+'/'+mg(top)+'/'+mg(bottom)+'.png';
@@ -1815,6 +1815,9 @@ window.addEventListener('load',function(){
       url+='?background='+encodeURIComponent(bg);
     }
     res.innerHTML='<p style="color:#8ea3ba;font-size:11px">Loading…</p>';
+    var safe;try{safe=new URL(url);}catch(e){safe=null;}
+    if(!safe||safe.protocol!=='https:'||safe.hostname!=='api.memegen.link'){res.textContent='That template link is not valid.';return;}
+    url=safe.href;
     var img=new Image();
     img.onload=function(){
       lastMemeUrl=url;
@@ -2214,7 +2217,7 @@ window.addEventListener('load',function(){
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce){el.innerHTML=lines.join('\n');return;}
   var started=false;
-  function strip(h){return h.replace(/<[^>]+>/g,'');}
+  function strip(h){var p;do{p=h;h=h.replace(/<[^>]*>/g,'');}while(h!==p);return h.replace(/[<>]/g,'');}
   function run(){
     if(started)return;started=true;
     var out='',li=0;

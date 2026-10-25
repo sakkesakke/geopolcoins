@@ -20,7 +20,7 @@
     { url: 'factory.html', name: 'Meme Factory', what: 'Type one idea and a pixel crew drafts a meme-coin launch pack (name, ticker, meme, safety check, X post drafts). Nothing is launched or posted. Offline zip download.' },
     { url: 'garage.html', name: 'Bot Garage', what: 'Copy or build your own AI assistant prompt; test it with your own AI key, which stays in your browser.' },
     { url: 'free-ai-api.html', name: 'Free AI keys guide', what: 'What an API key is and free or cheap AI options for bots, with safety tips.' },
-    { url: 'index.html#checkup', name: 'Token Checkup', what: 'Checklist of public red flags for a Solana token, based on GeckoTerminal data. Not a safety guarantee.' },
+    { url: 'hq.html#checkup', name: 'Token Checkup', what: 'Checklist of public red flags for a Solana token, based on GeckoTerminal data. Not a safety guarantee.' },
     { url: 'chain.html', name: 'Mini-Chain', what: 'Learn how a blockchain works: hash, mine and break blocks in the browser.' },
     { url: 'lend.html', name: 'Bot Bank', what: 'Play-money game about lending to AI agents: backers, fees, history, defaults. No real money.' },
     { url: 'app.html', name: '$MAIGA app', what: 'Installable app with all tools in one place.' },

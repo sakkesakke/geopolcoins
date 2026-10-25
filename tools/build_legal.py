@@ -40,11 +40,11 @@ footer{{text-align:center;color:var(--dim);font-size:13px;margin-top:40px}}foote
 </style></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main">
-<div class="top"><a href="/">&larr; geopolcoins.xyz</a><nav aria-label="Legal"><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="legal.html">Legal notice</a> · <a href="/#terms">Terms</a></nav></div>
+<div class="top"><a href="/">&larr; geopolcoins.xyz</a><nav aria-label="Legal"><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="legal.html">Legal notice</a> · <a href="hq.html#terms">Terms</a></nav></div>
 <h1>{h1}</h1>
 <p class="upd">Last updated: {UPDATED}. The English text is the reference version. <span lang="nl">Nederlands: vragen in het Nederlands zijn welkom.</span> <span lang="fr">Français : questions en français bienvenues.</span></p>
 {body}
-<footer>© 2026 $MAIGA • <a href="/">HOME</a> • <a href="privacy.html">PRIVACY</a> • <a href="cookies.html">COOKIES</a> • <a href="legal.html">LEGAL NOTICE</a> • <a href="/#terms">TERMS</a></footer>
+<footer>© 2026 $MAIGA • <a href="/">HOME</a> • <a href="privacy.html">PRIVACY</a> • <a href="cookies.html">COOKIES</a> • <a href="legal.html">LEGAL NOTICE</a> • <a href="hq.html#terms">TERMS</a></footer>
 </main>
 <script src="pwa.js" defer></script>
 </body></html>
@@ -199,7 +199,7 @@ legal=f'''
 <p>The site and its tools are provided "as is" and may contain mistakes or be unavailable. To the extent the law allows, we are not liable for losses from using this site or linked third-party services. Nothing in these texts limits rights you have under mandatory consumer law where you live.</p>
 
 <h2>Applicable law</h2>
-<p>If you have a problem, email us first and we will try to solve it quickly and fairly. Nothing in these texts takes away the protection that the mandatory consumer and privacy laws of the country where you live give you. See also our <a href="/#terms">Terms and disclaimers</a>, <a href="privacy.html">Privacy policy</a> and <a href="cookies.html">Cookie policy</a>.</p>
+<p>If you have a problem, email us first and we will try to solve it quickly and fairly. Nothing in these texts takes away the protection that the mandatory consumer and privacy laws of the country where you live give you. See also our <a href="hq.html#terms">Terms and disclaimers</a>, <a href="privacy.html">Privacy policy</a> and <a href="cookies.html">Cookie policy</a>.</p>
 '''
 
 open(OUT+'privacy.html','w').write(page('privacy.html','Privacy policy | $MAIGA geopolcoins.xyz','How geopolcoins.xyz handles personal data: what we collect, why, how long, and your rights under GDPR, CCPA and other laws. No cookies, no trackers.','Privacy policy',privacy))

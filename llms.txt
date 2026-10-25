@@ -11,6 +11,8 @@ Important for agents:
 
 ## Tools
 
+- [Start page](https://geopolcoins.xyz/): plain-language guide to every tool, in English, Dutch and French.
+- [$MAIGA HQ](https://geopolcoins.xyz/hq.html): coin info, Token Checkup, meme arcade (8 games, daily tournament), Launch Hub and AI agents.
 - [Meme Studio](https://geopolcoins.xyz/meme.html): free meme generator with 190+ classic templates, MAIGA pixel scenes, your own photo, pixel stickers and PNG download. Link format: meme.html#tpl=TEMPLATE_ID&top=TEXT&bottom=TEXT
 - [Meme Factory](https://geopolcoins.xyz/factory.html): type one idea and get a launch-pack draft (name, ticker, meme, safety check, X post drafts). Link format: factory.html?idea=WORDS&go=1. Free offline zip: https://geopolcoins.xyz/downloads/maiga-factory-offline.zip
 - [Bot Garage](https://geopolcoins.xyz/garage.html): copy or build an AI assistant prompt and test it with your own AI key (the key stays in the browser).

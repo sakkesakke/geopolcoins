@@ -127,7 +127,7 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
   <nav>
     <a href="index.html">&larr; SITE</a>
     <a href="meme.html">MEME STUDIO</a>
-    <a href="index.html#launch-hub">LAUNCH HUB</a>
+    <a href="hq.html#launch-hub">LAUNCH HUB</a>
     <a href="https://discord.gg/KFYCT4xVk" target="_blank" rel="noopener noreferrer">DISCORD</a>
     <a href="#boot" class="dlnav">&#11015; DOWNLOAD</a>
   </nav>
@@ -285,7 +285,7 @@ footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12px}
     <li>Entertainment only. NFA &middot; DYOR.</li>
   </ul>
 </section>
-<footer>$MAIGA Meme Factory &middot; built in public &middot; <a href="index.html#terms">Terms</a> • <a href="privacy.html">PRIVACY</a> • <a href="cookies.html">COOKIES</a> • <a href="legal.html">LEGAL</a></footer>
+<footer>$MAIGA Meme Factory &middot; built in public &middot; <a href="hq.html#terms">Terms</a> • <a href="privacy.html">PRIVACY</a> • <a href="cookies.html">COOKIES</a> • <a href="legal.html">LEGAL</a></footer>
 </main>
 <script>
 (function(){
@@ -796,7 +796,7 @@ function renderTeam(){
   d.appendChild(mk('div','meta','I am a creator · I am looking for a '+ROLE_NAME[tm.look]+' · '+tm.pitch.length+'/140 characters'));
   var row=mk('div','row');
   var cp=mk('button','btn alt','COPY');cp.type='button';cp.addEventListener('click',function(){copyText(tm.pitch,cp);});
-  var go=mk('a','btn alt','POST ON THE TEAM BOARD ↗');go.href='index.html#launch-hub';
+  var go=mk('a','btn alt','POST ON THE TEAM BOARD ↗');go.href='hq.html#launch-hub';
   row.appendChild(cp);row.appendChild(go);d.appendChild(row);box.appendChild(d);
 }
 $('pCheck').addEventListener('click',function(){doChecks();renderPosts();packMsg('Checked again with your edits.','ok');});

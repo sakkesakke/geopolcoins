@@ -28,6 +28,7 @@ Important for agents:
 ## For businesses
 
 - [Custom AI bot](https://geopolcoins.xyz/custom-ai-bot.html) (NL: [AI-bot op maat](https://geopolcoins.xyz/ai-bot-op-maat.html), FR: [Bot IA sur mesure](https://geopolcoins.xyz/bot-ia-sur-mesure.html))
+- [Pro bots](https://geopolcoins.xyz/pro-bots.html): blueprints for connected AI assistants (phone receptionist, inbox assistant, WhatsApp booking bot and more) with honest running costs.
 - AI bots for [salons](https://geopolcoins.xyz/ai-bots-salon.html), [real estate](https://geopolcoins.xyz/ai-bots-real-estate.html) and [restaurants](https://geopolcoins.xyz/ai-bots-restaurant.html)
 
 ## Shop

@@ -70,6 +70,7 @@ privacy=f'''
 <tr><td>Team board</td><td>Nickname, your role, the role you look for, a short pitch. Contact details and wallets are blocked.</td><td>Public board to find team members.</td><td>Your choice to post (consent, Art. 6(1)(a)); you can ask us to remove it.</td></tr>
 <tr><td>Factory Hub and Bot Garage community</td><td>Nickname plus what you share: coin name, ticker, meme text, description, or a bot recipe; likes and copies.</td><td>Show community creations.</td><td>Your choice to share (consent, Art. 6(1)(a)).</td></tr>
 <tr><td>Battle of the day</td><td>Vote counts only. We do not store who voted.</td><td>Show the result.</td><td>Not personal data.</td></tr>
+<tr><td>Free Starter Kit sign-up</td><td>Email, optional first name, business type, language, the page you came from, the consent text you agreed to and the time.</td><td>Give you the kit and send up to 5 tip emails, and later only emails you agreed to. You can unsubscribe in every email or by writing to us.</td><td>Consent (Art. 6(1)(a)), which you can withdraw at any time.</td></tr>
 <tr><td>Custom bot request form</td><td>Name, email, business name, business type, your message, language.</td><td>Answer your request and prepare an offer.</td><td>Steps before a contract at your request (Art. 6(1)(b)).</td></tr>
 <tr><td>Technical logs</td><td>When your browser contacts our database or our web host, they briefly log technical data such as your IP address and browser type.</td><td>Security, abuse prevention, keeping the service running.</td><td>Legitimate interest (Art. 6(1)(f)).</td></tr>
 </table></div>
@@ -110,6 +111,7 @@ privacy=f'''
 <tr><td>Factory Hub packs</td><td>Shown for 30 days.</td></tr>
 <tr><td>Scores, pilot names, verified wallets, community bots</td><td>As long as the leaderboard or feature exists, or until you ask us to delete them.</td></tr>
 <tr><td>Prize and payout records</td><td>Up to 7 years where accounting or tax rules require. The public payout list can be removed from our site on request; the blockchain record stays.</td></tr>
+<tr><td>Starter Kit sign-ups</td><td>Until you unsubscribe, then deleted within 30 days. Sign-ups that never open an email are deleted after 12 months.</td></tr>
 <tr><td>Custom bot requests</td><td>At most 12 months, or less if you ask.</td></tr>
 <tr><td>Technical logs (host, database)</td><td>Short periods set by the provider (usually days to weeks).</td></tr>
 </table></div>

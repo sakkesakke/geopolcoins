@@ -1,44 +1,43 @@
-# $MAIGA Arcade
+# geopolcoins.xyz
 
-Static site (GitHub Pages) + Supabase for scores/tournament + Phantom for payouts.
+Free AI tools that run in your browser. No account, nothing to install. English, Nederlands, Français.
 
-## Files
+**Live site: [geopolcoins.xyz](https://geopolcoins.xyz)**
 
-| File | What it is |
+| Tool | What it does |
 |---|---|
-| `index.html` | The whole site: 9 playable games, Wheel, tournament, swap, **Launch Hub** (meme maker + team planner + Pump.fun), terms |
-| `admin.html` | Payout dashboard. Signs in with a real Supabase account. Contains **no secrets**. |
-| `play.html`, `play-flappy.html` | Standalone Flappy pages for X player cards |
-| `supabase-security.sql` | Run once in Supabase to lock the database down |
-| `CNAME` | Custom domain (`geopolcoins.xyz`) — leave as is |
+| [Bot Garage](https://geopolcoins.xyz/garage.html) | Copy one of 24 free AI chatbots or build your own, then use it in ChatGPT, Claude, Discord, Telegram or X |
+| [Pro bots](https://geopolcoins.xyz/pro-bots.html) | Blueprints for connected assistants: phone receptionist, inbox assistant, WhatsApp booking bot |
+| [AI bots for salons](https://geopolcoins.xyz/ai-bots-salon.html), [real estate](https://geopolcoins.xyz/ai-bots-real-estate.html), [restaurants](https://geopolcoins.xyz/ai-bots-restaurant.html) | Ready-made assistants per trade, with one free bot to try |
+| [AI bot Q&A](https://geopolcoins.xyz/answers.html) | 17 honest answers about AI chatbots for small businesses |
+| [Free AI keys guide](https://geopolcoins.xyz/free-ai-api.html) | Free and cheap ways to run your own bot |
+| [Meme Studio](https://geopolcoins.xyz/meme.html) | 190+ meme templates, pixel stickers and PNG download, made on your device |
+| [Meme Factory](https://geopolcoins.xyz/factory.html) | One idea in, a complete meme launch kit out; works offline |
+| [Chart School](https://geopolcoins.xyz/chart.html) | Learn to read candles, volume, RSI and pump-and-dumps on practice charts |
+| [Mini-Chain](https://geopolcoins.xyz/chain.html) | Hash, mine and break a tiny blockchain yourself |
+| [Bot Bank](https://geopolcoins.xyz/lend.html) | Lend play coins to AI bots and learn the risks of lending |
+| [$MAIGA HQ](https://geopolcoins.xyz/hq.html) | Satirical meme coin info, Token Checkup, 8 arcade games, Launch Hub |
 
-## Deploy (GitHub Pages)
+## How it is built
 
-1. In your GitHub repo, upload/replace these files (Add file → Upload files). Delete `bloc2.txt` and `1bloc.txt` — they're already merged into `index.html`.
-2. Settings → Pages → deploy from the `main` branch, root folder.
-3. Wait ~1 minute and hard-refresh the site (Ctrl+Shift+R).
+- Plain HTML, CSS and JavaScript on GitHub Pages. No build step, no framework, no ad trackers.
+- Supabase (Postgres with row level security) for the small public parts: scores, counters and the quote form.
+- Installable as an app (PWA) and partly usable offline.
+- Every push is checked by Gitleaks (no secrets), CodeQL and a weekly link check.
 
-## Supabase lockdown (do this BEFORE the next tournament)
+## Files for maintainers
 
-1. Supabase → **Authentication → Users → Add user**: create your admin account (email + a strong password you use nowhere else).
-2. Same area: turn **off** "Allow new users to sign up".
-3. Open `supabase-security.sql`, replace `YOUR_ADMIN_EMAIL` (3 places) with that email, paste into **SQL Editor** and run.
-4. Open the function `start_today_tournament` and check it only creates a tournament when there isn't an active one.
-5. Visit `/admin.html` and sign in with that email/password.
+| Path | What it is |
+|---|---|
+| `index.html` | Start page with the tool picker (EN/NL/FR) |
+| `hq.html` | $MAIGA HQ: coin info, arcade, swap, Launch Hub, terms |
+| `admin.html` | Admin dashboard. Signs in with Supabase Auth and 2FA. Contains no secrets. |
+| `supabase-*.sql` | Database setup and security, safe to re-run |
+| `tools/` | Build scripts: offline zip, legal pages, Q&A page |
+| `sw.js` | Service worker. Bump `VERSION` on each release. |
 
-## Paying winners
+## Good to know
 
-1. Sign in on `/admin.html` → **Connect Phantom** (the wallet that holds the prize pool).
-2. Check the three winners and wallets. If a name has more than one wallet attached, pick the right one.
-3. **Send payouts** → approve each transaction in Phantom. Each payout is saved the moment it confirms; running it again skips winners who are already paid.
-4. First time: test with tiny amounts (change `PRIZES` at the top of the script in `admin.html`) before sending the real prizes.
-5. Optional but recommended: put a free Helius/QuickNode RPC URL in `RPC_URL` (the public one rate-limits).
+$MAIGA is a satirical meme coin. Entertainment only, not financial advice. The tools never ask for a seed phrase, private key or password.
 
-## Things you must know
-
-- **Scores can be faked.** Browser games send their own score. Review the top 3 before paying; real anti-cheat needs a server.
-- **Wheel = points.** The wheel awards arcade points, shown as points and kept out of the tournament. The 24h limit lives in the browser, so it's a soft limit.
-- **Launch Hub does not move money.** The team split is a planner. Pump.fun is a third party.
-- **12 games are marked "coming soon"** (Plinko, Dunk, Slice, Breakout, 2048, Whack, Crossy, Bomber, Simon, Mines, Puzzle, Tower). They no longer give fake scores.
-- Running a prize contest and swaps can be regulated depending on where you and your players live. The terms section is a starting point, not legal advice — ask a lawyer before real money flows at scale.
-- X only shows player cards for approved domains, so the embed may not appear in tweets.
+Contact: geopolcoins1@gmail.com · [Privacy](https://geopolcoins.xyz/privacy.html) · [Legal](https://geopolcoins.xyz/legal.html)

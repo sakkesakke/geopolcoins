@@ -96,6 +96,7 @@ privacy=f'''
 <p>We do not sell or rent personal data, and we do not share it for advertising. We use these service providers (processors), which process data only on our instructions:</p>
 <ul>
 <li><strong>Supabase</strong> (database, hosted in the EU, Frankfurt): stores the data in section 2.</li>
+<li><strong>Brevo</strong> (Sendinblue SAS, France, EU): sends the Starter Kit tip emails to people who signed up. It receives your email, first name, business type and language, and counts opens and clicks so we can see if the tips help. Every email has an unsubscribe link.</li>
 <li><strong>GitHub Pages</strong> (GitHub Inc., USA): hosts the website and keeps short technical logs.</li>
 </ul>
 <p>Public posts (leaderboards with pilot names and scores, team board, Factory Hub, community bots) are visible to everyone. Our Discord helper posts game standings (names and scores only, never wallets). We may disclose data if the law requires it, or to protect our rights or others' safety.</p>

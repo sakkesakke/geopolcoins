@@ -131,6 +131,8 @@ f.addEventListener('submit',function(e){e.preventDefault();m.className='msg';m.t
  .then(function(){go.disabled=false;});});
 function showDone(){document.getElementById('formView').hidden=true;var d=document.getElementById('doneView');d.hidden=false;d.focus();next();}
 apply();
+if(q.get('confirmed')){var CT={en:['Confirmed, thank you!','Your first tip email is on its way. You can download the kit here too.'],nl:['Bevestigd, bedankt!','Je eerste tipmail is onderweg. Je kan de kit hier ook downloaden.'],fr:['Confirmé, merci !','Votre premier e-mail de conseils arrive. Vous pouvez aussi télécharger le kit ici.']}[lang];
+ document.getElementById('formView').hidden=true;var d=document.getElementById('doneView');d.hidden=false;d.querySelector('[data-i=dH]').textContent=CT[0];d.querySelector('[data-i=dP]').textContent=CT[1];next();}
 })();
 </script>
 <script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'ai',p_ref:r})}).catch(function(){});}catch(e){}})();</script>

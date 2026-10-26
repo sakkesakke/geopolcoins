@@ -156,6 +156,12 @@ button.gray{background:#666;color:#fff}
   </div>
 
   <div class="card">
+    <h2>📨 <span>Starter Kit sign-ups</span></h2>
+    <div class="note" style="margin-bottom:10px">People who asked for the free kit and the 5 tip emails. Export the new ones as CSV, import them in your email tool, then press "Mark exported". Unsubscribed people: mark them so they never get mail again.</div>
+    <div id="leadBox" class="note">Loading…</div>
+  </div>
+
+  <div class="card">
     <h2>📜 <span>Payout History</span></h2>
     <div id="payoutHistory" class="note">Loading…</div>
   </div>
@@ -695,7 +701,40 @@ async function loadRequests(){
   }
 }
 
-function reload(){ if (!session) return; loadData(); loadHistory(); loadStats(); loadRequests(); }
+async function loadLeads(){
+  const box = $('leadBox');
+  try{
+    const rows = await sbJson('leads?select=id,created_at,email,name,btype,lang,source,status&order=created_at.desc&limit=500');
+    if (!rows.length){ box.textContent = 'No sign-ups yet.'; return; }
+    const fresh = rows.filter(r => r.status === 'new');
+    const count = (k) => { const m = {}; rows.forEach(r => { m[r[k]] = (m[r[k]] || 0) + 1; }); return Object.entries(m).sort((a, b) => b[1] - a[1]).map(([x, n]) => x + ' ' + n).join(' · '); };
+    const csvCell = (v) => { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
+    const exp = el('button', { text: 'Download CSV of new (' + fresh.length + ')', style: 'margin:6px 6px 8px 0;padding:6px 10px;font-size:12px' });
+    exp.addEventListener('click', () => {
+      const lines = [['EMAIL', 'FIRSTNAME', 'BUSINESS_TYPE', 'LANGUAGE', 'SOURCE', 'SIGNED_UP']].concat(fresh.map(r => [r.email, r.name, r.btype, r.lang, r.source, r.created_at]));
+      const blob = new Blob([lines.map(l => l.map(csvCell).join(',')).join('\n')], { type: 'text/csv' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'starter-kit-leads.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+    const mark = el('button', { text: 'Mark these as exported', style: 'margin:6px 6px 8px 0;padding:6px 10px;font-size:12px' });
+    mark.addEventListener('click', async () => {
+      if (!fresh.length || !confirm('Mark ' + fresh.length + ' sign-ups as exported?')) return;
+      const res = await sb('leads?status=eq.new&id=in.(' + fresh.map(r => r.id).join(',') + ')', { method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'imported' }) });
+      if (!res.ok) { alert('Could not update: HTTP ' + res.status); return; } loadLeads();
+    });
+    const unsub = async (id) => { const res = await sb('leads?id=eq.' + id, { method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'unsubscribed' }) }); if (!res.ok) { alert('HTTP ' + res.status); return; } loadLeads(); };
+    box.replaceChildren(
+      el('div', { style: 'font-size:12px;margin-bottom:6px', text: rows.length + ' total · ' + fresh.length + ' new · ' + count('btype') }),
+      el('div', { style: 'font-size:12px;color:#8ea3ba;margin-bottom:6px', text: 'Sources: ' + count('source') }), exp, mark,
+      ...rows.slice(0, 30).map(r => { const b = el('button', { text: 'Unsubscribed', style: 'margin-left:8px;padding:2px 6px;font-size:11px' }); b.addEventListener('click', () => unsub(r.id));
+        return el('div', { style: 'display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;border-bottom:1px solid #1d2a3a;padding:4px 0' },
+          el('span', { style: 'color:' + (r.status === 'new' ? '#ffd800' : r.status === 'imported' ? '#28c76f' : '#ff4b61'), text: r.status }),
+          el('span', { text: r.email + (r.name ? ' (' + r.name + ')' : '') + ' · ' + r.btype + ' · ' + r.lang.toUpperCase() + ' · ' + r.source + ' · ' + new Date(r.created_at).toLocaleDateString('nl-BE') }), r.status !== 'unsubscribed' ? b : el('span')); }));
+  } catch(e){
+    box.textContent = /404|400/.test(e.message) ? 'Sign-ups are not switched on yet: run supabase-leads.sql in the Supabase SQL editor.' : 'Error: ' + e.message;
+  }
+}
+
+function reload(){ if (!session) return; loadData(); loadHistory(); loadStats(); loadRequests(); loadLeads(); }
 
 /* ============================================================
    INIT

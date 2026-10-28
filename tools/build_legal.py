@@ -65,6 +65,7 @@ privacy=f'''
 <tr><th>Feature</th><th>Data</th><th>Why</th><th>Legal basis (GDPR)</th></tr>
 <tr><td>Visit counter (all main pages)</td><td>Page name, day, and the website you came from (only the domain, for example <code>x.com</code>). No cookies, no IP address, no device or user ID.</td><td>See which tools are used.</td><td>Not personal data. Where any law treats it as such: legitimate interest (Art. 6(1)(f)).</td></tr>
 <tr><td>Games and tournament</td><td>Pilot name or player name you choose (in MAIGA Raid: a name in the style of an X @name, not checked by us), scores, play time, hero, game type, date; optionally the wallet address you enter for prizes (old tournament only, never in MAIGA Raid).</td><td>Leaderboards, tournament results and prize payouts.</td><td>Taking part in the game (contract, Art. 6(1)(b)).</td></tr>
+<tr><td>MAIGA Raid: log in with X (optional, only when switched on)</td><td>From your X account via Supabase Auth: X user ID, username, display name and profile picture link (and your email only if X shares it). Linked to the scores you save. We never post on X for you and get no access to your posts or messages.</td><td>Show your real X name on the leaderboard so nobody can fake it.</td><td>Your choice to log in (contract, Art. 6(1)(b)). Ask us to delete your account and scores at any time.</td></tr>
 <tr><td>Wallet verification (optional)</td><td>Pilot name and the wallet address that signed a free message. The signature is checked; it is not a transaction.</td><td>Reserve your pilot name and prevent impersonation.</td><td>Your request (contract, Art. 6(1)(b)).</td></tr>
 <tr><td>Prize wheel and payouts</td><td>Pilot name, wallet address, prize amount, status and transaction ID.</td><td>Pay prizes and keep a record of what was paid. Payout records (receiving wallet, amount, transaction ID) are public on our site as proof of payment, just as they are on the blockchain.</td><td>Contract (Art. 6(1)(b)); keeping records (Art. 6(1)(c)/(f)).</td></tr>
 <tr><td>Team board</td><td>Nickname, your role, the role you look for, a short pitch. Contact details and wallets are blocked.</td><td>Public board to find team members.</td><td>Your choice to post (consent, Art. 6(1)(a)); you can ask us to remove it.</td></tr>
@@ -97,6 +98,7 @@ privacy=f'''
 <ul>
 <li><strong>Supabase</strong> (database, hosted in the EU, Frankfurt): stores the data in section 2.</li>
 <li><strong>Brevo</strong> (Sendinblue SAS, France, EU): sends the Starter Kit tip emails to people who signed up. It receives your email, first name, business type and language, and counts opens and clicks so we can see if the tips help. Every email has an unsubscribe link.</li>
+<li><strong>X</strong> (X Corp., USA): only when you choose "Log in with X" in MAIGA Raid. X confirms who you are and sends us your basic profile; X's own privacy policy applies to your X account.</li>
 <li><strong>GitHub Pages</strong> (GitHub Inc., USA): hosts the website and keeps short technical logs.</li>
 </ul>
 <p>Public posts (leaderboards with pilot names and scores, team board, Factory Hub, community bots) are visible to everyone. Our Discord helper posts game standings (names and scores only, never wallets). We may disclose data if the law requires it, or to protect our rights or others' safety.</p>
@@ -164,6 +166,7 @@ cookies=f'''
 <tr><td><code>maiga_factory_share</code>, <code>maiga_tm_last</code></td><td>Remembers your last share or post, to prevent double posting.</td><td>Until you clear it.</td></tr>
 <tr><td><code>maiga_flappy_best</code>, <code>maiga_total_…</code></td><td>Your best game scores and daily totals.</td><td>Until you clear it.</td></tr>
 <tr><td><code>maiga_raid_hero</code>, <code>maiga_raid_name</code>, <code>maiga_raid_music</code></td><td>MAIGA Raid: your last hero, the player name you typed and whether music is on.</td><td>Until you clear it.</td></tr>
+<tr><td><code>maiga_raid_x</code>, <code>maiga_raid_pending</code> (session storage)</td><td>MAIGA Raid: your X login for this tab and the score waiting to be saved while you log in.</td><td>Until you close the tab or log out.</td></tr>
 <tr><td><code>maiga_start_card</code>, <code>maiga_start_steps</code>, <code>maiga_start_pack</code></td><td>Buyer start page: the business details you type for your bot card, your finished steps and which pack you bought. Never sent to us.</td><td>Until you clear it.</td></tr>
 <tr><td><code>maiga_chart_done</code></td><td>Which Chart School lessons you finished.</td><td>Until you clear it.</td></tr>
 <tr><td>Token Checkup history</td><td>Your recent token checks.</td><td>Until you clear it.</td></tr>

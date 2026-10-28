@@ -1,0 +1,18 @@
+name: SEO basics (20 checks)
+
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Titles, descriptions, canonical, one H1, alt text, schema, sitemap, links, og:image, llms.txt
+        run: python3 tools/seo_audit.py

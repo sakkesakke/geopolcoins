@@ -28,6 +28,11 @@ jobs:
           check "https://geopolcoins.xyz/partners.html" "Partner"
           check "https://geopolcoins.xyz/garage.html" "BOT GARAGE"
           check "https://geopolcoins.xyz/sitemap.xml" "geopolcoins.xyz"
+          check "https://geopolcoins.xyz/raid.html" "MAIGA Raid"
+          check "https://geopolcoins.xyz/llms.txt" "geopolcoins"
+          # plain http must redirect to https (Enforce HTTPS)
+          loc=$(curl -s -o /dev/null -w "%{redirect_url}" --max-time 30 "http://geopolcoins.xyz/")
+          case "$loc" in https://*) echo "OK https redirect";; *) echo "::error::http does not redirect to https ($loc)"; fail=1;; esac
           # the public database must still answer (publishable key is public by design)
           code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
             -H "apikey: sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN" \

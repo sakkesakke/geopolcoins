@@ -100,7 +100,7 @@ button.gray{background:#666;color:#fff}
       <h1>💰 PAYOUT DASHBOARD</h1>
       <div class="subtitle">TOURNAMENT PAYOUTS · $MAIGA · <span id="whoami"></span></div>
     </div>
-    <button class="gray" id="logoutBtn" style="margin-top:0">SIGN OUT</button>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a href="crm.html" id="crmBtn" style="display:inline-block;background:#e0b43a;color:#111;font-weight:900;padding:10px 14px;border-radius:8px;border:2px solid #000;text-decoration:none">📇 OPEN CRM</a><button class="gray" id="logoutBtn" style="margin-top:0">SIGN OUT</button></div>
   </div>
 
   <div class="card">
@@ -368,6 +368,7 @@ function signOut(){
   $('loginView').classList.remove('hidden');
 }
 function showDash(){
+  if (new URLSearchParams(location.search).get('next') === 'crm'){ location.href = 'crm.html'; return; }
   $('loginView').classList.add('hidden');
   $('dashView').classList.remove('hidden');
   $('whoami').textContent = session.email;

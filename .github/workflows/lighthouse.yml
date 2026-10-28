@@ -21,5 +21,6 @@ jobs:
             https://geopolcoins.xyz/factory.html
             https://geopolcoins.xyz/partners.html
             https://geopolcoins.xyz/garage.html
+            https://geopolcoins.xyz/raid.html
           uploadArtifacts: true
           runs: 1

@@ -19,6 +19,7 @@ Important for agents:
 - [Bot Garage](https://geopolcoins.xyz/garage.html): copy or build an AI assistant prompt and test it with your own AI key (the key stays in the browser).
 - [Token Checkup](https://geopolcoins.xyz/index.html#checkup): checklist of public red flags for a Solana token from GeckoTerminal data. Not a safety guarantee.
 - [Free AI keys guide](https://geopolcoins.xyz/free-ai-api.html): what an API key is, free and cheap AI providers, safety tips.
+- [MAIGA Raid](https://geopolcoins.xyz/raid.html): free pixel platformer (EN/NL/FR). Play Jean-Phil the ice knight or Bolt the robot, 3 worlds and a boss, leaderboard, share on X. No wallet, no prizes.
 - [$MAIGA app](https://geopolcoins.xyz/app.html): installable web app with all tools.
 
 ## Learn

@@ -425,7 +425,7 @@ var HERO={jp:{hp:5,spd:112,jv:338,w:14,h:26,sp:'jp',ox:16,fw:40,fh:40},bolt:{hp:
 function solidC(c){return c==='#'||c==='*'||c==='>'||c==='<';}
 function tileAt(px,py){var x=Math.floor(px/TS),y=Math.floor(py/TS);if(x<0||x>=lv.w)return '#';if(y<0)return '.';if(y>=17)return '.';return lv.t[y][x];}
 function startWorld(w,keepRespawn){
- G.world=w;lv=cloneLv(LEVELS[w]);ents=[];parts=[];G.boss=null;G.arena=false;G.wtime=0;G.wcoins=0;
+ G.world=w;lv=cloneLv(LEVELS[w]);ents=[];parts=[];bubble=null;bossBubble=null;G.boss=null;G.arena=false;G.wtime=0;G.wcoins=0;
  if(!BG[w])BG[w]=mkBg(w);if(!TILE[w])TILE[w]=mkTiles(w);
  lv.e.forEach(function(e){spawn(e);});
  var H=HERO[G.hero];
@@ -497,7 +497,7 @@ function step(dt){
  if(P.dash>0){P.dash-=dt;P.vy=0;if(Math.random()<.6)parts.push({k:'ghost',x:P.x,y:P.y,f:P.face,t:.2,a:P.anim});}
  else if(P.hurtT<=0){
   var acc=P.ground?(ice?380:1100):700,dec=P.ground?(ice?160:1300):300;
-  if(dir){P.vx+=dir*acc*dt;if(Math.abs(P.vx)>spd)P.vx=Math.sign(P.vx)*Math.max(spd,Math.abs(P.vx)-dec*dt);P.face=dir;}
+  if(dir){if(P.vx*dir<spd){P.vx+=dir*acc*dt;if(P.vx*dir>spd)P.vx=dir*spd;}else P.vx=Math.sign(P.vx)*Math.max(spd,Math.abs(P.vx)-dec*dt);P.face=dir;}
   else{var s=Math.sign(P.vx),m=Math.abs(P.vx)-dec*dt;P.vx=m>0?s*m:0;}
  }
  if(KP.dash&&P.dashCd<=0&&P.hurtT<=0){P.dash=.16;P.dashCd=.75;P.vx=P.face*300;sfx('dash');}

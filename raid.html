@@ -155,6 +155,7 @@ footer a{color:var(--dim);padding:6px 0}
    <h2 data-i="won">Mintje is free!</h2>
    <div class="stats" id="wS"></div>
    <div class="row" id="subRow"><input class="handle" id="iName" maxlength="15" autocomplete="off" placeholder="your X @name"><button type="button" class="b cy" id="bSubmit" data-i="submit">Save score</button></div>
+   <div class="row" id="xRow" hidden><button type="button" class="b x" id="bXLogin">𝕏 Log in with X &amp; save</button><button type="button" class="b ghost" id="bXOut" hidden data-i="xOut">Log out</button></div>
    <p class="sub" id="subMsg" data-i="subInfo">Only letters, numbers and _ (like an X @name). Shown publicly on the leaderboard.</p>
    <div class="row"><button type="button" class="b x" id="bShareX" data-i="shareX">Share on X</button><button type="button" class="b ghost" id="bCard" data-i="card">Score image</button><button type="button" class="b ghost" id="bAgain" data-i="again">Play again</button></div>
    <div class="row"><a class="b ghost" href="index.html#coin" data-i="coinB">About $MAIGA</a><button type="button" class="b ghost" id="bLb2" data-i="lb">Leaderboard</button></div>
@@ -163,6 +164,7 @@ footer a{color:var(--dim);padding:6px 0}
   <div class="ov" id="oLb" hidden>
    <h2 data-i="lb">Leaderboard</h2>
    <div class="lb"><div class="tabs"><button type="button" data-s="week" aria-pressed="true" data-i="week">This week</button><button type="button" data-s="all" aria-pressed="false" data-i="all">All time</button></div><ol id="lbList"></ol></div>
+   <p class="sub" id="lbMsg" hidden></p>
    <p class="sub" data-i="lbNote">Names are typed by players and not checked. Scores are for fun only, no prizes.</p>
    <button type="button" class="b" id="bLbClose" data-i="close">Close</button>
   </div>
@@ -205,17 +207,17 @@ footer a{color:var(--dim);padding:6px 0}
 var T={
 en:{skip:'Skip to the game',tag:'A knight. A robot. A very bad rug.',intro:'Lord Rugpull kidnapped Mintje and fled through 3 worlds. Raid the ice, the Meme Factory and the Rug Tower and bring her home.',play:'Play now',lb:'Leaderboard',free:'Free. No wallet, no sign-up. Coins in the game are only collectibles.',pick:'Choose your hero',jpD:'The ice knight. Sword, 5 hearts, heavy armour.',boltD:'The robot. Zap blaster, 4 hearts, a bit faster.',go:'Start the raid',back:'Back',paused:'Paused',resume:'Resume',restart:'Restart world',quit:'Title screen',banter:'Hero banter',voice:'Spoken banter (uses your browser voice)',next:'Next world',won:'Mintje is free!',submit:'Save score',subInfo:'Only letters, numbers and _ (like an X @name). Shown publicly on the leaderboard.',shareX:'Share on X',card:'Score image',again:'Play again',coinB:'About $MAIGA',week:'This week',all:'All time',lbNote:'Names are typed by players and not checked. Scores are for fun only, no prizes.',close:'Close',rot:'Tip: turn your phone sideways for a bigger screen.',howH:'How to play',kMove:'Move',kJump:'Jump (press again in the air for a double jump)',kAtk:'Sword (Jean-Phil) or zap (Bolt). Breaks ice and crates.',kDash:"Dash: you can't be hit while dashing",kPause:'Pause',kPad:'Controller: stick, A jump, X attack, B dash, Start pause',pups:'Power-ups: ♥ heart, 💎 Diamond Guard (blocks one hit), 🚀 Moon Boots (higher jumps), 🐂 Bull Run (faster). Jump on enemies to stomp them.',cH:'The coin behind the game',cP:"$MAIGA is Jean-Phil's satirical meme coin on Solana. The game never touches a wallet.",copy:'Copy address',copied:'Copied!',follow:'Follow on X',warn:'Entertainment only. Meme coins can lose all their value. No price or profit promises. Never share your seed phrase. NFA, DYOR.',fHome:'Home',fArc:'Arcade',fPriv:'Privacy',fLegal:'Legal',fArt:'Pixel art: geopolcoins.xyz characters.',
  w:['World 1: Greenland Ice','World 2: The Meme Factory','World 3: The Rug Tower'],clear:'World clear!',score:'Score',coins:'Coins',time:'Time',deaths:'Falls',hero:'Hero',
- beat:'Beat {n}: {s} points',nameBad:'Use 1-15 letters, numbers or _.',saving:'Saving…',saved:'Saved! You are #{r} this week.',saveErr:'Could not save right now. Try again later.',lbEmpty:'No scores yet. Be the first!',lbLoad:'Loading…',lbErr:'Leaderboard is offline right now.',
+ beat:'Beat {n}: {s} points',nameBad:'Use 1-15 letters, numbers or _.',saving:'Saving…',saved:'Saved! You are #{r} this week.',saveErr:'Could not save right now. Try again later.',lbEmpty:'No scores yet. Be the first!',lbLoad:'Loading…',lbErr:'Leaderboard is offline right now.',xLogin:'𝕏 Log in with X & save',xSave:'Save as @{h} ✓',xInfo:'Your name comes from your X account, so nobody can fake it. We only read your username. Nothing is posted.',xSaved:'Saved as @{h} ✓ You are #{r} this week.',xErr:'X login did not work. Try again.',xOut:'Log out',lbNote2:'✓ = name checked with X. Scores are for fun only, no prizes.',
  share:'I freed Mintje from Lord Rugpull in MAIGA Raid with {h}: {s} points in {t}. Can you beat me?',boss:'LORD RUGPULL',loading:'Loading…',
  quotes:['"Next world. Same rug energy."','"Snow in my boots, glory in my heart."','"The factory awaits. Bring memes."']},
 nl:{skip:'Naar het spel',tag:'Een ridder. Een robot. Een heel slecht tapijt.',intro:'Lord Rugpull heeft Mintje ontvoerd en vluchtte door 3 werelden. Overval het ijs, de Meme Fabriek en de Tapijttoren en breng haar thuis.',play:'Nu spelen',lb:'Ranglijst',free:'Gratis. Geen wallet, geen account. Munten in het spel zijn alleen verzamelobjecten.',pick:'Kies je held',jpD:'De ijsridder. Zwaard, 5 hartjes, zware wapenrusting.',boltD:'De robot. Zap-blaster, 4 hartjes, iets sneller.',go:'Start de raid',back:'Terug',paused:'Pauze',resume:'Verder',restart:'Wereld opnieuw',quit:'Titelscherm',banter:'Praatjes van de held',voice:'Praatjes hardop (stem van je browser)',next:'Volgende wereld',won:'Mintje is vrij!',submit:'Score opslaan',subInfo:'Alleen letters, cijfers en _ (zoals een X @naam). Publiek zichtbaar op de ranglijst.',shareX:'Deel op X',card:'Score-afbeelding',again:'Opnieuw spelen',coinB:'Over $MAIGA',week:'Deze week',all:'Altijd',lbNote:'Namen worden door spelers getypt en niet gecontroleerd. Scores zijn voor de lol, geen prijzen.',close:'Sluiten',rot:'Tip: draai je telefoon voor een groter scherm.',howH:'Zo speel je',kMove:'Lopen',kJump:'Springen (nog eens in de lucht voor een dubbele sprong)',kAtk:'Zwaard (Jean-Phil) of zap (Bolt). Breekt ijs en kisten.',kDash:'Dash: tijdens een dash raakt niets je',kPause:'Pauze',kPad:'Controller: stick, A springen, X aanvallen, B dash, Start pauze',pups:'Power-ups: ♥ hartje, 💎 Diamantschild (houdt één klap tegen), 🚀 Maanlaarzen (hoger springen), 🐂 Bull Run (sneller). Spring op vijanden om ze plat te stampen.',cH:'De munt achter het spel',cP:'$MAIGA is de satirische meme coin van Jean-Phil op Solana. Het spel komt nooit aan een wallet.',copy:'Adres kopiëren',copied:'Gekopieerd!',follow:'Volg op X',warn:'Alleen voor de lol. Meme coins kunnen al hun waarde verliezen. Geen beloftes over prijs of winst. Deel nooit je seed phrase. NFA, DYOR.',fHome:'Home',fArc:'Arcade',fPriv:'Privacy',fLegal:'Juridisch',fArt:'Pixelkunst: personages van geopolcoins.xyz.',
  w:['Wereld 1: Groenlands ijs','Wereld 2: De Meme Fabriek','Wereld 3: De Tapijttoren'],clear:'Wereld gehaald!',score:'Score',coins:'Munten',time:'Tijd',deaths:'Gevallen',hero:'Held',
- beat:'Versla {n}: {s} punten',nameBad:'Gebruik 1-15 letters, cijfers of _.',saving:'Opslaan…',saved:'Opgeslagen! Je staat #{r} deze week.',saveErr:'Opslaan lukt nu niet. Probeer later opnieuw.',lbEmpty:'Nog geen scores. Wees de eerste!',lbLoad:'Laden…',lbErr:'De ranglijst is nu offline.',
+ beat:'Versla {n}: {s} punten',nameBad:'Gebruik 1-15 letters, cijfers of _.',saving:'Opslaan…',saved:'Opgeslagen! Je staat #{r} deze week.',saveErr:'Opslaan lukt nu niet. Probeer later opnieuw.',lbEmpty:'Nog geen scores. Wees de eerste!',lbLoad:'Laden…',lbErr:'De ranglijst is nu offline.',xLogin:'𝕏 Log in met X en bewaar',xSave:'Bewaar als @{h} ✓',xInfo:'Je naam komt van je X-account, dus niemand kan hem namaken. We lezen alleen je gebruikersnaam. Er wordt niets gepost.',xSaved:'Bewaard als @{h} ✓ Je staat #{r} deze week.',xErr:'Inloggen met X lukte niet. Probeer opnieuw.',xOut:'Uitloggen',lbNote2:'✓ = naam gecontroleerd via X. Scores zijn voor de lol, geen prijzen.',
  share:'Ik heb Mintje bevrijd van Lord Rugpull in MAIGA Raid met {h}: {s} punten in {t}. Versla jij me?',boss:'LORD RUGPULL',loading:'Laden…',
  quotes:['"Volgende wereld. Zelfde tapijtgedoe."','"Sneeuw in mijn laarzen, glorie in mijn hart."','"De fabriek wacht. Breng memes mee."']},
 fr:{skip:'Aller au jeu',tag:'Un chevalier. Un robot. Un très méchant tapis.',intro:'Lord Rugpull a enlevé Mintje et a fui à travers 3 mondes. Pille la glace, la Meme Factory et la Tour du Tapis, et ramène-la.',play:'Jouer',lb:'Classement',free:'Gratuit. Sans wallet, sans compte. Les pièces du jeu ne sont que des objets à collectionner.',pick:'Choisis ton héros',jpD:'Le chevalier des glaces. Épée, 5 cœurs, armure lourde.',boltD:'Le robot. Blaster zap, 4 cœurs, un peu plus rapide.',go:'Lancer le raid',back:'Retour',paused:'Pause',resume:'Reprendre',restart:'Recommencer le monde',quit:'Écran titre',banter:'Répliques du héros',voice:'Répliques à voix haute (voix du navigateur)',next:'Monde suivant',won:'Mintje est libre !',submit:'Enregistrer',subInfo:'Seulement lettres, chiffres et _ (comme un @nom X). Visible publiquement dans le classement.',shareX:'Partager sur X',card:'Image du score',again:'Rejouer',coinB:'À propos de $MAIGA',week:'Cette semaine',all:'Toujours',lbNote:'Les noms sont tapés par les joueurs et non vérifiés. Les scores sont pour le fun, sans prix.',close:'Fermer',rot:'Astuce : tourne ton téléphone pour un écran plus grand.',howH:'Comment jouer',kMove:'Bouger',kJump:'Sauter (appuie encore en l’air pour un double saut)',kAtk:'Épée (Jean-Phil) ou zap (Bolt). Casse la glace et les caisses.',kDash:'Dash : intouchable pendant le dash',kPause:'Pause',kPad:'Manette : stick, A saut, X attaque, B dash, Start pause',pups:'Bonus : ♥ cœur, 💎 Bouclier diamant (bloque un coup), 🚀 Bottes lunaires (sauts plus hauts), 🐂 Bull Run (plus rapide). Saute sur les ennemis pour les écraser.',cH:'La pièce derrière le jeu',cP:'$MAIGA est la meme coin satirique de Jean-Phil sur Solana. Le jeu ne touche jamais à un wallet.',copy:'Copier l’adresse',copied:'Copié !',follow:'Suivre sur X',warn:'Divertissement uniquement. Les meme coins peuvent perdre toute leur valeur. Aucune promesse de prix ou de profit. Ne partage jamais ta seed phrase. NFA, DYOR.',fHome:'Accueil',fArc:'Arcade',fPriv:'Confidentialité',fLegal:'Mentions légales',fArt:'Pixel art : personnages de geopolcoins.xyz.',
  w:['Monde 1 : Glace du Groenland','Monde 2 : La Meme Factory','Monde 3 : La Tour du Tapis'],clear:'Monde terminé !',score:'Score',coins:'Pièces',time:'Temps',deaths:'Chutes',hero:'Héros',
- beat:'Bats {n} : {s} points',nameBad:'Utilise 1 à 15 lettres, chiffres ou _.',saving:'Enregistrement…',saved:'Enregistré ! Tu es #{r} cette semaine.',saveErr:'Impossible d’enregistrer pour l’instant. Réessaie plus tard.',lbEmpty:'Pas encore de scores. Sois le premier !',lbLoad:'Chargement…',lbErr:'Le classement est hors ligne.',
+ beat:'Bats {n} : {s} points',nameBad:'Utilise 1 à 15 lettres, chiffres ou _.',saving:'Enregistrement…',saved:'Enregistré ! Tu es #{r} cette semaine.',saveErr:'Impossible d’enregistrer pour l’instant. Réessaie plus tard.',lbEmpty:'Pas encore de scores. Sois le premier !',lbLoad:'Chargement…',lbErr:'Le classement est hors ligne.',xLogin:'𝕏 Connexion X et enregistrer',xSave:'Enregistrer comme @{h} ✓',xInfo:'Ton nom vient de ton compte X, personne ne peut l’imiter. On lit seulement ton nom d’utilisateur. Rien n’est publié.',xSaved:'Enregistré comme @{h} ✓ Tu es #{r} cette semaine.',xErr:'La connexion X n’a pas marché. Réessaie.',xOut:'Déconnexion',lbNote2:'✓ = nom vérifié via X. Scores pour le fun, sans prix.',
  share:'J’ai libéré Mintje de Lord Rugpull dans MAIGA Raid avec {h} : {s} points en {t}. Tu peux faire mieux ?',boss:'LORD RUGPULL',loading:'Chargement…',
  quotes:['"Monde suivant. Même énergie de tapis."','"De la neige dans mes bottes, de la gloire dans mon cœur."','"L’usine attend. Apporte des memes."']}
 };
@@ -709,6 +711,7 @@ function win(){G.state='win';if(G.deaths===0)addScore(500);
  statsInto($('wS'),[[t('score'),G.score],[t('time'),fmtT(G.time)],[t('coins'),G.coins],[t('deaths'),G.deaths]]);
  $('subMsg').textContent=t('subInfo');$('subRow').hidden=false;$('bSubmit').disabled=false;
  var nm=ls('maiga_raid_name');if(nm)$('iName').value=nm;
+ xWinUi();
  show('oWin');}
 function statsInto(el,arr){el.textContent='';arr.forEach(function(a){var s=document.createElement('span');s.textContent=a[0]+': ';var b=document.createElement('b');b.textContent=a[1];s.appendChild(b);el.appendChild(s);});}
 function togglePause(){if(G.state==='play'){G.state='pause';musStop();show('oPause');}else if(G.state==='pause'){G.state='play';show(null);musStart(G.boss?3:G.world);}}
@@ -733,10 +736,10 @@ $('bCopy').addEventListener('click',function(){var b=this,ca=$('ca').textContent
 var SB='https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/',KEY='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';
 function rpc(fn,body){return fetch(SB+fn,{method:'POST',credentials:'omit',headers:{apikey:KEY,'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
 var lbScope='week',lbFrom='oTitle';
-function openLb(from){lbFrom=from;show('oLb');loadLb();}
+function openLb(from,msg){lbFrom=from;$('lbMsg').hidden=!msg;$('lbMsg').textContent=msg||'';show('oLb');loadLb();}
 function loadLb(){var ol=$('lbList');ol.textContent='';var li=document.createElement('li');li.textContent=t('lbLoad');ol.appendChild(li);
  rpc('raid_top',{p_scope:lbScope}).then(function(rows){ol.textContent='';if(!rows||!rows.length){var e=document.createElement('li');e.textContent=t('lbEmpty');ol.appendChild(e);return;}
-  rows.forEach(function(r){var li=document.createElement('li');var a=document.createElement('span');a.textContent='@'+r.handle+(r.hero==='bolt'?' 🤖':' ⚔');var b=document.createElement('span');b.textContent=r.score+' · '+fmtT(r.time_ms/1000);li.appendChild(a);li.appendChild(b);ol.appendChild(li);});})
+  rows.forEach(function(r){var li=document.createElement('li');var a=document.createElement('span');a.textContent='@'+r.handle+(r.verified?' ✓':'')+(r.hero==='bolt'?' 🤖':' ⚔');var b=document.createElement('span');b.textContent=r.score+' · '+fmtT(r.time_ms/1000);li.appendChild(a);li.appendChild(b);ol.appendChild(li);});})
  .catch(function(){ol.textContent='';var e=document.createElement('li');e.textContent=t('lbErr');ol.appendChild(e);});}
 document.querySelectorAll('.lb .tabs button').forEach(function(b){b.addEventListener('click',function(){lbScope=b.getAttribute('data-s');document.querySelectorAll('.lb .tabs button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});loadLb();});});
 $('bLb').addEventListener('click',function(){openLb('oTitle');});
@@ -749,9 +752,44 @@ $('bSubmit').addEventListener('click',function(){var n=$('iName').value.trim().r
  .then(function(r){G.submitted=true;$('subRow').hidden=true;$('subMsg').textContent=fmt(t('saved'),{r:r&&r.rank?r.rank:'?'});})
  .catch(function(){$('bSubmit').disabled=false;$('subMsg').textContent=t('saveErr');});});
 
+
+/* ---------------------------------------------------------------- Log in with X (Supabase Auth, no extra library)
+   The X username is read by the database from the login itself, never from the browser. */
+var AUTH='https://zslzbfbqrtfpvgbjhssd.supabase.co/auth/v1/',XCFG=false;
+function ss(k,v){try{if(v===undefined)return sessionStorage.getItem(k);if(v===null)sessionStorage.removeItem(k);else sessionStorage.setItem(k,v);}catch(e){return null;}}
+function jwtBody(tok){try{var p=tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');while(p.length%4)p+='=';return JSON.parse(decodeURIComponent(escape(atob(p))));}catch(e){return null;}}
+function xSess(){try{var s=JSON.parse(ss('maiga_raid_x')||'null');if(s&&s.t&&s.exp*1000>Date.now()+20000)return s;}catch(e){}return null;}
+function rpcAuth(fn,body,tok){return fetch(SB+fn,{method:'POST',credentials:'omit',headers:{apikey:KEY,Authorization:'Bearer '+tok,'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
+function xWinUi(){var on=XCFG&&!G.submitted;$('xRow').hidden=!on;if(!XCFG)return;$('subRow').hidden=true;var xs=xSess();
+ $('bXLogin').textContent=xs&&xs.h?fmt(t('xSave'),{h:xs.h}):t('xLogin');$('bXOut').hidden=!xs;$('subMsg').textContent=t('xInfo');}
+function pendingRun(){return {hero:G.hero,score:G.score,time_ms:Math.round(G.time*1000),coins:G.coins,deaths:G.deaths,lang:lang,ts:Date.now()};}
+function submitX(run,xs,done){rpcAuth('raid_submit_x',{p_hero:run.hero,p_score:run.score,p_time_ms:run.time_ms,p_coins:run.coins,p_deaths:run.deaths,p_lang:run.lang},xs.t)
+ .then(function(r){ss('maiga_raid_pending',null);done(fmt(t('xSaved'),{h:(r&&r.handle)||xs.h,r:r&&r.rank?r.rank:'?'}),true);})
+ .catch(function(){done(t('saveErr'),false);});}
+$('bXLogin').addEventListener('click',function(){var xs=xSess(),run=pendingRun();
+ if(xs){if(G.submitted)return;this.disabled=true;var b=this;$('subMsg').textContent=t('saving');
+   submitX(run,xs,function(msg,ok){b.disabled=false;$('subMsg').textContent=msg;if(ok){G.submitted=true;$('xRow').hidden=true;}});return;}
+ ss('maiga_raid_pending',JSON.stringify(run));
+ location.href=AUTH+'authorize?provider=x&redirect_to='+encodeURIComponent(location.origin+location.pathname);});
+$('bXOut').addEventListener('click',function(){var xs=xSess();ss('maiga_raid_x',null);if(xs)fetch(AUTH+'logout',{method:'POST',credentials:'omit',headers:{apikey:KEY,Authorization:'Bearer '+xs.t}}).catch(function(){});xWinUi();});
+(function xBoot(){
+ var h=location.hash.slice(1),q=new URLSearchParams(h),msgErr=null;
+ if(q.get('access_token')){var tok=q.get('access_token'),b=jwtBody(tok);
+   if(b){var md=b.user_metadata||{};ss('maiga_raid_x',JSON.stringify({t:tok,exp:b.exp||0,h:String(md.user_name||md.preferred_username||'').replace(/[^A-Za-z0-9_]/g,'').slice(0,15)}));}
+   try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}
+ else if(q.get('error')||q.get('error_description')){msgErr=t('xErr');try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}
+ rpc('raid_config',{}).then(function(c){XCFG=!!(c&&c.x_login);
+   var pend=null;try{pend=JSON.parse(ss('maiga_raid_pending')||'null');}catch(e){}
+   if(pend&&Date.now()-pend.ts>3600000){ss('maiga_raid_pending',null);pend=null;}
+   var xs=xSess();
+   if(XCFG&&pend&&xs){submitX(pend,xs,function(msg){openLb('oTitle',msg);});}
+   else if(msgErr){openLb('oTitle',msgErr);}
+   if(XCFG){var n=document.querySelector('[data-i="lbNote"]');if(n){n.setAttribute('data-i','lbNote2');n.textContent=t('lbNote2');}}
+ }).catch(function(){});
+})();
 /* ---------------------------------------------------------------- share on X + score image */
 function shareText(){return fmt(t('share'),{h:G.hero==='jp'?'Jean-Phil':'Bolt',s:G.score,t:fmtT(G.time)});}
-function shareUrl(){var n=($('iName').value||'').trim().replace(/^@/,'');var u='https://geopolcoins.xyz/raid.html?beat='+G.score+(/^[A-Za-z0-9_]{1,15}$/.test(n)?'&by='+n:'');return u;}
+function shareUrl(){var xs=xSess();var n=xs&&xs.h?xs.h:($('iName').value||'').trim().replace(/^@/,'');var u='https://geopolcoins.xyz/raid.html?beat='+G.score+(/^[A-Za-z0-9_]{1,15}$/.test(n)?'&by='+n:'');return u;}
 $('bShareX').addEventListener('click',function(){var u='https://x.com/intent/post?text='+encodeURIComponent(shareText()+' #MAIGA @greenlandusa1')+'&url='+encodeURIComponent(shareUrl());window.open(u,'_blank','noopener');});
 $('bCard').addEventListener('click',function(){var c=scoreCard();c.toBlob(function(b){if(!b)return;var f=null;try{f=new File([b],'maiga-raid-score.png',{type:'image/png'});}catch(e){}
  if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:shareText()+' '+shareUrl()}).catch(function(){});}

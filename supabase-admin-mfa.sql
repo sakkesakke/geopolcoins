@@ -4,8 +4,10 @@
 create or replace function public.is_admin() returns boolean
 language sql stable set search_path = public as $$
   select lower(coalesce(auth.jwt() ->> 'email','')) = lower('geopolcoins1@gmail.com')
+     and coalesce(auth.jwt() -> 'app_metadata' ->> 'provider', '') = 'email'
      and coalesce(auth.jwt() ->> 'aal','') = 'aal2'
 $$;
 -- undo (emergency only):
 -- create or replace function public.is_admin() returns boolean language sql stable set search_path = public as $$
---   select lower(coalesce(auth.jwt() ->> 'email','')) = lower('geopolcoins1@gmail.com') $$;
+--   select lower(coalesce(auth.jwt() ->> 'email','')) = lower('geopolcoins1@gmail.com')
+--      and coalesce(auth.jwt() -> 'app_metadata' ->> 'provider', '') = 'email' $$;

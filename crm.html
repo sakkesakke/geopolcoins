@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MAIGA CRM</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<style>
+:root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.14);--ok:#5be38a;--warn:#ffb648}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ink);color:var(--text);font:15.5px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brass)}button,input,select,textarea{font:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1400px;margin:0 auto;padding:0 16px 40px}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:14px 0}
+.top h1{font-size:22px;margin:0 auto 0 0;letter-spacing:-.02em}.top h1 b{color:var(--brass)}
+.b{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);cursor:pointer;font-weight:700;text-decoration:none}
+.b.main{background:var(--brass);color:#14110a;border-color:transparent}.b.ok{background:var(--ok);color:#06210f;border-color:transparent}.b.bad{background:none;color:var(--red);border-color:rgba(255,90,95,.4)}
+.b.sm{min-height:32px;padding:4px 10px;font-size:13.5px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}
+.kpi{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
+.kpi small{display:block;color:var(--dim);font-size:13px}.kpi b{font-size:24px;letter-spacing:-.02em}.kpi.alert b{color:var(--red)}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tabs button{background:none;border:1px solid var(--line);color:var(--dim);border-radius:999px;padding:7px 14px;cursor:pointer;font-weight:700;min-height:38px}
+.tabs button[aria-selected=true]{background:var(--cream);color:#1d1a14;border-color:var(--cream)}
+.tabs input{margin-left:auto;min-height:38px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:6px 14px;min-width:200px}
+.board{display:grid;grid-template-columns:repeat(6,minmax(200px,1fr));gap:10px;overflow-x:auto;padding-bottom:8px}
+.col{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:8px;min-height:240px;display:flex;flex-direction:column;gap:8px}
+.col.over{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(56,242,255,.3) inset}
+.col h2{font-size:14px;margin:2px 4px 2px;display:flex;justify-content:space-between;gap:6px;color:var(--cream)}.col h2 span{color:var(--dim);font-weight:600}
+.card{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--dim);border-radius:10px;padding:8px 10px;cursor:pointer;text-align:left;color:var(--text);width:100%}
+.card:hover{border-color:var(--cream)}
+.card b{display:block;font-size:14.5px;line-height:1.25;overflow:hidden;text-overflow:ellipsis}
+.card .m{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:12.5px;color:var(--dim);margin-top:4px}
+.chip{display:inline-block;border-radius:999px;padding:1px 8px;font-size:12px;background:#0a1630;border:1px solid var(--line);color:var(--cream)}
+.due{color:var(--red);font-weight:800}.soon{color:var(--warn);font-weight:700}
+.s-new{border-left-color:var(--brass)}.s-contacted{border-left-color:var(--cyan)}.s-quote{border-left-color:#b48cff}.s-won{border-left-color:var(--ok)}.s-lost{border-left-color:#6b7894}.s-nurture{border-left-color:#4f9dff}
+table{width:100%;border-collapse:collapse;background:var(--panel2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}th{color:var(--dim);font-weight:600;font-size:13px;background:#0c1934}
+tr.click{cursor:pointer}tr.click:hover td{background:#13254a}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.filters select{min-height:38px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:4px 10px}
+.empty{color:var(--dim);padding:20px;text-align:center}
+/* drawer */
+.shade{position:fixed;inset:0;background:rgba(3,8,20,.6);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:#0b1730;border-left:1px solid var(--line);z-index:21;overflow:auto;padding:16px 18px 40px}
+.drawer h2{margin:0 0 4px;font-size:21px;letter-spacing:-.02em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.grid label{display:grid;gap:4px;font-size:13px;color:var(--dim);font-weight:600;min-width:0}
+.grid .full{grid-column:1/-1}
+.grid input,.grid select,.grid textarea{min-height:40px;border-radius:10px;border:1px solid var(--line);background:var(--ink);color:var(--text);padding:6px 10px;width:100%}
+.first{background:var(--cream);color:#1d1a14;border-radius:12px;padding:10px 12px;white-space:pre-wrap;font-size:14.5px;margin:6px 0 12px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.notes{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.notes li{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;white-space:pre-wrap;font-size:14px}
+.notes li small{display:block;color:var(--dim);font-size:12px;margin-bottom:2px}
+.notes li.system{opacity:.75}
+.addnote{display:grid;grid-template-columns:auto 1fr auto;gap:8px;margin-top:10px}
+.addnote textarea{min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--ink);color:var(--text);padding:8px 10px;resize:vertical}
+.addnote select{border-radius:10px;border:1px solid var(--line);background:var(--ink);color:var(--text);padding:4px 8px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--cream);color:#1d1a14;padding:10px 16px;border-radius:12px;font-weight:700;z-index:30;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.gate{max-width:520px;margin:12vh auto;background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center}
+@media (max-width:900px){.kpis{grid-template-columns:1fr 1fr}.tabs input{margin-left:0;width:100%}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}.addnote{grid-template-columns:1fr}.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<div class="gate" id="gate" hidden>
+ <h1 style="margin-top:0">MAIGA CRM</h1>
+ <p>Log eerst in op de admin-pagina (met je code uit de app). Daarna kom je vanzelf hier terug.</p>
+ <a class="b main" href="admin.html?next=crm">Inloggen</a>
+</div>
+<div class="wrap" id="app" hidden>
+ <header class="top">
+  <h1><b>MAIGA</b> CRM</h1>
+  <button type="button" class="b main" id="bNew">+ Nieuw contact</button>
+  <button type="button" class="b" id="bCsv">CSV</button>
+  <a class="b" href="admin.html">Admin</a>
+  <button type="button" class="b" id="bOut">Uitloggen</button>
+ </header>
+ <section class="kpis" aria-live="polite">
+  <div class="kpi"><small>Open kansen</small><b id="kOpen">0</b></div>
+  <div class="kpi"><small>Waarde open kansen</small><b id="kPipe">€0</b></div>
+  <div class="kpi"><small>Gewonnen deze maand</small><b id="kWon">€0</b></div>
+  <div class="kpi" id="kDueBox"><small>Vandaag opvolgen</small><b id="kDue">0</b></div>
+ </section>
+ <div class="tabs" role="tablist">
+  <button type="button" role="tab" data-v="board" aria-selected="true">Bord</button>
+  <button type="button" role="tab" data-v="today" aria-selected="false">Vandaag</button>
+  <button type="button" role="tab" data-v="list" aria-selected="false">Alle contacten</button>
+  <input type="search" id="q" placeholder="Zoek naam, bedrijf, e-mail, tag…" aria-label="Zoeken">
+ </div>
+ <div id="vBoard" class="board"></div>
+ <div id="vToday" hidden></div>
+ <div id="vList" hidden>
+  <div class="filters"><select id="fStage" aria-label="Fase"></select><select id="fSeg" aria-label="Segment"></select><select id="fKind" aria-label="Soort"></select></div>
+  <div id="listBox"></div>
+ </div>
+</div>
+
+<div class="shade" id="shade" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Contact">
+ <div class="row" style="justify-content:space-between;margin-top:0"><h2 id="dTitle">Contact</h2><button type="button" class="b sm" id="dClose">Sluiten ✕</button></div>
+ <div id="dMeta" style="color:var(--dim);font-size:13px"></div>
+ <div class="row" id="dQuick"></div>
+ <div class="first" id="dFirst" hidden></div>
+ <form class="grid" id="dForm" autocomplete="off">
+  <label>Naam<input name="name" maxlength="80"></label>
+  <label>Bedrijf<input name="company" maxlength="100"></label>
+  <label>E-mail<input name="email" type="email" maxlength="120"></label>
+  <label>Telefoon<input name="phone" maxlength="40"></label>
+  <label>Fase<select name="stage"></select></label>
+  <label>Waarde (€)<input name="value_eur" type="number" min="0" step="1"></label>
+  <label>Soort<select name="kind"></select></label>
+  <label>Segment<input name="segment" maxlength="30" list="segList"></label>
+  <label>Taal<select name="lang"><option value="nl">NL</option><option value="en">EN</option><option value="fr">FR</option></select></label>
+  <label>Opvolgen op<input name="next_date" type="date"></label>
+  <label class="full">Volgende stap<input name="next_action" maxlength="200" placeholder="bv. Offerte sturen, terugbellen…"></label>
+  <label class="full">Tags (komma's)<input name="tags" maxlength="200" placeholder="bv. warm, robotica, Marokko"></label>
+  <div class="full row"><button type="submit" class="b main">Opslaan</button><button type="button" class="b bad" id="dDel">Verwijderen</button></div>
+ </form>
+ <datalist id="segList"><option value="robotics"><option value="salon"><option value="realestate"><option value="horeca"><option value="shop"><option value="trades"><option value="health"><option value="other"></datalist>
+ <h3 style="margin:16px 0 0">Tijdlijn</h3>
+ <div class="addnote"><select id="nKind" aria-label="Soort notitie"><option value="note">Notitie</option><option value="call">Gebeld</option><option value="email">Mail</option><option value="meeting">Afspraak</option><option value="task">Taak</option></select><textarea id="nBody" maxlength="4000" placeholder="Wat is er gebeurd of afgesproken?"></textarea><button type="button" class="b main" id="nAdd">Toevoegen</button></div>
+ <ul class="notes" id="dNotes"></ul>
+</aside>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+'use strict';
+var URL0='https://zslzbfbqrtfpvgbjhssd.supabase.co',KEY='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN',SK='maiga_admin_session';
+var STAGES=[['new','Nieuw'],['contacted','Gecontacteerd'],['quote','Offerte'],['won','Gewonnen'],['lost','Verloren'],['nurture','Nieuwsbrief']];
+var KINDS=[['lead','Lead'],['customer','Klant'],['partner','Partner'],['supplier','Leverancier'],['other','Andere']];
+var SEGN={robotics:'Robotica',salon:'Salon',realestate:'Vastgoed',horeca:'Horeca',shop:'Winkel',trades:'Vakman',health:'Zorg',other:'Andere'};
+var SRC={manual:'handmatig',bot_request:'offerteformulier',starter_kit:'Starter Kit',kofi:'Ko-fi',x:'X',other:'andere'};
+var $=function(id){return document.getElementById(id);};
+var session=null,rows=[],cur=null,view='board';
+try{session=JSON.parse(sessionStorage.getItem(SK)||'null');}catch(e){}
+if(!session||!session.token||session.exp<Date.now()+60000){$('gate').hidden=false;return;}
+$('app').hidden=false;
+
+function api(path,opts){opts=opts||{};var h={apikey:KEY,Authorization:'Bearer '+session.token,'Content-Type':'application/json'};if(opts.prefer)h.Prefer=opts.prefer;
+ return fetch(URL0+'/rest/v1/'+path,{method:opts.method||'GET',headers:h,body:opts.body?JSON.stringify(opts.body):undefined,credentials:'omit'}).then(function(r){
+  if(r.status===401){sessionStorage.removeItem(SK);location.href='admin.html?next=crm';throw new Error('login');}
+  if(!r.ok)return r.json().catch(function(){return {};}).then(function(j){throw new Error(j.message||('HTTP '+r.status));});
+  return r.text().then(function(t){return t?JSON.parse(t):null;});});}
+function toast(t){var el=$('toast');el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){el.hidden=true;},2200);}
+function el(tag,attrs,kids){var e=document.createElement(tag);if(attrs)for(var k in attrs){if(k==='text')e.textContent=attrs[k];else if(k==='cls')e.className=attrs[k];else if(k.slice(0,2)==='on')e.addEventListener(k.slice(2),attrs[k]);else e.setAttribute(k,attrs[k]);}(kids||[]).forEach(function(c){if(c)e.appendChild(typeof c==='string'?document.createTextNode(c):c);});return e;}
+function today(){var d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);}
+function eur(n){return '€'+Math.round(+n||0).toLocaleString('nl-BE');}
+function label(arr,k){for(var i=0;i<arr.length;i++)if(arr[i][0]===k)return arr[i][1];return k;}
+function title(r){return r.company||r.name||r.email||('#'+r.id);}
+
+function load(){return api('crm_contacts?select=*&order=updated_at.desc&limit=2000').then(function(d){rows=d||[];render();}).catch(function(e){
+ if(e.message==='login')return;$('vBoard').textContent='';$('vBoard').appendChild(el('div',{cls:'empty',text:/crm_contacts|relation|404|PGRST/.test(e.message)?'De CRM-database staat nog niet aan. Laat supabase-crm.sql uitvoeren.':'Fout: '+e.message}));});}
+
+function match(r){var q=$('q').value.trim().toLowerCase();if(!q)return true;return [r.name,r.company,r.email,r.phone,r.segment,(r.tags||[]).join(' '),r.next_action].join(' ').toLowerCase().indexOf(q)>-1;}
+function render(){kpis();if(view==='board')board();else if(view==='today')todayView();else list();}
+function kpis(){var t=today(),m=t.slice(0,7),open=rows.filter(function(r){return ['new','contacted','quote'].indexOf(r.stage)>-1;});
+ $('kOpen').textContent=open.length;$('kPipe').textContent=eur(open.reduce(function(a,r){return a+(+r.value_eur||0);},0));
+ $('kWon').textContent=eur(rows.filter(function(r){return r.stage==='won'&&(r.updated_at||'').slice(0,7)===m;}).reduce(function(a,r){return a+(+r.value_eur||0);},0));
+ var due=rows.filter(function(r){return r.next_date&&r.next_date<=t&&r.stage!=='won'&&r.stage!=='lost';});$('kDue').textContent=due.length;$('kDueBox').className='kpi'+(due.length?' alert':'');}
+function dateTag(r){if(!r.next_date)return null;var t=today();var cls=r.next_date<t?'due':r.next_date===t?'soon':'';return el('span',{cls:cls,text:'📅 '+r.next_date.slice(5).split('-').reverse().join('/')});}
+function card(r){var b=el('button',{type:'button',cls:'card s-'+r.stage,draggable:'true',onclick:function(){openC(r.id);}},[
+  el('b',{text:title(r)}),
+  el('div',{cls:'m'},[r.company&&r.name?el('span',{text:r.name}):null,el('span',{cls:'chip',text:SEGN[r.segment]||r.segment}),+r.value_eur?el('span',{text:eur(r.value_eur)}):null,dateTag(r),(r.tags||[]).indexOf('unsubscribed')>-1?el('span',{text:'uitgeschreven'}):null])]);
+ b.addEventListener('dragstart',function(e){e.dataTransfer.setData('text/plain',String(r.id));});return b;}
+function board(){var box=$('vBoard');box.textContent='';var list=rows.filter(match);
+ STAGES.forEach(function(s){var items=list.filter(function(r){return r.stage===s[0];});
+  var col=el('section',{cls:'col','aria-label':s[1]},[el('h2',{},[s[1]+' ',el('span',{text:items.length+(s[0]!=='nurture'&&s[0]!=='lost'?' · '+eur(items.reduce(function(a,r){return a+(+r.value_eur||0);},0)):'')})])]);
+  items.slice(0,200).forEach(function(r){col.appendChild(card(r));});
+  if(!items.length)col.appendChild(el('div',{cls:'empty',text:'—'}));
+  col.addEventListener('dragover',function(e){e.preventDefault();col.classList.add('over');});
+  col.addEventListener('dragleave',function(){col.classList.remove('over');});
+  col.addEventListener('drop',function(e){e.preventDefault();col.classList.remove('over');var id=+e.dataTransfer.getData('text/plain');setStage(id,s[0]);});
+  box.appendChild(col);});}
+function table(items){if(!items.length)return el('div',{cls:'empty',text:'Niets gevonden.'});
+ var t=el('table',{},[el('thead',{},[el('tr',{},[el('th',{text:'Contact'}),el('th',{text:'Fase'}),el('th',{cls:'hide-sm',text:'Segment'}),el('th',{cls:'hide-sm',text:'Waarde'}),el('th',{text:'Volgende stap'})])])]);
+ var tb=el('tbody');items.forEach(function(r){tb.appendChild(el('tr',{cls:'click',tabindex:'0',onclick:function(){openC(r.id);},onkeydown:function(e){if(e.key==='Enter')openC(r.id);}},[
+  el('td',{},[el('b',{text:title(r)}),el('div',{style:'color:var(--dim);font-size:12.5px',text:[r.name!==title(r)?r.name:'',r.email].filter(Boolean).join(' · ')})]),
+  el('td',{text:label(STAGES,r.stage)}),el('td',{cls:'hide-sm',text:SEGN[r.segment]||r.segment}),el('td',{cls:'hide-sm',text:+r.value_eur?eur(r.value_eur):''}),
+  el('td',{},[dateTag(r),el('div',{text:r.next_action||''})])]));});t.appendChild(tb);return t;}
+function todayView(){var t=today(),box=$('vToday');box.textContent='';
+ var due=rows.filter(function(r){return match(r)&&r.next_date&&r.next_date<=t&&r.stage!=='won'&&r.stage!=='lost';}).sort(function(a,b){return a.next_date<b.next_date?-1:1;});
+ var fresh=rows.filter(function(r){return match(r)&&r.stage==='new'&&!r.next_date;});
+ box.appendChild(el('h2',{style:'font-size:17px',text:'Opvolgen (vandaag of te laat): '+due.length}));box.appendChild(table(due));
+ box.appendChild(el('h2',{style:'font-size:17px;margin-top:18px',text:'Nieuw, nog zonder datum: '+fresh.length}));box.appendChild(table(fresh));}
+function opt(sel,arr,all){sel.textContent='';if(all)sel.appendChild(el('option',{value:'',text:all}));arr.forEach(function(a){sel.appendChild(el('option',{value:a[0],text:a[1]}));});}
+opt($('fStage'),STAGES,'Alle fases');opt($('fKind'),KINDS,'Alle soorten');
+function list(){var segs={};rows.forEach(function(r){segs[r.segment]=1;});var fs=$('fSeg'),keep=fs.value;opt(fs,Object.keys(segs).sort().map(function(s){return [s,SEGN[s]||s];}),'Alle segmenten');fs.value=keep;
+ var items=rows.filter(function(r){return match(r)&&(!$('fStage').value||r.stage===$('fStage').value)&&(!fs.value||r.segment===fs.value)&&(!$('fKind').value||r.kind===$('fKind').value);});
+ var box=$('listBox');box.textContent='';box.appendChild(el('div',{style:'color:var(--dim);font-size:13px;margin-bottom:6px',text:items.length+' contacten'}));box.appendChild(table(items));}
+['fStage','fSeg','fKind'].forEach(function(id){$(id).addEventListener('change',list);});
+$('q').addEventListener('input',render);
+document.querySelectorAll('.tabs [role=tab]').forEach(function(b){b.addEventListener('click',function(){view=b.getAttribute('data-v');document.querySelectorAll('.tabs [role=tab]').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');});
+ $('vBoard').hidden=view!=='board';$('vToday').hidden=view!=='today';$('vList').hidden=view!=='list';render();});});
+
+function setStage(id,stage){var r=rows.filter(function(x){return x.id===id;})[0];if(!r||r.stage===stage)return;var old=r.stage;r.stage=stage;render();
+ api('crm_contacts?id=eq.'+id,{method:'PATCH',body:{stage:stage},prefer:'return=minimal'}).then(function(){toast(title(r)+' → '+label(STAGES,stage));
+  return api('crm_notes',{method:'POST',body:{contact_id:id,kind:'system',body:'Fase: '+label(STAGES,old)+' → '+label(STAGES,stage)},prefer:'return=minimal'});}).then(function(){if(cur&&cur.id===id)openC(id);}).catch(function(e){r.stage=old;render();toast('Niet opgeslagen: '+e.message);});}
+
+/* ---------------------------------------------------------------- drawer */
+opt(document.querySelector('[name=stage]'),STAGES);opt(document.querySelector('[name=kind]'),KINDS);
+var MAIL={
+ nl:{bot:['Je AI-assistent voor {c}','Hallo {n},\n\nBedankt voor je aanvraag voor {c}. Om je een duidelijke prijs te geven, heb ik nog 3 dingen nodig:\n1. Je prijslijst en openingsuren\n2. De 5 vragen die klanten het vaakst stellen\n3. Waar de assistent moet werken (website, WhatsApp, telefoon)\n\nJe betaalt niets tot je akkoord gaat met de offerte.\n\nGroeten,\ngeopolcoins.xyz'],
+     robotics:['AI voor jullie robots: {c}','Hallo {n},\n\nBedankt voor je interesse. Om een voorstel te maken wil ik graag weten:\n1. Welke robots of vloot jullie gebruiken (merk, aantal)\n2. Wat er makkelijker moet (storingen, opdrachten, rapporten)\n3. Of jullie handleidingen of logs kunnen delen\n\nWe werken altijd bovenop het eigen veiligheidssysteem van de robot, met goedkeuring door een mens. Een korte videocall van 20 minuten is vaak het snelst. Welke dag past?\n\nGroeten,\ngeopolcoins.xyz'],
+     kit:['Je Starter Kit','Hallo {n},\n\nFijn dat je de Starter Kit hebt gedownload. Lukt het met de eerste bot? Als je wil, kijk ik 10 minuten gratis mee naar je instellingen.\n\nGroeten,\ngeopolcoins.xyz']},
+ en:{bot:['Your AI assistant for {c}','Hello {n},\n\nThank you for your request for {c}. To give you a clear price I need 3 things:\n1. Your price list and opening hours\n2. The 5 questions customers ask most\n3. Where the assistant should work (website, WhatsApp, phone)\n\nYou pay nothing until you agree with the quote.\n\nBest regards,\ngeopolcoins.xyz'],
+     robotics:['AI for your robots: {c}','Hello {n},\n\nThank you for your interest. To prepare a proposal I would like to know:\n1. Which robots or fleet you use (brand, number)\n2. What should get easier (faults, orders, reports)\n3. Whether you can share manuals or logs\n\nWe always work on top of the robot’s own safety system, with human approval. A short 20-minute video call is often fastest. Which day suits you?\n\nBest regards,\ngeopolcoins.xyz'],
+     kit:['Your Starter Kit','Hello {n},\n\nGreat that you downloaded the Starter Kit. Is the first bot working? If you like, I can look at your setup for 10 minutes, free.\n\nBest regards,\ngeopolcoins.xyz']},
+ fr:{bot:['Votre assistant IA pour {c}','Bonjour {n},\n\nMerci pour votre demande pour {c}. Pour vous donner un prix clair, j’ai besoin de 3 choses :\n1. Vos tarifs et horaires\n2. Les 5 questions que vos clients posent le plus\n3. Où l’assistant doit travailler (site, WhatsApp, téléphone)\n\nVous ne payez rien avant d’accepter le devis.\n\nCordialement,\ngeopolcoins.xyz'],
+     robotics:['IA pour vos robots : {c}','Bonjour {n},\n\nMerci pour votre intérêt. Pour préparer une proposition, j’aimerais savoir :\n1. Quels robots ou quelle flotte vous utilisez (marque, nombre)\n2. Ce qui doit devenir plus simple (pannes, ordres, rapports)\n3. Si vous pouvez partager des manuels ou des journaux\n\nNous travaillons toujours au-dessus du système de sécurité du robot, avec validation humaine. Un appel vidéo de 20 minutes est souvent le plus rapide. Quel jour vous convient ?\n\nCordialement,\ngeopolcoins.xyz'],
+     kit:['Votre Starter Kit','Bonjour {n},\n\nMerci d’avoir téléchargé le Starter Kit. Le premier bot fonctionne ? Si vous voulez, je regarde votre configuration 10 minutes, gratuitement.\n\nCordialement,\ngeopolcoins.xyz']}};
+function mailFor(r){var L=MAIL[r.lang]||MAIL.en,t=r.source==='starter_kit'?L.kit:r.segment==='robotics'?L.robotics:L.bot;var f=function(s){return s.replace(/\{n\}/g,r.name||'').replace(/\{c\}/g,r.company||r.name||'');};
+ return 'mailto:'+encodeURIComponent(r.email)+'?subject='+encodeURIComponent(f(t[0]))+'&body='+encodeURIComponent(f(t[1]));}
+function openC(id){var r=rows.filter(function(x){return x.id===id;})[0];if(!r)return;cur=r;
+ $('dTitle').textContent=title(r);
+ $('dMeta').textContent='Bron: '+(SRC[r.source]||r.source)+' · aangemaakt '+new Date(r.created_at).toLocaleDateString('nl-BE')+' · laatst gewijzigd '+new Date(r.updated_at).toLocaleDateString('nl-BE');
+ var f=$('dForm');['name','company','email','phone','stage','value_eur','kind','segment','lang','next_date','next_action'].forEach(function(k){f.elements[k].value=r[k]==null?'':r[k];});f.elements.tags.value=(r.tags||[]).join(', ');
+ var fm=$('dFirst');fm.hidden=!r.first_message;fm.textContent=r.first_message||'';
+ var q=$('dQuick');q.textContent='';
+ if(r.email&&(r.tags||[]).indexOf('unsubscribed')<0)q.appendChild(el('a',{cls:'b sm main',href:mailFor(r),onclick:function(){addNote('email','Mail gestuurd (sjabloon).',true);if(r.stage==='new')setStage(r.id,'contacted');}},['✉ Mail sturen']));
+ if(r.phone)q.appendChild(el('a',{cls:'b sm',href:'tel:'+r.phone.replace(/[^+\d]/g,'')},['☎ Bellen']));
+ q.appendChild(el('button',{type:'button',cls:'b sm ok',onclick:function(){setStage(r.id,'won');}},['✓ Gewonnen']));
+ q.appendChild(el('button',{type:'button',cls:'b sm',onclick:function(){setStage(r.id,'lost');}},['Verloren']));
+ q.appendChild(el('button',{type:'button',cls:'b sm',onclick:function(){var d=new Date();d.setDate(d.getDate()+7);f.elements.next_date.value=d.toISOString().slice(0,10);f.requestSubmit();}},['+7 dagen']));
+ $('shade').hidden=false;$('drawer').hidden=false;loadNotes(r.id);}
+function closeC(){$('shade').hidden=true;$('drawer').hidden=true;cur=null;}
+$('dClose').addEventListener('click',closeC);$('shade').addEventListener('click',closeC);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cur)closeC();});
+function loadNotes(id){var ul=$('dNotes');ul.textContent='';api('crm_notes?contact_id=eq.'+id+'&select=*&order=created_at.desc&limit=200').then(function(ns){ul.textContent='';
+ var K={note:'Notitie',call:'Gebeld',email:'Mail',meeting:'Afspraak',task:'Taak',system:'Systeem'};
+ (ns||[]).forEach(function(n){ul.appendChild(el('li',{cls:n.kind==='system'?'system':''},[el('small',{text:(K[n.kind]||n.kind)+' · '+new Date(n.created_at).toLocaleString('nl-BE')}),n.body]));});
+ if(!ns||!ns.length)ul.appendChild(el('li',{cls:'system',text:'Nog niets.'}));}).catch(function(e){ul.textContent='Fout: '+e.message;});}
+function addNote(kind,body,quiet){if(!cur)return Promise.resolve();var id=cur.id;return api('crm_notes',{method:'POST',body:{contact_id:id,kind:kind,body:body},prefer:'return=minimal'}).then(function(){
+  return api('crm_contacts?id=eq.'+id,{method:'PATCH',body:{next_action:cur.next_action||''},prefer:'return=minimal'});}).then(function(){if(!quiet)toast('Toegevoegd');if(cur&&cur.id===id)loadNotes(id);}).catch(function(e){toast('Fout: '+e.message);});}
+$('nAdd').addEventListener('click',function(){var b=$('nBody').value.trim();if(!b)return;addNote($('nKind').value,b).then(function(){$('nBody').value='';});});
+$('dForm').addEventListener('submit',function(e){e.preventDefault();if(!cur)return;var f=e.target,id=cur.id;
+ var body={name:f.elements.name.value.trim(),company:f.elements.company.value.trim(),email:f.elements.email.value.trim(),phone:f.elements.phone.value.trim(),stage:f.elements.stage.value,
+  value_eur:Math.max(0,Math.min(9999999,parseFloat(f.elements.value_eur.value)||0)),kind:f.elements.kind.value,segment:(f.elements.segment.value.trim()||'other').toLowerCase().slice(0,30),lang:f.elements.lang.value,
+  next_date:f.elements.next_date.value||null,next_action:f.elements.next_action.value.trim(),tags:f.elements.tags.value.split(',').map(function(s){return s.trim().toLowerCase();}).filter(Boolean).slice(0,12)};
+ var stageChanged=body.stage!==cur.stage,old=cur.stage;
+ api('crm_contacts?id=eq.'+id,{method:'PATCH',body:body,prefer:'return=representation'}).then(function(d){var n=d&&d[0];if(n){rows=rows.map(function(r){return r.id===id?n:r;});cur=n;}
+   if(stageChanged)api('crm_notes',{method:'POST',body:{contact_id:id,kind:'system',body:'Fase: '+label(STAGES,old)+' → '+label(STAGES,body.stage)},prefer:'return=minimal'}).then(function(){loadNotes(id);});
+   toast('Opgeslagen');render();openC(id);}).catch(function(e){toast('Niet opgeslagen: '+e.message);});});
+$('dDel').addEventListener('click',function(){if(!cur||!confirm('Contact "'+title(cur)+'" en alle notities definitief verwijderen?'))return;var id=cur.id;
+ api('crm_contacts?id=eq.'+id,{method:'DELETE',prefer:'return=minimal'}).then(function(){rows=rows.filter(function(r){return r.id!==id;});closeC();render();toast('Verwijderd');}).catch(function(e){toast('Fout: '+e.message);});});
+$('bNew').addEventListener('click',function(){var n=prompt('Naam of bedrijf van het nieuwe contact:');if(!n||!n.trim())return;
+ api('crm_contacts',{method:'POST',body:{company:n.trim().slice(0,100),stage:'new',source:'manual',kind:'lead',lang:'nl',next_date:today(),next_action:'Eerste contact'},prefer:'return=representation'}).then(function(d){
+  if(d&&d[0]){rows.unshift(d[0]);render();openC(d[0].id);}}).catch(function(e){toast('Fout: '+e.message);});});
+$('bCsv').addEventListener('click',function(){var cell=function(v){v=String(v==null?'':v);if(/^[=+\-@\t\r]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"';};
+ var cols=['id','company','name','email','phone','kind','segment','stage','value_eur','next_date','next_action','tags','source','lang','created_at','updated_at'];
+ var lines=[cols.join(',')].concat(rows.map(function(r){return cols.map(function(c){return cell(c==='tags'?(r.tags||[]).join(' '):r[c]);}).join(',');}));
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lines.join('\n')],{type:'text/csv'}));a.download='maiga-crm-'+today()+'.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);});
+$('bOut').addEventListener('click',function(){fetch(URL0+'/auth/v1/logout',{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+session.token}}).catch(function(){});sessionStorage.removeItem(SK);location.href='admin.html';});
+/* idle logout after 30 min, like the admin page */
+var idle;function bump(){clearTimeout(idle);idle=setTimeout(function(){sessionStorage.removeItem(SK);location.href='admin.html';},30*60000);}['click','keydown'].forEach(function(e){document.addEventListener(e,bump);});bump();
+setTimeout(function(){if(session.exp<Date.now()+60000){sessionStorage.removeItem(SK);location.href='admin.html?next=crm';}},Math.max(5000,session.exp-Date.now()-60000));
+load();
+})();
+</script>
+</body>
+</html>

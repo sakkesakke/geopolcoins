@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI for the robots you already have | geopolcoins.xyz</title>
+<meta name="description" content="An AI layer on top of your existing robots: a help bot for technicians, orders in plain language with human approval, and a daily fleet report. Safety first.">
+<link rel="canonical" href="https://geopolcoins.xyz/robots.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI for the robots you already have">
+<meta property="og:description" content="Help bot for technicians, plain-language orders with human approval, daily fleet report. The robot's own safety system stays in charge.">
+<meta property="og:url" content="https://geopolcoins.xyz/robots.html">
+<meta property="og:image" content="https://geopolcoins.xyz/img/robots/og-robots.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a1630">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"AI layer for existing robots","url":"https://geopolcoins.xyz/robots.html","serviceType":"AI assistants and plain-language control for industrial and service robots","description":"Help bot for robot technicians and customers, plain-language orders turned into checked plans that a human approves, and daily AI fleet reports. Software only, on top of the robot's own safety system.","areaServed":["BE","NL","FR","MA","EU"],"availableLanguage":["en","nl","fr"],"provider":{"@id":"https://geopolcoins.xyz/#org"}}</script>
+<style>
+:root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.16);--ok:#5be38a;--warn:#ffb648}
+*{box-sizing:border-box}html{scroll-behavior:smooth}[hidden]{display:none!important}
+body{margin:0;background:var(--ink);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brass)}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--brass);color:#111;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;gap:12px;padding:16px 0}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--brass)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-right:10px}
+.langs{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:2px}
+.langs button{background:none;border:0;color:var(--dim);font:700 13px system-ui;padding:7px 9px;border-radius:8px;cursor:pointer;min-height:34px}
+.langs button[aria-pressed=true]{background:var(--cream);color:#1d1a14}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:30px 0 56px}
+.hero>*{min-width:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.tape{display:inline-block;white-space:nowrap;font:900 clamp(22px,5.4vw,50px)/1 system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#fff;padding:.18em .35em .2em;margin:0 0 .16em;border-radius:4px;text-shadow:0 -1px 0 rgba(0,0,0,.35);box-shadow:inset 0 2px 0 rgba(255,255,255,.18),inset 0 -3px 0 rgba(0,0,0,.25),0 8px 18px rgba(0,0,0,.35)}
+.tape.k{background:#1b1d22;transform:rotate(-1.6deg)}.tape.c{background:#0f7f93;transform:rotate(1.1deg);margin-left:.3em}
+.lead{font-size:clamp(17px,1.9vw,20px);color:var(--dim);margin:14px 0 22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 20px;border-radius:14px;font-weight:800;text-decoration:none;font-size:16px;border:2px solid transparent;cursor:pointer;font-family:inherit}
+.btn.main{background:var(--brass);color:#14110a;box-shadow:0 5px 0 var(--brass-d)}.btn.ghost{color:var(--text);border-color:var(--line);background:none}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.bay{position:relative;background:linear-gradient(160deg,#16294f,#0b1630);border:1px solid var(--line);border-radius:24px;padding:22px;aspect-ratio:1/1;max-width:440px;margin-left:auto;width:100%;overflow:hidden}
+.bay .arm{position:absolute;left:12%;bottom:16%;width:56%;image-rendering:pixelated}
+.bay .gr{position:absolute;inset:auto 0 0 0;height:20%;background:repeating-linear-gradient(90deg,#1d263d 0 24px,#202a42 24px 48px);border-top:3px solid var(--brass)}
+.bay .bolt{position:absolute;left:62%;bottom:19%;width:28%;height:auto;image-rendering:pixelated;filter:drop-shadow(0 6px 0 rgba(0,0,0,.35))}
+.bay .bub{position:absolute;left:8%;top:8%;right:8%;background:var(--cream);color:#1d1a14;border-radius:16px;border-bottom-left-radius:4px;padding:12px 14px;font:700 15px/1.35 system-ui}
+.bay .plan{position:absolute;left:8%;top:42%;right:30%;background:#050b1b;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:12.5px/1.5 ui-monospace,Menlo,monospace;color:#bfe9f5}
+.bay .ok{position:absolute;right:8%;top:47%;background:var(--ok);color:#06210f;font:900 13px system-ui;padding:8px 10px;border-radius:10px;box-shadow:0 4px 0 #2b8a4e}
+section.s{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(26px,3.4vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 0 10px}
+.sub{color:var(--dim);max-width:44em;margin:0 0 26px}
+.offers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.of{background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.of .n{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:900;background:var(--cyan);color:var(--ink)}
+.of h3{margin:0;font-size:19px;letter-spacing:-.01em}.of p{margin:0;color:var(--dim);font-size:15.5px}
+.of .when{margin-top:auto;font-size:13.5px;color:var(--cream);background:var(--panel);border-radius:999px;padding:4px 10px;align-self:flex-start}
+.demo{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:start}.demo>*{min-width:0}
+.chat{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:18px}
+.chat .hd{display:flex;align-items:center;gap:8px;color:var(--dim);font-size:14px;margin-bottom:10px}.chat .dot{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.msg{max-width:88%;padding:10px 14px;border-radius:16px;margin:8px 0;font-size:15.5px;line-height:1.45;white-space:pre-line}
+.msg.u{background:#22355f;margin-left:auto;border-bottom-right-radius:4px}
+.msg.b{background:var(--cream);color:#1d1a14;border-bottom-left-radius:4px}
+.msg .src{display:block;margin-top:6px;font-size:12.5px;color:#5b5142}
+.codes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.codes button{background:var(--panel);border:1px solid var(--line);color:var(--cream);border-radius:999px;padding:7px 12px;font:600 14px system-ui;cursor:pointer;min-height:38px}
+.codes button[aria-pressed=true]{background:var(--cyan);color:var(--ink);border-color:var(--cyan)}
+.fleet{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:18px;overflow:hidden}
+.ftable{width:100%;border-collapse:collapse;font-size:15px}
+.ftable th,.ftable td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}.ftable th{color:var(--dim);font-weight:600;font-size:13.5px}
+.st{display:inline-flex;align-items:center;gap:6px}.st::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ok)}
+.st.w::before{background:var(--warn)}.st.e::before{background:var(--red)}
+.bar{height:8px;background:#0a1630;border-radius:4px;overflow:hidden;min-width:60px}.bar i{display:block;height:100%;background:var(--cyan)}
+.report{margin-top:14px;background:var(--cream);color:#1d1a14;border-radius:14px;padding:14px 16px;font-size:15.5px}
+.report b{display:block;margin-bottom:4px}
+.demo-tag{font-size:12.5px;color:var(--dim);margin-top:8px}
+.safe{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;list-style:none;padding:0;margin:0}
+.safe li{background:var(--panel2);border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:14px;padding:14px 16px;min-width:0}
+.safe b{display:block}.safe span{color:var(--dim);font-size:15px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:20px}
+.form label{display:grid;gap:5px;font-weight:600;font-size:15px;min-width:0}
+.form input,.form select,.form textarea{min-height:46px;border-radius:12px;border:2px solid var(--line);background:var(--ink);color:var(--text);font:inherit;padding:8px 12px;width:100%}
+.form textarea{min-height:110px;resize:vertical}
+.form .full{grid-column:1/-1}.form .check{display:flex;gap:10px;align-items:flex-start;font-weight:400}.form .check input{min-height:auto;width:auto;margin-top:5px}
+#msg{min-height:1.4em}#msg.ok{color:var(--ok)}#msg.bad{color:var(--red)}
+.hp{position:absolute;left:-9999px}
+details{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:0 0 10px}summary{cursor:pointer;font-weight:700}details p{color:var(--dim);margin:8px 0 0}
+footer{padding:28px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 16px}footer a{color:var(--dim);padding:6px 0}
+@media (max-width:980px){.offers{grid-template-columns:1fr 1fr}.safe{grid-template-columns:1fr 1fr}}
+@media (max-width:820px){.hero,.demo{grid-template-columns:1fr}.bay{margin:0 auto;max-width:360px}.top nav{display:none}.form{grid-template-columns:1fr}}
+@media (max-width:520px){.offers,.safe{grid-template-columns:1fr}.ftable .hm{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="robot-lab.html">Robot Lab</a><a href="pro-bots.html" data-i="nPro">Pro bots</a><a href="#quote" data-i="nQ">Free quote</a></nav>
+ <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></div></header>
+<main id="main">
+<section class="hero">
+ <div>
+  <h1><span class="sr" data-i="h1">AI for the robots you already have</span><span class="tape k" aria-hidden="true" data-i="t1">AI for robots</span><br><span class="tape c" aria-hidden="true" data-i="t2">you already have</span></h1>
+  <p class="lead" data-i="lead">We do not build robots. We make the ones you own easier to use: a help bot that knows your manuals, orders in plain language that a human approves, and a short AI report on your whole fleet every morning.</p>
+  <div class="ctas"><a class="btn main" href="robot-lab.html" data-i="c1">Try the Robot Lab</a><a class="btn ghost" href="#quote" data-i="c2">Get a free quote</a></div>
+ </div>
+ <div class="bay" aria-hidden="true">
+  <div class="bub" data-i="bub">Put the 2 red boxes on pallet 2, please.</div>
+  <div class="plan">move_to("shelf_A")<br>pick(color="red", count=2)<br>move_to("pallet_2")<br>place(count=2)</div>
+  <div class="ok" data-i="okB">✓ Approve</div>
+  <div class="gr"></div><img class="bolt" src="bolt.png" alt="" width="24" height="28">
+ </div>
+</section>
+
+<section class="s" aria-labelledby="h-of">
+ <h2 id="h-of" data-i="ofH">Four ways we add value to your robots</h2>
+ <p class="sub" data-i="ofP">Start small with the help bot, then add more when it pays off. Everything runs on top of the robot's own controller and safety system.</p>
+ <div class="offers">
+  <article class="of"><span class="n">1</span><h3 data-i="o1">Robot help bot</h3><p data-i="o1p">Knows your manuals, fault codes and service notes. Technicians and customers ask in their own language and get the right steps, with the page it comes from.</p><span class="when" data-i="o1w">Live in 1 to 2 weeks</span></article>
+  <article class="of"><span class="n">2</span><h3 data-i="o2">Orders in plain language</h3><p data-i="o2p">Operators say what they need. The AI turns it into the robot's own commands, rules check it, a human approves. Less programming, faster changeovers.</p><span class="when" data-i="o2w">Pilot on one robot</span></article>
+  <article class="of"><span class="n">3</span><h3 data-i="o3">Daily fleet report</h3><p data-i="o3p">Reads the logs your robots already make and writes a short morning report: what stopped, why it probably stopped, what to check first.</p><span class="when" data-i="o3w">Works with existing logs</span></article>
+  <article class="of"><span class="n">4</span><h3 data-i="o4">Robot AI Blueprints</h3><p data-i="o4p">Do it yourself: step-by-step guides with prompts, safety checklists and test cases for each of the three above.</p><span class="when" data-i="o4w">Digital pack</span></article>
+ </div>
+</section>
+
+<section class="s" aria-labelledby="h-help">
+ <div class="demo">
+  <div>
+   <h2 id="h-help" data-i="hH">Try the help bot</h2>
+   <p class="sub" data-i="hP">A demo with a made-up robot, the "MX-1". Pick a fault code. A real help bot answers from your own manuals and says where the answer comes from. If it is not sure, it sends the question to a person.</p>
+   <div class="codes" id="codes"></div>
+  </div>
+  <div class="chat" role="group" aria-label="Help bot demo">
+   <div class="hd"><span class="dot" aria-hidden="true"></span><span data-i="chatH">Help bot · MX-1 service (demo)</span></div>
+   <div id="chat"></div>
+  </div>
+ </div>
+</section>
+
+<section class="s" aria-labelledby="h-fleet">
+ <h2 id="h-fleet" data-i="fH">A morning report for the whole fleet</h2>
+ <p class="sub" data-i="fP">The AI reads status and error logs from your robots and writes what matters, in a few lines. Demo data below.</p>
+ <div class="fleet">
+  <table class="ftable"><thead><tr><th data-i="tR">Robot</th><th data-i="tS">Status</th><th class="hm" data-i="tB">Battery</th><th data-i="tJ">Jobs today</th><th class="hm" data-i="tE">Stops</th></tr></thead><tbody id="ftb"></tbody></table>
+  <div class="report"><b data-i="rH">AI report, 07:00</b><span id="rep"></span></div>
+  <p class="demo-tag" data-i="dTag">Demo with made-up robots and numbers.</p>
+ </div>
+</section>
+
+<section class="s" aria-labelledby="h-safe">
+ <h2 id="h-safe" data-i="sH">Safety comes first, every time</h2>
+ <p class="sub" data-i="sP">Robots can hurt people and break things. This is how we keep the AI in its place.</p>
+ <ul class="safe">
+  <li><b data-i="s1">The AI never drives the motors</b><span data-i="s1p">It only proposes commands through the robot's normal interface. The robot's certified safety system keeps the final say.</span></li>
+  <li><b data-i="s2">A human approves</b><span data-i="s2p">Every plan that moves something waits for a clear yes. Emergency stops always work and always win.</span></li>
+  <li><b data-i="s3">Hard rules, not opinions</b><span data-i="s3p">No-go zones, speed and payload limits are checked by fixed rules. Unsafe orders are refused, not "negotiated".</span></li>
+  <li><b data-i="s4">Everything is logged</b><span data-i="s4p">Each order, plan, approval and stop is written down, so you can see who decided what.</span></li>
+  <li><b data-i="s5">Start in simulation</b><span data-i="s5p">New tasks are tested in a simulation or with the robot in a safe mode first.</span></li>
+  <li><b data-i="s6">Rules for machines and AI</b><span data-i="s6p">We work with your safety officer and supplier. In the EU, the Machinery Regulation and the AI Act apply to safety-related AI.</span></li>
+ </ul>
+</section>
+
+<section class="s" id="quote" aria-labelledby="h-q">
+ <h2 id="h-q" data-i="qH">Get a free quote</h2>
+ <p class="sub" data-i="qP">Tell us which robots you use and what should get easier. You get a clear proposal by email. You pay nothing unless you agree.</p>
+ <form class="form" id="reqForm" novalidate>
+  <label><span data-i="fN">Your name</span><input name="name" required minlength="2" maxlength="60" autocomplete="name"></label>
+  <label><span data-i="fE">Email</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+  <label><span data-i="fC">Company</span><input name="business" required minlength="2" maxlength="80" autocomplete="organization"></label>
+  <label><span data-i="fW">What interests you?</span><select name="want"><option value="help bot" data-i="w1">Robot help bot</option><option value="plain language orders" data-i="w2">Orders in plain language</option><option value="fleet report" data-i="w3">Daily fleet report</option><option value="not sure" data-i="w4">Not sure yet</option></select></label>
+  <label class="full"><span data-i="fM">Which robots do you use, and what should get easier? (no links)</span><textarea name="message" maxlength="1400"></textarea></label>
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label class="check full"><input type="checkbox" name="consent" required> <span data-i="fOk">I agree that geopolcoins.xyz uses my details only to answer this request.</span></label>
+  <div class="full"><button class="btn main" type="submit" id="bSend" data-i="fS">Send request</button> <span id="msg" role="status" aria-live="polite"></span></div>
+ </form>
+ <p class="demo-tag" data-i="fPriv">Your details are used only to answer you and deleted within 12 months, or earlier if you ask (geopolcoins1@gmail.com).</p>
+</section>
+
+<section class="s" aria-labelledby="h-faq">
+ <h2 id="h-faq" data-i="faqH">Questions</h2>
+ <details><summary data-i="q1">Which robots does this work with?</summary><p data-i="a1">Any robot or fleet that has a documented way to send commands or read status, for example through its vendor software, an API or ROS 2. For the help bot, manuals and service notes are enough.</p></details>
+ <details><summary data-i="q2">Do we need to change our robots?</summary><p data-i="a2">No hardware changes. The AI layer runs next to your existing software, and the robot's own safety settings stay as they are.</p></details>
+ <details><summary data-i="q3">Where does our data go?</summary><p data-i="a3">We agree on that before we start. Manuals and logs can stay on your own servers, and we tell you exactly which AI service is used and what it receives.</p></details>
+ <details><summary data-i="q4">Is this connected to the $MAIGA coin?</summary><p data-i="a4">No. This is a normal service paid by invoice. No token, no crypto, nothing on-chain.</p></details>
+</section>
+</main>
+<footer><a href="/" data-i="ftH">Home</a><a href="robot-lab.html">Robot Lab</a><a href="pro-bots.html" data-i="nPro">Pro bots</a><a href="privacy.html" data-i="ftP">Privacy</a><a href="legal.html" data-i="ftL">Legal</a></footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+var T={
+nl:{skip:'Naar de inhoud',nPro:'Pro-bots',nQ:'Gratis offerte',h1:'AI voor de robots die je al hebt',t1:'AI voor robots',t2:'die je al hebt',lead:'Wij bouwen geen robots. Wij maken de robots die je hebt makkelijker: een hulpbot die je handleidingen kent, opdrachten in gewone taal die een mens goedkeurt, en elke ochtend een kort AI-rapport over je hele vloot.',c1:'Probeer het Robot Lab',c2:'Vraag een gratis offerte',bub:'Zet de 2 rode dozen op pallet 2, aub.',okB:'✓ Goedkeuren',
+ ofH:'Vier manieren waarop we je robots meer laten opleveren',ofP:'Begin klein met de hulpbot en voeg meer toe als het loont. Alles draait bovenop de eigen besturing en het veiligheidssysteem van de robot.',
+ o1:'Robot-hulpbot',o1p:'Kent je handleidingen, foutcodes en servicenotities. Technici en klanten vragen in hun eigen taal en krijgen de juiste stappen, met de pagina waar het vandaan komt.',o1w:'Live in 1 à 2 weken',
+ o2:'Opdrachten in gewone taal',o2p:'Operators zeggen wat ze nodig hebben. De AI maakt er commando’s van die de robot kent, regels controleren, een mens keurt goed. Minder programmeren, sneller omschakelen.',o2w:'Pilot op één robot',
+ o3:'Dagelijks vlootrapport',o3p:'Leest de logs die je robots al maken en schrijft een kort ochtendrapport: wat stilviel, waarom waarschijnlijk, wat eerst te checken.',o3w:'Werkt met bestaande logs',
+ o4:'Robot AI Blueprints',o4p:'Zelf doen: stap-voor-stapgidsen met prompts, veiligheidschecklists en testgevallen voor elk van de drie hierboven.',o4w:'Digitaal pakket',
+ hH:'Probeer de hulpbot',hP:'Een demo met een verzonnen robot, de "MX-1". Kies een foutcode. Een echte hulpbot antwoordt uit je eigen handleidingen en zegt waar het antwoord vandaan komt. Is hij niet zeker, dan stuurt hij de vraag door naar een mens.',chatH:'Hulpbot · MX-1 service (demo)',
+ fH:'Een ochtendrapport voor de hele vloot',fP:'De AI leest status- en foutlogs van je robots en schrijft in een paar regels wat ertoe doet. Demogegevens hieronder.',tR:'Robot',tS:'Status',tB:'Batterij',tJ:'Taken vandaag',tE:'Stops',rH:'AI-rapport, 07:00',dTag:'Demo met verzonnen robots en cijfers.',
+ sH:'Veiligheid eerst, altijd',sP:'Robots kunnen mensen verwonden en dingen breken. Zo houden we de AI op haar plaats.',
+ s1:'De AI stuurt nooit de motoren',s1p:'Ze stelt alleen commando’s voor via de normale interface van de robot. Het gecertificeerde veiligheidssysteem van de robot heeft het laatste woord.',
+ s2:'Een mens keurt goed',s2p:'Elk plan dat iets beweegt, wacht op een duidelijk ja. Noodstops werken altijd en winnen altijd.',
+ s3:'Harde regels, geen meningen',s3p:'Verboden zones, snelheid en gewicht worden met vaste regels gecontroleerd. Onveilige opdrachten worden geweigerd.',
+ s4:'Alles wordt gelogd',s4p:'Elke opdracht, elk plan, elke goedkeuring en stop wordt bijgehouden. Je ziet wie wat besliste.',
+ s5:'Eerst in simulatie',s5p:'Nieuwe taken worden eerst in een simulatie getest, of met de robot in een veilige modus.',
+ s6:'Regels voor machines en AI',s6p:'We werken samen met je veiligheidsverantwoordelijke en leverancier. In de EU gelden de Machineverordening en de AI Act voor AI die met veiligheid te maken heeft.',
+ qH:'Vraag een gratis offerte',qP:'Vertel welke robots je gebruikt en wat makkelijker moet. Je krijgt een duidelijk voorstel per e-mail. Je betaalt niets tenzij je akkoord gaat.',
+ fN:'Je naam',fE:'E-mail',fC:'Bedrijf',fW:'Wat interesseert je?',w1:'Robot-hulpbot',w2:'Opdrachten in gewone taal',w3:'Dagelijks vlootrapport',w4:'Nog niet zeker',fM:'Welke robots gebruik je en wat moet makkelijker? (geen links)',fOk:'Ik ga akkoord dat geopolcoins.xyz mijn gegevens alleen gebruikt om deze vraag te beantwoorden.',fS:'Verstuur aanvraag',fPriv:'Je gegevens worden alleen gebruikt om je te antwoorden en binnen 12 maanden gewist, of eerder als je dat vraagt (geopolcoins1@gmail.com).',
+ faqH:'Vragen',q1:'Met welke robots werkt dit?',a1:'Met elke robot of vloot die een gedocumenteerde manier heeft om commando’s te sturen of status te lezen, bijvoorbeeld via de software van de leverancier, een API of ROS 2. Voor de hulpbot zijn handleidingen en servicenotities genoeg.',
+ q2:'Moeten we onze robots aanpassen?',a2:'Geen hardware-aanpassingen. De AI-laag draait naast je bestaande software en de veiligheidsinstellingen van de robot blijven zoals ze zijn.',
+ q3:'Waar gaan onze gegevens naartoe?',a3:'Dat spreken we af voor we beginnen. Handleidingen en logs kunnen op je eigen servers blijven, en we zeggen precies welke AI-dienst gebruikt wordt en wat die krijgt.',
+ q4:'Heeft dit iets met de $MAIGA-coin te maken?',a4:'Nee. Dit is een gewone dienst, betaald met een factuur. Geen token, geen crypto, niets on-chain.',ftH:'Home',ftP:'Privacy',ftL:'Juridisch'},
+fr:{skip:'Aller au contenu',nPro:'Bots pro',nQ:'Devis gratuit',h1:'De l’IA pour les robots que vous avez déjà',t1:'IA pour robots',t2:'que vous avez déjà',lead:'Nous ne fabriquons pas de robots. Nous rendons les vôtres plus faciles à utiliser : un bot d’aide qui connaît vos manuels, des ordres en langage courant validés par un humain, et chaque matin un court rapport IA sur toute votre flotte.',c1:'Essayer le Robot Lab',c2:'Demander un devis gratuit',bub:'Mets les 2 caisses rouges sur la palette 2, s’il te plaît.',okB:'✓ Valider',
+ ofH:'Quatre façons d’apporter de la valeur à vos robots',ofP:'Commencez petit avec le bot d’aide, puis ajoutez le reste quand c’est rentable. Tout fonctionne au-dessus du contrôleur et du système de sécurité du robot.',
+ o1:'Bot d’aide robot',o1p:'Connaît vos manuels, codes d’erreur et notes de service. Techniciens et clients posent leurs questions dans leur langue et reçoivent les bonnes étapes, avec la page source.',o1w:'En ligne en 1 à 2 semaines',
+ o2:'Ordres en langage courant',o2p:'Les opérateurs disent ce qu’il leur faut. L’IA le traduit en commandes du robot, des règles vérifient, un humain valide. Moins de programmation, des changements plus rapides.',o2w:'Pilote sur un robot',
+ o3:'Rapport quotidien de flotte',o3p:'Lit les journaux que vos robots produisent déjà et écrit un court rapport du matin : ce qui s’est arrêté, pourquoi probablement, quoi vérifier d’abord.',o3w:'Avec vos journaux existants',
+ o4:'Robot AI Blueprints',o4p:'À faire soi-même : guides pas à pas avec prompts, check-lists de sécurité et cas de test pour chacune des trois offres.',o4w:'Pack numérique',
+ hH:'Essayez le bot d’aide',hP:'Une démo avec un robot imaginaire, le « MX-1 ». Choisissez un code d’erreur. Un vrai bot d’aide répond à partir de vos propres manuels et indique sa source. S’il n’est pas sûr, il transmet la question à une personne.',chatH:'Bot d’aide · service MX-1 (démo)',
+ fH:'Un rapport du matin pour toute la flotte',fP:'L’IA lit les journaux d’état et d’erreur de vos robots et écrit l’essentiel en quelques lignes. Données de démo ci-dessous.',tR:'Robot',tS:'État',tB:'Batterie',tJ:'Tâches du jour',tE:'Arrêts',rH:'Rapport IA, 07:00',dTag:'Démo avec des robots et des chiffres inventés.',
+ sH:'La sécurité d’abord, toujours',sP:'Les robots peuvent blesser des gens et casser des choses. Voici comment l’IA reste à sa place.',
+ s1:'L’IA ne pilote jamais les moteurs',s1p:'Elle propose seulement des commandes via l’interface normale du robot. Le système de sécurité certifié du robot a le dernier mot.',
+ s2:'Un humain valide',s2p:'Chaque plan qui fait bouger quelque chose attend un oui clair. Les arrêts d’urgence marchent toujours et gagnent toujours.',
+ s3:'Des règles fixes, pas des avis',s3p:'Zones interdites, vitesse et charge sont vérifiées par des règles fixes. Les ordres dangereux sont refusés.',
+ s4:'Tout est enregistré',s4p:'Chaque ordre, plan, validation et arrêt est noté. Vous voyez qui a décidé quoi.',
+ s5:'D’abord en simulation',s5p:'Les nouvelles tâches sont testées en simulation ou avec le robot en mode sûr.',
+ s6:'Règles pour machines et IA',s6p:'Nous travaillons avec votre responsable sécurité et votre fournisseur. Dans l’UE, le Règlement Machines et l’AI Act s’appliquent à l’IA liée à la sécurité.',
+ qH:'Demander un devis gratuit',qP:'Dites-nous quels robots vous utilisez et ce qui doit devenir plus simple. Vous recevez une proposition claire par e-mail. Vous ne payez rien sans votre accord.',
+ fN:'Votre nom',fE:'E-mail',fC:'Entreprise',fW:'Qu’est-ce qui vous intéresse ?',w1:'Bot d’aide robot',w2:'Ordres en langage courant',w3:'Rapport quotidien de flotte',w4:'Pas encore sûr',fM:'Quels robots utilisez-vous et que faut-il simplifier ? (sans liens)',fOk:'J’accepte que geopolcoins.xyz utilise mes données uniquement pour répondre à cette demande.',fS:'Envoyer la demande',fPriv:'Vos données servent uniquement à vous répondre et sont supprimées sous 12 mois, ou plus tôt sur demande (geopolcoins1@gmail.com).',
+ faqH:'Questions',q1:'Avec quels robots cela fonctionne-t-il ?',a1:'Avec tout robot ou flotte qui a une façon documentée d’envoyer des commandes ou de lire l’état, par exemple via le logiciel du fournisseur, une API ou ROS 2. Pour le bot d’aide, les manuels et notes de service suffisent.',
+ q2:'Faut-il modifier nos robots ?',a2:'Aucune modification matérielle. La couche IA tourne à côté de vos logiciels et les réglages de sécurité du robot restent inchangés.',
+ q3:'Où vont nos données ?',a3:'On en convient avant de commencer. Manuels et journaux peuvent rester sur vos serveurs, et nous indiquons exactement quel service d’IA est utilisé et ce qu’il reçoit.',
+ q4:'Est-ce lié à la coin $MAIGA ?',a4:'Non. C’est un service normal, payé sur facture. Pas de token, pas de crypto, rien on-chain.',ftH:'Accueil',ftP:'Confidentialité',ftL:'Mentions légales'}};
+var CODES={
+en:[['E-217','The MX-1 shows E-217 and stops.','E-217 means the gripper did not reach its closed position in time.\n1. Press Stop and wait until the status light is blue.\n2. Check that no box or packaging is stuck in the gripper jaws.\n3. Open the gripper from the menu: Service › Gripper › Open.\n4. Restart the job. If E-217 comes back 3 times in one hour, call service: the air pressure may be too low.','Source: MX-1 manual (demo), chapter 7.3'],
+ ['W-102','Battery warning W-102 at 35%?','W-102 is only a warning: the battery is getting worn. The robot keeps working.\n1. Let it finish its current job.\n2. Plan a full charge tonight.\n3. If W-102 shows above 50%, book a battery check.','Source: MX-1 manual (demo), chapter 4.1'],
+ ['E-900','Robot says E-900 safety stop. Can I reset it?','E-900 is a safety stop from the robot’s own safety system. I cannot reset it and I will not tell you how to bypass it.\nPlease ask the safety officer on site to check the area, then reset it with the key switch, as written in your safety procedure.\nI have sent a message to the service team.','Sent to a person · safety-related'],
+ ['?','How do I make it go faster?','The maximum speed is set by your safety officer for this area, so I cannot change it. If jobs take too long, I can show you which routes have the most waiting time, so the layout can be improved.','Rule: speed limits are not changed by the help bot']],
+nl:[['E-217','De MX-1 toont E-217 en stopt.','E-217 betekent dat de grijper niet op tijd dichtging.\n1. Druk op Stop en wacht tot het statuslicht blauw is.\n2. Kijk of er geen doos of verpakking tussen de grijper zit.\n3. Open de grijper via het menu: Service › Grijper › Openen.\n4. Start de taak opnieuw. Komt E-217 3 keer per uur terug, bel service: de luchtdruk is misschien te laag.','Bron: MX-1 handleiding (demo), hoofdstuk 7.3'],
+ ['W-102','Batterijwaarschuwing W-102 op 35%?','W-102 is alleen een waarschuwing: de batterij slijt. De robot blijft werken.\n1. Laat hem de huidige taak afmaken.\n2. Plan vannacht een volledige lading.\n3. Verschijnt W-102 boven 50%, plan dan een batterijcontrole.','Bron: MX-1 handleiding (demo), hoofdstuk 4.1'],
+ ['E-900','Robot zegt E-900 veiligheidsstop. Mag ik resetten?','E-900 is een stop van het eigen veiligheidssysteem van de robot. Ik kan die niet resetten en ik leg niet uit hoe je hem omzeilt.\nVraag de veiligheidsverantwoordelijke ter plaatse om de zone te controleren en reset dan met de sleutelschakelaar, zoals in jullie veiligheidsprocedure staat.\nIk heb het serviceteam een bericht gestuurd.','Doorgestuurd naar een mens · veiligheid'],
+ ['?','Hoe laat ik hem sneller rijden?','De maximale snelheid is ingesteld door de veiligheidsverantwoordelijke voor deze zone, dus die verander ik niet. Duren taken te lang? Dan toon ik welke routes het meest wachten, zodat de opstelling beter kan.','Regel: snelheidslimieten worden niet door de hulpbot gewijzigd']],
+fr:[['E-217','Le MX-1 affiche E-217 et s’arrête.','E-217 signifie que la pince ne s’est pas fermée à temps.\n1. Appuyez sur Stop et attendez que le voyant soit bleu.\n2. Vérifiez qu’aucune caisse ou emballage n’est coincé dans la pince.\n3. Ouvrez la pince via le menu : Service › Pince › Ouvrir.\n4. Relancez la tâche. Si E-217 revient 3 fois en une heure, appelez le service : la pression d’air est peut-être trop basse.','Source : manuel MX-1 (démo), chapitre 7.3'],
+ ['W-102','Alerte batterie W-102 à 35 % ?','W-102 est seulement un avertissement : la batterie s’use. Le robot continue.\n1. Laissez-le finir sa tâche.\n2. Prévoyez une charge complète cette nuit.\n3. Si W-102 apparaît au-dessus de 50 %, prévoyez un contrôle batterie.','Source : manuel MX-1 (démo), chapitre 4.1'],
+ ['E-900','Le robot affiche E-900 arrêt de sécurité. Je peux réinitialiser ?','E-900 est un arrêt du système de sécurité du robot. Je ne peux pas le réinitialiser et je n’explique pas comment le contourner.\nDemandez au responsable sécurité sur place de vérifier la zone, puis réinitialisez avec l’interrupteur à clé, selon votre procédure de sécurité.\nJ’ai prévenu l’équipe de service.','Transmis à une personne · sécurité'],
+ ['?','Comment le faire rouler plus vite ?','La vitesse maximale est fixée par le responsable sécurité pour cette zone, je ne la change pas. Si les tâches sont trop longues, je peux montrer les trajets avec le plus d’attente pour améliorer l’aménagement.','Règle : le bot d’aide ne modifie pas les limites de vitesse']]};
+var FLEET=[['AMR-01','ok',82,46,0],['AMR-02','ok',64,51,1],['AMR-03','w',31,38,2],['ARM-04','e',100,12,7],['AMR-05','ok',90,49,0],['CLEAN-06','ok',55,9,1]];
+var STATUS={en:{ok:'Working',w:'Low battery',e:'Stopped'},nl:{ok:'Werkt',w:'Batterij laag',e:'Gestopt'},fr:{ok:'En marche',w:'Batterie faible',e:'Arrêté'}};
+var REPORT={en:'ARM-04 stopped 7 times yesterday, always with E-217 around 14:00, when the new carton type started. Most likely the gripper setting does not fit the new cartons: check the gripper force before the afternoon shift. AMR-03 needs a full charge before 10:00. The rest of the fleet ran normally (205 jobs).',
+ nl:'ARM-04 stopte gisteren 7 keer, telkens met E-217 rond 14:00, toen het nieuwe doostype begon. Waarschijnlijk past de grijperinstelling niet bij de nieuwe dozen: controleer de grijpkracht voor de middagploeg. AMR-03 moet voor 10:00 volledig opladen. De rest van de vloot werkte normaal (205 taken).',
+ fr:'ARM-04 s’est arrêté 7 fois hier, toujours avec E-217 vers 14 h, au début du nouveau type de carton. Le réglage de la pince ne convient sans doute pas aux nouveaux cartons : vérifiez la force de la pince avant l’équipe de l’après-midi. AMR-03 doit être rechargé avant 10 h. Le reste de la flotte a fonctionné normalement (205 tâches).'};
+var FORM={en:{ok:'Thank you! We received your request and will reply by email. Check your spam folder too.',err:'That did not work: ',sending:'Sending…',need:'Please fill in your name, email, company and tick the box.'},
+ nl:{ok:'Bedankt! We hebben je aanvraag ontvangen en antwoorden per e-mail. Kijk ook in je spammap.',err:'Dat lukte niet: ',sending:'Versturen…',need:'Vul je naam, e-mail en bedrijf in en vink het vakje aan.'},
+ fr:{ok:'Merci ! Nous avons reçu votre demande et répondrons par e-mail. Vérifiez aussi vos spams.',err:'Ça n’a pas marché : ',sending:'Envoi…',need:'Indiquez votre nom, e-mail, entreprise et cochez la case.'}};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+var lang=new URLSearchParams(location.search).get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!CODES[lang])lang='en';
+var EN={};document.querySelectorAll('[data-i]').forEach(function(el){EN[el.getAttribute('data-i')]=el.textContent;});
+var cur=0;
+function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
+ document.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');el.textContent=lang==='en'?EN[k]:(T[lang][k]||EN[k]);});
+ document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-l')===lang?'true':'false');});
+ var c=document.getElementById('codes');c.textContent='';CODES[lang].forEach(function(x,i){var b=document.createElement('button');b.type='button';b.textContent=x[0]==='?'?(lang==='nl'?'Sneller?':lang==='fr'?'Plus vite ?':'Faster?'):x[0];b.setAttribute('aria-pressed',i===cur?'true':'false');b.addEventListener('click',function(){cur=i;apply();});c.appendChild(b);});
+ var ch=document.getElementById('chat'),q=CODES[lang][cur];ch.textContent='';
+ var u=document.createElement('p');u.className='msg u';u.textContent=q[1];ch.appendChild(u);
+ var a=document.createElement('p');a.className='msg b';a.textContent=q[2];var s=document.createElement('span');s.className='src';s.textContent=q[3];a.appendChild(s);ch.appendChild(a);
+ var tb=document.getElementById('ftb');tb.textContent='';FLEET.forEach(function(r){var tr=document.createElement('tr');
+   var td=function(t,cls){var d=document.createElement('td');if(cls)d.className=cls;if(t instanceof Node)d.appendChild(t);else d.textContent=t;tr.appendChild(d);};
+   td(r[0]);var st=document.createElement('span');st.className='st'+(r[1]==='w'?' w':r[1]==='e'?' e':'');st.textContent=STATUS[lang][r[1]];td(st);
+   var bar=document.createElement('div');bar.className='bar';var i=document.createElement('i');i.style.width=r[2]+'%';bar.appendChild(i);td(bar,'hm');td(String(r[3]));td(String(r[4]),'hm');tb.appendChild(tr);});
+ document.getElementById('rep').textContent=REPORT[lang];}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.getAttribute('data-l');apply();});});
+apply();
+/* quote form: same RPC as the custom bot page, marked as a robotics request */
+var f=document.getElementById('reqForm'),msg=document.getElementById('msg'),btn=document.getElementById('bSend');
+f.addEventListener('submit',function(e){e.preventDefault();var L=FORM[lang];
+ if(f.elements.website.value){msg.className='ok';msg.textContent=L.ok;return;}
+ if(!f.checkValidity()){msg.className='bad';msg.textContent=L.need;f.reportValidity();return;}
+ var d=new FormData(f),label=btn.textContent;btn.disabled=true;btn.textContent=L.sending;msg.className='';msg.textContent='';
+ var text=('[robotics: '+d.get('want')+'] '+(d.get('message')||'')).slice(0,1500);
+ fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/submit_bot_request',{method:'POST',credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},
+   body:JSON.stringify({p_lang:lang,p_name:d.get('name'),p_email:d.get('email'),p_business:d.get('business'),p_type:'other',p_message:text})})
+ .then(function(r){if(r.ok){f.reset();msg.className='ok';msg.textContent=L.ok;return;}return r.json().catch(function(){return {};}).then(function(j){throw new Error(j.message||('HTTP '+r.status));});})
+ .catch(function(err){msg.className='bad';msg.textContent=L.err+err.message;})
+ .then(function(){btn.disabled=false;btn.textContent=label;});});
+})();
+</script>
+<script src="pwa.js" defer></script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'ai',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+</body>
+</html>

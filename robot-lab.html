@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robot Lab: tell a robot what to do in plain words</title>
+<meta name="description" content="Free browser demo: type an order in plain words. It becomes a checked robot plan, and the robot only moves after a human approves. EN, NL, FR.">
+<link rel="canonical" href="https://geopolcoins.xyz/robot-lab.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Robot Lab: talk to a robot, a human approves">
+<meta property="og:description" content="Type an order in plain words. See the safe plan, the checks, and approve it before the robot moves. Free browser demo.">
+<meta property="og:url" content="https://geopolcoins.xyz/robot-lab.html">
+<meta property="og:image" content="https://geopolcoins.xyz/img/robots/og-robots.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a1630">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Robot Lab","url":"https://geopolcoins.xyz/robot-lab.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","description":"Browser simulation of a warehouse robot you instruct in plain language. Orders become a checked plan that a human approves before the robot moves.","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://geopolcoins.xyz/#org"}}</script>
+<style>
+:root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.16);--ok:#5be38a;--warn:#ffb648}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ink);color:var(--text);font:16.5px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brass)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--brass);color:#111;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--brass)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-right:8px}
+.langs{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:2px}
+.langs button{background:none;border:0;color:var(--dim);font:700 13px system-ui;padding:7px 9px;border-radius:8px;cursor:pointer;min-height:34px}
+.langs button[aria-pressed=true]{background:var(--cream);color:#1d1a14}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.02;letter-spacing:-.03em;margin:8px 0 10px}
+h1 span{color:var(--cyan)}
+.lead{color:var(--dim);max-width:46em;margin:0 0 18px}
+.lab{display:grid;grid-template-columns:1.25fr .95fr;gap:18px;align-items:start}
+.lab>*{min-width:0}
+.screen{background:#050b1b;border:3px solid var(--cyan);border-radius:16px;overflow:hidden;position:relative;box-shadow:0 0 0 3px var(--ink),0 18px 50px rgba(0,0,0,.45)}
+#cv{display:block;width:100%;height:auto;aspect-ratio:320/192;image-rendering:pixelated}
+.hud{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 12px;background:var(--panel2);border-top:1px solid var(--line);font:13.5px ui-monospace,Menlo,monospace;color:var(--dim)}
+.hud b{color:var(--cream)}
+.estop{position:absolute;right:10px;top:10px;width:74px;height:74px;border-radius:50%;border:5px solid #ffd400;background:radial-gradient(circle at 40% 35%,#ff6b6b,#b3121b);color:#fff;font:900 13px/1.05 system-ui;cursor:pointer;box-shadow:0 5px 0 #6b0a10;text-transform:uppercase}
+.estop:active{transform:translateY(3px);box-shadow:0 2px 0 #6b0a10}
+.panel{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:16px}
+.panel h2{font-size:18px;margin:0 0 8px;letter-spacing:-.01em}
+label.l{display:block;font-weight:700;margin-bottom:6px}
+.cmd{display:flex;gap:8px}
+.cmd input{flex:1;min-width:0;min-height:46px;border-radius:12px;border:2px solid var(--line);background:var(--ink);color:var(--text);font:inherit;padding:8px 12px}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 16px;border-radius:12px;border:2px solid transparent;font:800 15px system-ui;cursor:pointer;text-decoration:none}
+.b.main{background:var(--brass);color:#14110a;box-shadow:0 4px 0 var(--brass-d)}
+.b.ok{background:var(--ok);color:#06210f;box-shadow:0 4px 0 #2b8a4e}
+.b.ghost{background:none;color:var(--text);border-color:var(--line)}
+.b:disabled{opacity:.45;cursor:not-allowed}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.chips button{background:var(--panel);border:1px solid var(--line);color:var(--cream);border-radius:999px;padding:6px 11px;font:13.5px system-ui;cursor:pointer;min-height:34px;text-align:left}
+.plan{margin-top:14px}
+.checks{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:4px;font-size:14.5px}
+.checks li{display:grid;grid-template-columns:22px 1fr;gap:6px}
+.checks .ok::before{content:"✓";color:var(--ok);font-weight:900}
+.checks .warn::before{content:"!";color:var(--warn);font-weight:900;text-align:center}
+.checks .no::before{content:"✕";color:var(--red);font-weight:900}
+pre.prog{margin:0 0 12px;background:#050b1b;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:13px/1.5 ui-monospace,Menlo,monospace;color:#bfe9f5;white-space:pre-wrap;word-break:break-word;max-height:220px;overflow:auto}
+.say{background:var(--cream);color:#1d1a14;border-radius:14px;border-bottom-left-radius:4px;padding:10px 13px;margin:10px 0 12px;font-size:15px}
+.say.bad{background:#ffd9db}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.log{margin-top:12px;font:12.5px/1.45 ui-monospace,Menlo,monospace;color:var(--dim);max-height:150px;overflow:auto;background:#050b1b;border-radius:10px;padding:8px 10px;border:1px solid var(--line)}
+.log div{white-space:pre-wrap}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 8px;padding:0;list-style:none;counter-reset:s}
+.how li{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px;counter-increment:s;min-width:0}
+.how li::before{content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--cyan);color:var(--ink);font-weight:900;margin-bottom:6px}
+.how b{display:block}.how span{color:var(--dim);font-size:14.5px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#13254a,#0b2a3a);border:1px solid var(--line);border-radius:18px;padding:18px;margin:22px 0}
+.cta p{margin:0;color:var(--dim);max-width:44em}.cta b{color:var(--text)}
+.note{color:var(--dim);font-size:14px}
+footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 16px}footer a{color:var(--dim);padding:6px 0}
+@media (max-width:900px){.lab{grid-template-columns:1fr}.how{grid-template-columns:1fr 1fr}.top nav{display:none}}
+@media (max-width:480px){.how{grid-template-columns:1fr}.estop{width:60px;height:60px;font-size:11px}.cmd{flex-direction:column}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="robots.html" data-i="nRob">AI for your robots</a><a href="pro-bots.html" data-i="nPro">Pro bots</a></nav>
+ <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></div></header>
+<main id="main">
+ <h1><span data-i="h1a">Robot Lab:</span> <span style="color:var(--text)" data-i="h1b">tell a robot what to do in plain words</span></h1>
+ <p class="lead" data-i="lead">This is how an AI layer on top of an existing robot works. You type an order. It becomes a plan in the robot's own language. The plan is checked against safety rules. The robot only moves after a human presses Approve.</p>
+
+ <div class="lab">
+  <div>
+   <div class="screen">
+    <canvas id="cv" width="320" height="192" aria-label="Top view of a small warehouse with a robot, three shelves, three pallets, a charging dock and a worker zone"></canvas>
+    <button type="button" class="estop" id="bStop" data-i="estop">E-stop</button>
+   </div>
+   <div class="hud" aria-live="polite"><span><span data-i="hState">State</span>: <b id="hS">idle</b></span><span><span data-i="hBat">Battery</span>: <b id="hB">100%</b></span><span><span data-i="hDel">Delivered</span>: <b id="hD">0</b></span><span><span data-i="hDist">Distance</span>: <b id="hM">0 m</b></span><span data-i="hSim">Simulation ×3 speed</span></div>
+   <div class="row" style="margin-top:10px"><button type="button" class="b ghost" id="bBlock" data-i="block">Drop a box in its way</button><button type="button" class="b ghost" id="bReset" data-i="reset">Reset warehouse</button></div>
+  </div>
+
+  <div class="panel">
+   <h2 data-i="pH">1. Give an order</h2>
+   <label class="l" for="iCmd" data-i="lab">What should the robot do?</label>
+   <div class="cmd"><input id="iCmd" maxlength="160" autocomplete="off" placeholder="Bring 2 red boxes to pallet 2"><button type="button" class="b main" id="bPlan" data-i="mk">Make plan</button></div>
+   <div class="chips" id="chips"></div>
+   <div class="plan" id="plan" hidden>
+    <div class="say" id="say"></div>
+    <h2 data-i="cH">2. Safety checks</h2>
+    <ul class="checks" id="checks"></ul>
+    <h2 data-i="gH">3. Plan in robot language</h2>
+    <pre class="prog" id="prog"></pre>
+    <div class="row"><button type="button" class="b ok" id="bGo" data-i="go">Approve and run</button><button type="button" class="b ghost" id="bNo" data-i="no">Cancel</button></div>
+   </div>
+   <div class="log" id="log" aria-live="polite"></div>
+  </div>
+ </div>
+
+ <ol class="how">
+  <li><b data-i="w1">You speak normally</b><span data-i="w1p">English, Dutch or French. No code, no robot training.</span></li>
+  <li><b data-i="w2">The AI writes a plan</b><span data-i="w2p">In the commands the robot already understands. It never touches the motors itself.</span></li>
+  <li><b data-i="w3">Rules check the plan</b><span data-i="w3p">No-go zones, speed limit, payload, battery. Unsafe orders are refused.</span></li>
+  <li><b data-i="w4">A human approves</b><span data-i="w4p">The robot's own safety system stays in charge. The E-stop always wins.</span></li>
+ </ol>
+ <p class="note" data-i="honest">Honest note: in this free demo, simple rules turn your words into the plan, so it works without any account or AI key. In a real project an AI model writes the plan, and the same checks and the same approve button stay in place.</p>
+
+ <div class="cta"><p data-i="ctaP"><b>Do you run robots or sell them?</b> We build this kind of layer for existing robots: a help bot for your technicians, plain-language orders, and a daily fleet report.</p><a class="b main" href="robots.html" data-i="ctaB">See what we offer</a></div>
+</main>
+<footer><a href="/" data-i="fHome">Home</a><a href="robots.html" data-i="nRob">AI for your robots</a><a href="raid.html">MAIGA Raid</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fNote">Simulation only. It does not control any real machine.</span></footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* ================================================================ texts */
+var T={
+nl:{skip:'Naar de inhoud',nRob:'AI voor je robots',nPro:'Pro-bots',h1a:'Robot Lab:',h1b:'zeg in gewone woorden wat een robot moet doen',lead:'Zo werkt een AI-laag bovenop een bestaande robot. Jij typt een opdracht. Die wordt een plan in de taal van de robot. Het plan wordt getoetst aan veiligheidsregels. De robot beweegt pas als een mens op Goedkeuren drukt.',estop:'Noodstop',hState:'Status',hBat:'Batterij',hDel:'Geleverd',hDist:'Afstand',hSim:'Simulatie ×3 snelheid',block:'Gooi een doos in de weg',reset:'Magazijn opnieuw',pH:'1. Geef een opdracht',lab:'Wat moet de robot doen?',mk:'Maak plan',cH:'2. Veiligheidscontrole',gH:'3. Plan in robottaal',go:'Goedkeuren en uitvoeren',no:'Annuleren',w1:'Jij praat gewoon',w1p:'Nederlands, Engels of Frans. Geen code, geen robotopleiding.',w2:'De AI schrijft een plan',w2p:'In de commando’s die de robot al kent. Ze raakt de motoren zelf nooit aan.',w3:'Regels toetsen het plan',w3p:'Verboden zones, snelheidslimiet, gewicht, batterij. Onveilige opdrachten worden geweigerd.',w4:'Een mens keurt goed',w4p:'Het eigen veiligheidssysteem van de robot blijft de baas. De noodstop wint altijd.',honest:'Eerlijk gezegd: in deze gratis demo zetten eenvoudige regels je woorden om in het plan, dus het werkt zonder account of AI-sleutel. In een echt project schrijft een AI-model het plan, en blijven dezelfde controles en dezelfde goedkeurknop staan.',ctaP:'<b>Werk je met robots of verkoop je ze?</b> Wij bouwen zo’n laag voor bestaande robots: een hulpbot voor je technici, opdrachten in gewone taal en een dagelijks vlootrapport.',ctaB:'Bekijk wat we aanbieden',fHome:'Home',fPriv:'Privacy',fLegal:'Juridisch',fNote:'Alleen simulatie. Bestuurt geen echte machine.'},
+fr:{skip:'Aller au contenu',nRob:'IA pour vos robots',nPro:'Bots pro',h1a:'Robot Lab :',h1b:'dites à un robot quoi faire, avec vos mots',lead:'Voici comment fonctionne une couche d’IA au-dessus d’un robot existant. Vous tapez un ordre. Il devient un plan dans le langage du robot. Le plan est vérifié selon des règles de sécurité. Le robot ne bouge qu’après la validation d’un humain.',estop:'Arrêt d’urgence',hState:'État',hBat:'Batterie',hDel:'Livrées',hDist:'Distance',hSim:'Simulation ×3',block:'Faire tomber une caisse',reset:'Réinitialiser',pH:'1. Donnez un ordre',lab:'Que doit faire le robot ?',mk:'Créer le plan',cH:'2. Contrôles de sécurité',gH:'3. Plan en langage robot',go:'Valider et lancer',no:'Annuler',w1:'Vous parlez normalement',w1p:'Français, anglais ou néerlandais. Pas de code, pas de formation robot.',w2:'L’IA écrit un plan',w2p:'Avec les commandes que le robot connaît déjà. Elle ne touche jamais les moteurs.',w3:'Des règles vérifient le plan',w3p:'Zones interdites, vitesse, charge, batterie. Les ordres dangereux sont refusés.',w4:'Un humain valide',w4p:'Le système de sécurité du robot reste maître. L’arrêt d’urgence gagne toujours.',honest:'En toute honnêteté : dans cette démo gratuite, des règles simples transforment vos mots en plan, donc tout marche sans compte ni clé IA. Dans un vrai projet, un modèle d’IA écrit le plan, avec les mêmes contrôles et le même bouton de validation.',ctaP:'<b>Vous utilisez ou vendez des robots ?</b> Nous construisons cette couche pour des robots existants : un bot d’aide pour vos techniciens, des ordres en langage courant et un rapport quotidien de flotte.',ctaB:'Voir notre offre',fHome:'Accueil',fPriv:'Confidentialité',fLegal:'Mentions légales',fNote:'Simulation uniquement. Ne pilote aucune vraie machine.'}};
+var M={ /* messages used by the code */
+en:{ph:'Bring 2 red boxes to pallet 2',ex:['Bring 2 red boxes to pallet 2','Move all blue boxes to pallet 3, then charge','Take 1 gold box to pallet 1 and 1 red box to pallet 3','Go through the worker zone at full speed'],
+ idle:'idle',moving:'moving',picking:'picking',placing:'placing',charging:'charging',stopped:'E-STOP',waiting:'waiting for approval',blocked:'path blocked',
+ understood:'Understood. Here is my plan. Nothing moves until you approve it.',notUnderstood:'I did not understand that, so I will not move. Try one of the examples.',
+ refuse:'I refuse this order. It would break a safety rule (no-go zone, speed limit or safety system). I will not move.',
+ cZone:'Route stays out of the worker zone',cSpeed:'Speed limit 1.0 m/s respected',cLoad:'Max 2 boxes per trip ({n} trips)',cStock:'Enough boxes on the shelves',cStockW:'Only {n} {c} box(es) left on shelf, plan reduced',cBat:'Battery enough for the whole plan',cBatW:'Battery too low: a charging stop was added first',cHuman:'Waiting for a human to press Approve',cNoPallet:'No pallet named: using pallet 1',
+ dRefuse:'Refused: unsafe order',
+ logPlan:'Plan made: {s} steps, ~{m} m',logGo:'Approved by human. Running.',logDone:'Plan finished.',logStop:'E-STOP pressed. Robot stopped at once. Plan cancelled.',logBlock:'Obstacle detected ahead. Stopped and planning a new route…',logRe:'New route found. Continuing.',logNoRoute:'No safe route. Stopped. A human must clear the way.',logCancel:'Plan cancelled. Robot did not move.',logReset:'Warehouse reset.',logBox:'A box fell on the floor in front of the robot.',logNoBox:'Start a plan first, then drop a box in its way.',busy:'The robot is busy. Wait, or press the E-stop.',
+ red:'red',blue:'blue',gold:'gold',
+ st:'Stock'},
+nl:{ph:'Breng 2 rode dozen naar pallet 2',ex:['Breng 2 rode dozen naar pallet 2','Zet alle blauwe dozen op pallet 3, daarna opladen','Breng 1 gouden doos naar pallet 1 en 1 rode doos naar pallet 3','Rij op volle snelheid door de werkzone'],
+ idle:'wacht',moving:'rijdt',picking:'pakt op',placing:'zet neer',charging:'laadt op',stopped:'NOODSTOP',waiting:'wacht op goedkeuring',blocked:'weg geblokkeerd',
+ understood:'Begrepen. Hier is mijn plan. Er beweegt niets tot jij het goedkeurt.',notUnderstood:'Dat begreep ik niet, dus ik beweeg niet. Probeer een van de voorbeelden.',
+ refuse:'Ik weiger deze opdracht. Ze breekt een veiligheidsregel (verboden zone, snelheidslimiet of veiligheidssysteem). Ik beweeg niet.',
+ cZone:'Route blijft uit de werkzone van mensen',cSpeed:'Snelheidslimiet 1,0 m/s gerespecteerd',cLoad:'Max 2 dozen per rit ({n} ritten)',cStock:'Genoeg dozen in de rekken',cStockW:'Nog maar {n} {c} doos/dozen in het rek, plan verkleind',cBat:'Batterij genoeg voor het hele plan',cBatW:'Batterij te laag: eerst een laadstop toegevoegd',cHuman:'Wacht tot een mens op Goedkeuren drukt',cNoPallet:'Geen pallet genoemd: pallet 1 gekozen',
+ dRefuse:'Geweigerd: onveilige opdracht',
+ logPlan:'Plan gemaakt: {s} stappen, ~{m} m',logGo:'Goedgekeurd door een mens. Bezig.',logDone:'Plan klaar.',logStop:'NOODSTOP ingedrukt. Robot stond meteen stil. Plan geannuleerd.',logBlock:'Obstakel voor de robot. Gestopt, nieuwe route zoeken…',logRe:'Nieuwe route gevonden. Verder.',logNoRoute:'Geen veilige route. Gestopt. Een mens moet de weg vrijmaken.',logCancel:'Plan geannuleerd. Robot heeft niet bewogen.',logReset:'Magazijn opnieuw ingesteld.',logBox:'Er viel een doos voor de robot op de grond.',logNoBox:'Start eerst een plan, gooi dan een doos in de weg.',busy:'De robot is bezig. Wacht, of druk op de noodstop.',
+ red:'rode',blue:'blauwe',gold:'gouden',st:'Voorraad'},
+fr:{ph:'Apporte 2 caisses rouges à la palette 2',ex:['Apporte 2 caisses rouges à la palette 2','Mets toutes les caisses bleues sur la palette 3, puis recharge','Apporte 1 caisse or à la palette 1 et 1 caisse rouge à la palette 3','Traverse la zone de travail à pleine vitesse'],
+ idle:'en attente',moving:'roule',picking:'prend',placing:'dépose',charging:'recharge',stopped:'ARRÊT',waiting:'attend la validation',blocked:'chemin bloqué',
+ understood:'Compris. Voici mon plan. Rien ne bouge avant votre validation.',notUnderstood:'Je n’ai pas compris, donc je ne bouge pas. Essayez un des exemples.',
+ refuse:'Je refuse cet ordre. Il enfreint une règle de sécurité (zone interdite, vitesse ou système de sécurité). Je ne bouge pas.',
+ cZone:'Le trajet évite la zone des travailleurs',cSpeed:'Vitesse max 1,0 m/s respectée',cLoad:'Max 2 caisses par trajet ({n} trajets)',cStock:'Assez de caisses en rayon',cStockW:'Plus que {n} caisse(s) {c} en rayon, plan réduit',cBat:'Batterie suffisante pour tout le plan',cBatW:'Batterie trop faible : une recharge a été ajoutée',cHuman:'En attente de la validation d’un humain',cNoPallet:'Aucune palette indiquée : palette 1',
+ dRefuse:'Refusé : ordre dangereux',
+ logPlan:'Plan créé : {s} étapes, ~{m} m',logGo:'Validé par un humain. En cours.',logDone:'Plan terminé.',logStop:'ARRÊT D’URGENCE. Robot arrêté net. Plan annulé.',logBlock:'Obstacle détecté. Arrêt, recherche d’un nouveau trajet…',logRe:'Nouveau trajet trouvé. On continue.',logNoRoute:'Aucun trajet sûr. Arrêt. Un humain doit libérer le passage.',logCancel:'Plan annulé. Le robot n’a pas bougé.',logReset:'Entrepôt réinitialisé.',logBox:'Une caisse est tombée devant le robot.',logNoBox:'Lancez d’abord un plan, puis faites tomber une caisse.',busy:'Le robot est occupé. Attendez ou appuyez sur l’arrêt d’urgence.',
+ red:'rouge(s)',blue:'bleue(s)',gold:'or',st:'Stock'}};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+var lang=new URLSearchParams(location.search).get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!M[lang])lang='en';
+var EN={};document.querySelectorAll('[data-i]').forEach(function(el){EN[el.getAttribute('data-i')]=el.innerHTML;});
+function m(k,o){var s=(M[lang][k]!==undefined?M[lang][k]:M.en[k]);if(o)s=String(s).replace(/\{(\w+)\}/g,function(_,x){return o[x];});return s;}
+function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
+ document.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');var v=lang==='en'?EN[k]:(T[lang][k]!==undefined?T[lang][k]:EN[k]);
+   if(k==='ctaP')el.innerHTML=v;else{var tmp=document.createElement('div');tmp.innerHTML=v;el.textContent=tmp.textContent;}});
+ document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-l')===lang?'true':'false');});
+ $('iCmd').placeholder=m('ph');
+ var c=$('chips');c.textContent='';m('ex').forEach(function(s){var b=document.createElement('button');b.type='button';b.textContent=s;b.addEventListener('click',function(){$('iCmd').value=s;makePlan();});c.appendChild(b);});
+ hud();}
+function $(id){return document.getElementById(id);}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.getAttribute('data-l');apply();});});
+
+/* ================================================================ warehouse */
+var MAP=[
+'####################',
+'#D.........WWWWWW..#',
+'#..........WWWWWW..#',
+'#.AA..BB..CC.WWWW..#',
+'#.aa..bb..cc.......#',
+'#..................#',
+'#.......####.......#',
+'#..................#',
+'#..................#',
+'#.1....2.....3.....#',
+'#..................#',
+'####################'];
+var W=20,H=12,TS=16;
+var SPOT={shelf_A:[2,4],shelf_B:[6,4],shelf_C:[10,4],pallet_1:[2,8],pallet_2:[7,8],pallet_3:[13,8],dock:[1,1]};
+var COLOR_SHELF={red:'A',blue:'B',gold:'C'};
+var stock,pallets,R,plan,running,obstacles,worker,logEl=$('log'),approvedAt=0;
+function reset(){stock={red:4,blue:4,gold:3};pallets={1:[],2:[],3:[]};obstacles={};
+ R={x:1,y:1,px:1*TS,py:1*TS,bat:100,carry:[],state:'idle',dist:0,delivered:0,path:[],step:0};
+ plan=null;running=false;worker={x:13,y:1.5,dir:1};$('plan').hidden=true;hud();}
+function solid(x,y){if(x<0||y<0||x>=W||y>=H)return true;var c=MAP[y][x];return c==='#'||c==='A'||c==='B'||c==='C'||obstacles[x+','+y];}
+function nogo(x,y){return MAP[y][x]==='W';}
+function bfs(sx,sy,tx,ty){if(sx===tx&&sy===ty)return [];var q=[[sx,sy]],prev={},seen={};seen[sx+','+sy]=1;
+ while(q.length){var c=q.shift();if(c[0]===tx&&c[1]===ty)break;[[1,0],[-1,0],[0,1],[0,-1]].forEach(function(d){var nx=c[0]+d[0],ny=c[1]+d[1],k=nx+','+ny;if(seen[k]||solid(nx,ny)||nogo(nx,ny))return;seen[k]=1;prev[k]=c;q.push([nx,ny]);});}
+ if(!seen[tx+','+ty])return null;var path=[],cur=[tx,ty];while(!(cur[0]===sx&&cur[1]===sy)){path.unshift(cur);cur=prev[cur[0]+','+cur[1]];}return path;}
+
+/* ================================================================ language -> plan (rules; a real setup uses an AI model here) */
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+var RX={
+ danger:/(full speed|volle snelheid|pleine vitesse|max(imum)? speed|faster|sneller|plus vite|ignore|negeer|ignorer|override|disable|uitschakel|desactiv|turn off safety|veiligheid uit|securite off|through the worker|door de werkzone|door de zone|traverse la zone|zone de travail|worker zone|werkzone|run over|omver)/,
+ stop:/^\s*(stop|halt|stoppen|arrete|arret)\b/,
+ charge:/(charge|laad|opladen|dock|recharge|base|batterij|batterie|battery)/,
+ colors:[['red',/(red|rood|rode|rouge)/],['blue',/(blue|blauw|bleu)/],['gold',/(gold|goud|yellow|geel|gele|jaune|\bor\b)/]],
+ all:/\b(all|alle|tous|toutes|every|elke)\b/,
+ pallet:/(pallet|palette|palet)\s*(nr\.?\s*)?([1-3]|one|two|three|een|twee|drie|un|une|deux|trois)/,
+ shelf:/(shelf|rek|rayon|rack)\s*([abc])\b/};
+var NUMW={one:1,een:1,un:1,une:1,two:2,twee:2,deux:2,three:3,drie:3,trois:3,four:4,vier:4,quatre:4};
+function num(w){if(/^\d+$/.test(w))return +w;return NUMW[w]||null;}
+function parse(text){var s=norm(text).trim();if(!s)return {err:'none'};
+ if(RX.danger.test(s))return {err:'danger'};
+ if(RX.stop.test(s))return {stop:true};
+ var parts=s.split(/\b(?:then|and then|after that|daarna|dan|en dan|puis|ensuite|apres)\b|[;.]|,(?!\d)|\band\s+(?=\d)|\ben\s+(?=\d)|\bet\s+(?=\d)/).map(function(x){return (x||'').trim();}).filter(Boolean);
+ var tasks=[],notes=[];
+ parts.forEach(function(p){
+   if(RX.charge.test(p)&&!RX.colors.some(function(c){return c[1].test(p);})){tasks.push({op:'charge'});return;}
+   var pal=p.match(RX.pallet),pallet=pal?num(pal[3]):null;
+   var found=false;
+   RX.colors.forEach(function(c){var mt=p.match(c[1]);if(!mt)return;found=true;
+     var before=p.slice(0,mt.index).trim().split(/\s+/),n=null;
+     for(var i=before.length-1;i>=0&&i>=before.length-3;i--){var v=num(before[i]);if(v){n=v;break;}}
+     if(RX.all.test(p))n='all';if(!n)n=1;
+     if(!pallet){pallet=1;notes.push('nopallet');}
+     tasks.push({op:'deliver',color:c[0],n:n,pallet:pallet});});
+   if(!found){var sh=p.match(RX.shelf);if(sh)tasks.push({op:'goto',to:'shelf_'+sh[2].toUpperCase()});else if(pal)tasks.push({op:'goto',to:'pallet_'+pallet});}
+ });
+ if(!tasks.length)return {err:'unknown'};
+ return {tasks:tasks,notes:notes};}
+
+function buildPlan(p){var stockWarn=false,steps=[],checks=[],sim={x:R.x,y:R.y,bat:R.bat,stock:JSON.parse(JSON.stringify(stock))},meters=0,trips=0;
+ function route(to){var t=SPOT[to],path=bfs(sim.x,sim.y,t[0],t[1]);if(!path)return null;meters+=path.length;sim.bat-=path.length*.7;sim.x=t[0];sim.y=t[1];steps.push({op:'move',to:to,m:path.length});return true;}
+ p.tasks.forEach(function(tk){
+  if(tk.op==='charge'){route('dock');steps.push({op:'charge'});sim.bat=100;return;}
+  if(tk.op==='goto'){route(tk.to);return;}
+  var have=sim.stock[tk.color],want=tk.n==='all'?have:tk.n;
+  if(want>have){stockWarn=true;checks.push(['warn',m('cStockW',{n:have,c:m(tk.color)})]);want=have;}
+  while(want>0){var k=Math.min(2,want);route('shelf_'+COLOR_SHELF[tk.color]);steps.push({op:'pick',color:tk.color,n:k});sim.bat-=1;sim.stock[tk.color]-=k;
+    route('pallet_'+tk.pallet);steps.push({op:'place',n:k,pallet:tk.pallet,color:tk.color});sim.bat-=1;want-=k;trips++;}
+ });
+ var need=R.bat-sim.bat;
+ if(R.bat-need<15){steps.unshift({op:'charge'});var dp=bfs(R.x,R.y,SPOT.dock[0],SPOT.dock[1]);steps.unshift({op:'move',to:'dock',m:dp?dp.length:0});checks.push(['warn',m('cBatW')]);}
+ else checks.push(['ok',m('cBat')]);
+ if(p.notes.indexOf('nopallet')>-1)checks.unshift(['warn',m('cNoPallet')]);
+ checks.unshift(['ok',m('cLoad',{n:trips||0})]);
+ if(!stockWarn)checks.unshift(['ok',m('cStock')]);
+ checks.unshift(['ok',m('cSpeed')]);checks.unshift(['ok',m('cZone')]);
+ checks.push(['warn',m('cHuman')]);
+ return {steps:steps,checks:checks,meters:meters};}
+function progText(pl){var out=['# plan · '+pl.steps.length+' steps · ~'+pl.meters+' m · max 1.0 m/s · no-go: worker_zone'];
+ pl.steps.forEach(function(s){
+  if(s.op==='move')out.push(pad('move_to("'+s.to+'")',30)+'# '+s.m+' m');
+  else if(s.op==='pick')out.push('pick(color="'+s.color+'", count='+s.n+')');
+  else if(s.op==='place')out.push('place(count='+s.n+')');
+  else if(s.op==='charge')out.push(pad('charge(until=100)',30)+'# dock');});
+ out.push('await human_approval()');return out.join('\n');}
+function pad(s,n){while(s.length<n)s+=' ';return s;}
+function say(text,bad){var el=$('say');el.textContent=text;el.className='say'+(bad?' bad':'');}
+function log(s){var d=document.createElement('div');d.textContent=new Date().toLocaleTimeString().slice(0,8)+'  '+s;logEl.prepend(d);while(logEl.children.length>40)logEl.lastChild.remove();}
+function makePlan(){if(running){log(m('busy'));return;}var p=parse($('iCmd').value);$('plan').hidden=false;var ch=$('checks');ch.textContent='';$('prog').textContent='';
+ if(p.err==='danger'){say(m('refuse'),true);addCheck('no',m('dRefuse'));$('bGo').disabled=true;plan=null;log(m('dRefuse'));return;}
+ if(p.err||p.stop){say(p.stop?m('logCancel'):m('notUnderstood'),true);$('bGo').disabled=true;plan=null;return;}
+ plan=buildPlan(p);say(m('understood'));plan.checks.forEach(function(c){addCheck(c[0],c[1]);});$('prog').textContent=progText(plan);
+ $('bGo').disabled=!plan.steps.length;R.state='waiting';hud();log(m('logPlan',{s:plan.steps.length,m:plan.meters}));}
+function addCheck(cls,text){var li=document.createElement('li');li.className=cls;li.textContent=text;$('checks').appendChild(li);}
+$('bPlan').addEventListener('click',makePlan);
+$('iCmd').addEventListener('keydown',function(e){if(e.key==='Enter')makePlan();});
+$('bGo').addEventListener('click',function(){if(!plan||running)return;running=true;R.queue=plan.steps.slice();R.state='moving';$('bGo').disabled=true;log(m('logGo'));next();});
+$('bNo').addEventListener('click',function(){if(running)return;plan=null;$('plan').hidden=true;R.state='idle';hud();log(m('logCancel'));});
+$('bStop').addEventListener('click',function(){running=false;R.queue=[];R.path=[];R.state='stopped';R.px=R.x*TS;R.py=R.y*TS;$('plan').hidden=true;plan=null;hud();log(m('logStop'));flash=1;});
+$('bReset').addEventListener('click',function(){reset();log(m('logReset'));});
+$('bBlock').addEventListener('click',function(){if(!running){log(m('logNoBox'));return;}
+ var pth=R.path;if(!pth.length){var nx=R.queue.filter(function(q){return q.op==='move';})[0];if(nx){var tg=SPOT[nx.to];pth=bfs(R.x,R.y,tg[0],tg[1])||[];}}
+ if(pth.length<3){log(m('logNoBox'));return;}var t=pth[Math.min(2,pth.length-2)];
+ obstacles[t[0]+','+t[1]]=1;log(m('logBox'));});
+
+/* ================================================================ run the plan */
+var wait=0,flash=0;
+function next(){if(!running)return;var s=R.queue.shift();if(!s){running=false;R.state='idle';plan=null;log(m('logDone'));hud();return;}
+ R.cur=s;
+ if(s.op==='move'){var t=SPOT[s.to];R.target=t;R.path=bfs(R.x,R.y,t[0],t[1])||[];if(!R.path.length&&!(R.x===t[0]&&R.y===t[1])){R.state='blocked';running=false;log(m('logNoRoute'));hud();return;}R.state='moving';}
+ else if(s.op==='pick'){R.state='picking';wait=.6;}
+ else if(s.op==='place'){R.state='placing';wait=.6;}
+ else if(s.op==='charge'){R.state='charging';wait=.1;}
+ hud();}
+var SPEED=3*TS; /* tiles per second in the simulation (×3 of 1 m/s) */
+function step(dt){
+ worker.y+=worker.dir*dt*.6;if(worker.y>2.4){worker.y=2.4;worker.dir=-1;}if(worker.y<1){worker.y=1;worker.dir=1;}
+ worker.x=13+Math.sin(performance.now()/1500)*1.5;
+ if(flash>0)flash-=dt*2;
+ if(!running)return;
+ var s=R.cur;
+ if(s.op==='move'){
+  if(!R.path.length){next();return;}
+  var t=R.path[0];
+  if(obstacles[t[0]+','+t[1]]){log(m('logBlock'));var tg=R.target,np=bfs(R.x,R.y,tg[0],tg[1]);if(!np){running=false;R.state='blocked';log(m('logNoRoute'));hud();return;}R.path=np;log(m('logRe'));return;}
+  var tx=t[0]*TS,ty=t[1]*TS,dx=tx-R.px,dy=ty-R.py,d=Math.hypot(dx,dy),mv=SPEED*dt;
+  if(d<=mv){R.px=tx;R.py=ty;R.x=t[0];R.y=t[1];R.path.shift();R.dist++;R.bat=Math.max(0,R.bat-.7);hud();}
+  else{R.px+=dx/d*mv;R.py+=dy/d*mv;}
+ }else if(s.op==='pick'||s.op==='place'){wait-=dt;if(wait<=0){
+   if(s.op==='pick'){var k=Math.min(s.n,stock[s.color]);stock[s.color]-=k;for(var i=0;i<k;i++)R.carry.push(s.color);R.bat-=1;}
+   else{for(var j=0;j<s.n&&R.carry.length;j++){pallets[s.pallet].push(R.carry.shift());R.delivered++;}R.bat-=1;}
+   next();}}
+ else if(s.op==='charge'){R.bat=Math.min(100,R.bat+dt*40);hud();if(R.bat>=100)next();}
+}
+function hud(){$('hS').textContent=m(R.state)||R.state;$('hB').textContent=Math.round(R.bat)+'%';$('hD').textContent=R.delivered;$('hM').textContent=R.dist+' m';}
+
+/* ================================================================ draw */
+var cv=$('cv'),g=cv.getContext('2d');g.imageSmoothingEnabled=false;
+var bolt=new Image();bolt.src='bolt.png';
+var BOX={red:'#d63446',blue:'#2f7fff',gold:'#e0b43a'};
+function draw(){
+ g.fillStyle='#1a2236';g.fillRect(0,0,320,192);
+ for(var y=0;y<H;y++)for(var x=0;x<W;x++){var c=MAP[y][x],px=x*TS,py=y*TS;
+  if(c==='#'){g.fillStyle='#0a0f1f';g.fillRect(px,py,TS,TS);g.fillStyle='#24304e';g.fillRect(px,py,TS,2);continue;}
+  g.fillStyle=(x+y)%2?'#202a42':'#1d263d';g.fillRect(px,py,TS,TS);
+  if(c==='W'){g.fillStyle='rgba(255,212,0,.18)';g.fillRect(px,py,TS,TS);g.strokeStyle='rgba(255,212,0,.35)';g.beginPath();g.moveTo(px,py+TS);g.lineTo(px+TS,py);g.stroke();}
+  if(c==='A'||c==='B'||c==='C'){g.fillStyle='#5a3a22';g.fillRect(px+1,py+1,TS-2,TS-2);g.fillStyle='#3a2414';g.fillRect(px+1,py+8,TS-2,2);}
+  if(c==='D'){g.fillStyle='#0b3b46';g.fillRect(px+1,py+1,TS-2,TS-2);g.fillStyle='#38f2ff';g.fillRect(px+6,py+3,4,10);g.fillRect(px+4,py+7,8,2);}
+  if(/[123]/.test(c)){g.fillStyle='#8a6a3e';g.fillRect(px+1,py+2,TS-2,TS-4);g.fillStyle='#6b4f2a';for(var k=0;k<3;k++)g.fillRect(px+1,py+4+k*4,TS-2,1);}
+ }
+ /* labels + stock */
+ g.font='bold 7px monospace';g.textBaseline='top';
+ [['A','red',2],['B','blue',6],['C','gold',10]].forEach(function(s){var px=s[2]*TS;for(var i=0;i<stock[s[1]];i++){g.fillStyle='#000';g.fillRect(px+2+(i%4)*7,3*TS+2+((i/4)|0)*7,6,6);g.fillStyle=BOX[s[1]];g.fillRect(px+3+(i%4)*7,3*TS+3+((i/4)|0)*7,4,4);}
+   g.fillStyle='#f3ecd9';g.fillText(s[0],px+24-6,3*TS-9);});
+ [1,2,3].forEach(function(n){var sp=SPOT['pallet_'+n],px=sp[0]*TS,py=(sp[1]+1)*TS;g.fillStyle='#f3ecd9';g.fillText('P'+n,px+2,py+TS+2);
+   pallets[n].forEach(function(cl,i){g.fillStyle='#000';g.fillRect(px+1+(i%3)*5,py+1+((i/3)|0)*5,5,5);g.fillStyle=BOX[cl];g.fillRect(px+2+(i%3)*5,py+2+((i/3)|0)*5,3,3);});});
+ g.fillStyle='#ffd400';g.fillText('NO-GO',11*TS+3,1*TS+3);
+ /* obstacles */
+ for(var k2 in obstacles){var p=k2.split(',');g.fillStyle='#000';g.fillRect(p[0]*TS+3,p[1]*TS+3,10,10);g.fillStyle='#c48a3a';g.fillRect(p[0]*TS+4,p[1]*TS+4,8,8);g.fillStyle='#ff5a5f';g.fillRect(p[0]*TS+4,p[1]*TS+7,8,1);}
+ /* plan preview (dotted) */
+ if(plan&&!running){var sim={x:R.x,y:R.y};g.fillStyle='rgba(56,242,255,.8)';plan.steps.forEach(function(s){if(s.op!=='move')return;var t=SPOT[s.to],pth=bfs(sim.x,sim.y,t[0],t[1])||[];pth.forEach(function(c,i){if(i%2===0)g.fillRect(c[0]*TS+7,c[1]*TS+7,2,2);});sim.x=t[0];sim.y=t[1];});}
+ if(running&&R.path.length){g.fillStyle='rgba(91,227,138,.9)';R.path.forEach(function(c,i){g.fillRect(c[0]*TS+7,c[1]*TS+7,2,2);});}
+ /* worker (generic hard hat person) */
+ var wx=worker.x*TS,wy=worker.y*TS;g.fillStyle='#000';g.fillRect(wx+4,wy+2,8,12);g.fillStyle='#ffd400';g.fillRect(wx+5,wy+2,6,3);g.fillStyle='#f0c8a0';g.fillRect(wx+5,wy+5,6,3);g.fillStyle='#ff7a00';g.fillRect(wx+5,wy+8,6,5);
+ /* robot */
+ if(bolt.complete&&bolt.naturalWidth)g.drawImage(bolt,Math.round(R.px)+1,Math.round(R.py)-3,14,17);else{g.fillStyle='#ff8c28';g.fillRect(R.px+2,R.py+2,12,12);}
+ R.carry.forEach(function(cl,i){g.fillStyle='#000';g.fillRect(R.px+3+i*6,R.py-8,6,6);g.fillStyle=BOX[cl];g.fillRect(R.px+4+i*6,R.py-7,4,4);});
+ if(R.state==='charging'){g.fillStyle='#38f2ff';g.fillText('+',R.px+12,R.py-6);}
+ if(R.state==='stopped'||R.state==='blocked'){g.strokeStyle='#ff5a5f';g.lineWidth=2;g.strokeRect(R.px-1,R.py-4,18,21);g.lineWidth=1;}
+ if(flash>0){g.fillStyle='rgba(255,40,40,'+(flash*.35)+')';g.fillRect(0,0,320,192);}
+}
+var last=performance.now();
+function loop(ts){var dt=Math.min(.05,(ts-last)/1000);last=ts;step(dt);draw();requestAnimationFrame(loop);}
+reset();apply();requestAnimationFrame(loop);
+window.__lab={parse:parse,buildPlan:buildPlan,get R(){return R;},get plan(){return plan;}};
+})();
+</script>
+<script src="pwa.js" defer></script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'ai',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+</body>
+</html>

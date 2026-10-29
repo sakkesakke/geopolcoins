@@ -27,6 +27,7 @@ Important for agents:
 - [AI bots for small business: questions answered](https://geopolcoins.xyz/answers.html): cost, free tools, privacy, hallucinations, salons, real estate, restaurants.
 
 - [Mini-Chain](https://geopolcoins.xyz/chain.html): how a blockchain works, hands-on.
+- [Quantum Lab](https://geopolcoins.xyz/quantum.html): sign a message with Ed25519 (what Solana uses today) and with the post-quantum signatures ML-DSA-65 and Falcon-512, in the browser; plain explanation of the quantum threat. $MAIGA is not quantum-safe on its own; it follows Solana.
 - [Bot Bank](https://geopolcoins.xyz/lend.html): play-money game about lending to AI agents and its risks.
 
 ## For businesses

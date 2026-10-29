@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quantum Lab: will crypto survive a quantum computer?</title>
+<meta name="description" content="Free browser lab: sign a message the way Solana does today (Ed25519), then with quantum-safe ML-DSA and Falcon. Plain words, EN/NL/FR.">
+<link rel="canonical" href="https://geopolcoins.xyz/quantum.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quantum Lab: will crypto survive a quantum computer?">
+<meta property="og:description" content="Sign a message the way Solana does today, then with quantum-safe signatures. Real cryptography, running in your browser.">
+<meta property="og:url" content="https://geopolcoins.xyz/quantum.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a1630">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Quantum Lab","url":"https://geopolcoins.xyz/quantum.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","description":"Browser lab that signs a message with Ed25519 (used by Solana today) and with the post-quantum signatures ML-DSA-65 and Falcon-512, and explains the quantum threat in plain language.","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://geopolcoins.xyz/#org"}}</script>
+<style>
+:root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.16);--ok:#5be38a;--warn:#ffb648;--violet:#b48cff}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ink);color:var(--text);font:16.5px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brass)}a:focus-visible,button:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--brass);color:#111;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--brass)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-right:8px}
+.langs{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:2px}
+.langs button{background:none;border:0;color:var(--dim);font:700 13px system-ui;padding:7px 9px;border-radius:8px;cursor:pointer;min-height:34px}
+.langs button[aria-pressed=true]{background:var(--cream);color:#1d1a14}
+h1{margin:14px 0 18px;line-height:1}.sr{position:absolute;left:-9999px}
+.tape{display:inline-block;white-space:nowrap;font:900 clamp(22px,6vw,54px)/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:.18em .35em .2em;margin:0 0 .16em;border-radius:4px;text-shadow:0 -1px 0 rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.25);box-shadow:inset 0 2px 0 rgba(255,255,255,.18),inset 0 -3px 0 rgba(0,0,0,.25),0 8px 18px rgba(0,0,0,.35)}
+.tape.k{background:#1b1d22;transform:rotate(-1.6deg)}.tape.r{background:#5b3fc4;transform:rotate(1.1deg);margin-left:.4em}
+.lead{color:var(--dim);max-width:46em;margin:0 0 22px}
+h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;margin:34px 0 10px;line-height:1.15}
+.panel{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:16px}
+label.l{display:block;font-weight:700;margin-bottom:6px}
+textarea{width:100%;min-height:74px;resize:vertical;border-radius:12px;border:2px solid var(--line);background:var(--ink);color:var(--text);font:inherit;padding:10px 12px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 16px;border-radius:12px;border:2px solid transparent;font:800 15px system-ui;cursor:pointer;text-decoration:none}
+.b.main{background:var(--brass);color:#14110a;box-shadow:0 4px 0 var(--brass-d)}
+.b.ghost{background:none;color:var(--text);border-color:var(--line)}
+.b.q{background:var(--violet);color:#160a33;box-shadow:0 4px 0 #6a4bc0}
+.b:disabled{opacity:.45;cursor:not-allowed}
+.status{color:var(--dim);font-size:14.5px;min-height:1.5em}
+.algos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.algo{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:14px;min-width:0;position:relative;transition:border-color .3s}
+.algo h3{margin:0;font-size:18px;letter-spacing:-.01em}
+.algo .who{color:var(--dim);font-size:14px;margin:2px 0 10px}
+.tag{display:inline-block;font:800 12px system-ui;border-radius:999px;padding:3px 9px;background:var(--cream);color:#1d1a14}
+.tag.pq{background:var(--violet);color:#160a33}
+.meter{margin:8px 0 2px;font-size:13.5px;color:var(--dim);display:flex;justify-content:space-between;gap:8px}
+.meter b{color:var(--text);font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:6px;background:#050b1b;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--cyan);border-radius:6px;transition:width .6s ease}
+.bar.sig i{background:var(--brass)}
+.hex{margin:10px 0 0;background:#050b1b;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:12px/1.45 ui-monospace,Menlo,monospace;color:#bfe9f5;word-break:break-all;min-height:3.2em}
+.verdict{margin-top:10px;font-weight:800;font-size:15px;min-height:1.5em}
+.verdict.ok{color:var(--ok)}.verdict.no{color:var(--red)}
+.qline{margin-top:8px;font-size:14px;border-radius:10px;padding:8px 10px;background:#050b1b;border:1px solid var(--line)}
+.algo.broken{border-color:var(--red)}.algo.broken .qline{border-color:var(--red);color:#ffd9db}
+.algo.holds{border-color:var(--violet)}.algo.holds .qline{border-color:var(--violet);color:#e6dcff}
+.qbox{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:14px;background:linear-gradient(135deg,#1b1240,#0f1e3d);border:1px solid rgba(180,140,255,.35);border-radius:16px;padding:14px 16px}
+.qbox p{margin:0;color:var(--dim);max-width:44em}.qbox p b{color:var(--text)}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0 8px;padding:0;list-style:none;counter-reset:s}
+.how li{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px;counter-increment:s;min-width:0}
+.how li::before{content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--cyan);color:var(--ink);font-weight:900;margin-bottom:6px}
+.how b{display:block}.how span{color:var(--dim);font-size:14.5px}
+.myths{display:grid;gap:8px;margin-top:10px}
+.myths details{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:0 14px}
+.myths summary{cursor:pointer;font-weight:800;padding:13px 0;list-style:none;display:flex;gap:10px;align-items:center}
+.myths summary::-webkit-details-marker{display:none}
+.myths summary::before{content:"";flex:none;width:14px;height:14px;border-radius:50%;background:var(--brass);box-shadow:inset 0 0 0 3px #3a2c08}
+.myths details[open] summary::before{background:var(--cyan)}
+.myths p{margin:0 0 14px;color:var(--dim)}
+.note{color:var(--dim);font-size:14px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#13254a,#0b2a3a);border:1px solid var(--line);border-radius:18px;padding:18px;margin:26px 0}
+.cta p{margin:0;color:var(--dim);max-width:44em}.cta b{color:var(--text)}
+footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 16px}footer a{color:var(--dim);padding:6px 0}
+@media (max-width:900px){.algos{grid-template-columns:1fr}.how{grid-template-columns:1fr 1fr}.top nav{display:none}}
+@media (max-width:480px){.how{grid-template-columns:1fr}.tape.r{margin-left:0}}
+@media (prefers-reduced-motion:reduce){.bar i,.algo{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="chain.html" data-i="nChain">Mini-Chain</a><a href="robot-lab.html">Robot Lab</a></nav>
+ <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></div></header>
+<main id="main">
+ <h1><span class="sr" data-i="h1sr">Quantum Lab: will crypto survive a quantum computer?</span><span class="tape k" aria-hidden="true">Quantum</span><span class="tape r" aria-hidden="true">Lab</span></h1>
+ <p class="lead" data-i="lead">Every crypto wallet proves "this is really me" with a digital signature. A big enough quantum computer could one day fake today's signatures. New quantum-safe signatures already exist. Try both below: this is real cryptography, running only in your browser.</p>
+
+ <section class="panel" aria-labelledby="hLab">
+  <h2 id="hLab" style="margin-top:0" data-i="labH">Sign a message three ways</h2>
+  <label class="l" for="iMsg" data-i="msgL">Your message</label>
+  <textarea id="iMsg" maxlength="280">Send 1 pixel pizza to Bolt</textarea>
+  <div class="row"><button type="button" class="b main" id="bSign" data-i="sign">Make keys and sign</button><button type="button" class="b ghost" id="bTamper" disabled data-i="tamper">Change one letter</button><button type="button" class="b ghost" id="bCheck" disabled data-i="check">Check signatures</button></div>
+  <p class="status" id="status" aria-live="polite"></p>
+  <div class="algos">
+   <article class="algo" id="a-ed"><span class="tag" data-i="today">Used today</span><h3>Ed25519</h3><p class="who" data-i="edWho">The signature Solana uses now (also many other blockchains).</p>
+    <div class="meter"><span data-i="pk">Public key</span><b class="vPk">–</b></div><div class="bar"><i class="iPk"></i></div>
+    <div class="meter"><span data-i="sg">Signature</span><b class="vSg">–</b></div><div class="bar sig"><i class="iSg"></i></div>
+    <div class="meter"><span data-i="tm">Time on this device</span><b class="vTm">–</b></div>
+    <div class="hex" aria-label="Signature bytes"></div><div class="verdict" aria-live="polite"></div><div class="qline" hidden></div></article>
+   <article class="algo" id="a-ml"><span class="tag pq" data-i="safe">Quantum-safe</span><h3>ML-DSA-65</h3><p class="who" data-i="mlWho">Official US standard since August 2024 (NIST FIPS 204).</p>
+    <div class="meter"><span data-i="pk">Public key</span><b class="vPk">–</b></div><div class="bar"><i class="iPk"></i></div>
+    <div class="meter"><span data-i="sg">Signature</span><b class="vSg">–</b></div><div class="bar sig"><i class="iSg"></i></div>
+    <div class="meter"><span data-i="tm">Time on this device</span><b class="vTm">–</b></div>
+    <div class="hex" aria-label="Signature bytes"></div><div class="verdict" aria-live="polite"></div><div class="qline" hidden></div></article>
+   <article class="algo" id="a-fa"><span class="tag pq" data-i="safe">Quantum-safe</span><h3>Falcon-512</h3><p class="who" data-i="faWho">Smaller signatures. The one Solana developers picked for their quantum plan (2026).</p>
+    <div class="meter"><span data-i="pk">Public key</span><b class="vPk">–</b></div><div class="bar"><i class="iPk"></i></div>
+    <div class="meter"><span data-i="sg">Signature</span><b class="vSg">–</b></div><div class="bar sig"><i class="iSg"></i></div>
+    <div class="meter"><span data-i="tm">Time on this device</span><b class="vTm">–</b></div>
+    <div class="hex" aria-label="Signature bytes"></div><div class="verdict" aria-live="polite"></div><div class="qline" hidden></div></article>
+  </div>
+  <div class="qbox"><p data-i="qP"><b>What if a big quantum computer existed?</b> Switch one on in the simulation and see which signatures still hold.</p><button type="button" class="b q" id="bQ" aria-pressed="false" data-i="qOn">Switch on quantum computer</button></div>
+  <p class="note" data-i="honest">Honest note: the keys and signatures above are real and made on your device; nothing is sent anywhere and you can't use them for a wallet. The quantum computer is a simulation: nobody can break Ed25519 today.</p>
+ </section>
+
+ <h2 data-i="howH">The quantum problem in four steps</h2>
+ <ol class="how">
+  <li><b data-i="w1">A signature proves it's you</b><span data-i="w1p">Your wallet has a secret key and a public key. Only the secret key can sign; everyone can check with the public key.</span></li>
+  <li><b data-i="w2">Today it's one-way</b><span data-i="w2p">Going from the public key back to the secret key would take normal computers longer than the age of the universe.</span></li>
+  <li><b data-i="w3">Quantum changes that</b><span data-i="w3p">A large quantum computer running Shor's algorithm could do it. Such a machine does not exist yet; experts disagree on when it will.</span></li>
+  <li><b data-i="w4">The fix: new math</b><span data-i="w4p">Post-quantum signatures like ML-DSA and Falcon use problems quantum computers can't shortcut. They are bigger, but they work.</span></li>
+ </ol>
+
+ <h2 data-i="mythH">Myths, answered straight</h2>
+ <div class="myths">
+  <details><summary data-i="m1">"AI can make a blockchain quantum-safe."</summary><p data-i="m1p">No. AI can help find bugs in code, but it is not a lock. Safety comes from proven math (like the standards in this lab) and careful audits. Be careful with any project that says "secured by AI".</p></details>
+  <details><summary data-i="m2">"We need a quantum computer to stay safe from quantum computers."</summary><p data-i="m2p">No. Quantum-safe signatures run on normal phones and laptops, as you just saw. Quantum key distribution exists too, but it needs special hardware and doesn't help a blockchain.</p></details>
+  <details><summary data-i="m3">"Quantum computers will break crypto tomorrow."</summary><p data-i="m3p">Not tomorrow. Today's quantum computers are far too small. But blockchains move slowly, so big networks like Solana are preparing now.</p></details>
+  <details><summary data-i="m4">"Is $MAIGA quantum-safe?"</summary><p data-i="m4p">Not yet, just like every Solana token today. $MAIGA lives on Solana, so it gets quantum safety when Solana upgrades its signatures. We will not claim more than that. Entertainment only. NFA. DYOR.</p></details>
+ </div>
+ <p class="note" data-i="checked">Facts checked October 2026: NIST published FIPS 203, 204 and 205 in August 2024; Falcon is being standardised as FN-DSA; Solana developers announced Falcon as their post-quantum signature in 2026.</p>
+
+ <div class="cta"><p data-i="ctaP"><b>Want to see how a blockchain works first?</b> Build your own mini blockchain in the browser, block by block.</p><a class="b main" href="chain.html" data-i="ctaB">Open Mini-Chain</a></div>
+</main>
+<footer><a href="/" data-i="fHome">Home</a><a href="chain.html">Mini-Chain</a><a href="raid.html">MAIGA Raid</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fCred">Cryptography: noble-post-quantum and noble-curves by Paul Miller (MIT).</span></footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+var T={
+nl:{skip:'Naar de inhoud',nChain:'Mini-Chain',h1sr:'Quantum Lab: overleeft crypto een quantumcomputer?',lead:'Elke cryptowallet bewijst "dit ben echt ik" met een digitale handtekening. Een grote quantumcomputer zou de handtekeningen van vandaag ooit kunnen vervalsen. Nieuwe quantumveilige handtekeningen bestaan al. Probeer ze hieronder allebei: dit is echte cryptografie, die alleen in je browser draait.',labH:'Onderteken een bericht op drie manieren',msgL:'Je bericht',sign:'Maak sleutels en onderteken',tamper:'Verander één letter',check:'Controleer handtekeningen',today:'Vandaag gebruikt',safe:'Quantumveilig',edWho:'De handtekening die Solana nu gebruikt (en veel andere blockchains).',mlWho:'Officiële Amerikaanse standaard sinds augustus 2024 (NIST FIPS 204).',faWho:'Kleinere handtekeningen. Degene die Solana-ontwikkelaars kozen voor hun quantumplan (2026).',pk:'Publieke sleutel',sg:'Handtekening',tm:'Tijd op dit toestel',qP:'<b>Wat als er een grote quantumcomputer bestond?</b> Zet er een aan in de simulatie en kijk welke handtekeningen standhouden.',qOn:'Zet quantumcomputer aan',honest:'Eerlijk gezegd: de sleutels en handtekeningen hierboven zijn echt en gemaakt op jouw toestel; er wordt niets verstuurd en je kunt ze niet als wallet gebruiken. De quantumcomputer is een simulatie: niemand kan Ed25519 vandaag kraken.',howH:'Het quantumprobleem in vier stappen',w1:'Een handtekening bewijst dat jij het bent',w1p:'Je wallet heeft een geheime sleutel en een publieke sleutel. Alleen de geheime sleutel kan tekenen; iedereen kan controleren met de publieke sleutel.',w2:'Vandaag werkt het maar één kant op',w2p:'Van de publieke sleutel terug naar de geheime sleutel zou gewone computers langer kosten dan het heelal oud is.',w3:'Quantum verandert dat',w3p:'Een grote quantumcomputer met het algoritme van Shor zou het kunnen. Zo’n machine bestaat nog niet; experts zijn het oneens over wanneer.',w4:'De oplossing: nieuwe wiskunde',w4p:'Post-quantumhandtekeningen zoals ML-DSA en Falcon gebruiken problemen waar quantumcomputers geen kortere weg voor hebben. Ze zijn groter, maar ze werken.',mythH:'Mythes, eerlijk beantwoord',m1:'"AI kan een blockchain quantumveilig maken."',m1p:'Nee. AI kan helpen fouten in code te vinden, maar het is geen slot. Veiligheid komt van bewezen wiskunde (zoals de standaarden in dit lab) en zorgvuldige audits. Wees voorzichtig met elk project dat zegt "beveiligd door AI".',m2:'"We hebben een quantumcomputer nodig om veilig te zijn tegen quantumcomputers."',m2p:'Nee. Quantumveilige handtekeningen draaien op gewone telefoons en laptops, zoals je net zag. Quantumsleutelverdeling bestaat ook, maar die vraagt speciale hardware en helpt een blockchain niet.',m3:'"Quantumcomputers kraken crypto morgen."',m3p:'Niet morgen. De quantumcomputers van vandaag zijn veel te klein. Maar blockchains veranderen traag, dus grote netwerken zoals Solana bereiden zich nu al voor.',m4:'"Is $MAIGA quantumveilig?"',m4p:'Nog niet, net als elke Solana-token vandaag. $MAIGA leeft op Solana, dus het wordt quantumveilig als Solana zijn handtekeningen vernieuwt. Meer beweren we niet. Alleen voor entertainment. Geen financieel advies. DYOR.',checked:'Feiten gecontroleerd in oktober 2026: NIST publiceerde FIPS 203, 204 en 205 in augustus 2024; Falcon wordt gestandaardiseerd als FN-DSA; Solana-ontwikkelaars kozen in 2026 Falcon als post-quantumhandtekening.',ctaP:'<b>Eerst zien hoe een blockchain werkt?</b> Bouw blok per blok je eigen mini-blockchain in de browser.',ctaB:'Open Mini-Chain',fHome:'Home',fPriv:'Privacy',fLegal:'Juridisch',fCred:'Cryptografie: noble-post-quantum en noble-curves van Paul Miller (MIT).'},
+fr:{skip:'Aller au contenu',nChain:'Mini-Chain',h1sr:'Quantum Lab : la crypto survivra-t-elle à un ordinateur quantique ?',lead:'Chaque wallet crypto prouve « c’est bien moi » avec une signature numérique. Un grand ordinateur quantique pourrait un jour falsifier les signatures actuelles. Des signatures résistantes au quantique existent déjà. Essayez les deux ci-dessous : c’est de la vraie cryptographie, qui tourne uniquement dans votre navigateur.',labH:'Signez un message de trois façons',msgL:'Votre message',sign:'Créer les clés et signer',tamper:'Changer une lettre',check:'Vérifier les signatures',today:'Utilisée aujourd’hui',safe:'Résiste au quantique',edWho:'La signature utilisée par Solana aujourd’hui (et beaucoup d’autres blockchains).',mlWho:'Norme officielle américaine depuis août 2024 (NIST FIPS 204).',faWho:'Signatures plus petites. Celle choisie par les développeurs de Solana pour leur plan quantique (2026).',pk:'Clé publique',sg:'Signature',tm:'Temps sur cet appareil',qP:'<b>Et si un grand ordinateur quantique existait ?</b> Allumez-en un dans la simulation et voyez quelles signatures tiennent.',qOn:'Allumer l’ordinateur quantique',honest:'En toute honnêteté : les clés et signatures ci-dessus sont réelles et créées sur votre appareil ; rien n’est envoyé et elles ne servent pas de wallet. L’ordinateur quantique est une simulation : personne ne peut casser Ed25519 aujourd’hui.',howH:'Le problème quantique en quatre étapes',w1:'Une signature prouve que c’est vous',w1p:'Votre wallet a une clé secrète et une clé publique. Seule la clé secrète peut signer ; tout le monde peut vérifier avec la clé publique.',w2:'Aujourd’hui, c’est à sens unique',w2p:'Retrouver la clé secrète à partir de la clé publique prendrait aux ordinateurs normaux plus longtemps que l’âge de l’univers.',w3:'Le quantique change la donne',w3p:'Un grand ordinateur quantique utilisant l’algorithme de Shor pourrait le faire. Cette machine n’existe pas encore ; les experts ne s’accordent pas sur la date.',w4:'La solution : de nouvelles maths',w4p:'Les signatures post-quantiques comme ML-DSA et Falcon reposent sur des problèmes sans raccourci quantique. Elles sont plus grandes, mais elles fonctionnent.',mythH:'Idées reçues, réponses franches',m1:'« L’IA peut rendre une blockchain résistante au quantique. »',m1p:'Non. L’IA peut aider à trouver des bugs, mais ce n’est pas un cadenas. La sécurité vient de maths éprouvées (comme les normes de ce lab) et d’audits sérieux. Méfiez-vous de tout projet « sécurisé par l’IA ».',m2:'« Il faut un ordinateur quantique pour se protéger des ordinateurs quantiques. »',m2p:'Non. Les signatures post-quantiques tournent sur des téléphones et ordinateurs normaux, comme vous venez de le voir. La distribution quantique de clés existe aussi, mais elle demande du matériel spécial et n’aide pas une blockchain.',m3:'« Les ordinateurs quantiques vont casser la crypto demain. »',m3p:'Pas demain. Les ordinateurs quantiques actuels sont bien trop petits. Mais les blockchains évoluent lentement, alors les grands réseaux comme Solana se préparent dès maintenant.',m4:'« $MAIGA est-il résistant au quantique ? »',m4p:'Pas encore, comme tous les tokens Solana aujourd’hui. $MAIGA vit sur Solana : il sera protégé quand Solana mettra à jour ses signatures. Nous n’affirmons rien de plus. Divertissement uniquement. Pas un conseil financier. DYOR.',checked:'Faits vérifiés en octobre 2026 : le NIST a publié FIPS 203, 204 et 205 en août 2024 ; Falcon est en cours de normalisation sous le nom FN-DSA ; les développeurs de Solana ont choisi Falcon comme signature post-quantique en 2026.',ctaP:'<b>Envie de voir d’abord comment marche une blockchain ?</b> Construisez votre propre mini-blockchain dans le navigateur, bloc par bloc.',ctaB:'Ouvrir Mini-Chain',fHome:'Accueil',fPriv:'Confidentialité',fLegal:'Mentions légales',fCred:'Cryptographie : noble-post-quantum et noble-curves de Paul Miller (MIT).'}};
+var M={
+en:{loading:'Loading the cryptography (about 120 kB)…',working:'Making keys and signing… Falcon takes a moment.',done:'Done. Now change one letter, or switch on the quantum computer.',failLoad:'Could not load the cryptography. Check your connection and try again.',bytes:'bytes',valid:'✓ Valid: this message was signed with this key',invalid:'✕ Invalid: the message changed, so the signature no longer fits',tampered:'One letter changed. Press "Check signatures".',qOff:'Switch off quantum computer',qOn:'Switch on quantum computer',qNeed:'Sign a message first, then switch on the quantum computer.',edBroken:'Broken in this scenario: Shor\'s algorithm finds the secret key from the public key, so anyone could sign as you.',pqHolds:'Still holds: no known quantum attack on this math.',qStatus:'Simulation: a future quantum computer is attacking all three public keys.'},
+nl:{loading:'Cryptografie laden (ongeveer 120 kB)…',working:'Sleutels maken en ondertekenen… Falcon heeft even nodig.',done:'Klaar. Verander nu één letter, of zet de quantumcomputer aan.',failLoad:'Kon de cryptografie niet laden. Controleer je verbinding en probeer opnieuw.',bytes:'bytes',valid:'✓ Geldig: dit bericht is getekend met deze sleutel',invalid:'✕ Ongeldig: het bericht is veranderd, dus de handtekening past niet meer',tampered:'Eén letter veranderd. Druk op "Controleer handtekeningen".',qOff:'Zet quantumcomputer uit',qOn:'Zet quantumcomputer aan',qNeed:'Onderteken eerst een bericht en zet dan de quantumcomputer aan.',edBroken:'Gekraakt in dit scenario: het algoritme van Shor vindt de geheime sleutel uit de publieke sleutel, dus iedereen kan als jou tekenen.',pqHolds:'Houdt stand: er is geen bekende quantumaanval op deze wiskunde.',qStatus:'Simulatie: een toekomstige quantumcomputer valt alle drie de publieke sleutels aan.'},
+fr:{loading:'Chargement de la cryptographie (environ 120 ko)…',working:'Création des clés et signature… Falcon prend un instant.',done:'Terminé. Changez une lettre, ou allumez l’ordinateur quantique.',failLoad:'Impossible de charger la cryptographie. Vérifiez votre connexion et réessayez.',bytes:'octets',valid:'✓ Valide : ce message a été signé avec cette clé',invalid:'✕ Invalide : le message a changé, la signature ne correspond plus',tampered:'Une lettre a changé. Appuyez sur « Vérifier les signatures ».',qOff:'Éteindre l’ordinateur quantique',qOn:'Allumer l’ordinateur quantique',qNeed:'Signez d’abord un message, puis allumez l’ordinateur quantique.',edBroken:'Cassée dans ce scénario : l’algorithme de Shor retrouve la clé secrète à partir de la clé publique, donc n’importe qui peut signer à votre place.',pqHolds:'Tient bon : aucune attaque quantique connue contre ces maths.',qStatus:'Simulation : un futur ordinateur quantique attaque les trois clés publiques.'}};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+function $(id){return document.getElementById(id);}
+var lang=new URLSearchParams(location.search).get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!M[lang])lang='en';
+var EN={};document.querySelectorAll('[data-i]').forEach(function(el){EN[el.getAttribute('data-i')]=el.innerHTML;});
+function m(k){return M[lang][k]!==undefined?M[lang][k]:M.en[k];}
+var RICH={qP:1,ctaP:1};
+var state={res:null,quantum:false,lastStatus:null};
+function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
+ document.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');var v=lang==='en'?EN[k]:(T[lang][k]!==undefined?T[lang][k]:EN[k]);
+  if(RICH[k])el.innerHTML=v;else{var tmp=document.createElement('div');tmp.innerHTML=v;el.textContent=tmp.textContent;}});
+ document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-l')===lang?'true':'false');});
+ $('bQ').textContent=m(state.quantum?'qOff':'qOn');
+ if(state.lastStatus)status(state.lastStatus);
+ if(state.res){render();if(state.quantum)quantum();}}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.getAttribute('data-l');apply();});});
+function status(k){state.lastStatus=k;$('status').textContent=k?m(k):'';}
+
+/* ---------------------------------------------------------- crypto */
+var lib=null;
+function load(){return new Promise(function(ok,no){if(window.MaigaPQ)return ok(window.MaigaPQ);var s=document.createElement('script');s.src='vendor/noble-pq.min.js';s.onload=function(){window.MaigaPQ?ok(window.MaigaPQ):no();};s.onerror=no;document.head.appendChild(s);});}
+var ALG=[
+ {id:'ed',kg:function(L){var sk=L.ed25519.utils.randomSecretKey();return{secretKey:sk,publicKey:L.ed25519.getPublicKey(sk)};},sign:function(L,msg,sk){return L.ed25519.sign(msg,sk);},ver:function(L,sig,msg,pk){return L.ed25519.verify(sig,msg,pk);}},
+ {id:'ml',kg:function(L){return L.ml_dsa65.keygen();},sign:function(L,msg,sk){return L.ml_dsa65.sign(msg,sk);},ver:function(L,sig,msg,pk){return L.ml_dsa65.verify(sig,msg,pk);}},
+ {id:'fa',kg:function(L){return L.falcon512.keygen();},sign:function(L,msg,sk){return L.falcon512.sign(msg,sk);},ver:function(L,sig,msg,pk){return L.falcon512.verify(sig,msg,pk);}}];
+var MAXPK=1952,MAXSG=3309;
+function hex(u,n){var s='';for(var i=0;i<Math.min(n,u.length);i++)s+=(u[i]<16?'0':'')+u[i].toString(16);return s+(u.length>n?'…':'');}
+function enc(t){return new TextEncoder().encode(t);}
+function card(id){return $('a-'+id);}
+function render(){ALG.forEach(function(a){var r=state.res[a.id],c=card(a.id);
+ c.querySelector('.vPk').textContent=r.pk.length.toLocaleString(lang)+' '+m('bytes');
+ c.querySelector('.vSg').textContent=r.sig.length.toLocaleString(lang)+' '+m('bytes');
+ c.querySelector('.vTm').textContent=Math.max(1,Math.round(r.ms))+' ms';
+ c.querySelector('.iPk').style.width=Math.max(1.5,r.pk.length/MAXPK*100)+'%';
+ c.querySelector('.iSg').style.width=Math.max(1.5,r.sig.length/MAXSG*100)+'%';
+ c.querySelector('.hex').textContent=hex(r.sig,40);
+ var v=c.querySelector('.verdict');if(r.ok===null){v.textContent='';v.className='verdict';}else{v.textContent=m(r.ok?'valid':'invalid');v.className='verdict '+(r.ok?'ok':'no');}});}
+function verifyAll(){var msg=enc($('iMsg').value);ALG.forEach(function(a){var r=state.res[a.id];var ok=false;try{ok=a.ver(lib,r.sig,msg,r.pk);}catch(e){ok=false;}r.ok=ok;});render();}
+function quantum(){ALG.forEach(function(a){var c=card(a.id),q=c.querySelector('.qline');
+ if(!state.quantum){c.classList.remove('broken','holds');q.hidden=true;return;}
+ var broken=a.id==='ed';c.classList.toggle('broken',broken);c.classList.toggle('holds',!broken);q.hidden=false;q.textContent=m(broken?'edBroken':'pqHolds');});}
+
+$('bSign').addEventListener('click',function(){var btn=this;btn.disabled=true;status('loading');
+ load().then(function(L){lib=L;status('working');
+  setTimeout(function(){try{var msg=enc($('iMsg').value);state.res={};
+    ALG.forEach(function(a){var t=performance.now();var k=a.kg(L);var sig=a.sign(L,msg,k.secretKey);var ms=performance.now()-t;
+     state.res[a.id]={pk:k.publicKey,sig:sig,ms:ms,ok:a.ver(L,sig,msg,k.publicKey)};});
+    render();quantum();status('done');$('bTamper').disabled=false;$('bCheck').disabled=false;}
+   catch(e){status('failLoad');}btn.disabled=false;},40);})
+ .catch(function(){status('failLoad');btn.disabled=false;});});
+$('bTamper').addEventListener('click',function(){var t=$('iMsg').value||'a';var i=Math.floor(Math.random()*t.length);var ch=t[i]===t[i].toUpperCase()?t[i].toLowerCase():t[i].toUpperCase();if(ch===t[i])ch=t[i]==='x'?'y':'x';
+ $('iMsg').value=t.slice(0,i)+ch+t.slice(i+1);status('tampered');if(state.res)ALG.forEach(function(a){state.res[a.id].ok=null;});render();});
+$('bCheck').addEventListener('click',function(){if(state.res&&lib)verifyAll();});
+$('bQ').addEventListener('click',function(){if(!state.res){status('qNeed');return;}state.quantum=!state.quantum;this.setAttribute('aria-pressed',String(state.quantum));this.textContent=m(state.quantum?'qOff':'qOn');quantum();status(state.quantum?'qStatus':'done');});
+apply();
+window.__qlab={get res(){return state.res;}};
+})();
+</script>
+<script src="pwa.js" defer></script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'other',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+</body>
+</html>

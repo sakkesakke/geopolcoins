@@ -5,11 +5,11 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MAIGA Raid: free pixel platformer</title>
-<meta name="description" content="MAIGA Raid: play Jean-Phil the ice knight or Bolt the robot, raid 3 worlds and free Mintje from Lord Rugpull. Free browser game, no wallet, no sign-up. EN, NL, FR.">
+<meta name="description" content="MAIGA Raid: play Jean-Phil the ice knight or Bolt the robot, raid 5 worlds and free Mintje from Lord Rugpull. Free browser game, no wallet, no sign-up. EN, NL, FR.">
 <link rel="canonical" href="https://geopolcoins.xyz/raid.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MAIGA Raid: rescue Mintje from Lord Rugpull">
-<meta property="og:description" content="Free pixel platformer. Pick Jean-Phil or Bolt, raid 3 worlds, beat the boss, share your score on X.">
+<meta property="og:description" content="Free pixel platformer. Pick Jean-Phil or Bolt, raid 5 worlds, beat the boss, share your score on X.">
 <meta property="og:url" content="https://geopolcoins.xyz/raid.html">
 <meta property="og:image" content="https://geopolcoins.xyz/img/raid/og-raid.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a1630">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"MAIGA Raid","url":"https://geopolcoins.xyz/raid.html","image":"https://geopolcoins.xyz/img/raid/og-raid.png","description":"Free pixel platformer in the browser. Play Jean-Phil the ice knight or Bolt the robot, raid three worlds and free Mintje from Lord Rugpull.","genre":["Platformer","Arcade"],"gamePlatform":"Web browser","applicationCategory":"Game","operatingSystem":"Any","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://geopolcoins.xyz/#org"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"MAIGA Raid","url":"https://geopolcoins.xyz/raid.html","image":"https://geopolcoins.xyz/img/raid/og-raid.png","description":"Free pixel platformer in the browser. Play Jean-Phil the ice knight or Bolt the robot, raid five worlds and free Mintje from Lord Rugpull.","genre":["Platformer","Arcade"],"gamePlatform":"Web browser","applicationCategory":"Game","operatingSystem":"Any","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://geopolcoins.xyz/#org"}}</script>
 <style>
 :root{--ink:#0a1630;--ink2:#101f40;--line:#24365e;--brass:#e0b43a;--brass2:#a87c1e;--cream:#f3ecd9;--cyan:#38f2ff;--dim:#9fb0cf;--red:#ff5a6e;--ok:#14f195}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -122,7 +122,7 @@ footer a{color:var(--dim);padding:6px 0}
 
   <div class="ov" id="oTitle">
    <h1><span data-i="tag">A knight. A robot. A very bad rug.</span>MAIGA RAID</h1>
-   <p data-i="intro">Lord Rugpull kidnapped Mintje and fled through 3 worlds. Raid the ice, the Meme Factory and the Rug Tower and bring her home.</p>
+   <p data-i="intro">Lord Rugpull kidnapped Mintje and fled through 5 worlds. Raid the ice, the Meme Factory, the Moon Mine, Candle Canyon and the Rug Tower, and bring her home.</p>
    <div class="challenge" id="chal" hidden></div>
    <div class="row"><button type="button" class="b" id="bPlay" data-i="play">Play now</button><button type="button" class="b ghost" id="bLb" data-i="lb">Leaderboard</button></div>
    <p class="sub" data-i="free">Free. No wallet, no sign-up. Coins in the game are only collectibles.</p>
@@ -205,18 +205,18 @@ footer a{color:var(--dim);padding:6px 0}
 'use strict';
 /* ================================================================ i18n */
 var T={
-en:{skip:'Skip to the game',tag:'A knight. A robot. A very bad rug.',intro:'Lord Rugpull kidnapped Mintje and fled through 3 worlds. Raid the ice, the Meme Factory and the Rug Tower and bring her home.',play:'Play now',lb:'Leaderboard',free:'Free. No wallet, no sign-up. Coins in the game are only collectibles.',pick:'Choose your hero',jpD:'The ice knight. Sword, 5 hearts, heavy armour.',boltD:'The robot. Zap blaster, 4 hearts, a bit faster.',go:'Start the raid',back:'Back',paused:'Paused',resume:'Resume',restart:'Restart world',quit:'Title screen',banter:'Hero banter',voice:'Spoken banter (uses your browser voice)',next:'Next world',won:'Mintje is free!',submit:'Save score',subInfo:'Only letters, numbers and _ (like an X @name). Shown publicly on the leaderboard.',shareX:'Share on X',card:'Score image',again:'Play again',coinB:'About $MAIGA',week:'This week',all:'All time',lbNote:'Names are typed by players and not checked. Scores are for fun only, no prizes.',close:'Close',rot:'Tip: turn your phone sideways for a bigger screen.',howH:'How to play',kMove:'Move',kJump:'Jump (press again in the air for a double jump)',kAtk:'Sword (Jean-Phil) or zap (Bolt). Breaks ice and crates.',kDash:"Dash: you can't be hit while dashing",kPause:'Pause',kPad:'Controller: stick, A jump, X attack, B dash, Start pause',pups:'Power-ups: ♥ heart, 💎 Diamond Guard (blocks one hit), 🚀 Moon Boots (higher jumps), 🐂 Bull Run (faster). Jump on enemies to stomp them.',cH:'The coin behind the game',cP:"$MAIGA is Jean-Phil's satirical meme coin on Solana. The game never touches a wallet.",copy:'Copy address',copied:'Copied!',follow:'Follow on X',warn:'Entertainment only. Meme coins can lose all their value. No price or profit promises. Never share your seed phrase. NFA, DYOR.',fHome:'Home',fArc:'Arcade',fPriv:'Privacy',fLegal:'Legal',fArt:'Pixel art: geopolcoins.xyz characters.',
- w:['World 1: Greenland Ice','World 2: The Meme Factory','World 3: The Rug Tower'],clear:'World clear!',score:'Score',coins:'Coins',time:'Time',deaths:'Falls',hero:'Hero',
+en:{skip:'Skip to the game',tag:'A knight. A robot. A very bad rug.',intro:'Lord Rugpull kidnapped Mintje and fled through 5 worlds. Raid the ice, the Meme Factory, the Moon Mine, Candle Canyon and the Rug Tower, and bring her home.',play:'Play now',lb:'Leaderboard',free:'Free. No wallet, no sign-up. Coins in the game are only collectibles.',pick:'Choose your hero',jpD:'The ice knight. Sword, 5 hearts, heavy armour.',boltD:'The robot. Zap blaster, 4 hearts, a bit faster.',go:'Start the raid',back:'Back',paused:'Paused',resume:'Resume',restart:'Restart world',quit:'Title screen',banter:'Hero banter',voice:'Spoken banter (uses your browser voice)',next:'Next world',won:'Mintje is free!',submit:'Save score',subInfo:'Only letters, numbers and _ (like an X @name). Shown publicly on the leaderboard.',shareX:'Share on X',card:'Score image',again:'Play again',coinB:'About $MAIGA',week:'This week',all:'All time',lbNote:'Names are typed by players and not checked. Scores are for fun only, no prizes.',close:'Close',rot:'Tip: turn your phone sideways for a bigger screen.',howH:'How to play',kMove:'Move',kJump:'Jump (press again in the air for a double jump)',kAtk:'Sword (Jean-Phil) or zap (Bolt). Breaks ice and crates.',kDash:"Dash: you can't be hit while dashing",kPause:'Pause',kPad:'Controller: stick, A jump, X attack, B dash, Start pause',pups:'Power-ups: ♥ heart, 💎 Diamond Guard (blocks one hit), 🚀 Moon Boots (higher jumps), 🐂 Bull Run (faster). Jump on enemies to stomp them.',cH:'The coin behind the game',cP:"$MAIGA is Jean-Phil's satirical meme coin on Solana. The game never touches a wallet.",copy:'Copy address',copied:'Copied!',follow:'Follow on X',warn:'Entertainment only. Meme coins can lose all their value. No price or profit promises. Never share your seed phrase. NFA, DYOR.',fHome:'Home',fArc:'Arcade',fPriv:'Privacy',fLegal:'Legal',fArt:'Pixel art: geopolcoins.xyz characters.',
+ w:['World 1: Greenland Ice','World 2: The Meme Factory','World 5: The Rug Tower','World 3: Moon Mine','World 4: Candle Canyon'],clear:'World clear!',score:'Score',coins:'Coins',time:'Time',deaths:'Falls',hero:'Hero',
  beat:'Beat {n}: {s} points',nameBad:'Use 1-15 letters, numbers or _.',saving:'Saving…',saved:'Saved! You are #{r} this week.',saveErr:'Could not save right now. Try again later.',lbEmpty:'No scores yet. Be the first!',lbLoad:'Loading…',lbErr:'Leaderboard is offline right now.',xLogin:'𝕏 Log in with X & save',xSave:'Save as @{h} ✓',xInfo:'Your name comes from your X account, so nobody can fake it. We only read your username. Nothing is posted.',xSaved:'Saved as @{h} ✓ You are #{r} this week.',xErr:'X login did not work. Try again.',xOut:'Log out',lbNote2:'✓ = name checked with X. Scores are for fun only, no prizes.',
  share:'I freed Mintje from Lord Rugpull in MAIGA Raid with {h}: {s} points in {t}. Can you beat me?',boss:'LORD RUGPULL',loading:'Loading…',
  quotes:['"Next world. Same rug energy."','"Snow in my boots, glory in my heart."','"The factory awaits. Bring memes."']},
-nl:{skip:'Naar het spel',tag:'Een ridder. Een robot. Een heel slecht tapijt.',intro:'Lord Rugpull heeft Mintje ontvoerd en vluchtte door 3 werelden. Overval het ijs, de Meme Fabriek en de Tapijttoren en breng haar thuis.',play:'Nu spelen',lb:'Ranglijst',free:'Gratis. Geen wallet, geen account. Munten in het spel zijn alleen verzamelobjecten.',pick:'Kies je held',jpD:'De ijsridder. Zwaard, 5 hartjes, zware wapenrusting.',boltD:'De robot. Zap-blaster, 4 hartjes, iets sneller.',go:'Start de raid',back:'Terug',paused:'Pauze',resume:'Verder',restart:'Wereld opnieuw',quit:'Titelscherm',banter:'Praatjes van de held',voice:'Praatjes hardop (stem van je browser)',next:'Volgende wereld',won:'Mintje is vrij!',submit:'Score opslaan',subInfo:'Alleen letters, cijfers en _ (zoals een X @naam). Publiek zichtbaar op de ranglijst.',shareX:'Deel op X',card:'Score-afbeelding',again:'Opnieuw spelen',coinB:'Over $MAIGA',week:'Deze week',all:'Altijd',lbNote:'Namen worden door spelers getypt en niet gecontroleerd. Scores zijn voor de lol, geen prijzen.',close:'Sluiten',rot:'Tip: draai je telefoon voor een groter scherm.',howH:'Zo speel je',kMove:'Lopen',kJump:'Springen (nog eens in de lucht voor een dubbele sprong)',kAtk:'Zwaard (Jean-Phil) of zap (Bolt). Breekt ijs en kisten.',kDash:'Dash: tijdens een dash raakt niets je',kPause:'Pauze',kPad:'Controller: stick, A springen, X aanvallen, B dash, Start pauze',pups:'Power-ups: ♥ hartje, 💎 Diamantschild (houdt één klap tegen), 🚀 Maanlaarzen (hoger springen), 🐂 Bull Run (sneller). Spring op vijanden om ze plat te stampen.',cH:'De munt achter het spel',cP:'$MAIGA is de satirische meme coin van Jean-Phil op Solana. Het spel komt nooit aan een wallet.',copy:'Adres kopiëren',copied:'Gekopieerd!',follow:'Volg op X',warn:'Alleen voor de lol. Meme coins kunnen al hun waarde verliezen. Geen beloftes over prijs of winst. Deel nooit je seed phrase. NFA, DYOR.',fHome:'Home',fArc:'Arcade',fPriv:'Privacy',fLegal:'Juridisch',fArt:'Pixelkunst: personages van geopolcoins.xyz.',
- w:['Wereld 1: Groenlands ijs','Wereld 2: De Meme Fabriek','Wereld 3: De Tapijttoren'],clear:'Wereld gehaald!',score:'Score',coins:'Munten',time:'Tijd',deaths:'Gevallen',hero:'Held',
+nl:{skip:'Naar het spel',tag:'Een ridder. Een robot. Een heel slecht tapijt.',intro:'Lord Rugpull heeft Mintje ontvoerd en vluchtte door 5 werelden. Overval het ijs, de Meme Fabriek, de Maanmijn, Kaarsenkloof en de Tapijttoren, en breng haar thuis.',play:'Nu spelen',lb:'Ranglijst',free:'Gratis. Geen wallet, geen account. Munten in het spel zijn alleen verzamelobjecten.',pick:'Kies je held',jpD:'De ijsridder. Zwaard, 5 hartjes, zware wapenrusting.',boltD:'De robot. Zap-blaster, 4 hartjes, iets sneller.',go:'Start de raid',back:'Terug',paused:'Pauze',resume:'Verder',restart:'Wereld opnieuw',quit:'Titelscherm',banter:'Praatjes van de held',voice:'Praatjes hardop (stem van je browser)',next:'Volgende wereld',won:'Mintje is vrij!',submit:'Score opslaan',subInfo:'Alleen letters, cijfers en _ (zoals een X @naam). Publiek zichtbaar op de ranglijst.',shareX:'Deel op X',card:'Score-afbeelding',again:'Opnieuw spelen',coinB:'Over $MAIGA',week:'Deze week',all:'Altijd',lbNote:'Namen worden door spelers getypt en niet gecontroleerd. Scores zijn voor de lol, geen prijzen.',close:'Sluiten',rot:'Tip: draai je telefoon voor een groter scherm.',howH:'Zo speel je',kMove:'Lopen',kJump:'Springen (nog eens in de lucht voor een dubbele sprong)',kAtk:'Zwaard (Jean-Phil) of zap (Bolt). Breekt ijs en kisten.',kDash:'Dash: tijdens een dash raakt niets je',kPause:'Pauze',kPad:'Controller: stick, A springen, X aanvallen, B dash, Start pauze',pups:'Power-ups: ♥ hartje, 💎 Diamantschild (houdt één klap tegen), 🚀 Maanlaarzen (hoger springen), 🐂 Bull Run (sneller). Spring op vijanden om ze plat te stampen.',cH:'De munt achter het spel',cP:'$MAIGA is de satirische meme coin van Jean-Phil op Solana. Het spel komt nooit aan een wallet.',copy:'Adres kopiëren',copied:'Gekopieerd!',follow:'Volg op X',warn:'Alleen voor de lol. Meme coins kunnen al hun waarde verliezen. Geen beloftes over prijs of winst. Deel nooit je seed phrase. NFA, DYOR.',fHome:'Home',fArc:'Arcade',fPriv:'Privacy',fLegal:'Juridisch',fArt:'Pixelkunst: personages van geopolcoins.xyz.',
+ w:['Wereld 1: Groenlands ijs','Wereld 2: De Meme Fabriek','Wereld 5: De Tapijttoren','Wereld 3: De Maanmijn','Wereld 4: Kaarsenkloof'],clear:'Wereld gehaald!',score:'Score',coins:'Munten',time:'Tijd',deaths:'Gevallen',hero:'Held',
  beat:'Versla {n}: {s} punten',nameBad:'Gebruik 1-15 letters, cijfers of _.',saving:'Opslaan…',saved:'Opgeslagen! Je staat #{r} deze week.',saveErr:'Opslaan lukt nu niet. Probeer later opnieuw.',lbEmpty:'Nog geen scores. Wees de eerste!',lbLoad:'Laden…',lbErr:'De ranglijst is nu offline.',xLogin:'𝕏 Log in met X en bewaar',xSave:'Bewaar als @{h} ✓',xInfo:'Je naam komt van je X-account, dus niemand kan hem namaken. We lezen alleen je gebruikersnaam. Er wordt niets gepost.',xSaved:'Bewaard als @{h} ✓ Je staat #{r} deze week.',xErr:'Inloggen met X lukte niet. Probeer opnieuw.',xOut:'Uitloggen',lbNote2:'✓ = naam gecontroleerd via X. Scores zijn voor de lol, geen prijzen.',
  share:'Ik heb Mintje bevrijd van Lord Rugpull in MAIGA Raid met {h}: {s} punten in {t}. Versla jij me?',boss:'LORD RUGPULL',loading:'Laden…',
  quotes:['"Volgende wereld. Zelfde tapijtgedoe."','"Sneeuw in mijn laarzen, glorie in mijn hart."','"De fabriek wacht. Breng memes mee."']},
-fr:{skip:'Aller au jeu',tag:'Un chevalier. Un robot. Un très méchant tapis.',intro:'Lord Rugpull a enlevé Mintje et a fui à travers 3 mondes. Pille la glace, la Meme Factory et la Tour du Tapis, et ramène-la.',play:'Jouer',lb:'Classement',free:'Gratuit. Sans wallet, sans compte. Les pièces du jeu ne sont que des objets à collectionner.',pick:'Choisis ton héros',jpD:'Le chevalier des glaces. Épée, 5 cœurs, armure lourde.',boltD:'Le robot. Blaster zap, 4 cœurs, un peu plus rapide.',go:'Lancer le raid',back:'Retour',paused:'Pause',resume:'Reprendre',restart:'Recommencer le monde',quit:'Écran titre',banter:'Répliques du héros',voice:'Répliques à voix haute (voix du navigateur)',next:'Monde suivant',won:'Mintje est libre !',submit:'Enregistrer',subInfo:'Seulement lettres, chiffres et _ (comme un @nom X). Visible publiquement dans le classement.',shareX:'Partager sur X',card:'Image du score',again:'Rejouer',coinB:'À propos de $MAIGA',week:'Cette semaine',all:'Toujours',lbNote:'Les noms sont tapés par les joueurs et non vérifiés. Les scores sont pour le fun, sans prix.',close:'Fermer',rot:'Astuce : tourne ton téléphone pour un écran plus grand.',howH:'Comment jouer',kMove:'Bouger',kJump:'Sauter (appuie encore en l’air pour un double saut)',kAtk:'Épée (Jean-Phil) ou zap (Bolt). Casse la glace et les caisses.',kDash:'Dash : intouchable pendant le dash',kPause:'Pause',kPad:'Manette : stick, A saut, X attaque, B dash, Start pause',pups:'Bonus : ♥ cœur, 💎 Bouclier diamant (bloque un coup), 🚀 Bottes lunaires (sauts plus hauts), 🐂 Bull Run (plus rapide). Saute sur les ennemis pour les écraser.',cH:'La pièce derrière le jeu',cP:'$MAIGA est la meme coin satirique de Jean-Phil sur Solana. Le jeu ne touche jamais à un wallet.',copy:'Copier l’adresse',copied:'Copié !',follow:'Suivre sur X',warn:'Divertissement uniquement. Les meme coins peuvent perdre toute leur valeur. Aucune promesse de prix ou de profit. Ne partage jamais ta seed phrase. NFA, DYOR.',fHome:'Accueil',fArc:'Arcade',fPriv:'Confidentialité',fLegal:'Mentions légales',fArt:'Pixel art : personnages de geopolcoins.xyz.',
- w:['Monde 1 : Glace du Groenland','Monde 2 : La Meme Factory','Monde 3 : La Tour du Tapis'],clear:'Monde terminé !',score:'Score',coins:'Pièces',time:'Temps',deaths:'Chutes',hero:'Héros',
+fr:{skip:'Aller au jeu',tag:'Un chevalier. Un robot. Un très méchant tapis.',intro:'Lord Rugpull a enlevé Mintje et a fui à travers 5 mondes. Pille la glace, la Meme Factory, la Mine Lunaire, le Canyon des Bougies et la Tour du Tapis, et ramène-la.',play:'Jouer',lb:'Classement',free:'Gratuit. Sans wallet, sans compte. Les pièces du jeu ne sont que des objets à collectionner.',pick:'Choisis ton héros',jpD:'Le chevalier des glaces. Épée, 5 cœurs, armure lourde.',boltD:'Le robot. Blaster zap, 4 cœurs, un peu plus rapide.',go:'Lancer le raid',back:'Retour',paused:'Pause',resume:'Reprendre',restart:'Recommencer le monde',quit:'Écran titre',banter:'Répliques du héros',voice:'Répliques à voix haute (voix du navigateur)',next:'Monde suivant',won:'Mintje est libre !',submit:'Enregistrer',subInfo:'Seulement lettres, chiffres et _ (comme un @nom X). Visible publiquement dans le classement.',shareX:'Partager sur X',card:'Image du score',again:'Rejouer',coinB:'À propos de $MAIGA',week:'Cette semaine',all:'Toujours',lbNote:'Les noms sont tapés par les joueurs et non vérifiés. Les scores sont pour le fun, sans prix.',close:'Fermer',rot:'Astuce : tourne ton téléphone pour un écran plus grand.',howH:'Comment jouer',kMove:'Bouger',kJump:'Sauter (appuie encore en l’air pour un double saut)',kAtk:'Épée (Jean-Phil) ou zap (Bolt). Casse la glace et les caisses.',kDash:'Dash : intouchable pendant le dash',kPause:'Pause',kPad:'Manette : stick, A saut, X attaque, B dash, Start pause',pups:'Bonus : ♥ cœur, 💎 Bouclier diamant (bloque un coup), 🚀 Bottes lunaires (sauts plus hauts), 🐂 Bull Run (plus rapide). Saute sur les ennemis pour les écraser.',cH:'La pièce derrière le jeu',cP:'$MAIGA est la meme coin satirique de Jean-Phil sur Solana. Le jeu ne touche jamais à un wallet.',copy:'Copier l’adresse',copied:'Copié !',follow:'Suivre sur X',warn:'Divertissement uniquement. Les meme coins peuvent perdre toute leur valeur. Aucune promesse de prix ou de profit. Ne partage jamais ta seed phrase. NFA, DYOR.',fHome:'Accueil',fArc:'Arcade',fPriv:'Confidentialité',fLegal:'Mentions légales',fArt:'Pixel art : personnages de geopolcoins.xyz.',
+ w:['Monde 1 : Glace du Groenland','Monde 2 : La Meme Factory','Monde 5 : La Tour du Tapis','Monde 3 : La Mine Lunaire','Monde 4 : Le Canyon des Bougies'],clear:'Monde terminé !',score:'Score',coins:'Pièces',time:'Temps',deaths:'Chutes',hero:'Héros',
  beat:'Bats {n} : {s} points',nameBad:'Utilise 1 à 15 lettres, chiffres ou _.',saving:'Enregistrement…',saved:'Enregistré ! Tu es #{r} cette semaine.',saveErr:'Impossible d’enregistrer pour l’instant. Réessaie plus tard.',lbEmpty:'Pas encore de scores. Sois le premier !',lbLoad:'Chargement…',lbErr:'Le classement est hors ligne.',xLogin:'𝕏 Connexion X et enregistrer',xSave:'Enregistrer comme @{h} ✓',xInfo:'Ton nom vient de ton compte X, personne ne peut l’imiter. On lit seulement ton nom d’utilisateur. Rien n’est publié.',xSaved:'Enregistré comme @{h} ✓ Tu es #{r} cette semaine.',xErr:'La connexion X n’a pas marché. Réessaie.',xOut:'Déconnexion',lbNote2:'✓ = nom vérifié via X. Scores pour le fun, sans prix.',
  share:'J’ai libéré Mintje de Lord Rugpull dans MAIGA Raid avec {h} : {s} points en {t}. Tu peux faire mieux ?',boss:'LORD RUGPULL',loading:'Chargement…',
  quotes:['"Monde suivant. Même énergie de tapis."','"De la neige dans mes bottes, de la gloire dans mon cœur."','"L’usine attend. Apporte des memes."']}
@@ -269,19 +269,21 @@ var SFX={jump:function(){tone(330,.12,'square',.08,0,660);},dj:function(){tone(4
  hit:function(){noise(.08,.12);tone(160,.08,'square',.08);},stomp:function(){tone(220,.1,'triangle',.18,0,90);},hurt:function(){tone(200,.25,'sawtooth',.1,0,60);},
  power:function(){[523,659,784,1047].forEach(function(f,i){tone(f,.1,'square',.07,AC&&AC.currentTime+i*.07);});},swing:function(){noise(.06,.06);tone(700,.06,'triangle',.05,0,300);},
  zap:function(){tone(1200,.09,'sawtooth',.05,0,300);},dash:function(){noise(.12,.08);},check:function(){[392,523,659].forEach(function(f,i){tone(f,.12,'triangle',.12,AC&&AC.currentTime+i*.09);});},
- boss:function(){tone(110,.6,'sawtooth',.12,0,55);},win:function(){[523,659,784,1047,784,1047].forEach(function(f,i){tone(f,.16,'square',.08,AC&&AC.currentTime+i*.13);});},brk:function(){noise(.1,.12);}};
+ boss:function(){tone(110,.6,'sawtooth',.12,0,55);},win:function(){[523,659,784,1047,784,1047].forEach(function(f,i){tone(f,.16,'square',.08,AC&&AC.currentTime+i*.13);});},brk:function(){noise(.1,.12);},pad:function(){tone(180,.3,'square',.1,0,900);}};
 function sfx(n){if(AC&&SFX[n])try{SFX[n]();}catch(e){}}
 /* patterns: midi notes, 0 = rest; 16 steps */
 var SONGS=[
  {bpm:132,lead:[76,0,79,0,81,0,79,76,74,0,76,0,72,0,74,0, 76,0,79,0,83,0,81,79,76,0,74,0,72,0,0,0],bass:[45,45,52,45,43,43,50,43,41,41,48,41,43,43,50,43]},
  {bpm:144,lead:[69,72,76,72,69,0,67,69,72,0,74,72,69,67,64,0, 69,72,76,79,76,0,74,72,69,0,67,0,69,0,0,0],bass:[33,0,33,45,31,0,31,43,29,0,29,41,31,0,31,43]},
  {bpm:150,lead:[71,0,74,71,78,0,76,74,71,0,69,0,71,74,0,0, 71,0,74,76,79,0,78,76,74,0,71,0,69,71,0,0],bass:[35,35,47,35,31,31,43,31,33,33,45,33,30,30,42,30]},
- {bpm:160,lead:[64,0,64,67,0,64,70,0,69,0,67,0,64,62,64,0, 64,0,64,67,0,64,71,0,72,0,71,69,67,0,0,0],bass:[28,28,40,28,28,28,40,28,26,26,38,26,31,31,43,31]}];
+ {bpm:160,lead:[64,0,64,67,0,64,70,0,69,0,67,0,64,62,64,0, 64,0,64,67,0,64,71,0,72,0,71,69,67,0,0,0],bass:[28,28,40,28,28,28,40,28,26,26,38,26,31,31,43,31]},
+ {bpm:118,lead:[69,0,0,72,0,76,0,0,74,0,72,0,69,0,67,0, 69,0,0,72,0,76,0,79,77,0,76,0,74,0,0,0],bass:[33,0,40,0,29,0,36,0,31,0,38,0,28,0,35,0]},
+ {bpm:156,lead:[74,74,0,77,0,74,72,0,69,0,72,74,0,72,69,0, 74,74,0,77,0,79,81,0,79,0,77,74,0,72,74,0],bass:[38,38,50,38,36,36,48,36,34,34,46,34,33,33,45,33]}];
 function mf(n){return 440*Math.pow(2,(n-69)/12);}
 function musStart(w){musWorld=w;if(!AC||!musOn)return;musStop();musStep=0;musNext=AC.currentTime+.05;musTimer=setInterval(musTick,25);}
 function musStop(){if(musTimer){clearInterval(musTimer);musTimer=null;}}
 function musTick(){var s=SONGS[musWorld],st=60/s.bpm/2;while(musNext<AC.currentTime+.12){var i=musStep%32,l=s.lead[i],b=s.bass[(musStep>>1)%16];if(l)tone(mf(l),st*.9,'square',.035,musNext);if(musStep%2===0&&b)tone(mf(b),st*1.8,'triangle',.09,musNext);if(musStep%4===2)tone(80,.04,'square',.025,musNext);musNext+=st;musStep++;}}
-document.getElementById('bMus').addEventListener('click',function(){audio();musOn=!musOn;ls('maiga_raid_music',musOn?'1':'0');this.style.opacity=musOn?1:.45;if(musOn&&G.state==='play')musStart(G.boss?3:G.world);else musStop();});
+document.getElementById('bMus').addEventListener('click',function(){audio();musOn=!musOn;ls('maiga_raid_music',musOn?'1':'0');this.style.opacity=musOn?1:.45;if(musOn&&G.state==='play')musStart(G.boss?3:songOf(lv.world));else musStop();});
 
 /* ================================================================ levels (built in code: easy to edit) */
 function Lv(w,world){this.w=w;this.h=17;this.world=world;this.t=[];for(var y=0;y<17;y++){this.t.push(new Array(w).fill('.'));}this.e=[];this.start=[2,12];}
@@ -295,7 +297,9 @@ Lv.prototype={
  sp:function(x0,x1,y){return this.fill(x0,y,x1,y,'^');},
  cv:function(x0,x1,y,dir){return this.fill(x0,y,x1,y,dir>0?'>':'<');},
  co:function(x,y,n,dy){for(var i=0;i<n;i++)this.e.push({t:'coin',x:x+i,y:y+(dy?Math.round(Math.sin(i/(n-1||1)*Math.PI)*-dy):0)});return this;},
- en:function(t,x,y,o){var e={t:t,x:x,y:y};if(o)for(var k in o)e[k]=o[k];this.e.push(e);return this;}
+ en:function(t,x,y,o){var e={t:t,x:x,y:y};if(o)for(var k in o)e[k]=o[k];this.e.push(e);return this;},
+ jp:function(x,y){this.set(x,y,'j');return this;},
+ cr:function(x,y,w){return this.fill(x,y,x+w-1,y,'r');}
 };
 function buildLevels(){
  var L=[],a,b,c;
@@ -336,6 +340,36 @@ function buildLevels(){
  c.gr(154,185,13).blk(154,3,1,10).blk(185,0,1,13).pl(160,9,4).pl(176,9,4).pl(168,6,3);
  c.en('arena',156,13).en('cage',182,13);
  c.t[3][154]='.';for(var y=4;y<13;y++)c.t[y][154]='.';   /* entrance stays open until the boss appears */
+ /* ---------- World 3: Moon Mine (low gravity + jump pads) */
+ var d=new Lv(184,3);d.start=[2,12];
+ d.gr(0,18,13).co(5,10,5,1).en('walk',14,13);
+ d.gr(25,38,12).jp(30,12).pl(34,4,4).co(34,3,4).co(30,8,1).co(30,6,1).en('fud',27,6).en('walk',37,12);
+ d.en('mplat',42,10,{r:2,ax:'y'});
+ d.gr(46,64,13).jp(49,13).sp(51,54,12).br(56,8,3,'diamond').co(55,7,5).en('fud',59,6).en('walk',62,13);
+ d.en('eagle',64,13);
+ d.pl(68,10,3).pl(73,7,3).co(73,6,3).pl(79,9,3).pl(85,6,3).en('pu',86,4,{k:'heart'}).pl(90,10,3).en('fud',82,3);
+ d.gr(95,120,13).jp(101,13).blk(104,6,2,7).co(100,4,7,2).en('walk',110,13).en('fud',113,7).en('walk',117,13);
+ d.en('mplat',124,11,{r:3,ax:'x'});
+ d.gr(128,146,11).br(132,7,3,'rocket').co(131,6,5).sp(137,139,10).en('fud',141,5).en('walk',143,11).jp(145,11);
+ d.en('eagle',134,11);
+ d.pl(151,4,3).co(151,3,3).pl(156,8,2).co(156,7,2);
+ d.gr(160,183,13).co(162,10,5,1).en('walk',168,13).en('fud',172,8).en('goal',179,13);
+ L.push(d);
+ /* ---------- World 4: Candle Canyon (red candles crumble, green pumps move) */
+ var k=new Lv(186,4);k.start=[2,12];
+ k.gr(0,16,13).co(5,10,4).en('walk',12,13);
+ k.cr(19,11,3).cr(24,9,3).co(24,8,3);
+ k.gr(29,46,13).blk(33,10,2,3).blk(38,8,2,5).co(38,7,2).en('fud',42,6).en('walk',44,13);
+ k.en('mplat',50,11,{r:3,ax:'y'});
+ k.gr(56,72,12).sp(60,62,11).br(64,8,3,'heart').co(57,9,4,1).en('walk',68,12);
+ k.en('eagle',71,12);
+ k.cr(75,10,2).cr(79,8,2).cr(83,6,2).co(83,5,2).cr(87,8,2).cr(91,10,2).en('fud',85,3);
+ k.gr(95,118,13).blk(100,9,2,4).blk(106,8,2,5).blk(112,9,2,4).co(106,7,2).en('pu',100,7,{k:'bull'}).en('walk',103,13).en('walk',109,13).en('fud',115,7);
+ k.gr(119,140,13).sp(122,135,12).cr(122,9,14).co(123,8,12).en('fud',128,4);
+ k.en('eagle',139,13);
+ k.en('mplat',144,10,{r:2,ax:'y'}).en('mplat',150,8,{r:3,ax:'y'}).en('mplat',156,10,{r:2,ax:'y'});
+ k.gr(161,185,13).br(166,9,3,'diamond').co(165,8,5).en('walk',172,13).en('fud',176,7).en('goal',181,13);
+ L.push(k);
  L.push(c);
  return L;
 }
@@ -344,7 +378,9 @@ function buildLevels(){
 var WORLD=[
  {name:0,ice:true,sky:['#06122b','#0f2c5a','#1a5d8a'],fill:'#2c4d77',fill2:'#24406a',top:'#f3ecd9',top2:'#bfe9f5',edge:'#38f2ff',plat:'#9ae6f5',plat2:'#38a8c8',brk:'#bfefff',spike:'#d9f6ff',walker:'bear'},
  {name:1,sky:['#0a0f1f','#16203a','#22304f'],fill:'#3a4256',fill2:'#2c3344',top:'#e0b43a',top2:'#0a1630',edge:'#e0b43a',plat:'#8a96a8',plat2:'#5c687c',brk:'#c4932e',spike:'#c9d3e0',walker:'paper'},
- {name:2,sky:['#140a26','#2d1450','#5a2a6e'],fill:'#3b2550',fill2:'#2e1c40',top:'#b4283c',top2:'#e0b43a',edge:'#e0b43a',plat:'#b4283c',plat2:'#e0b43a',brk:'#5a3a78',spike:'#e0b43a',walker:'rug'}
+ {name:2,sky:['#140a26','#2d1450','#5a2a6e'],fill:'#3b2550',fill2:'#2e1c40',top:'#b4283c',top2:'#e0b43a',edge:'#e0b43a',plat:'#b4283c',plat2:'#e0b43a',brk:'#5a3a78',spike:'#e0b43a',walker:'rug'},
+ {name:3,grav:.62,sky:['#010208','#070b1f','#141834'],fill:'#4a4f63',fill2:'#3c4154',top:'#d6d9e3',top2:'#8a8fa3',edge:'#38f2ff',plat:'#c9ccd6',plat2:'#6b7085',brk:'#9aa0b5',spike:'#e0e4ef',walker:'bear'},
+ {name:4,sky:['#03100d','#082520','#0f3d33'],fill:'#16252c',fill2:'#112027',top:'#14f195',top2:'#0a1630',edge:'#14f195',plat:'#14f195',plat2:'#0b8a57',brk:'#2fbf71',spike:'#ff4d6d',walker:'paper'}
 ];
 var BG=[];
 function mkBg(wi){
@@ -366,6 +402,18 @@ function mkBg(wi){
   gear(n,120,150,34,'#24304e');gear(n,380,120,24,'#24304e');gear(n,700,160,40,'#24304e');gear(n,860,110,20,'#24304e');
   n.fillStyle='#38f2ff';n.font='bold 18px monospace';n.globalAlpha=.55;n.fillText('MEME FACTORY',520,60);n.globalAlpha=1;n.strokeStyle='#38f2ff';n.strokeRect(512,40,150,28);
   for(i=0;i<4;i++){n.fillStyle='#2b3554';n.fillRect(i*240,90,240,6);n.fillRect(i*240+30,90,6,200);}
+ }else if(wi===3){
+  /* earth */ g.fillStyle='#1f6fd1';g.beginPath();g.arc(380,58,26,0,7);g.fill();g.fillStyle='#2fbf71';g.fillRect(366,46,12,8);g.fillRect(384,60,14,9);g.fillRect(372,66,7,5);g.fillStyle='rgba(255,255,255,.55)';g.fillRect(360,52,40,2);g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.arc(392,64,24,0,7);g.fill();
+  for(i=0;i<60;i++){g.fillStyle='#ffffff';g.globalAlpha=.4+rnd()*.6;g.fillRect((rnd()*VW)|0,(rnd()*VH*.7)|0,1,1);}g.globalAlpha=1;
+  m.fillStyle='#2a2e40';mount(m,VW*2,175,70,rnd);m.fillStyle='#1d2030';for(i=0;i<10;i++){var ccx=rnd()*VW*2,ccy=205+rnd()*40,ccr=8+rnd()*20;m.beginPath();m.ellipse(ccx,ccy,ccr,ccr*.35,0,0,7);m.fill();}
+  n.fillStyle='#3a3f55';mount(n,VW*2,222,34,rnd);n.fillStyle='#0a1630';n.fillRect(700,150,2,40);n.fillStyle='#e0b43a';n.fillRect(702,150,18,11);n.fillStyle='#0a1630';n.font='bold 8px monospace';n.fillText('$M',704,159);
+  for(i=0;i<5;i++){var rx2=60+i*190+rnd()*40;n.fillStyle='#5a607a';n.fillRect(rx2,214,22,8);n.fillRect(rx2+4,208,12,6);n.fillStyle='#38f2ff';n.fillRect(rx2+9,204,2,4);}
+ }else if(wi===4){
+  /* candlestick chart in the sky */
+  m.strokeStyle='rgba(20,241,149,.08)';for(i=0;i<VW*2;i+=32){m.beginPath();m.moveTo(i,0);m.lineTo(i,VH);m.stroke();}for(i=0;i<VH;i+=32){m.beginPath();m.moveTo(0,i);m.lineTo(VW*2,i);m.stroke();}
+  var pv=150;for(i=0;i<VW*2;i+=14){var o=pv,cl=pv+(rnd()-.5)*34;cl=Math.max(50,Math.min(200,cl));var hi=Math.min(o,cl)-rnd()*14,lo=Math.max(o,cl)+rnd()*14;m.fillStyle=cl<o?'rgba(20,241,149,.55)':'rgba(255,77,109,.55)';m.fillRect(i+5,hi,1,lo-hi);m.fillRect(i+2,Math.min(o,cl),8,Math.max(2,Math.abs(cl-o)));pv=cl;}
+  m.fillStyle='rgba(20,241,149,.45)';m.font='bold 12px monospace';m.fillText('PUMP?',120,40);m.fillStyle='rgba(255,77,109,.45)';m.fillText('DUMP?',640,40);
+  n.fillStyle='#0b1c1d';for(i=0;i<12;i++){var sx2=i*85+rnd()*30,sh=60+rnd()*90;n.beginPath();n.moveTo(sx2,VH);n.lineTo(sx2+10,VH-sh);n.lineTo(sx2+24,VH-sh+8);n.lineTo(sx2+36,VH);n.fill();}
  }else{
   g.fillStyle='#f3ecd9';g.beginPath();g.arc(90,56,22,0,7);g.fill();
   m.fillStyle='#22113a';for(i=0;i<6;i++){var tx=i*170+20,tw=60+rnd()*30,th=150+rnd()*80;m.fillRect(tx,VH-th,tw,th);for(var b=0;b<tw;b+=12)m.fillRect(tx+b,VH-th-8,7,8);m.fillStyle='#e0b43a';m.fillRect(tx+tw/2-3,VH-th+30,6,10);m.fillStyle='#22113a';}
@@ -386,11 +434,15 @@ function mkTiles(wi){var W=WORLD[wi],o={};
  var f=c(),g=f.getContext('2d');g.fillStyle=W.fill;g.fillRect(0,0,16,16);g.fillStyle=W.fill2;
  if(wi===2){g.fillRect(0,7,16,1);g.fillRect(0,15,16,1);g.fillRect(7,0,1,7);g.fillRect(3,8,1,7);g.fillRect(12,8,1,7);}
  else if(wi===1){g.fillRect(0,0,16,1);g.fillRect(0,0,1,16);g.fillStyle='#5c687c';g.fillRect(2,2,2,2);g.fillRect(12,2,2,2);g.fillRect(2,12,2,2);g.fillRect(12,12,2,2);}
+ else if(wi===3){g.beginPath();g.arc(5,6,3,0,7);g.fill();g.beginPath();g.arc(12,12,2,0,7);g.fill();g.fillStyle='#5a607a';g.fillRect(9,3,2,1);g.fillRect(2,12,2,1);}
+ else if(wi===4){g.fillRect(0,7,16,1);g.fillRect(7,0,1,16);g.fillStyle='rgba(20,241,149,.18)';g.fillRect(3,3,1,3);g.fillRect(11,9,1,4);}
  else{g.fillRect(3,4,5,1);g.fillRect(9,10,4,1);g.fillStyle='#3a6a9a';g.fillRect(10,3,3,1);g.fillRect(2,12,3,1);}
  o.fill=f;
  var t=c();g=t.getContext('2d');g.drawImage(f,0,0);
  if(wi===0){g.fillStyle=W.top;g.fillRect(0,0,16,5);g.fillStyle=W.top2;g.fillRect(0,5,16,1);g.fillRect(3,6,2,2);g.fillRect(11,6,2,3);g.fillStyle='#fff';g.fillRect(2,1,4,1);}
  else if(wi===1){for(var i=-4;i<16;i+=8){g.fillStyle=W.top;g.beginPath();g.moveTo(i,0);g.lineTo(i+4,0);g.lineTo(i+8,5);g.lineTo(i+4,5);g.fill();}g.fillStyle='#0a1630';g.fillRect(0,5,16,1);}
+ else if(wi===3){g.fillStyle=W.top;g.fillRect(0,0,16,4);g.fillStyle=W.top2;g.fillRect(0,4,16,1);g.fillRect(4,1,3,1);g.fillRect(11,2,2,1);}
+ else if(wi===4){g.fillStyle=W.top;g.fillRect(0,0,16,3);g.fillStyle='#0b8a57';g.fillRect(0,3,16,1);g.fillStyle='rgba(20,241,149,.35)';g.fillRect(7,4,1,5);}
  else{g.fillStyle=W.top;g.fillRect(0,0,16,5);g.fillStyle=W.top2;g.fillRect(0,1,16,1);g.fillRect(0,5,16,1);for(i=1;i<16;i+=3)g.fillRect(i,6,1,2);}
  o.top=t;
  var p=c();g=p.getContext('2d');g.fillStyle=W.plat;g.fillRect(0,0,16,5);g.fillStyle=W.plat2;g.fillRect(0,4,16,2);if(wi===2){g.fillStyle='#e0b43a';g.fillRect(0,1,16,1);for(i=1;i<16;i+=3)g.fillRect(i,6,1,2);}else if(wi===1){g.fillRect(3,0,1,5);g.fillRect(11,0,1,5);}else{g.fillStyle='#fff';g.fillRect(2,1,5,1);}
@@ -424,17 +476,24 @@ function pollPad(){var ps=navigator.getGamepads?navigator.getGamepads():[];var p
 var LEVELS=null,G={state:'title',hero:'jp',world:0,score:0,coins:0,deaths:0,time:0,kills:0,boss:null};
 var lv,ents,P,cam={x:0,y:0},shake=0,parts=[],bubble=null,bossBubble=null,flash=0,clock=0;
 var HERO={jp:{hp:5,spd:112,jv:338,w:14,h:26,sp:'jp',ox:16,fw:40,fh:40},bolt:{hp:4,spd:126,jv:345,w:14,h:22,sp:'bolt',ox:14,fw:30,fh:30}};
-function solidC(c){return c==='#'||c==='*'||c==='>'||c==='<';}
+function solidC(c){return c==='#'||c==='*'||c==='>'||c==='<'||c==='j'||c==='r';}
 function tileAt(px,py){var x=Math.floor(px/TS),y=Math.floor(py/TS);if(x<0||x>=lv.w)return '#';if(y<0)return '.';if(y>=17)return '.';return lv.t[y][x];}
 function startWorld(w,keepRespawn){
- G.world=w;lv=cloneLv(LEVELS[w]);ents=[];parts=[];bubble=null;bossBubble=null;G.boss=null;G.arena=false;G.wtime=0;G.wcoins=0;
- if(!BG[w])BG[w]=mkBg(w);if(!TILE[w])TILE[w]=mkTiles(w);
+ G.world=w;lv=cloneLv(LEVELS[w]);ents=[];parts=[];bubble=null;bossBubble=null;G.boss=null;G.arena=false;G.wtime=0;G.wcoins=0;G.cr=[];
+ var lk=lv.world;if(!BG[lk])BG[lk]=mkBg(lk);if(!TILE[lk])TILE[lk]=mkTiles(lk);
  lv.e.forEach(function(e){spawn(e);});
  var H=HERO[G.hero];
  P={x:lv.start[0]*TS,y:lv.start[1]*TS+TS-H.h,vx:0,vy:0,w:H.w,h:H.h,face:1,ground:false,jumps:0,coyote:0,buf:0,atk:0,atkCd:0,dash:0,dashCd:0,inv:0,hp:H.hp,max:H.hp,shield:0,rocket:0,bull:0,anim:0,hurtT:0,plat:null,check:null};
  if(keepRespawn&&keepRespawn.check){P.check=keepRespawn.check;}
- cam.x=0;G.state='play';KP={};for(var kk in K)K[kk]=0;try{document.activeElement&&document.activeElement.blur();}catch(e){}musStart(w);setTimeout(function(){say('start');},500);
+ cam.x=0;G.state='play';KP={};for(var kk in K)K[kk]=0;try{document.activeElement&&document.activeElement.blur();}catch(e){}musStart(songOf(lk));setTimeout(function(){say('start');},500);
 }
+/* crumbling red candles: shake 0.5 s, fall, come back after 3 s */
+function crFind(x,y){for(var i=0;i<G.cr.length;i++)if(G.cr[i].x===x&&G.cr[i].y===y)return G.cr[i];return null;}
+function crShake(x,y){var c=G.cr&&crFind(x,y);return c&&!c.gone?((clock*40|0)%2?1:-1):0;}
+function crStep(dt){for(var i=G.cr.length-1;i>=0;i--){var c=G.cr[i];c.t-=dt;if(c.t>0)continue;
+  if(!c.gone){c.gone=1;c.t=3;lv.t[c.y][c.x]='.';sfx('brk');burst(c.x*TS+8,c.y*TS+8,'#ff4d6d',6,70);}
+  else{var bx={x:c.x*TS,y:c.y*TS,w:TS,h:TS};if(ov(P,bx)){c.t=.3;continue;}lv.t[c.y][c.x]='r';G.cr.splice(i,1);}}}
+function songOf(look){return look===3?4:look===4?5:look;}
 function cloneLv(L){var n=new Lv(L.w,L.world);n.t=L.t.map(function(r){return r.slice();});n.e=L.e;n.start=L.start;return n;}
 function spawn(e){var x=e.x*TS,y=e.y*TS;
  switch(e.t){
@@ -505,11 +564,13 @@ function step(dt){
  if(KP.dash&&P.dashCd<=0&&P.hurtT<=0){P.dash=.16;P.dashCd=.75;P.vx=P.face*300;sfx('dash');}
  /* jump */
  if(P.ground){P.coyote=.09;P.jumps=1;}else if(P.coyote>0)P.coyote-=dt;
- if(P.buf>0&&P.hurtT<=0){var jv=H.jv*(P.rocket>0?1.22:1);
+ var gm=W.grav||1;
+ if(P.buf>0&&P.hurtT<=0){var jv=H.jv*(P.rocket>0?1.22:1)*(gm<1?.82:1);
   if(P.coyote>0){P.vy=-jv;P.coyote=0;P.buf=0;P.ground=false;sfx('jump');}
   else if(P.jumps>0){P.vy=-jv*.92;P.jumps--;P.buf=0;sfx('dj');burst(P.x+7,P.y+P.h,'#f3ecd9',6,50);}}
- if(!K.jump&&P.vy<-120&&P.dash<=0)P.vy+=900*dt*1.4;
- if(P.dash<=0)P.vy=Math.min(P.vy+980*dt,460);
+ if(P.padT&&P.vy>=0)P.padT=0;
+ if(!K.jump&&P.vy<-120&&P.dash<=0&&!P.padT)P.vy+=900*dt*1.4*gm;
+ if(P.dash<=0)P.vy=Math.min(P.vy+980*gm*dt,gm<1?380:460);
  /* attack */
  if(KP.atk&&P.atkCd<=0&&P.hurtT<=0){P.atkCd=G.hero==='jp'?.34:.28;P.atk=G.hero==='jp'?.24:.16;
   if(G.hero==='jp')sfx('swing');else{sfx('zap');ents.push({k:'zap',x:P.x+(P.face>0?P.w:-8),y:P.y+10,w:8,h:6,vx:P.face*330,t:.55});}}
@@ -524,7 +585,9 @@ function step(dt){
  P.plat=null;
  for(var i=0;i<ents.length;i++){var e=ents[i];if(e.k!=='mp')continue;
   if(P.vy>=0&&P.x+P.w>e.x&&P.x<e.x+e.w){var fb=P.y+P.h;if(fb>=e.y-1&&fb<=e.y+8&&(fb-P.vy*dt)<=e.y+2){P.y=e.y-P.h;P.vy=0;P.ground=true;P.onT='mp';P.plat=e;}}}
- if(P.ground&&!wasGround&&P.vy===0){/* landed */}
+ if(P.ground&&P.onT==='j'&&P.hurtT<=0){P.vy=-Math.sqrt(2*980*gm*150);P.padT=1;P.ground=false;P.jumps=1;P.coyote=0;sfx('pad');burst(P.x+7,P.y+P.h,'#38f2ff',10,90);}
+ if(P.ground&&P.onT==='r'){[P.x+2,P.x+P.w-2].forEach(function(fx){var tx=Math.floor(fx/TS),ty=Math.floor((P.y+P.h+1)/TS);if(lv.t[ty]&&lv.t[ty][tx]==='r'&&!crFind(tx,ty))G.cr.push({x:tx,y:ty,t:.5,gone:0});});}
+ crStep(dt);
  /* bounds */
  if(P.x<0)P.x=0;
  if(G.arena){var ax0=G.arena*1;if(P.x<ax0+16)P.x=ax0+16;}
@@ -577,7 +640,7 @@ function updateEnt(e,dt){var W=WORLD[lv.world];
   if(e.fly){e.t+=dt;e.x=e.bx+Math.sin(e.t*.9)*30;e.y=e.by+Math.sin(e.t*2.2)*10;
    /* drift a little toward the player */ if(Math.abs(P.x-e.x)<140){e.by+=Math.sign(P.y-e.by)*8*dt;}}
   else{
-   e.vy=Math.min(e.vy+900*dt,420);
+   e.vy=Math.min(e.vy+900*(W.grav||1)*dt,420);
    if(e.kind==='paper'&&e.onG){e.hop-=dt;if(e.hop<=0){e.vy=-230;e.hop=1.4+Math.random()*1.5;}}
    var hitW=moveX(e,e.vx*dt);var g=moveY(e,e.vy*dt,true);e.onG=e.ground;
    if(e.onG&&e.onT==='>')moveX(e,40*dt);if(e.onG&&e.onT==='<')moveX(e,-40*dt);
@@ -631,6 +694,8 @@ function draw(){
   else if(c==='=')cx.drawImage(tl.plat,px,py);
   else if(c==='*')cx.drawImage(tl.brk,px,py);
   else if(c==='^')cx.drawImage(tl.spike,px,py);
+  else if(c==='j'){cx.drawImage(tl.fill,px,py);var bo=Math.abs(Math.sin(clock*5))*2;cx.fillStyle='#000';cx.fillRect(px+1,py+2-bo,14,5);cx.fillStyle='#38f2ff';cx.fillRect(px+2,py+3-bo,12,3);cx.fillStyle='#e0b43a';cx.fillRect(px+3,py+7,10,2);cx.fillStyle='#0a1630';cx.fillRect(px+7,py+4-bo,2,1);}
+  else if(c==='r'){var sh2=crShake(x,y);cx.fillStyle='#000';cx.fillRect(px+sh2,py,16,16);cx.fillStyle='#ff4d6d';cx.fillRect(px+1+sh2,py+1,14,14);cx.fillStyle='#b3243f';cx.fillRect(px+1+sh2,py+11,14,4);cx.fillStyle='#ffd0d8';cx.fillRect(px+2+sh2,py+2,4,1);cx.fillStyle='#ff4d6d';if(y===0||lv.t[y-1][x]!=='r')cx.fillRect(px+7+sh2,py-3,2,3);}
   else if(c==='>'||c==='<'){cx.fillStyle='#1b2236';cx.fillRect(px,py,16,16);cx.fillStyle='#0a0f1f';cx.fillRect(px,py,16,3);cx.fillStyle='#38f2ff';var off=((clock*40)%8)*(c==='>'?1:-1);for(var k=-8;k<24;k+=8){var ax=px+((k+off+16)%16);if(ax>=px&&ax<px+14){cx.fillRect(ax,py+1,2,1);cx.fillRect(ax+(c==='>'?1:-1)+1,py+2,1,1);}}cx.fillStyle='#3a4256';cx.fillRect(px,py+4,16,12);cx.fillStyle='#2c3344';cx.fillRect(px+3,py+8,10,4);}
  }
  /* entities */
@@ -714,7 +779,7 @@ function win(){G.state='win';if(G.deaths===0)addScore(500);
  xWinUi();
  show('oWin');}
 function statsInto(el,arr){el.textContent='';arr.forEach(function(a){var s=document.createElement('span');s.textContent=a[0]+': ';var b=document.createElement('b');b.textContent=a[1];s.appendChild(b);el.appendChild(s);});}
-function togglePause(){if(G.state==='play'){G.state='pause';musStop();show('oPause');}else if(G.state==='pause'){G.state='play';show(null);musStart(G.boss?3:G.world);}}
+function togglePause(){if(G.state==='play'){G.state='pause';musStop();show('oPause');}else if(G.state==='pause'){G.state='play';show(null);musStart(G.boss?3:songOf(lv.world));}}
 $('bPlay').addEventListener('click',function(){audio();G.state='sel';show('oSel');});
 document.querySelectorAll('.hero').forEach(function(b){b.addEventListener('click',function(){G.hero=b.getAttribute('data-h');document.querySelectorAll('.hero').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});ls('maiga_raid_hero',G.hero);});
  b.addEventListener('dblclick',function(){$('bGo').click();});});
@@ -725,7 +790,7 @@ $('bResume').addEventListener('click',togglePause);
 $('bPause').addEventListener('click',togglePause);
 $('bRestart').addEventListener('click',function(){var keep={};startWorld(G.world);show(null);});
 $('bQuit').addEventListener('click',function(){musStop();G.state='title';show('oTitle');});
-$('bNext').addEventListener('click',function(){if(G.world<2){startWorld(G.world+1);show(null);}});
+$('bNext').addEventListener('click',function(){if(G.world<LEVELS.length-1){startWorld(G.world+1);show(null);}});
 $('bAgain').addEventListener('click',function(){G.state='sel';show('oSel');});
 $('bFs').addEventListener('click',function(){var s=$('wrap');try{if(document.fullscreenElement)document.exitFullscreen();else if(s.requestFullscreen)s.requestFullscreen().then(function(){try{screen.orientation.lock('landscape').catch(function(){});}catch(e){}}).catch(function(){});}catch(e){}});
 $('bMus').style.opacity=musOn?1:.45;

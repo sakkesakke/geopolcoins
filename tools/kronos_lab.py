@@ -25,12 +25,12 @@ import time
 import urllib.request
 
 ASSETS = [("BTC", "BTCUSDT", "BTC-USD"), ("ETH", "ETHUSDT", "ETH-USD"), ("SOL", "SOLUSDT", "SOL-USD")]
-CONTEXT = 400      # candles Kronos sees (max 512 for Kronos-small)
+CONTEXT = 360      # candles Kronos sees (max 512 for Kronos-small)
 SHOW = 72          # candles of history shown on the page
 HORIZON = 24       # hours forecast
-MOMENTS = 30       # moments per asset
+MOMENTS = 20       # moments per asset
 DAYS = 90          # spread moments over the last DAYS days
-PATHS = 8          # forecast paths per moment
+PATHS = 6          # forecast paths per moment
 UA = {"User-Agent": "geopolcoins-kronos-lab/1.0 (educational, read-only)"}
 
 
@@ -111,7 +111,7 @@ def pick_cuts(n):
     return sorted({int(round(first + i * step)) for i in range(MOMENTS)})
 
 
-def build(kronos_dir, out_path):
+def build(kronos_dir, out_path, only=None):
     sys.path.insert(0, kronos_dir)
     import numpy as np
     import pandas as pd
@@ -128,7 +128,7 @@ def build(kronos_dir, out_path):
     need = CONTEXT + DAYS * 24 + HORIZON + 48
     result = {"assets": {}, "summary": {}}
     sources = set()
-    for name, bsym, cbp in ASSETS:
+    for name, bsym, cbp in [a for a in ASSETS if not only or a[0] in only]:
         rows, src = load_candles(bsym, cbp, need)
         sources.add(src)
         print(f"{name}: {len(rows)} candles from {src}")
@@ -163,7 +163,7 @@ def build(kronos_dir, out_path):
                 "naive_err": round(abs(now - real[-1]) / real[-1] * 100, 2),
                 "spread": round((hi[-1] - lo[-1]) / now * 100, 2),
             })
-            print(f"  {moments[-1]['t']} hit={moments[-1]['hit']} err={moments[-1]['err']}%")
+            print(f"  {name} {len(moments)}/{MOMENTS} {moments[-1]['t']} hit={moments[-1]['hit']} err={moments[-1]['err']}%", flush=True)
         result["assets"][name] = moments
         result["summary"][name] = summarize(moments)
     allm = [m for ms in result["assets"].values() for m in ms]
@@ -199,9 +199,35 @@ def summarize(ms):
     }
 
 
+def merge(parts, out_path):
+    """Join per-coin files (from parallel jobs) into one."""
+    result = {"assets": {}, "summary": {}}
+    sources, meta = set(), None
+    for p in parts:
+        d = json.load(open(p))
+        result["assets"].update(d["assets"])
+        result["summary"].update({k: v for k, v in d["summary"].items() if k != "ALL"})
+        sources.update(d["meta"]["source"].split(" / "))
+        meta = d["meta"]
+    order = [a[0] for a in ASSETS if a[0] in result["assets"]]
+    result["assets"] = {k: result["assets"][k] for k in order}
+    result["summary"]["ALL"] = summarize([m for k in order for m in result["assets"][k]])
+    meta["source"] = " / ".join(sorted(sources))
+    result["meta"] = meta
+    with open(out_path, "w") as f:
+        json.dump(result, f, separators=(",", ":"))
+    print(f"merged {order} into {out_path}")
+    print(json.dumps(result["summary"], indent=1))
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--kronos-dir", required=True)
+    ap.add_argument("--kronos-dir")
     ap.add_argument("--out", default="data/kronos-lab.json")
+    ap.add_argument("--assets", help="comma list, e.g. BTC")
+    ap.add_argument("--merge", nargs="+", help="join per-coin files")
     a = ap.parse_args()
-    build(a.kronos_dir, a.out)
+    if a.merge:
+        merge(a.merge, a.out)
+    else:
+        build(a.kronos_dir, a.out, a.assets.split(",") if a.assets else None)

@@ -3,13 +3,14 @@ name: Kronos Lab data
 # Rebuilds data/kronos-lab.json for kronos.html once a week.
 # Kronos-small forecasts PAST moments of BTC/ETH/SOL with public candles (no keys)
 # and compares them with what really happened. Educational only, no signals.
+# One job per coin runs in parallel, then a small job joins the results.
 # Kronos: https://github.com/shiyu-coder/Kronos (MIT), pinned to one commit.
 on:
   schedule:
     - cron: "17 4 * * 1"   # Monday 04:17 UTC
   workflow_dispatch: {}
   push:
-    branches: [kronos-lab]
+    branches: [kronos-lab-fast]
     paths: ["tools/kronos_lab.py", ".github/workflows/kronos-lab.yml"]
 
 permissions:
@@ -23,9 +24,13 @@ env:
   KRONOS_COMMIT: 67b630e67f6a18c9e9be918d9b4337c960db1e9a
 
 jobs:
-  build:
+  forecast:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
+    strategy:
+      fail-fast: true
+      matrix:
+        coin: [BTC, ETH, SOL]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -39,10 +44,28 @@ jobs:
         run: |
           pip install -q torch --index-url https://download.pytorch.org/whl/cpu
           pip install -q numpy pandas==2.2.2 einops==0.8.1 huggingface_hub==0.33.1 safetensors==0.6.2 tqdm
-      - name: Forecast past moments
-        run: python3 tools/kronos_lab.py --kronos-dir /tmp/kronos --out data/kronos-lab.json
-      - name: Upload the result
-        uses: actions/upload-artifact@v4
+      - name: Forecast past moments (${{ matrix.coin }})
+        run: python3 tools/kronos_lab.py --kronos-dir /tmp/kronos --assets ${{ matrix.coin }} --out part-${{ matrix.coin }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.coin }}
+          path: part-${{ matrix.coin }}.json
+
+  join:
+    needs: forecast
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: part-*
+          merge-multiple: true
+      - name: Join the coins
+        run: python3 tools/kronos_lab.py --merge part-BTC.json part-ETH.json part-SOL.json --out data/kronos-lab.json
+      - uses: actions/upload-artifact@v4
         with:
           name: kronos-lab
           path: data/kronos-lab.json

@@ -98,6 +98,7 @@ def load_candles(binance_sym, cb_product, need):
 
 def rnd(x):
     """Keep 5 significant digits so the JSON stays small."""
+    x = float(x)
     if x == 0 or not math.isfinite(x):
         return 0
     return round(x, max(0, 4 - int(math.floor(math.log10(abs(x))))))
@@ -159,9 +160,9 @@ def build(kronos_dir, out_path, only=None):
                 "hi": [rnd(v) for v in hi],
                 "pred_up": bool(up_pred), "real_up": bool(up_real), "hit": bool(up_pred == up_real),
                 "inside": bool(lo[-1] <= real[-1] <= hi[-1]),
-                "err": round(abs(mid[-1] - real[-1]) / real[-1] * 100, 2),
-                "naive_err": round(abs(now - real[-1]) / real[-1] * 100, 2),
-                "spread": round((hi[-1] - lo[-1]) / now * 100, 2),
+                "err": round(float(abs(mid[-1] - real[-1]) / real[-1] * 100), 2),
+                "naive_err": round(float(abs(now - real[-1]) / real[-1] * 100), 2),
+                "spread": round(float((hi[-1] - lo[-1]) / now * 100), 2),
             })
             print(f"  {name} {len(moments)}/{MOMENTS} {moments[-1]['t']} hit={moments[-1]['hit']} err={moments[-1]['err']}%", flush=True)
         result["assets"][name] = moments

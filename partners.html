@@ -69,4 +69,5 @@ var p=location.pathname.replace(/^\/+|\.html$|\/$/g,'').toLowerCase();p={'':'hom
 var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}
 var k='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:k,Authorization:'Bearer '+k,'Content-Type':'application/json'},body:JSON.stringify({p_page:p,p_ref:r.slice(0,60)})}).catch(function(){});}catch(e){}})();
 </script>
-</main></body></html>
+</main><script src="/guide.js" defer></script>
+</body></html>

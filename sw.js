@@ -2,9 +2,9 @@
    Pages: network first (always fresh when online), cached copy only when offline.
    Own static files: served from cache, refreshed in the background.
    Other sites (Supabase, AI providers, swap, Ko-fi) are never cached. */
-var VERSION = 'maiga-2026-10-31a';
+var VERSION = 'maiga-2026-11-04b';
 var CORE = ['/', '/hq.html', '/app.html', '/garage.html', '/chain.html', '/offline.html', '/pwa.js', '/site.webmanifest',
-  '/icon-192.png', '/icon-512.png', '/favicon-32.png', '/apple-touch-icon.png', '/logo.png', '/jp-pump.png', '/guide.js', '/bolt.png', '/free-ai-api.html', '/meme.html', '/lend.html', '/agent-tools.js', '/meme/templates.json',
+  '/icon-192.png', '/icon-512.png', '/favicon-32.png', '/apple-touch-icon.png', '/logo.png', '/jp-pump.png', '/guide.js', '/guide-kb.json', '/vendor/minisearch.min.js', '/bolt.png', '/free-ai-api.html', '/meme.html', '/lend.html', '/agent-tools.js', '/meme/templates.json',
   '/meme/mw1.png', '/meme/mw2.png', '/meme/mw3.png', '/meme/mw4.png', '/meme/mw5.png', '/meme/mw6.png', '/meme/pxjp.png', '/meme/pxeg.png', '/meme/pxmint.png', '/meme/shades.png', '/meme/crown.png',
   '/raid.html', '/quantum.html', '/img/raid/sprites.png', '/img/raid/atlas.json'];
 

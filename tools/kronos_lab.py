@@ -215,6 +215,7 @@ def merge(parts, out_path):
     result["summary"]["ALL"] = summarize([m for k in order for m in result["assets"][k]])
     meta["source"] = " / ".join(sorted(sources))
     result["meta"] = meta
+    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(result, f, separators=(",", ":"))
     print(f"merged {order} into {out_path}")

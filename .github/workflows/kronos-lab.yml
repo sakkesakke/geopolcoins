@@ -9,9 +9,6 @@ on:
   schedule:
     - cron: "17 4 * * 1"   # Monday 04:17 UTC
   workflow_dispatch: {}
-  push:
-    branches: [kronos-lab-fast]
-    paths: ["tools/kronos_lab.py", ".github/workflows/kronos-lab.yml"]
 
 permissions:
   contents: write

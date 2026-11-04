@@ -1,0 +1,57 @@
+name: Kronos Lab data
+
+# Rebuilds data/kronos-lab.json for kronos.html once a week.
+# Kronos-small forecasts PAST moments of BTC/ETH/SOL with public candles (no keys)
+# and compares them with what really happened. Educational only, no signals.
+# Kronos: https://github.com/shiyu-coder/Kronos (MIT), pinned to one commit.
+on:
+  schedule:
+    - cron: "17 4 * * 1"   # Monday 04:17 UTC
+  workflow_dispatch: {}
+  push:
+    branches: [kronos-lab]
+    paths: ["tools/kronos_lab.py", ".github/workflows/kronos-lab.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kronos-lab-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  KRONOS_COMMIT: 67b630e67f6a18c9e9be918d9b4337c960db1e9a
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Get Kronos (pinned)
+        run: |
+          git clone -q https://github.com/shiyu-coder/Kronos /tmp/kronos
+          git -C /tmp/kronos checkout -q "$KRONOS_COMMIT"
+      - name: Install CPU-only packages
+        run: |
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -q numpy pandas==2.2.2 einops==0.8.1 huggingface_hub==0.33.1 safetensors==0.6.2 tqdm
+      - name: Forecast past moments
+        run: python3 tools/kronos_lab.py --kronos-dir /tmp/kronos --out data/kronos-lab.json
+      - name: Upload the result
+        uses: actions/upload-artifact@v4
+        with:
+          name: kronos-lab
+          path: data/kronos-lab.json
+      - name: Commit the new data (main only)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/kronos-lab.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Kronos Lab: weekly data refresh"
+          git push

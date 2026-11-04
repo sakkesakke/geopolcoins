@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src https://zslzbfbqrtfpvgbjhssd.supabase.co https://nominatim.openstreetmap.org https://overpass-api.de https://overpass.kumi.systems; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>MAIGA CRM</title>
@@ -76,6 +76,7 @@ tr.click{cursor:pointer}tr.click:hover td{background:#13254a}
  <header class="top">
   <h1><b>MAIGA</b> CRM</h1>
   <button type="button" class="b main" id="bNew">+ Nieuw contact</button>
+  <button type="button" class="b" id="bFind">🔎 Leads zoeken</button>
   <button type="button" class="b" id="bCsv">CSV</button>
   <a class="b" href="admin.html">Admin</a>
   <button type="button" class="b" id="bOut">Uitloggen</button>
@@ -125,6 +126,22 @@ tr.click{cursor:pointer}tr.click:hover td{background:#13254a}
  <h3 style="margin:16px 0 0">Tijdlijn</h3>
  <div class="addnote"><select id="nKind" aria-label="Soort notitie"><option value="note">Notitie</option><option value="call">Gebeld</option><option value="email">Mail</option><option value="meeting">Afspraak</option><option value="task">Taak</option></select><textarea id="nBody" maxlength="4000" placeholder="Wat is er gebeurd of afgesproken?"></textarea><button type="button" class="b main" id="nAdd">Toevoegen</button></div>
  <ul class="notes" id="dNotes"></ul>
+</aside>
+<aside class="drawer" id="finder" hidden aria-label="Leads zoeken">
+ <div class="row" style="justify-content:space-between;margin-top:0"><h2>🔎 Leads zoeken</h2><button type="button" class="b sm" id="fClose">Sluiten ✕</button></div>
+ <p style="color:var(--dim);font-size:13.5px;margin:4px 0 10px">Zoekt zaken in openbare kaartdata van OpenStreetMap: naam, telefoon, website en algemeen e-mailadres. Alleen bedrijven, geen privépersonen. Persoonlijke e-mailadressen (zoals jan.peeters@…) worden overgeslagen.</p>
+ <form class="grid" id="fForm" autocomplete="off">
+  <label>Soort zaak<select name="seg">
+   <option value="salon">Kapsalon / schoonheid</option><option value="horeca">Restaurant / café</option><option value="realestate">Vastgoedkantoor</option>
+   <option value="health">Tandarts / kiné / praktijk</option><option value="trades">Vakman (loodgieter, elektricien…)</option><option value="shop">Winkel</option><option value="robotics">Fabriek / werkplaats (robotica)</option></select></label>
+  <label>Stad of gemeente<input name="city" maxlength="60" required placeholder="bv. Gent, Antwerpen, Marrakech"></label>
+  <label>Taal van de mails<select name="lang"><option value="nl">NL</option><option value="fr">FR</option><option value="en">EN</option></select></label>
+  <label>Alleen met<select name="need"><option value="any">telefoon, website of e-mail</option><option value="web">website</option><option value="email">e-mailadres</option></select></label>
+  <div class="full row"><button type="submit" class="b main" id="fGo">Zoeken</button><span id="fStatus" style="color:var(--dim);font-size:13.5px" aria-live="polite"></span></div>
+ </form>
+ <div class="row" id="fBar" hidden style="justify-content:space-between"><label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="fAll" checked> Alles aanvinken</label><button type="button" class="b main" id="fAdd">Toevoegen aan CRM</button></div>
+ <div id="fList"></div>
+ <p style="color:var(--dim);font-size:12px;margin-top:12px">Gegevens © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap-bijdragers</a> (ODbL), via Nominatim en Overpass. Stuur alleen gerichte, persoonlijke mails aan zakelijke adressen, met je naam en een manier om te stoppen. Bij "nee": niet meer contacteren.</p>
 </aside>
 <div class="toast" id="toast" hidden></div>
 
@@ -259,7 +276,63 @@ $('bOut').addEventListener('click',function(){fetch(URL0+'/auth/v1/logout',{meth
 /* idle logout after 30 min, like the admin page */
 var idle;function bump(){clearTimeout(idle);idle=setTimeout(function(){sessionStorage.removeItem(SK);location.href='admin.html';},30*60000);}['click','keydown'].forEach(function(e){document.addEventListener(e,bump);});bump();
 setTimeout(function(){if(session.exp<Date.now()+60000){sessionStorage.removeItem(SK);location.href='admin.html?next=crm';}},Math.max(5000,session.exp-Date.now()-60000));
+
+/* ---------------------------------------------------------------- lead finder (OpenStreetMap) */
+var OSMQ={salon:['nwr["shop"~"^(hairdresser|beauty)$"]'],horeca:['nwr["amenity"~"^(restaurant|cafe|bar)$"]'],realestate:['nwr["office"="estate_agent"]'],
+ health:['nwr["amenity"~"^(dentist|doctors|clinic)$"]','nwr["healthcare"~"^(physiotherapist|dentist)$"]'],trades:['nwr["craft"~"^(plumber|electrician|carpenter|painter|hvac|roofer)$"]'],
+ shop:['nwr["shop"~"^(clothes|shoes|gift|jewelry|florist|optician|bicycle|furniture)$"]'],robotics:['nwr["man_made"="works"]["name"]','nwr["industrial"]["name"]["website"]']};
+var GENERIC=/^(info|contact|hello|hallo|bonjour|salon|shop|winkel|boutique|office|kantoor|bureau|admin|mail|reservations?|reservaties?|booking|bookings|boekingen|afspraak|afspraken|rdv|sales|verkoop|vente|service|klantendienst|support|team|welcome|welkom|accueil|praktijk|cabinet|kapper|coiffure|resto|restaurant|cafe|immo|vastgoed|agence)([._-]?[a-z0-9]*)?$/i;
+var found=[],busy=false;
+function okMail(m){m=(m||'').trim().toLowerCase().split(/[;,\s]/)[0];if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/.test(m))return '';var lp=m.split('@')[0];
+ if(GENERIC.test(lp))return m;if(/^[a-z]+[._-][a-z]+$/.test(lp)||/^[a-z]\.?[a-z]+$/.test(lp)&&lp.length<12)return '';return m;}
+function tg(t,k){return t[k]||t['contact:'+k]||'';}
+function norm(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');}
+function seen(c){var n=norm(c.company),p=norm(c.phone),e=(c.email||'').toLowerCase();return rows.some(function(r){return (r.tags||[]).indexOf(c.key)>-1||(e&&(r.email||'').toLowerCase()===e)||(p&&norm(r.phone)===p)||(n&&norm(r.company)===n&&norm(r.phone)===p);});}
+function fstat(t){$('fStatus').textContent=t;}
+function overpass(q){var hosts=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter'];
+ function go(i){return fetch(hosts[i],{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'},credentials:'omit'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .catch(function(e){if(i+1<hosts.length)return go(i+1);throw e;});}
+ return go(0);}
+function search(e){e.preventDefault();if(busy)return;var f=e.target,seg=f.elements.seg.value,city=f.elements.city.value.trim(),need=f.elements.need.value;if(!city)return;
+ busy=true;$('fGo').disabled=true;$('fBar').hidden=true;$('fList').textContent='';fstat('Stad opzoeken…');
+ fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&addressdetails=0&q='+encodeURIComponent(city),{credentials:'omit',headers:{'Accept-Language':'nl,fr,en'}}).then(function(r){return r.json();}).then(function(list){
+  var hit=(list||[]).filter(function(x){return x.osm_type==='relation';})[0];if(!hit)throw new Error('Stad niet gevonden. Probeer de officiële naam, bv. "Gent" of "Marrakech".');
+  fstat('Zaken zoeken in '+hit.display_name.split(',').slice(0,2).join(',')+'…');
+  var area=3600000000+(+hit.osm_id);var q='[out:json][timeout:50];area('+area+')->.a;('+OSMQ[seg].map(function(x){return x+'(area.a);';}).join('')+');out center tags 400;';
+  return overpass(q);}).then(function(j){
+  var out=[];(j.elements||[]).forEach(function(x){var t=x.tags||{};if(!t.name)return;
+   var raw=tg(t,'email'),mail=okMail(raw),c={key:'osm:'+x.type.charAt(0)+x.id,company:t.name.slice(0,100),phone:(tg(t,'phone')||tg(t,'mobile')).split(';')[0].trim().slice(0,40),
+    email:mail.slice(0,120),skipped:!!raw&&!mail,web:(tg(t,'website')||t.url||'').split(';')[0].trim(),
+    addr:[[t['addr:street'],t['addr:housenumber']].filter(Boolean).join(' '),[t['addr:postcode'],t['addr:city']].filter(Boolean).join(' ')].filter(Boolean).join(', '),
+    osm:'https://www.openstreetmap.org/'+x.type+'/'+x.id};
+   if(need==='web'&&!c.web)return;if(need==='email'&&!c.email)return;if(!c.web&&!c.email&&!c.phone)return;
+   c.dup=seen(c);out.push(c);});
+  out.sort(function(a,b){return (b.email?2:0)+(b.web?1:0)-((a.email?2:0)+(a.web?1:0))||a.company.localeCompare(b.company);});
+  found=out.slice(0,250);showFound(seg);fstat(found.length?found.length+' gevonden ('+found.filter(function(c){return c.dup;}).length+' staan al in je CRM)':'Niets gevonden met deze filters.');})
+ .catch(function(err){fstat('Fout: '+err.message);}).then(function(){busy=false;$('fGo').disabled=false;});}
+function showFound(seg){var box=$('fList');box.textContent='';if(!found.length)return;$('fBar').hidden=false;$('fAll').checked=true;
+ found.forEach(function(c,i){var cb=el('input',{type:'checkbox','data-i':String(i)});cb.checked=!c.dup;if(c.dup)cb.disabled=true;
+  var web=null;if(/^https?:\/\//i.test(c.web)){web=el('a',{href:c.web,target:'_blank',rel:'noopener noreferrer',text:c.web.replace(/^https?:\/\/(www\.)?/i,'').replace(/\/$/,'').slice(0,40)});}
+  box.appendChild(el('label',{cls:'card',style:'display:flex;gap:10px;align-items:flex-start;cursor:pointer'+(c.dup?';opacity:.55':'')},[cb,el('div',{style:'min-width:0'},[
+   el('b',{text:c.company}),el('div',{cls:'m'},[c.email?el('span',{text:'✉ '+c.email}):null,c.phone?el('span',{text:'☎ '+c.phone}):null,web,c.dup?el('span',{text:'al in CRM'}):null,c.skipped?el('span',{text:'persoonlijk e-mailadres overgeslagen'}):null]),
+   c.addr?el('div',{style:'color:var(--dim);font-size:12.5px',text:c.addr}):null])]));});
+ box.setAttribute('data-seg',seg);}
+$('fAll').addEventListener('change',function(){var v=this.checked;$('fList').querySelectorAll('input[type=checkbox]:not(:disabled)').forEach(function(c){c.checked=v;});});
+$('fAdd').addEventListener('click',function(){var seg=$('fList').getAttribute('data-seg')||'other',lang=$('fForm').elements.lang.value,city=$('fForm').elements.city.value.trim().toLowerCase().slice(0,30);
+ var pick=[].slice.call($('fList').querySelectorAll('input[type=checkbox]:checked:not(:disabled)')).map(function(c){return found[+c.getAttribute('data-i')];}).filter(Boolean);
+ if(!pick.length){toast('Niets aangevinkt');return;}
+ var body=pick.map(function(c){return {company:c.company,email:c.email,phone:c.phone,kind:'lead',segment:seg,source:'other',lang:lang,stage:'new',
+  next_action:c.email?'Website bekijken, dan één persoonlijke mail':'Website of telefoon: contactformulier zoeken',next_date:today(),
+  tags:['osm',c.key,city].filter(Boolean),first_message:('Gevonden via OpenStreetMap ('+c.osm+').'+(c.web?'\nWebsite: '+c.web:'')+(c.addr?'\nAdres: '+c.addr:'')).slice(0,1600)};});
+ $('fAdd').disabled=true;api('crm_contacts',{method:'POST',body:body,prefer:'return=representation'}).then(function(d){(d||[]).forEach(function(r){rows.unshift(r);});
+  found.forEach(function(c){if(pick.indexOf(c)>-1)c.dup=true;});showFound(seg);render();toast((d||[]).length+' leads toegevoegd (fase Nieuw)');})
+ .catch(function(e){toast('Niet toegevoegd: '+e.message);}).then(function(){$('fAdd').disabled=false;});});
+$('fForm').addEventListener('submit',search);
+$('bFind').addEventListener('click',function(){closeC();$('shade').hidden=false;$('finder').hidden=false;$('fForm').elements.city.focus();});
+function closeF(){$('finder').hidden=true;if(!cur)$('shade').hidden=true;}
+$('fClose').addEventListener('click',closeF);$('shade').addEventListener('click',closeF);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('finder').hidden)closeF();});
 load();
+window.__crmFinder={okMail:okMail};
 })();
 </script>
 </body>

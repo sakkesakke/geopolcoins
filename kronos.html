@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kronos Lab: can AI read a crypto chart? Test it on the past</title>
+<meta name="description" content="Free lab: open AI model Kronos forecast past BTC, ETH and SOL moments. Guess first, then see what really happened. Educational, no signals. EN/NL/FR.">
+<link rel="canonical" href="https://geopolcoins.xyz/kronos.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kronos Lab: can AI read a crypto chart?">
+<meta property="og:description" content="An open AI model forecast past crypto moments. Guess first, then see what really happened. Honest score, no signals.">
+<meta property="og:url" content="https://geopolcoins.xyz/kronos.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a1630">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kronos Lab","url":"https://geopolcoins.xyz/kronos.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","description":"Educational lab that shows forecasts made by the open-source Kronos model for past BTC, ETH and SOL moments, next to what really happened, with an honest score. No live forecasts, no trading signals.","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://geopolcoins.xyz/#org"}}</script>
+<style>
+:root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.16);--ok:#5be38a;--violet:#b48cff}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--ink);color:var(--text);font:16.5px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brass)}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--brass);color:#111;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--brass)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-right:8px}
+.langs{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:2px}
+.langs button{background:none;border:0;color:var(--dim);font:700 13px system-ui;padding:7px 9px;border-radius:8px;cursor:pointer;min-height:34px}
+.langs button[aria-pressed=true]{background:var(--cream);color:#1d1a14}
+h1{margin:14px 0 18px;line-height:1}.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.tape{display:inline-block;white-space:nowrap;font:900 clamp(22px,6vw,54px)/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:.18em .35em .2em;margin:0 0 .16em;border-radius:4px;text-shadow:0 -1px 0 rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.25);box-shadow:inset 0 2px 0 rgba(255,255,255,.18),inset 0 -3px 0 rgba(0,0,0,.25),0 8px 18px rgba(0,0,0,.35)}
+.tape.k{background:#1b1d22;transform:rotate(-1.6deg)}.tape.r{background:#0d7a86;transform:rotate(1.1deg);margin-left:.4em}
+.lead{color:var(--dim);max-width:46em;margin:0 0 14px}
+.warn{display:flex;gap:10px;align-items:flex-start;background:#2a1418;border:1px solid rgba(255,90,95,.45);border-radius:14px;padding:12px 14px;margin:0 0 22px;font-size:14.5px;color:#ffdfe0;max-width:52em}
+.warn b{color:#fff}.warn::before{content:"!";flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--red);color:#2a0507;font-weight:900}
+h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;margin:34px 0 10px;line-height:1.15}
+.panel{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:16px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chips{display:flex;gap:6px}
+.chip{min-height:40px;padding:6px 14px;border-radius:999px;border:2px solid var(--line);background:none;color:var(--text);font:800 14px system-ui;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--cream);color:#1d1a14;border-color:var(--cream)}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:10px 16px;border-radius:12px;border:2px solid transparent;font:800 15px system-ui;cursor:pointer;text-decoration:none}
+.b.main{background:var(--brass);color:#14110a;box-shadow:0 4px 0 var(--brass-d)}
+.b.ghost{background:none;color:var(--text);border-color:var(--line)}
+.b.up{background:#123d2a;color:#c9ffdf;border-color:#2c8a5a}.b.down{background:#3d1218;color:#ffd3d6;border-color:#9a2c36}
+.b[aria-pressed=true]{outline:3px solid var(--cream);outline-offset:1px}
+.b:disabled{opacity:.45;cursor:not-allowed}
+.when{color:var(--dim);font-size:14.5px;margin-left:auto;font-variant-numeric:tabular-nums}
+.chart{position:relative;margin:12px 0 6px;background:#050b1b;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.chart svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--dim);margin:4px 0 10px}
+.legend i{display:inline-block;width:18px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.step{font-weight:800;margin:6px 0}
+.result{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.res{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;min-width:0}
+.res span{display:block;color:var(--dim);font-size:13.5px}.res b{font-size:19px;font-variant-numeric:tabular-nums}
+.res.ok{border-color:var(--ok)}.res.no{border-color:var(--red)}
+.tally{margin-top:10px;font-size:14.5px;color:var(--dim)}.tally b{color:var(--text)}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:14px;min-width:0}
+.stat .n{font:900 clamp(26px,3.4vw,38px)/1.05 system-ui;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .t{font-weight:800;margin-top:4px}.stat p{margin:4px 0 0;color:var(--dim);font-size:14px}
+.per{width:100%;border-collapse:collapse;margin-top:12px;font-size:14.5px;font-variant-numeric:tabular-nums}
+.per th,.per td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}.per th{color:var(--dim);font-weight:700}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0 8px;padding:0;list-style:none;counter-reset:s}
+.how li{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px;counter-increment:s;min-width:0}
+.how li::before{content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--cyan);color:var(--ink);font-weight:900;margin-bottom:6px}
+.how b{display:block}.how span{color:var(--dim);font-size:14.5px}
+.myths{display:grid;gap:8px;margin-top:10px}
+.myths details{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:0 14px}
+.myths summary{cursor:pointer;font-weight:800;padding:13px 0;list-style:none;display:flex;gap:10px;align-items:center}
+.myths summary::-webkit-details-marker{display:none}
+.myths summary::before{content:"";flex:none;width:14px;height:14px;border-radius:50%;background:var(--brass);box-shadow:inset 0 0 0 3px #3a2c08}
+.myths details[open] summary::before{background:var(--cyan)}
+.myths p{margin:0 0 14px;color:var(--dim)}
+.note{color:var(--dim);font-size:14px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#13254a,#0b2a3a);border:1px solid var(--line);border-radius:18px;padding:18px;margin:26px 0}
+.cta p{margin:0;color:var(--dim);max-width:44em}.cta b{color:var(--text)}
+footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 16px}footer a{color:var(--dim);padding:6px 0}
+@media (max-width:900px){.board{grid-template-columns:1fr 1fr}.how{grid-template-columns:1fr 1fr}.top nav{display:none}}
+@media (max-width:560px){#guessRow{display:grid;grid-template-columns:1fr 1fr}#bReveal{grid-column:1/-1}.result{grid-template-columns:1fr}.how{grid-template-columns:1fr}.tape.r{margin-left:0}.when{margin-left:0;width:100%}}
+@media (prefers-reduced-motion:reduce){.chart path{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="chart.html" data-i="nChart">Chart School</a><a href="quantum.html">Quantum Lab</a></nav>
+ <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></div></header>
+<main id="main">
+ <h1><span class="sr" data-i="h1sr">Kronos Lab: can AI read a crypto chart?</span><span class="tape k" aria-hidden="true">Kronos</span><span class="tape r" aria-hidden="true">Lab</span></h1>
+ <p class="lead" data-i="lead">Kronos is a free, open AI model that learned from price charts of more than 45 exchanges. Can it guess the next 24 hours? We let it forecast real moments from the past. You guess too, then see what really happened.</p>
+ <p class="warn" data-i="warn"><span><b>Experiment, not advice.</b> Every forecast here is about the past and already finished. No live forecasts, no buy or sell signals, nothing about $MAIGA. Not financial advice; we are not responsible for any decision you make. Crypto can lose all its value.</span></p>
+
+ <section class="panel" aria-labelledby="hLab">
+  <h2 id="hLab" style="margin-top:0" data-i="labH">Beat the AI</h2>
+  <div class="row">
+   <div class="chips" role="group" aria-label="Coin" id="chips"><button type="button" class="chip" data-a="BTC">BTC</button><button type="button" class="chip" data-a="ETH">ETH</button><button type="button" class="chip" data-a="SOL">SOL</button></div>
+   <button type="button" class="b ghost" id="bNew" data-i="new">Another moment</button>
+   <span class="when" id="when" aria-live="polite"></span>
+  </div>
+  <div class="chart"><span class="sr" id="chartT" data-i="chartT">Price chart: the last 3 days, then 24 hours of forecast and reality</span><svg id="svg" viewBox="0 0 960 400" role="img" aria-labelledby="chartT"></svg></div>
+  <div class="legend"><span><i style="background:var(--cream)"></i><span data-i="lgSaw">What Kronos saw</span></span><span><i style="background:var(--violet)"></i><span data-i="lgK">Kronos forecast (band = its 6 tries)</span></span><span><i style="background:var(--cyan)"></i><span data-i="lgR">What really happened</span></span></div>
+  <p class="step" id="step" aria-live="polite"></p>
+  <div class="row" id="guessRow"><button type="button" class="b up" id="gUp" aria-pressed="false" data-i="gUp">▲ Higher in 24 h</button><button type="button" class="b down" id="gDown" aria-pressed="false" data-i="gDown">▼ Lower in 24 h</button><button type="button" class="b main" id="bReveal" disabled data-i="reveal">Show what really happened</button></div>
+  <div class="result" id="result" hidden>
+   <div class="res" id="rYou"><span data-i="rYou">You</span><b></b></div>
+   <div class="res" id="rK"><span data-i="rK">Kronos</span><b></b></div>
+   <div class="res" id="rErr"><span data-i="rErr">Price miss after 24 h</span><b></b></div>
+  </div>
+  <p class="tally" id="tally" aria-live="polite"></p>
+  <p class="note" id="noData" hidden data-i="noData">The lab data could not be loaded. Please try again later.</p>
+ </section>
+
+ <h2 data-i="boardH">The honest scoreboard</h2>
+ <p class="note" id="boardNote"></p>
+ <div class="board">
+  <div class="stat"><div class="n" id="sHit">–</div><div class="t" data-i="sHitT">Direction right</div><p id="sHitP"></p></div>
+  <div class="stat"><div class="n" id="sErr">–</div><div class="t" data-i="sErrT">Average price miss</div><p id="sErrP"></p></div>
+  <div class="stat"><div class="n" id="sIn">–</div><div class="t" data-i="sInT">Inside its own band</div><p data-i="sInP">How often the real price ended between its best and worst try.</p></div>
+  <div class="stat"><div class="n" id="sN">–</div><div class="t" data-i="sNT">Moments tested</div><p data-i="sNP">Small sample: a lucky streak is possible. Updated weekly.</p></div>
+ </div>
+ <table class="per" id="per"><thead><tr><th data-i="tCoin">Coin</th><th data-i="tHit">Direction right</th><th data-i="tErr">Kronos miss</th><th data-i="tNaive">"No change" miss</th></tr></thead><tbody></tbody></table>
+
+ <h2 data-i="howH">How Kronos makes a forecast</h2>
+ <ol class="how">
+  <li><b data-i="w1">Candles become words</b><span data-i="w1p">Each hour has an open, high, low, close and volume. Kronos turns every candle into tokens, the way a chatbot turns text into tokens.</span></li>
+  <li><b data-i="w2">It learned the patterns</b><span data-i="w2p">Trained on years of charts from many markets, it learned which shapes often come after which, like a language model learns which word comes next.</span></li>
+  <li><b data-i="w3">It writes possible futures</b><span data-i="w3p">Given 360 hours of history, it writes the next 24 hours, 6 times. Each try is a bit different, because markets are random.</span></li>
+  <li><b data-i="w4">The spread is the honesty</b><span data-i="w4p">A wide band means "I really don't know". The middle line is only the average of its guesses, not a promise.</span></li>
+ </ol>
+
+ <h2 data-i="mythH">Myths, answered straight</h2>
+ <div class="myths">
+  <details><summary data-i="m1">"AI can predict crypto prices."</summary><p data-i="m1p">Not reliably. Look at the scoreboard: even a serious research model is often wrong, and sometimes "the price stays the same" is a better guess. Anyone selling a sure AI prediction is selling a story.</p></details>
+  <details><summary data-i="m2">"If it worked on the past, it works tomorrow."</summary><p data-i="m2p">No. Markets change, and a few dozen moments can look good by luck. Trading costs and fees also eat small edges. That is why this lab only shows the past and never gives live forecasts.</p></details>
+  <details><summary data-i="m3">"Is this a signal for $MAIGA?"</summary><p data-i="m3p">No. Kronos is never run on $MAIGA, and nothing here says what any coin will do. $MAIGA is a satirical meme coin. Entertainment only. NFA. DYOR.</p></details>
+  <details><summary data-i="m4">"Where does the data come from?"</summary><p data-i="m4p">Public hourly price data (no account, no keys) and the open-source Kronos-small model. A script runs every week, forecasts past moments only, and saves the results here. Nothing is traded.</p></details>
+ </div>
+ <p class="note" id="meta"></p>
+
+ <div class="cta"><p data-i="ctaP"><b>New to charts?</b> Learn what candles, trends and volume mean with made-up data first.</p><a class="b main" href="chart.html" data-i="ctaB">Open Chart School</a></div>
+</main>
+<footer><a href="/" data-i="fHome">Home</a><a href="chart.html">Chart School</a><a href="quantum.html">Quantum Lab</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fCred">Model: Kronos by Shi Yu et al. (MIT, github.com/shiyu-coder/Kronos). Not financial advice.</span></footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+var T={
+nl:{skip:'Naar de inhoud',nChart:'Chart School',h1sr:'Kronos Lab: kan AI een cryptografiek lezen?',lead:'Kronos is een gratis, open AI-model dat leerde van koersgrafieken van meer dan 45 beurzen. Kan het de volgende 24 uur raden? We lieten het echte momenten uit het verleden voorspellen. Jij gokt ook, en daarna zie je wat er echt gebeurde.',warn:'<span><b>Experiment, geen advies.</b> Elke voorspelling hier gaat over het verleden en is al afgelopen. Geen live voorspellingen, geen koop- of verkoopsignalen, niets over $MAIGA. Geen financieel advies; wij zijn niet verantwoordelijk voor beslissingen die jij neemt. Crypto kan al zijn waarde verliezen.</span>',labH:'Versla de AI',new:'Ander moment',chartT:'Koersgrafiek: de laatste 3 dagen, daarna 24 uur voorspelling en werkelijkheid',lgSaw:'Wat Kronos zag',lgK:'Voorspelling van Kronos (band = 6 pogingen)',lgR:'Wat er echt gebeurde',gUp:'▲ Hoger over 24 u',gDown:'▼ Lager over 24 u',reveal:'Toon wat er echt gebeurde',rYou:'Jij',rK:'Kronos',rErr:'Prijsfout na 24 u',noData:'De labgegevens konden niet geladen worden. Probeer later opnieuw.',boardH:'Het eerlijke scorebord',sHitT:'Richting juist',sErrT:'Gemiddelde prijsfout',sInT:'Binnen zijn eigen band',sInP:'Hoe vaak de echte prijs eindigde tussen zijn beste en slechtste poging.',sNT:'Momenten getest',sNP:'Kleine steekproef: geluk is mogelijk. Wekelijks bijgewerkt.',tCoin:'Munt',tHit:'Richting juist',tErr:'Fout Kronos',tNaive:'Fout "geen verandering"',howH:'Hoe Kronos voorspelt',w1:'Candles worden woorden',w1p:'Elk uur heeft een open, hoog, laag, slot en volume. Kronos maakt van elke candle tokens, zoals een chatbot tekst in tokens knipt.',w2:'Het leerde de patronen',w2p:'Getraind op jaren grafieken van veel markten leerde het welke vormen vaak na welke komen, zoals een taalmodel leert welk woord volgt.',w3:'Het schrijft mogelijke toekomsten',w3p:'Met 360 uur geschiedenis schrijft het de volgende 24 uur, 6 keer. Elke poging is anders, want markten zijn grillig.',w4:'De spreiding is de eerlijkheid',w4p:'Een brede band betekent "ik weet het echt niet". De middelste lijn is alleen het gemiddelde van zijn gokken, geen belofte.',mythH:'Mythes, eerlijk beantwoord',m1:'"AI kan cryptokoersen voorspellen."',m1p:'Niet betrouwbaar. Kijk naar het scorebord: zelfs een serieus onderzoeksmodel zit er vaak naast, en soms is "de prijs blijft gelijk" een betere gok. Wie een zekere AI-voorspelling verkoopt, verkoopt een verhaal.',m2:'"Als het in het verleden werkte, werkt het morgen."',m2p:'Nee. Markten veranderen en een paar dozijn momenten kunnen er door geluk goed uitzien. Kosten en fees eten kleine voordelen op. Daarom toont dit lab alleen het verleden en nooit live voorspellingen.',m3:'"Is dit een signaal voor $MAIGA?"',m3p:'Nee. Kronos wordt nooit op $MAIGA gedraaid en niets hier zegt wat een munt gaat doen. $MAIGA is een satirische meme coin. Alleen entertainment. Geen financieel advies. DYOR.',m4:'"Waar komen de gegevens vandaan?"',m4p:'Publieke uurkoersen (geen account, geen sleutels) en het open-source model Kronos-small. Elke week draait een script dat alleen momenten uit het verleden voorspelt en de resultaten hier bewaart. Er wordt niets verhandeld.',ctaP:'<b>Nieuw met grafieken?</b> Leer eerst met verzonnen data wat candles, trends en volume betekenen.',ctaB:'Open Chart School',fHome:'Home',fPriv:'Privacy',fLegal:'Juridisch',fCred:'Model: Kronos van Shi Yu e.a. (MIT, github.com/shiyu-coder/Kronos). Geen financieel advies.'},
+fr:{skip:'Aller au contenu',nChart:'Chart School',h1sr:'Kronos Lab : une IA sait-elle lire un graphique crypto ?',lead:'Kronos est un modèle d’IA gratuit et ouvert, entraîné sur les graphiques de plus de 45 plateformes. Peut-il deviner les 24 prochaines heures ? Nous lui avons fait prédire de vrais moments du passé. Vous devinez aussi, puis vous voyez ce qui s’est vraiment passé.',warn:'<span><b>Expérience, pas un conseil.</b> Chaque prévision ici porte sur le passé et est déjà terminée. Pas de prévisions en direct, pas de signaux d’achat ou de vente, rien sur $MAIGA. Pas un conseil financier ; nous ne sommes pas responsables de vos décisions. La crypto peut perdre toute sa valeur.</span>',labH:'Battez l’IA',new:'Autre moment',chartT:'Graphique : les 3 derniers jours, puis 24 heures de prévision et de réalité',lgSaw:'Ce que Kronos a vu',lgK:'Prévision de Kronos (bande = ses 6 essais)',lgR:'Ce qui s’est vraiment passé',gUp:'▲ Plus haut dans 24 h',gDown:'▼ Plus bas dans 24 h',reveal:'Voir ce qui s’est passé',rYou:'Vous',rK:'Kronos',rErr:'Écart de prix après 24 h',noData:'Les données du lab n’ont pas pu être chargées. Réessayez plus tard.',boardH:'Le tableau des scores honnête',sHitT:'Bonne direction',sErrT:'Écart moyen',sInT:'Dans sa propre bande',sInP:'À quelle fréquence le vrai prix a fini entre son meilleur et son pire essai.',sNT:'Moments testés',sNP:'Petit échantillon : la chance est possible. Mis à jour chaque semaine.',tCoin:'Crypto',tHit:'Bonne direction',tErr:'Écart Kronos',tNaive:'Écart « pas de changement »',howH:'Comment Kronos fait une prévision',w1:'Les bougies deviennent des mots',w1p:'Chaque heure a une ouverture, un plus haut, un plus bas, une clôture et un volume. Kronos transforme chaque bougie en tokens, comme un chatbot découpe un texte.',w2:'Il a appris les motifs',w2p:'Entraîné sur des années de graphiques, il a appris quelles formes suivent souvent quelles autres, comme un modèle de langage apprend le mot suivant.',w3:'Il écrit des futurs possibles',w3p:'Avec 360 heures d’historique, il écrit les 24 heures suivantes, 6 fois. Chaque essai est différent, car les marchés sont aléatoires.',w4:'L’écart, c’est l’honnêteté',w4p:'Une bande large veut dire « je ne sais vraiment pas ». La ligne du milieu n’est que la moyenne de ses essais, pas une promesse.',mythH:'Idées reçues, réponses franches',m1:'« L’IA peut prédire les prix de la crypto. »',m1p:'Pas de façon fiable. Regardez le tableau : même un modèle de recherche sérieux se trompe souvent, et parfois « le prix ne bouge pas » est une meilleure estimation. Qui vend une prédiction IA sûre vend une histoire.',m2:'« Si ça a marché dans le passé, ça marchera demain. »',m2p:'Non. Les marchés changent, et quelques dizaines de moments peuvent sembler bons par chance. Les frais mangent aussi les petits avantages. C’est pourquoi ce lab ne montre que le passé, jamais de prévisions en direct.',m3:'« Est-ce un signal pour $MAIGA ? »',m3p:'Non. Kronos n’est jamais utilisé sur $MAIGA, et rien ici ne dit ce qu’une crypto va faire. $MAIGA est un meme coin satirique. Divertissement uniquement. Pas un conseil financier. DYOR.',m4:'« D’où viennent les données ? »',m4p:'Des prix horaires publics (sans compte ni clé) et le modèle open source Kronos-small. Un script tourne chaque semaine, ne prédit que des moments passés et enregistre les résultats ici. Rien n’est échangé.',ctaP:'<b>Débutant avec les graphiques ?</b> Apprenez d’abord ce que sont les bougies, tendances et volumes avec des données inventées.',ctaB:'Ouvrir Chart School',fHome:'Accueil',fPriv:'Confidentialité',fLegal:'Mentions légales',fCred:'Modèle : Kronos de Shi Yu et al. (MIT, github.com/shiyu-coder/Kronos). Pas un conseil financier.'}};
+var M={
+en:{pick:'Step 1: will the price be higher or lower 24 hours later? Guess first.',ready:'Step 2: reveal the forecast and the truth.',shown:'Kronos had only the cream line. Violet is what it guessed; cyan is what happened.',up:'Higher',down:'Lower',right:'✓ right',wrong:'✕ wrong',vs:'"no change" guess missed',tally:'This visit: you {y} of {n}, Kronos {k} of {n}.',errP:'A plain "price stays the same" guess missed by {n} on average.',hitP:'Up or down after 24 h. A coin flip gets about 50%; always saying "up" got {u} in this period.',board:'Kronos-small, {m} past moments per coin over the last {d} days, 24-hour forecasts from hourly candles.',meta:'Data: {src}. Last update {g}. Model: {model}, {lic}. Past moments only; nothing here is a signal.',moment:'{a} · {d} · {i} of {n}',better:'better than',worse:'worse than',cut:'Kronos stops here'},
+nl:{pick:'Stap 1: is de prijs 24 uur later hoger of lager? Gok eerst.',ready:'Stap 2: toon de voorspelling en de waarheid.',shown:'Kronos had alleen de crèmekleurige lijn. Paars is zijn gok; cyaan is wat er gebeurde.',up:'Hoger',down:'Lager',right:'✓ juist',wrong:'✕ fout',vs:'gok "geen verandering" zat ernaast met',tally:'Dit bezoek: jij {y} van {n}, Kronos {k} van {n}.',errP:'Een simpele gok "de prijs blijft gelijk" zat er gemiddeld {n} naast.',hitP:'Omhoog of omlaag na 24 u. Kop of munt haalt ongeveer 50%; altijd "omhoog" zeggen haalde {u} in deze periode.',board:'Kronos-small, {m} momenten uit het verleden per munt over de laatste {d} dagen, voorspellingen van 24 uur op uurcandles.',meta:'Gegevens: {src}. Laatst bijgewerkt {g}. Model: {model}, {lic}. Alleen momenten uit het verleden; niets hier is een signaal.',moment:'{a} · {d} · {i} van {n}',better:'beter dan',worse:'slechter dan',cut:'Kronos stopt hier'},
+fr:{pick:'Étape 1 : le prix sera-t-il plus haut ou plus bas 24 heures plus tard ? Devinez d’abord.',ready:'Étape 2 : révélez la prévision et la réalité.',shown:'Kronos n’avait que la ligne crème. Violet, c’est son estimation ; cyan, ce qui s’est passé.',up:'Plus haut',down:'Plus bas',right:'✓ juste',wrong:'✕ faux',vs:'l’estimation « pas de changement » ratait de',tally:'Cette visite : vous {y} sur {n}, Kronos {k} sur {n}.',errP:'Une simple estimation « le prix ne bouge pas » ratait de {n} en moyenne.',hitP:'Hausse ou baisse après 24 h. Pile ou face fait environ 50 % ; dire toujours « hausse » faisait {u} sur cette période.',board:'Kronos-small, {m} moments passés par crypto sur les {d} derniers jours, prévisions à 24 h sur bougies horaires.',meta:'Données : {src}. Dernière mise à jour {g}. Modèle : {model}, {lic}. Moments passés uniquement ; rien ici n’est un signal.',moment:'{a} · {d} · {i} sur {n}',better:'meilleur que',worse:'moins bon que',cut:'Kronos s’arrête ici'}};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+function $(id){return document.getElementById(id);}
+var lang=new URLSearchParams(location.search).get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!M[lang])lang='en';
+var EN={};document.querySelectorAll('[data-i]').forEach(function(el){EN[el.getAttribute('data-i')]=el.innerHTML;});
+function m(k,o){var s=M[lang][k]!==undefined?M[lang][k]:M.en[k];if(o)Object.keys(o).forEach(function(x){s=s.split('{'+x+'}').join(o[x]);});return s;}
+var RICH={warn:1,ctaP:1};
+var D=null,S={asset:'BTC',idx:-1,guess:null,shown:false,seen:{},you:0,kr:0,n:0,step:'pick'};
+function pct(v,d){return Number(v).toLocaleString(lang,{maximumFractionDigits:d===undefined?1:d})+'%';}
+function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
+ document.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');var v=lang==='en'?EN[k]:(T[lang][k]!==undefined?T[lang][k]:EN[k]);
+  if(RICH[k])el.innerHTML=v;else{var tmp=document.createElement('div');tmp.innerHTML=v;el.textContent=tmp.textContent;}});
+ document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-l')===lang?'true':'false');});
+ if(D){board();label();if(S.idx>=0)draw(S.reveal);$('step').textContent=m(S.step);if(S.shown)result();tally();}}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.getAttribute('data-l');apply();});});
+
+/* ---------------------------------------------------------- chart */
+var NS='http://www.w3.org/2000/svg',W=960,H=400,PL=14,PR=86,PT=18,PB=34,FS=13;
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+function cur(){return D.assets[S.asset][S.idx];}
+function draw(reveal){var svg=$('svg'),mo=cur(),sm=svg.parentNode.clientWidth<600;W=sm?540:960;H=sm?440:400;PR=sm?100:86;PB=sm?44:34;FS=sm?21:13;svg.setAttribute('viewBox','0 0 '+W+' '+H);S.reveal=!!reveal;svg.textContent='';
+ var h=sm?mo.hist.slice(-36):mo.hist,n=h.length,F=mo.mid.length,tot=n+F;
+ var vals=h.concat(mo.lo,mo.hi,mo.real),lo=Math.min.apply(null,vals),hi=Math.max.apply(null,vals),pad=(hi-lo)*.08||1;lo-=pad;hi+=pad;
+ function X(i){return PL+(W-PL-PR)*i/(tot-1);}function Y(v){return PT+(H-PT-PB)*(1-(v-lo)/(hi-lo));}
+ for(var g=0;g<=4;g++){var v=lo+(hi-lo)*g/4,y=Y(v);svg.appendChild(el('line',{x1:PL,x2:W-PR,y1:y,y2:y,stroke:'rgba(243,236,217,.08)'}));
+  var t=el('text',{x:W-PR+8,y:y+4,fill:'#a9b6d3','font-size':FS,'font-family':'system-ui'});t.textContent=fmt(v);svg.appendChild(t);}
+ var cx=X(n-1);svg.appendChild(el('rect',{x:cx,y:PT,width:W-PR-cx,height:H-PT-PB,fill:'rgba(56,242,255,.05)'}));
+ svg.appendChild(el('line',{x1:cx,x2:cx,y1:PT,y2:H-PB,stroke:'#e0b43a','stroke-dasharray':'5 5','stroke-width':2}));
+ [[PL,'start','#a9b6d3',sm?'−36 h':'−72 h',H-12],[cx-8,'end','#e0b43a',m('cut'),PT+FS+4],[W-PR,'end','#a9b6d3','+24 h',H-12]].forEach(function(a){var t=el('text',{x:a[0],y:a[4],fill:a[2],'font-size':FS+1,'font-weight':800,'text-anchor':a[1],'font-family':'system-ui'});t.textContent=a[3];svg.appendChild(t);});
+ function line(arr,off){return arr.map(function(v,i){return (i?'L':'M')+X(i+off).toFixed(1)+' '+Y(v).toFixed(1);}).join(' ');}
+ var last=h[n-1];
+ svg.appendChild(el('path',{d:line(h,0),fill:'none',stroke:'#f3ecd9','stroke-width':2.4,'stroke-linejoin':'round'}));
+ if(reveal){var up=[last].concat(mo.hi),dn=[last].concat(mo.lo);
+  var band='M'+X(n-1)+' '+Y(last)+' '+up.slice(1).map(function(v,i){return 'L'+X(n+i).toFixed(1)+' '+Y(v).toFixed(1);}).join(' ')+' '+dn.slice(1).reverse().map(function(v,i){return 'L'+X(n+F-1-i).toFixed(1)+' '+Y(v).toFixed(1);}).join(' ')+' Z';
+  svg.appendChild(el('path',{d:band,fill:'rgba(180,140,255,.22)',stroke:'none'}));
+  svg.appendChild(el('path',{d:line([last].concat(mo.mid),n-1),fill:'none',stroke:'#b48cff','stroke-width':2.4,'stroke-dasharray':'7 5'}));
+  var rp=el('path',{d:line([last].concat(mo.real),n-1),fill:'none',stroke:'#38f2ff','stroke-width':3,'stroke-linejoin':'round'});svg.appendChild(rp);
+  try{var L=rp.getTotalLength();rp.style.strokeDasharray=L;rp.style.strokeDashoffset=L;rp.getBoundingClientRect();rp.style.transition='stroke-dashoffset 1.6s ease-out';rp.style.strokeDashoffset=0;}catch(e){}
+  svg.appendChild(el('circle',{cx:X(tot-1),cy:Y(mo.real[F-1]),r:5,fill:'#38f2ff'}));}
+ else{var q=el('text',{x:(cx+W-PR)/2,y:(PT+H-PB)/2+16,fill:'#38f2ff','font-size':sm?70:52,'font-weight':900,'text-anchor':'middle','font-family':'system-ui'});q.textContent='?';svg.appendChild(q);}
+ svg.appendChild(el('circle',{cx:cx,cy:Y(last),r:5,fill:'#e0b43a'}));}
+function fmt(v){var d=v>=1000?0:v>=100?1:2;return Number(v).toLocaleString(lang,{minimumFractionDigits:d,maximumFractionDigits:d});}
+
+/* ---------------------------------------------------------- game */
+function pickMoment(){var list=D.assets[S.asset],seen=S.seen[S.asset]=S.seen[S.asset]||{},free=[];
+ for(var i=0;i<list.length;i++)if(!seen[i])free.push(i);if(!free.length){S.seen[S.asset]={};free=list.map(function(_,i){return i;});seen=S.seen[S.asset];}
+ S.idx=free[Math.floor(Math.random()*free.length)];seen[S.idx]=1;S.guess=null;S.shown=false;
+ $('gUp').setAttribute('aria-pressed','false');$('gDown').setAttribute('aria-pressed','false');$('gUp').disabled=false;$('gDown').disabled=false;$('bReveal').disabled=true;
+ $('result').hidden=true;setStep('pick');label();draw(false);}
+function setStep(k){S.step=k;$('step').textContent=m(k);}
+function label(){if(S.idx<0)return;var mo=cur(),d=new Date(mo.t);
+ $('when').textContent=m('moment',{a:S.asset,d:d.toLocaleString(lang,{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'UTC'})+' UTC',i:S.idx+1,n:D.assets[S.asset].length});}
+function guess(up){if(S.shown)return;S.guess=up;$('gUp').setAttribute('aria-pressed',String(up));$('gDown').setAttribute('aria-pressed',String(!up));$('bReveal').disabled=false;setStep('ready');}
+function reveal(){if(S.guess===null||S.shown)return;S.shown=true;var mo=cur();S.n++;if(S.guess===mo.real_up)S.you++;if(mo.hit)S.kr++;
+ $('gUp').disabled=true;$('gDown').disabled=true;$('bReveal').disabled=true;draw(true);result();tally();setStep('shown');}
+function result(){var mo=cur(),you=S.guess===mo.real_up;
+ var a=$('rYou'),b=$('rK'),c=$('rErr');a.className='res '+(you?'ok':'no');b.className='res '+(mo.hit?'ok':'no');c.className='res';
+ a.querySelector('b').textContent=m(S.guess?'up':'down')+' '+m(you?'right':'wrong');
+ b.querySelector('b').textContent=m(mo.pred_up?'up':'down')+' '+m(mo.hit?'right':'wrong');
+ c.querySelector('b').textContent='Kronos '+pct(mo.err,2)+' · '+m('vs')+' '+pct(mo.naive_err,2);
+ $('result').hidden=false;}
+function tally(){$('tally').textContent=S.n?m('tally',{y:S.you,k:S.kr,n:S.n}):'';}
+function board(){var A=D.summary.ALL,me=D.meta;
+ $('sHit').textContent=pct(A.hits/A.n*100,0);$('sErr').textContent=pct(A.err,2);$('sIn').textContent=pct(A.inside/A.n*100,0);$('sN').textContent=A.n;
+ $('sErrP').textContent=m('errP',{n:pct(A.naive_err,2)});$('sHitP').textContent=m('hitP',{u:pct(A.up_share,0)});
+ $('boardNote').textContent=m('board',{m:me.moments_per_asset,d:me.days});
+ var tb=$('per').querySelector('tbody');tb.textContent='';['BTC','ETH','SOL'].forEach(function(k){var s=D.summary[k];if(!s)return;var tr=document.createElement('tr');
+  [k,s.hits+' / '+s.n+' ('+pct(s.hits/s.n*100,0)+')',pct(s.err,2),pct(s.naive_err,2)].forEach(function(v){var td=document.createElement('td');td.textContent=v;tr.appendChild(td);});tb.appendChild(tr);});
+ $('meta').textContent=m('meta',{src:me.source,g:new Date(me.generated).toLocaleDateString(lang,{day:'numeric',month:'long',year:'numeric'}),model:me.model,lic:me.license});}
+function setAsset(a){S.asset=a;document.querySelectorAll('#chips .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-a')===a?'true':'false');});pickMoment();}
+document.querySelectorAll('#chips .chip').forEach(function(c){c.addEventListener('click',function(){setAsset(c.getAttribute('data-a'));});});
+$('gUp').addEventListener('click',function(){guess(true);});$('gDown').addEventListener('click',function(){guess(false);});
+$('bReveal').addEventListener('click',reveal);$('bNew').addEventListener('click',pickMoment);
+var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(function(){if(D&&S.idx>=0)draw(S.reveal);},150);});
+apply();
+fetch('data/kronos-lab.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
+ if(!j||!j.assets||!j.assets.BTC||!j.assets.BTC.length)throw 0;D=j;board();setAsset('BTC');})
+ .catch(function(){$('noData').hidden=false;['gUp','gDown','bNew'].forEach(function(id){$(id).disabled=true;});});
+window.__klab={get state(){return S;},get data(){return D;},show:function(a,i){S.asset=a;setAsset(a);S.idx=i;S.guess=null;S.shown=false;label();draw(false);setStep('pick');$('result').hidden=true;$('gUp').disabled=false;$('gDown').disabled=false;$('gUp').setAttribute('aria-pressed','false');$('gDown').setAttribute('aria-pressed','false');}};
+})();
+</script>
+<script src="pwa.js" defer></script>
+<script src="/guide.js" defer></script>
+<script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'other',p_ref:r})}).catch(function(){});}catch(e){}})();</script>
+</body>
+</html>

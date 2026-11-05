@@ -144,7 +144,8 @@ footer{border-top:1px solid var(--line);padding:38px 0 50px;color:var(--dim);fon
 @media (max-width:760px){.panel .phone{display:none}}
 @media (max-width:480px){.coin .in{grid-template-columns:1fr;padding:18px}.coin .logo{width:64px;height:64px}.coin .acts{grid-column:auto;grid-template-columns:1fr}.coin .stats b{font-size:15px}.tabs{grid-template-columns:1fr}.tab img{width:44px;height:44px}.tab[aria-selected=true]::after{display:none}.shop{grid-template-columns:1fr 1fr;gap:10px}.pack{padding:16px}.pack.pro{grid-column:span 2}.list a{grid-template-columns:1fr}.list em{justify-self:start}}
 @media (prefers-reduced-motion:no-preference){.stage img,.bub{animation:pop .4s cubic-bezier(.22,1,.36,1) both}.stage .bolt{animation-delay:.1s}.stage .eg{animation-delay:.2s}.stage .mint{animation-delay:.3s}.bub{animation-delay:.55s}@keyframes pop{from{transform:translateY(10px);opacity:0}}}
-</style></head><body>
+</style>
+<link rel="stylesheet" href="/motion.css"></head><body>
 <a class="skip" href="#main" data-i="skip">Skip to content</a>
 <div class="wrap">
 <header class="top">
@@ -171,7 +172,7 @@ footer{border-top:1px solid var(--line);padding:38px 0 50px;color:var(--dim);fon
 <section class="spot" id="spot" aria-labelledby="h-spot">
  <h2 id="h-spot" data-i="spH">Most popular right now</h2>
  <p class="sub" data-i="spP">A free game, a meme machine and AI bots for your business. All in your browser, no account.</p>
- <div class="sgrid">
+ <div data-reveal-group class="sgrid">
   <article class="sp raid">
    <a class="vis" href="raid.html" tabindex="-1" aria-hidden="true"><img src="img/raid/og-raid.png" alt="" width="1200" height="630"><span class="new" data-i="nwB">New</span></a>
    <div class="body">
@@ -204,7 +205,7 @@ footer{border-top:1px solid var(--line);padding:38px 0 50px;color:var(--dim);fon
 <section class="s" id="doors" aria-labelledby="h-doors">
  <h2 id="h-doors" data-i="dH">What do you want to do?</h2>
  <p class="sub" data-i="dP">Pick one. Each tool opens right here in your browser and explains itself.</p>
- <div class="tabs" role="tablist" aria-labelledby="h-doors" id="tabs"></div>
+ <div data-reveal-group class="tabs" role="tablist" aria-labelledby="h-doors" id="tabs"></div>
  <div class="panel" role="tabpanel" id="panel" tabindex="0">
   <div><h3 id="pT"></h3><p id="pP"></p><ul class="list" id="pL"></ul></div>
   <div class="phone"><img id="pImg" src="img/home-garage.webp" alt="" width="390" height="780" loading="lazy"></div>
@@ -214,7 +215,7 @@ footer{border-top:1px solid var(--line);padding:38px 0 50px;color:var(--dim);fon
 <section class="s" aria-labelledby="h-how">
  <h2 id="h-how" data-i="hH">New to all this? It takes three steps.</h2>
  <p class="sub" data-i="hP">You don't need to know anything about AI or code.</p>
- <ol class="steps">
+ <ol data-reveal-group class="steps">
   <li><b data-i="s1">Pick a tool</b><span data-i="s1p">Choose what you want to do above. Every tool has short instructions on the page.</span></li>
   <li><b data-i="s2">Use it right here</b><span data-i="s2p">It works in your browser on your phone or computer. No download, no sign-up.</span></li>
   <li><b data-i="s3">Keep what you made</b><span data-i="s3p">Copy your bot into ChatGPT or Claude, download your meme, or share it with one link.</span></li>
@@ -224,12 +225,12 @@ footer{border-top:1px solid var(--line);padding:38px 0 50px;color:var(--dim);fon
 <section class="s" id="shop" aria-labelledby="h-shop">
  <h2 id="h-shop" data-i="shH">Ready-made bot packs</h2>
  <p class="sub" data-i="shP">Skip the setup: tested AI assistants with full prompts and test questions, as a digital download. Pay what you want above the minimum.</p>
- <div class="shop" id="shopG"></div>
+ <div data-reveal-group class="shop" id="shopG"></div>
  <p style="margin:18px 0 0;color:var(--dim)"><a href="free.html?src=home" id="freeKit" data-i="kitL">New here? Get the free Starter Kit: 5 ready-to-paste bots</a></p>
 </section>
 
 <section class="s" id="coin" aria-labelledby="h-coin">
- <div class="coin">
+ <div data-reveal class="coin">
   <div class="tick" aria-hidden="true"><div class="row" id="tkRow"></div></div>
   <div class="in">
    <img class="logo" src="logo.png" alt="" width="96" height="96">

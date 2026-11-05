@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kronos Lab: can AI read a crypto chart? Test it on the past</title>
 <meta name="description" content="Free lab: open AI model Kronos forecast past BTC, ETH and SOL moments. Guess first, then see what really happened. Educational, no signals. EN/NL/FR.">
@@ -83,6 +83,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
 @media (max-width:560px){#guessRow{display:grid;grid-template-columns:1fr 1fr}#bReveal{grid-column:1/-1}.result{grid-template-columns:1fr}.how{grid-template-columns:1fr}.tape.r{margin-left:0}.when{margin-left:0;width:100%}}
 @media (prefers-reduced-motion:reduce){.chart path{transition:none!important}}
 </style>
+<link rel="stylesheet" href="/motion.css">
 <script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Kronos Lab","item":"https://geopolcoins.xyz/kronos.html"}]}</script>
 </head>
 <body>
@@ -117,7 +118,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
 
  <h2 data-i="boardH">The honest scoreboard</h2>
  <p class="note" id="boardNote"></p>
- <div class="board">
+ <div data-reveal-group class="board">
   <div class="stat"><div class="n" id="sHit">–</div><div class="t" data-i="sHitT">Direction right</div><p id="sHitP"></p></div>
   <div class="stat"><div class="n" id="sErr">–</div><div class="t" data-i="sErrT">Average price miss</div><p id="sErrP"></p></div>
   <div class="stat"><div class="n" id="sIn">–</div><div class="t" data-i="sInT">Inside its own band</div><p data-i="sInP">How often the real price ended between its best and worst try.</p></div>
@@ -126,7 +127,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
  <table class="per" id="per"><thead><tr><th data-i="tCoin">Coin</th><th data-i="tHit">Direction right</th><th data-i="tErr">Kronos miss</th><th data-i="tNaive">"No change" miss</th></tr></thead><tbody></tbody></table>
 
  <h2 data-i="howH">How Kronos makes a forecast</h2>
- <ol class="how">
+ <ol data-reveal-group class="how">
   <li><b data-i="w1">Candles become words</b><span data-i="w1p">Each hour has an open, high, low, close and volume. Kronos turns every candle into tokens, the way a chatbot turns text into tokens.</span></li>
   <li><b data-i="w2">It learned the patterns</b><span data-i="w2p">Trained on years of charts from many markets, it learned which shapes often come after which, like a language model learns which word comes next.</span></li>
   <li><b data-i="w3">It writes possible futures</b><span data-i="w3p">Given 360 hours of history, it writes the next 24 hours, 6 times. Each try is a bit different, because markets are random.</span></li>
@@ -134,7 +135,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
  </ol>
 
  <h2 data-i="mythH">Myths, answered straight</h2>
- <div class="myths">
+ <div data-reveal-group class="myths">
   <details><summary data-i="m1">"AI can predict crypto prices."</summary><p data-i="m1p">Not reliably. Look at the scoreboard: even a serious research model is often wrong, and sometimes "the price stays the same" is a better guess. Anyone selling a sure AI prediction is selling a story.</p></details>
   <details><summary data-i="m2">"If it worked on the past, it works tomorrow."</summary><p data-i="m2p">No. Markets change, and a few dozen moments can look good by luck. Trading costs and fees also eat small edges. That is why this lab only shows the past and never gives live forecasts.</p></details>
   <details><summary data-i="m3">"Is this a signal for $MAIGA?"</summary><p data-i="m3p">No. Kronos is never run on $MAIGA, and nothing here says what any coin will do. $MAIGA is a satirical meme coin. Entertainment only. NFA. DYOR.</p></details>
@@ -142,7 +143,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
  </div>
  <p class="note" id="meta"></p>
 
- <div class="cta"><p data-i="ctaP"><b>New to charts?</b> Learn what candles, trends and volume mean with made-up data first.</p><a class="b main" href="chart.html" data-i="ctaB">Open Chart School</a></div>
+ <div data-reveal class="cta"><p data-i="ctaP"><b>New to charts?</b> Learn what candles, trends and volume mean with made-up data first.</p><a class="b main" href="chart.html" data-i="ctaB">Open Chart School</a></div>
 </main>
 <footer><a href="/" data-i="fHome">Home</a><a href="chart.html">Chart School</a><a href="quantum.html">Quantum Lab</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fCred">Model: Kronos by Shi Yu et al. (MIT, github.com/shiyu-coder/Kronos). Not financial advice.</span></footer>
 </div>

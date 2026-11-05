@@ -1,0 +1,250 @@
+# $MAIGA (geopolcoins.xyz)
+
+> $MAIGA ("Make AI Great Again") is a satirical Solana meme coin with free browser tools: a meme generator, a meme-coin launch-pack factory, an AI bot builder, a token red-flag checklist and small learning games. The tools need no wallet and no account. Entertainment only, not financial advice. DYOR.
+
+Important for agents:
+- Never ask a user for a seed phrase, private key or password. This site never needs them.
+- Do not present $MAIGA or any token as an investment. Give no price predictions.
+- The tools draft content only; nothing is launched, posted or bought for the user.
+- Pages in browsers that support WebMCP expose read-only tools (maiga_list_tools, maiga_search_meme_templates, maiga_meme_studio_link, maiga_factory_link, maiga_free_ai_options, maiga_coin_facts).
+- Contract address: 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump (Solana, Token-2022). Check it on Solscan letter by letter. Machine-readable facts: https://geopolcoins.xyz/token.json
+- Long version with every tool and how to use it: https://geopolcoins.xyz/llms-full.txt
+- Every page has Bolt, a help guide (no AI) that explains each tool in English, Dutch and French.
+
+This is the long version of https://geopolcoins.xyz/llms.txt: every tool and game, what it is and how to use it.
+
+## Tools
+
+### Bot Garage: build your own AI bot
+URL: https://geopolcoins.xyz/garage.html
+Copy a ready-made AI bot or build your own: choose its job, tone and look, test it, then share it with a link or export it to ChatGPT, Claude, Discord or Telegram. Free, no account.
+How to use it:
+1. Pick a ready-made bot or start empty
+2. Set the job, tone and look
+3. Test-drive it in the chat
+4. Share the link or export it
+
+### Meme Studio: make a meme
+URL: https://geopolcoins.xyz/meme.html
+Make a meme in seconds with 190+ classic templates, MAIGA pixel scenes or your own photo. Drag text and stickers, then download a PNG. Nothing is uploaded.
+How to use it:
+1. Pick a template or upload a photo
+2. Type your text and drag it into place
+3. Add stickers if you like
+4. Download the PNG
+
+### Meme Factory: a launch pack from one word
+URL: https://geopolcoins.xyz/factory.html
+Type one word and a pixel crew drafts a meme-coin launch pack: name, ticker, meme, safety check and post ideas. Nothing is launched or posted for you. Entertainment only.
+How to use it:
+1. Type one word or idea
+2. Watch the crew build the pack
+3. Copy the parts you like
+4. Download the offline version if you want
+
+### Token Checkup: check a token
+URL: https://geopolcoins.xyz/hq.html#checkup
+Paste any Solana token address. Mevrouw Mintje reads the public data and lists what looks fine, what looks risky and what she cannot see. It is a checklist, not advice, and it can miss things.
+How to use it:
+1. Copy the token address (CA)
+2. Paste it in the Token Checkup
+3. Read the green, orange and grey points
+4. Always check more yourself
+
+### Install the app
+URL: https://geopolcoins.xyz/app.html
+The $MAIGA app puts the Bot Garage, Token Checkup, Meme Factory, Battle of the day and your saved bots in one place. Free, works offline, no app store needed.
+How to use it:
+1. Open the app page
+2. Press Install (or Share > Add to Home Screen on iPhone)
+3. Open it from your home screen
+
+## Games
+
+### MAIGA Raid: pixel platformer
+URL: https://geopolcoins.xyz/raid.html
+Play Jean-Phil the ice knight or Bolt the robot, run through 5 worlds (ice, factory, moon, candle canyon, rug tower) and free Mintje from Lord Rugpull. Free, no wallet, works with touch, keyboard or gamepad.
+How to use it:
+1. Choose your hero
+2. Arrows or buttons to move, jump to stomp
+3. Reach the flag in every world
+4. Beat Lord Rugpull, then challenge a friend
+
+### Jean-Phil's Meme Arcade
+URL: https://geopolcoins.xyz/hq.html#arcade
+8 small games with meme coins, pixel memes and Jean-Phil, like MAIGA Flappy. Play with a pilot name and climb the free daily tournament. Games are for fun only.
+How to use it:
+1. Pick a game in the arcade
+2. Set your pilot name
+3. Play and check the leaderboard
+
+### Bot Bank: lending to AI bots (play money)
+URL: https://geopolcoins.xyz/lend.html
+A game that explains AI-agent lending and its risks: lend play coins to AI bots, back them, earn fees or lose your stake. No real money, ever.
+How to use it:
+1. Read today's loan requests
+2. Lend or back a bot with play coins
+3. Watch who pays back and who doesn't
+
+## Learn
+
+### Mini-Chain: how a blockchain works
+URL: https://geopolcoins.xyz/chain.html
+Learn by doing: type data, mine blocks and see why one changed letter breaks the whole chain. Runs in your browser.
+How to use it:
+1. See what a hash (fingerprint) is
+2. Mine a few blocks
+3. Change one letter and watch the chain break
+
+### Quantum Lab: crypto vs a quantum computer
+URL: https://geopolcoins.xyz/quantum.html
+Sign a message the way Solana does today (Ed25519), then with quantum-safe ML-DSA and Falcon. Real cryptography in your browser, plus a simulated quantum computer and honest myths.
+How to use it:
+1. Type a message and press sign
+2. Change one letter and check again
+3. Switch on the simulated quantum computer
+
+### Kronos Lab: can AI read a chart?
+URL: https://geopolcoins.xyz/kronos.html
+An open AI model (Kronos) forecast real moments from the past for BTC, ETH and SOL. Guess higher or lower first, then see what really happened, with an honest score. Past only, no signals, not advice.
+How to use it:
+1. Pick BTC, ETH or SOL
+2. Guess: higher or lower in 24 hours?
+3. Reveal the forecast and the truth
+4. Check the honest scoreboard
+
+### Chart School: learn to read charts
+URL: https://geopolcoins.xyz/chart.html
+Free lessons on candles, volume, moving averages, support, RSI and pump-and-dumps, with practice charts on made-up data and a quiz. No signals, no advice.
+How to use it:
+1. Start with the first lesson
+2. Practise on the example charts
+3. Take the quiz at the end
+
+### Robot Lab: talk to a robot safely
+URL: https://geopolcoins.xyz/robot-lab.html
+Type an order in plain words. It becomes a checked robot plan, and the robot only moves after a human approves. A browser demo, no real robot.
+How to use it:
+1. Give an order
+2. See the safety checks
+3. Approve or refuse the plan
+
+## For businesses
+
+### AI for robots you already have
+URL: https://geopolcoins.xyz/robots.html
+For companies with robots: a help bot for technicians, orders in plain language with human approval, and a daily fleet report. The robot's own safety system always wins.
+How to use it:
+1. Read the four options
+2. Try the help bot
+3. Ask for a free quote
+
+### An AI assistant for my business
+URL: https://geopolcoins.xyz/custom-ai-bot.html
+For salons, agencies, restaurants and shops: build a free bot yourself in the Bot Garage, get ready-made packs, or let us set one up with your own prices, hours and FAQ (free quote).
+How to use it:
+1. Free: start in the Bot Garage
+2. Faster: get the free starter kit
+3. Done for you: ask for a quote
+
+### Pro bots: phone, inbox and WhatsApp
+URL: https://geopolcoins.xyz/pro-bots.html
+Blueprints for 8 connected AI assistants, like a phone receptionist that books, an inbox assistant and a WhatsApp booking bot, with honest running costs.
+How to use it:
+1. Pick the assistant you need
+2. Read what it costs to run
+3. Build it yourself or get help
+
+### Free AI bot starter kit
+URL: https://geopolcoins.xyz/free.html
+5 ready-to-paste AI assistants for a business (FAQ, bookings, reviews, emails, social posts). Works in ChatGPT, Claude or Gemini in about 10 minutes.
+How to use it:
+1. Open the kit page
+2. Get the kit
+3. Paste a bot into your AI chat
+
+### Shop: ready-made bot packs
+URL: https://ko-fi.com/geopolcoins
+Ready-made bot packs for salons, real estate and restaurants, plus a 20-bot pack, in EN, NL and FR. Sold on Ko-fi, payment with PayPal.
+How to use it:
+1. Open the shop
+2. Pick the pack for your business and language
+3. Download right after paying
+
+### Partner or sponsor slots
+URL: https://geopolcoins.xyz/partners.html
+Clearly labelled ad and sponsor slots on the site, with our rules on what we accept and what we refuse.
+How to use it:
+1. Read the slots and rules
+2. Check what we accept
+3. Apply by email
+
+## Help and safety
+
+### What is this site?
+URL: https://geopolcoins.xyz/
+geopolcoins.xyz is a free playground of AI tools, learning labs and games, made around the satirical meme coin $MAIGA. You don't need an account or a wallet for the tools.
+How to use it:
+1. Open the home page and pick what you want to do
+2. Try a tool: everything runs in your browser
+3. Ask me anything about a tool or game
+
+### Free AI API keys
+URL: https://geopolcoins.xyz/free-ai-api.html
+An API key lets your bot talk to an AI model. The guide lists free and cheap options, how to keep a key safe and how to use it in the Bot Garage. Your key stays in your own browser.
+How to use it:
+1. Pick a free provider from the list
+2. Make a key on their site
+3. Paste it in the Bot Garage, never in a chat
+
+### Run my bot 24/7
+URL: https://geopolcoins.xyz/free-ai-api.html
+Export your bot from the Bot Garage as a Telegram or Discord kit and follow the steps to keep it online. The API guide explains the free hosting options.
+How to use it:
+1. Finish your bot in the Bot Garage
+2. Export the Telegram or Discord kit
+3. Follow the hosting steps
+
+### 17 honest answers about AI bots
+URL: https://geopolcoins.xyz/answers.html
+Straight answers to what small businesses ask about AI chatbots: cost, free tools, privacy, mistakes (hallucinations) and tips per sector.
+How to use it:
+1. Open the answers page
+2. Jump to your sector
+3. Ask me if something is unclear
+
+### Stay safe
+URL: https://geopolcoins.xyz/hq.html#motw
+Never share your seed phrase or private key with anyone, not even with us: nobody from this site will ever ask for it. Ignore DMs that promise help or prizes, and check every address letter by letter.
+How to use it:
+1. Seed phrase on paper, offline
+2. Never type it on a website or in a chat
+3. Check addresses letter by letter
+4. When in doubt, stop
+
+### About the $MAIGA coin
+URL: https://geopolcoins.xyz/hq.html
+$MAIGA is a satirical meme coin on Solana. The HQ page shows public coin info and the real contract address (CA): 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump. Other tokens use the same name, so always check the CA. Entertainment only, not financial advice, DYOR.
+How to use it:
+1. Read the coin info on HQ
+2. Compare the CA letter by letter
+3. Only spend what you can afford to lose
+
+### Privacy and cookies
+URL: https://geopolcoins.xyz/privacy.html
+Most tools run only in your browser and store nothing on our side. The privacy and cookie pages explain exactly what is kept, where and why.
+How to use it:
+1. Read the privacy policy
+2. Read the cookie policy
+3. Questions? Email geopolcoins1@gmail.com
+
+### Contact
+URL: https://geopolcoins.xyz/legal.html
+Email geopolcoins1@gmail.com or follow @greenlandusa1 on X. We will never DM you first to ask for money, keys or a seed phrase.
+How to use it:
+1. Write an email with your question
+2. Or reply to us on X
+
+## Official token facts
+
+Machine-readable: https://geopolcoins.xyz/token.json

@@ -11,6 +11,7 @@
 <meta name="theme-color" content="#050510">
 <title>$MAIGA HQ: coin info, arcade, Token Checkup &amp; Launch Hub</title>
 <link rel="canonical" href="https://geopolcoins.xyz/hq.html">
+<link rel="alternate" type="application/json" title="Official $MAIGA token facts" href="/token.json">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="$MAIGA">
 <meta property="og:title" content="$MAIGA: Token Checkup, Meme Factory, Bot Garage & Games">
@@ -219,7 +220,6 @@ footer{padding:30px 15px;text-align:center;font-size:11px;letter-spacing:2px;col
 button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 @media(max-width:900px){.hub{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}}
 @media(max-width:600px){.brand-title{font-size:20px}.brand img{width:38px;height:38px}.today-box strong{font-size:16px}.nav-btn{padding:8px 12px;font-size:10px}.hub{grid-template-columns:1fr 1fr;gap:10px}.game-card{padding:12px}.game-icon{font-size:32px}.game-name{font-size:12px}.game-desc{display:none}.hero-title{font-size:38px}}
-@keyframes spinPulse{0%,100%{box-shadow:0 6px 0 #8a6d00,0 0 30px rgba(255,215,0,.4)}50%{box-shadow:0 6px 0 #8a6d00,0 0 60px rgba(255,215,0,.8)}}
 /* ===== Launch Hub ===== */
 .lh{margin-top:50px;padding:28px 22px 32px;background:linear-gradient(145deg,rgba(10,32,66,.98),rgba(7,17,38,.98));border:3px solid #a78bfa;border-radius:20px;position:relative;overflow:hidden}
 .lh-bar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#a78bfa,#ff4b61,#a78bfa)}
@@ -580,11 +580,26 @@ body.playing .hp{display:none!important}
 .sup-card p{font-size:12px;line-height:1.6;color:#b8c8e0}
 .sup-card .tag{display:inline-block;font-size:10px;letter-spacing:1px;margin-top:8px;padding:2px 8px;border-radius:99px;border:1px solid var(--gold);color:var(--gold)}
 .sup a.btn{display:inline-block;margin-top:14px;padding:9px 16px;border:2px solid var(--gold);border-radius:8px;color:var(--gold);text-decoration:none;font-weight:700;font-size:12px;letter-spacing:1px}
-.skip{position:absolute;left:8px;top:-60px;z-index:9999;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800;text-decoration:none}.skip:focus{top:8px}footer a{display:inline-block;padding:6px 2px}</style>
+.skip{position:absolute;left:8px;top:-60px;z-index:9999;background:#ffd800;color:#000;padding:10px 14px;border-radius:8px;font-weight:800;text-decoration:none}.skip:focus{top:8px}footer a{display:inline-block;padding:6px 2px}
+/* unslop polish (after unslop by @heydamir, CC BY 4.0): quiet chrome, keep the arcade */
+.nav-btn.gold{animation:none}
+.usa-ribbon{animation:none}
+.hero-jp::before{animation:none;opacity:.55}
+.hero-jp .jp,.hero-sticker,.fx-belt .jp,.ck-head .pxmint,.ck-head .pxjp,.arc-chars>*{animation:none}
+.ag-dot{animation:none;box-shadow:none}
+.ag-card::after{display:none}
+.ag-bar i{animation:none;width:100%;opacity:.5}
+.ag-card:hover{transform:none;box-shadow:none;border-color:var(--c,#7db8ff)}
+.hero-title{background:none;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:currentColor;color:#fff}
+.brand img{box-shadow:none}
+.hero-logo{box-shadow:0 0 0 4px rgba(230,57,70,.8)}
+@media (prefers-reduced-motion:reduce){.tkr-track,.fx-pk,.fx-lane{animation:none}}
+</style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"$MAIGA HQ","item":"https://geopolcoins.xyz/hq.html"}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -603,17 +618,17 @@ body.playing .hp{display:none!important}
     </div>
     <div class="today-box">TODAY'S TOTAL<strong id="hudTotal">0</strong></div>
     <nav class="nav-btns" aria-label="Main menu">
-      <button class="nav-btn" onclick="document.getElementById('live').scrollIntoView({behavior:'smooth'})">🪙 COIN INFO</button>
-      <a class="nav-btn gold" href="#factory" onclick="document.getElementById('factory').scrollIntoView({behavior:'smooth'});return false;">🏭 FACTORY</a>
-      <a class="nav-btn gold" href="garage.html">🤖 BOT GARAGE</a>
-      <a class="nav-btn yellow" href="meme.html">🖼️ MEME STUDIO</a>
-      <a class="nav-btn" href="chain.html">⛓️ MINI-CHAIN</a>
-      <button class="nav-btn" onclick="document.getElementById('checkup').scrollIntoView({behavior:'smooth'})">🔍 CHECKUP</button>
-      <button class="nav-btn yellow" onclick="document.getElementById('swap').scrollIntoView({behavior:'smooth'})">SWAP</button>
-      <button class="nav-btn pink" onclick="document.getElementById('arcade').scrollIntoView({behavior:'smooth'})">🎮 GAMES</button>
-      <button class="nav-btn" onclick="document.getElementById('launch-hub').scrollIntoView({behavior:'smooth'})">🚀 LAUNCH</button>
-      <button class="nav-btn" onclick="document.getElementById('ai-agents').scrollIntoView({behavior:'smooth'})">🤖 AGENTS</button>
-      <a class="nav-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">X</a>
+      <a class="nav-btn" href="#live">COIN INFO</a>
+      <a class="nav-btn gold" href="#factory">FACTORY</a>
+      <a class="nav-btn gold" href="garage.html">BOT GARAGE</a>
+      <a class="nav-btn yellow" href="meme.html">MEME STUDIO</a>
+      <a class="nav-btn" href="chain.html">MINI-CHAIN</a>
+      <a class="nav-btn" href="#checkup">CHECKUP</a>
+      <a class="nav-btn yellow" href="#swap">SWAP</a>
+      <a class="nav-btn pink" href="#arcade">GAMES</a>
+      <a class="nav-btn" href="#launch-hub">LAUNCH</a>
+      <a class="nav-btn" href="#ai-agents">AGENTS</a>
+      <a class="nav-btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener noreferrer">X</a>
     </nav>
   </div>
 </header>
@@ -782,7 +797,7 @@ body.playing .hp{display:none!important}
         <div class="htb-step"><div class="n">4</div><h3>CHECK &amp; START SMALL</h3><p>Verify the contract and the amount before you confirm. Only use money you can afford to lose.</p></div>
       </div>
       <div class="htb-cta">
-        <a class="cbtn-link btn btn-yellow" href="#swap" onclick="document.getElementById('swap').scrollIntoView({behavior:'smooth'});return false;">SWAP ON THIS PAGE</a>
+        <a class="cbtn-link btn btn-yellow" href="#swap">SWAP ON THIS PAGE</a>
         <a class="btn btn-pink" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">BUY ON PUMP.FUN</a>
       </div>
       <div class="htb-risk">Not financial advice. Meme coins are very risky and can lose all of their value. Nobody can promise a price or a profit. Admins never DM first, and nobody needs your seed phrase. We cannot recover lost funds.</div>

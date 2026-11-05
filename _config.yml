@@ -2,3 +2,5 @@
 exclude:
   - specs
   - tools
+include:
+  - .well-known

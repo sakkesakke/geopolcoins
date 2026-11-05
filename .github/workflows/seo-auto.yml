@@ -1,0 +1,60 @@
+name: SEO auto (dates, breadcrumbs, llms-full, IndexNow)
+
+# On every change to main:
+# 1. keep sitemap dates, breadcrumbs and llms-full.txt up to date (commits only when something changed)
+# 2. tell search engines that use IndexNow (Bing, Yandex, Seznam, Naver...) which pages changed.
+#    The IndexNow key is public by design: it lives in the site root as <key>.txt.
+on:
+  push:
+    branches: [main]
+    paths: ["*.html", "guide-kb.json", "llms.txt", "token.json", "tools/seo_enhance.py", ".github/workflows/seo-auto.yml"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo-auto
+  cancel-in-progress: false
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dates, breadcrumbs, llms-full.txt
+        run: python3 tools/seo_enhance.py --dates
+      - name: Commit when changed
+        run: |
+          git diff --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A sitemap.xml llms-full.txt *.html
+          git commit -m "SEO: refresh sitemap dates, breadcrumbs and llms-full.txt"
+          git push
+      - name: Tell IndexNow which pages changed
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          # the public IndexNow key is the name of the 32-hex .txt file in the site root
+          INDEXNOW_KEY=$(ls | grep -E '^[0-9a-f]{32}\.txt$' | head -1 | sed 's/\.txt$//')
+          [ -z "$INDEXNOW_KEY" ] && { echo "::warning::no IndexNow key file"; exit 0; }
+          export INDEXNOW_KEY
+          if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
+            files=$(git diff --name-only "$BEFORE" HEAD -- '*.html' | grep -v -E '^(admin|crm|marketing|reset|offline|404|google)' || true)
+          else
+            files="index.html"
+          fi
+          [ -z "$files" ] && { echo "no public pages changed"; exit 0; }
+          urls=$(for f in $files; do [ "$f" = index.html ] && echo "https://geopolcoins.xyz/" || echo "https://geopolcoins.xyz/$f"; done | python3 -c "import sys,json;print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))")
+          body=$(python3 -c "import json,os,sys;print(json.dumps({'host':'geopolcoins.xyz','key':os.environ['INDEXNOW_KEY'],'keyLocation':'https://geopolcoins.xyz/'+os.environ['INDEXNOW_KEY']+'.txt','urlList':json.loads(sys.argv[1])}))" "$urls")
+          echo "$body"
+          sleep 60  # give GitHub Pages time to publish
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://api.indexnow.org/indexnow -H "Content-Type: application/json; charset=utf-8" -d "$body")
+          echo "IndexNow answered $code"
+          case "$code" in 200|202) ;; *) echo "::warning::IndexNow returned $code";; esac

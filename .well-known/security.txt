@@ -1,0 +1,8 @@
+Contact: mailto:geopolcoins1@gmail.com
+Expires: 2027-11-05T00:00:00.000Z
+Preferred-Languages: en, nl, fr
+Canonical: https://geopolcoins.xyz/.well-known/security.txt
+Policy: https://github.com/sakkesakke/geopolcoins/blob/main/SECURITY.md
+
+# Please report security problems privately by email. We never ask for seed phrases,
+# private keys or passwords, and we never DM first. Anyone who does is not us.

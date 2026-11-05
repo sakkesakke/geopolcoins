@@ -1,0 +1,31 @@
+/* Motion for geopolcoins.xyz: only motion that explains something.
+   - page-to-page transitions (cross-document View Transitions, no JavaScript)
+   - sections and cards rise in once as they scroll into view (CSS scroll-driven animations)
+   - buttons press down a little
+   Everything is off for people who ask their device for less motion, and old browsers just show the page.
+   One easing curve for the whole site. */
+:root{--m-ease:cubic-bezier(.22,1,.36,1)}
+
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:m-out .18s var(--m-ease) both}
+  ::view-transition-new(root){animation:m-in .32s var(--m-ease) both}
+  @keyframes m-out{to{opacity:0}}
+  @keyframes m-in{from{opacity:0;transform:translateY(8px)}}
+
+  /* Bolt the guide stays in place while the page changes */
+  #bolt-guide{view-transition-name:bolt-guide}
+
+  @supports (animation-timeline:view()){
+    [data-reveal]{animation:m-reveal linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+    [data-reveal-group]>*{animation:m-reveal linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+    @keyframes m-reveal{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  }
+
+  a.btn,a.b,button.btn,button.b,.btn,.b{transition:transform .14s var(--m-ease),background-color .16s var(--m-ease),border-color .16s var(--m-ease),color .16s var(--m-ease)}
+  a.btn:active,a.b:active,button.btn:active,button.b:active{transform:scale(.97)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  @view-transition{navigation:none}
+}

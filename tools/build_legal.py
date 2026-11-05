@@ -16,7 +16,7 @@ KBO=(f'Enterprise number (KBO/BCE): {OP_KBO}<br>' if OP_KBO else '')
 def page(slug,title,desc,h1,body):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="https://geopolcoins.xyz/{slug}">
@@ -38,7 +38,8 @@ code{{background:#071226;padding:1px 5px;border-radius:5px;font-size:13px;color:
 .fill{{background:#ff4b61;color:#fff;padding:0 6px;border-radius:5px;font-weight:700}}
 .toc{{columns:2;font-size:14px}}@media(max-width:600px){{.toc{{columns:1}}}}
 footer{{text-align:center;color:var(--dim);font-size:13px;margin-top:40px}}footer a{{display:inline-block;padding:6px 2px}}
-</style></head><body>
+</style>
+<link rel="stylesheet" href="/motion.css"></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main">
 <div class="top"><a href="/">&larr; geopolcoins.xyz</a><nav aria-label="Legal"><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="legal.html">Legal notice</a> · <a href="hq.html#terms">Terms</a></nav></div>

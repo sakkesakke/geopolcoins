@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quantum Lab: will crypto survive a quantum computer?</title>
 <meta name="description" content="Free browser lab: sign a message the way Solana does today (Ed25519), then with quantum-safe ML-DSA and Falcon. Plain words, EN/NL/FR.">
@@ -82,6 +82,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
 @media (max-width:480px){.how{grid-template-columns:1fr}.tape.r{margin-left:0}}
 @media (prefers-reduced-motion:reduce){.bar i,.algo{transition:none}}
 </style>
+<link rel="stylesheet" href="/motion.css">
 <script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Quantum Lab","item":"https://geopolcoins.xyz/quantum.html"}]}</script>
 </head>
 <body>
@@ -121,7 +122,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
  </section>
 
  <h2 data-i="howH">The quantum problem in four steps</h2>
- <ol class="how">
+ <ol data-reveal-group class="how">
   <li><b data-i="w1">A signature proves it's you</b><span data-i="w1p">Your wallet has a secret key and a public key. Only the secret key can sign; everyone can check with the public key.</span></li>
   <li><b data-i="w2">Today it's one-way</b><span data-i="w2p">Going from the public key back to the secret key would take normal computers longer than the age of the universe.</span></li>
   <li><b data-i="w3">Quantum changes that</b><span data-i="w3p">A large quantum computer running Shor's algorithm could do it. Such a machine does not exist yet; experts disagree on when it will.</span></li>
@@ -129,7 +130,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
  </ol>
 
  <h2 data-i="mythH">Myths, answered straight</h2>
- <div class="myths">
+ <div data-reveal-group class="myths">
   <details><summary data-i="m1">"AI can make a blockchain quantum-safe."</summary><p data-i="m1p">No. AI can help find bugs in code, but it is not a lock. Safety comes from proven math (like the standards in this lab) and careful audits. Be careful with any project that says "secured by AI".</p></details>
   <details><summary data-i="m2">"We need a quantum computer to stay safe from quantum computers."</summary><p data-i="m2p">No. Quantum-safe signatures run on normal phones and laptops, as you just saw. Quantum key distribution exists too, but it needs special hardware and doesn't help a blockchain.</p></details>
   <details><summary data-i="m3">"Quantum computers will break crypto tomorrow."</summary><p data-i="m3p">Not tomorrow. Today's quantum computers are far too small. But blockchains move slowly, so big networks like Solana are preparing now.</p></details>
@@ -137,7 +138,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
  </div>
  <p class="note" data-i="checked">Facts checked October 2026: NIST published FIPS 203, 204 and 205 in August 2024; Falcon is being standardised as FN-DSA; Solana developers announced Falcon as their post-quantum signature in 2026.</p>
 
- <div class="cta"><p data-i="ctaP"><b>Want to see how a blockchain works first?</b> Build your own mini blockchain in the browser, block by block.</p><a class="b main" href="chain.html" data-i="ctaB">Open Mini-Chain</a></div>
+ <div data-reveal class="cta"><p data-i="ctaP"><b>Want to see how a blockchain works first?</b> Build your own mini blockchain in the browser, block by block.</p><a class="b main" href="chain.html" data-i="ctaB">Open Mini-Chain</a></div>
 </main>
 <footer><a href="/" data-i="fHome">Home</a><a href="chain.html">Mini-Chain</a><a href="raid.html">MAIGA Raid</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fCred">Cryptography: noble-post-quantum and noble-curves by Paul Miller (MIT).</span></footer>
 </div>

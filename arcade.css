@@ -1,0 +1,44 @@
+/* Arcade theme: the look of the new homepage (arcade hall at night) for the older pages.
+   Pages opt in with <html data-page="..."> and link this file after their own styles.
+   Only colours, type and a few surfaces change; layout and scripts stay the same.
+   Headings use Jersey 10 by The Soft Type Project (OFL, /fonts/jersey-10-OFL.txt). */
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+
+:root[data-page]{
+  --a-night:#120f1e;--a-floor:#191427;--a-cab:#251c38;--a-cab2:#2f2446;--a-line:rgba(241,235,224,.12);
+  --a-text:#f1ebe0;--a-dim:#b3a9c4;--a-amber:#ffb547;--a-cream:#f3ecd9;--a-teal:#5fd3c6;--a-red:#ff6b6b;--a-lilac:#c8a8ff;--a-ok:#5be38a;
+  --a-pix:"Jersey 10",ui-monospace,Consolas,monospace;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+
+/* ---------- HQ ---------- */
+:root[data-page="hq"]{--bg:var(--a-night);--bg2:var(--a-floor);--panel:var(--a-cab);--text:var(--a-text);--dim:var(--a-dim);
+  --gold:var(--a-amber);--yellow:var(--a-cream);--cyan:var(--a-teal);--magenta:var(--a-red);--red:var(--a-red);--green:var(--a-teal);
+  --purple:var(--a-lilac);--orange:var(--a-amber);--usa-blue:var(--a-cab2)}
+:root[data-page="hq"] body{background:var(--a-night);background-image:none;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+
+/* ---------- Bot Garage ---------- */
+:root[data-page="garage"]{--bg:var(--a-night);--panel:rgba(37,28,56,.88);--line:var(--a-line);--text:var(--a-text);--dim:var(--a-dim);
+  --cyan:var(--a-teal);--pink:var(--a-lilac);--yellow:var(--a-amber);--green:var(--a-ok);--red:var(--a-red);--orange:var(--a-amber)}
+:root[data-page="garage"] body{background:var(--a-night)}
+:root[data-page="garage"] body::after{display:none}
+
+/* ---------- App ---------- */
+:root[data-page="app"]{--bg:var(--a-night);--panel:var(--a-cab);--text:var(--a-text);--dim:var(--a-dim);--gold:var(--a-amber);
+  --cyan:var(--a-teal);--pink:var(--a-lilac);--line:var(--a-line)}
+:root[data-page="app"] body{background:var(--a-night)}
+
+/* ---------- shared: pixel headings like the homepage marquees ---------- */
+:root[data-page] h1,:root[data-page] h2,:root[data-page] .hero-title,:root[data-page] .brand-title{
+  font-family:var(--a-pix)!important;font-weight:400!important;letter-spacing:0!important;text-transform:none;
+  font-size-adjust:.62;text-shadow:none!important;-webkit-text-stroke:0}
+:root[data-page] h3{letter-spacing:0}
+:root[data-page] a:focus-visible,:root[data-page] button:focus-visible,:root[data-page] input:focus-visible,
+:root[data-page] select:focus-visible,:root[data-page] textarea:focus-visible,:root[data-page] summary:focus-visible{outline:3px solid var(--a-teal);outline-offset:3px}
+:root[data-page] ::selection{background:var(--a-amber);color:#1a1206}
+
+/* HQ header and the hero area: one calm surface instead of the red/blue wash */
+:root[data-page="hq"] header{background:rgba(18,15,30,.96);border-bottom:1px solid var(--a-line);box-shadow:none;backdrop-filter:none}
+:root[data-page="hq"] .usa-ribbon{background:var(--a-amber);height:4px}
+:root[data-page="hq"] .tkr{background:var(--a-floor)}
+:root[data-page="hq"] .tkr-label{background:var(--a-teal);color:#0d1a18;font-family:var(--a-pix);letter-spacing:0;font-size:18px}

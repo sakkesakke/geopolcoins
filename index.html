@@ -10,228 +10,225 @@
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a1630">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://geopolcoins.xyz/#org", "name": "geopolcoins.xyz ($MAIGA)", "url": "https://geopolcoins.xyz/", "logo": "https://geopolcoins.xyz/icon-512.png", "email": "geopolcoins1@gmail.com", "sameAs": ["https://x.com/greenlandusa1", "https://bsky.app/profile/geopolcoins.bsky.social", "https://ko-fi.com/geopolcoins", "https://github.com/sakkesakke/geopolcoins"]}, {"@type": "WebSite", "@id": "https://geopolcoins.xyz/#site", "name": "geopolcoins.xyz", "url": "https://geopolcoins.xyz/", "inLanguage": ["en", "nl", "fr"], "publisher": {"@id": "https://geopolcoins.xyz/#org"}, "description": "Free AI tools that run in your browser: chatbots for small businesses, meme makers, crypto lessons with play money and games."}]}</script>
+<link rel="preload" href="/fonts/jersey-10.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.16);--ok:#5be38a}
-*{box-sizing:border-box}html{scroll-behavior:smooth}[hidden]{display:none!important}
-body{margin:0;background:var(--ink);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--brass)}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:8px}
-.skip{position:absolute;left:8px;top:-60px;background:var(--brass);color:#111;padding:10px 14px;border-radius:8px;font-weight:800;z-index:9}.skip:focus{top:8px}
-.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
-.cut{image-rendering:pixelated;filter:drop-shadow(4px 0 0 #fff) drop-shadow(-4px 0 0 #fff) drop-shadow(0 4px 0 #fff) drop-shadow(0 -4px 0 #fff) drop-shadow(0 9px 0 rgba(0,0,0,.35))}
+/* Arcade hall at night. One loud thing: the row of cabinets. Everything else stays quiet.
+   Type: Jersey 10 by The Soft Type Project (OFL, self-hosted, fonts/jersey-10-OFL.txt) for headings and marquees, system sans for reading. */
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--cab2:#2f2446;--off:#3a2f52;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;
+ --amber:#ffb547;--brass:#e0b43a;--brass-d:#9c7a1c;--cream:#f3ecd9;--red:#ff6b6b;--teal:#5fd3c6;--lilac:#c8a8ff;--ok:#5be38a;
+ --pix:"Jersey 10",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{margin:0;background:var(--night);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--amber)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:700;z-index:9}.skip:focus{top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
+.pix{image-rendering:pixelated}
 /* header */
-.top{display:flex;align-items:center;gap:18px;padding:14px 0}
-.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800;letter-spacing:-.01em;margin-right:auto}
-.brand img{width:38px;height:38px;border-radius:10px}
-.top nav{display:flex;gap:4px}.top nav a{color:var(--dim);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:15.5px}.top nav a:hover{color:var(--text);background:var(--panel2)}
-.langs{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:3px}
-.langs button{background:none;border:0;color:var(--dim);font:700 13.5px system-ui,sans-serif;padding:7px 10px;border-radius:9px;cursor:pointer}
-.langs button[aria-pressed=true]{background:var(--cream);color:#1d1a14}
-/* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;padding:34px 0 46px}
-h1{font-size:clamp(40px,6.4vw,76px);line-height:1;letter-spacing:-.03em;margin:0 0 20px;font-weight:700}
-h1 span{display:block;color:var(--cream)}
-.lead{font-size:clamp(18px,2vw,21px);color:var(--dim);max-width:31em;margin:0 0 28px}
+.top{display:flex;align-items:center;gap:16px;padding:16px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font:400 24px/1 var(--pix);margin-right:auto}
+.brand img{width:36px;height:36px;border-radius:8px}
+.top nav{display:flex;gap:2px}.top nav a{color:var(--dim);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:15px;transition:color .16s var(--ease),background-color .16s var(--ease)}
+.top nav a:hover{color:var(--text);background:var(--floor)}
+.langs{display:flex;background:var(--floor);border:1px solid var(--line);border-radius:10px;padding:3px}
+.langs button{background:none;border:0;color:var(--dim);font:600 13px system-ui,sans-serif;padding:8px 10px;border-radius:7px;cursor:pointer;min-height:36px}
+.langs button[aria-pressed=true]{background:var(--cream);color:#1f1830}
+/* hero: change booth */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:40px 0 56px}
+.hero>*{min-width:0}
+h1{font:400 clamp(52px,8vw,100px)/.92 var(--pix);margin:0 0 22px}
+.lead{font-size:clamp(18px,2vw,20px);color:var(--dim);max-width:32em;margin:0 0 28px}
 .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:14px;font-weight:800;text-decoration:none;font-size:16.5px;border:2px solid transparent;cursor:pointer;font-family:inherit}
-.btn.main{background:var(--brass);color:#14110a;box-shadow:0 5px 0 var(--brass-d)}.btn.main:active{transform:translateY(3px);box-shadow:0 2px 0 var(--brass-d)}
-.btn.ghost{color:var(--text);border-color:var(--line);background:none}.btn.ghost:hover{border-color:var(--cream)}
-.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:26px 0 0;padding:0;list-style:none;color:var(--dim);font-size:15px}
-.facts li{display:flex;align-items:center;gap:8px}.facts li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
-.stage{position:relative;aspect-ratio:1/1;max-width:470px;margin-left:auto;width:100%}
-.stage .floor{position:absolute;left:4%;right:4%;bottom:6%;height:34%;background:#b67745;border:5px solid #111;border-radius:18px;box-shadow:0 10px 0 rgba(0,0,0,.3)}
-.stage .wall{position:absolute;inset:4% 4% 30% 4%;background:#8fd3e8;border:5px solid #111;border-radius:22px;overflow:hidden}
-.stage .wall i{position:absolute;right:9%;top:12%;width:30%;height:34%;background:#4fb3ff;border:8px solid #fff;box-shadow:0 0 0 4px #111}
-.stage .sign{position:absolute;left:9%;top:10%;padding:8px 14px;background:#ffd400;border:4px solid #111;font:900 clamp(15px,2.2vw,22px)/1 system-ui;color:#111;transform:rotate(-5deg)}
-.stage img{position:absolute;bottom:20%}
-.stage .jp{left:7%;width:42%}.stage .bolt{left:52%;width:22%;bottom:22%}.stage .eg{left:75%;width:19%;bottom:23%}.stage .mint{left:36%;width:17%;bottom:13%;z-index:2}
-.bub{position:absolute;left:40%;top:18%;max-width:56%;background:#fff;color:#111;border:4px solid #111;border-radius:20px;padding:10px 14px;font:800 clamp(14px,1.7vw,18px)/1.2 system-ui;z-index:3;box-shadow:0 6px 0 rgba(0,0,0,.25)}
-.bub::after{content:"";position:absolute;left:60%;bottom:-20px;border:10px solid transparent;border-top:14px solid #111}
-.news{display:inline-flex;align-items:center;gap:10px;max-width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:6px 16px 6px 6px;color:var(--text);text-decoration:none;font-weight:700;font-size:15px;margin:0 0 18px}.news:hover{border-color:var(--brass)}
-.news b{flex:none;color:var(--brass);font-weight:600;font-size:14px}
-/* spotlight: game, meme factory, bots */
-.spot{padding:6px 0 64px}
-.sgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
-.sp{position:relative;display:flex;flex-direction:column;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:24px;overflow:hidden}
-.sp.raid{grid-row:span 2;border:1px solid rgba(224,180,58,.6)}
-.sp .vis{display:block;position:relative;background:#06122b;text-decoration:none}
-.sp.raid .vis img{display:block;width:100%;height:auto;aspect-ratio:1200/630;image-rendering:pixelated}
-.sp .body{display:flex;flex-direction:column;gap:10px;flex:1;padding:20px 22px 22px}
-.sp h3{margin:0;font-size:clamp(21px,2.3vw,27px);line-height:1.15;letter-spacing:-.02em}
-.sp p{margin:0;color:var(--dim)}
-.sp .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:6px}
-.sp .btn{padding:12px 18px;font-size:15.5px}
-.sp .new{position:absolute;top:12px;right:12px;background:var(--ink);color:var(--cream);font-weight:600;font-size:13px;padding:4px 10px;border-radius:6px;border:1px solid var(--line)}
-.lbmini{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin-top:4px}.lbmini b{display:block;font-size:14.5px;color:var(--cream);margin-bottom:4px}
-.lbmini ol{margin:0;padding-left:22px;color:var(--dim);font-size:15px}.lbmini li{padding:2px 0}.lbmini li span{color:var(--brass);font-weight:800;margin-left:6px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
-.chips li{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:13.5px;color:var(--cream)}
-.mvis{display:grid!important;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px;background:linear-gradient(135deg,#1b2a52,#0b1630)}
-.mvis img{width:100%;height:auto;aspect-ratio:48/40;image-rendering:pixelated;border:3px solid #111;border-radius:10px;background:#fff;box-shadow:0 5px 0 rgba(0,0,0,.35)}
-.mvis img:nth-child(2){transform:rotate(-3deg)}.mvis img:nth-child(3){transform:rotate(2deg)}
-.bvis{display:flex!important;align-items:flex-end;gap:14px;padding:16px 18px;background:linear-gradient(135deg,#102a40,#0b1630)}
-.bvis img{width:58px;height:auto;flex:none;image-rendering:pixelated}
-.bvis .chat{display:grid;gap:6px;flex:1;min-width:0;font-size:14px;line-height:1.3}
-.bvis .chat span{padding:7px 11px;border-radius:14px;max-width:92%}
-.bvis .q{justify-self:end;background:var(--panel);color:var(--text);border-bottom-right-radius:4px}
-.bvis .a{justify-self:start;background:var(--cream);color:#1d1a14;border-bottom-left-radius:4px}
-@media (max-width:860px){.sgrid{grid-template-columns:1fr}.sp.raid{grid-row:auto}}
-@media (max-width:760px){.hero .stage{max-width:250px}.spot{padding-top:0}}
-.sp{transition:border-color .16s cubic-bezier(.22,1,.36,1)}.sp:hover{border-color:rgba(243,236,217,.4)}.sp.raid:hover{border-color:var(--brass)}
-/* doors */
-section.s{padding:64px 0;border-top:1px solid var(--line)}
-h2{font-size:clamp(28px,3.6vw,42px);line-height:1.08;letter-spacing:-.025em;margin:0 0 10px}
-.sub{color:var(--dim);max-width:40em;margin:0 0 28px}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.tab{position:relative;display:flex;align-items:center;gap:14px;text-align:left;background:var(--panel2);border:2px solid var(--line);border-radius:18px;padding:16px;color:var(--text);font:inherit;cursor:pointer;min-width:0}
-.tab img{width:56px;height:56px;object-fit:contain;flex:none}
-.tab b{display:block;font-size:17.5px;line-height:1.2;letter-spacing:-.01em}.tab small{display:block;color:var(--dim);font-size:13.5px;line-height:1.3;margin-top:3px}
-.tab:hover{border-color:rgba(243,236,217,.4)}
-.tab[aria-selected=true]{background:var(--cream);color:#1d1a14;border-color:var(--cream)}.tab[aria-selected=true] small{color:#5b5142}
-.tab[aria-selected=true]::after{content:"";position:absolute;left:50%;bottom:-14px;margin-left:-12px;border:12px solid transparent;border-top-color:var(--cream);border-bottom:0}
-.panel{margin-top:22px;display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:start;background:var(--panel2);border:1px solid var(--line);border-radius:24px;padding:26px}
-.panel h3{font-size:24px;margin:0 0 6px;letter-spacing:-.015em}.panel>div>p{color:var(--dim);margin:0 0 18px}
-.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.list a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;text-decoration:none;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
-.list a:hover{border-color:var(--brass)}
-.list b{display:block;font-size:17px}.list span{display:block;color:var(--dim);font-size:14.5px;line-height:1.4}
-.list em{font-style:normal;font-weight:800;font-size:14px;color:#14110a;background:var(--brass);padding:7px 12px;border-radius:10px;white-space:nowrap}
-.phone{justify-self:center;width:100%;max-width:260px;border-radius:38px;padding:9px;background:linear-gradient(145deg,#3a4a6b,#0d1426 45%,#1b2540);box-shadow:0 0 0 2px rgba(169,212,255,.25),0 26px 60px rgba(0,0,0,.5)}
-.phone img{display:block;width:100%;height:auto;aspect-ratio:1/2;object-fit:cover;object-position:top;border-radius:30px;background:#050b1b}
-/* steps */
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:s}
-.steps li{counter-increment:s;position:relative;padding-top:58px;color:var(--dim)}
-.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:1px solid var(--brass);color:var(--brass);font-weight:600;font-size:17px}
-.steps li::after{content:"";position:absolute;left:54px;right:-14px;top:21px;height:2px;background:var(--line)}.steps li:last-child::after{display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 20px;border-radius:10px;font:600 16px system-ui,sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .14s var(--ease),background-color .16s var(--ease),border-color .16s var(--ease)}
+.btn.main{background:var(--amber);color:#1a1206;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.btn.main:hover{background:#ffc366}
+.btn.ghost{color:var(--text);border-color:var(--line);background:var(--floor)}.btn.ghost:hover{border-color:rgba(241,235,224,.35)}
+.btn:active{transform:scale(.97)}
+.facts{display:flex;flex-wrap:wrap;gap:6px 20px;margin:24px 0 0;padding:0;list-style:none;color:var(--mute);font-size:15px}
+.facts li::before{content:"";display:inline-block;width:8px;height:8px;margin-right:8px;background:var(--ok);vertical-align:1px}
+.booth{position:relative;aspect-ratio:1/1;max-width:480px;width:100%;margin-left:auto}
+.booth .wall{position:absolute;inset:0 0 30% 0;border-radius:16px 16px 0 0;background:var(--cab);overflow:hidden;border:1px solid var(--line);border-bottom:0}
+.booth .wall::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(0,0,0,.18) 46px 48px)}
+.booth .sign{position:absolute;left:50%;top:9%;transform:translateX(-50%);padding:10px 18px;background:var(--amber);color:#1a1206;font:400 clamp(26px,3.4vw,40px)/1 var(--pix);border-radius:8px;white-space:nowrap;box-shadow:0 0 0 4px #1a1206,0 0 0 6px var(--amber)}
+.booth .desk{position:absolute;left:0;right:0;bottom:0;height:32%;background:#6b3f22;border-radius:0 0 16px 16px;border-top:10px solid #8a5530}
+.booth .desk::after{content:"";position:absolute;left:8%;right:8%;top:22%;height:30%;background:repeating-linear-gradient(90deg,#4e2d17 0 6px,#5a341b 6px 12px);border-radius:4px;opacity:.7}
+.booth img{position:absolute;height:auto;image-rendering:pixelated}
+.booth .jp{left:36%;width:38%;bottom:24%}
+.booth .bolt{left:9%;width:20%;bottom:30%}
+.booth .eg{right:5%;width:19%;bottom:30%}
+.booth .mint{left:62%;width:14%;bottom:18%;z-index:2}
+.booth .bub{position:absolute;left:3%;top:24%;max-width:33%;background:var(--cream);color:#1f1830;border-radius:14px;padding:10px 14px;font:600 clamp(13px,1.5vw,16px)/1.3 system-ui,sans-serif;z-index:3}
+.booth .bub::after{content:"";position:absolute;right:-12px;top:18px;border:8px solid transparent;border-left:12px solid var(--cream)}
+/* sections */
+section.s{padding:72px 0;border-top:1px solid var(--line)}
+h2{font:400 clamp(40px,5.2vw,60px)/1 var(--pix);margin:0 0 10px}
+.sub{color:var(--dim);max-width:42em;margin:0 0 28px}
+/* the hall */
+.hall-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.hall-head .sub{margin:0}
+.zones{display:flex;flex-wrap:wrap;gap:6px}
+.zones button{min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--dim);font:600 14px system-ui,sans-serif;cursor:pointer;transition:background-color .16s var(--ease),color .16s var(--ease),border-color .16s var(--ease)}
+.zones button:hover{color:var(--text);border-color:rgba(241,235,224,.35)}
+.zones button[aria-pressed=true]{background:var(--cream);color:#1f1830;border-color:var(--cream)}
+.hall{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
+.cab{position:relative;display:flex;flex-direction:column;background:var(--cab);border-radius:14px 14px 8px 8px;padding:10px 10px 14px;border:1px solid var(--line);transition:transform .2s var(--ease),border-color .2s var(--ease)}
+.cab:hover{border-color:rgba(241,235,224,.3)}
+.cab:has(a:focus-visible){outline:3px solid var(--teal);outline-offset:3px}
+.cab a.hit{position:absolute;inset:0;border-radius:inherit;z-index:2}
+.cab a.hit:focus-visible{outline:none}
+.mq{display:flex;align-items:center;justify-content:center;min-height:46px;padding:6px 8px;border-radius:8px;background:var(--mq,var(--amber));color:#1a1206;font:400 26px/1 var(--pix);text-align:center}
+.scr{margin:10px 4px 0;aspect-ratio:4/3;border-radius:6px;background:#0b0915;border:6px solid #17111f;overflow:hidden;display:grid;place-items:center;position:relative}
+.scr img{display:block;max-width:100%;height:auto;image-rendering:pixelated}
+.scr svg{width:78%;height:auto}
+.scr.cover img{width:100%;height:100%;object-fit:cover;object-position:0 50%}
+.panel{display:flex;flex-direction:column;gap:10px;padding:12px 6px 0;flex:1}
+.panel p{margin:0;color:var(--dim);font-size:14.5px;line-height:1.45}
+.panel .go{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;font:600 14px system-ui,sans-serif;color:var(--cream)}
+.panel .go b{font:400 20px/1 var(--pix);color:var(--mute)}
+.knob{display:inline-flex;gap:6px;align-items:center}.knob i{width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:inset 0 -3px 0 rgba(0,0,0,.25)}.knob i+i{background:var(--teal)}
+@media (prefers-reduced-motion:no-preference){
+ .mq{animation:light .5s steps(3,end) both;animation-delay:calc(var(--n,0)*80ms + 250ms)}
+ @keyframes light{from{background:var(--off);color:#6d6188}}
+ .cab:hover{transform:translateY(-2px)}
+}
+.scores{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;margin-top:28px;padding:18px 22px;background:var(--floor);border:1px solid var(--line);border-radius:12px}
+.scores h3{margin:0;font:400 28px/1 var(--pix);color:var(--amber)}
+.scores ol{display:flex;flex-wrap:wrap;gap:6px 28px;margin:0;padding:0;list-style:none;counter-reset:r;font-variant-numeric:tabular-nums}
+.scores li{counter-increment:r;color:var(--dim)}.scores li::before{content:counter(r) ". ";color:var(--mute)}
+.scores li span{color:var(--cream);margin-left:8px;font:400 22px/1 var(--pix)}
+/* how it works: a real sequence */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;color:var(--dim)}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;margin-bottom:14px;border-radius:8px;background:var(--cab2);color:var(--amber);font:400 30px/1 var(--pix)}
 .steps b{display:block;color:var(--text);font-size:19px;margin-bottom:4px}
-/* shop */
-.shop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.pack{display:flex;flex-direction:column;background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:20px;text-decoration:none;color:var(--text)}
-.pack:hover{border-color:var(--brass)}
-.pack .p{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;margin:10px 0 2px}.pack .p small{font-size:14px;color:var(--dim);font-weight:600;letter-spacing:0}
-.pack b{font-size:18px}.pack span{color:var(--dim);font-size:14.5px;line-height:1.45}
-.pack .go{margin-top:auto;padding-top:14px;font-weight:800;color:var(--brass);font-size:15px}
-.pack.pro{grid-column:span 4;flex-direction:row;align-items:center;gap:22px;background:var(--panel);border-color:rgba(224,180,58,.45)}
-.pack.pro .go{margin:0 0 0 auto;padding:0}
-/* coin */
-.coin{position:relative;background:linear-gradient(135deg,#2a1a0c,#1b1209 60%);border:2px solid rgba(224,180,58,.55);border-radius:24px;overflow:hidden}
-.coin .tick{display:flex;gap:28px;white-space:nowrap;padding:9px 0;background:#e0b43a;color:#14110a;font:600 13.5px/1 ui-monospace,Consolas,monospace;overflow:hidden}
-.coin .tick span{flex:none}
-.coin .tick .row{display:flex;gap:28px;padding-left:28px}
-
+/* prize counter */
+.counter{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.counter>*{min-width:0}
+.counter h3{font:400 30px/1 var(--pix);margin:0 0 14px}
+.biz{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.biz a{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;text-decoration:none;color:var(--text);background:var(--floor);border:1px solid var(--line);border-radius:10px;padding:12px 14px;transition:border-color .16s var(--ease)}
+.biz a:hover{border-color:var(--amber)}
+.biz b{display:block;font-size:16px}.biz span{display:block;color:var(--dim);font-size:14px;line-height:1.4}
+.biz em{font-style:normal;font-weight:600;font-size:14px;color:var(--amber)}
+.tickets{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ticket{position:relative;display:flex;flex-direction:column;gap:2px;text-decoration:none;color:#1f1830;background:var(--cream);border-radius:8px;padding:16px 16px 14px;
+ -webkit-mask:radial-gradient(circle 8px at 0 60%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 8px at 100% 60%,#0000 98%,#000) right/51% 100% no-repeat;
+ mask:radial-gradient(circle 8px at 0 60%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 8px at 100% 60%,#0000 98%,#000) right/51% 100% no-repeat;transition:transform .16s var(--ease)}
+.ticket:hover{transform:translateY(-2px)}
+.ticket b{font-size:16px}.ticket .p{font:400 34px/1 var(--pix);font-variant-numeric:tabular-nums}.ticket .p small{font:500 13px system-ui,sans-serif;color:#5b5168}
+.ticket span{font-size:13.5px;color:#4a4158;line-height:1.35}
+.ticket .go{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(31,24,48,.3);font-weight:600;font-size:14px;color:#7a4d00}
+.ticket.pro{grid-column:span 2;background:var(--amber)}
+.kit{margin:16px 0 0}
+/* token machine */
+.coin{position:relative;background:var(--cab);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.coin .tick{display:flex;gap:28px;white-space:nowrap;padding:9px 22px;background:var(--brass);color:#1a1206;font:400 20px/1 var(--pix);overflow:hidden}
+.coin .tick .row{display:flex;gap:28px}
 .coin .in{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;padding:22px}
-.coin .logo{width:96px;height:96px;border-radius:20px;box-shadow:0 0 0 2px #e0b43a}
-.coin .sym{display:inline-block;font:700 clamp(30px,4vw,44px)/1 system-ui;letter-spacing:-.02em;color:#ffd75e;margin:0 0 4px}
-.coin .chain{display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;background:rgba(56,242,255,.12);border:1px solid rgba(56,242,255,.4);color:#9ef6ff;font-size:13px;font-weight:700;vertical-align:middle}
+.coin .logo{width:96px;height:96px;border-radius:16px;box-shadow:0 0 0 2px var(--brass)}
+.coin .sym{display:inline-block;font:400 clamp(40px,5vw,58px)/1 var(--pix);color:var(--amber);margin:0 0 4px}
+.coin .chain{display:inline-block;margin-left:10px;padding:3px 10px;border-radius:6px;background:var(--floor);border:1px solid var(--line);color:var(--teal);font-size:13px;font-weight:600;vertical-align:middle}
 .coin h3{margin:0 0 6px;font-size:18px;color:var(--cream)}.coin p{margin:0;color:var(--dim);font-size:15px}
 .coin .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 0}
-.coin .stats div{background:rgba(0,0,0,.25);border:1px solid rgba(243,236,217,.12);border-radius:12px;padding:8px 10px}
-.coin .stats small{display:block;color:var(--dim);font-size:12px}.coin .stats b{font-size:17px;color:#fff}
-.coin .ca{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font:600 13px ui-monospace,Consolas,monospace;color:#cfd8e3}
-.coin .ca code{background:rgba(0,0,0,.3);padding:6px 9px;border-radius:8px;word-break:break-all}
-.coin .ca button{background:none;border:1px solid rgba(243,236,217,.3);color:var(--cream);border-radius:8px;padding:6px 10px;font:700 12.5px system-ui;cursor:pointer}
-.coin .acts{display:grid;gap:10px;justify-items:stretch}
-.coin .acts .btn{justify-content:center}
-.coin .trade{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 22px 16px}.coin .tr{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.28);border:1px solid rgba(243,236,217,.16);color:var(--text);text-decoration:none;min-width:0}.coin .tr:hover{border-color:var(--brass)}.coin .tr b{display:block;font-size:15.5px}.coin .tr small{display:block;color:var(--dim);font-size:13px}.coin .tr em{position:absolute;top:8px;right:10px;font-style:normal;font-size:11px;color:var(--dim);border:1px solid var(--line);border-radius:6px;padding:1px 6px}.coin .ti{width:22px;height:22px;flex:none;fill:none;stroke:var(--brass);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}.coin .trnote{grid-column:1/-1;margin:0;font-size:12.5px;color:#d9c79a}@media (max-width:560px){.coin .trade{grid-template-columns:1fr;padding:0 18px 14px}}
-.coin .warn{padding:10px 22px 16px;font-size:13px;color:#d9c79a;border-top:1px dashed rgba(224,180,58,.35)}
-.faq details{border-bottom:1px solid var(--line);padding:16px 0}.faq summary{cursor:pointer;font-weight:700;font-size:18px}.faq p{color:var(--dim);margin:10px 0 0;max-width:48em}
-footer{border-top:1px solid var(--line);padding:38px 0 50px;color:var(--dim);font-size:14.5px}
+.coin .stats div{background:var(--night);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.coin .stats small{display:block;color:var(--mute);font-size:12px}.coin .stats b{font:400 24px/1.1 var(--pix);color:#fff;font-variant-numeric:tabular-nums}
+.coin .ca{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font:600 13px ui-monospace,Consolas,monospace;color:#d7cfe4}
+.coin .ca code{background:var(--night);padding:6px 9px;border-radius:6px;word-break:break-all}
+.coin .ca button{background:none;border:1px solid var(--line);color:var(--cream);border-radius:6px;padding:6px 10px;font:600 13px system-ui;cursor:pointer;min-height:32px}
+.coin .acts{display:grid;gap:10px}
+.coin .trade{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 22px 16px}
+.coin .tr{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:var(--night);border:1px solid var(--line);color:var(--text);text-decoration:none;min-width:0;transition:border-color .16s var(--ease)}
+.coin .tr:hover{border-color:var(--amber)}.coin .tr b{display:block;font-size:15.5px}.coin .tr small{display:block;color:var(--dim);font-size:13px}
+.coin .tr em{position:absolute;top:8px;right:10px;font-style:normal;font-size:11px;color:var(--mute);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.coin .ti{width:22px;height:22px;flex:none;fill:none;stroke:var(--amber);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.coin .trnote{grid-column:1/-1;margin:0;font-size:12.5px;color:var(--mute)}
+.coin .warn{margin:0;padding:12px 22px 16px;font-size:13px;color:var(--mute);border-top:1px solid var(--line)}
+/* faq + footer */
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}.faq summary{cursor:pointer;font-weight:600;font-size:18px}.faq p{color:var(--dim);margin:10px 0 0;max-width:48em}
+footer{border-top:1px solid var(--line);padding:40px 0 52px;color:var(--dim);font-size:14.5px}
 .fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:26px}
-.fcols h3{margin:0 0 8px;color:var(--cream);font-size:15px}
+.fcols h3{margin:0 0 8px;color:var(--cream);font:400 22px/1 var(--pix)}
 .fcols a{display:block;color:var(--dim);text-decoration:none;padding:4px 0}.fcols a:hover{color:var(--text)}
-.fine{font-size:13px}
-.hero>*,.panel>*,.shop>*{min-width:0}
-@media (max-width:960px){.tabs{grid-template-columns:1fr 1fr}.shop{grid-template-columns:1fr 1fr}.pack.pro{grid-column:span 2}}
-@media (max-width:760px){.top nav{display:none}.hero{grid-template-columns:1fr;padding-top:8px}.stage{max-width:380px;margin:0 auto}.panel{grid-template-columns:1fr;padding:18px}.phone{max-width:210px}.steps{grid-template-columns:1fr;gap:18px}.steps li{padding:0 0 0 58px}.steps li::after{display:none}.coin .in{grid-template-columns:auto 1fr}.coin .acts{grid-column:span 2;grid-template-columns:1fr 1fr}.fcols{grid-template-columns:1fr 1fr}.pack.pro{flex-direction:column;align-items:flex-start}.pack.pro .go{margin:8px 0 0}}
-@media (max-width:760px){.panel .phone{display:none}}
-@media (max-width:480px){.coin .in{grid-template-columns:1fr;padding:18px}.coin .logo{width:64px;height:64px}.coin .acts{grid-column:auto;grid-template-columns:1fr}.coin .stats b{font-size:15px}.tabs{grid-template-columns:1fr}.tab img{width:44px;height:44px}.tab[aria-selected=true]::after{display:none}.shop{grid-template-columns:1fr 1fr;gap:10px}.pack{padding:16px}.pack.pro{grid-column:span 2}.list a{grid-template-columns:1fr}.list em{justify-self:start}}
-@media (prefers-reduced-motion:no-preference){.stage img,.bub{animation:pop .4s cubic-bezier(.22,1,.36,1) both}.stage .bolt{animation-delay:.1s}.stage .eg{animation-delay:.2s}.stage .mint{animation-delay:.3s}.bub{animation-delay:.55s}@keyframes pop{from{transform:translateY(10px);opacity:0}}}
+.fine{font-size:13px;color:var(--mute)}
+@media (max-width:1000px){.hall{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:860px){.counter{grid-template-columns:1fr}}
+@media (max-width:760px){.top nav{display:none}.hero{grid-template-columns:1fr;padding-top:12px;gap:28px}.booth{max-width:360px;margin:0 auto}
+ .hall{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.mq{font-size:22px;min-height:40px}.panel p{font-size:13.5px}
+ .steps{grid-template-columns:1fr;gap:20px}.scores{grid-template-columns:1fr;gap:10px}.fcols{grid-template-columns:1fr 1fr}
+ .coin .in{grid-template-columns:auto 1fr}.coin .acts{grid-column:span 2;grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.tickets{grid-template-columns:1fr}.ticket.pro{grid-column:auto}.coin .in{grid-template-columns:1fr;padding:18px}.coin .logo{width:64px;height:64px}.coin .acts{grid-column:auto;grid-template-columns:1fr}.coin .trade{grid-template-columns:1fr;padding:0 18px 14px}.panel .go b{display:none}}
 </style>
-<link rel="stylesheet" href="/motion.css"></head><body>
+<link rel="stylesheet" href="/motion.css">
+</head><body>
 <a class="skip" href="#main" data-i="skip">Skip to content</a>
 <div class="wrap">
 <header class="top">
- <a class="brand" href="/"><img src="logo.png" alt="" width="38" height="38">geopolcoins.xyz</a>
- <nav aria-label="Main"><a href="#spot" data-i="nPlay">Games &amp; memes</a><a href="#doors" data-i="nTools">Tools</a><a href="#shop" data-i="nShop">Shop</a><a href="pro-bots.html" data-i="nBiz">For business</a></nav>
+ <a class="brand" href="/"><img src="logo.png" alt="" width="36" height="36">geopolcoins.xyz</a>
+ <nav aria-label="Main"><a href="#doors" data-i="nHall">The arcade</a><a href="#shop" data-i="nShop">Prize counter</a><a href="pro-bots.html" data-i="nBiz">For business</a><a href="hq.html" data-i="nHq">$MAIGA HQ</a></nav>
  <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></div>
 </header>
 <main id="main">
 <section class="hero">
  <div>
-  <a class="news" href="raid.html"><b data-i="nwB">New</b><span data-i="nw">MAIGA Raid: Jean-Phil vs Lord Rugpull. Play free →</span></a>
-  <h1><span data-i="h1a">AI tools</span><span data-i="h1b">anyone can use</span></h1>
-  <p class="lead" data-i="lead">Build a chatbot for your business, make memes, learn how crypto works with play money, or just play a game. Free, no account, nothing to install.</p>
-  <div class="ctas"><a class="btn main" href="#doors" data-i="c1">Find my tool</a><a class="btn ghost" href="#doors" data-door="biz" data-i="c2">I run a business</a></div>
-  <ul class="facts"><li data-i="f1">Free to use</li><li data-i="f2">No account needed</li><li data-i="f3">Runs in your browser</li></ul>
+  <h1 data-i="h1">AI tools and games, all on free play</h1>
+  <p class="lead" data-i="lead">Build a chatbot for your business, make memes, learn how crypto works with play money, or just play. No account, no wallet, nothing to install.</p>
+  <div class="ctas"><a class="btn main" href="#doors" data-i="c1">Walk into the arcade</a><a class="btn ghost" href="#shop" data-i="c2">I run a business</a></div>
+  <ul class="facts"><li data-i="f1">Free to use</li><li data-i="f2">No account needed</li><li data-i="f3">EN, NL, FR</li></ul>
  </div>
- <div class="stage" aria-hidden="true">
-  <div class="wall"><i></i><div class="sign">$MAIGA HQ</div></div><div class="floor"></div>
-  <img class="cut jp" src="meme/pxjp.png" alt=""><img class="cut bolt" src="bolt.png" alt=""><img class="cut eg" src="meme/pxeg.png" alt=""><img class="cut mint" src="meme/pxmint.png" alt="">
-  <div class="bub" data-i="bub">Pick what you want to do. I'll show you around</div>
- </div>
-</section>
-
-<section class="spot" id="spot" aria-labelledby="h-spot">
- <h2 id="h-spot" data-i="spH">Most popular right now</h2>
- <p class="sub" data-i="spP">A free game, a meme machine and AI bots for your business. All in your browser, no account.</p>
- <div data-reveal-group class="sgrid">
-  <article class="sp raid">
-   <a class="vis" href="raid.html" tabindex="-1" aria-hidden="true"><img src="img/raid/og-raid.png" alt="" width="1200" height="630"><span class="new" data-i="nwB">New</span></a>
-   <div class="body">
-    <h3 data-i="rT">MAIGA Raid: rescue Mintje from Lord Rugpull</h3>
-    <p data-i="rP">Play Jean-Phil the ice knight or Bolt the robot. Raid the ice, the Meme Factory and the Rug Tower, beat the boss and share your score on X.</p>
-    <ul class="chips"><li data-i="rc1">5 worlds + boss</li><li data-i="rc2">Weekly leaderboard</li><li data-i="rc3">Phone, PC, controller</li><li data-i="rc4">No wallet</li></ul>
-    <div class="lbmini" aria-live="polite"><b data-i="lbH">Top raiders this week</b><ol id="lbTop"><li data-i="lbE">No scores yet this week</li></ol></div>
-    <div class="acts"><a class="btn main" href="raid.html" data-i="rB">Play MAIGA Raid</a><a class="btn ghost" href="hq.html#arcade" data-i="rB2">8 more arcade games</a></div>
-   </div>
-  </article>
-  <article class="sp">
-   <a class="vis mvis" href="factory.html" tabindex="-1" aria-hidden="true"><img src="meme/mw1.png" alt="" width="48" height="40" loading="lazy"><img src="meme/mw3.png" alt="" width="48" height="40" loading="lazy"><img src="meme/mw5.png" alt="" width="48" height="40" loading="lazy"></a>
-   <div class="body">
-    <h3 data-i="mT">Meme Factory</h3>
-    <p data-i="mP">Type one idea and get a full meme kit: name, memes and ready posts. Or pick from 190+ templates in the Meme Studio.</p>
-    <div class="acts"><a class="btn main" href="factory.html" data-i="mB">Open the Meme Factory</a><a class="btn ghost" href="meme.html" data-i="mB2">Meme Studio</a></div>
-   </div>
-  </article>
-  <article class="sp">
-   <a class="vis bvis" href="garage.html" tabindex="-1" aria-hidden="true"><img class="cut" src="bolt.png" alt="" width="24" height="28"><span class="chat"><span class="q" data-i="bq">Are you open on Sunday?</span><span class="a" data-i="ba">Yes, 10:00 to 16:00. Shall I book you in?</span></span></a>
-   <div class="body">
-    <h3 data-i="bT">AI bots for your business</h3>
-    <p data-i="bP">Copy one of 24 free bots in the Bot Garage, grab a ready pack for your trade, or let us set up a pro bot.</p>
-    <div class="acts"><a class="btn main" href="garage.html" data-i="bB">Build a free bot</a><a class="btn ghost" href="pro-bots.html" data-i="bB2">Pro bots</a></div>
-   </div>
-  </article>
+ <div class="booth" aria-hidden="true">
+  <div class="wall"><div class="sign">FREE PLAY</div></div><div class="desk"></div>
+  <img class="bolt" src="bolt.png" alt="" width="24" height="28"><img class="jp" src="meme/pxjp.png" alt="" width="48" height="48"><img class="eg" src="meme/pxeg.png" alt="" width="48" height="48"><img class="mint" src="meme/pxmint.png" alt="" width="48" height="48">
+  <div class="bub" data-i="bub">Pick a cabinet. I'll show you around</div>
  </div>
 </section>
 
-<section class="s" id="doors" aria-labelledby="h-doors">
- <h2 id="h-doors" data-i="dH">What do you want to do?</h2>
- <p class="sub" data-i="dP">Pick one. Each tool opens right here in your browser and explains itself.</p>
- <div data-reveal-group class="tabs" role="tablist" aria-labelledby="h-doors" id="tabs"></div>
- <div class="panel" role="tabpanel" id="panel" tabindex="0">
-  <div><h3 id="pT"></h3><p id="pP"></p><ul class="list" id="pL"></ul></div>
-  <div class="phone"><img id="pImg" src="img/home-garage.webp" alt="" width="390" height="780" loading="lazy"></div>
+<section class="s" id="doors" aria-labelledby="h-hall"><span id="spot"></span>
+ <div class="hall-head">
+  <div><h2 id="h-hall" data-i="hallH">The arcade</h2><p class="sub" data-i="hallP">Every cabinet is a free tool or game that runs right here in your browser.</p></div>
+  <div class="zones" role="group" aria-label="Filter" id="zones"><button type="button" data-z="all" aria-pressed="true" data-i="zAll">All</button><button type="button" data-z="play" aria-pressed="false" data-i="zPlay">Games</button><button type="button" data-z="make" aria-pressed="false" data-i="zMake">Make</button><button type="button" data-z="learn" aria-pressed="false" data-i="zLearn">Learn</button></div>
  </div>
+ <ul class="hall" id="hall">
+  <li class="cab" data-z="play" style="--n:0;--mq:var(--red)"><div class="mq" data-i="k1">MAIGA Raid</div><div class="scr cover"><img src="img/raid/og-raid.png" alt="" width="1200" height="630" loading="lazy"></div><div class="panel"><p data-i="k1p">Jean-Phil vs Lord Rugpull. Five worlds, one boss, a weekly leaderboard.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kPlay">Play</b></div></div><a class="hit" href="raid.html" aria-label="MAIGA Raid"></a></li>
+  <li class="cab" data-z="play" style="--n:1;--mq:var(--amber)"><div class="mq" data-i="k2">Meme Arcade</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="10" y="62" width="100" height="6" fill="#3a2f52"/><rect x="18" y="40" width="10" height="10" fill="#ffb547"/><rect x="28" y="30" width="10" height="10" fill="#ffb547"/><rect x="38" y="40" width="10" height="10" fill="#ffb547"/><rect x="70" y="50" width="12" height="12" fill="#5fd3c6"/><rect x="88" y="44" width="8" height="18" fill="#ff6b6b"/><circle cx="58" cy="24" r="5" fill="#f3ecd9"/></svg></div><div class="panel"><p data-i="k2p">Eight quick games and a daily tournament, for glory only.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kPlay">Play</b></div></div><a class="hit" href="hq.html#arcade" aria-label="Meme Arcade"></a></li>
+  <li class="cab" data-z="make" style="--n:2;--mq:var(--teal)"><div class="mq" data-i="k3">Bot Garage</div><div class="scr"><img src="bolt.png" alt="" width="24" height="28" style="width:34%"></div><div class="panel"><p data-i="k3p">Copy one of 24 free AI bots or build your own in two minutes.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="garage.html" aria-label="Bot Garage"></a></li>
+  <li class="cab" data-z="make" style="--n:3;--mq:var(--cream)"><div class="mq" data-i="k4">Meme Studio</div><div class="scr cover"><img src="meme/mw1.png" alt="" width="48" height="40" loading="lazy"></div><div class="panel"><p data-i="k4p">190+ templates. Your photo never leaves your device.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="meme.html" aria-label="Meme Studio"></a></li>
+  <li class="cab" data-z="make" style="--n:4;--mq:var(--lilac)"><div class="mq" data-i="k5">Meme Factory</div><div class="scr cover"><img src="meme/mw3.png" alt="" width="48" height="40" loading="lazy"></div><div class="panel"><p data-i="k5p">One idea in, a full meme kit out: name, memes and posts.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="factory.html" aria-label="Meme Factory"></a></li>
+  <li class="cab" data-z="learn" style="--n:5;--mq:var(--lilac)"><div class="mq" data-i="k6">Kronos Lab</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><path d="M6 60 18 52 28 56 40 40 50 46 62 30" fill="none" stroke="#f3ecd9" stroke-width="3"/><line x1="62" y1="10" x2="62" y2="80" stroke="#ffb547" stroke-dasharray="4 4" stroke-width="2"/><path d="M62 30 76 26 90 20 110 14" fill="none" stroke="#c8a8ff" stroke-width="3" stroke-dasharray="6 4"/><path d="M62 30 74 40 86 34 98 46 110 38" fill="none" stroke="#5fd3c6" stroke-width="3"/></svg></div><div class="panel"><p data-i="k6p">Can AI read a chart? Guess first, then see what really happened.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="kronos.html" aria-label="Kronos Lab"></a></li>
+  <li class="cab" data-z="learn" style="--n:6;--mq:var(--teal)"><div class="mq" data-i="k7">Quantum Lab</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="40" y="40" width="40" height="32" rx="4" fill="#ffb547"/><path d="M48 40V30a12 12 0 0 1 24 0v10" fill="none" stroke="#f3ecd9" stroke-width="6"/><rect x="57" y="50" width="6" height="12" fill="#1a1206"/></svg></div><div class="panel"><p data-i="k7p">Sign a message like Solana today, then quantum-safe.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="quantum.html" aria-label="Quantum Lab"></a></li>
+  <li class="cab" data-z="learn" style="--n:7;--mq:var(--amber)"><div class="mq" data-i="k8">Mini-Chain</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="8" y="32" width="26" height="26" fill="#5fd3c6"/><rect x="47" y="32" width="26" height="26" fill="#5fd3c6"/><rect x="86" y="32" width="26" height="26" fill="#ff6b6b"/><rect x="34" y="43" width="13" height="4" fill="#f3ecd9"/><rect x="73" y="43" width="13" height="4" fill="#f3ecd9" opacity=".35"/></svg></div><div class="panel"><p data-i="k8p">Mine a tiny blockchain, then change one letter and watch it break.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="chain.html" aria-label="Mini-Chain"></a></li>
+  <li class="cab" data-z="play learn" style="--n:8;--mq:var(--red)"><div class="mq" data-i="k9">Bot Bank</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="66" rx="22" ry="6" fill="#9c7a1c"/><rect x="38" y="52" width="44" height="14" fill="#e0b43a"/><ellipse cx="60" cy="52" rx="22" ry="6" fill="#ffb547"/><rect x="38" y="38" width="44" height="14" fill="#e0b43a"/><ellipse cx="60" cy="38" rx="22" ry="6" fill="#ffb547"/></svg></div><div class="panel"><p data-i="k9p">Lend play coins to AI bots and learn why lending is risky.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kPlay">Play</b></div></div><a class="hit" href="lend.html" aria-label="Bot Bank"></a></li>
+  <li class="cab" data-z="learn" style="--n:9;--mq:var(--cream)"><div class="mq" data-i="k10">Chart School</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><g fill="#5fd3c6"><rect x="14" y="40" width="10" height="22"/><rect x="18" y="32" width="2" height="38"/><rect x="54" y="28" width="10" height="24"/><rect x="58" y="20" width="2" height="40"/></g><g fill="#ff6b6b"><rect x="34" y="44" width="10" height="16"/><rect x="38" y="38" width="2" height="28"/><rect x="74" y="34" width="10" height="20"/><rect x="78" y="28" width="2" height="32"/></g><rect x="94" y="22" width="10" height="26" fill="#5fd3c6"/></svg></div><div class="panel"><p data-i="k10p">Learn candles, volume and RSI on practice charts.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="chart.html" aria-label="Chart School"></a></li>
+  <li class="cab" data-z="learn" style="--n:10;--mq:var(--teal)"><div class="mq" data-i="k11">Token Checkup</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="22" y="16" width="52" height="60" rx="4" fill="#f3ecd9"/><rect x="30" y="28" width="8" height="8" fill="#5be38a"/><rect x="42" y="30" width="24" height="4" fill="#8f85a3"/><rect x="30" y="44" width="8" height="8" fill="#ffb547"/><rect x="42" y="46" width="24" height="4" fill="#8f85a3"/><rect x="30" y="60" width="8" height="8" fill="#ff6b6b"/><rect x="42" y="62" width="24" height="4" fill="#8f85a3"/><circle cx="84" cy="52" r="14" fill="none" stroke="#ffb547" stroke-width="5"/><rect x="92" y="62" width="6" height="16" transform="rotate(-40 95 70)" fill="#ffb547"/></svg></div><div class="panel"><p data-i="k11p">See the public red flags of any Solana token.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="hq.html#checkup" aria-label="Token Checkup"></a></li>
+  <li class="cab" data-z="learn" style="--n:11;--mq:var(--amber)"><div class="mq" data-i="k12">Robot Lab</div><div class="scr"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="20" y="70" width="40" height="8" fill="#3a2f52"/><rect x="34" y="46" width="10" height="24" fill="#5fd3c6"/><rect x="36" y="38" width="44" height="8" fill="#5fd3c6"/><rect x="78" y="34" width="6" height="22" fill="#f3ecd9"/><rect x="72" y="56" width="18" height="4" fill="#f3ecd9"/><rect x="90" y="16" width="20" height="14" rx="3" fill="#5be38a"/><path d="m95 23 3 3 6-6" fill="none" stroke="#1a1206" stroke-width="2.5"/></svg></div><div class="panel"><p data-i="k12p">Tell a robot what to do in plain words. A human approves first.</p><div class="go"><span class="knob" aria-hidden="true"><i></i><i></i></span><b data-i="kOpen">Open</b></div></div><a class="hit" href="robot-lab.html" aria-label="Robot Lab"></a></li>
+ </ul>
+ <div class="scores" aria-live="polite"><h3 data-i="lbH">Top raiders this week</h3><ol id="lbTop"><li data-i="lbE">No scores yet this week</li></ol><a class="btn ghost" href="app.html" data-i="appL">Get the app</a></div>
 </section>
 
 <section class="s" aria-labelledby="h-how">
- <h2 id="h-how" data-i="hH">New to all this? It takes three steps.</h2>
+ <h2 id="h-how" data-i="hH">New here? Three steps</h2>
  <p class="sub" data-i="hP">You don't need to know anything about AI or code.</p>
- <ol data-reveal-group class="steps">
-  <li><b data-i="s1">Pick a tool</b><span data-i="s1p">Choose what you want to do above. Every tool has short instructions on the page.</span></li>
+ <ol class="steps">
+  <li><b data-i="s1">Pick a cabinet</b><span data-i="s1p">Every tool and game has short instructions right on its page.</span></li>
   <li><b data-i="s2">Use it right here</b><span data-i="s2p">It works in your browser on your phone or computer. No download, no sign-up.</span></li>
   <li><b data-i="s3">Keep what you made</b><span data-i="s3p">Copy your bot into ChatGPT or Claude, download your meme, or share it with one link.</span></li>
  </ol>
 </section>
 
 <section class="s" id="shop" aria-labelledby="h-shop">
- <h2 id="h-shop" data-i="shH">Ready-made bot packs</h2>
- <p class="sub" data-i="shP">Skip the setup: tested AI assistants with full prompts and test questions, as a digital download. Pay what you want above the minimum.</p>
- <div data-reveal-group class="shop" id="shopG"></div>
- <p style="margin:18px 0 0;color:var(--dim)"><a href="free.html?src=home" id="freeKit" data-i="kitL">New here? Get the free Starter Kit: 5 ready-to-paste bots</a></p>
+ <h2 id="h-shop" data-i="shH">Prize counter</h2>
+ <p class="sub" data-i="shP">For your business: free tools, ready-made bot packs as a digital download, or we set one up for you.</p>
+ <div class="counter">
+  <div><h3 data-i="bizH">Bots for your business</h3><ul class="biz" id="bizL"></ul></div>
+  <div><h3 data-i="packH">Ready-made bot packs</h3><div class="tickets" id="shopG"></div>
+   <p class="kit"><a href="free.html?src=home" id="freeKit" data-i="kitL">New here? Get the free Starter Kit: 5 ready-to-paste bots</a></p></div>
+ </div>
 </section>
 
 <section class="s" id="coin" aria-labelledby="h-coin">
- <div data-reveal class="coin">
+ <div class="coin">
   <div class="tick" aria-hidden="true"><div class="row" id="tkRow"></div></div>
   <div class="in">
    <img class="logo" src="logo.png" alt="" width="96" height="96">
@@ -270,50 +267,31 @@ footer{border-top:1px solid var(--line);padding:38px 0 50px;color:var(--dim);fon
 </div>
 <script>
 (function(){
+'use strict';
 var T={
 nl:{lbH:'Beste raiders deze week',lbE:'Nog geen scores deze week',nPlay:'Games & memes',nwB:'Nieuw',nw:'MAIGA Raid: Jean-Phil tegen Lord Rugpull. Gratis spelen →',spH:'Nu het populairst',spP:'Een gratis spel, een meme-machine en AI-bots voor je zaak. Alles in je browser, zonder account.',rT:'MAIGA Raid: red Mintje uit de klauwen van Lord Rugpull',rP:'Speel als Jean-Phil de ijsridder of Bolt de robot. Trek door het ijs, de Meme Fabriek en de Tapijttoren, versla de eindbaas en deel je score op X.',rc1:'5 werelden + eindbaas',rc2:'Ranglijst per week',rc3:'Gsm, pc, controller',rc4:'Geen wallet',rB:'Speel MAIGA Raid',rB2:'Nog 8 arcadespellen',mT:'Meme Factory',mP:'Typ één idee en krijg een volledig meme-pakket: naam, memes en kant-en-klare posts. Of kies uit 190+ sjablonen in de Meme Studio.',mB:'Open de Meme Factory',mB2:'Meme Studio',bT:'AI-bots voor je zaak',bP:'Kopieer een van de 24 gratis bots in de Bot Garage, neem een pakket voor je vak, of laat ons een pro-bot opzetten.',bB:'Maak een gratis bot',bB2:'Pro-bots',bq:'Zijn jullie zondag open?',ba:'Ja, van 10 tot 16 uur. Zal ik je inplannen?',skip:'Naar de inhoud',nTools:'Tools',nShop:'Winkel',nBiz:'Voor bedrijven',h1a:'AI-tools',h1b:'voor iedereen',lead:'Bouw een chatbot voor je zaak, maak memes, leer hoe crypto werkt met speelgeld, of speel gewoon een spel. Gratis, zonder account, niets te installeren.',c1:'Vind mijn tool',c2:'Ik heb een zaak',f1:'Gratis',f2:'Geen account nodig',f3:'Werkt in je browser',bub:'Kies wat je wil doen. Ik leid je rond',dH:'Wat wil je doen?',dP:'Kies er één. Elke tool opent hier in je browser en legt zichzelf uit.',hH:'Nieuw hierin? Het zijn drie stappen.',hP:'Je hoeft niets te weten over AI of code.',s1:'Kies een tool',s1p:'Kies hierboven wat je wil doen. Elke tool heeft korte uitleg op de pagina.',s2:'Gebruik hem meteen',s2p:'Het werkt in je browser, op je gsm of computer. Geen download, geen inschrijving.',s3:'Hou wat je maakte',s3p:'Kopieer je bot naar ChatGPT of Claude, download je meme, of deel hem met één link.',shH:'Kant-en-klare botpakketten',shP:'Sla het werk over: geteste AI-assistenten met volledige prompts en testvragen, als digitale download. Betaal wat je wil boven het minimum.',cH:'Jean-Phils satirische meme coin',cP:'De coin achter de grappen. De live cijfers komen rechtstreeks van GeckoTerminal; controleer alles zelf on-chain.',sP:'Prijs',sM:'Marktwaarde',sV:'Volume 24u',cCopy:'Kopieer adres',cS:'Bekijk op Solscan',tpB:'Kijk mee op mijn pump.fun-profiel',tpS:'Zie welke coins ik heb en lanceer',tfB:'Trade mee op Fomo',tfS:'10% korting op je tradingfees',tfR:'Referral',tN:'Referral-link: wij krijgen een deel van de fees, jij betaalt 10% minder. Meme coins traden is riskant. Geen financieel advies.',cW:'Alleen voor entertainment. Meme coins kunnen al hun waarde verliezen. We beloven nooit prijs of winst en vragen nooit je seed phrase. Vergelijk het adres altijd letter per letter. NFA, DYOR.',cB:'Coin-info & arcade',qH:'Vragen',q1:'Is het echt gratis?',a1:'Ja. Alle tools op de site zijn gratis. De botpakketten in de winkel zijn betaalde downloads, en een bot op maat bouwen we tegen een offerte.',q2:'Moet ik iets kennen van AI of code?',a2:'Nee. De Bot Garage schrijft de instructies voor je; jij kopieert ze naar ChatGPT, Claude of een andere chat-app. De Meme Studio werkt als een simpele foto-editor.',q3:'Wat gebeurt er met mijn gegevens?',a3:'De meeste tools werken alleen in je browser en bewaren je instellingen op je eigen toestel. Geen advertentietrackers, we verkopen niets door. De privacypagina legt alles uit.',q4:'Kunnen jullie een bot voor mijn zaak bouwen?',a4:'Ja. Stuur je prijzen, uren en vragen en je krijgt eerst een duidelijke offerte. Je betaalt niets tenzij je akkoord gaat.',q5:'Is dit financieel advies?',a5:'Nee. De crypto-onderdelen zijn voor plezier en om te leren, met speelgeld waar je kan lenen of minen. Koop nooit iets omdat een website of een tekenfilm het zegt.',ft1:'Tools',ft2:'Voor bedrijven',ft3:'Hulp',ft4:'Over',kitL:'Nieuw? Krijg de gratis Starter Kit: 5 bots om te plakken',fQa:'AI-bot vragen',fStart:'Pakket gekocht? Start hier',fKeys:'Gratis AI-sleutels',fApp:'Installeer de app',fPriv:'Privacy',fCook:'Cookies',fLeg:'Juridisch',fTerms:'Voorwaarden',fine:'© 2026 geopolcoins.xyz. Tools voor werk en plezier. AI kan fouten maken. Geen financieel, juridisch of medisch advies.'},
 fr:{lbH:'Meilleurs raiders de la semaine',lbE:'Pas encore de scores cette semaine',nPlay:'Jeux & mèmes',nwB:'Nouveau',nw:'MAIGA Raid : Jean-Phil contre Lord Rugpull. Jouer gratuitement →',spH:'Le plus populaire en ce moment',spP:'Un jeu gratuit, une machine à mèmes et des bots IA pour votre commerce. Tout dans votre navigateur, sans compte.',rT:'MAIGA Raid : sauvez Mintje de Lord Rugpull',rP:'Jouez Jean-Phil le chevalier des glaces ou Bolt le robot. Traversez la glace, la Meme Factory et la Tour du Tapis, battez le boss et partagez votre score sur X.',rc1:'5 mondes + boss',rc2:'Classement de la semaine',rc3:'Mobile, PC, manette',rc4:'Sans wallet',rB:'Jouer à MAIGA Raid',rB2:'8 autres jeux d’arcade',mT:'Meme Factory',mP:'Tapez une idée et recevez un kit complet : nom, mèmes et posts prêts. Ou choisissez parmi 190+ modèles dans le Meme Studio.',mB:'Ouvrir la Meme Factory',mB2:'Meme Studio',bT:'Des bots IA pour votre commerce',bP:'Copiez un des 24 bots gratuits du Bot Garage, prenez un pack pour votre métier, ou laissez-nous installer un bot pro.',bB:'Créer un bot gratuit',bB2:'Bots pro',bq:'Vous êtes ouverts dimanche ?',ba:'Oui, de 10 h à 16 h. Je vous réserve un créneau ?',skip:'Aller au contenu',nTools:'Outils',nShop:'Boutique',nBiz:'Pour les pros',h1a:'Des outils IA',h1b:'pour tout le monde',lead:"Créez un chatbot pour votre commerce, faites des mèmes, apprenez comment marche la crypto avec de l'argent fictif, ou jouez. Gratuit, sans compte, rien à installer.",c1:'Trouver mon outil',c2:"J'ai un commerce",f1:'Gratuit',f2:'Sans compte',f3:'Dans votre navigateur',bub:'Choisissez ce que vous voulez faire. Je vous guide',dH:'Que voulez-vous faire ?',dP:"Choisissez-en un. Chaque outil s'ouvre ici dans votre navigateur et s'explique tout seul.",hH:'Débutant ? Trois étapes suffisent.',hP:"Pas besoin de connaître l'IA ni le code.",s1:'Choisissez un outil',s1p:'Choisissez ci-dessus ce que vous voulez faire. Chaque outil a de courtes explications.',s2:'Utilisez-le ici',s2p:'Ça marche dans votre navigateur, sur mobile ou ordinateur. Pas de téléchargement, pas d’inscription.',s3:'Gardez votre création',s3p:'Copiez votre bot dans ChatGPT ou Claude, téléchargez votre mème, ou partagez-le avec un lien.',shH:'Packs de bots prêts à l’emploi',shP:'Gagnez du temps : des assistants IA testés avec prompts complets et questions de test, en téléchargement. Payez ce que vous voulez au-dessus du minimum.',cH:'Le meme coin satirique de Jean-Phil',cP:"Le coin derrière les blagues. Les chiffres en direct viennent de GeckoTerminal ; vérifiez tout vous-même on-chain.",sP:'Prix',sM:'Capitalisation',sV:'Volume 24 h',cCopy:"Copier l'adresse",cS:'Voir sur Solscan',tpB:'Jette un œil à mon profil pump.fun',tpS:'Vois les coins que je détiens et lance',tfB:'Trade avec moi sur Fomo',tfS:'−10 % sur tes frais de trading',tfR:'Parrainage',tN:'Lien de parrainage : nous recevons une part des frais, tu paies 10 % de moins. Trader des meme coins est risqué. Pas un conseil financier.',cW:"Divertissement uniquement. Un meme coin peut perdre toute sa valeur. Nous ne promettons jamais de prix ni de profit et ne demandons jamais votre seed phrase. Comparez toujours l'adresse lettre par lettre. NFA, DYOR.",cB:'Infos coin & arcade',qH:'Questions',q1:'C’est vraiment gratuit ?',a1:'Oui. Tous les outils du site sont gratuits. Les packs de la boutique sont des téléchargements payants, et un bot sur mesure se fait sur devis.',q2:"Faut-il s'y connaître en IA ou en code ?",a2:"Non. Le Bot Garage écrit les instructions pour vous ; vous les copiez dans ChatGPT, Claude ou une autre appli. Le Meme Studio marche comme un éditeur photo simple.",q3:'Que deviennent mes données ?',a3:"La plupart des outils fonctionnent uniquement dans votre navigateur et gardent vos réglages sur votre appareil. Aucun traceur publicitaire, rien n'est revendu. La page confidentialité explique tout.",q4:'Pouvez-vous créer un bot pour mon commerce ?',a4:"Oui. Envoyez vos prix, horaires et questions et vous recevez d'abord un devis clair. Vous ne payez rien sans votre accord.",q5:'Est-ce un conseil financier ?',a5:"Non. Les parties crypto sont pour s'amuser et apprendre, avec de l'argent fictif pour prêter ou miner. N'achetez jamais rien parce qu'un site ou un dessin animé vous le dit.",ft1:'Outils',ft2:'Pour les pros',ft3:'Aide',ft4:'À propos',kitL:'Nouveau ? Recevez le Starter Kit gratuit : 5 bots prêts à coller',fQa:'Questions bots IA',fStart:'Pack acheté ? Commencez ici',fKeys:'Clés IA gratuites',fApp:"Installer l'appli",fPriv:'Confidentialité',fCook:'Cookies',fLeg:'Mentions légales',fTerms:'Conditions',fine:'© 2026 geopolcoins.xyz. Outils pour le travail et le plaisir. L’IA peut se tromper. Pas un conseil financier, juridique ou médical.'}
 };
+Object.assign(T.nl,{nHall:'De arcade',nShop:'Prijzenloket',nHq:'$MAIGA HQ',h1:'AI-tools en games, allemaal op free play',c1:'Stap de arcade binnen',c2:'Ik heb een zaak',f3:'NL, EN, FR',bub:'Kies een kast. Ik leid je rond',
+ hallH:'De arcade',hallP:'Elke kast is een gratis tool of game die hier in je browser draait.',zAll:'Alles',zPlay:'Games',zMake:'Maken',zLearn:'Leren',kPlay:'Spelen',kOpen:'Openen',
+ k1p:'Jean-Phil tegen Lord Rugpull. Vijf werelden, één eindbaas, een weekranglijst.',k2:'Meme-arcade',k2p:'Acht snelle spellen en een dagelijks toernooi, alleen voor de eer.',k3p:'Kopieer een van 24 gratis AI-bots of bouw je eigen in twee minuten.',k4p:'190+ sjablonen. Je foto verlaat je toestel nooit.',k5p:'Eén idee erin, een volledig meme-pakket eruit: naam, memes en posts.',k6p:'Kan AI een grafiek lezen? Gok eerst, zie dan wat er echt gebeurde.',k7p:'Onderteken zoals Solana vandaag, en daarna quantumveilig.',k8p:'Mine een kleine blockchain, verander één letter en zie hem breken.',k9p:'Leen speelmunten uit aan AI-bots en ontdek waarom lenen riskant is.',k10p:'Leer candles, volume en RSI op oefengrafieken.',k11p:'Bekijk de publieke rode vlaggen van elke Solana-token.',k12p:'Zeg een robot in gewone taal wat hij moet doen. Eerst keurt een mens goed.',
+ appL:'Installeer de app',hH:'Nieuw hier? Drie stappen',s1:'Kies een kast',s1p:'Elke tool en game heeft korte uitleg op zijn eigen pagina.',
+ shH:'Prijzenloket',shP:'Voor je zaak: gratis tools, kant-en-klare botpakketten als download, of we zetten er een op voor jou.',bizH:'Bots voor je zaak',packH:'Kant-en-klare botpakketten'});
+Object.assign(T.fr,{nHall:'L’arcade',nShop:'Comptoir des lots',nHq:'$MAIGA HQ',h1:'Outils IA et jeux, tout en free play',c1:'Entrer dans l’arcade',c2:'J’ai un commerce',f3:'FR, NL, EN',bub:'Choisis une borne. Je te fais visiter',
+ hallH:'L’arcade',hallP:'Chaque borne est un outil ou un jeu gratuit qui tourne ici, dans votre navigateur.',zAll:'Tout',zPlay:'Jeux',zMake:'Créer',zLearn:'Apprendre',kPlay:'Jouer',kOpen:'Ouvrir',
+ k1p:'Jean-Phil contre Lord Rugpull. Cinq mondes, un boss, un classement hebdo.',k2:'Arcade mème',k2p:'Huit jeux rapides et un tournoi quotidien, pour la gloire.',k3p:'Copiez un des 24 bots IA gratuits ou créez le vôtre en deux minutes.',k4p:'190+ modèles. Votre photo ne quitte jamais votre appareil.',k5p:'Une idée en entrée, un kit mème complet en sortie : nom, mèmes et posts.',k6p:'Une IA sait-elle lire un graphique ? Devinez, puis voyez ce qui s’est passé.',k7p:'Signez comme Solana aujourd’hui, puis en version post-quantique.',k8p:'Minez une mini blockchain, changez une lettre et regardez-la casser.',k9p:'Prêtez des jetons fictifs à des bots IA et voyez pourquoi prêter est risqué.',k10p:'Apprenez bougies, volume et RSI sur des graphiques d’exercice.',k11p:'Voyez les signaux d’alerte publics de n’importe quel token Solana.',k12p:'Dites à un robot quoi faire en mots simples. Un humain valide d’abord.',
+ appL:'Installer l’appli',hH:'Nouveau ici ? Trois étapes',s1:'Choisissez une borne',s1p:'Chaque outil et jeu a de courtes explications sur sa page.',
+ shH:'Comptoir des lots',shP:'Pour votre commerce : outils gratuits, packs de bots prêts à télécharger, ou on l’installe pour vous.',bizH:'Des bots pour votre commerce',packH:'Packs de bots prêts à l’emploi'});
 var LI={en:0,nl:1,fr:2};
 var KOFI={big:['3805e02171','15b2bb1d84','5665e9ef42'],salon:['5ba0d6d48c','8284593908','a3344fc728'],realestate:['6b98e0ae7e','17bf37febf','8b19673692'],restaurant:['7e8e8ec0e1','8bb85f108d','c3e8d380b0']};
 var LAND={salon:['ai-bots-salon','ai-bots-kapsalon','bots-ia-salon-coiffure'],realestate:['ai-bots-real-estate','ai-bots-makelaar','bots-ia-immobilier'],restaurant:['ai-bots-restaurant','ai-bots-horeca','bots-ia-restaurant'],custom:['custom-ai-bot','ai-bot-op-maat','bot-ia-sur-mesure']};
 var BIZN={en:{salon:'AI for salons',realestate:'AI for real estate',restaurant:'AI for restaurants',custom:'Custom bot quote'},nl:{salon:'AI voor kapsalons',realestate:'AI voor makelaars',restaurant:'AI voor horeca',custom:'Bot op maat'},fr:{salon:'IA pour salons',realestate:'IA pour l’immobilier',restaurant:'IA pour restaurants',custom:'Bot sur mesure'}};
 var OPEN={en:'Open',nl:'Open',fr:'Ouvrir'};
-// doors: [id, sprite, image, {lang:[title, small, panelTitle, panelText]}, items:[[href or fn, {lang:[name, text]}]]]
-var DOORS=[
- {id:'biz',spr:'bolt.png',img:'home-garage',
-  t:{en:['Help my business','Chatbots that answer customers','An AI assistant for your business','Start free in the Bot Garage, take a ready-made pack for your trade, or let us set it up.'],
-     nl:['Help mijn zaak','Chatbots die klanten antwoorden','Een AI-assistent voor je zaak','Start gratis in de Bot Garage, neem een kant-en-klaar pakket voor je vak, of laat ons het opzetten.'],
-     fr:['Aider mon commerce','Des chatbots qui répondent aux clients','Un assistant IA pour votre commerce','Commencez gratuitement au Bot Garage, prenez un pack pour votre métier, ou laissez-nous l’installer.']},
-  items:[['garage.html',{en:['Bot Garage','Copy one of 24 free bots or build your own in 2 minutes'],nl:['Bot Garage','Kopieer een van 24 gratis bots of bouw je eigen in 2 minuten'],fr:['Bot Garage','Copiez un des 24 bots gratuits ou créez le vôtre en 2 minutes']}],
-         ['LAND:salon',{en:['For salons, agencies and restaurants','Bots made for your trade, try one free'],nl:['Voor kapsalons, makelaars en horeca','Bots voor jouw vak, probeer er één gratis'],fr:['Pour salons, agences et restaurants','Des bots pour votre métier, essayez-en un']}],
-         ['pro-bots.html',{en:['Pro bots','Phone receptionist, inbox assistant, WhatsApp booking'],nl:['Pro-bots','Telefoonreceptionist, inbox-assistent, WhatsApp-boekingen'],fr:['Bots pro','Standardiste téléphonique, assistant e-mail, réservations WhatsApp']}],
-         ['robots.html',{en:['AI for your robots','Help bot for technicians, plain-language orders, fleet report'],nl:['AI voor je robots','Hulpbot voor technici, opdrachten in gewone taal, vlootrapport'],fr:['IA pour vos robots','Bot d’aide technique, ordres en langage courant, rapport de flotte']}],
-         ['LAND:custom',{en:['We set it up for you','Free quote, you pay nothing unless you agree'],nl:['Wij zetten het op','Gratis offerte, je betaalt niets tenzij je akkoord gaat'],fr:['On l’installe pour vous','Devis gratuit, vous ne payez rien sans accord']}]]},
- {id:'make-meme',spr:'meme/pxjp.png',img:'home-meme',
-  t:{en:['Make a meme','Templates, stickers, download','Make memes in seconds','190+ classic templates and Jean-Phil pixel scenes. Your photo stays on your device.'],
-     nl:['Maak een meme','Sjablonen, stickers, downloaden','Memes maken in een paar seconden','190+ klassieke sjablonen en Jean-Phil-pixelscènes. Je foto blijft op je toestel.'],
-     fr:['Faire un mème','Modèles, stickers, téléchargement','Des mèmes en quelques secondes','190+ modèles classiques et scènes pixel de Jean-Phil. Votre photo reste sur votre appareil.']},
-  items:[['meme.html',{en:['Meme Studio','Pick a template, type, drag, download a PNG'],nl:['Meme Studio','Kies een sjabloon, typ, sleep, download een PNG'],fr:['Meme Studio','Choisissez un modèle, écrivez, déplacez, téléchargez']}],
-         ['factory.html',{en:['Meme Factory','One idea in, a full launch kit out: name, memes, posts'],nl:['Meme Factory','Eén idee erin, een volledig pakket eruit: naam, memes, posts'],fr:['Meme Factory','Une idée, un kit complet : nom, mèmes, posts']}]]},
- {id:'learn',spr:'meme/pxmint.png',img:'home-chain',
-  t:{en:['Learn crypto safely','Play money, no wallet','Learn how crypto works, without risk','Hands-on lessons with play money. No wallet, nothing real at stake.'],
-     nl:['Leer crypto, veilig','Speelgeld, geen wallet','Leer hoe crypto werkt, zonder risico','Lessen om zelf te doen, met speelgeld. Geen wallet, niets echts op het spel.'],
-     fr:['Apprendre la crypto','Argent fictif, sans wallet','Comprendre la crypto, sans risque','Des leçons pratiques avec de l’argent fictif. Pas de wallet, rien de réel en jeu.']},
-  items:[['chain.html',{en:['Mini-Chain','Type, mine and break a tiny blockchain yourself'],nl:['Mini-Chain','Typ, mine en breek zelf een kleine blockchain'],fr:['Mini-Chain','Écrivez, minez et cassez une mini blockchain']}],
-         ['kronos.html',{en:['Kronos Lab','Can AI read a chart? Guess first, then see the past'],nl:['Kronos Lab','Kan AI een grafiek lezen? Gok eerst, zie dan het verleden'],fr:['Kronos Lab','Une IA sait-elle lire un graphique ? Devinez, puis voyez le passé']}],
-         ['quantum.html',{en:['Quantum Lab','Sign a message like Solana today, then quantum-safe'],nl:['Quantum Lab','Onderteken zoals Solana nu, en daarna quantumveilig'],fr:['Quantum Lab','Signez comme Solana aujourd’hui, puis en version post-quantique']}],
-         ['lend.html',{en:['Bot Bank','Lend play coins to AI bots and learn the risks'],nl:['Bot Bank','Leen speelmunten uit aan AI-bots en leer de risico’s'],fr:['Bot Bank','Prêtez des jetons fictifs à des bots et voyez les risques']}],
-         ['chart.html',{en:['Chart School','Learn to read candles, volume and RSI on practice charts'],nl:['Chart School','Leer candles, volume en RSI lezen op oefengrafieken'],fr:['Chart School','Apprenez à lire bougies, volume et RSI sur des graphiques d’exercice']}],
-         ['hq.html#checkup',{en:['Token Checkup','See the public red flags of a Solana token'],nl:['Token Checkup','Bekijk de publieke rode vlaggen van een Solana-token'],fr:['Token Checkup','Voyez les signaux d’alerte publics d’un token Solana']}]]},
- {id:'play',spr:'meme/pxeg.png',img:'home-arcade',
-  t:{en:['Play a game','8 free arcade games','Jean-Phil’s meme arcade','Eight quick games and a daily tournament for glory only. No bets, no entry fee.'],
-     nl:['Speel een spel','8 gratis arcadespellen','Jean-Phils meme-arcade','Acht snelle spellen en een dagelijks toernooi, alleen voor de eer. Geen inzet, geen inschrijfgeld.'],
-     fr:['Jouer','8 jeux d’arcade gratuits','L’arcade de Jean-Phil','Huit jeux rapides et un tournoi quotidien, pour la gloire. Pas de mise, pas de frais.']},
-  items:[['raid.html',{en:['MAIGA Raid','Jean-Phil the ice knight vs Lord Rugpull. 5 worlds, 1 boss. New: Moon Mine + Candle Canyon.'],nl:['MAIGA Raid','Jean-Phil de ijsridder tegen Lord Rugpull. 5 werelden, 1 eindbaas. Nieuw: Maanmijn + Kaarsenkloof.'],fr:['MAIGA Raid','Jean-Phil le chevalier des glaces contre Lord Rugpull. 5 mondes, 1 boss. Nouveau : Mine Lunaire + Canyon des Bougies.']}],
-   ['hq.html#arcade',{en:['Open the arcade','Takeover, Runner, Snake, Flappy and more'],nl:['Open de arcade','Takeover, Runner, Snake, Flappy en meer'],fr:['Ouvrir l’arcade','Takeover, Runner, Snake, Flappy et plus']}],
-         ['app.html',{en:['Install the app','All tools and games on your phone'],nl:['Installeer de app','Alle tools en spellen op je gsm'],fr:['Installer l’appli','Tous les outils et jeux sur votre mobile']}]]}
-];
+var BIZ=[['garage.html',{en:['Bot Garage','Copy one of 24 free bots or build your own in 2 minutes'],nl:['Bot Garage','Kopieer een van 24 gratis bots of bouw je eigen in 2 minuten'],fr:['Bot Garage','Copiez un des 24 bots gratuits ou créez le vôtre en 2 minutes']}],
+ ['LAND:salon',{en:['For salons, agencies and restaurants','Bots made for your trade, try one free'],nl:['Voor kapsalons, makelaars en horeca','Bots voor jouw vak, probeer er één gratis'],fr:['Pour salons, agences et restaurants','Des bots pour votre métier, essayez-en un']}],
+ ['pro-bots.html',{en:['Pro bots','Phone receptionist, inbox assistant, WhatsApp booking'],nl:['Pro-bots','Telefoonreceptionist, inbox-assistent, WhatsApp-boekingen'],fr:['Bots pro','Standardiste téléphonique, assistant e-mail, réservations WhatsApp']}],
+ ['robots.html',{en:['AI for your robots','Help bot for technicians, plain-language orders, fleet report'],nl:['AI voor je robots','Hulpbot voor technici, opdrachten in gewone taal, vlootrapport'],fr:['IA pour vos robots','Bot d’aide technique, ordres en langage courant, rapport de flotte']}],
+ ['LAND:custom',{en:['We set it up for you','Free quote, you pay nothing unless you agree'],nl:['Wij zetten het op','Gratis offerte, je betaalt niets tenzij je akkoord gaat'],fr:['On l’installe pour vous','Devis gratuit, vous ne payez rien sans accord']}]];
 var PACKS=[['salon',5,{en:['Salon pack','10 bots for hair and beauty salons'],nl:['Kapsalonpakket','10 bots voor kapsalons en schoonheidssalons'],fr:['Pack salon','10 bots pour salons de coiffure et de beauté']}],
  ['realestate',7,{en:['Real estate pack','10 bots for agents and agencies'],nl:['Vastgoedpakket','10 bots voor makelaars'],fr:['Pack immobilier','10 bots pour agents et agences']}],
  ['restaurant',5,{en:['Restaurant pack','10 bots for restaurants, cafés and bars'],nl:['Horecapakket','10 bots voor restaurants, cafés en bars'],fr:['Pack restaurant','10 bots pour restaurants, cafés et bars']}],
@@ -321,35 +299,27 @@ var PACKS=[['salon',5,{en:['Salon pack','10 bots for hair and beauty salons'],nl
 var SH={en:{from:'from',get:'View on Ko-fi',pro:['Pro Bot Blueprints','8 connected assistants: phone receptionist, inbox assistant, WhatsApp booking and more','See the pro bots']},nl:{from:'vanaf',get:'Bekijk op Ko-fi',pro:['Pro Bot Blueprints','8 gekoppelde assistenten: telefoonreceptionist, inbox-assistent, WhatsApp-boekingen en meer','Bekijk de pro-bots']},fr:{from:'dès',get:'Voir sur Ko-fi',pro:['Pro Bot Blueprints','8 assistants connectés : standardiste, assistant e-mail, réservations WhatsApp et plus','Voir les bots pro']}};
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 var lang=new URLSearchParams(location.search).get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!LI.hasOwnProperty(lang))lang='en';
-var cur=0,orig={};document.querySelectorAll('[data-i]').forEach(function(e){orig[e.dataset.i]=e.textContent;});
+var orig={};document.querySelectorAll('[data-i]').forEach(function(e){orig[e.dataset.i]=e.textContent;});
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
-function href(h){if(h.indexOf('LAND:')===0)return LAND[h.slice(5)][LI[lang]]+'.html';return h;}
-var tabs=document.getElementById('tabs');
-DOORS.forEach(function(d,i){var b=el('button','tab');b.type='button';b.setAttribute('role','tab');b.id='tab-'+d.id;b.setAttribute('aria-controls','panel');
- var im=el('img','cut');im.src=d.spr;im.alt='';im.width=56;im.height=56;b.appendChild(im);var w=el('span');w.appendChild(el('b'));w.appendChild(el('small'));b.appendChild(w);
- b.addEventListener('click',function(){show(i,true);});
- b.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'||e.key==='ArrowDown'?1:e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0;if(n){e.preventDefault();var j=(cur+n+DOORS.length)%DOORS.length;show(j,true);tabs.children[j].focus();}});
- tabs.appendChild(b);});
-function show(i,user){cur=i;var d=DOORS[i],t=d.t[lang];
- Array.prototype.forEach.call(tabs.children,function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');b.tabIndex=j===i?0:-1;var tt=DOORS[j].t[lang];b.querySelector('b').textContent=tt[0];b.querySelector('small').textContent=tt[1];});
- document.getElementById('panel').setAttribute('aria-labelledby','tab-'+d.id);
- document.getElementById('pT').textContent=t[2];document.getElementById('pP').textContent=t[3];
- var L=document.getElementById('pL');L.textContent='';d.items.forEach(function(it){var li=el('li'),a=el('a');a.href=href(it[0]);var x=it[1][lang],w=el('div');w.appendChild(el('b',null,x[0]));w.appendChild(el('span',null,x[1]));a.appendChild(w);a.appendChild(el('em',null,OPEN[lang]));li.appendChild(a);L.appendChild(li);});
- var img=document.getElementById('pImg');img.src='img/'+d.img+'.webp';
- if(user)try{history.replaceState(null,'','#'+(i?d.id:'doors'));}catch(e){}
-}
+function href(h){return h.indexOf('LAND:')===0?LAND[h.slice(5)][LI[lang]]+'.html':h;}
+function biz(){var L=document.getElementById('bizL');L.textContent='';BIZ.forEach(function(it){var li=el('li'),a=el('a'),x=it[1][lang],w=el('div');a.href=href(it[0]);
+ w.appendChild(el('b',null,x[0]));w.appendChild(el('span',null,x[1]));a.appendChild(w);a.appendChild(el('em',null,OPEN[lang]));li.appendChild(a);L.appendChild(li);});}
 function shop(){var g=document.getElementById('shopG'),s=SH[lang];g.textContent='';
- PACKS.forEach(function(p){var a=el('a','pack');a.href='https://ko-fi.com/s/'+KOFI[p[0]][LI[lang]];a.target='_blank';a.rel='noopener';var x=p[2][lang];
+ PACKS.forEach(function(p){var a=el('a','ticket');a.href='https://ko-fi.com/s/'+KOFI[p[0]][LI[lang]];a.target='_blank';a.rel='noopener noreferrer';var x=p[2][lang];
   a.appendChild(el('b',null,x[0]));var pr=el('div','p','$'+p[1]);pr.prepend(el('small',null,s.from+' '));a.appendChild(pr);a.appendChild(el('span',null,x[1]));a.appendChild(el('div','go',s.get));g.appendChild(a);});
- var a=el('a','pack pro');a.href='pro-bots.html';var w=el('div');w.appendChild(el('b',null,s.pro[0]));w.appendChild(el('span',null,' '+s.pro[1]));a.appendChild(w);a.appendChild(el('div','go',s.pro[2]));g.appendChild(a);}
+ var a=el('a','ticket pro');a.href='pro-bots.html';a.appendChild(el('b',null,s.pro[0]));a.appendChild(el('span',null,s.pro[1]));a.appendChild(el('div','go',s.pro[2]));g.appendChild(a);}
 function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
  document.querySelectorAll('[data-i]').forEach(function(e){var k=e.dataset.i;e.textContent=lang==='en'?orig[k]:(T[lang][k]||orig[k]);});
  document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
  document.querySelectorAll('[data-biz]').forEach(function(a){var k=a.dataset.biz;a.href=LAND[k][LI[lang]]+'.html';a.textContent=BIZN[lang][k];});
- show(cur,false);shop();}
+ biz();shop();}
 document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;apply();});});
-document.querySelectorAll('[data-door]').forEach(function(a){a.addEventListener('click',function(){var i=DOORS.findIndex(function(d){return d.id===a.dataset.door;});if(i>-1)show(i,true);});});
-var h=location.hash.slice(1);DOORS.forEach(function(d,i){if(d.id===h)cur=i;});
+/* zones: show only the cabinets of one kind */
+var zb=document.querySelectorAll('#zones button');
+zb.forEach(function(b){b.addEventListener('click',function(){var z=b.dataset.z;zb.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+ document.querySelectorAll('#hall .cab').forEach(function(c){c.hidden=z!=='all'&&c.dataset.z.split(' ').indexOf(z)<0;});});});
+/* old links like /#biz or /#play still land somewhere useful */
+var h=location.hash.slice(1);if(h==='biz')location.replace('#shop');else if(h==='play'||h==='learn'||h==='make-meme'){var z=h==='make-meme'?'make':h;var t=document.querySelector('#zones [data-z="'+z+'"]');if(t)t.click();}
 apply();
 })();
 </script>

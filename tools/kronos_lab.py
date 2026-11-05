@@ -2,7 +2,7 @@
 """Build data/kronos-lab.json for kronos.html (Kronos Lab).
 
 What it does (runs in GitHub Actions, see .github/workflows/kronos-lab.yml):
-1. Downloads public 1-hour candles for BTC, ETH and SOL (no keys, read-only).
+1. Downloads public 1-hour candles for BTC, ETH, SOL, DOGE, XRP and PEPE (no keys, read-only).
 2. Picks moments in the PAST. For each moment it gives Kronos-small only the
    candles before that moment and asks for the next 24 hours, several times
    (several "paths", the spread shows how unsure the model is).
@@ -24,7 +24,8 @@ import sys
 import time
 import urllib.request
 
-ASSETS = [("BTC", "BTCUSDT", "BTC-USD"), ("ETH", "ETHUSDT", "ETH-USD"), ("SOL", "SOLUSDT", "SOL-USD")]
+ASSETS = [("BTC", "BTCUSDT", "BTC-USD"), ("ETH", "ETHUSDT", "ETH-USD"), ("SOL", "SOLUSDT", "SOL-USD"),
+          ("DOGE", "DOGEUSDT", "DOGE-USD"), ("XRP", "XRPUSDT", "XRP-USD"), ("PEPE", "PEPEUSDT", "PEPE-USD")]
 CONTEXT = 360      # candles Kronos sees (max 512 for Kronos-small)
 SHOW = 72          # candles of history shown on the page
 HORIZON = 24       # hours forecast

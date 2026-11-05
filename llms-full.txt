@@ -106,7 +106,7 @@ How to use it:
 
 ### Kronos Lab: can AI read a chart?
 URL: https://geopolcoins.xyz/kronos.html
-An open AI model (Kronos) forecast real moments from the past for BTC, ETH and SOL. Guess higher or lower first, then see what really happened, with an honest score. Past only, no signals, not advice.
+An open AI model (Kronos) forecast real moments from the past for BTC, ETH, SOL, DOGE, XRP and PEPE. Guess higher or lower first, then see what really happened, with an honest score. Past only, no signals, not advice.
 How to use it:
 1. Pick BTC, ETH or SOL
 2. Guess: higher or lower in 24 hours?

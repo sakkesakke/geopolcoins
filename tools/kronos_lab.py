@@ -137,16 +137,23 @@ def build(kronos_dir, out_path, only=None):
         df = pd.DataFrame(rows, columns=["ts", "open", "high", "low", "close", "volume"])
         df["timestamps"] = pd.to_datetime(df["ts"], unit="s")
         cols = ["open", "high", "low", "close", "volume"]
+        # Kronos normalises with a small fixed epsilon, so very small prices (PEPE ~ 3e-6) turn into noise.
+        # Scale tiny prices up for the model and back down afterwards.
+        med = float(df["close"].median())
+        scale = 10.0 ** math.ceil(-math.log10(med)) if 0 < med < 1 else 1.0
+        model_df = df.copy()
+        model_df[["open", "high", "low", "close"]] *= scale
         moments = []
         for cut in pick_cuts(len(df)):
             x = df.iloc[cut - CONTEXT:cut]
             y = df.iloc[cut:cut + HORIZON]
+            xm = model_df.iloc[cut - CONTEXT:cut]
             out = pred.predict_batch(
-                df_list=[x[cols].reset_index(drop=True)] * PATHS,
+                df_list=[xm[cols].reset_index(drop=True)] * PATHS,
                 x_timestamp_list=[x["timestamps"].reset_index(drop=True)] * PATHS,
                 y_timestamp_list=[y["timestamps"].reset_index(drop=True)] * PATHS,
                 pred_len=HORIZON, T=1.0, top_p=0.9, sample_count=1, verbose=False)
-            paths = np.array([o["close"].to_numpy() for o in out])  # PATHS x HORIZON
+            paths = np.array([o["close"].to_numpy() for o in out]) / scale  # PATHS x HORIZON
             mid = np.median(paths, axis=0)
             lo, hi = paths.min(axis=0), paths.max(axis=0)
             now = float(x["close"].iloc[-1])

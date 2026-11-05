@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kronos Lab: can AI read a crypto chart? Test it on the past</title>
-<meta name="description" content="Free lab: open AI model Kronos forecast past BTC, ETH and SOL moments. Guess first, then see what really happened. Educational, no signals. EN/NL/FR.">
+<meta name="description" content="Free lab: open AI model Kronos forecast past moments of 6 coins. Guess first, then see what really happened. Educational, no signals. EN/NL/FR.">
 <link rel="canonical" href="https://geopolcoins.xyz/kronos.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kronos Lab: can AI read a crypto chart?">
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0a1630">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kronos Lab","url":"https://geopolcoins.xyz/kronos.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","description":"Educational lab that shows forecasts made by the open-source Kronos model for past BTC, ETH and SOL moments, next to what really happened, with an honest score. No live forecasts, no trading signals.","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://geopolcoins.xyz/#org"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kronos Lab","url":"https://geopolcoins.xyz/kronos.html","applicationCategory":"EducationalApplication","operatingSystem":"Any","description":"Educational lab that shows forecasts made by the open-source Kronos model for past BTC, ETH, SOL, DOGE, XRP and PEPE moments, next to what really happened, with an honest score. No live forecasts, no trading signals.","inLanguage":["en","nl","fr"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://geopolcoins.xyz/#org"}}</script>
 <style>
 :root{--ink:#0a1630;--panel:#13254a;--panel2:#0f1e3d;--brass:#e0b43a;--brass-d:#9c7a1c;--red:#ff5a5f;--cyan:#38f2ff;--cream:#f3ecd9;--text:#eef3ff;--dim:#a9b6d3;--line:rgba(243,236,217,.16);--ok:#5be38a;--violet:#b48cff}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -99,7 +99,7 @@ footer{padding:26px 0 40px;color:var(--dim);font-size:14px;display:flex;flex-wra
  <section class="panel" aria-labelledby="hLab">
   <h2 id="hLab" style="margin-top:0" data-i="labH">Beat the AI</h2>
   <div class="row">
-   <div class="chips" role="group" aria-label="Coin" id="chips"><button type="button" class="chip" data-a="BTC">BTC</button><button type="button" class="chip" data-a="ETH">ETH</button><button type="button" class="chip" data-a="SOL">SOL</button></div>
+   <div class="chips" role="group" aria-label="Coin" id="chips"><button type="button" class="chip" data-a="BTC">BTC</button><button type="button" class="chip" data-a="ETH">ETH</button><button type="button" class="chip" data-a="SOL">SOL</button><button type="button" class="chip" data-a="DOGE" hidden>DOGE</button><button type="button" class="chip" data-a="XRP" hidden>XRP</button><button type="button" class="chip" data-a="PEPE" hidden>PEPE</button></div>
    <button type="button" class="b ghost" id="bNew" data-i="new">Another moment</button>
    <span class="when" id="when" aria-live="polite"></span>
   </div>
@@ -198,7 +198,7 @@ function draw(reveal){var svg=$('svg'),mo=cur(),sm=svg.parentNode.clientWidth<60
   svg.appendChild(el('circle',{cx:X(tot-1),cy:Y(mo.real[F-1]),r:5,fill:'#38f2ff'}));}
  else{var q=el('text',{x:(cx+W-PR)/2,y:(PT+H-PB)/2+16,fill:'#38f2ff','font-size':sm?70:52,'font-weight':900,'text-anchor':'middle','font-family':'system-ui'});q.textContent='?';svg.appendChild(q);}
  svg.appendChild(el('circle',{cx:cx,cy:Y(last),r:5,fill:'#e0b43a'}));}
-function fmt(v){var d=v>=1000?0:v>=100?1:2;return Number(v).toLocaleString(lang,{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmt(v){v=Number(v);if(v>0&&v<1)return v.toLocaleString(lang,{maximumSignificantDigits:4});var d=v>=1000?0:v>=100?1:2;return v.toLocaleString(lang,{minimumFractionDigits:d,maximumFractionDigits:d});}
 
 /* ---------------------------------------------------------- game */
 function pickMoment(){var list=D.assets[S.asset],seen=S.seen[S.asset]=S.seen[S.asset]||{},free=[];
@@ -223,7 +223,7 @@ function board(){var A=D.summary.ALL,me=D.meta;
  $('sHit').textContent=pct(A.hits/A.n*100,0);$('sErr').textContent=pct(A.err,2);$('sIn').textContent=pct(A.inside/A.n*100,0);$('sN').textContent=A.n;
  $('sErrP').textContent=m('errP',{n:pct(A.naive_err,2)});$('sHitP').textContent=m('hitP',{u:pct(A.up_share,0)});
  $('boardNote').textContent=m('board',{m:me.moments_per_asset,d:me.days});
- var tb=$('per').querySelector('tbody');tb.textContent='';['BTC','ETH','SOL'].forEach(function(k){var s=D.summary[k];if(!s)return;var tr=document.createElement('tr');
+ var tb=$('per').querySelector('tbody');tb.textContent='';Object.keys(D.summary).filter(function(k){return k!=='ALL';}).forEach(function(k){var s=D.summary[k];if(!s)return;var tr=document.createElement('tr');
   [k,s.hits+' / '+s.n+' ('+pct(s.hits/s.n*100,0)+')',pct(s.err,2),pct(s.naive_err,2)].forEach(function(v){var td=document.createElement('td');td.textContent=v;tr.appendChild(td);});tb.appendChild(tr);});
  $('meta').textContent=m('meta',{src:me.source,g:new Date(me.generated).toLocaleDateString(lang,{day:'numeric',month:'long',year:'numeric'}),model:me.model,lic:me.license});}
 function setAsset(a){S.asset=a;document.querySelectorAll('#chips .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-a')===a?'true':'false');});pickMoment();}
@@ -233,7 +233,7 @@ $('bReveal').addEventListener('click',reveal);$('bNew').addEventListener('click'
 var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(function(){if(D&&S.idx>=0)draw(S.reveal);},150);});
 apply();
 fetch('data/kronos-lab.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){
- if(!j||!j.assets||!j.assets.BTC||!j.assets.BTC.length)throw 0;D=j;board();setAsset('BTC');})
+ if(!j||!j.assets||!j.assets.BTC||!j.assets.BTC.length)throw 0;D=j;document.querySelectorAll('#chips .chip').forEach(function(c){c.hidden=!(D.assets[c.getAttribute('data-a')]||[]).length;});board();setAsset('BTC');})
  .catch(function(){$('noData').hidden=false;['gUp','gDown','bNew'].forEach(function(id){$(id).disabled=true;});});
 window.__klab={get state(){return S;},get data(){return D;},show:function(a,i){S.asset=a;setAsset(a);S.idx=i;S.guess=null;S.shown=false;label();draw(false);setStep('pick');$('result').hidden=true;$('gUp').disabled=false;$('gDown').disabled=false;$('gUp').setAttribute('aria-pressed','false');$('gDown').setAttribute('aria-pressed','false');}};
 })();

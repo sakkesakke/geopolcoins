@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        coin: [BTC, ETH, SOL]
+        coin: [BTC, ETH, SOL, DOGE, XRP, PEPE]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -61,7 +61,7 @@ jobs:
           pattern: part-*
           merge-multiple: true
       - name: Join the coins
-        run: python3 tools/kronos_lab.py --merge part-BTC.json part-ETH.json part-SOL.json --out data/kronos-lab.json
+        run: python3 tools/kronos_lab.py --merge part-*.json --out data/kronos-lab.json
       - uses: actions/upload-artifact@v4
         with:
           name: kronos-lab

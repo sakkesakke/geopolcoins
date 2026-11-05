@@ -36,7 +36,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A sitemap.xml llms-full.txt *.html
           git commit -m "SEO: refresh sitemap dates, breadcrumbs and llms-full.txt"
-          git push
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && break; sleep 5; done
       - name: Tell IndexNow which pages changed
         env:
           BEFORE: ${{ github.event.before }}

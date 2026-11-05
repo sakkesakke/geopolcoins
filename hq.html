@@ -594,6 +594,7 @@ body.playing .hp{display:none!important}
 .brand img{box-shadow:none}
 .hero-logo{box-shadow:0 0 0 4px rgba(230,57,70,.8)}
 @media (prefers-reduced-motion:reduce){.tkr-track,.fx-pk,.fx-lane{animation:none}}
+.i{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -602,6 +603,7 @@ body.playing .hp{display:none!important}
 <script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"$MAIGA HQ","item":"https://geopolcoins.xyz/hq.html"}]}</script>
 </head>
 <body>
+<svg id="lucide-sprite" width="0" height="0" style="position:absolute" aria-hidden="true"><!-- Lucide icons, ISC License, https://lucide.dev --><symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path d="m16 9-5.5 5.5L8 12" /></symbol><symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /><rect width="20" height="14" x="2" y="6" rx="2" /></symbol><symbol id="i-circle-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></symbol><symbol id="i-clipboard" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /></symbol><symbol id="i-coffee" viewBox="0 0 24 24"><path d="M10 2v2" /><path d="M14 2v2" /><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" /><path d="M6 2v2" /></symbol><symbol id="i-factory" viewBox="0 0 24 24"><path d="M12 16h.01" /><path d="M16 16h.01" /><path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z" /><path d="M8 16h.01" /></symbol><symbol id="i-gamepad-2" viewBox="0 0 24 24"><line x1="6" x2="10" y1="11" y2="11" /><line x1="8" x2="8" y1="9" y2="13" /><line x1="15" x2="15.01" y1="12" y2="12" /><line x1="18" x2="18.01" y1="10" y2="10" /><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" /></symbol><symbol id="i-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3" /><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" /><path d="m21 3 1 11h-2" /><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" /><path d="M3 4h8" /></symbol><symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></symbol><symbol id="i-key-round" viewBox="0 0 24 24"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></symbol><symbol id="i-landmark" viewBox="0 0 24 24"><path d="M10 18v-7" /><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" /></symbol><symbol id="i-link-2" viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2" /><path d="M15 7h2a5 5 0 1 1 0 10h-2" /><line x1="8" x2="16" y1="12" y2="12" /></symbol><symbol id="i-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></symbol><symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" /><circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /><circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /><circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /><circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /></symbol><symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol><symbol id="i-refresh-cw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></symbol><symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09" /><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05" /></symbol><symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18" /><path d="m19 8 3 8a5 5 0 0 1-6 0zV7" /><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1" /><path d="m5 8 3 8a5 5 0 0 1-6 0zV7" /><path d="M7 21h10" /></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></symbol><symbol id="i-settings" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /><circle cx="12" cy="12" r="3" /></symbol><symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></symbol><symbol id="i-shirt" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" /></symbol><symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></symbol><symbol id="i-trash-2" viewBox="0 0 24 24"><path d="M10 11v6" /><path d="M14 11v6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /><path d="M3 6h18" /><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></symbol><symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 7h6v6" /><path d="m22 7-8.5 8.5-5-5L2 17" /></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2" /><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2" /><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3" /><path d="M4 22h16" /><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" /><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3" /></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></symbol></svg>
 <a class="skip" href="#main">Skip to content</a>
 
 <canvas id="memeBg"></canvas>
@@ -635,7 +637,7 @@ body.playing .hp{display:none!important}
 <main id="main">
 
 <div class="ticker" id="tkr" role="region" aria-label="Trending coins on Solana, information only, not advice">
-  <div class="tkr-label">📈 TRENDING<small>INFO ONLY · NOT ADVICE</small></div>
+  <div class="tkr-label"><svg class="i" aria-hidden="true"><use href="#i-trending-up"></use></svg> TRENDING<small>INFO ONLY · NOT ADVICE</small></div>
   <div class="tkr-view"><div class="tkr-track" id="tkrTrack"><span class="tkr-msg">Loading trending coins&hellip;</span></div></div>
   <button type="button" class="tkr-pause" id="tkrPause" aria-label="Pause the moving list" aria-pressed="false">&#10074;&#10074;</button>
 </div>
@@ -647,7 +649,7 @@ body.playing .hp{display:none!important}
         <h1 class="hero-title">$MAIGA</h1>
         <div class="hero-tag">JEAN-PHIL'S MEME COIN ON SOLANA</div>
         <p class="hero-sub">A meme coin with a Factory, games and a mascot. Build a launch pack in seconds, play the daily tournament and check everything yourself on-chain.</p>
-        <div class="hero-chips"><span>🏭 MEME FACTORY</span><span>🎮 8 GAMES</span><span>🏆 DAILY TOURNAMENT</span><span>🔄 INSTANT SWAP</span></div>
+        <div class="hero-chips"><span><svg class="i" aria-hidden="true"><use href="#i-factory"></use></svg> MEME FACTORY</span><span><svg class="i" aria-hidden="true"><use href="#i-gamepad-2"></use></svg> 8 GAMES</span><span><svg class="i" aria-hidden="true"><use href="#i-trophy"></use></svg> DAILY TOURNAMENT</span><span><svg class="i" aria-hidden="true"><use href="#i-refresh-cw"></use></svg> INSTANT SWAP</span></div>
         <div class="contract-box" id="contractBox">
           <div class="contract-label">OFFICIAL $MAIGA CONTRACT · SOLANA</div>
           <div class="contract-addr" id="contractAddr">3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump</div>
@@ -669,14 +671,14 @@ body.playing .hp{display:none!important}
     </div>
   </section>
   <nav class="tools-strip hp" aria-label="Free tools">
-    <a href="meme.html"><span aria-hidden="true">🖼️</span><b>MEME STUDIO</b><small>190+ templates, pixel stickers, download PNG</small></a>
-    <a href="chain.html"><span aria-hidden="true">⛓️</span><b>MINI-CHAIN</b><small>Mine blocks and see how a blockchain works</small></a>
-    <a href="lend.html"><span aria-hidden="true">🏦</span><b>BOT BANK</b><small>Game: lend play coins to AI bots</small></a>
-    <a href="garage.html"><span aria-hidden="true">🤖</span><b>BOT GARAGE</b><small>Copy or build your own AI bot</small></a>
-    <a href="pro-bots.html"><span aria-hidden="true">📞</span><b>PRO BOTS</b><small>Phone receptionist, inbox assistant, WhatsApp</small></a>
-    <a href="answers.html"><span aria-hidden="true">❓</span><b>AI BOT Q&amp;A</b><small>17 honest answers for small businesses</small></a>
-    <a href="free-ai-api.html"><span aria-hidden="true">🔑</span><b>FREE AI KEYS</b><small>Free and cheap AI options for your bot</small></a>
-    <a href="app.html"><span aria-hidden="true">📱</span><b>THE APP</b><small>All tools in your pocket</small></a>
+    <a href="meme.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-image"></use></svg></span><b>MEME STUDIO</b><small>190+ templates, pixel stickers, download PNG</small></a>
+    <a href="chain.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-link-2"></use></svg></span><b>MINI-CHAIN</b><small>Mine blocks and see how a blockchain works</small></a>
+    <a href="lend.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-landmark"></use></svg></span><b>BOT BANK</b><small>Game: lend play coins to AI bots</small></a>
+    <a href="garage.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-bot"></use></svg></span><b>BOT GARAGE</b><small>Copy or build your own AI bot</small></a>
+    <a href="pro-bots.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg></span><b>PRO BOTS</b><small>Phone receptionist, inbox assistant, WhatsApp</small></a>
+    <a href="answers.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-circle-help"></use></svg></span><b>AI BOT Q&amp;A</b><small>17 honest answers for small businesses</small></a>
+    <a href="free-ai-api.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-key-round"></use></svg></span><b>FREE AI KEYS</b><small>Free and cheap AI options for your bot</small></a>
+    <a href="app.html"><span aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-smartphone"></use></svg></span><b>THE APP</b><small>All tools in your pocket</small></a>
   </nav>
 
 <section id="live" class="live coin hp">
@@ -722,7 +724,7 @@ body.playing .hp{display:none!important}
 <section id="factory" class="fx hp">
   <div class="fx-grid">
     <div>
-      <span class="fx-badge">🏭 NEW · BETA</span>
+      <span class="fx-badge">BETA</span>
       <h2 class="meme-h">MEME <span>FACTORY</span></h2>
       <p>Type one idea. Jean-Phil's pixel crew builds a complete meme-coin launch pack: name, ticker, meme, safety check, X posts, a team call and a <strong style="color:#14F195">share card</strong> you can download. Free with templates, or smarter with your own AI key.</p>
       <form class="fx-form" id="fxForm" autocomplete="off">
@@ -734,7 +736,7 @@ body.playing .hp{display:none!important}
       <p class="fx-note">Nothing is posted or launched for you, and your AI key (if you add one) goes only to the provider you pick. A community hub shows the best packs. <a href="factory.html" style="color:#ffd800;text-decoration:underline">Open the full Factory</a> · <a href="meme.html" style="color:#ffd800;text-decoration:underline">Meme Studio: 190+ templates</a></p>
     </div>
     <div class="fx-belt" aria-hidden="true">
-      <div class="fx-sign">⚙ MAIGA FACTORY</div>
+      <div class="fx-sign"><svg class="i" aria-hidden="true"><use href="#i-settings"></use></svg> MAIGA FACTORY</div>
       <div class="fx-screen">&gt; idea: ???<br>&gt; name... ticker... meme...<br>&gt; check: no red flags<br>&gt; jean-phil: "approved"</div>
       <div class="fx-lane"></div>
       <span class="fx-pk">💡</span><span class="fx-pk">🏷️</span><span class="fx-pk">🖼️</span><span class="fx-pk">🛡️</span><span class="fx-pk">📣</span>
@@ -752,7 +754,7 @@ body.playing .hp{display:none!important}
   </div>
   <form class="ck-form" id="ckForm" autocomplete="off">
     <input id="ckInput" maxlength="44" placeholder="PASTE TOKEN ADDRESS (MINT)" aria-label="Solana token address" spellcheck="false">
-    <button type="submit" class="btn btn-gold" id="ckBtn">🔍 CHECK</button>
+    <button type="submit" class="btn btn-gold" id="ckBtn"><svg class="i" aria-hidden="true"><use href="#i-search"></use></svg> CHECK</button>
     <button type="button" class="btn btn-yellow" id="ckMine">CHECK $MAIGA</button>
   </form>
   <div class="ck-hist" id="ckHist"></div>
@@ -874,7 +876,7 @@ body.playing .hp{display:none!important}
         <button class="wallet-btn" id="claimBtn" onclick="MAIGA_GAME.submitWallet()">SUBMIT WALLET</button>
       </div>
       <div class="vp-box" id="vpBox">
-        <button type="button" class="vp-btn" id="vpBtn" onclick="MAIGA_GAME.verifyWallet()">✅ VERIFY WITH PHANTOM</button>
+        <button type="button" class="vp-btn" id="vpBtn" onclick="MAIGA_GAME.verifyWallet()"><svg class="i" aria-hidden="true"><use href="#i-badge-check"></use></svg> VERIFY WITH PHANTOM</button>
         <div class="vp-note">Optional. Set your pilot name first. You sign one free message in Phantom: it is not a transaction and costs nothing. It proves the wallet is yours and reserves your pilot name for it, so nobody else can play under your name in the tournament.</div>
         <div class="vp-msg" id="vpMsg" aria-live="polite"></div>
       </div>
@@ -888,15 +890,15 @@ body.playing .hp{display:none!important}
 <section id="launch-hub" class="lh hp">
   <div class="lh-bar"></div>
   <div class="lh-head">
-    <h2>🚀 LAUNCH <span>YOUR COIN</span></h2>
+    <h2><svg class="i" aria-hidden="true"><use href="#i-rocket"></use></svg> LAUNCH <span>YOUR COIN</span></h2>
     <p>Make a meme → Plan your team (or go solo) → Launch on Pump.fun</p>
   </div>
 
   <!-- STEP 1: MEME -->
   <div class="lh-step purple">
-    <h3>STEP 1 · 🎨 CREATE YOUR MEME</h3>
+    <h3>STEP 1 · <svg class="i" aria-hidden="true"><use href="#i-palette"></use></svg> CREATE YOUR MEME</h3>
     <div class="ma-box">
-      <h4>🤖 MEME AGENT · NEED AN IDEA?</h4>
+      <h4><svg class="i" aria-hidden="true"><use href="#i-bot"></use></svg> MEME AGENT · NEED AN IDEA?</h4>
       <div class="ma-row">
         <input type="text" id="maIdea" maxlength="24" placeholder="Your idea in 1 to 3 words (frog, monday, coffee)" autocomplete="off">
         <select id="maTone" aria-label="Tone">
@@ -911,7 +913,7 @@ body.playing .hp{display:none!important}
     <input type="text" id="launchTop" maxlength="100" placeholder="Top text" autocomplete="off">
     <input type="text" id="launchBottom" maxlength="100" placeholder="Bottom text" autocomplete="off">
     <select id="launchTemplate" aria-label="Meme template">
-      <option value="custom">★ My own image (recommended for your coin)</option>
+      <option value="custom"><svg class="i" aria-hidden="true"><use href="#i-star"></use></svg> My own image (recommended for your coin)</option>
       <option value="buzz">Buzz Lightyear</option>
       <option value="drake">Drake</option>
       <option value="fine">This is Fine</option>
@@ -929,15 +931,15 @@ body.playing .hp{display:none!important}
 
   <!-- STEP 2: TEAM -->
   <div class="lh-step green">
-    <h3>STEP 2 · 🤝 PLAN YOUR TEAM SPLIT</h3>
+    <h3>STEP 2 · <svg class="i" aria-hidden="true"><use href="#i-handshake"></use></svg> PLAN YOUR TEAM SPLIT</h3>
     <p class="lh-note" style="margin-top:0">
       Go <strong style="color:#14F195">SOLO</strong> or add members and set each share. This is a <strong>planning tool only</strong>:
       nothing here moves money. Any split of fees or tokens has to be set up and honoured by you and your team outside this site.
     </p>
     <div class="lh-row">
-      <button type="button" class="lh-btn green" id="soloBtn">👤 GO SOLO (100% YOU)</button>
-      <button type="button" class="lh-btn ghost" id="evenBtn">⚖️ SPLIT EVENLY</button>
-      <button type="button" class="lh-btn ghost" id="clearBtn">🗑 CLEAR</button>
+      <button type="button" class="lh-btn green" id="soloBtn"><svg class="i" aria-hidden="true"><use href="#i-user"></use></svg> GO SOLO (100% YOU)</button>
+      <button type="button" class="lh-btn ghost" id="evenBtn"><svg class="i" aria-hidden="true"><use href="#i-scale"></use></svg> SPLIT EVENLY</button>
+      <button type="button" class="lh-btn ghost" id="clearBtn"><svg class="i" aria-hidden="true"><use href="#i-trash-2"></use></svg> CLEAR</button>
     </div>
     <div id="teamList"></div>
     <div class="lh-row">
@@ -953,7 +955,7 @@ body.playing .hp{display:none!important}
     <div id="teamSummary" class="lh-summary"></div>
 
     <div class="tm-box">
-      <h4>🤖 TEAM MATCH AGENT · FIND TEAMMATES</h4>
+      <h4><svg class="i" aria-hidden="true"><use href="#i-bot"></use></svg> TEAM MATCH AGENT · FIND TEAMMATES</h4>
       <div class="tm-row">
         <input type="text" id="tmNick" maxlength="16" placeholder="Nickname (letters, numbers)" autocomplete="off">
         <div><span class="tm-lbl">I AM A</span><select id="tmMy" aria-label="My role"><option value="creator">Creator</option><option value="dev">Dev</option><option value="design">Designer</option><option value="marketing">Marketing</option><option value="community">Community</option></select></div>
@@ -969,21 +971,21 @@ body.playing .hp{display:none!important}
       <p class="lh-note">Posts are public for 14 days. We do not store wallets, emails or contact details here: when you match, talk on our Discord. We can remove any post. Never send money or keys to anyone. Admins never DM first. The match is only a role suggestion, not a check of who someone really is.</p>
     </div>
 
-    <a class="lh-discord" href="https://discord.gg/KFYCT4xVk" target="_blank" rel="noopener noreferrer">💬 JOIN THE TEAM CHAT ON DISCORD</a>
+    <a class="lh-discord" href="https://discord.gg/KFYCT4xVk" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-message-square"></use></svg> JOIN THE TEAM CHAT ON DISCORD</a>
     <p class="lh-note" style="text-align:center;margin-top:8px">Find teammates, share memes and plan your launch. Discord is a third-party service. Stay safe: admins never DM first, and nobody needs your seed phrase or private key. Ever.</p>
   </div>
 
   <!-- STEP 3: LAUNCH -->
   <div class="lh-step gold">
-    <h3>STEP 3 · 🚀 LAUNCH ON PUMP.FUN</h3>
+    <h3>STEP 3 · <svg class="i" aria-hidden="true"><use href="#i-rocket"></use></svg> LAUNCH ON PUMP.FUN</h3>
     <div class="lh-row">
       <input type="text" id="coinName" maxlength="32" placeholder="Coin name" autocomplete="off" style="flex:2;min-width:150px;margin:0">
       <input type="text" id="coinTicker" maxlength="10" placeholder="TICKER" autocomplete="off" style="flex:1;min-width:90px;margin:0;text-transform:uppercase">
     </div>
     <textarea id="coinDesc" maxlength="300" rows="3" placeholder="Short description (max 300 characters)"></textarea>
-    <button type="button" class="lh-btn green" id="lhCheckBtn" style="margin-bottom:10px">🛡️ RUN LAUNCH CHECK</button>
+    <button type="button" class="lh-btn green" id="lhCheckBtn" style="margin-bottom:10px"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg> RUN LAUNCH CHECK</button>
     <div id="lhCheckResult" class="lh-check" aria-live="polite"></div>
-    <button type="button" class="lh-btn ghost" id="copyPlanBtn">📋 COPY MY LAUNCH PLAN</button>
+    <button type="button" class="lh-btn ghost" id="copyPlanBtn"><svg class="i" aria-hidden="true"><use href="#i-clipboard"></use></svg> COPY MY LAUNCH PLAN</button>
     <a class="lh-launch" href="https://pump.fun/create" target="_blank" rel="noopener noreferrer">OPEN PUMP.FUN →</a>
     <p class="lh-note" style="text-align:center">
       Pump.fun is an independent third-party service. Its fees, rules and availability are set by Pump.fun, not by $MAIGA.
@@ -996,35 +998,35 @@ body.playing .hp{display:none!important}
 <section id="ai-agents" class="agents hp">
   <div class="ag-head">
     <div class="ag-pill"><span class="ag-dot"></span>ALL 4 LIVE · MORE COMING</div>
-    <h2>🤖 $MAIGA <span>AI AGENTS</span></h2>
+    <h2><svg class="i" aria-hidden="true"><use href="#i-bot"></use></svg> $MAIGA <span>AI AGENTS</span></h2>
     <p>Helpers for the meme coin factory: make better memes, find your team and check your launch before you go live. We are building these step by step and will share each one here, on X and on Discord when it is ready.</p>
   </div>
 
   <div class="ag-grid">
     <div class="ag-card" style="--c:#a78bfa">
       <span class="ag-tag ag-live">LIVE</span>
-      <div class="ag-ico">🎨</div>
+      <div class="ag-ico"><svg class="i" aria-hidden="true"><use href="#i-palette"></use></svg></div>
       <h3>MEME AGENT</h3>
       <p>Type a word and get meme text, coin name, ticker and description ideas in one click. Runs in your browser in Step 1 of the Launch Hub and uses simple templates, so check the text before you use it.</p>
       <div class="ag-bar"><i></i></div>
     </div>
     <div class="ag-card" style="--c:#14F195">
       <span class="ag-tag ag-live">LIVE</span>
-      <div class="ag-ico">🤝</div>
+      <div class="ag-ico"><svg class="i" aria-hidden="true"><use href="#i-handshake"></use></svg></div>
       <h3>TEAM MATCH AGENT</h3>
       <p>A board in Step 2 of the Launch Hub. Post your role and the role you need, then find matches. No wallets or contact data stored: you talk on Discord.</p>
       <div class="ag-bar"><i></i></div>
     </div>
     <div class="ag-card" style="--c:#ffd800">
       <span class="ag-tag ag-live">LIVE</span>
-      <div class="ag-ico">🛡️</div>
+      <div class="ag-ico"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg></div>
       <h3>LAUNCH CHECK AGENT</h3>
       <p>Reads your coin name, ticker and description before launch and flags well-known brands and common scam wording. Runs in your browser in Step 3 of the Launch Hub. It is a checklist, not legal advice.</p>
       <div class="ag-bar"><i></i></div>
     </div>
     <div class="ag-card" style="--c:#ff6574">
       <span class="ag-tag ag-live">LIVE</span>
-      <div class="ag-ico">🏆</div>
+      <div class="ag-ico"><svg class="i" aria-hidden="true"><use href="#i-trophy"></use></svg></div>
       <h3>JEAN-PHIL AGENT</h3>
       <p>Posts the tournament standings in our Discord every day: top 5 players, total runs and the best single run. Read-only, it never sees wallets.</p>
       <div class="ag-bar"><i></i></div>
@@ -1095,10 +1097,10 @@ body.playing .hp{display:none!important}
     <h2>BACK THE PROJECT</h2>
     <div class="sub">Everything free here stays free. Ads and partners are always labelled, and nothing on this page is a reason to buy $MAIGA.</div>
     <div class="sup-grid">
-      <div class="sup-card"><h3>🏭 FACTORY PRO</h3><p>Extra packs, your own colours and share cards without watermark. The free Factory is not going away.</p><span class="tag">COMING SOON</span></div>
-      <div class="sup-card"><h3>🤝 PARTNER SLOT</h3><p>A labelled "Ad" spot in the trending ticker or next to Meme of the Week. We only accept projects we looked at first, no scam-bait.</p><span class="tag">OPEN</span></div>
-      <div class="sup-card"><h3>👕 MERCH</h3><p>Original Jean-Phil and Cap'n Eagle pixel art on shirts and stickers. Our own artwork only.</p><span class="tag">COMING SOON</span></div>
-      <div class="sup-card"><h3>☕ TIP JAR</h3><p>Like what we build? Tips keep the free tools running. Optional, never expected, and never a reason to buy $MAIGA. Only use the link on this page and never send money to anyone who DMs you first.</p><a class="btn" href="https://ko-fi.com/geopolcoins" target="_blank" rel="noopener noreferrer">☕ TIP ON KO-FI</a> <a class="btn" href="https://ko-fi.com/s/3805e02171" target="_blank" rel="noopener noreferrer">💼 BUSINESS BOT PACK</a></div>
+      <div class="sup-card"><h3><svg class="i" aria-hidden="true"><use href="#i-factory"></use></svg> FACTORY PRO</h3><p>Extra packs, your own colours and share cards without watermark. The free Factory is not going away.</p><span class="tag">COMING SOON</span></div>
+      <div class="sup-card"><h3><svg class="i" aria-hidden="true"><use href="#i-handshake"></use></svg> PARTNER SLOT</h3><p>A labelled "Ad" spot in the trending ticker or next to Meme of the Week. We only accept projects we looked at first, no scam-bait.</p><span class="tag">OPEN</span></div>
+      <div class="sup-card"><h3><svg class="i" aria-hidden="true"><use href="#i-shirt"></use></svg> MERCH</h3><p>Original Jean-Phil and Cap'n Eagle pixel art on shirts and stickers. Our own artwork only.</p><span class="tag">COMING SOON</span></div>
+      <div class="sup-card"><h3><svg class="i" aria-hidden="true"><use href="#i-coffee"></use></svg> TIP JAR</h3><p>Like what we build? Tips keep the free tools running. Optional, never expected, and never a reason to buy $MAIGA. Only use the link on this page and never send money to anyone who DMs you first.</p><a class="btn" href="https://ko-fi.com/geopolcoins" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-coffee"></use></svg> TIP ON KO-FI</a> <a class="btn" href="https://ko-fi.com/s/3805e02171" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-briefcase"></use></svg> BUSINESS BOT PACK</a></div>
     </div>
     <a class="btn" href="partners.html">PARTNER SLOTS &amp; RULES</a> <a class="btn" href="https://x.com/greenlandusa1" target="_blank" rel="noopener noreferrer">DM US ON X ABOUT PARTNERSHIPS</a>
   </section>
@@ -1872,8 +1874,8 @@ window.addEventListener('load',function(){
     if(!members.length)lines.push('(none)');
     members.forEach(function(m){lines.push('- '+m.name+' · '+m.role+' · '+m.percent+'%');});
     lines.push('Total: '+total()+'%');
-    var btn=$('copyPlanBtn'),old=btn.textContent;
-    copyText(lines.join('\n')).then(function(){btn.textContent='✅ COPIED';setTimeout(function(){btn.textContent=old;},1800);})
+    var btn=$('copyPlanBtn'),old=btn.innerHTML;
+    copyText(lines.join('\n')).then(function(){btn.textContent='COPIED';setTimeout(function(){btn.innerHTML=old;},1800);})
       .catch(function(){alert(lines.join('\n'));});
   }
 

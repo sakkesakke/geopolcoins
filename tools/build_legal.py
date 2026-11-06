@@ -3,7 +3,7 @@
 import sys
 import os
 OUT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..')+'/'
-UPDATED='24 October 2026'
+UPDATED='6 November 2026'
 # Operator details: fill these in once, then rebuild. Empty = shows a visible placeholder.
 OP_NAME=sys.argv[1] if len(sys.argv)>1 else ''
 OP_ADDR=sys.argv[2] if len(sys.argv)>2 else ''
@@ -85,6 +85,7 @@ privacy=f'''
 <p>Many tools work only in your browser and keep their settings in your browser's local storage on your own device. We cannot see this data. Examples: language choice, your saved bots, your bot business card on the buyer start page, recent token checks, game best scores, and, only if you choose "remember", your own AI key. See the <a href="cookies.html">Cookie and storage policy</a> for the full list and how to delete it.</p>
 <p><strong>Your AI key</strong> (Meme Factory, Bot Garage): it is sent directly from your browser to the AI provider you pick (Anthropic, OpenAI or OpenRouter), never to us. Your idea or prompt then goes to that provider under its own privacy policy, and that provider bills you.</p>
 <p><strong>Meme Studio</strong>: your photo and your meme are made on your device and are not uploaded to us.</p>
+<p><strong>Region check</strong> (home page, HQ, Meme Factory): your browser looks at its own time zone setting to decide whether to hide buy and swap links in countries where local rules restrict crypto promotion. This happens only on your device; the time zone is not sent to us or anyone else.</p>
 
 <h2 id="third">4. Services that receive data from your browser</h2>
 <p>Some features load data from, or send you to, independent services. When that happens, your browser connects to them directly and they can see your IP address and browser details under their own privacy policies:</p>
@@ -196,8 +197,66 @@ legal=f'''
 <p>The team is currently based in Morocco. Hosting: GitHub Pages, GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Database: Supabase (EU, Frankfurt).</p>
 
 <h2>What this site is</h2>
-<p>$MAIGA and GEOPOLCOINS are satirical entertainment and meme projects, with free tools and games. <strong>Nothing on this site is financial, investment, legal or tax advice</strong>, and nothing is an offer or a solicitation to buy or sell any token or financial product. We do not issue, sell or hold tokens for you through this site, we do not provide lending, custody or exchange services, and we never ask for your seed phrase or private keys. Swaps on the home page run through Jupiter directly from your own wallet. Crypto assets are highly risky and you can lose everything.</p>
+<p>$MAIGA and GEOPOLCOINS are satirical entertainment and meme projects, with free tools and games. <strong>Nothing on this site is financial, investment, legal or tax advice</strong>, and nothing is an offer or a solicitation to buy or sell any token or financial product. We do not issue, sell or hold tokens for you through this site, we do not provide lending, custody or exchange services, and we never ask for your seed phrase or private keys. Swaps on the HQ page run through Jupiter directly from your own wallet. Crypto assets are highly risky and you can lose everything.</p>
 <p>Nothing on this site is an offer or sale of securities, and nothing has been registered with or approved by the US Securities and Exchange Commission or any other regulator. The site is not directed at people in countries where its content or crypto-assets are prohibited, and it may not be used by anyone in, or ordinarily resident in, a country or region under comprehensive sanctions (for example by the UN, the EU, the UK or the US OFAC), or by anyone on a sanctions list. You are responsible for following the laws where you live. Tournaments and prizes are free to enter, never require a purchase, and are open only to adults where this is allowed.</p>
+
+<h2 id="risk">Risk warning</h2>
+<p class="box"><strong>Virtual currencies, real risks. The only guarantee in crypto is risk.</strong></p>
+<p><strong>Warning</strong></p>
+<ul>
+<li>the value of your virtual currencies can rise or fall sharply, and your initial investment may be lost completely;</li>
+<li>virtual currencies are not covered by the guarantee funds that cover bank deposits;</li>
+<li>there is no legal mechanism on the virtual currencies market to prevent market manipulation or insider dealing;</li>
+<li>virtual currencies depend entirely on a specific computer technology and infrastructure, which in certain cases may be very recent and not yet adequately tested;</li>
+<li>if one loses the identification code or password giving access to the virtual wallet in which the virtual currency is stored, the currency held therein will be irretrievably lost;</li>
+<li>virtual currencies are currently accepted as a means of payment to a limited extent, and in most countries there is no legal obligation to accept them;</li>
+<li>for more information about the risks associated with an investment in virtual currencies, we advise you to read the Wikifin page "What is a cryptocurrency?" (<a href="https://www.wikifin.be/fr" target="_blank" rel="noopener noreferrer">wikifin.be</a>).</li>
+</ul>
+<div lang="nl">
+<p class="box"><strong>Virtuele munten, reële risico's. De enige garantie in crypto is het risico.</strong></p>
+<p><strong>Waarschuwing</strong></p>
+<ul>
+<li>de waarde van uw virtuele munten kan sterk op en neer gaan, en het door u belegde bedrag kan integraal verloren gaan;</li>
+<li>de virtuele munten zijn niet gedekt door de garantieregelingen voor bankdeposito's;</li>
+<li>op de markt van de virtuele munten is geen enkel wettelijk mechanisme beschikbaar waarmee marktmanipulatie of misbruik van voorkennis kan worden vermeden;</li>
+<li>de virtuele munten zijn volledig afhankelijk van een specifieke computertechnologie en -infrastructuur, die in bepaalde gevallen zeer recent ontwikkeld en nog onvoldoende getest kan zijn;</li>
+<li>bij verlies van de identificatiecode die of het wachtwoord dat toegang verleent tot de virtuele portefeuille waarin de virtuele munten zijn opgeslagen, zullen die munten definitief verloren zijn;</li>
+<li>virtuele munten worden thans beperkt als betaalmiddel aanvaard, en in de meeste landen bestaat er geen enkele wettelijke verplichting om ze te aanvaarden;</li>
+<li>voor meer informatie over de risico's die aan een belegging in virtuele munten verbonden zijn, raden wij u aan de Wikifin-pagina "Wat is een cryptomunt?" te lezen (<a href="https://www.wikifin.be/nl" target="_blank" rel="noopener noreferrer">wikifin.be</a>).</li>
+</ul>
+</div>
+<div lang="fr">
+<p class="box"><strong>Monnaie virtuelle, risques réels. En crypto seul le risque est garanti.</strong></p>
+<p><strong>Avertissement</strong></p>
+<ul>
+<li>la valeur de vos monnaies virtuelles peut varier de manière très importante à la hausse comme à la baisse et le montant que vous investissez peut être entièrement perdu ;</li>
+<li>les monnaies virtuelles ne sont pas couvertes par les systèmes de garantie des dépôts bancaires ;</li>
+<li>aucun mécanisme légal permettant d'éviter les manipulations de marché ou les délits d'initiés n'a été mis en place sur le marché des monnaies virtuelles ;</li>
+<li>les monnaies virtuelles sont entièrement dépendantes d'une technologie et d'une infrastructure informatique spécifique, qui peut dans certains cas avoir été développée très récemment et être encore insuffisamment testée ;</li>
+<li>en cas de perte de l'identifiant ou du mot de passe permettant d'accéder au portefeuille virtuel où sont stockées les monnaies virtuelles, ces dernières seront définitivement perdues ;</li>
+<li>l'acceptation des monnaies virtuelles comme moyen de paiement est actuellement limitée et il n'existe dans la très grande majorité des pays aucune obligation légale de les accepter ;</li>
+<li>pour plus d'informations concernant les risques liés à un investissement en monnaies virtuelles, nous vous recommandons de lire la page Wikifin « Qu'est-ce qu'une cryptomonnaie ? » (<a href="https://www.wikifin.be/fr" target="_blank" rel="noopener noreferrer">wikifin.be</a>).</li>
+</ul>
+</div>
+<p>These texts follow the Belgian FSMA rules for advertising virtual currencies. The short warning is shown at the top of every page that links to buying $MAIGA.</p>
+
+<h2 id="paid">Paid links and referrals</h2>
+<p>Some links on this site earn us a benefit. We always label them. The swap widget on the HQ page (Jupiter) includes a 0.5% referral fee that goes to us. The Fomo link is a referral link: we get a share of the fees and you get a discount. As the creator of $MAIGA on Pump.fun, the team may also receive Pump.fun creator fees when people trade $MAIGA, so we have a financial interest when you trade it. Nobody else pays us to promote $MAIGA.</p>
+
+<h2 id="countries">Countries where buy links are hidden</h2>
+<p>The tools, games, lessons and blog are open to everyone. Links to buy or swap crypto-assets are hidden when your browser's time zone points to one of these countries or regions:</p>
+<ul>
+<li><strong>United Kingdom</strong>: under the UK financial promotion rules, only authorised or registered firms may promote crypto-assets to UK consumers. We are not such a firm.</li>
+<li><strong>Countries that ban or strictly limit crypto trading</strong>: China, Algeria, Bangladesh, Egypt, Nepal, Afghanistan, and Morocco (where a 2017 ban has not yet been replaced by the planned crypto-asset law).</li>
+<li><strong>Comprehensive sanctions</strong>: Iran, North Korea, Syria, Cuba, Russia and Belarus.</li>
+</ul>
+<p>This check runs only in your browser and can be wrong (for example with a VPN or while travelling). Whatever it shows, you remain responsible for following the laws where you live, and the site may not be used to get around them. Rules change: if you think your country should be added or removed, email us.</p>
+
+<h2 id="eu">European Union (MiCA)</h2>
+<p>$MAIGA was created on the Pump.fun launchpad. We do not sell $MAIGA through this site and we have not published a crypto-asset white paper; no white paper has been notified to or approved by any EU authority. Content about $MAIGA on this site is information and marketing, labelled as such, and never states or predicts its future value.</p>
+
+<h2 id="age">Age</h2>
+<p>The crypto content and links on this site are meant for adults (18+). The games, lessons and tools are fine for younger visitors, but they must not buy or trade crypto-assets.</p>
 
 <h2>Satire, names and images</h2>
 <p>The site uses parody and satire. Our characters are original pixel art and do not depict real people. Classic meme templates in the Meme Studio come from the open-source memegen project (MIT licence) and memegen.link; the pictures belong to their respective owners and are shown for parody, commentary and personal use. You are responsible for the images, names and words you create and publish.</p>

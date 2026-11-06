@@ -1,0 +1,336 @@
+{
+ "ui": {
+  "open": "Pergunte ao Bolt",
+  "title": "Bolt, seu guia",
+  "hi": "Oi, eu sou o Bolt! Conheço cada ferramenta e jogo deste site. Pergunte o que quiser ou escolha abaixo.",
+  "here": "Você está em: ",
+  "ph": "Pergunte sobre uma ferramenta ou jogo…",
+  "send": "Enviar",
+  "close": "Fechar ajuda",
+  "none": "Não encontrei. Tente outras palavras ou escolha um tema:",
+  "note": "Guia simples, sem IA. O que você digita não sai do seu aparelho. Não é aconselhamento financeiro.",
+  "how": "Como funciona:",
+  "also": "Veja também:",
+  "load": "Um momento…",
+  "fail": "Não consigo carregar minhas anotações agora. Verifique sua conexão ou comece pela página inicial.",
+  "groups": {
+   "tool": "Ferramentas",
+   "game": "Jogos",
+   "learn": "Aprender",
+   "business": "Para empresas",
+   "help": "Ajuda e segurança",
+   "page": "Mais páginas"
+  },
+  "all": "Mostrar tudo",
+  "here2": "O que posso fazer aqui?"
+ },
+ "topics": {
+  "site": {
+   "title": "O que é este site?",
+   "what": "geopolcoins.xyz é um parque gratuito de ferramentas de IA, laboratórios de aprendizado e jogos, em torno da meme coin satírica $MAIGA. Você não precisa de conta nem de carteira para as ferramentas.",
+   "steps": [
+    "Abra a página inicial e escolha o que quer fazer",
+    "Experimente uma ferramenta: tudo roda no seu navegador",
+    "Me pergunte qualquer coisa sobre uma ferramenta ou jogo"
+   ],
+   "cta": "Início"
+  },
+  "garage": {
+   "title": "Bot Garage: crie seu próprio bot de IA",
+   "what": "Copie um bot de IA pronto ou crie o seu: escolha a função, o tom e o visual, teste e compartilhe com um link ou exporte para ChatGPT, Claude, Discord ou Telegram. Grátis, sem conta.",
+   "steps": [
+    "Escolha um bot pronto ou comece do zero",
+    "Defina a função, o tom e o visual",
+    "Teste no chat",
+    "Compartilhe o link ou exporte"
+   ],
+   "cta": "Abrir o Bot Garage"
+  },
+  "meme": {
+   "title": "Meme Studio: faça um meme",
+   "what": "Faça um meme em segundos com mais de 190 modelos clássicos, cenas pixel da MAIGA ou sua própria foto. Arraste textos e figurinhas e baixe um PNG. Nada é enviado.",
+   "steps": [
+    "Escolha um modelo ou envie uma foto",
+    "Digite seu texto e posicione",
+    "Adicione figurinhas se quiser",
+    "Baixe o PNG"
+   ],
+   "cta": "Abrir o Meme Studio"
+  },
+  "factory": {
+   "title": "Meme Factory: um kit de lançamento com uma palavra",
+   "what": "Digite uma palavra e uma equipe pixel monta um kit de meme coin: nome, ticker, meme, checagem de segurança e ideias de posts. Nada é lançado ou postado por você. Só entretenimento.",
+   "steps": [
+    "Digite uma palavra ou ideia",
+    "Veja a equipe montar o kit",
+    "Copie as partes que gostar",
+    "Baixe a versão offline se quiser"
+   ],
+   "cta": "Abrir a Meme Factory"
+  },
+  "check": {
+   "title": "Token Checkup: verifique um token",
+   "what": "Cole o endereço de qualquer token da Solana. A senhora Mintje lê os dados públicos e mostra o que parece ok, o que parece arriscado e o que ela não consegue ver. É uma lista de checagem, não um conselho, e pode deixar coisas passarem.",
+   "steps": [
+    "Copie o endereço do token (CA)",
+    "Cole no Token Checkup",
+    "Leia os pontos verdes, laranjas e cinzas",
+    "Sempre verifique mais por conta própria"
+   ],
+   "cta": "Abrir o Token Checkup"
+  },
+  "raid": {
+   "title": "MAIGA Raid: plataforma pixel",
+   "what": "Jogue como Jean-Phil, o cavaleiro de gelo, ou Bolt, o robô. Passe por 5 mundos (gelo, fábrica, lua, cânion de velas, torre do tapete) e liberte a Mintje do Lord Rugpull. Grátis, sem carteira, funciona com toque, teclado ou controle.",
+   "steps": [
+    "Escolha seu herói",
+    "Setas ou botões para andar, pule para esmagar",
+    "Chegue à bandeira em cada mundo",
+    "Derrote o Lord Rugpull e desafie um amigo"
+   ],
+   "cta": "Jogar MAIGA Raid"
+  },
+  "arcade": {
+   "title": "O fliperama de memes do Jean-Phil",
+   "what": "8 joguinhos com meme coins, memes pixel e o Jean-Phil, como o MAIGA Flappy. Jogue com um nome de piloto e suba no torneio diário grátis. Só por diversão.",
+   "steps": [
+    "Escolha um jogo no fliperama",
+    "Defina seu nome de piloto",
+    "Jogue e veja o ranking"
+   ],
+   "cta": "Abrir o fliperama"
+  },
+  "chain": {
+   "title": "Mini-Chain: como funciona uma blockchain",
+   "what": "Aprenda fazendo: digite dados, minere blocos e veja por que trocar uma única letra quebra a corrente inteira. Roda no seu navegador.",
+   "steps": [
+    "Veja o que é um hash (impressão digital)",
+    "Minere alguns blocos",
+    "Troque uma letra e veja a corrente quebrar"
+   ],
+   "cta": "Abrir a Mini-Chain"
+  },
+  "quantum": {
+   "title": "Quantum Lab: cripto contra um computador quântico",
+   "what": "Assine uma mensagem como a Solana faz hoje (Ed25519) e depois com ML-DSA e Falcon, seguros contra computadores quânticos. Criptografia real no seu navegador, um computador quântico simulado e mitos explicados com honestidade.",
+   "steps": [
+    "Digite uma mensagem e clique em assinar",
+    "Troque uma letra e confira de novo",
+    "Ligue o computador quântico simulado"
+   ],
+   "cta": "Abrir o Quantum Lab"
+  },
+  "blog": {
+   "title": "O blog: guias curtos e honestos",
+   "what": "Guias claros para identificar golpes e honeypots na Solana, ler gráficos, saber se a IA consegue prever cripto, entender blockchains, bots de IA grátis para pequenos negócios e o que é $MAIGA.",
+   "steps": [
+    "Abra o blog",
+    "Escolha um guia",
+    "Cada guia leva à ferramenta grátis que explica"
+   ],
+   "cta": "Abrir o blog"
+  },
+  "radar": {
+   "title": "MAIGA Radar: o que está em alta e o que parece arriscado",
+   "what": "Um radar grátis ao vivo como o CryptoRank ou o DexScreener, mas com sinais de alerta: pools da Solana em alta e recém-criados com avisos automáticos, as 20 maiores moedas, o índice de medo e ganância e o dinheiro DeFi por blockchain. Só fatos, sem sinais, não é aconselhamento.",
+   "steps": [
+    "Veja Em alta: cada token recebe alertas e um rótulo de risco",
+    "Toque em Checagem completa para abrir o Token Checkup daquele token",
+    "Role até o mercado, Medo e ganância e DeFi"
+   ],
+   "cta": "Abrir o Radar"
+  },
+  "kronos": {
+   "title": "Kronos Lab: a IA consegue ler um gráfico?",
+   "what": "Um modelo de IA aberto (Kronos) previu momentos reais do passado de BTC, ETH, SOL, DOGE, XRP e PEPE. Chute primeiro se sobe ou desce e depois veja o que realmente aconteceu, com uma pontuação honesta. Só o passado, sem sinais, não é aconselhamento.",
+   "steps": [
+    "Escolha BTC, ETH ou SOL",
+    "Chute: mais alto ou mais baixo em 24 horas?",
+    "Revele a previsão e a realidade",
+    "Veja o placar honesto"
+   ],
+   "cta": "Abrir o Kronos Lab"
+  },
+  "charts": {
+   "title": "Chart School: aprenda a ler gráficos",
+   "what": "Aulas grátis sobre candles, volume, médias móveis, suporte, RSI e pump-and-dumps, com gráficos de treino com dados inventados e um quiz. Sem sinais, sem conselhos.",
+   "steps": [
+    "Comece pela primeira aula",
+    "Pratique nos gráficos de exemplo",
+    "Faça o quiz no final"
+   ],
+   "cta": "Abrir Chart School"
+  },
+  "lend": {
+   "title": "Bot Bank: emprestar a bots de IA (dinheiro de brincadeira)",
+   "what": "Um jogo que explica empréstimos a agentes de IA e seus riscos: empreste moedas de brincadeira a bots de IA, apoie-os, ganhe taxas ou perca o que colocou. Nunca com dinheiro real.",
+   "steps": [
+    "Leia os pedidos de empréstimo de hoje",
+    "Empreste ou apoie um bot com moedas de brincadeira",
+    "Veja quem paga e quem não paga"
+   ],
+   "cta": "Jogar o Bot Bank"
+  },
+  "robotlab": {
+   "title": "Robot Lab: fale com um robô com segurança",
+   "what": "Digite uma ordem em palavras simples. Ela vira um plano verificado e o robô só se move depois que uma pessoa aprova. Uma demo no navegador, sem robô de verdade.",
+   "steps": [
+    "Dê uma ordem",
+    "Veja as verificações de segurança",
+    "Aprove ou recuse o plano"
+   ],
+   "cta": "Abrir o Robot Lab"
+  },
+  "robots": {
+   "title": "IA para os robôs que você já tem",
+   "what": "Para empresas com robôs: um bot de ajuda para técnicos, ordens em linguagem simples com aprovação humana e um relatório diário da frota. O sistema de segurança do robô sempre vence.",
+   "steps": [
+    "Leia as quatro opções",
+    "Experimente o bot de ajuda",
+    "Peça um orçamento grátis"
+   ],
+   "cta": "Ver soluções para robôs"
+  },
+  "business": {
+   "title": "Um assistente de IA para o meu negócio",
+   "what": "Para salões, agências, restaurantes e lojas: crie você mesmo um bot grátis no Bot Garage, pegue pacotes prontos ou deixe a gente configurar um com seus preços, horários e perguntas frequentes (orçamento grátis).",
+   "steps": [
+    "Grátis: comece no Bot Garage",
+    "Mais rápido: pegue o kit inicial grátis",
+    "Feito por nós: peça um orçamento"
+   ],
+   "cta": "Assistente de IA sob medida"
+  },
+  "probots": {
+   "title": "Bots pro: telefone, e-mail e WhatsApp",
+   "what": "Projetos para 8 assistentes de IA conectados, como uma recepcionista telefônica que agenda, um assistente de e-mail e um bot de agendamento no WhatsApp, com custos reais de operação.",
+   "steps": [
+    "Escolha o assistente de que precisa",
+    "Veja quanto custa para rodar",
+    "Monte você mesmo ou peça ajuda"
+   ],
+   "cta": "Ver os bots pro"
+  },
+  "free": {
+   "title": "Kit inicial grátis de bots de IA",
+   "what": "5 assistentes de IA prontos para colar para um negócio (perguntas frequentes, agendamentos, avaliações, e-mails, posts). Funcionam no ChatGPT, Claude ou Gemini em cerca de 10 minutos. O kit está em inglês.",
+   "steps": [
+    "Abra a página do kit",
+    "Pegue o kit",
+    "Cole um bot no seu chat de IA"
+   ],
+   "cta": "Pegar o kit grátis"
+  },
+  "key": {
+   "title": "Chaves de API de IA grátis",
+   "what": "Uma chave de API permite que seu bot converse com um modelo de IA. O guia lista opções grátis e baratas, como proteger uma chave e como usá-la no Bot Garage. Sua chave fica no seu navegador.",
+   "steps": [
+    "Escolha um provedor grátis da lista",
+    "Crie uma chave no site deles",
+    "Cole no Bot Garage, nunca em um chat"
+   ],
+   "cta": "Abrir o guia de API"
+  },
+  "run": {
+   "title": "Deixar meu bot ligado 24/7",
+   "what": "Exporte seu bot do Bot Garage como kit para Telegram ou Discord e siga os passos para mantê-lo online. O guia de API explica as opções de hospedagem grátis.",
+   "steps": [
+    "Termine seu bot no Bot Garage",
+    "Exporte o kit de Telegram ou Discord",
+    "Siga os passos de hospedagem"
+   ],
+   "cta": "Ver como"
+  },
+  "answers": {
+   "title": "17 respostas honestas sobre bots de IA",
+   "what": "Respostas diretas ao que pequenos negócios perguntam sobre chatbots de IA: custo, ferramentas grátis, privacidade, erros (alucinações) e dicas por setor.",
+   "steps": [
+    "Abra a página de respostas",
+    "Vá direto ao seu setor",
+    "Me pergunte se algo não ficar claro"
+   ],
+   "cta": "Ler as respostas"
+  },
+  "app": {
+   "title": "Instale o app",
+   "what": "O app $MAIGA reúne o Bot Garage, o Token Checkup, a Meme Factory, a Batalha do dia e seus bots salvos. Grátis, funciona offline e sem loja de apps.",
+   "steps": [
+    "Abra a página do app",
+    "Toque em Instalar (ou Compartilhar > Adicionar à Tela de Início no iPhone)",
+    "Abra pela sua tela inicial"
+   ],
+   "cta": "Abrir o app"
+  },
+  "shop": {
+   "title": "Loja: pacotes de bots prontos",
+   "what": "Pacotes de bots prontos para salões, imobiliárias e restaurantes, além de um pacote com 20 bots, em inglês, holandês e francês. Vendidos no Ko-fi, pagamento com PayPal.",
+   "steps": [
+    "Abra a loja",
+    "Escolha o pacote para seu negócio e idioma",
+    "Baixe logo depois de pagar"
+   ],
+   "cta": "Abrir a loja"
+  },
+  "safe": {
+   "title": "Fique seguro",
+   "what": "Nunca compartilhe sua frase-semente ou chave privada com ninguém, nem com a gente: ninguém deste site vai pedir isso. Ignore mensagens privadas que prometem ajuda ou prêmios e confira cada endereço letra por letra.",
+   "steps": [
+    "Frase-semente no papel, offline",
+    "Nunca digite em um site ou chat",
+    "Confira endereços letra por letra",
+    "Na dúvida, pare"
+   ],
+   "cta": "Memes de segurança"
+  },
+  "coin": {
+   "title": "Sobre a moeda $MAIGA",
+   "what": "$MAIGA é uma meme coin satírica na Solana. A página HQ mostra as informações públicas da moeda e o endereço real do contrato (CA): 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump. Outros tokens usam o mesmo nome, então sempre confira o CA. Só entretenimento, não é aconselhamento financeiro, DYOR.",
+   "steps": [
+    "Leia as informações da moeda no HQ",
+    "Compare o CA letra por letra",
+    "Gaste só o que pode perder"
+   ],
+   "cta": "Info da moeda (HQ)"
+  },
+  "partners": {
+   "title": "Espaços para parceiros ou patrocinadores",
+   "what": "Espaços de anúncio e patrocínio claramente identificados no site, com nossas regras sobre o que aceitamos e o que recusamos.",
+   "steps": [
+    "Leia os espaços e as regras",
+    "Veja o que aceitamos",
+    "Candidate-se por e-mail"
+   ],
+   "cta": "Página de parceiros"
+  },
+  "privacy": {
+   "title": "Privacidade e cookies",
+   "what": "A maioria das ferramentas roda só no seu navegador e não guarda nada do nosso lado. As páginas de privacidade e cookies explicam exatamente o que é guardado, onde e por quê.",
+   "steps": [
+    "Leia a política de privacidade",
+    "Leia a política de cookies",
+    "Dúvidas? Escreva para geopolcoins1@gmail.com"
+   ],
+   "cta": "Política de privacidade"
+  },
+  "contact": {
+   "title": "Contato",
+   "what": "Escreva para geopolcoins1@gmail.com ou siga @greenlandusa1 no X. Nunca vamos te chamar primeiro para pedir dinheiro, chaves ou frase-semente.",
+   "steps": [
+    "Escreva um e-mail com sua pergunta",
+    "Ou responda pra gente no X"
+   ],
+   "cta": "Aviso legal"
+  },
+  "rug": {
+   "title": "Spot the Rug Pull: um jogo para achar golpes",
+   "what": "Cinco tokens da Solana inventados por rodada, um é um rug pull. Encontre-o e veja quais sinais o entregaram. Cinco rodadas, cada uma mais difícil. Grátis, sem carteira, todos os tokens são falsos.",
+   "steps": [
+    "Veja os cinco cartões de tokens",
+    "Toque no que você acha que é o rug pull",
+    "Leia os sinais e jogue a próxima rodada",
+    "Compartilhe sua pontuação e verifique um token real"
+   ],
+   "cta": "Jogar Spot the Rug Pull"
+  }
+ }
+}

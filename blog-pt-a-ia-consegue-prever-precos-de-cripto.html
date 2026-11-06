@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A IA consegue prever preços de cripto? Testamos 120 vezes</title>
+<meta name="description" content="Deixamos o modelo aberto Kronos prever 120 momentos passados de BTC, ETH, SOL, DOGE, XRP e PEPE. Este é o placar honesto.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-pt-a-ia-consegue-prever-precos-de-cripto.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-can-ai-predict-crypto-prices.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-kan-ai-cryptokoersen-voorspellen.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-ia-peut-elle-predire-les-cours-crypto.html">
+<link rel="alternate" hreflang="es" href="https://geopolcoins.xyz/blog-es-puede-la-ia-predecir-precios-cripto.html">
+<link rel="alternate" hreflang="pt" href="https://geopolcoins.xyz/blog-pt-a-ia-consegue-prever-precos-de-cripto.html">
+<link rel="alternate" hreflang="de" href="https://geopolcoins.xyz/blog-de-kann-ki-kryptopreise-vorhersagen.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-can-ai-predict-crypto-prices.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A IA consegue prever preços de cripto? Testamos 120 vezes">
+<meta property="og:description" content="Deixamos o modelo aberto Kronos prever 120 momentos passados de BTC, ETH, SOL, DOGE, XRP e PEPE. Este é o placar honesto.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-pt-a-ia-consegue-prever-precos-de-cripto.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"A IA consegue prever preços de cripto? Testamos 120 vezes","description":"Deixamos o modelo aberto Kronos prever 120 momentos passados de BTC, ETH, SOL, DOGE, XRP e PEPE. Este é o placar honesto.","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-pt-a-ia-consegue-prever-precos-de-cripto.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"pt","wordCount":321,"about":"Kronos Lab","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"A IA consegue prever preços de cripto? Testamos 120 vezes","item":"https://geopolcoins.xyz/blog-pt-a-ia-consegue-prever-precos-de-cripto.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"A IA ganhou de jogar uma moeda?","acceptedAnswer":{"@type":"Answer","text":"Por pouco: 57% de acerto na direção contra 50% da moeda. Com só 120 momentos isso pode ser sorte."}},{"@type":"Question","name":"Qual modelo foi usado?","acceptedAnswer":{"@type":"Answer","text":"Kronos-small, um modelo aberto de Shi Yu e colegas (licença MIT), rodando em CPU no GitHub Actions."}},{"@type":"Question","name":"Posso ver os resultados completos?","acceptedAnswer":{"@type":"Answer","text":"Sim. A página do Kronos Lab mostra cada momento, a faixa prevista e o preço real, por moeda."}}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog-pt.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Início</a> › <a href="/blog-pt.html">Blog</a></nav>
+<article><span class="tag" style="background:#c8a8ff">IA</span><h1>A IA consegue prever preços de cripto? Testamos 120 vezes</h1>
+<p class="meta">6 novembro 2026 · 2 min de leitura · Ferramenta: <a href="/kronos.html">Kronos Lab</a></p>
+<p class="langs">Também em: <a href="/blog-can-ai-predict-crypto-prices.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-kan-ai-cryptokoersen-voorspellen.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-ia-peut-elle-predire-les-cours-crypto.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-es-puede-la-ia-predecir-precios-cripto.html" hreflang="es" lang="es">Español</a> <a href="/blog-de-kann-ki-kryptopreise-vorhersagen.html" hreflang="de" lang="de">Deutsch</a></p>
+<div class="quick"><b>Resposta rápida</b><p>Não de forma confiável. No nosso teste com 120 momentos passados, o modelo aberto Kronos acertou a direção em 24 horas 68 vezes (57%). Jogar uma moeda dá 50%. E simplesmente chutar que "o preço fica igual" chegou mais perto, em média, do que a IA.</p></div>
+<p>Anúncios de "robôs de trading com IA" prometem muito. Queríamos um teste justo que você pudesse conferir, então usamos um modelo de pesquisa de verdade e só previmos momentos do passado, em que já sabemos o que aconteceu.</p>
+<h2>Como o teste funciona</h2>
+<ol><li>Pegamos dados públicos de preço por hora (sem conta, sem chaves) de seis moedas: BTC, ETH, SOL, DOGE, XRP e PEPE.</li><li>Escolhemos 20 momentos por moeda. O modelo vê as 360 horas antes de cada momento e nada depois.</li><li>O Kronos-small, um modelo aberto treinado com gráficos de muitas corretoras, escreve as próximas 24 horas, seis vezes.</li><li>Comparamos o palpite do meio com o que aconteceu de verdade, e com um palpite preguiçoso de "sem mudança".</li></ol>
+<h2>O resultado</h2>
+<ul><li><strong>Direção certa:</strong> 68 de 120 momentos (57%).</li><li><strong>Erro médio da IA:</strong> cerca de 4,4% do preço depois de 24 horas.</li><li><strong>Erro médio de "sem mudança":</strong> cerca de 2,9%. O palpite preguiçoso venceu.</li><li>Os números mudam um pouco toda semana, porque um script refaz o teste com momentos novos.</li></ul>
+<h2>Por que isso importa</h2>
+<p>57% parece uma vantagem, mas em 120 momentos pode ser só sorte, e as taxas comem vantagens pequenas rapidinho. Os mercados reagem a notícias que não estão em nenhum gráfico. Quem vende uma previsão certeira com IA está vendendo uma história.</p>
+<h2>Tente vencer a IA</h2>
+<p>No <a href="/kronos.html">Kronos Lab</a> você vê um gráfico real do passado: primeiro chuta se sobe ou desce, depois o modelo chuta, e então você vê o que aconteceu. Quer aprender a ler gráficos? Comece pela <a href="/chart.html">Chart School</a>.</p>
+<p class="note">Só momentos do passado. Sem previsões ao vivo, sem sinais, nunca sobre $MAIGA. Não é aconselhamento financeiro.</p>
+<p class="cta"><a class="btn" href="/kronos.html">Abrir o Kronos Lab</a></p>
+<h2>Perguntas</h2><div class="faq"><details><summary>A IA ganhou de jogar uma moeda?</summary><p>Por pouco: 57% de acerto na direção contra 50% da moeda. Com só 120 momentos isso pode ser sorte.</p></details><details><summary>Qual modelo foi usado?</summary><p>Kronos-small, um modelo aberto de Shi Yu e colegas (licença MIT), rodando em CPU no GitHub Actions.</p></details><details><summary>Posso ver os resultados completos?</summary><p>Sim. A página do Kronos Lab mostra cada momento, a faixa prevista e o preço real, por moeda.</p></details></div>
+</article>
+<h2>Leia também</h2><ul class="more"><li><a class="card" href="/blog-pt-como-saber-se-um-token-da-solana-e-golpe.html"><span class="tag" style="background:#ffb547">Segurança</span><h3>Como saber se um token da Solana é golpe (grátis, em 1 minuto)</h3><p>Uma lista simples dos sinais públicos por trás da maioria dos rug pulls na Solana, e uma ferramenta grátis que verifica tudo em qualquer token.</p></a></li><li><a class="card" href="/blog-pt-o-que-e-um-token-honeypot.html"><span class="tag" style="background:#ffb547">Segurança</span><h3>O que é um token honeypot e como identificar um?</h3><p>Um honeypot deixa você comprar, mas nunca vender. Aprenda os sinais de alerta nos dados públicos antes de perder dinheiro.</p></a></li><li><a class="card" href="/blog-pt-como-ler-graficos-de-candles.html"><span class="tag" style="background:#ffb547">Aprender</span><h3>Como ler gráficos de candles: guia para iniciantes</h3><p>Candles, volume, médias móveis e RSI explicados em palavras simples, com gráficos de treino grátis que usam dados inventados.</p></a></li></ul>
+</main>
+<footer><a href="/">Início</a><a href="/blog-pt.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Privacidade</a><a href="/legal.html">Aviso legal</a><span>Educação e entretenimento. Não é aconselhamento financeiro.</span></footer>
+<script src="/guide.js" defer></script>
+</body>
+</html>

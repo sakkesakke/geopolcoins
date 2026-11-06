@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" data-page="rug">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spot the Rug Pull: free crypto scam game | MAIGA</title>
+<meta name="description" content="Five made-up Solana tokens, one rug pull. Learn the red flags of crypto scams (mint authority, honeypots, unlocked liquidity) in a free 2-minute game.">
+<link rel="canonical" href="https://geopolcoins.xyz/rug.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spot the Rug Pull: can you find the scam token?">
+<meta property="og:description" content="Five made-up tokens, one rug pull. Learn the real red flags in 2 minutes. Free, no wallet, 10 languages.">
+<meta property="og:url" content="https://geopolcoins.xyz/rug.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Spot the Rug Pull","url":"https://geopolcoins.xyz/rug.html","applicationCategory":"GameApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":["en","nl","fr","es","pt","de","tr","id","vi","ar"],"description":"A free educational game: five made-up Solana tokens per round, one of them is a rug pull. Learn the public red flags of crypto scams such as mint authority, freeze authority, honeypots, unlocked liquidity and whale wallets.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a rug pull?","acceptedAnswer":{"@type":"Answer","text":"A rug pull is a crypto scam where the people behind a token take the money out, for example by pulling the liquidity, printing new tokens or blocking sales, so the price crashes to almost zero and buyers cannot get out."}},{"@type":"Question","name":"Which red flags point to a rug pull?","acceptedAnswer":{"@type":"Answer","text":"Common public red flags are: mint authority still on, freeze authority still on, liquidity that is not locked or burned, very thin liquidity, one creator wallet or a few wallets holding most of the supply, and many buys with zero sells (a honeypot). No flags does not mean safe."}},{"@type":"Question","name":"Are the tokens in the game real?","acceptedAnswer":{"@type":"Answer","text":"No. Every token in the game is made up. To check a real Solana token, paste its address in the free Token Checkup. It is a checklist of public data, not financial advice."}}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--cab2:#2f2446;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;
+ --amber:#ffb547;--cream:#f3ecd9;--red:#ff6b6b;--teal:#5fd3c6;--lilac:#c8a8ff;--ok:#5be38a;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--night);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-right:10px}
+.langs{display:flex;background:var(--floor);border:1px solid var(--line);border-radius:10px;padding:2px}
+.langs button{background:none;border:0;color:var(--dim);font:700 13px system-ui;padding:7px 9px;border-radius:8px;cursor:pointer;min-height:34px}
+.langs button[aria-pressed="true"]{background:var(--amber);color:#1a1206}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:18px 0 8px}
+.hero img{width:84px;height:84px;image-rendering:pixelated}
+h1{font:400 clamp(44px,8vw,78px)/.95 var(--pix);margin:0 0 8px;letter-spacing:0}h1 span{color:var(--red)}
+.lead{margin:0;color:var(--dim);max-width:64ch;font-size:17px}
+.note{margin:14px 0 0;padding:10px 14px;border:1px dashed rgba(255,181,71,.55);border-radius:12px;background:rgba(255,181,71,.07);font-size:14px;color:var(--cream)}
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 10px}
+.bar h2{font:400 clamp(30px,5vw,42px)/1 var(--pix);margin:0;letter-spacing:0}
+.dots{display:flex;gap:6px}.dots i{width:14px;height:14px;border-radius:4px;background:var(--cab2)}.dots i.ok{background:var(--ok)}.dots i.no{background:var(--red)}.dots i.now{outline:2px solid var(--amber)}
+.ask{margin:0 0 12px;font-weight:700;color:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.tk{all:unset;box-sizing:border-box;display:block;background:var(--cab);border:2px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;transition:transform .12s,border-color .12s}
+.tk:hover:not([disabled]){border-color:var(--amber);transform:translateY(-2px)}.tk:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.tk[disabled]{cursor:default}.tk.rug{border-color:var(--red);background:#3a1a2a}.tk.pick{box-shadow:0 0 0 3px var(--amber)}.tk.dim{opacity:.55}
+.th{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ini{flex:0 0 36px;height:36px;border-radius:9px;display:grid;place-items:center;font:400 22px/1 var(--pix);color:#1a1206}
+.th b{display:block;line-height:1.2}.th small{color:var(--mute);font-size:12.5px}
+.tk dl{display:grid;grid-template-columns:1fr auto;gap:3px 10px;margin:0;font-size:13.5px}
+.tk dt{color:var(--mute)}.tk dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.tk dd.on{color:#ff9b9b}.tk dd.off{color:var(--teal)}
+.stamp{display:none;margin-top:8px;font:400 22px/1 var(--pix);color:var(--red)}.tk.rug .stamp{display:block}
+.res{margin:16px 0 0;background:var(--cab);border-radius:14px;padding:14px 16px}
+.res h3{margin:0 0 6px;font-size:18px}.res.ok h3{color:var(--ok)}.res.no h3{color:var(--red)}
+.res ul{margin:6px 0 10px;padding-left:20px}.res li{margin:4px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:12px;border:2px solid var(--line);background:var(--cab2);color:var(--text);font-weight:800;cursor:pointer;font-size:15px;text-decoration:none;gap:6px}
+.btn:hover{border-color:var(--amber)}.btn.main{background:var(--amber);color:#1a1206;border-color:var(--amber)}
+.end{text-align:center;background:var(--cab);border-radius:16px;padding:24px 16px;margin-top:10px}
+.end .big{font:400 clamp(54px,10vw,90px)/1 var(--pix);color:var(--amber)}.end h3{font:400 34px/1 var(--pix);margin:6px 0 10px;color:var(--teal)}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.faq{display:grid;gap:8px;max-width:860px;margin-top:30px}.faq h2{font:400 36px/1 var(--pix);margin:0 0 6px}
+.faq details{background:var(--cab);border-radius:12px;padding:12px 14px}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:8px 0 2px;color:var(--dim)}
+footer{border-top:1px solid var(--line);margin:40px 0 0;padding:18px 0 40px;color:var(--mute);font-size:13.5px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:var(--dim)}
+@media (max-width:620px){.hero{grid-template-columns:1fr}.hero img{width:56px;height:56px}.grid{grid-template-columns:1fr 1fr}.tk{padding:10px}.tk dl{font-size:12.5px}}
+@media (max-width:380px){.grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.tk{transition:none}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Spot the Rug Pull","item":"https://geopolcoins.xyz/rug.html"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="hq.html#checkup">Token Checkup</a><a href="radar.html">MAIGA Radar</a></nav>
+ <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></div></header>
+<main id="main">
+<div class="hero">
+ <img src="meme/pxmint.png" alt="" width="84" height="84">
+ <div><h1>Spot the <span>Rug Pull</span></h1>
+ <p class="lead" data-i="lead">Five tokens, one is a rug pull. Mevrouw Mintje shows you the public data. Can you find the scam before it takes the money? Five rounds, each one harder.</p></div>
+</div>
+<p class="note" data-i="fake">All tokens here are made up. Real tokens can rug even without these flags, and no flags never means safe. Not financial advice.</p>
+
+<section id="game" aria-live="polite">
+ <div class="bar"><h2 id="rnd">Round 1 of 5</h2><div class="dots" id="dots" aria-hidden="true"></div></div>
+ <p class="ask" id="ask" data-i="pick">Which one is the rug pull? Tap it.</p>
+ <div class="grid" id="grid"></div>
+ <div class="res" id="res" hidden></div>
+ <div class="end" id="end" hidden></div>
+</section>
+
+<section class="faq" aria-labelledby="hQ">
+ <h2 id="hQ" data-i="hQ">Questions</h2>
+ <details><summary data-i="q1">What is a rug pull?</summary><p data-i="a1">A crypto scam where the people behind a token take the money out, for example by pulling the liquidity, printing new tokens or blocking sales. The price crashes to almost zero and buyers cannot get out.</p></details>
+ <details><summary data-i="q2">Which red flags point to a rug pull?</summary><p data-i="a2">Mint authority still on, freeze authority still on, liquidity that is not locked or burned, very thin liquidity, one creator or a few wallets holding most of the supply, and many buys with zero sells (a honeypot). No flags does not mean safe.</p></details>
+ <details><summary data-i="q3">How do I check a real token?</summary><p data-i="a3">Paste its address in the free Token Checkup, or look at the live red flags in the MAIGA Radar. Both read public data only. It is a checklist, not financial advice.</p></details>
+</section>
+</main>
+<footer><a href="/" data-i="fHome">Home</a><a href="hq.html#checkup">Token Checkup</a><a href="radar.html">MAIGA Radar</a><a href="blog.html">Blog</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fNfa">Education only. Not financial advice.</span></footer>
+</div>
+<script src="/i18n/rug.js"></script><script src="/lang-more.js"></script>
+<script>
+(function(){
+'use strict';
+var T={en:{skip:'Skip to content',lead:'Five tokens, one is a rug pull. Mevrouw Mintje shows you the public data. Can you find the scam before it takes the money? Five rounds, each one harder.',
+ fake:'All tokens here are made up. Real tokens can rug even without these flags, and no flags never means safe. Not financial advice.',
+ rnd:'Round {n} of 5',pick:'Which one is the rug pull? Tap it.',right:'Correct! That was the rug pull.',wrong:'Not this one. The rug pull was {t}.',why:'The red flags:',next:'Next round',last:'See my score',
+ score:'You spotted {s} of 5 rug pulls',r0:'Exit liquidity',r1:'Bag holder',r2:'Careful trader',r3:'Rug detective',r4:'Mintje’s best student',
+ again:'Play again',share:'Share on X',shareTxt:'I spotted {s}/5 rug pulls in the free MAIGA “Spot the Rug Pull” game. Can you beat me?',ck:'Check a real token',rd:'See live red flags',
+ lb:{liq:'Liquidity',top:'Top 10 wallets',dev:'Creator wallet',mint:'Mint authority',frz:'Freeze authority',lp:'Liquidity lock',age:'Age',tx:'Buys / sells 24h',ch:'Price 24h'},
+ v:{on:'ON',off:'off',locked:'locked',burned:'burned',open:'not locked',h:'h',d:'d'},
+ f:{mint:'Mint authority is ON: the creator can print new tokens and dump them on you.',frz:'Freeze authority is ON: the creator can freeze your tokens so you cannot sell.',
+  hp:'Many buys and zero sells: a honeypot. You can buy, but nobody can sell.',dev:'The creator wallet holds a huge share. One click and the price is gone.',
+  top:'A few wallets hold most of the supply. They can crash the price together.',liq:'Very thin liquidity: one sale moves the price a lot, and it is easy to pull.',
+  lp:'The liquidity is not locked or burned: the creator can pull it out at any time.',neu:'Brand new: no history yet. Wait before you trust it.',pump:'A huge jump in 24 hours: often a pump before a dump.'},
+ hQ:'Questions',q1:'What is a rug pull?',a1:'A crypto scam where the people behind a token take the money out, for example by pulling the liquidity, printing new tokens or blocking sales. The price crashes to almost zero and buyers cannot get out.',
+ q2:'Which red flags point to a rug pull?',a2:'Mint authority still on, freeze authority still on, liquidity that is not locked or burned, very thin liquidity, one creator or a few wallets holding most of the supply, and many buys with zero sells (a honeypot). No flags does not mean safe.',
+ q3:'How do I check a real token?',a3:'Paste its address in the free Token Checkup, or look at the live red flags in the MAIGA Radar. Both read public data only. It is a checklist, not financial advice.',
+ fHome:'Home',fPriv:'Privacy',fLegal:'Legal',fNfa:'Education only. Not financial advice.'},
+nl:{skip:'Naar de inhoud',lead:'Vijf tokens, één is een rug pull. Mevrouw Mintje toont je de publieke data. Vind jij de oplichterij voor ze met het geld vandoor gaat? Vijf rondes, elke ronde moeilijker.',
+ fake:'Alle tokens hier zijn verzonnen. Echte tokens kunnen ook zonder deze vlaggen een rug pull zijn, en geen vlaggen betekent nooit veilig. Geen financieel advies.',
+ rnd:'Ronde {n} van 5',pick:'Welke is de rug pull? Tik erop.',right:'Juist! Dat was de rug pull.',wrong:'Deze niet. De rug pull was {t}.',why:'De rode vlaggen:',next:'Volgende ronde',last:'Toon mijn score',
+ score:'Je vond {s} van de 5 rug pulls',r0:'Exit liquidity',r1:'Bag holder',r2:'Voorzichtige trader',r3:'Rug-detective',r4:'Beste leerling van Mintje',
+ again:'Opnieuw spelen',share:'Deel op X',shareTxt:'Ik vond {s}/5 rug pulls in het gratis MAIGA-spel “Spot the Rug Pull”. Doe jij beter?',ck:'Check een echte token',rd:'Bekijk live rode vlaggen',
+ lb:{liq:'Liquiditeit',top:'Top 10 wallets',dev:'Wallet van de maker',mint:'Mint authority',frz:'Freeze authority',lp:'Liquiditeit vast',age:'Leeftijd',tx:'Kopen / verkopen 24u',ch:'Prijs 24u'},
+ v:{on:'AAN',off:'uit',locked:'vergrendeld',burned:'verbrand',open:'niet vast',h:'u',d:'d'},
+ f:{mint:'Mint authority staat AAN: de maker kan nieuwe tokens bijdrukken en op jou dumpen.',frz:'Freeze authority staat AAN: de maker kan je tokens bevriezen zodat je niet kunt verkopen.',
+  hp:'Veel aankopen en nul verkopen: een honeypot. Kopen kan, verkopen niet.',dev:'De wallet van de maker bezit een enorm deel. Eén klik en de prijs is weg.',
+  top:'Een paar wallets bezitten bijna alles. Samen kunnen ze de prijs laten crashen.',liq:'Heel weinig liquiditeit: één verkoop beweegt de prijs sterk, en ze is makkelijk weg te halen.',
+  lp:'De liquiditeit is niet vergrendeld of verbrand: de maker kan ze op elk moment weghalen.',neu:'Gloednieuw: nog geen geschiedenis. Wacht voor je het vertrouwt.',pump:'Een enorme sprong in 24 uur: vaak een pump voor een dump.'},
+ hQ:'Vragen',q1:'Wat is een rug pull?',a1:'Een cryptoscam waarbij de mensen achter een token het geld weghalen, bijvoorbeeld door de liquiditeit weg te trekken, nieuwe tokens bij te drukken of verkopen te blokkeren. De prijs crasht naar bijna nul en kopers kunnen niet meer weg.',
+ q2:'Welke rode vlaggen wijzen op een rug pull?',a2:'Mint authority nog aan, freeze authority nog aan, liquiditeit die niet vergrendeld of verbrand is, heel weinig liquiditeit, één maker of een paar wallets die bijna alles bezitten, en veel aankopen zonder één verkoop (een honeypot). Geen vlaggen betekent niet veilig.',
+ q3:'Hoe check ik een echte token?',a3:'Plak het adres in de gratis Token Checkup, of bekijk de live rode vlaggen in de MAIGA Radar. Beide lezen alleen publieke data. Het is een checklist, geen financieel advies.',
+ fHome:'Home',fPriv:'Privacy',fLegal:'Juridisch',fNfa:'Alleen om te leren. Geen financieel advies.'},
+fr:{skip:'Aller au contenu',lead:'Cinq tokens, dont un rug pull. Madame Mintje vous montre les données publiques. Trouverez-vous l’arnaque avant qu’elle ne parte avec l’argent ? Cinq manches, de plus en plus dures.',
+ fake:'Tous les tokens ici sont inventés. De vrais tokens peuvent être des rug pulls même sans ces signaux, et aucun signal ne veut jamais dire sûr. Pas un conseil financier.',
+ rnd:'Manche {n} sur 5',pick:'Lequel est le rug pull ? Touchez-le.',right:'Bravo ! C’était le rug pull.',wrong:'Pas celui-ci. Le rug pull était {t}.',why:'Les signaux d’alerte :',next:'Manche suivante',last:'Voir mon score',
+ score:'Vous avez repéré {s} rug pulls sur 5',r0:'Exit liquidity',r1:'Bag holder',r2:'Trader prudent',r3:'Détective anti-rug',r4:'Meilleur élève de Mintje',
+ again:'Rejouer',share:'Partager sur X',shareTxt:'J’ai repéré {s}/5 rug pulls dans le jeu gratuit MAIGA « Spot the Rug Pull ». Ferez-vous mieux ?',ck:'Vérifier un vrai token',rd:'Voir les signaux en direct',
+ lb:{liq:'Liquidité',top:'Top 10 wallets',dev:'Wallet du créateur',mint:'Mint authority',frz:'Freeze authority',lp:'Liquidité bloquée',age:'Âge',tx:'Achats / ventes 24 h',ch:'Prix 24 h'},
+ v:{on:'ACTIVE',off:'off',locked:'bloquée',burned:'brûlée',open:'non bloquée',h:'h',d:'j'},
+ f:{mint:'Mint authority ACTIVE : le créateur peut imprimer de nouveaux tokens et vous les vendre.',frz:'Freeze authority ACTIVE : le créateur peut geler vos tokens pour vous empêcher de vendre.',
+  hp:'Beaucoup d’achats et zéro vente : un honeypot. On peut acheter, personne ne peut vendre.',dev:'Le wallet du créateur détient une part énorme. Un clic et le prix s’effondre.',
+  top:'Quelques wallets détiennent presque tout. Ensemble, ils peuvent faire chuter le prix.',liq:'Liquidité très faible : une vente fait bouger le prix fortement, et elle est facile à retirer.',
+  lp:'La liquidité n’est ni bloquée ni brûlée : le créateur peut la retirer à tout moment.',neu:'Tout nouveau : aucun historique. Attendez avant de faire confiance.',pump:'Un bond énorme en 24 h : souvent un pump avant un dump.'},
+ hQ:'Questions',q1:'C’est quoi un rug pull ?',a1:'Une arnaque crypto où les personnes derrière un token partent avec l’argent, par exemple en retirant la liquidité, en imprimant de nouveaux tokens ou en bloquant les ventes. Le prix tombe presque à zéro et les acheteurs ne peuvent plus sortir.',
+ q2:'Quels signaux annoncent un rug pull ?',a2:'Mint authority encore active, freeze authority encore active, liquidité ni bloquée ni brûlée, liquidité très faible, un créateur ou quelques wallets qui détiennent presque tout, et beaucoup d’achats sans aucune vente (un honeypot). Aucun signal ne veut pas dire sûr.',
+ q3:'Comment vérifier un vrai token ?',a3:'Collez son adresse dans le Token Checkup gratuit, ou regardez les signaux en direct dans le MAIGA Radar. Les deux lisent seulement des données publiques. C’est une checklist, pas un conseil financier.',
+ fHome:'Accueil',fPriv:'Confidentialité',fLegal:'Mentions légales',fNfa:'Pour apprendre uniquement. Pas un conseil financier.'}};
+Object.assign(T,window.MAIGA_I18N||{});
+var LOC={en:'en-US',nl:'nl-BE',fr:'fr-BE',es:'es-ES',pt:'pt-BR',de:'de-DE',tr:'tr-TR',id:'id-ID',vi:'vi-VN',ar:'ar'};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+var q=new URLSearchParams(location.search).get('lang');
+var lang=q||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!T.hasOwnProperty(lang))lang='en';
+function tr(p){var a=p.split('.'),o=T[lang],d=T.en;for(var i=0;i<a.length;i++){o=o&&o[a[i]];d=d&&d[a[i]];}return o||d||p;}
+function fmt(s,o){return String(s).replace(/\{(\w+)\}/g,function(_,k){return o[k];});}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function $(id){return document.getElementById(id);}
+function nf(o){return new Intl.NumberFormat(LOC[lang]||'en-US',o);}
+function rnd(a,b){return a+Math.random()*(b-a);}function ri(a,b){return Math.floor(rnd(a,b+1));}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+/* ---------- made-up tokens ---------- */
+var P1=['Moon','Frog','Rocket','Laser','Turbo','Giga','Pixel','Lambo','Pizza','Banana','Noodle','Comet','Hamster','Goblin','Wizard','Taco','Disco','Nacho','Yeti','Mango'];
+var P2=['Inu','Cat','Coin','Fi','AI','Cash','Swap','Dog','Bros','King','Pad','Bit','Verse','Pump'];
+var COLS=['#ffb547','#5fd3c6','#c8a8ff','#ff6b6b','#8fd36b','#f3ecd9'];
+/* strong flags (only the rug gets these) and soft ones (decoys may get one) */
+var STRONG=['mint','frz','hp','dev','top','liq','lp'],SOFT=['neu','pump','topw'];
+function token(kind,flags,used){var n;do{n=P1[ri(0,P1.length-1)]+' '+P2[ri(0,P2.length-1)];}while(used[n]);used[n]=1;
+ var o={name:n,sym:n.split(' ').map(function(w){return w.slice(0,w.length>3?3:w.length);}).join('').toUpperCase().slice(0,5),col:COLS[ri(0,COLS.length-1)],rug:kind==='rug',flags:flags,
+  liq:Math.round(rnd(40000,400000)),top:ri(14,32),dev:+rnd(.5,4).toFixed(1),mint:false,frz:false,lp:Math.random()<.5?'burned':'locked',age:ri(30,400)*24,buy:ri(300,4000),ch:ri(-25,60)};
+ o.sell=Math.round(o.buy*rnd(.7,1.1));
+ flags.forEach(function(f){
+  if(f==='mint')o.mint=true;if(f==='frz')o.frz=true;if(f==='hp'){o.sell=0;o.buy=ri(400,2500);}
+  if(f==='dev')o.dev=ri(28,61);if(f==='top')o.top=ri(72,95);if(f==='liq')o.liq=ri(900,4800);if(f==='lp')o.lp='open';
+  if(f==='neu')o.age=+rnd(.3,5).toFixed(1);if(f==='pump')o.ch=ri(400,2400);if(f==='topw')o.top=ri(40,55);});
+ return o;}
+function makeRound(r){/* r = 0..4: the rug gets fewer flags and the decoys get more noise */
+ var used={},n=[4,3,3,2,2][r],decoySoft=[0,0,1,1,2][r],rugFlags=shuffle(STRONG.slice()).slice(0,n);
+ if(r>=3&&Math.random()<.6)rugFlags=rugFlags.concat([SOFT[ri(0,1)]]);
+ var list=[token('rug',rugFlags,used)];
+ for(var i=0;i<4;i++){var k=Math.min(decoySoft,ri(0,decoySoft)+(i<decoySoft?1:0));list.push(token('ok',shuffle(SOFT.slice()).slice(0,k),used));}
+ return shuffle(list);}
+
+/* ---------- game ---------- */
+var G={r:0,score:0,res:[],round:null,done:false};
+function money(v){return '$'+nf({notation:'compact',maximumFractionDigits:1}).format(v);}
+function age(h){return h<48?nf({maximumFractionDigits:1}).format(h)+' '+tr('v.h'):Math.round(h/24)+' '+tr('v.d');}
+function card(o,i){var b=el('button','tk');b.type='button';
+ var th=el('div','th'),ini=el('span','ini',o.sym.charAt(0));ini.style.background=o.col;th.appendChild(ini);var w=el('div');w.appendChild(el('b',null,o.name));w.appendChild(el('small',null,'$'+o.sym));th.appendChild(w);b.appendChild(th);
+ var dl=el('dl'),lb=tr('lb');
+ function row(k,v,cls){dl.appendChild(el('dt',null,lb[k]));dl.appendChild(el('dd',cls||null,v));}
+ row('liq',money(o.liq));row('top',o.top+'%');row('dev',o.dev+'%');
+ row('mint',o.mint?tr('v.on'):tr('v.off'),o.mint?'on':'off');row('frz',o.frz?tr('v.on'):tr('v.off'),o.frz?'on':'off');
+ row('lp',tr('v.'+o.lp),o.lp==='open'?'on':'off');row('age',age(o.age));row('tx',nf({}).format(o.buy)+' / '+nf({}).format(o.sell));row('ch',(o.ch>0?'+':'')+nf({}).format(o.ch)+'%');
+ b.appendChild(dl);b.appendChild(el('div','stamp','RUG!'));b.setAttribute('aria-label',o.name);
+ b.addEventListener('click',function(){choose(i);});return b;}
+function dots(){var d=$('dots');d.textContent='';for(var i=0;i<5;i++){var x=el('i');if(G.res[i]===true)x.className='ok';else if(G.res[i]===false)x.className='no';else if(i===G.r&&!G.done)x.className='now';d.appendChild(x);}}
+function draw(){$('rnd').textContent=fmt(tr('rnd'),{n:Math.min(G.r+1,5)});dots();
+ var g=$('grid');g.textContent='';if(G.done)return;G.round.forEach(function(o,i){g.appendChild(card(o,i));});
+ if(G.picked!=null)reveal(false);}
+function choose(i){if(G.picked!=null||G.done)return;G.picked=i;var ok=G.round[i].rug;G.res[G.r]=ok;if(ok)G.score++;reveal(true);dots();}
+function reveal(focus){var cards=$('grid').children,rug=null;
+ G.round.forEach(function(o,i){var c=cards[i];c.disabled=true;if(o.rug){c.classList.add('rug');rug=o;}else c.classList.add('dim');if(i===G.picked)c.classList.add('pick');});
+ var ok=G.res[G.r],box=$('res');box.hidden=false;box.className='res '+(ok?'ok':'no');box.textContent='';
+ box.appendChild(el('h3',null,ok?tr('right'):fmt(tr('wrong'),{t:rug.name})));box.appendChild(el('b',null,tr('why')));
+ var ul=el('ul');rug.flags.forEach(function(f){ul.appendChild(el('li',null,tr('f.'+(f==='topw'?'top':f))));});box.appendChild(ul);
+ var nx=el('button','btn main',G.r<4?tr('next'):tr('last'));nx.type='button';nx.addEventListener('click',next);box.appendChild(nx);if(focus)nx.focus();}
+function next(){G.r++;G.picked=null;$('res').hidden=true;if(G.r>=5){finish();return;}G.round=makeRound(G.r);draw();$('game').scrollIntoView({block:'start'});}
+function rank(s){return tr('r'+[0,1,2,2,3,4][s]);}
+function finish(){G.done=true;draw();$('ask').hidden=true;var e=$('end');e.hidden=false;e.textContent='';
+ e.appendChild(el('div','big',G.score+'/5'));e.appendChild(el('h3',null,rank(G.score)));e.appendChild(el('p',null,fmt(tr('score'),{s:G.score})));
+ var row=el('div','row'),a=el('button','btn main',tr('again'));a.type='button';a.addEventListener('click',start);row.appendChild(a);
+ var sx=el('a','btn','𝕏 '+tr('share'));sx.href='https://x.com/intent/post?text='+encodeURIComponent(fmt(tr('shareTxt'),{s:G.score}))+'&url='+encodeURIComponent('https://geopolcoins.xyz/rug.html');sx.target='_blank';sx.rel='noopener noreferrer';row.appendChild(sx);
+ var ck=el('a','btn',tr('ck'));ck.href='hq.html#checkup';row.appendChild(ck);var rd=el('a','btn',tr('rd'));rd.href='radar.html';row.appendChild(rd);e.appendChild(row);
+ ls('maiga_rug_best',String(Math.max(G.score,+(ls('maiga_rug_best')||0)||0)));a.focus();}
+function start(){G={r:0,score:0,res:[],round:makeRound(0),done:false,picked:null};$('end').hidden=true;$('res').hidden=true;$('ask').hidden=false;draw();}
+function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
+ document.querySelectorAll('[data-i]').forEach(function(e){var v=tr(e.dataset.i);if(typeof v==='string')e.textContent=v;});
+ document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
+ if(G.done){finish();}else draw();}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;apply();});});
+start();apply();
+})();
+</script>
+<script src="/guide.js" defer></script>
+</body>
+</html>

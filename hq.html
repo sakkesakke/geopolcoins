@@ -2549,12 +2549,16 @@ window.addEventListener('load',function(){
     }
     var L=el("div","ck-links");
     [["SOLSCAN","https://solscan.io/token/"+o.mint],["DEXSCREENER","https://dexscreener.com/solana/"+o.mint],["GECKOTERMINAL","https://www.geckoterminal.com/solana/tokens/"+o.mint],["RUGCHECK","https://rugcheck.xyz/tokens/"+o.mint]].forEach(function(a){var x=el("a","lv-btn",a[0]);x.href=a[1];x.target="_blank";x.rel="noopener noreferrer";L.appendChild(x);});
-    var cb=el("button","lv-btn","🖼 SHARE CARD (PNG)");cb.type="button";cb.addEventListener("click",function(){card(o);});L.appendChild(cb);
+    var cb=el("button","lv-btn","🖼 SHARE CARD (PNG)");cb.type="button";cb.addEventListener("click",function(){card(o,false);});L.appendChild(cb);
+    var sx=el("button","lv-btn","📣 SHARE ON X");sx.type="button";sx.addEventListener("click",function(){card(o,true);});L.appendChild(sx);
     box.appendChild(L);
     var cd=el("div","ck-card");var cv=document.createElement("canvas");cv.width=1200;cv.height=675;cv.id="ckCv";cv.hidden=true;cd.appendChild(cv);box.appendChild(cd);
     box.appendChild(el("div","ck-note","Public data from GeckoTerminal. It can be late, wrong or incomplete, and many risks cannot be seen in it. This is a checklist, not advice, and not a safety stamp. A flag is not proof of a scam; no flags is not proof of safety. Do your own research."));
   }
-  function card(o){
+  function nBad(o){return o.checks.filter(function(c){return c.l==="bad"||c.l==="warn";}).length;}
+  function shareText(o){var n=nBad(o),s=o.sym?"$"+clean(o.sym,12):clean(o.name,24);
+    return (n?"🚩 "+n+" flag"+(n>1?"s":"")+" on "+s:"No flags on "+s+" (no flags is not proof of safety)")+" in the free MAIGA Token Checkup. Check any Solana token yourself. NFA, DYOR";}
+  function card(o,social){
     var cv=$("ckCv");cv.hidden=false;var ctx=cv.getContext("2d"),W=1200,H=675,IMP='Impact,"Arial Black",sans-serif',MONO='"Courier New",monospace';
     var im=new Image();
     im.onload=function(){paint(im);};im.onerror=function(){paint(null);};im.src=PXJP;
@@ -2574,10 +2578,17 @@ window.addEventListener('load',function(){
         ctx.fillStyle="#fff";var t=c.t;ctx.font="bold 21px "+MONO;while(ctx.measureText(t).width>620&&t.length>10)t=t.slice(0,-2);if(t!==c.t)t+="…";ctx.fillText(t,120,y);});
       ctx.fillStyle="#fff";ctx.fillRect(820,40,330,86);ctx.strokeRect(820,40,330,86);
       ctx.fillStyle="#0a1730";ctx.textAlign="center";var vt=("JEAN-PHIL: "+v.s).toUpperCase(),s2=30;do{ctx.font=s2+"px "+IMP;s2-=2;}while(ctx.measureText(vt).width>300&&s2>14);ctx.fillText(vt,985,92);
-      ctx.fillStyle=col;ctx.fillRect(60,566,700,14);
+      var nb=nBad(o);ctx.fillStyle=col;ctx.strokeStyle="#000";ctx.lineWidth=4;ctx.fillRect(60,560,700,46);ctx.strokeRect(60,560,700,46);
+      ctx.fillStyle=v.c==="ok"?"#0a1730":"#fff";ctx.font="30px "+IMP;ctx.textAlign="left";ctx.fillText(nb?nb+" FLAG"+(nb>1?"S":"")+" FOUND":"NO FLAGS FOUND (NOT A SAFETY STAMP)",78,594);
       ctx.textAlign="left";ctx.fillStyle="#7d93b8";ctx.font="15px "+MONO;
       ctx.fillText("Public data, can be wrong or incomplete. A checklist, not advice or a safety stamp. NFA · DYOR · geopolcoins.xyz",60,630);
-      try{cv.toBlob(function(b){if(!b)return;var u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="maiga-token-checkup.png";document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u);},1500);},"image/png");}catch(e){}
+      try{cv.toBlob(function(b){if(!b)return;
+        var url="https://geopolcoins.xyz/hq.html?check="+encodeURIComponent(o.mint)+"#checkup",txt=shareText(o);
+        if(social){var f=null;try{f=new File([b],"maiga-token-checkup.png",{type:"image/png"});}catch(e){}
+          if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:txt+" "+url}).catch(function(){});return;}}
+        var u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="maiga-token-checkup.png";document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u);},1500);
+        if(social){window.open("https://x.com/intent/post?text="+encodeURIComponent(txt)+"&url="+encodeURIComponent(url),"_blank","noopener");msg("Card downloaded. Add the image to your post on X.");}
+      },"image/png");}catch(e){}
     }
   }
   function msg(t,bad){var m=$("ckMsg");m.textContent=t||"";m.className="ck-msg"+(bad?" bad":"");}

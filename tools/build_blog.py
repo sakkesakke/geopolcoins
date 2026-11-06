@@ -7,9 +7,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from blog_posts import POSTS
 from blog_posts_nl import POSTS as POSTS_NL
 from blog_posts_fr import POSTS as POSTS_FR
-LANGS = {"en": POSTS, "nl": POSTS_NL, "fr": POSTS_FR}
+from blog_posts_es import POSTS as POSTS_ES
+from blog_posts_pt import POSTS as POSTS_PT
+from blog_posts_de import POSTS as POSTS_DE
+LANGS = {"en": POSTS, "nl": POSTS_NL, "fr": POSTS_FR, "es": POSTS_ES, "pt": POSTS_PT, "de": POSTS_DE}
 EN_BY_SLUG = {p["slug"]: p for p in POSTS}
-for _l in ("nl", "fr"):
+for _l in ("nl", "fr", "es", "pt", "de"):
     for _p in LANGS[_l]:
         _e = EN_BY_SLUG[_p["en"]]
         _p.setdefault("date", _e["date"]); _p.setdefault("tool", _e["tool"])
@@ -30,8 +33,23 @@ UI = {
             idx_h="Le <span style=\"color:var(--amber)\">blog</span>", idx_lead="Des guides courts et honnêtes : repérer les arnaques, lire un graphique, tester les promesses de l'IA et utiliser nos outils gratuits. Sans hype, sans parler de prix.",
             foot="Éducation et divertissement. Pas un conseil financier.", privacy="Confidentialité", legal="Mentions légales", other="Aussi en",
             months=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]),
+ "es": dict(skip="Saltar al contenido", home="Inicio", blog="Blog", quick="Respuesta rápida", read="min de lectura", tool="Herramienta", next="Lee también", qs="Preguntas",
+            idx_title="Blog: seguridad cripto, IA y herramientas gratis", idx_desc="Guías sencillas para detectar estafas en Solana, leer gráficos, entender la IA y la cripto, las blockchains, bots de IA gratis y la meme coin $MAIGA.",
+            idx_h="El <span style=\"color:var(--amber)\">blog</span>", idx_lead="Guías cortas y honestas: detectar estafas, leer un gráfico, poner a prueba las promesas de la IA y usar nuestras herramientas gratis. Sin hype, sin hablar de precios.",
+            foot="Educación y entretenimiento. No es asesoramiento financiero.", privacy="Privacidad", legal="Aviso legal", other="También en",
+            months=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]),
+ "pt": dict(skip="Pular para o conteúdo", home="Início", blog="Blog", quick="Resposta rápida", read="min de leitura", tool="Ferramenta", next="Leia também", qs="Perguntas",
+            idx_title="Blog: segurança cripto, IA e ferramentas grátis", idx_desc="Guias simples para identificar golpes na Solana, ler gráficos, entender IA e cripto, blockchains, bots de IA grátis e a meme coin $MAIGA.",
+            idx_h="O <span style=\"color:var(--amber)\">blog</span>", idx_lead="Guias curtos e honestos: identificar golpes, ler um gráfico, testar promessas de IA e usar nossas ferramentas grátis. Sem hype, sem papo de preço.",
+            foot="Educação e entretenimento. Não é aconselhamento financeiro.", privacy="Privacidade", legal="Aviso legal", other="Também em",
+            months=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]),
+ "de": dict(skip="Zum Inhalt springen", home="Start", blog="Blog", quick="Kurze Antwort", read="Min. Lesezeit", tool="Tool", next="Weiterlesen", qs="Fragen",
+            idx_title="Blog: Krypto-Sicherheit, KI und kostenlose Tools", idx_desc="Einfache Guides zum Erkennen von Solana-Betrug, Charts lesen, KI und Krypto, Blockchains, kostenlose KI-Bots und den Meme-Coin $MAIGA.",
+            idx_h="Der <span style=\"color:var(--amber)\">Blog</span>", idx_lead="Kurze, ehrliche Guides: Betrug erkennen, Charts lesen, KI-Versprechen testen und unsere kostenlosen Tools nutzen. Kein Hype, kein Kursgerede.",
+            foot="Bildung und Unterhaltung. Keine Finanzberatung.", privacy="Datenschutz", legal="Rechtliches", other="Auch auf",
+            months=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]),
 }
-LNAME = {"en": "English", "nl": "Nederlands", "fr": "Français"}
+LNAME = {"en": "English", "nl": "Nederlands", "fr": "Français", "es": "Español", "pt": "Português", "de": "Deutsch"}
 def fname(lang, slug=None):
     if slug is None: return "blog.html" if lang == "en" else f"blog-{lang}.html"
     return f"blog-{slug}.html" if lang == "en" else f"blog-{lang}-{slug}.html"
@@ -230,7 +248,7 @@ def main():
     add = ""
     for name in names:
         if f"{SITE}{name}</loc>" not in s:
-            add += f"  <url><loc>{SITE}{name}</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><priority>{'0.8' if name in ('blog.html','blog-nl.html','blog-fr.html') else '0.6'}</priority></url>\n"
+            add += f"  <url><loc>{SITE}{name}</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><priority>{'0.8' if name in ('blog.html','blog-nl.html','blog-fr.html','blog-es.html','blog-pt.html','blog-de.html') else '0.6'}</priority></url>\n"
     if add:
         s = s.replace("</urlset>", add + "</urlset>"); open(sm, "w", encoding="utf-8").write(s)
     print(f"blog: {len(names)} pages in {len(LANGS)} languages; sitemap +{add.count('<url>')}")

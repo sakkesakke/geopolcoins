@@ -1,0 +1,336 @@
+{
+ "ui": {
+  "open": "Bolt'a sor",
+  "title": "Bolt, rehberin",
+  "hi": "Merhaba, ben Bolt! Bu sitedeki her aracı ve oyunu bilirim. Bana her şeyi sorabilir ya da aşağıdan seçebilirsin.",
+  "here": "Şu an buradasın: ",
+  "ph": "Bir araç ya da oyun hakkında sor…",
+  "send": "Gönder",
+  "close": "Yardımı kapat",
+  "none": "Bunu bulamadım. Başka kelimeler dene ya da bir konu seç:",
+  "note": "Basit rehber, yapay zekâ yok. Yazdıkların cihazından çıkmaz. Yatırım tavsiyesi değildir.",
+  "how": "Nasıl çalışır:",
+  "also": "Ayrıca:",
+  "load": "Bir saniye…",
+  "fail": "Notlarımı şu an yükleyemiyorum. Bağlantını kontrol et ya da ana sayfadan başla.",
+  "groups": {
+   "tool": "Araçlar",
+   "game": "Oyunlar",
+   "learn": "Öğren",
+   "business": "İşletmeler için",
+   "help": "Yardım ve güvenlik",
+   "page": "Diğer sayfalar"
+  },
+  "all": "Hepsini göster",
+  "here2": "Burada ne yapabilirim?"
+ },
+ "topics": {
+  "site": {
+   "title": "Bu site ne?",
+   "what": "geopolcoins.xyz, hiciv meme coin $MAIGA etrafında kurulmuş, yapay zekâ araçları, öğrenme laboratuvarları ve oyunlardan oluşan ücretsiz bir oyun alanıdır. Araçlar için hesap ya da cüzdan gerekmez.",
+   "steps": [
+    "Ana sayfayı aç ve ne yapmak istediğini seç",
+    "Bir aracı dene: her şey tarayıcında çalışır",
+    "Bir araç ya da oyun hakkında bana her şeyi sor"
+   ],
+   "cta": "Ana sayfa"
+  },
+  "garage": {
+   "title": "Bot Garage: kendi yapay zekâ botunu yap",
+   "what": "Hazır bir yapay zekâ botunu kopyala ya da kendininkini yap: görevini, tonunu ve görünüşünü seç, test et, sonra bir bağlantıyla paylaş ya da ChatGPT, Claude, Discord veya Telegram'a aktar. Ücretsiz, hesap yok.",
+   "steps": [
+    "Hazır bir bot seç ya da boş başla",
+    "Görevi, tonu ve görünüşü ayarla",
+    "Sohbette dene",
+    "Bağlantıyı paylaş ya da dışa aktar"
+   ],
+   "cta": "Bot Garage'ı aç"
+  },
+  "meme": {
+   "title": "Meme Studio: meme yap",
+   "what": "190'dan fazla klasik şablon, MAIGA piksel sahneleri ya da kendi fotoğrafınla saniyeler içinde meme yap. Yazı ve çıkartmaları sürükle, sonra PNG olarak indir. Hiçbir şey yüklenmez.",
+   "steps": [
+    "Bir şablon seç ya da fotoğraf yükle",
+    "Yazını yaz ve yerine sürükle",
+    "İstersen çıkartma ekle",
+    "PNG'yi indir"
+   ],
+   "cta": "Meme Studio'yu aç"
+  },
+  "factory": {
+   "title": "Meme Factory: tek kelimeden çıkış paketi",
+   "what": "Tek bir kelime yaz, piksel ekip bir meme coin paketi hazırlasın: isim, ticker, meme, güvenlik kontrolü ve paylaşım fikirleri. Senin adına hiçbir şey çıkarılmaz ya da paylaşılmaz. Sadece eğlence.",
+   "steps": [
+    "Bir kelime ya da fikir yaz",
+    "Ekibin paketi kurmasını izle",
+    "Beğendiğin kısımları kopyala",
+    "İstersen çevrimdışı sürümü indir"
+   ],
+   "cta": "Meme Factory'yi aç"
+  },
+  "check": {
+   "title": "Token Checkup: bir tokeni kontrol et",
+   "what": "Herhangi bir Solana tokeninin adresini yapıştır. Bayan Mintje herkese açık verileri okur ve neyin iyi, neyin riskli göründüğünü ve neyi göremediğini listeler. Bu bir kontrol listesidir, tavsiye değildir ve bazı şeyleri kaçırabilir.",
+   "steps": [
+    "Token adresini (CA) kopyala",
+    "Token Checkup'a yapıştır",
+    "Yeşil, turuncu ve gri maddeleri oku",
+    "Her zaman kendin de daha fazla kontrol et"
+   ],
+   "cta": "Token Checkup'ı aç"
+  },
+  "raid": {
+   "title": "MAIGA Raid: piksel platform oyunu",
+   "what": "Buz şövalyesi Jean-Phil ya da robot Bolt olarak oyna, 5 dünyayı (buz, fabrika, ay, mum kanyonu, halı kulesi) geç ve Mintje'yi Lord Rugpull'dan kurtar. Ücretsiz, cüzdan yok; dokunmatik, klavye ya da oyun kumandasıyla çalışır.",
+   "steps": [
+    "Kahramanını seç",
+    "Hareket için oklar ya da düğmeler, ezmek için zıpla",
+    "Her dünyada bayrağa ulaş",
+    "Lord Rugpull'u yen, sonra bir arkadaşına meydan oku"
+   ],
+   "cta": "MAIGA Raid oyna"
+  },
+  "arcade": {
+   "title": "Jean-Phil'in Meme Atarisi",
+   "what": "Meme coinler, piksel memeler ve Jean-Phil ile 8 küçük oyun, MAIGA Flappy gibi. Bir pilot adıyla oyna ve ücretsiz günlük turnuvada yüksel. Sadece eğlence için.",
+   "steps": [
+    "Atariden bir oyun seç",
+    "Pilot adını gir",
+    "Oyna ve sıralamaya bak"
+   ],
+   "cta": "Atariyi aç"
+  },
+  "chain": {
+   "title": "Mini-Chain: blockchain nasıl çalışır",
+   "what": "Yaparak öğren: veri yaz, blok kaz ve tek bir harfi değiştirmenin neden tüm zinciri bozduğunu gör. Tarayıcında çalışır.",
+   "steps": [
+    "Hash'in (parmak izi) ne olduğunu gör",
+    "Birkaç blok kaz",
+    "Bir harfi değiştir ve zincirin bozulmasını izle"
+   ],
+   "cta": "Mini-Chain'i aç"
+  },
+  "quantum": {
+   "title": "Quantum Lab: kripto ve kuantum bilgisayar",
+   "what": "Bir mesajı bugün Solana'nın yaptığı gibi (Ed25519), sonra kuantuma dayanıklı ML-DSA ve Falcon ile imzala. Tarayıcında gerçek kriptografi, simüle edilmiş bir kuantum bilgisayar ve dürüstçe açıklanan efsaneler.",
+   "steps": [
+    "Bir mesaj yaz ve imzala'ya bas",
+    "Bir harfi değiştir ve tekrar kontrol et",
+    "Simüle kuantum bilgisayarı aç"
+   ],
+   "cta": "Quantum Lab'ı aç"
+  },
+  "blog": {
+   "title": "Blog: kısa ve dürüst rehberler",
+   "what": "Solana dolandırıcılıklarını ve honeypot'ları fark etme, grafik okuma, yapay zekânın kriptoyu tahmin edip edemeyeceği, blockchain'lerin nasıl çalıştığı, küçük işletmeler için ücretsiz yapay zekâ botları ve $MAIGA'nın ne olduğu üzerine sade rehberler.",
+   "steps": [
+    "Blogu aç",
+    "Bir rehber seç",
+    "Her rehber anlattığı ücretsiz araca bağlanır"
+   ],
+   "cta": "Blogu aç"
+  },
+  "radar": {
+   "title": "MAIGA Radar: ne popüler, ne riskli görünüyor",
+   "what": "CryptoRank ya da DexScreener gibi ücretsiz canlı bir radar, ama uyarı işaretleriyle: otomatik uyarılarla trend ve yepyeni Solana havuzları, en büyük 20 coin, korku ve açgözlülük endeksi ve blockchain başına DeFi parası. Sadece gerçekler, sinyal yok, tavsiye değildir.",
+   "steps": [
+    "Trend kısmına bak: her token uyarılar ve bir risk etiketi alır",
+    "O token için Token Checkup'ı açmak üzere Tam kontrol'e dokun",
+    "Piyasa özeti, Korku ve açgözlülük ve DeFi'ye kaydır"
+   ],
+   "cta": "Radar'ı aç"
+  },
+  "kronos": {
+   "title": "Kronos Lab: yapay zekâ grafik okuyabilir mi?",
+   "what": "Açık bir yapay zekâ modeli (Kronos), BTC, ETH, SOL, DOGE, XRP ve PEPE için geçmişten gerçek anları tahmin etti. Önce yükselir mi düşer mi tahmin et, sonra gerçekte ne olduğunu dürüst bir puanla gör. Sadece geçmiş, sinyal yok, tavsiye değildir.",
+   "steps": [
+    "BTC, ETH ya da SOL seç",
+    "Tahmin et: 24 saatte daha yüksek mi, daha düşük mü?",
+    "Tahmini ve gerçeği göster",
+    "Dürüst puan tablosuna bak"
+   ],
+   "cta": "Kronos Lab'ı aç"
+  },
+  "charts": {
+   "title": "Chart School: grafik okumayı öğren",
+   "what": "Mumlar, hacim, hareketli ortalamalar, destek, RSI ve pump-and-dump üzerine ücretsiz dersler; uydurma verilerle alıştırma grafikleri ve bir test. Sinyal yok, tavsiye yok.",
+   "steps": [
+    "İlk dersle başla",
+    "Örnek grafiklerde alıştırma yap",
+    "Sonunda testi çöz"
+   ],
+   "cta": "Chart School'u aç"
+  },
+  "lend": {
+   "title": "Bot Bank: yapay zekâ botlarına borç ver (oyun parası)",
+   "what": "Yapay zekâ ajanlarına borç vermeyi ve risklerini anlatan bir oyun: botlara oyun parası ödünç ver, onları destekle, ücret kazan ya da koyduğunu kaybet. Asla gerçek para yok.",
+   "steps": [
+    "Bugünkü borç taleplerini oku",
+    "Bir bota oyun parası ödünç ver ya da onu destekle",
+    "Kimin geri ödediğini, kimin ödemediğini izle"
+   ],
+   "cta": "Bot Bank oyna"
+  },
+  "robotlab": {
+   "title": "Robot Lab: bir robotla güvenle konuş",
+   "what": "Basit kelimelerle bir komut yaz. Komut kontrol edilmiş bir robot planına dönüşür ve robot ancak bir insan onaylayınca hareket eder. Tarayıcıda bir demo, gerçek robot yok.",
+   "steps": [
+    "Bir komut ver",
+    "Güvenlik kontrollerine bak",
+    "Planı onayla ya da reddet"
+   ],
+   "cta": "Robot Lab'ı aç"
+  },
+  "robots": {
+   "title": "Zaten sahip olduğun robotlar için yapay zekâ",
+   "what": "Robotu olan şirketler için: teknisyenlere yardım botu, insan onaylı basit dilde komutlar ve günlük filo raporu. Robotun kendi güvenlik sistemi her zaman önceliklidir.",
+   "steps": [
+    "Dört seçeneği oku",
+    "Yardım botunu dene",
+    "Ücretsiz teklif iste"
+   ],
+   "cta": "Robot çözümlerine bak"
+  },
+  "business": {
+   "title": "İşletmem için bir yapay zekâ asistanı",
+   "what": "Kuaförler, ajanslar, restoranlar ve dükkânlar için: Bot Garage'da ücretsiz botunu kendin yap, hazır paketler al ya da fiyatların, saatlerin ve S.S.S. ile bizim kurmamızı iste (ücretsiz teklif).",
+   "steps": [
+    "Ücretsiz: Bot Garage'da başla",
+    "Daha hızlı: ücretsiz başlangıç kitini al",
+    "Senin için hazır: teklif iste"
+   ],
+   "cta": "Özel yapay zekâ asistanı"
+  },
+  "probots": {
+   "title": "Pro botlar: telefon, e-posta ve WhatsApp",
+   "what": "Randevu alan bir telefon resepsiyonisti, bir e-posta asistanı ve bir WhatsApp rezervasyon botu gibi 8 bağlantılı yapay zekâ asistanı için planlar, dürüst işletme maliyetleriyle.",
+   "steps": [
+    "İhtiyacın olan asistanı seç",
+    "Çalıştırmanın maliyetini oku",
+    "Kendin kur ya da yardım al"
+   ],
+   "cta": "Pro botlara bak"
+  },
+  "free": {
+   "title": "Ücretsiz yapay zekâ botu başlangıç kiti",
+   "what": "Bir işletme için yapıştırmaya hazır 5 yapay zekâ asistanı (S.S.S., rezervasyon, yorumlar, e-postalar, sosyal medya). ChatGPT, Claude ya da Gemini'de yaklaşık 10 dakikada çalışır. Kit İngilizcedir.",
+   "steps": [
+    "Kit sayfasını aç",
+    "Kiti al",
+    "Bir botu yapay zekâ sohbetine yapıştır"
+   ],
+   "cta": "Ücretsiz kiti al"
+  },
+  "key": {
+   "title": "Ücretsiz yapay zekâ API anahtarları",
+   "what": "API anahtarı botunun bir yapay zekâ modeliyle konuşmasını sağlar. Rehber ücretsiz ve ucuz seçenekleri, bir anahtarı nasıl güvende tutacağını ve Bot Garage'da nasıl kullanacağını anlatır. Anahtarın kendi tarayıcında kalır.",
+   "steps": [
+    "Listeden ücretsiz bir sağlayıcı seç",
+    "Onların sitesinde bir anahtar oluştur",
+    "Bot Garage'a yapıştır, asla bir sohbete değil"
+   ],
+   "cta": "API rehberini aç"
+  },
+  "run": {
+   "title": "Botumu 7/24 çalıştır",
+   "what": "Botunu Bot Garage'dan Telegram ya da Discord kiti olarak dışa aktar ve çevrimiçi tutmak için adımları izle. API rehberi ücretsiz barındırma seçeneklerini anlatır.",
+   "steps": [
+    "Botunu Bot Garage'da bitir",
+    "Telegram ya da Discord kitini dışa aktar",
+    "Barındırma adımlarını izle"
+   ],
+   "cta": "Nasıl yapılır"
+  },
+  "answers": {
+   "title": "Yapay zekâ botları hakkında 17 dürüst cevap",
+   "what": "Küçük işletmelerin yapay zekâ sohbet botları hakkında sorduklarına net cevaplar: maliyet, ücretsiz araçlar, gizlilik, hatalar (halüsinasyonlar) ve sektöre göre ipuçları.",
+   "steps": [
+    "Cevaplar sayfasını aç",
+    "Sektörüne geç",
+    "Bir şey net değilse bana sor"
+   ],
+   "cta": "Cevapları oku"
+  },
+  "app": {
+   "title": "Uygulamayı yükle",
+   "what": "$MAIGA uygulaması Bot Garage, Token Checkup, Meme Factory, Günün Kapışması ve kayıtlı botlarını tek yerde toplar. Ücretsiz, çevrimdışı çalışır, uygulama mağazası gerekmez.",
+   "steps": [
+    "Uygulama sayfasını aç",
+    "Yükle'ye bas (iPhone'da Paylaş > Ana Ekrana Ekle)",
+    "Ana ekranından aç"
+   ],
+   "cta": "Uygulamayı aç"
+  },
+  "shop": {
+   "title": "Mağaza: hazır bot paketleri",
+   "what": "Kuaförler, emlak ve restoranlar için hazır bot paketleri ve 20 botluk bir paket; İngilizce, Felemenkçe ve Fransızca. Ko-fi'de satılır, PayPal ile ödeme.",
+   "steps": [
+    "Mağazayı aç",
+    "İşin ve dilin için paketi seç",
+    "Ödedikten hemen sonra indir"
+   ],
+   "cta": "Mağazayı aç"
+  },
+  "safe": {
+   "title": "Güvende kal",
+   "what": "Kurtarma ifadeni ya da özel anahtarını asla kimseyle paylaşma, bizimle bile: bu siteden kimse bunu asla istemez. Yardım ya da ödül vaat eden özel mesajları yok say ve her adresi harf harf kontrol et.",
+   "steps": [
+    "Kurtarma ifadesi kâğıtta, çevrimdışı",
+    "Asla bir sitede ya da sohbette yazma",
+    "Adresleri harf harf kontrol et",
+    "Şüphedeysen dur"
+   ],
+   "cta": "Güvenlik memeleri"
+  },
+  "coin": {
+   "title": "$MAIGA coin hakkında",
+   "what": "$MAIGA, Solana üzerinde hiciv amaçlı bir meme coindir. HQ sayfası herkese açık coin bilgilerini ve gerçek sözleşme adresini (CA) gösterir: 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump. Başka tokenler de aynı adı kullanır, bu yüzden CA'yı her zaman kontrol et. Sadece eğlence, yatırım tavsiyesi değildir, DYOR.",
+   "steps": [
+    "HQ'daki coin bilgilerini oku",
+    "CA'yı harf harf karşılaştır",
+    "Sadece kaybetmeyi göze alabileceğin kadar harca"
+   ],
+   "cta": "Coin bilgisi (HQ)"
+  },
+  "partners": {
+   "title": "Ortak ya da sponsor alanları",
+   "what": "Sitede açıkça etiketlenmiş reklam ve sponsor alanları, neyi kabul edip neyi reddettiğimize dair kurallarımızla.",
+   "steps": [
+    "Alanları ve kuralları oku",
+    "Neyi kabul ettiğimize bak",
+    "E-postayla başvur"
+   ],
+   "cta": "Ortak sayfası"
+  },
+  "privacy": {
+   "title": "Gizlilik ve çerezler",
+   "what": "Çoğu araç yalnızca tarayıcında çalışır ve bizim tarafımızda hiçbir şey saklamaz. Gizlilik ve çerez sayfaları neyin, nerede ve neden saklandığını tam olarak açıklar.",
+   "steps": [
+    "Gizlilik politikasını oku",
+    "Çerez politikasını oku",
+    "Sorular? geopolcoins1@gmail.com adresine yaz"
+   ],
+   "cta": "Gizlilik politikası"
+  },
+  "contact": {
+   "title": "İletişim",
+   "what": "geopolcoins1@gmail.com adresine yaz ya da X'te @greenlandusa1'i takip et. Para, anahtar ya da kurtarma ifadesi istemek için sana asla önce biz yazmayız.",
+   "steps": [
+    "Sorunla birlikte bir e-posta yaz",
+    "Ya da bize X'te cevap ver"
+   ],
+   "cta": "Yasal bilgiler"
+  },
+  "rug": {
+   "title": "Spot the Rug Pull: dolandırıcılığı bulma oyunu",
+   "what": "Her turda beş uydurma Solana tokeni, biri rug pull. Onu bul, sonra hangi uyarı işaretlerinin ele verdiğini gör. Beş tur, her biri daha zor. Ücretsiz, cüzdan yok, tüm tokenler sahte.",
+   "steps": [
+    "Beş token kartına bak",
+    "Rug pull olduğunu düşündüğün karta dokun",
+    "Uyarı işaretlerini oku ve sonraki tura geç",
+    "Puanını paylaş ve gerçek bir tokeni kontrol et"
+   ],
+   "cta": "Spot the Rug Pull oyna"
+  }
+ }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ist Solana sicher vor Quantencomputern? Einfach erklärt</title>
+<meta name="description" content="Warum ein großer Quantencomputer heutige Signaturen eines Tages knacken könnte, was Post-Quanten-Signaturen sind und wie du sie ausprobierst.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-de-ist-solana-sicher-vor-quantencomputern.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-is-solana-quantum-safe.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-is-solana-veilig-tegen-quantumcomputers.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-solana-ordinateurs-quantiques.html">
+<link rel="alternate" hreflang="es" href="https://geopolcoins.xyz/blog-es-esta-solana-a-salvo-de-los-ordenadores-cuanticos.html">
+<link rel="alternate" hreflang="pt" href="https://geopolcoins.xyz/blog-pt-a-solana-esta-segura-contra-computadores-quanticos.html">
+<link rel="alternate" hreflang="de" href="https://geopolcoins.xyz/blog-de-ist-solana-sicher-vor-quantencomputern.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-is-solana-quantum-safe.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ist Solana sicher vor Quantencomputern? Einfach erklärt">
+<meta property="og:description" content="Warum ein großer Quantencomputer heutige Signaturen eines Tages knacken könnte, was Post-Quanten-Signaturen sind und wie du sie ausprobierst.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-de-ist-solana-sicher-vor-quantencomputern.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ist Solana sicher vor Quantencomputern? Einfach erklärt","description":"Warum ein großer Quantencomputer heutige Signaturen eines Tages knacken könnte, was Post-Quanten-Signaturen sind und wie du sie ausprobierst.","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-de-ist-solana-sicher-vor-quantencomputern.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"de","wordCount":201,"about":"Quantum Lab","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Ist Solana sicher vor Quantencomputern? Einfach erklärt","item":"https://geopolcoins.xyz/blog-de-ist-solana-sicher-vor-quantencomputern.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kann ein Quantencomputer heute Krypto stehlen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Heutige Quantencomputer sind viel zu klein, um Ed25519 zu knacken."}},{"@type":"Question","name":"Ist $MAIGA quantensicher?","acceptedAnswer":{"@type":"Answer","text":"Nur so sicher wie Solana. Es hat keinen eigenen Quantenschutz."}}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog-de.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Start</a> › <a href="/blog-de.html">Blog</a></nav>
+<article><span class="tag" style="background:#ffb547">Lernen</span><h1>Ist Solana sicher vor Quantencomputern? Einfach erklärt</h1>
+<p class="meta">6 November 2026 · 1 Min. Lesezeit · Tool: <a href="/quantum.html">Quantum Lab</a></p>
+<p class="langs">Auch auf: <a href="/blog-is-solana-quantum-safe.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-is-solana-veilig-tegen-quantumcomputers.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-solana-ordinateurs-quantiques.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-es-esta-solana-a-salvo-de-los-ordenadores-cuanticos.html" hreflang="es" lang="es">Español</a> <a href="/blog-pt-a-solana-esta-segura-contra-computadores-quanticos.html" hreflang="pt" lang="pt">Português</a></p>
+<div class="quick"><b>Kurze Antwort</b><p>Nicht von allein. Solana-Wallets signieren mit Ed25519, das ein ausreichend großer Quantencomputer mit dem Shor-Algorithmus knacken könnte. So einen Computer gibt es heute nicht. Post-Quanten-Signaturen wie ML-DSA (US-Standard seit August 2024) sind dafür gebaut, diesem Angriff zu widerstehen.</p></div>
+<h2>Was eine Signatur macht</h2>
+<p>Wenn du Coins sendest, signiert deine Wallet die Transaktion mit deinem privaten Schlüssel. Jeder kann die Signatur mit deinem öffentlichen Schlüssel prüfen, aber niemand kann sie ohne den privaten Schlüssel fälschen.</p>
+<h2>Die Quanten-Bedrohung</h2>
+<p>Der Shor-Algorithmus könnte auf einem großen, stabilen Quantencomputer bei Ed25519 und ähnlichen Systemen den privaten Schlüssel aus dem öffentlichen berechnen. Heutige Quantenmaschinen sind dafür viel zu klein und zu fehleranfällig. Niemand weiß genau, wann oder ob sich das ändert.</p>
+<h2>Post-Quanten-Signaturen</h2>
+<ul><li><strong>ML-DSA-65:</strong> der offizielle US-Standard (NIST FIPS 204, August 2024). Größere Schlüssel und Signaturen: etwa 1.952 und 3.309 Bytes.</li><li><strong>Falcon-512:</strong> kleinere Signaturen, aufwendiger umzusetzen.</li><li><strong>Ed25519 heute:</strong> 32-Byte-Schlüssel, 64-Byte-Signaturen. Klein und schnell, aber nicht quantensicher.</li></ul>
+<h2>Was das für $MAIGA bedeutet</h2>
+<p>$MAIGA ist ein Token auf Solana, also genau so quantensicher wie Solana selbst. Wechselt Solana zu Post-Quanten-Signaturen, ziehen die Tokens darauf mit.</p>
+<p>Im <a href="/quantum.html">Quantum Lab</a> kannst du eine Nachricht mit Ed25519 und mit den Post-Quanten-Algorithmen signieren, direkt im Browser, und Größe und Tempo vergleichen.</p>
+<p class="cta"><a class="btn" href="/quantum.html">Quantum Lab öffnen</a></p>
+<h2>Fragen</h2><div class="faq"><details><summary>Kann ein Quantencomputer heute Krypto stehlen?</summary><p>Nein. Heutige Quantencomputer sind viel zu klein, um Ed25519 zu knacken.</p></details><details><summary>Ist $MAIGA quantensicher?</summary><p>Nur so sicher wie Solana. Es hat keinen eigenen Quantenschutz.</p></details></div>
+</article>
+<h2>Weiterlesen</h2><ul class="more"><li><a class="card" href="/blog-de-kerzencharts-lesen.html"><span class="tag" style="background:#ffb547">Lernen</span><h3>Kerzencharts lesen: eine Anleitung für Einsteiger</h3><p>Kerzen, Volumen, gleitende Durchschnitte und RSI in einfachen Worten erklärt, mit kostenlosen Übungscharts aus erfundenen Daten.</p></a></li><li><a class="card" href="/blog-de-wie-funktioniert-eine-blockchain.html"><span class="tag" style="background:#ffb547">Lernen</span><h3>Wie funktioniert eine Blockchain? Bau eine winzige im Browser</h3><p>Hashes, Blöcke, Mining und warum man die Geschichte nicht ändern kann, erklärt mit einer Mini-Blockchain, die du selbst kaputt machen kannst.</p></a></li><li><a class="card" href="/blog-de-solana-token-auf-betrug-pruefen.html"><span class="tag" style="background:#ffb547">Sicherheit</span><h3>Ist ein Solana-Token Betrug? So prüfst du es in 1 Minute</h3><p>Eine einfache Checkliste der öffentlichen Warnsignale hinter den meisten Solana-Rug-Pulls, und ein kostenloses Tool, das sie für jeden Token prüft.</p></a></li></ul>
+</main>
+<footer><a href="/">Start</a><a href="/blog-de.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Datenschutz</a><a href="/legal.html">Rechtliches</a><span>Bildung und Unterhaltung. Keine Finanzberatung.</span></footer>
+<script src="/guide.js" defer></script>
+</body>
+</html>

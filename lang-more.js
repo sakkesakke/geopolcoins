@@ -6,7 +6,7 @@
   var NAMES = { es: 'Español', pt: 'Português', de: 'Deutsch', tr: 'Türkçe', id: 'Bahasa Indonesia', vi: 'Tiếng Việt', ar: 'العربية' };
   var have = window.MAIGA_I18N || {};
   var codes = Object.keys(NAMES).filter(function (c) { return have[c]; });
-  var root = document.documentElement;
+  var root = document.documentElement, menus = [];
   function syncDir() { root.dir = root.lang === 'ar' ? 'rtl' : 'ltr'; }
   syncDir();
   new MutationObserver(function () { syncDir(); mark(); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
@@ -25,7 +25,6 @@
     'html[lang="ar"] :is(h1,h2,h3),html[lang="vi"] :is(h1,h2,h3){font-weight:800;letter-spacing:0!important;line-height:1.2}html[lang="ar"] *{letter-spacing:0!important}';
   document.head.appendChild(css);
 
-  var menus = [];
   document.querySelectorAll('.langs').forEach(function (g) {
     var d = document.createElement('details'); d.className = 'lmore';
     var s = document.createElement('summary'); s.setAttribute('aria-label', 'More languages'); d.appendChild(s);

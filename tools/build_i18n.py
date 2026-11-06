@@ -26,16 +26,11 @@ def main():
     os.makedirs(os.path.join(ROOT, 'i18n'), exist_ok=True)
     problems = 0
     for p in pages:
-        en_file = os.path.join(SRC, p + '.en.json')
-        en = json.load(open(en_file, encoding='utf-8')) if os.path.exists(en_file) else {}
         data = {}
         for c in codes:
             if p not in langs[c]:
                 continue
             d = langs[c][p]
-            extra = [k for k in d if en and k not in en and not isinstance(d[k], dict) and k not in ('ld', 'ck', 'chart', 'err', 'upd', 'tot')]
-            if extra:
-                print(f'note {c}/{p}: keys not on page: {extra}')
             data[c] = d
         js = ('/* built by tools/build_i18n.py: do not edit */\n'
               'window.MAIGA_I18N=' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + ';\n')

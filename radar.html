@@ -145,6 +145,7 @@ footer a{color:var(--dim)}
 </main>
 <footer><a href="/" data-i="fHome">Home</a><a href="hq.html#checkup">Token Checkup</a><a href="chart.html">Chart School</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fSrc">Data: GeckoTerminal, CoinGecko, alternative.me, DefiLlama. Not financial advice.</span></footer>
 </div>
+<script src="/i18n/radar.js"></script><script src="/lang-more.js"></script>
 <script>
 (function(){
 'use strict';
@@ -178,7 +179,8 @@ var T={en:{flag:{liq:'Thin liquidity',liq2:'Low liquidity',newp:'Under 1 day old
   risk:{h:'Risque élevé',m:'Prudence',l:'Moins d’alertes'},col:{tok:'Token',price:'Prix',ch:'24 h',liq:'Liquidité',age:'Âge',vol:'Volume 24 h',tx:'Achats / ventes',flags:'Alertes',risk:'Risque',mc:'Capitalisation',w:'7 jours',chain:'Blockchain',tvl:'TVL'},
   ck:'Vérif. complète',chart:'Graphique',err:'Impossible de charger pour le moment. Réessayez dans une minute.',upd:'Mis à jour',tot:'Total en DeFi',
   fng:{'Extreme Fear':'Peur extrême','Fear':'Peur','Neutral':'Neutre','Greed':'Avidité','Extreme Greed':'Avidité extrême'},ago:{m:'min',h:'h',d:'j'}}};
-var LOC={en:'en-US',nl:'nl-BE',fr:'fr-BE'};
+Object.assign(T,window.MAIGA_I18N||{});
+var LOC={en:'en-US',nl:'nl-BE',fr:'fr-BE',es:'es-ES',pt:'pt-BR',de:'de-DE',tr:'tr-TR',id:'id-ID',vi:'vi-VN',ar:'ar'};
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 var lang=new URLSearchParams(location.search).get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!T[lang])lang='en';
 var orig={};document.querySelectorAll('[data-i]').forEach(function(e){orig[e.dataset.i]=e.textContent;});

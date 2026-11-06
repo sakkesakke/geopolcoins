@@ -43,6 +43,15 @@
     fr: { r: 'Monnaie virtuelle, risques réels. En crypto seul le risque est garanti.', more: 'Avertissement complet',
           g: 'Les liens d’achat et d’échange sont masqués dans votre région, car les règles locales limitent la promotion des cryptos. Tous les outils et jeux restent gratuits.' }
   };
+  /*LANGS-START (built by tools/build_i18n.py)*/
+  T.es = {"r": "Monedas virtuales, riesgos reales. La única garantía en cripto es el riesgo.", "more": "Aviso de riesgo completo", "g": "Los enlaces de compra e intercambio están ocultos en tu región porque las normas locales limitan la promoción de cripto. Todas las herramientas y juegos siguen siendo gratis."};
+  T.pt = {"r": "Moedas virtuais, riscos reais. A única garantia em cripto é o risco.", "more": "Aviso de risco completo", "g": "Os links de compra e troca estão ocultos na sua região porque as regras locais limitam a promoção de cripto. Todas as ferramentas e jogos continuam grátis."};
+  T.de = {"r": "Virtuelle Währungen, reale Risiken. Die einzige Garantie bei Krypto ist das Risiko.", "more": "Vollständiger Risikohinweis", "g": "Kauf- und Swap-Links sind in deiner Region ausgeblendet, weil lokale Regeln Krypto-Werbung einschränken. Alle Tools und Spiele bleiben kostenlos."};
+  T.tr = {"r": "Sanal paralar, gerçek riskler. Kriptoda tek garanti risktir.", "more": "Tam risk uyarısı", "g": "Yerel kurallar kripto tanıtımını kısıtladığı için bölgende alım ve takas bağlantıları gizlendi. Tüm araçlar ve oyunlar ücretsiz kalıyor."};
+  T.id = {"r": "Mata uang virtual, risiko nyata. Satu-satunya jaminan di kripto adalah risiko.", "more": "Peringatan risiko lengkap", "g": "Tautan beli dan swap disembunyikan di wilayahmu karena aturan setempat membatasi promosi kripto. Semua alat dan game tetap gratis."};
+  T.vi = {"r": "Tiền ảo, rủi ro thật. Điều duy nhất được đảm bảo trong crypto là rủi ro.", "more": "Cảnh báo rủi ro đầy đủ", "g": "Liên kết mua và hoán đổi bị ẩn ở khu vực của bạn vì quy định địa phương hạn chế quảng bá crypto. Mọi công cụ và trò chơi vẫn miễn phí."};
+  T.ar = {"r": "عملات افتراضية، ومخاطر حقيقية. الشيء الوحيد المضمون في الكريبتو هو المخاطرة.", "more": "تحذير المخاطر الكامل", "g": "روابط الشراء والمبادلة مخفية في منطقتك لأن القواعد المحلية تقيّد الترويج للكريبتو. كل الأدوات والألعاب تبقى مجانية."};
+  /*LANGS-END*/
   function lang() {
     var l = '';
     try { l = localStorage.getItem('maiga_lang') || ''; } catch (e) {}

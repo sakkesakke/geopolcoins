@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-page="hq">
+<html lang="en" data-page="hq" data-risk="1">
 <head>
 <script>if(/[#&]type=recovery/.test(location.hash)&&/access_token=/.test(location.hash)){location.replace("reset.html"+location.hash);}</script>
 
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://plugin.jup.ag https://*.jup.ag; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https: wss:; manifest-src 'self'; worker-src 'self'; frame-src https://*.jup.ag; base-uri 'none'; form-action 'self'">
+<script src="/geo-guard.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Free meme-coin tools on Solana: Token Checkup, Meme Factory, Bot Garage and 8 arcade games. No wallet needed. Entertainment only, not financial advice.">
 <meta name="google-site-verification" content="6DLcCgCMRtIpucU_rF2AyS4kbQw97kqdYCpusGWzR1A">
@@ -631,7 +632,7 @@ body.playing .hp{display:none!important}
       <a class="nav-btn yellow" href="meme.html">MEME STUDIO</a>
       <a class="nav-btn" href="chain.html">MINI-CHAIN</a>
       <a class="nav-btn" href="#checkup">CHECKUP</a>
-      <a class="nav-btn yellow" href="#swap">SWAP</a>
+      <a data-trade class="nav-btn yellow" href="#swap">SWAP</a>
       <a class="nav-btn pink" href="#arcade">GAMES</a>
       <a class="nav-btn" href="#launch-hub">LAUNCH</a>
       <a class="nav-btn" href="#ai-agents">AGENTS</a>
@@ -660,11 +661,11 @@ body.playing .hp{display:none!important}
           <div class="contract-addr" id="contractAddr">3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump</div>
           <div class="contract-row">
             <button type="button" class="cbtn" id="copyCA">COPY ADDRESS</button>
-            <a class="cbtn alt" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">BUY ON PUMP.FUN</a>
+            <a data-trade class="cbtn alt" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">BUY ON PUMP.FUN</a>
             <a class="cbtn blue" href="#how-to-buy" id="htbLink">HOW TO BUY</a>
           </div>
-          <div class="contract-row trade-row"><a class="cbtn" href="https://pump.fun/u/geopolcoins" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-eye"></use></svg> PEEK AT MY PUMP.FUN</a><a class="cbtn alt" href="https://fomo.family/r/retroidiot27" target="_blank" rel="noopener noreferrer sponsored"><svg class="i" aria-hidden="true"><use href="#i-tag"></use></svg> TRADE WITH ME ON FOMO · 10% OFF FEES</a></div>
-          <div class="trade-note">Referral link: we get a share of the fees, you pay 10% less. Trading meme coins is risky. Not financial advice.</div>
+          <div data-trade class="contract-row trade-row"><a class="cbtn" href="https://pump.fun/u/geopolcoins" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-eye"></use></svg> PEEK AT MY PUMP.FUN</a><a class="cbtn alt" href="https://fomo.family/r/retroidiot27" target="_blank" rel="noopener noreferrer sponsored"><svg class="i" aria-hidden="true"><use href="#i-tag"></use></svg> TRADE WITH ME ON FOMO · 10% OFF FEES</a></div>
+          <div data-trade class="trade-note">Referral link: we get a share of the fees, you pay 10% less. Trading meme coins is risky. Not financial advice.</div>
           <div class="contract-warn">ALWAYS CHECK THE ADDRESS BEFORE YOU BUY. FAKE COPIES EXIST.</div>
         </div>
       </div>
@@ -703,7 +704,7 @@ body.playing .hp{display:none!important}
         <button type="button" class="lv-btn" id="lvCopy">COPY CA</button>
         <a class="lv-btn" href="https://solscan.io/token/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">SOLSCAN</a>
         <a class="lv-btn" href="https://dexscreener.com/solana/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">DEXSCREENER</a>
-        <a class="lv-btn" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">PUMP.FUN</a>
+        <a data-trade class="lv-btn" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">PUMP.FUN</a>
       </div>
       <div class="lv-stats" id="lvStats" aria-live="polite">
         <div class="lv-stat"><small>Price</small><b>&hellip;</b></div>
@@ -813,14 +814,15 @@ body.playing .hp{display:none!important}
       </div>
       <div class="htb-cta">
         <a class="cbtn-link btn btn-yellow" href="#swap">SWAP ON THIS PAGE</a>
-        <a class="btn btn-pink" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">BUY ON PUMP.FUN</a>
+        <a data-trade class="btn btn-pink" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener noreferrer">BUY ON PUMP.FUN</a>
       </div>
       <div class="htb-risk">Not financial advice. Meme coins are very risky and can lose all of their value. Nobody can promise a price or a profit. Admins never DM first, and nobody needs your seed phrase. We cannot recover lost funds.</div>
     </section>
 
-  <section id="swap" class="swap-section">
+  <section data-trade id="swap" class="swap-section">
     <div class="swap-head"><h2>BUY <span>$MAIGA</span> INSTANTLY</h2></div>
     <p class="swap-sub">Swap ANY Solana token → <strong>$MAIGA</strong> · Powered by <strong>Jupiter</strong></p>
+    <p class="swap-sub" style="letter-spacing:0;font-size:13px">Paid link: we receive a 0.5% referral fee on swaps made here. Meme coins can lose all their value. Not financial advice.</p>
     <div class="swap-wrap"><div id="target-container"></div></div>
     <div class="swap-badges">
       <span class="swap-badge">INSTANT</span>
@@ -999,7 +1001,7 @@ body.playing .hp{display:none!important}
     <button type="button" class="lh-btn green" id="lhCheckBtn" style="margin-bottom:10px"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg> RUN LAUNCH CHECK</button>
     <div id="lhCheckResult" class="lh-check" aria-live="polite"></div>
     <button type="button" class="lh-btn ghost" id="copyPlanBtn"><svg class="i" aria-hidden="true"><use href="#i-clipboard"></use></svg> COPY MY LAUNCH PLAN</button>
-    <a class="lh-launch" href="https://pump.fun/create" target="_blank" rel="noopener noreferrer">OPEN PUMP.FUN →</a>
+    <a data-trade class="lh-launch" href="https://pump.fun/create" target="_blank" rel="noopener noreferrer">OPEN PUMP.FUN →</a>
     <p class="lh-note" style="text-align:center">
       Pump.fun is an independent third-party service. Its fees, rules and availability are set by Pump.fun, not by $MAIGA.
       Download your meme above and upload it as the coin image. Launching a token is risky and may be restricted where you live. This is not financial or legal advice.
@@ -1063,7 +1065,7 @@ body.playing .hp{display:none!important}
     <h2 class="section-title">$MAIGA <span>CONTRACT</span></h2>
     <div class="contract-box"><div class="contract-label">OFFICIAL $MAIGA CONTRACT</div><div class="contract-addr">3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump</div><div class="contract-row"><button type="button" class="cbtn" id="copyCA2">COPY ADDRESS</button></div></div>
     <div style="text-align:center;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px;">
-      <a class="btn btn-yellow" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY $MAIGA</a>
+      <a data-trade class="btn btn-yellow" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY $MAIGA</a>
       <a class="btn btn-pink" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">FOLLOW ON X</a>
     </div>
   </section>
@@ -1082,12 +1084,12 @@ body.playing .hp{display:none!important}
       <div class="mini-coin red">
         <img src="https://sakkemoto.com/wp-content/uploads/2026/03/Image-Properties-2.jpeg" alt="$LANDUSA" loading="lazy" decoding="async" width="300" height="300">
         <h3>$LANDUSA</h3>
-        <a href="https://pump.fun/coin/3p7JNozLW8gHh7j1EGZVACnQS1q2TSuh3BaVKqRmpump" target="_blank" rel="noopener">VIEW</a>
+        <a data-trade href="https://pump.fun/coin/3p7JNozLW8gHh7j1EGZVACnQS1q2TSuh3BaVKqRmpump" target="_blank" rel="noopener">VIEW</a>
       </div>
       <div class="mini-coin red">
         <img src="https://sakkemoto.com/wp-content/uploads/2026/03/iranusacoin.png" alt="$IRANUSA" loading="lazy" decoding="async" width="300" height="300">
         <h3>$IRANUSA</h3>
-        <a href="https://pump.fun/coin/FKTHTcJSmnkgwf8kiLAEbkzEVg8QgP3McnFsztigpump" target="_blank" rel="noopener">VIEW</a>
+        <a data-trade href="https://pump.fun/coin/FKTHTcJSmnkgwf8kiLAEbkzEVg8QgP3McnFsztigpump" target="_blank" rel="noopener">VIEW</a>
       </div>
       <div class="mini-coin yellow">
         <img src="https://sakkemoto.com/wp-content/uploads/2026/09/earthcoin.jpeg" alt="$PLANET" loading="lazy" decoding="async" width="300" height="300">
@@ -1102,7 +1104,7 @@ body.playing .hp{display:none!important}
     <p>Follow on X for airdrops, freebies and every update first.</p>
     <div class="buttons">
       <a class="btn btn-pink" href="https://x.com/greenlandusa1" target="_blank" rel="noopener">JOIN US ON X</a>
-      <a class="btn btn-yellow" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY $MAIGA</a>
+      <a data-trade class="btn btn-yellow" href="https://pump.fun/coin/3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump" target="_blank" rel="noopener">BUY $MAIGA</a>
     </div>
   </section>
 
@@ -1722,6 +1724,7 @@ window.addEventListener('load',function(){
   var tries=0;
   var iv=setInterval(function(){
     tries++;
+    if(window.MAIGA_GEO&&window.MAIGA_GEO.blocked){clearInterval(iv);return;}
     if(window.Jupiter&&window.Jupiter.init){
       clearInterval(iv);
       try{

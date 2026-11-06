@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Candlestick-grafieken lezen: een gids voor beginners</title>
+<meta name="description" content="Candles, volume, voortschrijdend gemiddelde en RSI in gewone woorden uitgelegd, met gratis oefengrafieken met verzonnen data.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-nl-candlestick-grafieken-lezen.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-how-to-read-candlestick-charts.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-candlestick-grafieken-lezen.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-lire-graphique-chandeliers.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-how-to-read-candlestick-charts.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Candlestick-grafieken lezen: een gids voor beginners">
+<meta property="og:description" content="Candles, volume, voortschrijdend gemiddelde en RSI in gewone woorden uitgelegd, met gratis oefengrafieken met verzonnen data.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-nl-candlestick-grafieken-lezen.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Candlestick-grafieken lezen: een gids voor beginners","description":"Candles, volume, voortschrijdend gemiddelde en RSI in gewone woorden uitgelegd, met gratis oefengrafieken met verzonnen data.","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-nl-candlestick-grafieken-lezen.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"nl","wordCount":252,"about":"Chart School","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Candlestick-grafieken lezen","item":"https://geopolcoins.xyz/blog-nl-candlestick-grafieken-lezen.html"}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog-nl.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog-nl.html">Blog</a></nav>
+<article><span class="tag" style="background:#5fd3c6">Leren</span><h1>Candlestick-grafieken lezen: een gids voor beginners</h1>
+<p class="meta">6 november 2026 · 1 min lezen · Tool: <a href="/chart.html">Chart School</a></p>
+<p class="langs">Ook in: <a href="/blog-how-to-read-candlestick-charts.html" hreflang="en" lang="en">English</a> <a href="/blog-fr-lire-graphique-chandeliers.html" hreflang="fr" lang="fr">Français</a></p>
+<div class="quick"><b>Kort antwoord</b><p>Elke candle toont vier prijzen voor één periode: opening, hoogste, laagste en slot. Een groene candle sloot hoger dan hij opende, een rode lager. Volume toont hoeveel er verhandeld werd. Leer de vormen op oefengrafieken voor je naar echt geld kijkt.</p></div>
+<h2>Eén candle, vier prijzen</h2>
+<ul><li><strong>Body:</strong> het deel tussen opening en slot.</li><li><strong>Lontjes (wicks):</strong> de dunne lijnen erboven en eronder, met de hoogste en laagste prijs.</li><li><strong>Kleur:</strong> groen (of hol) als hij hoger sloot, rood als hij lager sloot.</li></ul>
+<h2>Volume</h2>
+<p>De staafjes onder de grafiek tonen hoeveel er verhandeld werd. Een grote beweging op heel weinig volume is makkelijk te duwen en makkelijk terug te draaien. Een beweging met sterk volume betekent dat meer mensen meededen.</p>
+<h2>Voortschrijdend gemiddelde</h2>
+<p>Een voortschrijdend gemiddelde is het gemiddelde slot van de laatste periodes, getekend als een gladde lijn. Het toont de algemene richting en filtert wat ruis weg. Het loopt altijd achter op de prijs.</p>
+<h2>RSI</h2>
+<p>RSI is een getal van 0 tot 100 dat recente stijgingen vergelijkt met recente dalingen. Boven 70 heet vaak overkocht, onder 30 oververkocht. Het beschrijft het verleden; het is geen voorspelling.</p>
+<h2>De pump-and-dump-vorm</h2>
+<p>Een plotse verticale stijging op weinig volume, gevolgd door een lange rode daling, is de klassieke pump-and-dump. Late kopers betalen de winst van de vroege verkopers.</p>
+<h2>Oefen zonder risico</h2>
+<p><a href="/chart.html">Chart School</a> heeft zeven korte lessen en een spel "raad de volgende candle" op verzonnen oefengrafieken, dus niets op de pagina is een signaal. Test jezelf daarna tegen een AI in het <a href="/kronos.html">Kronos Lab</a>.</p>
+<p class="cta"><a class="btn" href="/chart.html">Open Chart School</a></p>
+</article>
+<h2>Lees ook</h2><ul class="more"><li><a class="card" href="/blog-nl-hoe-werkt-een-blockchain.html"><span class="tag" style="background:#5fd3c6">Leren</span><h3>Hoe werkt een blockchain? Bouw er een in je browser</h3><p>Hashes, blokken, minen en waarom je de geschiedenis niet kunt veranderen, uitgelegd met een mini-blockchain die je zelf kunt breken.</p></a></li><li><a class="card" href="/blog-nl-is-solana-veilig-tegen-quantumcomputers.html"><span class="tag" style="background:#5fd3c6">Leren</span><h3>Is Solana veilig tegen quantumcomputers? Eenvoudig uitgelegd</h3><p>Waarom de handtekeningen van vandaag ooit gebroken kunnen worden door een grote quantumcomputer, wat post-quantum handtekeningen zijn, en hoe je ze uitprobeert.</p></a></li><li><a class="card" href="/blog-nl-solana-token-scam-checken.html"><span class="tag" style="background:#ff6b6b">Veiligheid</span><h3>Hoe check je of een Solana-token een scam is? (gratis, 1 minuut)</h3><p>Een eenvoudige checklist van de publieke rode vlaggen achter de meeste Solana-rug pulls, en een gratis tool die ze voor elke token nakijkt.</p></a></li></ul>
+</main>
+<footer><a href="/">Home</a><a href="/blog-nl.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Juridisch</a><span>Uitleg en ontspanning. Geen financieel advies.</span></footer>
+<script src="/guide.js" defer></script>
+</body>
+</html>

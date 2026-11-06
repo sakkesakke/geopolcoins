@@ -325,6 +325,7 @@ function shop(){var g=document.getElementById('shopG'),s=SH[lang];g.textContent=
 function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
  document.querySelectorAll('[data-i]').forEach(function(e){var k=e.dataset.i;e.textContent=lang==='en'?orig[k]:(T[lang][k]||orig[k]);});
  document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
+ var bl=document.querySelector('[data-i="nBlog"]');if(bl)bl.href=lang==='en'?'blog.html':'blog-'+lang+'.html';
  document.querySelectorAll('[data-biz]').forEach(function(a){var k=a.dataset.biz;a.href=LAND[k][LI[lang]]+'.html';a.textContent=BIZN[lang][k];});
  biz();shop();}
 document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;apply();});});

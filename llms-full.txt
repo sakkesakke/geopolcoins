@@ -104,6 +104,14 @@ How to use it:
 2. Change one letter and check again
 3. Switch on the simulated quantum computer
 
+### The blog: short honest guides
+URL: https://geopolcoins.xyz/blog.html
+Plain guides on spotting Solana scams and honeypots, reading charts, whether AI can predict crypto, how blockchains work, free AI bots for small business and what $MAIGA is. In English for now.
+How to use it:
+1. Open the blog
+2. Pick a guide
+3. Each guide links to the free tool it explains
+
 ### MAIGA Radar: what is hot, and what looks risky
 URL: https://geopolcoins.xyz/radar.html
 A free live radar like CryptoRank or DexScreener, but with red flags: trending and brand-new Solana pools with automatic warnings, the top 20 coins, the Fear & Greed meter and DeFi money per chain. Facts only, no signals, not advice.

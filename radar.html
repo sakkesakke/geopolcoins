@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en" data-page="radar">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.geckoterminal.com https://api.coingecko.com https://api.alternative.me https://api.llama.fi; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAIGA Radar: trending Solana tokens with red flags</title>
+<meta name="description" content="Free crypto radar: trending and brand-new Solana pools with automatic red flags, top coins, Fear &amp; Greed and DeFi money per chain. Facts only, no signals. EN/NL/FR.">
+<link rel="canonical" href="https://geopolcoins.xyz/radar.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MAIGA Radar: what is hot, and what looks risky">
+<meta property="og:description" content="Trending Solana tokens with red flags, new pools, market overview, Fear &amp; Greed and DeFi. Free, no account, no signals.">
+<meta property="og:url" content="https://geopolcoins.xyz/radar.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MAIGA Radar","url":"https://geopolcoins.xyz/radar.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"description":"Free crypto radar: trending and new Solana pools with automatic public red flags, top coins by market cap, the Fear and Greed index and DeFi value locked per chain. Information only, no trading signals.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What do the red flags on MAIGA Radar mean?","acceptedAnswer":{"@type":"Answer","text":"They are automatic checks on public pool data: very thin liquidity, a pool younger than a day, buys without any sells, trading volume far above the liquidity, and huge 24-hour price jumps or crashes. A token without flags is not safe; it only passed these few checks. Open the full Token Checkup for mint and freeze authority, holders and the creator wallet."}},{"@type":"Question","name":"Is MAIGA Radar a trading signal?","acceptedAnswer":{"@type":"Answer","text":"No. Trending means many people trade it right now, not that it will go up. Most new tokens lose almost all their value. The radar shows public facts and risks only. Not financial advice."}},{"@type":"Question","name":"Where does the radar data come from?","acceptedAnswer":{"@type":"Answer","text":"Your browser loads it directly from public free sources: GeckoTerminal (Solana pools), CoinGecko (top coins), alternative.me (Fear and Greed index) and DefiLlama (DeFi value locked). No account and no wallet are needed."}}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--cab2:#2f2446;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;
+ --amber:#ffb547;--cream:#f3ecd9;--red:#ff6b6b;--teal:#5fd3c6;--lilac:#c8a8ff;--ok:#5be38a;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--night);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-right:10px}
+.langs{display:flex;background:var(--floor);border:1px solid var(--line);border-radius:10px;padding:2px}
+.langs button{background:none;border:0;color:var(--dim);font:700 13px system-ui;padding:7px 9px;border-radius:8px;cursor:pointer;min-height:34px}
+.langs button[aria-pressed="true"]{background:var(--amber);color:#1a1206}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;padding:18px 0 8px}
+.mint{width:96px;height:116px;image-rendering:pixelated}
+h1{font:400 clamp(44px,8vw,78px)/.95 var(--pix);margin:0 0 8px;letter-spacing:0}h1 span{color:var(--amber)}
+.lead{margin:0;color:var(--dim);max-width:62ch;font-size:17px}
+.warn{margin:16px 0 0;padding:12px 14px;border:1px dashed rgba(255,181,71,.55);border-radius:12px;background:rgba(255,181,71,.07);font-size:14.5px;color:var(--cream)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px;position:sticky;top:0;background:linear-gradient(var(--night) 70%,transparent);padding:10px 0 12px;z-index:3}
+.chips a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:2px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-weight:700;font-size:14.5px;background:var(--floor)}
+.chips a:hover{border-color:var(--amber)}
+section{margin:26px 0 8px;scroll-margin-top:70px}
+.sh{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+h2{font:400 clamp(32px,5vw,44px)/1 var(--pix);margin:0;letter-spacing:0}
+.mq{display:inline-block;padding:4px 14px 2px;border-radius:10px;color:#1a1206}
+.sh p{margin:0;color:var(--dim);font-size:14.5px;flex:1 1 280px}
+.btn{min-height:40px;padding:0 14px;border-radius:10px;border:2px solid var(--line);background:var(--cab);color:var(--text);font-weight:700;cursor:pointer;font-size:14px}
+.btn:hover{border-color:var(--amber)}
+.st{font-size:13px;color:var(--mute);margin:6px 0 0}
+.tbl{width:100%;border-collapse:separate;border-spacing:0 6px;font-variant-numeric:tabular-nums}
+.tbl th{font-size:12.5px;color:var(--mute);font-weight:600;text-align:left;padding:0 10px}
+.tbl td{background:var(--cab);padding:10px;vertical-align:middle;font-size:14.5px}
+.tbl td:first-child{border-radius:12px 0 0 12px}.tbl td:last-child{border-radius:0 12px 12px 0}
+.tbl .num{text-align:right;white-space:nowrap}
+.tok{display:flex;align-items:center;gap:10px;min-width:0}
+.ini{flex:0 0 34px;height:34px;border-radius:9px;display:grid;place-items:center;font:400 20px/1 var(--pix);color:#1a1206}
+.tok b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22ch}.tok small{color:var(--mute);font-size:12.5px}
+.up{color:var(--ok)}.dn{color:var(--red)}
+.flags{display:flex;gap:5px;flex-wrap:wrap}
+.flag{font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.flag.bad{background:rgba(255,107,107,.16);color:#ff9b9b;border:1px solid rgba(255,107,107,.45)}
+.flag.warn{background:rgba(255,181,71,.13);color:var(--amber);border:1px solid rgba(255,181,71,.4)}
+.flag.none{background:rgba(95,211,198,.1);color:var(--teal);border:1px solid rgba(95,211,198,.35)}
+.risk{font:400 20px/1 var(--pix);padding:4px 10px 2px;border-radius:8px;white-space:nowrap}
+.risk.h{background:var(--red);color:#2a0a0a}.risk.m{background:var(--amber);color:#1a1206}.risk.l{background:var(--teal);color:#0d1a18}
+.acts{display:flex;gap:6px;justify-content:flex-end}
+.acts a{font-size:13px;font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 9px;color:var(--text);white-space:nowrap}
+.acts a.ck{border-color:var(--teal);color:var(--teal)}
+.spark{width:110px;height:30px;display:block}
+.mk{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}
+.fng{background:var(--cab);border-radius:14px;padding:16px;text-align:center}
+.fng svg{width:100%;max-width:260px;height:auto}
+.fng b{display:block;font:400 54px/1 var(--pix);margin-top:-6px}.fng span{display:block;font-weight:700}.fng small{display:block;color:var(--mute);font-size:12.5px;margin-top:6px}
+.bars{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.bars li{display:grid;grid-template-columns:150px 1fr 96px;gap:10px;align-items:center;background:var(--cab);border-radius:10px;padding:8px 12px;font-size:14.5px}
+.bars i{display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--lilac),var(--teal))}
+.bars em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.tot{font:400 30px/1 var(--pix);color:var(--teal)}
+.faq{display:grid;gap:8px;max-width:860px}
+.faq details{background:var(--cab);border-radius:12px;padding:12px 14px}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:8px 0 2px;color:var(--dim)}
+footer{border-top:1px solid var(--line);margin:40px 0 0;padding:18px 0 40px;color:var(--mute);font-size:13.5px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:var(--dim)}
+@media (max-width:860px){
+ .mk{grid-template-columns:1fr}
+ .tbl thead{display:none}.tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+ .tbl tr{background:var(--cab);border-radius:12px;margin:0 0 8px;padding:6px 4px}
+ .tbl td{background:none;padding:5px 10px;border-radius:0!important;display:flex;justify-content:space-between;gap:12px}
+ .tbl td[data-l]::before{content:attr(data-l);color:var(--mute);font-size:12.5px}
+ .tbl td.f{display:block}.tbl .num{text-align:right}
+ .bars li{grid-template-columns:1fr 90px}.bars li i{grid-column:1/-1;order:3}
+ .hero{grid-template-columns:1fr}.mint{width:64px;height:78px}
+ .chips{position:static;background:none;padding:4px 0 0}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"MAIGA Radar","item":"https://geopolcoins.xyz/radar.html"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="hq.html#checkup" data-i="nCk">Token Checkup</a><a href="kronos.html">Kronos Lab</a><a href="chart.html">Chart School</a></nav>
+ <div class="langs" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="nl">NL</button><button type="button" data-l="fr">FR</button></div></header>
+<main id="main">
+<div class="hero">
+ <img class="mint" src="meme/pxmint.png" alt="" width="24" height="29">
+ <div><h1><span>MAIGA</span> Radar</h1>
+ <p class="lead" data-i="lead">What the crypto market is doing right now, plus the red flags most trading sites leave out. Mevrouw Mintje checks every trending Solana token for you.</p></div>
+</div>
+<p class="warn" data-i="warn"><b>Facts, not signals.</b> Trending means many people trade it now, not that it will go up. Most new tokens lose almost everything. No flags does not mean safe. Not financial advice.</p>
+
+<nav class="chips" aria-label="Sections"><a href="#trend" data-i="cT">Trending + red flags</a><a href="#new" data-i="cN">New pools</a><a href="#market" data-i="cM">Market</a><a href="#defi" data-i="cD">DeFi</a></nav>
+
+<section id="trend" aria-labelledby="hT">
+ <div class="sh"><h2 id="hT"><span class="mq" style="background:var(--red)" data-i="hT">Trending on Solana</span></h2><p data-i="pT">The 20 pools people trade most right now, each with automatic red flags from public data.</p><button type="button" class="btn" data-reload="trend" data-i="rf">Refresh</button></div>
+ <div id="trendBox"><p class="st" data-i="ld">Loading…</p></div>
+</section>
+
+<section id="new" aria-labelledby="hN">
+ <div class="sh"><h2 id="hN"><span class="mq" style="background:var(--amber)" data-i="hN">Brand-new pools</span></h2><p data-i="pN">Solana pools created in the last hours. This is where most rug pulls start: look before you touch.</p><button type="button" class="btn" data-reload="new" data-i="rf">Refresh</button></div>
+ <div id="newBox"><p class="st" data-i="ld">Loading…</p></div>
+</section>
+
+<section id="market" aria-labelledby="hM">
+ <div class="sh"><h2 id="hM"><span class="mq" style="background:var(--teal)" data-i="hM">Market overview</span></h2><p data-i="pM">The 20 biggest coins by market value, with their last 7 days.</p></div>
+ <div class="mk"><div id="mkBox"><p class="st" data-i="ld">Loading…</p></div>
+  <aside class="fng" aria-labelledby="hF"><h3 id="hF" style="margin:0 0 6px" data-i="hF">Fear &amp; Greed</h3><div id="fngBox"><p class="st" data-i="ld">Loading…</p></div>
+   <small data-i="fN">A daily mood score for crypto from 0 (extreme fear) to 100 (extreme greed). Mood, not a forecast.</small></aside></div>
+</section>
+
+<section id="defi" aria-labelledby="hD">
+ <div class="sh"><h2 id="hD"><span class="mq" style="background:var(--lilac)" data-i="hD">DeFi money per chain</span></h2><p data-i="pD">Total value locked: how much money sits in apps on each blockchain.</p></div>
+ <div id="defiBox"><p class="st" data-i="ld">Loading…</p></div>
+</section>
+
+<section id="faq" aria-labelledby="hQ">
+ <div class="sh"><h2 id="hQ" data-i="hQ">Questions</h2></div>
+ <div class="faq">
+  <details><summary data-i="q1">What do the red flags mean?</summary><p data-i="a1">They are automatic checks on public pool data: very thin liquidity, a pool younger than a day, buys without any sells, trading volume far above the liquidity, and huge 24-hour price jumps or crashes. A token without flags is not safe; it only passed these few checks. Open the full Token Checkup for mint and freeze authority, holders and the creator wallet.</p></details>
+  <details><summary data-i="q2">Is this a trading signal?</summary><p data-i="a2">No. Trending means many people trade it right now, not that it will go up. Most new tokens lose almost all their value. The radar shows public facts and risks only. Not financial advice.</p></details>
+  <details><summary data-i="q3">Where does the data come from?</summary><p data-i="a3">Your browser loads it directly from public free sources: GeckoTerminal (Solana pools), CoinGecko (top coins), alternative.me (Fear and Greed index) and DefiLlama (DeFi value locked). No account and no wallet are needed. Data can be late or wrong.</p></details>
+ </div>
+</section>
+</main>
+<footer><a href="/" data-i="fHome">Home</a><a href="hq.html#checkup">Token Checkup</a><a href="chart.html">Chart School</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fSrc">Data: GeckoTerminal, CoinGecko, alternative.me, DefiLlama. Not financial advice.</span></footer>
+</div>
+<script>
+(function(){
+'use strict';
+var T={en:{flag:{liq:'Thin liquidity',liq2:'Low liquidity',newp:'Under 1 day old',nosell:'No sells',vol:'Volume ≫ liquidity',pump:'Pumped',crash:'Crashed',none:'No flags found'},
+  risk:{h:'High risk',m:'Watch out',l:'Fewer flags'},col:{tok:'Token',price:'Price',ch:'24h',liq:'Liquidity',age:'Age',vol:'Volume 24h',tx:'Buys / sells',flags:'Red flags',risk:'Risk',mc:'Market cap',w:'7 days',chain:'Chain',tvl:'TVL'},
+  ck:'Full check',chart:'Chart',err:'Could not load this right now. Try again in a minute.',upd:'Updated',tot:'Total in DeFi',
+  fng:{'Extreme Fear':'Extreme fear','Fear':'Fear','Neutral':'Neutral','Greed':'Greed','Extreme Greed':'Extreme greed'},ago:{m:'min',h:'h',d:'d'}},
+ nl:{skip:'Naar de inhoud',nCk:'Token Checkup',lead:'Wat de cryptomarkt nu doet, plus de rode vlaggen die de meeste tradingsites weglaten. Mevrouw Mintje checkt elke trending Solana-token voor je.',
+  warn:'Feiten, geen signalen. Trending betekent dat veel mensen het nu verhandelen, niet dat het gaat stijgen. De meeste nieuwe tokens verliezen bijna alles. Geen vlaggen betekent niet veilig. Geen financieel advies.',
+  cT:'Trending + rode vlaggen',cN:'Nieuwe pools',cM:'Markt',cD:'DeFi',hT:'Trending op Solana',pT:'De 20 pools die nu het meest verhandeld worden, elk met automatische rode vlaggen uit publieke data.',rf:'Vernieuwen',ld:'Laden…',
+  hN:'Gloednieuwe pools',pN:'Solana-pools van de laatste uren. Hier beginnen de meeste rug pulls: kijk voor je iets aanraakt.',hM:'Marktoverzicht',pM:'De 20 grootste munten op marktwaarde, met hun laatste 7 dagen.',
+  hF:'Angst & hebzucht',fN:'Een dagelijkse stemmingsscore voor crypto van 0 (extreme angst) tot 100 (extreme hebzucht). Stemming, geen voorspelling.',hD:'DeFi-geld per blockchain',pD:'Total value locked: hoeveel geld er in apps op elke blockchain zit.',
+  hQ:'Vragen',q1:'Wat betekenen de rode vlaggen?',a1:'Het zijn automatische controles op publieke pooldata: heel weinig liquiditeit, een pool jonger dan een dag, kopen zonder één verkoop, volume ver boven de liquiditeit en enorme stijgingen of crashes in 24 uur. Een token zonder vlaggen is niet veilig; hij doorstond alleen deze paar controles. Open de volledige Token Checkup voor mint- en freeze-rechten, holders en de wallet van de maker.',
+  q2:'Is dit een tradingsignaal?',a2:'Nee. Trending betekent dat veel mensen het nu verhandelen, niet dat het gaat stijgen. De meeste nieuwe tokens verliezen bijna al hun waarde. De radar toont alleen publieke feiten en risico’s. Geen financieel advies.',
+  q3:'Waar komt de data vandaan?',a3:'Je browser haalt ze rechtstreeks bij gratis publieke bronnen: GeckoTerminal (Solana-pools), CoinGecko (top-munten), alternative.me (Fear & Greed) en DefiLlama (DeFi). Geen account en geen wallet nodig. Data kan laat of fout zijn.',
+  fHome:'Home',fPriv:'Privacy',fLegal:'Juridisch',fSrc:'Data: GeckoTerminal, CoinGecko, alternative.me, DefiLlama. Geen financieel advies.',
+  flag:{liq:'Heel weinig liquiditeit',liq2:'Weinig liquiditeit',newp:'Jonger dan 1 dag',nosell:'Geen verkopen',vol:'Volume ≫ liquiditeit',pump:'Gepompt',crash:'Gecrasht',none:'Geen vlaggen gevonden'},
+  risk:{h:'Hoog risico',m:'Opletten',l:'Minder vlaggen'},col:{tok:'Token',price:'Prijs',ch:'24u',liq:'Liquiditeit',age:'Leeftijd',vol:'Volume 24u',tx:'Kopen / verkopen',flags:'Rode vlaggen',risk:'Risico',mc:'Marktwaarde',w:'7 dagen',chain:'Blockchain',tvl:'TVL'},
+  ck:'Volledige check',chart:'Grafiek',err:'Kon dit nu niet laden. Probeer het over een minuut opnieuw.',upd:'Bijgewerkt',tot:'Totaal in DeFi',
+  fng:{'Extreme Fear':'Extreme angst','Fear':'Angst','Neutral':'Neutraal','Greed':'Hebzucht','Extreme Greed':'Extreme hebzucht'},ago:{m:'min',h:'u',d:'d'}},
+ fr:{skip:'Aller au contenu',nCk:'Token Checkup',lead:'Ce que fait le marché crypto en ce moment, avec les signaux d’alerte que la plupart des sites de trading oublient. Madame Mintje vérifie chaque token Solana tendance pour vous.',
+  warn:'Des faits, pas des signaux. Tendance veut dire que beaucoup de gens l’échangent maintenant, pas qu’il va monter. La plupart des nouveaux tokens perdent presque tout. Aucun signal ne veut pas dire sûr. Pas un conseil financier.',
+  cT:'Tendances + alertes',cN:'Nouveaux pools',cM:'Marché',cD:'DeFi',hT:'Tendances sur Solana',pT:'Les 20 pools les plus échangés en ce moment, chacun avec des signaux d’alerte automatiques tirés des données publiques.',rf:'Actualiser',ld:'Chargement…',
+  hN:'Pools tout neufs',pN:'Pools Solana créés ces dernières heures. C’est là que commencent la plupart des rug pulls : regardez avant de toucher.',hM:'Vue du marché',pM:'Les 20 plus grosses cryptos par capitalisation, avec leurs 7 derniers jours.',
+  hF:'Peur & avidité',fN:'Un score d’humeur quotidien de 0 (peur extrême) à 100 (avidité extrême). Une humeur, pas une prévision.',hD:'Argent DeFi par blockchain',pD:'Total value locked : combien d’argent se trouve dans les applis de chaque blockchain.',
+  hQ:'Questions',q1:'Que signifient les signaux d’alerte ?',a1:'Ce sont des vérifications automatiques des données publiques du pool : liquidité très faible, pool de moins d’un jour, achats sans aucune vente, volume bien au-dessus de la liquidité, énormes hausses ou chutes en 24 h. Un token sans alerte n’est pas sûr ; il a seulement passé ces quelques tests. Ouvrez le Token Checkup complet pour les droits mint et freeze, les détenteurs et le wallet du créateur.',
+  q2:'Est-ce un signal de trading ?',a2:'Non. Tendance veut dire que beaucoup de gens l’échangent maintenant, pas qu’il va monter. La plupart des nouveaux tokens perdent presque toute leur valeur. Le radar montre uniquement des faits et des risques publics. Pas un conseil financier.',
+  q3:'D’où viennent les données ?',a3:'Votre navigateur les charge directement depuis des sources publiques gratuites : GeckoTerminal (pools Solana), CoinGecko (top cryptos), alternative.me (Fear & Greed) et DefiLlama (DeFi). Sans compte ni wallet. Les données peuvent être en retard ou fausses.',
+  fHome:'Accueil',fPriv:'Confidentialité',fLegal:'Mentions légales',fSrc:'Données : GeckoTerminal, CoinGecko, alternative.me, DefiLlama. Pas un conseil financier.',
+  flag:{liq:'Liquidité très faible',liq2:'Liquidité faible',newp:'Moins d’1 jour',nosell:'Aucune vente',vol:'Volume ≫ liquidité',pump:'Pompé',crash:'Effondré',none:'Aucune alerte trouvée'},
+  risk:{h:'Risque élevé',m:'Prudence',l:'Moins d’alertes'},col:{tok:'Token',price:'Prix',ch:'24 h',liq:'Liquidité',age:'Âge',vol:'Volume 24 h',tx:'Achats / ventes',flags:'Alertes',risk:'Risque',mc:'Capitalisation',w:'7 jours',chain:'Blockchain',tvl:'TVL'},
+  ck:'Vérif. complète',chart:'Graphique',err:'Impossible de charger pour le moment. Réessayez dans une minute.',upd:'Mis à jour',tot:'Total en DeFi',
+  fng:{'Extreme Fear':'Peur extrême','Fear':'Peur','Neutral':'Neutre','Greed':'Avidité','Extreme Greed':'Avidité extrême'},ago:{m:'min',h:'h',d:'j'}}};
+var LOC={en:'en-US',nl:'nl-BE',fr:'fr-BE'};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+var lang=new URLSearchParams(location.search).get('lang')||ls('maiga_lang')||(navigator.language||'en').slice(0,2);if(!T[lang])lang='en';
+var orig={};document.querySelectorAll('[data-i]').forEach(function(e){orig[e.dataset.i]=e.textContent;});
+function L(){return T[lang];}function D(){return T.en;}
+function tr(path){var a=path.split('.'),o=L(),d=D();for(var i=0;i<a.length;i++){o=o&&o[a[i]];d=d&&d[a[i]];}return o||d||path;}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function num(v){var n=Number(v);return isFinite(n)?n:null;}
+function nf(o){return new Intl.NumberFormat(LOC[lang],o);}
+function usd(v,price){if(v===null)return '—';if(price&&v>0&&v<1)return '$'+nf({maximumSignificantDigits:4}).format(v);if(price)return '$'+nf({maximumFractionDigits:v>=1000?0:2}).format(v);
+ if(Math.abs(v)>=1e12)return '$'+nf({maximumFractionDigits:2}).format(v/1e12)+'T';
+ if(Math.abs(v)>=1e9)return '$'+nf({maximumFractionDigits:2}).format(v/1e9)+'B';if(Math.abs(v)>=1e6)return '$'+nf({maximumFractionDigits:2}).format(v/1e6)+'M';
+ if(Math.abs(v)>=1e3)return '$'+nf({maximumFractionDigits:1}).format(v/1e3)+'K';return '$'+nf({maximumFractionDigits:price?4:0}).format(v);}
+function pct(v){if(v===null)return el('span',null,'—');var s=el('span',v>0?'up':v<0?'dn':null,(v>0?'+':'')+nf({maximumFractionDigits:Math.abs(v)>=100?0:1}).format(v)+'%');return s;}
+function age(iso){var t=Date.parse(iso);if(!isFinite(t))return '—';var m=Math.max(0,(Date.now()-t)/60000),a=tr('ago');if(m<60)return Math.round(m)+' '+a.m;if(m<2880)return Math.round(m/60)+' '+a.h;return Math.round(m/1440)+' '+a.d;}
+var COLS=['#ffb547','#5fd3c6','#c8a8ff','#ff6b6b','#f3ecd9','#5be38a'];
+function initial(s){var c=COLS[(s.charCodeAt(0)||0)%COLS.length],i=el('span','ini',(s||'?').replace(/^\$/,'').charAt(0).toUpperCase()||'?');i.style.background=c;return i;}
+/* fetch with timeout + 60 s session cache (keeps us far under the free rate limits) */
+function get(url,fresh){var key='radar:'+url;if(!fresh){try{var c=JSON.parse(sessionStorage.getItem(key)||'null');if(c&&Date.now()-c.t<60000)return Promise.resolve(c.d);}catch(e){}}
+ var ctl='AbortController' in window?new AbortController():null,to=setTimeout(function(){if(ctl)ctl.abort();},12000);
+ return fetch(url,{headers:{Accept:'application/json'},credentials:'omit',signal:ctl?ctl.signal:undefined}).then(function(r){clearTimeout(to);if(!r.ok)throw new Error('http '+r.status);return r.json();})
+ .then(function(d){try{sessionStorage.setItem(key,JSON.stringify({t:Date.now(),d:d}));}catch(e){}return d;});}
+function fail(box){box.textContent='';box.appendChild(el('p','st',tr('err')));}
+function stamp(box){box.appendChild(el('p','st',tr('upd')+' '+new Date().toLocaleTimeString(LOC[lang],{hour:'2-digit',minute:'2-digit'})));}
+/* ---------- pools ---------- */
+var MINT=/^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+function flags(a){var f=[],liq=num(a.reserve_in_usd),t=a.transactions&&a.transactions.h24,b=t?num(t.buys)||0:0,s=t?num(t.sells)||0:0,
+ v=a.volume_usd?num(a.volume_usd.h24):null,ch=a.price_change_percentage?num(a.price_change_percentage.h24):null,born=Date.parse(a.pool_created_at);
+ if(liq!==null){if(liq<10000)f.push(['bad','liq']);else if(liq<50000)f.push(['warn','liq2']);}
+ if(b>=10&&s===0)f.push(['bad','nosell']);
+ if(isFinite(born)&&Date.now()-born<86400000)f.push(['warn','newp']);
+ if(liq&&v!==null&&v>liq*50)f.push(['warn','vol']);
+ if(ch!==null&&ch>=300)f.push(['warn','pump','+'+Math.round(ch)+'%']);else if(ch!==null&&ch<=-60)f.push(['warn','crash',Math.round(ch)+'%']);
+ return f;}
+function riskOf(f){var sc=f.reduce(function(n,x){return n+(x[0]==='bad'?2:1);},0);return sc>=3?'h':sc>=1?'m':'l';}
+var CACHE={};
+function poolTable(box,json){box.textContent='';var inc={};(json.included||[]).forEach(function(x){if(x&&x.type==='token')inc[x.id]=x.attributes||{};});
+ var rows=(json.data||[]).slice(0,20);if(!rows.length){fail(box);return;}
+ var c=tr('col'),tb=el('table','tbl'),th=el('thead'),hr=el('tr');
+ [['tok'],['price','num'],['ch','num'],['liq','num'],['age','num'],['tx','num'],['flags'],['risk'],['','']].forEach(function(h){var x=el('th',h[1]||null,h[0]?c[h[0]]:'');hr.appendChild(x);});
+ th.appendChild(hr);tb.appendChild(th);var body=el('tbody');
+ rows.forEach(function(p){var a=p.attributes||{},bt=p.relationships&&p.relationships.base_token&&p.relationships.base_token.data,tk=(bt&&inc[bt.id])||{};
+  var sym=String(tk.symbol||String(a.name||'?').split('/')[0]).trim().slice(0,16),name=String(tk.name||sym).slice(0,40),mint=String(tk.address||'');
+  var f=flags(a),r=riskOf(f),tr0=el('tr');
+  var td=el('td');var tok=el('div','tok');tok.appendChild(initial(sym));var w=el('div');w.appendChild(el('b',null,name));w.appendChild(el('small',null,sym));tok.appendChild(w);td.appendChild(tok);tr0.appendChild(td);
+  function cell(lbl,node,cls){var x=el('td',cls||'num');x.setAttribute('data-l',lbl);if(typeof node==='string')x.textContent=node;else x.appendChild(node);tr0.appendChild(x);}
+  cell(c.price,usd(num(a.base_token_price_usd),true));
+  cell(c.ch,pct(a.price_change_percentage?num(a.price_change_percentage.h24):null));
+  cell(c.liq,usd(num(a.reserve_in_usd)));
+  cell(c.age,age(a.pool_created_at));
+  var t=a.transactions&&a.transactions.h24;cell(c.tx,t?nf({}).format(num(t.buys)||0)+' / '+nf({}).format(num(t.sells)||0):'—');
+  var fl=el('div','flags');if(!f.length)fl.appendChild(el('span','flag none',tr('flag.none')));
+  f.forEach(function(x){fl.appendChild(el('span','flag '+x[0],tr('flag.'+x[1])+(x[2]?' '+x[2]:'')));});cell(c.flags,fl,'f');
+  cell(c.risk,el('span','risk '+r,tr('risk.'+r)),'');
+  var ac=el('div','acts');if(MINT.test(mint)){var k=el('a','ck',tr('ck'));k.href='hq.html?check='+mint+'#checkup';ac.appendChild(k);}
+  if(MINT.test(String(a.address||''))){var g=el('a',null,tr('chart'));g.href='https://www.geckoterminal.com/solana/pools/'+a.address;g.target='_blank';g.rel='noopener noreferrer';ac.appendChild(g);}
+  var ta=el('td');ta.appendChild(ac);tr0.appendChild(ta);body.appendChild(tr0);});
+ tb.appendChild(body);box.appendChild(tb);stamp(box);}
+function loadPools(kind,fresh){var box=document.getElementById(kind==='trend'?'trendBox':'newBox');
+ return get('https://api.geckoterminal.com/api/v2/networks/solana/'+(kind==='trend'?'trending_pools':'new_pools')+'?include=base_token&page=1',fresh)
+ .then(function(j){CACHE[kind]=j;poolTable(box,j);}).catch(function(){fail(box);});}
+/* ---------- market ---------- */
+function spark(prices){var NS='http://www.w3.org/2000/svg',s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 110 30');s.setAttribute('class','spark');s.setAttribute('aria-hidden','true');
+ var p=(prices||[]).filter(function(x){return isFinite(x);});if(p.length<2)return s;var st=Math.max(1,Math.floor(p.length/40)),q=[];for(var i=0;i<p.length;i+=st)q.push(p[i]);q.push(p[p.length-1]);
+ var lo=Math.min.apply(null,q),hi=Math.max.apply(null,q);if(hi-lo<=0)hi=lo+1;var pts=q.map(function(v,i){return (i/(q.length-1)*110).toFixed(1)+','+(28-(v-lo)/(hi-lo)*26).toFixed(1);}).join(' ');
+ var l=document.createElementNS(NS,'polyline');l.setAttribute('points',pts);l.setAttribute('fill','none');l.setAttribute('stroke-width','1.8');l.setAttribute('stroke',q[q.length-1]>=q[0]?'#5be38a':'#ff6b6b');s.appendChild(l);return s;}
+function market(box,arr){box.textContent='';if(!Array.isArray(arr)||!arr.length){fail(box);return;}var c=tr('col'),tb=el('table','tbl'),th=el('thead'),hr=el('tr');
+ [['tok'],['price','num'],['ch','num'],['7d','num'],['mc','num'],['w','']].forEach(function(h){hr.appendChild(el('th',h[1]||null,h[0]==='7d'?'7d':c[h[0]]));});th.appendChild(hr);tb.appendChild(th);var body=el('tbody');
+ arr.slice(0,20).forEach(function(x){var tr0=el('tr'),td=el('td'),tok=el('div','tok');var sym=String(x.symbol||'').toUpperCase().slice(0,10);tok.appendChild(initial(sym));
+  var w=el('div');w.appendChild(el('b',null,String(x.name||sym).slice(0,30)));w.appendChild(el('small',null,'#'+(num(x.market_cap_rank)||'?')+' · '+sym));tok.appendChild(w);td.appendChild(tok);tr0.appendChild(td);
+  function cell(lbl,node,cls){var y=el('td',cls==null?'num':cls);y.setAttribute('data-l',lbl);if(typeof node==='string')y.textContent=node;else y.appendChild(node);tr0.appendChild(y);}
+  cell(c.price,usd(num(x.current_price),true));cell(c.ch,pct(num(x.price_change_percentage_24h_in_currency!=null?x.price_change_percentage_24h_in_currency:x.price_change_percentage_24h)));
+  cell('7d',pct(num(x.price_change_percentage_7d_in_currency)));cell(c.mc,usd(num(x.market_cap)));cell(c.w,spark(x.sparkline_in_7d&&x.sparkline_in_7d.price),'');body.appendChild(tr0);});
+ tb.appendChild(body);box.appendChild(tb);stamp(box);}
+function gauge(box,j){box.textContent='';var d=j&&j.data&&j.data[0];var v=d?num(d.value):null;if(v===null){fail(box);return;}
+ var NS='http://www.w3.org/2000/svg',s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 200 110');s.setAttribute('role','img');s.setAttribute('aria-label','Fear and Greed '+v+'/100');
+ var cols=['#ff6b6b','#ff9b6b','#ffb547','#b8d86b','#5be38a'];for(var i=0;i<5;i++){var a0=Math.PI*(1-i/5),a1=Math.PI*(1-(i+1)/5),p=document.createElementNS(NS,'path');
+  p.setAttribute('d','M'+(100+80*Math.cos(a0))+','+(100-80*Math.sin(a0))+' A80,80 0 0,1 '+(100+80*Math.cos(a1))+','+(100-80*Math.sin(a1)));p.setAttribute('stroke',cols[i]);p.setAttribute('stroke-width','16');p.setAttribute('fill','none');s.appendChild(p);}
+ var an=Math.PI*(1-v/100),n=document.createElementNS(NS,'line');n.setAttribute('x1','100');n.setAttribute('y1','100');n.setAttribute('x2',String(100+66*Math.cos(an)));n.setAttribute('y2',String(100-66*Math.sin(an)));
+ n.setAttribute('stroke','#f1ebe0');n.setAttribute('stroke-width','5');n.setAttribute('stroke-linecap','round');s.appendChild(n);var cc=document.createElementNS(NS,'circle');cc.setAttribute('cx','100');cc.setAttribute('cy','100');cc.setAttribute('r','7');cc.setAttribute('fill','#f1ebe0');s.appendChild(cc);
+ box.appendChild(s);box.appendChild(el('b',null,String(Math.round(v))));var cl=String(d.value_classification||'');box.appendChild(el('span',null,(L().fng&&L().fng[cl])||cl));}
+/* ---------- defi ---------- */
+function defi(box,arr){box.textContent='';if(!Array.isArray(arr)||!arr.length){fail(box);return;}
+ var list=arr.map(function(x){return {n:String(x.name||'?').slice(0,24),v:num(x.tvl)||0};}).filter(function(x){return x.v>0;}).sort(function(a,b){return b.v-a.v;});
+ var total=list.reduce(function(s,x){return s+x.v;},0),top=list.slice(0,12),max=top[0].v;
+ var h=el('p',null);h.appendChild(el('span','tot',usd(total)));h.appendChild(document.createTextNode(' '+tr('tot')));box.appendChild(h);
+ var ul=el('ul','bars');top.forEach(function(x){var li=el('li');li.appendChild(el('b',null,x.n));var bar=el('i');bar.style.width=Math.max(2,x.v/max*100).toFixed(1)+'%';li.appendChild(bar);li.appendChild(el('em',null,usd(x.v)));ul.appendChild(li);});
+ box.appendChild(ul);stamp(box);}
+var MK=null,FG=null,DF=null;
+function loadMarket(){get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=24h,7d').then(function(j){MK=j;market(document.getElementById('mkBox'),j);}).catch(function(){fail(document.getElementById('mkBox'));});
+ get('https://api.alternative.me/fng/?limit=1').then(function(j){FG=j;gauge(document.getElementById('fngBox'),j);}).catch(function(){fail(document.getElementById('fngBox'));});}
+function loadDefi(){get('https://api.llama.fi/v2/chains').then(function(j){DF=j;defi(document.getElementById('defiBox'),j);}).catch(function(){fail(document.getElementById('defiBox'));});}
+/* ---------- language ---------- */
+function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
+ document.querySelectorAll('[data-i]').forEach(function(e){var k=e.dataset.i;e.textContent=lang==='en'?orig[k]:(T[lang][k]||orig[k]);});
+ document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
+ if(CACHE.trend)poolTable(document.getElementById('trendBox'),CACHE.trend);if(CACHE['new'])poolTable(document.getElementById('newBox'),CACHE['new']);
+ if(MK)market(document.getElementById('mkBox'),MK);if(FG)gauge(document.getElementById('fngBox'),FG);if(DF)defi(document.getElementById('defiBox'),DF);}
+document.querySelectorAll('.langs button').forEach(function(b){b.addEventListener('click',function(){lang=b.dataset.l;apply();});});
+document.querySelectorAll('[data-reload]').forEach(function(b){b.addEventListener('click',function(){b.disabled=true;loadPools(b.dataset.reload,true).then(function(){setTimeout(function(){b.disabled=false;},5000);});});});
+apply();
+/* load the top first; the rest when it comes near the screen */
+loadPools('trend');
+var lazy=[['new',function(){loadPools('new');}],['market',loadMarket],['defi',loadDefi]];
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);lazy.forEach(function(l){if(l[0]===e.target.id)l[1]();});});},{rootMargin:'400px'});
+ lazy.forEach(function(l){io.observe(document.getElementById(l[0]));});}else lazy.forEach(function(l){l[1]();});
+})();
+</script>
+<script src="/guide.js" defer></script>
+</body>
+</html>

@@ -104,6 +104,14 @@ How to use it:
 2. Change one letter and check again
 3. Switch on the simulated quantum computer
 
+### MAIGA Radar: what is hot, and what looks risky
+URL: https://geopolcoins.xyz/radar.html
+A free live radar like CryptoRank or DexScreener, but with red flags: trending and brand-new Solana pools with automatic warnings, the top 20 coins, the Fear & Greed meter and DeFi money per chain. Facts only, no signals, not advice.
+How to use it:
+1. Look at Trending: each token gets red flags and a risk label
+2. Tap Full check to open the Token Checkup for that token
+3. Scroll to the market overview, Fear & Greed and DeFi
+
 ### Kronos Lab: can AI read a chart?
 URL: https://geopolcoins.xyz/kronos.html
 An open AI model (Kronos) forecast real moments from the past for BTC, ETH, SOL, DOGE, XRP and PEPE. Guess higher or lower first, then see what really happened, with an honest score. Past only, no signals, not advice.

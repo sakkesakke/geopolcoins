@@ -27,7 +27,7 @@ Important for agents:
 
 ## Learn
 
-- [Blog](https://geopolcoins.xyz/blog.html): short honest guides (EN): how to check if a Solana token is a scam, what a honeypot is, can AI predict crypto prices (our 120-moment test), reading candlestick charts, how a blockchain works, Solana and quantum computers, free AI bots for small business, making memes, reading trending-token red flags, what $MAIGA is and how to check it. RSS: https://geopolcoins.xyz/blog-feed.xml
+- [Blog](https://geopolcoins.xyz/blog.html): short honest guides (EN): how to check if a Solana token is a scam, what a honeypot is, can AI predict crypto prices (our 120-moment test), reading candlestick charts, how a blockchain works, Solana and quantum computers, free AI bots for small business, making memes, reading trending-token red flags, what $MAIGA is and how to check it. Also in Dutch (https://geopolcoins.xyz/blog-nl.html) and French (https://geopolcoins.xyz/blog-fr.html). RSS: https://geopolcoins.xyz/blog-feed.xml
 
 - [AI bots for small business: questions answered](https://geopolcoins.xyz/answers.html): cost, free tools, privacy, hallucinations, salons, real estate, restaurants.
 

@@ -5,12 +5,45 @@ Pages live in the site root on purpose, so the SEO/security audits and IndexNow 
 import html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from blog_posts import POSTS
+from blog_posts_nl import POSTS as POSTS_NL
+from blog_posts_fr import POSTS as POSTS_FR
+LANGS = {"en": POSTS, "nl": POSTS_NL, "fr": POSTS_FR}
+EN_BY_SLUG = {p["slug"]: p for p in POSTS}
+for _l in ("nl", "fr"):
+    for _p in LANGS[_l]:
+        _e = EN_BY_SLUG[_p["en"]]
+        _p.setdefault("date", _e["date"]); _p.setdefault("tool", _e["tool"])
+for _p in POSTS: _p["en"] = _p["slug"]
+UI = {
+ "en": dict(skip="Skip to content", home="Home", blog="Blog", quick="Quick answer", read="min read", tool="Tool", next="Read next", qs="Questions",
+            idx_title="Blog: crypto safety, AI and free tools explained", idx_desc="Plain guides on spotting Solana scams, reading charts, AI and crypto, blockchains, free AI bots for small business, and the $MAIGA meme coin.",
+            idx_h="The <span style=\"color:var(--amber)\">blog</span>", idx_lead="Short, honest guides: how to spot scams, read a chart, test AI claims and use our free tools. No hype, no price talk.",
+            foot="Education and entertainment. Not financial advice.", privacy="Privacy", legal="Legal", other="Also in",
+            months=["January","February","March","April","May","June","July","August","September","October","November","December"]),
+ "nl": dict(skip="Naar de inhoud", home="Home", blog="Blog", quick="Kort antwoord", read="min lezen", tool="Tool", next="Lees ook", qs="Vragen",
+            idx_title="Blog: cryptoveiligheid, AI en gratis tools uitgelegd", idx_desc="Eenvoudige gidsen over Solana-scams herkennen, grafieken lezen, AI en crypto, blockchains, gratis AI-bots voor kleine zaken en de memecoin $MAIGA.",
+            idx_h="De <span style=\"color:var(--amber)\">blog</span>", idx_lead="Korte, eerlijke gidsen: scams herkennen, een grafiek lezen, AI-claims testen en onze gratis tools gebruiken. Geen hype, geen koerspraat.",
+            foot="Uitleg en ontspanning. Geen financieel advies.", privacy="Privacy", legal="Juridisch", other="Ook in",
+            months=["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"]),
+ "fr": dict(skip="Aller au contenu", home="Accueil", blog="Blog", quick="Réponse rapide", read="min de lecture", tool="Outil", next="À lire aussi", qs="Questions",
+            idx_title="Blog : sécurité crypto, IA et outils gratuits expliqués", idx_desc="Des guides simples pour repérer les arnaques Solana, lire un graphique, comprendre l'IA et la crypto, les blockchains, les bots IA gratuits et le mème coin $MAIGA.",
+            idx_h="Le <span style=\"color:var(--amber)\">blog</span>", idx_lead="Des guides courts et honnêtes : repérer les arnaques, lire un graphique, tester les promesses de l'IA et utiliser nos outils gratuits. Sans hype, sans parler de prix.",
+            foot="Éducation et divertissement. Pas un conseil financier.", privacy="Confidentialité", legal="Mentions légales", other="Aussi en",
+            months=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]),
+}
+LNAME = {"en": "English", "nl": "Nederlands", "fr": "Français"}
+def fname(lang, slug=None):
+    if slug is None: return "blog.html" if lang == "en" else f"blog-{lang}.html"
+    return f"blog-{slug}.html" if lang == "en" else f"blog-{lang}-{slug}.html"
+def alt(lang, en_slug):
+    if en_slug is None: return fname(lang)
+    p = next(q for q in LANGS[lang] if q["en"] == en_slug); return fname(lang, p["slug"])
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://geopolcoins.xyz/"
 CSP = ("default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; "
        "font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'")
-TAGC = {"Safety": "#ff6b6b", "AI": "#c8a8ff", "Learn": "#5fd3c6", "Business": "#ffb547", "Create": "#f3ecd9", "$MAIGA": "#ffb547"}
+TAGC = {"Safety": "#ff6b6b", "Veiligheid": "#ff6b6b", "Sécurité": "#ff6b6b", "AI": "#c8a8ff", "IA": "#c8a8ff", "Learn": "#5fd3c6", "Leren": "#5fd3c6", "Apprendre": "#5fd3c6", "Business": "#ffb547", "Create": "#f3ecd9", "Maken": "#f3ecd9", "Créer": "#f3ecd9", "$MAIGA": "#ffb547"}
 ORG = {"@type": "Organization", "name": "geopolcoins.xyz", "url": SITE, "logo": SITE + "logo.png"}
 
 def inline(t):
@@ -25,12 +58,12 @@ def inline(t):
 def plain(t):
     return re.sub(r"\[(.+?)\]\(\S+?\)", r"\1", t).replace("**", "")
 
-def block(b):
+def block(b, lang="en"):
     k, v = b
     if k == "p": return f"<p>{inline(v)}</p>"
     if k == "h2": return f"<h2>{inline(v)}</h2>"
     if k in ("ul", "ol"): return f"<{k}>" + "".join(f"<li>{inline(i)}</li>" for i in v) + f"</{k}>"
-    if k == "quick": return f'<div class="quick"><b>Quick answer</b><p>{inline(v)}</p></div>'
+    if k == "quick": return f'<div class="quick"><b>{UI[lang]["quick"]}</b><p>{inline(v)}</p></div>'
     if k == "note": return f'<p class="note">{inline(v)}</p>'
     if k == "cta": return f'<p class="cta"><a class="btn" href="{html.escape(v[1])}">{html.escape(v[0])}</a></p>'
     raise ValueError(k)
@@ -43,6 +76,7 @@ a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offse
 .top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
 .top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
 .wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
 .crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
 .tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
@@ -64,11 +98,13 @@ p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
 footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
 @media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}"""
 
-def head(title, desc, url, ld, ogtype="article"):
+def head(title, desc, url, ld, ogtype="article", lang="en", alts=None):
     lds = "".join(f'<script type="application/ld+json"{(" id=" + chr(34) + "ld-crumbs" + chr(34)) if d.get("@type") == "BreadcrumbList" else ""}>{json.dumps(d, ensure_ascii=False, separators=(",", ":"))}</script>\n' for d in ld)
     t, d = html.escape(title), html.escape(desc)
+    hl = "".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{f}">\n' for l, f in (alts or {}).items()) + (f'<link rel="alternate" hreflang="x-default" href="{SITE}{alts["en"]}">\n' if alts else "")
+    u = UI[lang]
     return f"""<!doctype html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="{CSP}">
@@ -76,7 +112,7 @@ def head(title, desc, url, ld, ogtype="article"):
 <title>{t}</title>
 <meta name="description" content="{d}">
 <link rel="canonical" href="{url}">
-<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+{hl}<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
 <meta property="og:type" content="{ogtype}">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{d}">
@@ -91,69 +127,79 @@ def head(title, desc, url, ld, ogtype="article"):
 <link rel="stylesheet" href="/motion.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+<a class="skip" href="#main">{u["skip"]}</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/{fname(lang)}">{u["blog"]}</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
 """
 
-FOOT = """<footer><a href="/">Home</a><a href="/blog.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal</a><span>Education and entertainment. Not financial advice.</span></footer>
+def foot(lang):
+    u = UI[lang]
+    return f"""<footer><a href="/">{u["home"]}</a><a href="/{fname(lang)}">{u["blog"]}</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">{u["privacy"]}</a><a href="/legal.html">{u["legal"]}</a><span>{u["foot"]}</span></footer>
 <script src="/guide.js" defer></script>
 </body>
 </html>
 """
 
-def date_h(d):
+def date_h(d, lang="en"):
     import datetime
-    return datetime.date.fromisoformat(d).strftime("%-d %B %Y")
+    x = datetime.date.fromisoformat(d)
+    return f"{x.day} {UI[lang]['months'][x.month-1]} {x.year}"
 
-def card(p, h="h3"):
+def card(p, h="h3", lang="en"):
     c = TAGC.get(p["tag"], "#ffb547")
-    return (f'<a class="card" href="/blog-{p["slug"]}.html"><span class="tag" style="background:{c}">{html.escape(p["tag"])}</span>'
+    return (f'<a class="card" href="/{fname(lang, p["slug"])}"><span class="tag" style="background:{c}">{html.escape(p["tag"])}</span>'
             f'<{h}>{html.escape(p["title"])}</{h}><p>{html.escape(p["desc"])}</p></a>')
 
-def article(p, i):
-    url = f"{SITE}blog-{p['slug']}.html"
+def article(p, i, lang="en"):
+    u = UI[lang]; posts = LANGS[lang]
+    url = SITE + fname(lang, p["slug"])
+    alts = {l: alt(l, p["en"]) for l in LANGS}
     words = sum(len(plain(v if isinstance(v, str) else " ".join(v) if isinstance(v, list) else " ".join(v)).split()) for k, v in p["body"])
     ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": p["title"], "description": p["desc"], "datePublished": p["date"],
            "dateModified": p.get("updated", p["date"]), "author": ORG, "publisher": ORG, "mainEntityOfPage": url, "image": SITE + "og-image.jpg",
-           "inLanguage": "en", "wordCount": words, "about": p["tool"][0], "isAccessibleForFree": True},
+           "inLanguage": lang, "wordCount": words, "about": p["tool"][0], "isAccessibleForFree": True},
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-              {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE},
-              {"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE + "blog.html"},
+              {"@type": "ListItem", "position": 1, "name": u["home"], "item": SITE},
+              {"@type": "ListItem", "position": 2, "name": u["blog"], "item": SITE + fname(lang)},
               {"@type": "ListItem", "position": 3, "name": p["title"], "item": url}]}]
     if p.get("faq"):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]})
     c = TAGC.get(p["tag"], "#ffb547")
-    out = [head(p["title"], p["desc"], url, ld), '<main id="main" class="wrap">',
-           '<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog.html">Blog</a></nav>',
+    others_l = " ".join(f'<a href="/{alts[l]}" hreflang="{l}" lang="{l}">{LNAME[l]}</a>' for l in LANGS if l != lang)
+    out = [head(p["title"], p["desc"], url, ld, lang=lang, alts=alts), '<main id="main" class="wrap">',
+           f'<nav class="crumbs" aria-label="Breadcrumb"><a href="/">{u["home"]}</a> › <a href="/{fname(lang)}">{u["blog"]}</a></nav>',
            f'<article><span class="tag" style="background:{c}">{html.escape(p["tag"])}</span><h1>{html.escape(p["title"])}</h1>',
-           f'<p class="meta">{date_h(p["date"])} · {max(1, round(words / 200))} min read · Tool: <a href="{html.escape(p["tool"][1])}">{html.escape(p["tool"][0])}</a></p>']
-    out += [block(b) for b in p["body"]]
+           f'<p class="meta">{date_h(p["date"], lang)} · {max(1, round(words / 200))} {u["read"]} · {u["tool"]}: <a href="{html.escape(p["tool"][1])}">{html.escape(p["tool"][0])}</a></p>',
+           f'<p class="langs">{u["other"]}: {others_l}</p>']
+    out += [block(b, lang) for b in p["body"]]
     if p.get("faq"):
-        out.append('<h2>Questions</h2><div class="faq">' + "".join(
+        out.append(f'<h2>{u["qs"]}</h2><div class="faq">' + "".join(
             f"<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>" for q, a in p["faq"]) + "</div>")
     out.append("</article>")
-    others = [q for q in POSTS if q is not p]
+    others = [q for q in posts if q is not p]
     rel = [q for q in others if q["tag"] == p["tag"]][:2]
     rel += [q for q in others if q not in rel][: 3 - len(rel)]
-    out.append('<h2>Read next</h2><ul class="more">' + "".join(f"<li>{card(q)}</li>" for q in rel) + "</ul>")
+    out.append(f'<h2>{u["next"]}</h2><ul class="more">' + "".join(f"<li>{card(q, lang=lang)}</li>" for q in rel) + "</ul>")
     out.append("</main>")
-    out.append(FOOT)
+    out.append(foot(lang))
     return "\n".join(out)
 
-def index():
-    url = SITE + "blog.html"
-    ld = [{"@context": "https://schema.org", "@type": "Blog", "name": "geopolcoins.xyz blog", "url": url, "inLanguage": "en", "publisher": ORG,
-           "blogPost": [{"@type": "BlogPosting", "headline": p["title"], "url": f"{SITE}blog-{p['slug']}.html", "datePublished": p["date"]} for p in POSTS]},
+def index(lang="en"):
+    u = UI[lang]; posts = LANGS[lang]
+    url = SITE + fname(lang)
+    alts = {l: fname(l) for l in LANGS}
+    ld = [{"@context": "https://schema.org", "@type": "Blog", "name": "geopolcoins.xyz blog", "url": url, "inLanguage": lang, "publisher": ORG,
+           "blogPost": [{"@type": "BlogPosting", "headline": p["title"], "url": SITE + fname(lang, p["slug"]), "datePublished": p["date"]} for p in posts]},
           {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-              {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE},
-              {"@type": "ListItem", "position": 2, "name": "Blog", "item": url}]}]
-    out = [head("Blog: crypto safety, AI and free tools explained", "Plain guides on spotting Solana scams, reading charts, AI and crypto, blockchains, free AI bots for small business, and the $MAIGA meme coin.", url, ld, "website"),
+              {"@type": "ListItem", "position": 1, "name": u["home"], "item": SITE},
+              {"@type": "ListItem", "position": 2, "name": u["blog"], "item": url}]}]
+    others_l = " ".join(f'<a href="/{alts[l]}" hreflang="{l}" lang="{l}">{LNAME[l]}</a>' for l in LANGS if l != lang)
+    out = [head(u["idx_title"], u["idx_desc"], url, ld, "website", lang=lang, alts=alts),
            '<main id="main" class="wrap" style="max-width:1100px">',
-           '<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Blog</nav>',
-           '<h1>The <span style="color:var(--amber)">blog</span></h1>',
-           '<p class="lead">Short, honest guides: how to spot scams, read a chart, test AI claims and use our free tools. No hype, no price talk.</p>',
-           '<ul class="grid">' + "".join(f"<li>{card(p, 'h2')}</li>" for p in POSTS) + "</ul>", "</main>", FOOT]
+           f'<nav class="crumbs" aria-label="Breadcrumb"><a href="/">{u["home"]}</a> › {u["blog"]}</nav>',
+           f'<h1>{u["idx_h"]}</h1>',
+           f'<p class="lead">{u["idx_lead"]}</p>', f'<p class="langs" style="margin:6px 0 0">{u["other"]}: {others_l}</p>',
+           '<ul class="grid">' + "".join(f"<li>{card(p, 'h2', lang)}</li>" for p in posts) + "</ul>", "</main>", foot(lang)]
     return "\n".join(out)
 
 def feed():
@@ -168,23 +214,26 @@ def feed():
             + "".join(items) + "</channel></rss>\n")
 
 def main():
-    seen = set()
-    for i, p in enumerate(POSTS):
-        assert p["slug"] not in seen and re.fullmatch(r"[a-z0-9-]+", p["slug"]); seen.add(p["slug"])
-        assert len(p["desc"]) <= 160, (p["slug"], len(p["desc"]))
-        assert len(p["title"]) <= 70, (p["slug"], len(p["title"]))
-        open(os.path.join(ROOT, f"blog-{p['slug']}.html"), "w", encoding="utf-8").write(article(p, i))
-    open(os.path.join(ROOT, "blog.html"), "w", encoding="utf-8").write(index())
+    names = []
+    for lang, posts in LANGS.items():
+        seen = set()
+        assert {p["en"] for p in posts} == set(EN_BY_SLUG), f"{lang}: posts must match the English set"
+        for i, p in enumerate(posts):
+            assert p["slug"] not in seen and re.fullmatch(r"[a-z0-9-]+", p["slug"]); seen.add(p["slug"])
+            assert len(p["desc"]) <= 165, (lang, p["slug"], len(p["desc"]))
+            assert len(p["title"]) <= 80, (lang, p["slug"], len(p["title"]))
+            f = fname(lang, p["slug"]); names.append(f)
+            open(os.path.join(ROOT, f), "w", encoding="utf-8").write(article(p, i, lang))
+        open(os.path.join(ROOT, fname(lang)), "w", encoding="utf-8").write(index(lang)); names.append(fname(lang))
     open(os.path.join(ROOT, "blog-feed.xml"), "w", encoding="utf-8").write(feed())
-    # sitemap: add any missing blog URLs
     sm = os.path.join(ROOT, "sitemap.xml"); s = open(sm, encoding="utf-8").read()
     add = ""
-    for name in ["blog.html"] + [f"blog-{p['slug']}.html" for p in POSTS]:
+    for name in names:
         if f"{SITE}{name}</loc>" not in s:
-            add += f"  <url><loc>{SITE}{name}</loc><lastmod>{POSTS[0]['date']}</lastmod><changefreq>monthly</changefreq><priority>{'0.8' if name == 'blog.html' else '0.6'}</priority></url>\n"
+            add += f"  <url><loc>{SITE}{name}</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><priority>{'0.8' if name in ('blog.html','blog-nl.html','blog-fr.html') else '0.6'}</priority></url>\n"
     if add:
         s = s.replace("</urlset>", add + "</urlset>"); open(sm, "w", encoding="utf-8").write(s)
-    print(f"blog: {len(POSTS)} posts, index, feed; sitemap +{add.count('<url>')}")
+    print(f"blog: {len(names)} pages in {len(LANGS)} languages; sitemap +{add.count('<url>')}")
 
 if __name__ == "__main__":
     main()

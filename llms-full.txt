@@ -9,7 +9,7 @@ Important for agents:
 - Pages in browsers that support WebMCP expose read-only tools (maiga_list_tools, maiga_search_meme_templates, maiga_meme_studio_link, maiga_factory_link, maiga_free_ai_options, maiga_coin_facts).
 - Contract address: 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump (Solana, Token-2022). Check it on Solscan letter by letter. Machine-readable facts: https://geopolcoins.xyz/token.json
 - Long version with every tool and how to use it: https://geopolcoins.xyz/llms-full.txt
-- Every page has Bolt, a help guide (no AI) that explains each tool in English, Dutch and French.
+- Every page has Bolt, a help guide (no AI) that explains each tool in 10 languages: English, Dutch, French, Spanish, Portuguese, German, Turkish, Indonesian, Vietnamese and Arabic.
 
 This is the long version of https://geopolcoins.xyz/llms.txt: every tool and game, what it is and how to use it.
 
@@ -78,6 +78,15 @@ How to use it:
 2. Set your pilot name
 3. Play and check the leaderboard
 
+### Spot the Rug Pull: a scam-spotting game
+URL: https://geopolcoins.xyz/rug.html
+Five made-up Solana tokens per round, one is a rug pull. Find it, then see which red flags gave it away. Five rounds, each one harder. Free, no wallet, all tokens are fake.
+How to use it:
+1. Look at the five token cards
+2. Tap the one you think is the rug pull
+3. Read the red flags, then play the next round
+4. Share your score and check a real token
+
 ### Bot Bank: lending to AI bots (play money)
 URL: https://geopolcoins.xyz/lend.html
 A game that explains AI-agent lending and its risks: lend play coins to AI bots, back them, earn fees or lose your stake. No real money, ever.
@@ -106,7 +115,7 @@ How to use it:
 
 ### The blog: short honest guides
 URL: https://geopolcoins.xyz/blog.html
-Plain guides on spotting Solana scams and honeypots, reading charts, whether AI can predict crypto, how blockchains work, free AI bots for small business and what $MAIGA is. In English for now.
+Plain guides on spotting Solana scams and honeypots, reading charts, whether AI can predict crypto, how blockchains work, free AI bots for small business and what $MAIGA is. In English, Dutch, French, Spanish, Portuguese and German.
 How to use it:
 1. Open the blog
 2. Pick a guide

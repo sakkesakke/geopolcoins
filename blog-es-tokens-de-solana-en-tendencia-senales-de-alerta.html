@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tokens de Solana en tendencia: qué dicen las alertas</title>
+<meta name="description" content="Tendencia no es lo mismo que seguro. Cómo leer liquidez, edad del pool, compras y ventas, volumen y subidas bruscas en cualquier token en tendencia.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-es-tokens-de-solana-en-tendencia-senales-de-alerta.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-trending-solana-tokens-red-flags.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-trending-solana-tokens-rode-vlaggen.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-tokens-solana-tendance-signaux-alerte.html">
+<link rel="alternate" hreflang="es" href="https://geopolcoins.xyz/blog-es-tokens-de-solana-en-tendencia-senales-de-alerta.html">
+<link rel="alternate" hreflang="pt" href="https://geopolcoins.xyz/blog-pt-tokens-da-solana-em-alta-sinais-de-alerta.html">
+<link rel="alternate" hreflang="de" href="https://geopolcoins.xyz/blog-de-trendende-solana-tokens-warnsignale.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-trending-solana-tokens-red-flags.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tokens de Solana en tendencia: qué dicen las alertas">
+<meta property="og:description" content="Tendencia no es lo mismo que seguro. Cómo leer liquidez, edad del pool, compras y ventas, volumen y subidas bruscas en cualquier token en tendencia.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-es-tokens-de-solana-en-tendencia-senales-de-alerta.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Tokens de Solana en tendencia: qué dicen las alertas","description":"Tendencia no es lo mismo que seguro. Cómo leer liquidez, edad del pool, compras y ventas, volumen y subidas bruscas en cualquier token en tendencia.","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-es-tokens-de-solana-en-tendencia-senales-de-alerta.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"es","wordCount":274,"about":"MAIGA Radar","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Tokens de Solana en tendencia","item":"https://geopolcoins.xyz/blog-es-tokens-de-solana-en-tendencia-senales-de-alerta.html"}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog-es.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Inicio</a> › <a href="/blog-es.html">Blog</a></nav>
+<article><span class="tag" style="background:#ffb547">Seguridad</span><h1>Tokens de Solana en tendencia: qué dicen las alertas</h1>
+<p class="meta">6 noviembre 2026 · 1 min de lectura · Herramienta: <a href="/radar.html">MAIGA Radar</a></p>
+<p class="langs">También en: <a href="/blog-trending-solana-tokens-red-flags.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-trending-solana-tokens-rode-vlaggen.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-tokens-solana-tendance-signaux-alerte.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-pt-tokens-da-solana-em-alta-sinais-de-alerta.html" hreflang="pt" lang="pt">Português</a> <a href="/blog-de-trendende-solana-tokens-warnsignale.html" hreflang="de" lang="de">Deutsch</a></p>
+<div class="quick"><b>Respuesta rápida</b><p>"En tendencia" solo significa que mucha gente opera un token ahora mismo. No dice nada de si subirá ni de si es seguro. Lee primero las alertas: liquidez muy baja, un pool de menos de un día, ninguna venta, volumen muy por encima de la liquidez o una subida enorme en 24 horas.</p></div>
+<h2>Por qué las listas de tendencias atraen estafas</h2>
+<p>Entrar en una lista de tendencias da atención gratis, así que algunos proyectos fingen actividad con bots. Un token que parece muy activo puede ser solo unas pocas wallets operando entre sí.</p>
+<h2>Las alertas de nuestro Radar</h2>
+<ul><li><strong>Liquidez muy baja</strong> (menos de $10.000): ventas pequeñas mueven mucho el precio y quizá no puedas salir.</li><li><strong>Menos de 1 día:</strong> sin historial. La mayoría de los rugs ocurre al principio.</li><li><strong>Sin ventas:</strong> muchas compras y cero ventas pueden significar que la venta está bloqueada.</li><li><strong>Volumen muy por encima de la liquidez:</strong> posible volumen falso de bots.</li><li><strong>Subida o desplome:</strong> +300% o -60% en 24 horas. Suelen pagar los que compran tarde.</li></ul>
+<h2>Qué significa una etiqueta de riesgo</h2>
+<p>"Riesgo alto" significa varias alertas serias. "Menos alertas" no significa seguro; significa que pasó estas pocas pruebas. Para mint y freeze authority, holders y la wallet del creador, abre la revisión completa.</p>
+<p>El <a href="/radar.html">MAIGA Radar</a> muestra los 20 pools en tendencia y los más nuevos de Solana con estas alertas, además de las principales monedas, el índice de miedo y codicia y el DeFi por blockchain. Cada token tiene un botón "Revisión completa" que abre el <a href="/hq.html#checkup">Token Checkup</a>. ¿Quieres practicar primero? Juega a <a href="/rug.html">Spot the Rug Pull</a>.</p>
+<p class="note">Hechos, no señales. No es asesoramiento financiero.</p>
+<p class="cta"><a class="btn" href="/radar.html">Abrir el Radar</a></p>
+</article>
+<h2>Lee también</h2><ul class="more"><li><a class="card" href="/blog-es-como-saber-si-un-token-de-solana-es-estafa.html"><span class="tag" style="background:#ffb547">Seguridad</span><h3>¿Es estafa este token de Solana? Compruébalo en 1 minuto</h3><p>Una lista sencilla de las señales públicas detrás de la mayoría de los rug pulls en Solana, y una herramienta gratis que las revisa en cualquier token.</p></a></li><li><a class="card" href="/blog-es-que-es-un-token-honeypot.html"><span class="tag" style="background:#ffb547">Seguridad</span><h3>¿Qué es un token honeypot y cómo detectarlo?</h3><p>Un honeypot te deja comprar pero nunca vender. Aprende las señales de alerta en los datos públicos antes de perder dinero.</p></a></li><li><a class="card" href="/blog-es-puede-la-ia-predecir-precios-cripto.html"><span class="tag" style="background:#c8a8ff">IA</span><h3>¿Puede la IA predecir precios cripto? Lo probamos 120 veces</h3><p>Dejamos que el modelo abierto Kronos pronosticara 120 momentos pasados de BTC, ETH, SOL, DOGE, XRP y PEPE. Esta es la puntuación honesta.</p></a></li></ul>
+</main>
+<footer><a href="/">Inicio</a><a href="/blog-es.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Privacidad</a><a href="/legal.html">Aviso legal</a><span>Educación y entretenimiento. No es asesoramiento financiero.</span></footer>
+<script src="/guide.js" defer></script>
+</body>
+</html>

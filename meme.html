@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://api.memegen.link; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://api.memegen.link; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co https://api.mymemory.translated.net; base-uri 'none'; form-action 'none'">
 <title>Free Meme Generator: MAIGA Meme Studio</title>
 <meta name="description" content="Make a meme in seconds: 190+ classic templates, pixel scenes, your own photo, draggable text and stickers. Free PNG download, no account, nothing uploaded.">
 <link rel="canonical" href="https://geopolcoins.xyz/meme.html">
 <meta property="og:type" content="website"><meta property="og:title" content="MAIGA Meme Studio: free meme generator"><meta property="og:description" content="190+ templates, pixel stickers, your own photo. Download as PNG. Free, in your browser."><meta property="og:url" content="https://geopolcoins.xyz/meme.html"><meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#050b1b">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MAIGA Meme Studio","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://geopolcoins.xyz/meme.html","inLanguage":["en","nl","fr"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MAIGA Meme Studio","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://geopolcoins.xyz/meme.html","inLanguage":["en","nl","fr","es","pt","de","tr","id","vi","ar"]}</script>
 <style>
 :root{--bg:#050b1b;--panel:#0b1a35;--text:#f4f7ff;--dim:#b7c4dc;--gold:#ffd800;--pink:#ff4b61;--ok:#14F195;--cyan:#38f2ff;--line:rgba(169,212,255,.25)}
 *{box-sizing:border-box}
@@ -43,7 +43,7 @@ input[type=range]{width:100%;accent-color:var(--gold)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px;border-radius:10px;border:2px solid #000;background:#16305e;color:#fff;font:inherit;font-weight:800;font-size:14px;cursor:pointer;min-height:44px;box-shadow:3px 3px 0 #000;text-decoration:none}
 .btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
 .btn.gold{background:var(--gold);color:#111}.btn.pink{background:var(--pink)}.btn.ok{background:var(--ok);color:#04130b}
-.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.tlrow{align-items:center}.tlrow label{font-weight:700}.tlrow select{width:auto;flex:1 1 140px}
 .lines{display:grid;gap:4px}
 .sticks{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px}
 .sticks button{height:58px;border-radius:10px;border:2px solid #000;background:#16305e;cursor:pointer;display:grid;place-items:center;padding:4px;box-shadow:2px 2px 0 #000;color:#fff;font:900 13px Impact,"Arial Black",sans-serif;letter-spacing:.5px}
@@ -104,6 +104,8 @@ footer{text-align:center;color:var(--dim);font-size:13px;margin-top:36px}footer 
       <button type="button" class="btn" id="jokeBtn">&#127922; <span data-t="joke">CRYPTO JOKE</span></button>
       <button type="button" class="btn" id="addTxt">+ <span data-t="addtxt">TEXT BOX</span></button>
     </div>
+    <div class="row tlrow"><label for="tlTo" data-t="tl">Translate my text to</label><select id="tlTo"><option value="en">English</option><option value="nl">Nederlands</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="de">Deutsch</option><option value="tr">Türkçe</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="ar">العربية</option></select><button type="button" class="btn" id="tlBtn">&#127760; <span data-t="tlBtn">TRANSLATE</span></button></div>
+    <p class="note" data-t="tlNote">Only when you press it: the meme text is sent to MyMemory (translated.net) to be translated. Nothing else.</p>
     <h3 data-t="style">Style</h3>
     <div class="opts">
       <div><label for="col" data-t="color">Text color</label><select id="col"><option value="#ffffff">White</option><option value="#ffd800">Gold</option><option value="#000000">Black</option><option value="#14F195">Green</option><option value="#ff4b61">Pink</option></select></div>
@@ -151,6 +153,7 @@ footer{text-align:center;color:var(--dim);font-size:13px;margin-top:36px}footer 
 <footer>© 2026 $MAIGA • <a href="/">HOME</a> • <a href="factory.html">MEME FACTORY</a> • <a href="garage.html">BOT GARAGE</a> • <a href="chain.html">MINI-CHAIN</a> • <a href="app.html">APP</a> • <a href="hq.html#terms">TERMS</a> • <a href="privacy.html">PRIVACY</a> • <a href="cookies.html">COOKIES</a> • <a href="legal.html">LEGAL</a></footer>
 </main>
 
+<script src="/i18n/meme.js"></script>
 <script>
 (function(){
 'use strict';
@@ -166,13 +169,18 @@ var TR={
  fr:{skip:'Aller au contenu',back:'← geopolcoins.xyz',app:'Appli $MAIGA',lead:'190+ modèles classiques, scènes pixel MAIGA ou ta propre photo. Écris, déplace, ajoute des stickers, télécharge. Gratuit, sans compte, rien n\'est envoyé.',hint:'Astuce : fais glisser le texte et les stickers sur l\'image pour les déplacer.',dl:'TÉLÉCHARGER PNG',share:'PARTAGER',copy:'COPIER L\'IMAGE',edit:'Modifier',text:'Texte',ex:'EXEMPLE',joke:'BLAGUE CRYPTO',addtxt:'ZONE DE TEXTE',style:'Style',color:'Couleur du texte',size:'Taille du texte',caps:'MAJUSCULES',wm:'Petit "geopolcoins.xyz" dans le coin',stickers:'Stickers pixel',bigger:'PLUS GRAND',smaller:'PLUS PETIT',del:'SUPPRIMER LA SÉLECTION',own:'Ta propre image',upload:'UTILISER MA PHOTO',ownnote:'Ta photo reste sur ton appareil. Utilise seulement des images que tu as le droit d\'utiliser.',pick:'Choisis un modèle',tmaiga:'MAIGA PIXEL',tmemes:'MÈMES CLASSIQUES (190+)',more:'VOIR PLUS',rules:'Règles des mèmes',r1:'Fais rire, pas perdre de l\'argent : pas de promesse de prix, pas de faux giveaways, pas de "achète maintenant".',r2:'Pas de fausses captures d\'écran, ne fais pas parler de vraies personnes.',r3:'Les modèles classiques sont des mèmes connus d\'internet. Les images appartiennent à leurs propriétaires.',r4:'Tout se passe dans ton navigateur. Nous ne voyons ni ne gardons tes mèmes.'}
 };
 var MSG={
- en:{ready:'Meme ready. Saved as maiga-meme.png',loading:'Loading the template…',fail:'This template could not be loaded. Try another one or use your own photo.',copied:'Image copied.',nocopy:'Copy is not supported here. Use download.',line:'Line',sel:'Tap a sticker or text box first.',tainted:'This picture cannot be saved from here. Try another template.'},
+ en:{tlBusy:'Translating…',tlFail:'Translation did not work right now. Try again later.',tlDone:'Text translated. Check it before you share.',ready:'Meme ready. Saved as maiga-meme.png',loading:'Loading the template…',fail:'This template could not be loaded. Try another one or use your own photo.',copied:'Image copied.',nocopy:'Copy is not supported here. Use download.',line:'Line',sel:'Tap a sticker or text box first.',tainted:'This picture cannot be saved from here. Try another template.'},
  nl:{ready:'Meme klaar. Opgeslagen als maiga-meme.png',loading:'Sjabloon laden…',fail:'Dit sjabloon kon niet laden. Kies een ander of gebruik je eigen foto.',copied:'Afbeelding gekopieerd.',nocopy:'Kopiëren lukt hier niet. Gebruik downloaden.',line:'Regel',sel:'Tik eerst op een sticker of tekstvak.',tainted:'Deze afbeelding kan hier niet opgeslagen worden. Kies een ander sjabloon.'},
  fr:{ready:'Mème prêt. Enregistré sous maiga-meme.png',loading:'Chargement du modèle…',fail:'Ce modèle n\'a pas pu être chargé. Essaie un autre ou ta propre photo.',copied:'Image copiée.',nocopy:'La copie n\'est pas possible ici. Utilise le téléchargement.',line:'Ligne',sel:'Touche d\'abord un sticker ou une zone de texte.',tainted:'Cette image ne peut pas être enregistrée ici. Essaie un autre modèle.'}
 };
-if(!MSG[lang])lang='en';
+(function(){var X=window.MAIGA_I18N||{};for(var k in X){if(X[k].tr)TR[k]=X[k].tr;if(X[k].msg)MSG[k]=X[k].msg;}})();
+TR.nl.tl='Vertaal mijn tekst naar';TR.nl.tlBtn='VERTAAL';TR.nl.tlNote='Alleen als je klikt: de tekst van de meme gaat naar MyMemory (translated.net) om te vertalen. Verder niets.';
+TR.fr.tl='Traduire mon texte en';TR.fr.tlBtn='TRADUIRE';TR.fr.tlNote='Seulement quand vous cliquez : le texte du mème est envoyé à MyMemory (translated.net) pour être traduit. Rien d\'autre.';
+MSG.nl.tlBusy='Vertalen…';MSG.nl.tlFail='Vertalen lukt nu niet. Probeer later opnieuw.';MSG.nl.tlDone='Tekst vertaald. Controleer hem voor je deelt.';
+MSG.fr.tlBusy='Traduction…';MSG.fr.tlFail='La traduction n\'a pas marché. Réessayez plus tard.';MSG.fr.tlDone='Texte traduit. Vérifiez-le avant de partager.';
+lang=lang.slice(0,2);if(!MSG[lang])lang='en';
 var M=MSG[lang];
-if(TR[lang]){document.documentElement.lang=lang;document.querySelectorAll('[data-t]').forEach(function(e){var v=TR[lang][e.getAttribute('data-t')];if(v)e.textContent=v;});}
+document.documentElement.dir=lang==='ar'?'rtl':'ltr';if(TR[lang]){document.documentElement.lang=lang;document.querySelectorAll('[data-t]').forEach(function(e){var v=TR[lang][e.getAttribute('data-t')];if(v)e.textContent=v;});}
 function say(t,c){var e=$('msg');e.textContent=t||'';e.className='msg'+(c?' '+c:'');}
 
 /* ---------- MAIGA pixel templates (own art) ---------- */
@@ -370,6 +378,17 @@ if(htpl&&htpl!=='custom'&&!/^mw\d$/.test(htpl)){
   var p0=PIX.filter(function(p){return p.id===htpl;})[0]||PIX[Math.floor(Math.random()*PIX.length)];
   choosePixel(p0,(ht[0]||ht[1])?ht:null);setTab('maiga');
 }
+/* ---------- translate the meme text (only when the button is pressed; sends only the text lines) ---------- */
+(function(){var to=$('tlTo'),btn=$('tlBtn'),busy=false;to.value=MSG[lang]?(lang==='en'?'es':'en'):'en';
+ function one(txt,src,dst){return fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(txt)+'&langpair='+src+'|'+dst,{credentials:'omit',referrerPolicy:'no-referrer'})
+  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(j){var t=j&&j.responseData&&j.responseData.translatedText;if(typeof t!=='string'||!t||j.responseStatus!=200)throw new Error('bad');
+   var d=document.createElement('textarea');d.innerHTML=t;return d.value.replace(/[\u0000-\u001f]/g,' ').slice(0,120);});}
+ btn.addEventListener('click',function(){if(busy)return;var dst=to.value,src=lang===dst?'en':lang;if(src===dst)return;
+  var jobs=S.boxes.map(function(b,i){return b.t.trim()?{b:b,i:i}:null;}).filter(Boolean);if(!jobs.length)return;
+  busy=true;btn.disabled=true;say(M.tlBusy||MSG.en.tlBusy);
+  Promise.all(jobs.map(function(j){return one(j.b.t.trim(),src,dst).then(function(t){j.b.t=t;var inp=$('ln'+j.i);if(inp)inp.value=t;});}))
+  .then(function(){draw();say(M.tlDone||MSG.en.tlDone,'ok');},function(){draw();say(M.tlFail||MSG.en.tlFail,'bad');})
+  .then(function(){busy=false;btn.disabled=false;});});})();
 })();
 </script>
 <script>(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:'meme',p_ref:r})}).catch(function(){});}catch(e){}})();</script>

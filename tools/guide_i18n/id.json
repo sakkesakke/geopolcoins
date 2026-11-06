@@ -1,0 +1,336 @@
+{
+ "ui": {
+  "open": "Tanya Bolt",
+  "title": "Bolt, pemandumu",
+  "hi": "Halo, aku Bolt! Aku kenal setiap alat dan game di situs ini. Tanya apa saja, atau pilih di bawah.",
+  "here": "Kamu sedang di: ",
+  "ph": "Tanya soal alat atau game…",
+  "send": "Kirim",
+  "close": "Tutup bantuan",
+  "none": "Aku tidak menemukannya. Coba kata lain, atau pilih topik:",
+  "note": "Pemandu sederhana, tanpa AI. Yang kamu ketik tidak keluar dari perangkatmu. Bukan nasihat keuangan.",
+  "how": "Cara kerjanya:",
+  "also": "Terkait:",
+  "load": "Sebentar…",
+  "fail": "Aku belum bisa memuat catatanku sekarang. Cek koneksimu, atau mulai dari beranda.",
+  "groups": {
+   "tool": "Alat",
+   "game": "Game",
+   "learn": "Belajar",
+   "business": "Untuk bisnis",
+   "help": "Bantuan & keamanan",
+   "page": "Halaman lain"
+  },
+  "all": "Tampilkan semua",
+  "here2": "Apa yang bisa kulakukan di sini?"
+ },
+ "topics": {
+  "site": {
+   "title": "Situs apa ini?",
+   "what": "geopolcoins.xyz adalah taman bermain gratis berisi alat AI, lab belajar, dan game, seputar meme coin satire $MAIGA. Kamu tidak perlu akun atau wallet untuk memakai alatnya.",
+   "steps": [
+    "Buka beranda dan pilih yang ingin kamu lakukan",
+    "Coba satu alat: semuanya berjalan di browsermu",
+    "Tanya aku apa saja tentang alat atau game"
+   ],
+   "cta": "Beranda"
+  },
+  "garage": {
+   "title": "Bot Garage: buat bot AI-mu sendiri",
+   "what": "Salin bot AI siap pakai atau buat sendiri: pilih tugas, gaya bicara, dan tampilannya, uji, lalu bagikan lewat tautan atau ekspor ke ChatGPT, Claude, Discord, atau Telegram. Gratis, tanpa akun.",
+   "steps": [
+    "Pilih bot siap pakai atau mulai dari kosong",
+    "Atur tugas, gaya bicara, dan tampilan",
+    "Uji di chat",
+    "Bagikan tautan atau ekspor"
+   ],
+   "cta": "Buka Bot Garage"
+  },
+  "meme": {
+   "title": "Meme Studio: bikin meme",
+   "what": "Bikin meme dalam hitungan detik dengan lebih dari 190 template klasik, adegan piksel MAIGA, atau fotomu sendiri. Seret teks dan stiker, lalu unduh PNG. Tidak ada yang diunggah.",
+   "steps": [
+    "Pilih template atau unggah foto",
+    "Ketik teksmu dan geser ke tempatnya",
+    "Tambah stiker kalau mau",
+    "Unduh PNG-nya"
+   ],
+   "cta": "Buka Meme Studio"
+  },
+  "factory": {
+   "title": "Meme Factory: paket peluncuran dari satu kata",
+   "what": "Ketik satu kata dan kru piksel menyusun paket meme coin: nama, ticker, meme, cek keamanan, dan ide postingan. Tidak ada yang diluncurkan atau diposting untukmu. Hanya hiburan.",
+   "steps": [
+    "Ketik satu kata atau ide",
+    "Lihat kru menyusun paketnya",
+    "Salin bagian yang kamu suka",
+    "Unduh versi offline kalau mau"
+   ],
+   "cta": "Buka Meme Factory"
+  },
+  "check": {
+   "title": "Token Checkup: periksa token",
+   "what": "Tempel alamat token Solana mana pun. Nyonya Mintje membaca data publik dan menunjukkan apa yang tampak aman, apa yang tampak berisiko, dan apa yang tidak bisa ia lihat. Ini daftar periksa, bukan nasihat, dan bisa saja ada yang terlewat.",
+   "steps": [
+    "Salin alamat token (CA)",
+    "Tempel di Token Checkup",
+    "Baca poin hijau, oranye, dan abu-abu",
+    "Selalu periksa lebih jauh sendiri"
+   ],
+   "cta": "Buka Token Checkup"
+  },
+  "raid": {
+   "title": "MAIGA Raid: game platform piksel",
+   "what": "Mainkan Jean-Phil si ksatria es atau Bolt si robot, lewati 5 dunia (es, pabrik, bulan, ngarai lilin, menara karpet), dan bebaskan Mintje dari Lord Rugpull. Gratis, tanpa wallet, bisa dengan layar sentuh, keyboard, atau gamepad.",
+   "steps": [
+    "Pilih pahlawanmu",
+    "Panah atau tombol untuk bergerak, lompat untuk menginjak",
+    "Capai bendera di setiap dunia",
+    "Kalahkan Lord Rugpull, lalu tantang teman"
+   ],
+   "cta": "Main MAIGA Raid"
+  },
+  "arcade": {
+   "title": "Arcade Meme Jean-Phil",
+   "what": "8 game kecil dengan meme coin, meme piksel, dan Jean-Phil, seperti MAIGA Flappy. Main dengan nama pilot dan naik di turnamen harian gratis. Hanya untuk seru-seruan.",
+   "steps": [
+    "Pilih game di arcade",
+    "Isi nama pilotmu",
+    "Main dan cek papan peringkat"
+   ],
+   "cta": "Buka arcade"
+  },
+  "chain": {
+   "title": "Mini-Chain: cara kerja blockchain",
+   "what": "Belajar sambil praktik: ketik data, tambang blok, dan lihat kenapa satu huruf yang diubah merusak seluruh rantai. Berjalan di browsermu.",
+   "steps": [
+    "Lihat apa itu hash (sidik jari)",
+    "Tambang beberapa blok",
+    "Ubah satu huruf dan lihat rantainya rusak"
+   ],
+   "cta": "Buka Mini-Chain"
+  },
+  "quantum": {
+   "title": "Quantum Lab: kripto vs komputer kuantum",
+   "what": "Tanda tangani pesan seperti cara Solana hari ini (Ed25519), lalu dengan ML-DSA dan Falcon yang aman-kuantum. Kriptografi sungguhan di browsermu, ditambah komputer kuantum simulasi dan mitos yang dijelaskan dengan jujur.",
+   "steps": [
+    "Ketik pesan dan tekan tanda tangan",
+    "Ubah satu huruf dan periksa lagi",
+    "Nyalakan komputer kuantum simulasi"
+   ],
+   "cta": "Buka Quantum Lab"
+  },
+  "blog": {
+   "title": "Blog: panduan singkat dan jujur",
+   "what": "Panduan sederhana untuk mengenali penipuan dan honeypot di Solana, membaca grafik, apakah AI bisa memprediksi kripto, cara kerja blockchain, bot AI gratis untuk usaha kecil, dan apa itu $MAIGA.",
+   "steps": [
+    "Buka blog",
+    "Pilih satu panduan",
+    "Setiap panduan menautkan alat gratis yang dijelaskannya"
+   ],
+   "cta": "Buka blog"
+  },
+  "radar": {
+   "title": "MAIGA Radar: apa yang sedang ramai, dan apa yang tampak berisiko",
+   "what": "Radar langsung gratis seperti CryptoRank atau DexScreener, tetapi dengan tanda bahaya: pool Solana yang sedang tren dan yang baru dibuat dengan peringatan otomatis, 20 koin teratas, indeks Takut & Serakah, dan uang DeFi per blockchain. Hanya fakta, tanpa sinyal, bukan nasihat.",
+   "steps": [
+    "Lihat bagian Tren: tiap token dapat tanda bahaya dan label risiko",
+    "Ketuk Cek lengkap untuk membuka Token Checkup token itu",
+    "Gulir ke ringkasan pasar, Takut & Serakah, dan DeFi"
+   ],
+   "cta": "Buka Radar"
+  },
+  "kronos": {
+   "title": "Kronos Lab: bisakah AI membaca grafik?",
+   "what": "Model AI terbuka (Kronos) meramal momen nyata dari masa lalu untuk BTC, ETH, SOL, DOGE, XRP, dan PEPE. Tebak dulu naik atau turun, lalu lihat apa yang benar-benar terjadi, dengan skor yang jujur. Hanya masa lalu, tanpa sinyal, bukan nasihat.",
+   "steps": [
+    "Pilih BTC, ETH, atau SOL",
+    "Tebak: lebih tinggi atau lebih rendah dalam 24 jam?",
+    "Buka ramalan dan kenyataannya",
+    "Cek papan skor yang jujur"
+   ],
+   "cta": "Buka Kronos Lab"
+  },
+  "charts": {
+   "title": "Chart School: belajar membaca grafik",
+   "what": "Pelajaran gratis tentang candle, volume, moving average, support, RSI, dan pump-and-dump, dengan grafik latihan dari data karangan dan kuis. Tanpa sinyal, tanpa nasihat.",
+   "steps": [
+    "Mulai dari pelajaran pertama",
+    "Latihan di grafik contoh",
+    "Kerjakan kuis di akhir"
+   ],
+   "cta": "Buka Chart School"
+  },
+  "lend": {
+   "title": "Bot Bank: meminjamkan ke bot AI (uang mainan)",
+   "what": "Game yang menjelaskan pinjaman ke agen AI dan risikonya: pinjamkan koin mainan ke bot AI, dukung mereka, dapatkan biaya, atau kehilangan taruhanmu. Tidak pernah dengan uang sungguhan.",
+   "steps": [
+    "Baca permintaan pinjaman hari ini",
+    "Pinjamkan atau dukung bot dengan koin mainan",
+    "Lihat siapa yang membayar dan siapa yang tidak"
+   ],
+   "cta": "Main Bot Bank"
+  },
+  "robotlab": {
+   "title": "Robot Lab: bicara dengan robot secara aman",
+   "what": "Ketik perintah dengan kata-kata sederhana. Perintah itu jadi rencana robot yang sudah diperiksa, dan robot baru bergerak setelah disetujui manusia. Demo di browser, tanpa robot sungguhan.",
+   "steps": [
+    "Beri perintah",
+    "Lihat pemeriksaan keamanannya",
+    "Setujui atau tolak rencananya"
+   ],
+   "cta": "Buka Robot Lab"
+  },
+  "robots": {
+   "title": "AI untuk robot yang sudah kamu punya",
+   "what": "Untuk perusahaan dengan robot: bot bantuan untuk teknisi, perintah dalam bahasa sederhana dengan persetujuan manusia, dan laporan armada harian. Sistem keamanan robot sendiri selalu diutamakan.",
+   "steps": [
+    "Baca empat pilihannya",
+    "Coba bot bantuan",
+    "Minta penawaran gratis"
+   ],
+   "cta": "Lihat solusi robot"
+  },
+  "business": {
+   "title": "Asisten AI untuk usahaku",
+   "what": "Untuk salon, agensi, restoran, dan toko: buat sendiri bot gratis di Bot Garage, ambil paket siap pakai, atau biarkan kami memasangnya dengan harga, jam buka, dan FAQ-mu (penawaran gratis).",
+   "steps": [
+    "Gratis: mulai di Bot Garage",
+    "Lebih cepat: ambil starter kit gratis",
+    "Kami yang kerjakan: minta penawaran"
+   ],
+   "cta": "Asisten AI khusus"
+  },
+  "probots": {
+   "title": "Bot pro: telepon, email, dan WhatsApp",
+   "what": "Rancangan untuk 8 asisten AI yang terhubung, seperti resepsionis telepon yang menerima reservasi, asisten email, dan bot reservasi WhatsApp, dengan biaya operasional yang jujur.",
+   "steps": [
+    "Pilih asisten yang kamu butuhkan",
+    "Baca biaya menjalankannya",
+    "Bangun sendiri atau minta bantuan"
+   ],
+   "cta": "Lihat bot pro"
+  },
+  "free": {
+   "title": "Starter kit bot AI gratis",
+   "what": "5 asisten AI siap tempel untuk bisnis (FAQ, reservasi, ulasan, email, postingan media sosial). Berjalan di ChatGPT, Claude, atau Gemini dalam sekitar 10 menit. Kit ini berbahasa Inggris.",
+   "steps": [
+    "Buka halaman kit",
+    "Ambil kitnya",
+    "Tempel satu bot ke chat AI-mu"
+   ],
+   "cta": "Ambil kit gratis"
+  },
+  "key": {
+   "title": "Kunci API AI gratis",
+   "what": "Kunci API membuat botmu bisa bicara dengan model AI. Panduannya berisi pilihan gratis dan murah, cara menjaga kunci tetap aman, dan cara memakainya di Bot Garage. Kuncimu tetap di browsermu.",
+   "steps": [
+    "Pilih penyedia gratis dari daftar",
+    "Buat kunci di situs mereka",
+    "Tempel di Bot Garage, jangan pernah di chat"
+   ],
+   "cta": "Buka panduan API"
+  },
+  "run": {
+   "title": "Menjalankan botku 24/7",
+   "what": "Ekspor botmu dari Bot Garage sebagai kit Telegram atau Discord dan ikuti langkahnya agar tetap online. Panduan API menjelaskan pilihan hosting gratis.",
+   "steps": [
+    "Selesaikan botmu di Bot Garage",
+    "Ekspor kit Telegram atau Discord",
+    "Ikuti langkah hosting"
+   ],
+   "cta": "Lihat caranya"
+  },
+  "answers": {
+   "title": "17 jawaban jujur tentang bot AI",
+   "what": "Jawaban lugas untuk pertanyaan usaha kecil tentang chatbot AI: biaya, alat gratis, privasi, kesalahan (halusinasi), dan tips per sektor.",
+   "steps": [
+    "Buka halaman jawaban",
+    "Langsung ke sektormu",
+    "Tanya aku kalau ada yang belum jelas"
+   ],
+   "cta": "Baca jawabannya"
+  },
+  "app": {
+   "title": "Pasang aplikasinya",
+   "what": "Aplikasi $MAIGA menyatukan Bot Garage, Token Checkup, Meme Factory, Pertarungan Hari Ini, dan bot yang kamu simpan. Gratis, bisa offline, tanpa toko aplikasi.",
+   "steps": [
+    "Buka halaman aplikasi",
+    "Tekan Pasang (atau Bagikan > Tambah ke Layar Utama di iPhone)",
+    "Buka dari layar utamamu"
+   ],
+   "cta": "Buka aplikasi"
+  },
+  "shop": {
+   "title": "Toko: paket bot siap pakai",
+   "what": "Paket bot siap pakai untuk salon, properti, dan restoran, ditambah paket 20 bot, dalam bahasa Inggris, Belanda, dan Prancis. Dijual di Ko-fi, bayar dengan PayPal.",
+   "steps": [
+    "Buka toko",
+    "Pilih paket untuk usaha dan bahasamu",
+    "Unduh langsung setelah membayar"
+   ],
+   "cta": "Buka toko"
+  },
+  "safe": {
+   "title": "Tetap aman",
+   "what": "Jangan pernah bagikan frasa pemulihan atau kunci privatmu kepada siapa pun, bahkan kepada kami: tidak ada orang dari situs ini yang akan memintanya. Abaikan DM yang menjanjikan bantuan atau hadiah, dan periksa setiap alamat huruf demi huruf.",
+   "steps": [
+    "Frasa pemulihan di kertas, offline",
+    "Jangan pernah mengetiknya di situs atau chat",
+    "Periksa alamat huruf demi huruf",
+    "Kalau ragu, berhenti"
+   ],
+   "cta": "Meme keamanan"
+  },
+  "coin": {
+   "title": "Tentang koin $MAIGA",
+   "what": "$MAIGA adalah meme coin satire di Solana. Halaman HQ menampilkan info publik koin dan alamat kontrak (CA) yang asli: 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump. Token lain memakai nama yang sama, jadi selalu cek CA-nya. Hanya hiburan, bukan nasihat keuangan, DYOR.",
+   "steps": [
+    "Baca info koin di HQ",
+    "Cocokkan CA huruf demi huruf",
+    "Belanjakan hanya yang sanggup kamu relakan"
+   ],
+   "cta": "Info koin (HQ)"
+  },
+  "partners": {
+   "title": "Slot partner atau sponsor",
+   "what": "Slot iklan dan sponsor yang diberi label jelas di situs, dengan aturan kami tentang apa yang kami terima dan tolak.",
+   "steps": [
+    "Baca slot dan aturannya",
+    "Lihat apa yang kami terima",
+    "Daftar lewat email"
+   ],
+   "cta": "Halaman partner"
+  },
+  "privacy": {
+   "title": "Privasi dan cookie",
+   "what": "Sebagian besar alat hanya berjalan di browsermu dan tidak menyimpan apa pun di pihak kami. Halaman privasi dan cookie menjelaskan dengan tepat apa yang disimpan, di mana, dan mengapa.",
+   "steps": [
+    "Baca kebijakan privasi",
+    "Baca kebijakan cookie",
+    "Ada pertanyaan? Email ke geopolcoins1@gmail.com"
+   ],
+   "cta": "Kebijakan privasi"
+  },
+  "contact": {
+   "title": "Kontak",
+   "what": "Email ke geopolcoins1@gmail.com atau ikuti @greenlandusa1 di X. Kami tidak akan pernah DM duluan untuk meminta uang, kunci, atau frasa pemulihan.",
+   "steps": [
+    "Tulis email berisi pertanyaanmu",
+    "Atau balas kami di X"
+   ],
+   "cta": "Informasi hukum"
+  },
+  "rug": {
+   "title": "Spot the Rug Pull: game menemukan penipuan",
+   "what": "Lima token Solana karangan per ronde, satu adalah rug pull. Temukan, lalu lihat tanda bahaya mana yang membongkarnya. Lima ronde, makin sulit. Gratis, tanpa wallet, semua token palsu.",
+   "steps": [
+    "Lihat lima kartu token",
+    "Ketuk yang menurutmu rug pull",
+    "Baca tanda bahayanya, lalu main ronde berikutnya",
+    "Bagikan skormu dan cek token sungguhan"
+   ],
+   "cta": "Main Spot the Rug Pull"
+  }
+ }
+}

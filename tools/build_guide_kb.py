@@ -42,8 +42,35 @@ def page_info(path):
             "text": " · ".join(uniq)[:600]}
 
 
+EXTRA = ["es", "pt", "de", "tr", "id", "vi", "ar"]
+
+
+def merge_languages(topics):
+    """Add the extra languages from tools/guide_i18n/<lang>.json to the topics and to guide.js (UI words)."""
+    ui = {}
+    for code in EXTRA:
+        path = os.path.join(ROOT, "tools", "guide_i18n", code + ".json")
+        if not os.path.exists(path):
+            continue
+        data = json.load(open(path, encoding="utf-8"))
+        ui[code] = data["ui"]
+        for t in topics:
+            tr = data["topics"].get(t["id"])
+            assert tr, f"{code}: topic {t['id']} missing"
+            for key in ("title", "what", "cta", "steps"):
+                assert tr.get(key), f"{code}: {t['id']} misses {key}"
+                t[key][code] = tr[key]
+    gpath = os.path.join(ROOT, "guide.js")
+    g = open(gpath, encoding="utf-8").read()
+    block = "Object.assign(UIS, " + json.dumps(ui, ensure_ascii=False, separators=(",", ":")) + ");"
+    g, n = re.subn(r"(/\*UI-EXTRA-START[^\n]*\*/\n).*?(  /\*UI-EXTRA-END\*/)", lambda m: m.group(1) + "  " + block + "\n" + m.group(2), g, flags=re.S)
+    assert n == 1, "guide.js UI-EXTRA markers missing"
+    open(gpath, "w", encoding="utf-8").write(g)
+
+
 def main():
     topics = json.load(open(os.path.join(ROOT, "tools", "guide_topics.json"), encoding="utf-8"))
+    merge_languages(topics)
     pages = []
     for p in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
         if os.path.basename(p) in SKIP:

@@ -36,6 +36,7 @@ a{color:var(--amber)}a:focus-visible,button:focus-visible,summary:focus-visible{
 .mint{width:96px;height:116px;image-rendering:pixelated}
 h1{font:400 clamp(44px,8vw,78px)/.95 var(--pix);margin:0 0 8px;letter-spacing:0}h1 span{color:var(--amber)}
 .lead{margin:0;color:var(--dim);max-width:62ch;font-size:17px}
+.say{display:inline-flex;align-items:center;gap:8px;margin:14px 0 0;padding:9px 14px;min-height:44px;border-radius:12px;border:2px solid var(--amber);background:rgba(255,181,71,.12);color:var(--cream);font:700 15px system-ui;cursor:pointer}.say img{image-rendering:pixelated}.say[aria-pressed="true"]{background:var(--amber);color:#1a1206}
 .warn{margin:16px 0 0;padding:12px 14px;border:1px dashed rgba(255,181,71,.55);border-radius:12px;background:rgba(255,181,71,.07);font-size:14.5px;color:var(--cream)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px;position:sticky;top:0;background:linear-gradient(var(--night) 70%,transparent);padding:10px 0 12px;z-index:3}
 .chips a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:2px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-weight:700;font-size:14.5px;background:var(--floor)}
@@ -108,6 +109,7 @@ footer a{color:var(--dim)}
  <div><h1><span>MAIGA</span> Radar</h1>
  <p class="lead" data-i="lead">What the crypto market is doing right now, plus the red flags most trading sites leave out. Mevrouw Mintje checks every trending Solana token for you.</p></div>
 </div>
+<p><button type="button" class="say" id="say" hidden><img src="meme/pxjp.png" alt="" width="22" height="22"> <span id="sayL">Jean-Phil reads it</span></button></p>
 <p class="warn" data-i="warn"><b>Facts, not signals.</b> Trending means many people trade it now, not that it will go up. Most new tokens lose almost everything. No flags does not mean safe. Not financial advice.</p>
 
 <nav class="chips" aria-label="Sections"><a href="#trend" data-i="cT">Trending + red flags</a><a href="#new" data-i="cN">New pools</a><a href="#market" data-i="cM">Market</a><a href="#defi" data-i="cD">DeFi</a></nav>
@@ -179,6 +181,9 @@ var T={en:{flag:{liq:'Thin liquidity',liq2:'Low liquidity',newp:'Under 1 day old
   risk:{h:'Risque élevé',m:'Prudence',l:'Moins d’alertes'},col:{tok:'Token',price:'Prix',ch:'24 h',liq:'Liquidité',age:'Âge',vol:'Volume 24 h',tx:'Achats / ventes',flags:'Alertes',risk:'Risque',mc:'Capitalisation',w:'7 jours',chain:'Blockchain',tvl:'TVL'},
   ck:'Vérif. complète',chart:'Graphique',err:'Impossible de charger pour le moment. Réessayez dans une minute.',upd:'Mis à jour',tot:'Total en DeFi',
   fng:{'Extreme Fear':'Peur extrême','Fear':'Peur','Neutral':'Neutre','Greed':'Avidité','Extreme Greed':'Avidité extrême'},ago:{m:'min',h:'h',d:'j'}}};
+T.en.say={btn:'Jean-Phil reads it',stop:'Stop',intro:'Hi, Jean-Phil here with the MAIGA Radar.',fng:'Market mood: {v} out of 100, {l}.',top:'Trending now:',none:'no red flags found',out:'Facts, not signals. Not financial advice.'};
+T.nl.say={btn:'Jean-Phil leest voor',stop:'Stop',intro:'Hoi, hier is Jean-Phil met de MAIGA Radar.',fng:'Stemming van de markt: {v} op 100, {l}.',top:'Nu trending:',none:'geen rode vlaggen gevonden',out:'Feiten, geen signalen. Geen financieel advies.'};
+T.fr.say={btn:'Jean-Phil vous le lit',stop:'Stop',intro:'Salut, ici Jean-Phil avec le MAIGA Radar.',fng:'Humeur du marché : {v} sur 100, {l}.',top:'En tendance :',none:'aucun signal d’alerte',out:'Des faits, pas des signaux. Pas un conseil financier.'};
 Object.assign(T,window.MAIGA_I18N||{});
 var LOC={en:'en-US',nl:'nl-BE',fr:'fr-BE',es:'es-ES',pt:'pt-BR',de:'de-DE',tr:'tr-TR',id:'id-ID',vi:'vi-VN',ar:'ar'};
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
@@ -273,7 +278,21 @@ function loadMarket(){get('https://api.coingecko.com/api/v3/coins/markets?vs_cur
  get('https://api.alternative.me/fng/?limit=1').then(function(j){FG=j;gauge(document.getElementById('fngBox'),j);}).catch(function(){fail(document.getElementById('fngBox'));});}
 function loadDefi(){get('https://api.llama.fi/v2/chains').then(function(j){DF=j;defi(document.getElementById('defiBox'),j);}).catch(function(){fail(document.getElementById('defiBox'));});}
 /* ---------- language ---------- */
-function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);
+/* ---------- Jean-Phil reads the radar (browser speech, nothing is sent anywhere) ---------- */
+var SS=window.speechSynthesis,sayB=document.getElementById('say');
+function sayText(){var s=tr('say'),out=[s.intro];
+ var d=FG&&FG.data&&FG.data[0];if(d&&num(d.value)!==null){var cl=String(d.value_classification||'');out.push(s.fng.replace('{v}',Math.round(num(d.value))).replace('{l}',(L().fng&&L().fng[cl])||cl));}
+ var j=CACHE.trend;if(j&&j.data&&j.data.length){var inc={};(j.included||[]).forEach(function(x){if(x&&x.type==='token')inc[x.id]=x.attributes||{};});out.push(s.top);
+  j.data.slice(0,3).forEach(function(p){var a=p.attributes||{},bt=p.relationships&&p.relationships.base_token&&p.relationships.base_token.data,tk=(bt&&inc[bt.id])||{};
+   var name=String(tk.name||tk.symbol||String(a.name||'').split('/')[0]).replace(/[^\p{L}\p{N} .-]/gu,'').trim().slice(0,30),f=flags(a);
+   out.push(name+': '+tr('risk.'+riskOf(f))+', '+(f.length?f.map(function(x){return tr('flag.'+x[1]);}).join(', '):s.none)+'.');});}
+ out.push(s.out);return out.join(' ');}
+function sayLabel(){var on=SS&&SS.speaking;sayB.setAttribute('aria-pressed',on?'true':'false');document.getElementById('sayL').textContent=on?tr('say.stop'):tr('say.btn');}
+if(SS&&window.SpeechSynthesisUtterance){sayB.hidden=false;
+ sayB.addEventListener('click',function(){if(SS.speaking){SS.cancel();sayLabel();return;}
+  var u=new SpeechSynthesisUtterance(sayText()),want=LOC[lang]||'en-US',vs=SS.getVoices(),v=vs.filter(function(x){return x.lang===want;})[0]||vs.filter(function(x){return x.lang&&x.lang.slice(0,2)===lang;})[0];
+  u.lang=want;if(v)u.voice=v;u.rate=1;u.pitch=.9;u.onend=u.onerror=sayLabel;SS.speak(u);setTimeout(sayLabel,50);});}
+function apply(){document.documentElement.lang=lang;ls('maiga_lang',lang);if(SS&&SS.speaking)SS.cancel();if(!sayB.hidden)sayLabel();
  document.querySelectorAll('[data-i]').forEach(function(e){var k=e.dataset.i;e.textContent=lang==='en'?orig[k]:(T[lang][k]||orig[k]);});
  document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false');});
  if(CACHE.trend)poolTable(document.getElementById('trendBox'),CACHE.trend);if(CACHE['new'])poolTable(document.getElementById('newBox'),CACHE['new']);

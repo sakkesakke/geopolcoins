@@ -1,0 +1,17 @@
+{
+ "skip": "Skip to content",
+ "lead": "Five tokens, one is a rug pull. Mevrouw Mintje shows you the public data. Can you find the scam before it takes the money? Five rounds, each one harder.",
+ "fake": "All tokens here are made up. Real tokens can rug even without these flags, and no flags never means safe. Not financial advice.",
+ "pick": "Which one is the rug pull? Tap it.",
+ "hQ": "Questions",
+ "q1": "What is a rug pull?",
+ "a1": "A crypto scam where the people behind a token take the money out, for example by pulling the liquidity, printing new tokens or blocking sales. The price crashes to almost zero and buyers cannot get out.",
+ "q2": "Which red flags point to a rug pull?",
+ "a2": "Mint authority still on, freeze authority still on, liquidity that is not locked or burned, very thin liquidity, one creator or a few wallets holding most of the supply, and many buys with zero sells (a honeypot). No flags does not mean safe.",
+ "q3": "How do I check a real token?",
+ "a3": "Paste its address in the free Token Checkup, or look at the live red flags in the MAIGA Radar. Both read public data only. It is a checklist, not financial advice.",
+ "fHome": "Home",
+ "fPriv": "Privacy",
+ "fLegal": "Legal",
+ "fNfa": "Education only. Not financial advice."
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kerzencharts lesen: eine Anleitung für Einsteiger</title>
+<meta name="description" content="Kerzen, Volumen, gleitende Durchschnitte und RSI in einfachen Worten erklärt, mit kostenlosen Übungscharts aus erfundenen Daten.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-de-kerzencharts-lesen.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-how-to-read-candlestick-charts.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-candlestick-grafieken-lezen.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-lire-graphique-chandeliers.html">
+<link rel="alternate" hreflang="es" href="https://geopolcoins.xyz/blog-es-como-leer-graficos-de-velas.html">
+<link rel="alternate" hreflang="pt" href="https://geopolcoins.xyz/blog-pt-como-ler-graficos-de-candles.html">
+<link rel="alternate" hreflang="de" href="https://geopolcoins.xyz/blog-de-kerzencharts-lesen.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-how-to-read-candlestick-charts.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kerzencharts lesen: eine Anleitung für Einsteiger">
+<meta property="og:description" content="Kerzen, Volumen, gleitende Durchschnitte und RSI in einfachen Worten erklärt, mit kostenlosen Übungscharts aus erfundenen Daten.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-de-kerzencharts-lesen.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Kerzencharts lesen: eine Anleitung für Einsteiger","description":"Kerzen, Volumen, gleitende Durchschnitte und RSI in einfachen Worten erklärt, mit kostenlosen Übungscharts aus erfundenen Daten.","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-de-kerzencharts-lesen.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"de","wordCount":248,"about":"Chart School","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Kerzencharts lesen","item":"https://geopolcoins.xyz/blog-de-kerzencharts-lesen.html"}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog-de.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Start</a> › <a href="/blog-de.html">Blog</a></nav>
+<article><span class="tag" style="background:#ffb547">Lernen</span><h1>Kerzencharts lesen: eine Anleitung für Einsteiger</h1>
+<p class="meta">6 November 2026 · 1 Min. Lesezeit · Tool: <a href="/chart.html">Chart School</a></p>
+<p class="langs">Auch auf: <a href="/blog-how-to-read-candlestick-charts.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-candlestick-grafieken-lezen.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-lire-graphique-chandeliers.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-es-como-leer-graficos-de-velas.html" hreflang="es" lang="es">Español</a> <a href="/blog-pt-como-ler-graficos-de-candles.html" hreflang="pt" lang="pt">Português</a></p>
+<div class="quick"><b>Kurze Antwort</b><p>Jede Kerze zeigt vier Preise für einen Zeitraum: Eröffnung, Hoch, Tief und Schluss. Eine grüne Kerze schloss höher, als sie eröffnete, eine rote tiefer. Das Volumen zeigt, wie viel gehandelt wurde. Lerne die Formen an Übungscharts, bevor du auf echtes Geld schaust.</p></div>
+<h2>Eine Kerze, vier Preise</h2>
+<ul><li><strong>Körper:</strong> der Teil zwischen Eröffnung und Schluss.</li><li><strong>Dochte:</strong> die dünnen Linien oben und unten, sie zeigen den höchsten und tiefsten Preis.</li><li><strong>Farbe:</strong> grün (oder hohl), wenn sie höher schloss, rot, wenn sie tiefer schloss.</li></ul>
+<h2>Volumen</h2>
+<p>Die Balken unter dem Chart zeigen, wie viel gehandelt wurde. Eine große Bewegung bei winzigem Volumen ist leicht anzuschieben und leicht umzukehren. Eine Bewegung mit starkem Volumen bedeutet, dass mehr Leute mitgemacht haben.</p>
+<h2>Gleitender Durchschnitt</h2>
+<p>Ein gleitender Durchschnitt ist der Durchschnitt der Schlusskurse der letzten Zeiträume, als glatte Linie gezeichnet. Er zeigt die grobe Richtung und filtert etwas Rauschen heraus. Er hinkt dem Preis immer hinterher.</p>
+<h2>RSI</h2>
+<p>Der RSI ist eine Zahl von 0 bis 100, die jüngste Gewinne mit jüngsten Verlusten vergleicht. Über 70 nennt man oft überkauft, unter 30 überverkauft. Er beschreibt die Vergangenheit, er sagt nichts voraus.</p>
+<h2>Die Pump-and-Dump-Form</h2>
+<p>Ein plötzlicher senkrechter Anstieg bei wenig Volumen, gefolgt von einem langen roten Abrutsch, ist der klassische Pump-and-Dump. Späte Käufer bezahlen die Gewinne der frühen Verkäufer.</p>
+<h2>Ohne Risiko üben</h2>
+<p>Die <a href="/chart.html">Chart School</a> hat sieben kurze Lektionen und ein "Errate die nächste Kerze"-Spiel mit erfundenen Übungscharts, also ist nichts auf der Seite ein Signal. Dann teste dich gegen eine KI im <a href="/kronos.html">Kronos Lab</a>.</p>
+<p class="cta"><a class="btn" href="/chart.html">Chart School öffnen</a></p>
+</article>
+<h2>Weiterlesen</h2><ul class="more"><li><a class="card" href="/blog-de-wie-funktioniert-eine-blockchain.html"><span class="tag" style="background:#ffb547">Lernen</span><h3>Wie funktioniert eine Blockchain? Bau eine winzige im Browser</h3><p>Hashes, Blöcke, Mining und warum man die Geschichte nicht ändern kann, erklärt mit einer Mini-Blockchain, die du selbst kaputt machen kannst.</p></a></li><li><a class="card" href="/blog-de-ist-solana-sicher-vor-quantencomputern.html"><span class="tag" style="background:#ffb547">Lernen</span><h3>Ist Solana sicher vor Quantencomputern? Einfach erklärt</h3><p>Warum ein großer Quantencomputer heutige Signaturen eines Tages knacken könnte, was Post-Quanten-Signaturen sind und wie du sie ausprobierst.</p></a></li><li><a class="card" href="/blog-de-solana-token-auf-betrug-pruefen.html"><span class="tag" style="background:#ffb547">Sicherheit</span><h3>Ist ein Solana-Token Betrug? So prüfst du es in 1 Minute</h3><p>Eine einfache Checkliste der öffentlichen Warnsignale hinter den meisten Solana-Rug-Pulls, und ein kostenloses Tool, das sie für jeden Token prüft.</p></a></li></ul>
+</main>
+<footer><a href="/">Start</a><a href="/blog-de.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Datenschutz</a><a href="/legal.html">Rechtliches</a><span>Bildung und Unterhaltung. Keine Finanzberatung.</span></footer>
+<script src="/guide.js" defer></script>
+</body>
+</html>

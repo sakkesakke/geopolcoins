@@ -1,0 +1,336 @@
+{
+ "ui": {
+  "open": "Hỏi Bolt",
+  "title": "Bolt, người hướng dẫn",
+  "hi": "Xin chào, mình là Bolt! Mình biết mọi công cụ và trò chơi trên trang này. Cứ hỏi mình, hoặc chọn bên dưới.",
+  "here": "Bạn đang ở: ",
+  "ph": "Hỏi về một công cụ hoặc trò chơi…",
+  "send": "Gửi",
+  "close": "Đóng trợ giúp",
+  "none": "Mình không tìm thấy. Hãy thử từ khác, hoặc chọn một chủ đề:",
+  "note": "Hướng dẫn đơn giản, không có AI. Những gì bạn gõ không rời khỏi thiết bị. Không phải lời khuyên tài chính.",
+  "how": "Cách dùng:",
+  "also": "Liên quan:",
+  "load": "Chờ một chút…",
+  "fail": "Mình chưa tải được ghi chú lúc này. Hãy kiểm tra kết nối, hoặc bắt đầu từ trang chủ.",
+  "groups": {
+   "tool": "Công cụ",
+   "game": "Trò chơi",
+   "learn": "Học",
+   "business": "Cho doanh nghiệp",
+   "help": "Trợ giúp & an toàn",
+   "page": "Trang khác"
+  },
+  "all": "Xem tất cả",
+  "here2": "Mình làm được gì ở đây?"
+ },
+ "topics": {
+  "site": {
+   "title": "Trang này là gì?",
+   "what": "geopolcoins.xyz là sân chơi miễn phí gồm công cụ AI, phòng học và trò chơi, xoay quanh đồng meme châm biếm $MAIGA. Bạn không cần tài khoản hay ví để dùng các công cụ.",
+   "steps": [
+    "Mở trang chủ và chọn việc bạn muốn làm",
+    "Thử một công cụ: mọi thứ chạy trong trình duyệt",
+    "Hỏi mình bất cứ điều gì về công cụ hay trò chơi"
+   ],
+   "cta": "Trang chủ"
+  },
+  "garage": {
+   "title": "Bot Garage: tự tạo bot AI",
+   "what": "Sao chép một bot AI làm sẵn hoặc tự tạo: chọn nhiệm vụ, giọng điệu và giao diện, thử nghiệm, rồi chia sẻ bằng một đường link hoặc xuất sang ChatGPT, Claude, Discord hay Telegram. Miễn phí, không cần tài khoản.",
+   "steps": [
+    "Chọn bot làm sẵn hoặc bắt đầu từ đầu",
+    "Đặt nhiệm vụ, giọng điệu và giao diện",
+    "Chạy thử trong khung chat",
+    "Chia sẻ link hoặc xuất ra"
+   ],
+   "cta": "Mở Bot Garage"
+  },
+  "meme": {
+   "title": "Meme Studio: làm meme",
+   "what": "Làm meme trong vài giây với hơn 190 mẫu kinh điển, cảnh pixel MAIGA hoặc ảnh của bạn. Kéo chữ và nhãn dán, rồi tải về PNG. Không có gì được tải lên.",
+   "steps": [
+    "Chọn mẫu hoặc tải ảnh lên",
+    "Gõ chữ và kéo vào vị trí",
+    "Thêm nhãn dán nếu thích",
+    "Tải PNG về"
+   ],
+   "cta": "Mở Meme Studio"
+  },
+  "factory": {
+   "title": "Meme Factory: bộ ra mắt từ một từ",
+   "what": "Gõ một từ và đội pixel sẽ soạn bộ meme coin: tên, ticker, meme, kiểm tra an toàn và ý tưởng bài đăng. Không có gì được phát hành hay đăng thay bạn. Chỉ để giải trí.",
+   "steps": [
+    "Gõ một từ hoặc ý tưởng",
+    "Xem đội pixel dựng bộ",
+    "Sao chép phần bạn thích",
+    "Tải bản offline nếu muốn"
+   ],
+   "cta": "Mở Meme Factory"
+  },
+  "check": {
+   "title": "Token Checkup: kiểm tra token",
+   "what": "Dán địa chỉ của bất kỳ token Solana nào. Bà Mintje đọc dữ liệu công khai và liệt kê điều gì ổn, điều gì có vẻ rủi ro và điều gì bà không thấy được. Đây là danh sách kiểm tra, không phải lời khuyên, và có thể bỏ sót.",
+   "steps": [
+    "Sao chép địa chỉ token (CA)",
+    "Dán vào Token Checkup",
+    "Đọc các điểm xanh, cam và xám",
+    "Luôn tự kiểm tra thêm"
+   ],
+   "cta": "Mở Token Checkup"
+  },
+  "raid": {
+   "title": "MAIGA Raid: game đi cảnh pixel",
+   "what": "Chơi Jean-Phil hiệp sĩ băng hoặc Bolt người máy, vượt qua 5 thế giới (băng, nhà máy, mặt trăng, hẻm núi nến, tháp thảm) và giải cứu Mintje khỏi Lord Rugpull. Miễn phí, không cần ví, chơi bằng cảm ứng, bàn phím hoặc tay cầm.",
+   "steps": [
+    "Chọn nhân vật",
+    "Phím mũi tên hoặc nút để di chuyển, nhảy để dẫm",
+    "Chạm cờ ở mỗi thế giới",
+    "Hạ Lord Rugpull rồi thách bạn bè"
+   ],
+   "cta": "Chơi MAIGA Raid"
+  },
+  "arcade": {
+   "title": "Arcade meme của Jean-Phil",
+   "what": "8 trò chơi nhỏ với meme coin, meme pixel và Jean-Phil, như MAIGA Flappy. Chơi bằng tên phi công và leo hạng trong giải đấu hằng ngày miễn phí. Chỉ để vui.",
+   "steps": [
+    "Chọn một trò trong arcade",
+    "Đặt tên phi công",
+    "Chơi và xem bảng xếp hạng"
+   ],
+   "cta": "Mở arcade"
+  },
+  "chain": {
+   "title": "Mini-Chain: blockchain hoạt động thế nào",
+   "what": "Học bằng cách làm: gõ dữ liệu, đào khối và xem vì sao đổi một chữ cái làm hỏng cả chuỗi. Chạy trong trình duyệt của bạn.",
+   "steps": [
+    "Xem hash (dấu vân tay) là gì",
+    "Đào vài khối",
+    "Đổi một chữ cái và xem chuỗi bị hỏng"
+   ],
+   "cta": "Mở Mini-Chain"
+  },
+  "quantum": {
+   "title": "Quantum Lab: crypto đấu máy tính lượng tử",
+   "what": "Ký một tin nhắn như Solana hôm nay (Ed25519), rồi bằng ML-DSA và Falcon an toàn trước máy tính lượng tử. Mật mã thật trong trình duyệt, kèm máy tính lượng tử mô phỏng và các lầm tưởng được giải thích trung thực.",
+   "steps": [
+    "Gõ tin nhắn và bấm ký",
+    "Đổi một chữ cái và kiểm tra lại",
+    "Bật máy tính lượng tử mô phỏng"
+   ],
+   "cta": "Mở Quantum Lab"
+  },
+  "blog": {
+   "title": "Blog: hướng dẫn ngắn và trung thực",
+   "what": "Các hướng dẫn dễ hiểu về cách nhận ra lừa đảo và honeypot trên Solana, đọc biểu đồ, AI có dự đoán được crypto không, blockchain hoạt động thế nào, bot AI miễn phí cho doanh nghiệp nhỏ và $MAIGA là gì.",
+   "steps": [
+    "Mở blog",
+    "Chọn một bài hướng dẫn",
+    "Mỗi bài đều dẫn tới công cụ miễn phí mà nó giải thích"
+   ],
+   "cta": "Mở blog"
+  },
+  "radar": {
+   "title": "MAIGA Radar: cái gì đang nóng, cái gì có vẻ rủi ro",
+   "what": "Một radar trực tiếp miễn phí như CryptoRank hay DexScreener, nhưng có cảnh báo: pool Solana đang thịnh hành và mới tạo kèm cảnh báo tự động, 20 đồng lớn nhất, chỉ số Sợ hãi & Tham lam và tiền DeFi theo blockchain. Chỉ có sự thật, không có tín hiệu, không phải lời khuyên.",
+   "steps": [
+    "Xem mục Thịnh hành: mỗi token có cảnh báo và nhãn rủi ro",
+    "Chạm Kiểm tra đầy đủ để mở Token Checkup cho token đó",
+    "Cuộn xuống tổng quan thị trường, Sợ hãi & Tham lam và DeFi"
+   ],
+   "cta": "Mở Radar"
+  },
+  "kronos": {
+   "title": "Kronos Lab: AI có đọc được biểu đồ không?",
+   "what": "Một mô hình AI mở (Kronos) đã dự báo những thời điểm thật trong quá khứ của BTC, ETH, SOL, DOGE, XRP và PEPE. Hãy đoán tăng hay giảm trước, rồi xem điều gì thật sự đã xảy ra, với điểm số trung thực. Chỉ là quá khứ, không có tín hiệu, không phải lời khuyên.",
+   "steps": [
+    "Chọn BTC, ETH hoặc SOL",
+    "Đoán: cao hơn hay thấp hơn sau 24 giờ?",
+    "Mở dự báo và sự thật",
+    "Xem bảng điểm trung thực"
+   ],
+   "cta": "Mở Kronos Lab"
+  },
+  "charts": {
+   "title": "Chart School: học đọc biểu đồ",
+   "what": "Bài học miễn phí về nến, khối lượng, đường trung bình động, hỗ trợ, RSI và pump-and-dump, với biểu đồ luyện tập từ dữ liệu giả và một bài kiểm tra. Không tín hiệu, không lời khuyên.",
+   "steps": [
+    "Bắt đầu với bài đầu tiên",
+    "Luyện tập trên biểu đồ mẫu",
+    "Làm bài kiểm tra ở cuối"
+   ],
+   "cta": "Mở Chart School"
+  },
+  "lend": {
+   "title": "Bot Bank: cho bot AI vay (tiền ảo để chơi)",
+   "what": "Trò chơi giải thích việc cho tác nhân AI vay và rủi ro của nó: cho bot AI vay tiền ảo, bảo lãnh cho chúng, kiếm phí hoặc mất khoản đặt cược. Không bao giờ dùng tiền thật.",
+   "steps": [
+    "Đọc các yêu cầu vay hôm nay",
+    "Cho vay hoặc bảo lãnh một bot bằng tiền ảo",
+    "Xem ai trả nợ và ai không"
+   ],
+   "cta": "Chơi Bot Bank"
+  },
+  "robotlab": {
+   "title": "Robot Lab: nói chuyện với robot an toàn",
+   "what": "Gõ một mệnh lệnh bằng lời đơn giản. Nó trở thành kế hoạch đã được kiểm tra và robot chỉ di chuyển sau khi con người duyệt. Bản demo trên trình duyệt, không có robot thật.",
+   "steps": [
+    "Ra lệnh",
+    "Xem các bước kiểm tra an toàn",
+    "Duyệt hoặc từ chối kế hoạch"
+   ],
+   "cta": "Mở Robot Lab"
+  },
+  "robots": {
+   "title": "AI cho robot bạn đang có",
+   "what": "Dành cho công ty có robot: bot hỗ trợ kỹ thuật viên, mệnh lệnh bằng ngôn ngữ đơn giản có con người duyệt và báo cáo đội robot hằng ngày. Hệ thống an toàn riêng của robot luôn được ưu tiên.",
+   "steps": [
+    "Đọc bốn lựa chọn",
+    "Thử bot hỗ trợ",
+    "Yêu cầu báo giá miễn phí"
+   ],
+   "cta": "Xem giải pháp robot"
+  },
+  "business": {
+   "title": "Trợ lý AI cho cửa hàng của tôi",
+   "what": "Cho tiệm tóc, công ty dịch vụ, nhà hàng và cửa hàng: tự tạo bot miễn phí trong Bot Garage, lấy gói làm sẵn, hoặc để chúng tôi cài đặt với giá, giờ mở cửa và câu hỏi thường gặp của bạn (báo giá miễn phí).",
+   "steps": [
+    "Miễn phí: bắt đầu trong Bot Garage",
+    "Nhanh hơn: lấy bộ khởi đầu miễn phí",
+    "Làm giúp bạn: yêu cầu báo giá"
+   ],
+   "cta": "Trợ lý AI riêng"
+  },
+  "probots": {
+   "title": "Bot pro: điện thoại, email và WhatsApp",
+   "what": "Bản thiết kế cho 8 trợ lý AI có kết nối, như lễ tân điện thoại nhận đặt lịch, trợ lý hộp thư và bot đặt lịch WhatsApp, kèm chi phí vận hành trung thực.",
+   "steps": [
+    "Chọn trợ lý bạn cần",
+    "Đọc chi phí vận hành",
+    "Tự làm hoặc nhờ hỗ trợ"
+   ],
+   "cta": "Xem bot pro"
+  },
+  "free": {
+   "title": "Bộ khởi đầu bot AI miễn phí",
+   "what": "5 trợ lý AI sẵn sàng để dán cho doanh nghiệp (câu hỏi thường gặp, đặt lịch, đánh giá, email, bài đăng mạng xã hội). Chạy trên ChatGPT, Claude hoặc Gemini trong khoảng 10 phút. Bộ này bằng tiếng Anh.",
+   "steps": [
+    "Mở trang của bộ",
+    "Nhận bộ",
+    "Dán một bot vào khung chat AI của bạn"
+   ],
+   "cta": "Nhận bộ miễn phí"
+  },
+  "key": {
+   "title": "Khóa API AI miễn phí",
+   "what": "Khóa API cho phép bot của bạn trò chuyện với một mô hình AI. Hướng dẫn liệt kê các lựa chọn miễn phí và rẻ, cách giữ khóa an toàn và cách dùng trong Bot Garage. Khóa của bạn chỉ nằm trong trình duyệt.",
+   "steps": [
+    "Chọn một nhà cung cấp miễn phí trong danh sách",
+    "Tạo khóa trên trang của họ",
+    "Dán vào Bot Garage, không bao giờ dán vào chat"
+   ],
+   "cta": "Mở hướng dẫn API"
+  },
+  "run": {
+   "title": "Cho bot chạy 24/7",
+   "what": "Xuất bot từ Bot Garage dưới dạng bộ Telegram hoặc Discord và làm theo các bước để giữ nó trực tuyến. Hướng dẫn API giải thích các lựa chọn lưu trữ miễn phí.",
+   "steps": [
+    "Hoàn thiện bot trong Bot Garage",
+    "Xuất bộ Telegram hoặc Discord",
+    "Làm theo các bước lưu trữ"
+   ],
+   "cta": "Xem cách làm"
+  },
+  "answers": {
+   "title": "17 câu trả lời trung thực về bot AI",
+   "what": "Câu trả lời thẳng thắn cho những gì doanh nghiệp nhỏ hỏi về chatbot AI: chi phí, công cụ miễn phí, quyền riêng tư, lỗi (ảo giác) và mẹo theo ngành.",
+   "steps": [
+    "Mở trang câu trả lời",
+    "Đi thẳng tới ngành của bạn",
+    "Hỏi mình nếu có gì chưa rõ"
+   ],
+   "cta": "Đọc câu trả lời"
+  },
+  "app": {
+   "title": "Cài ứng dụng",
+   "what": "Ứng dụng $MAIGA gom Bot Garage, Token Checkup, Meme Factory, Trận đấu hôm nay và các bot đã lưu vào một chỗ. Miễn phí, chạy offline, không cần kho ứng dụng.",
+   "steps": [
+    "Mở trang ứng dụng",
+    "Bấm Cài đặt (hoặc Chia sẻ > Thêm vào Màn hình chính trên iPhone)",
+    "Mở từ màn hình chính"
+   ],
+   "cta": "Mở ứng dụng"
+  },
+  "shop": {
+   "title": "Cửa hàng: gói bot làm sẵn",
+   "what": "Gói bot làm sẵn cho tiệm tóc, bất động sản và nhà hàng, cùng gói 20 bot, bằng tiếng Anh, Hà Lan và Pháp. Bán trên Ko-fi, thanh toán qua PayPal.",
+   "steps": [
+    "Mở cửa hàng",
+    "Chọn gói cho ngành và ngôn ngữ của bạn",
+    "Tải về ngay sau khi thanh toán"
+   ],
+   "cta": "Mở cửa hàng"
+  },
+  "safe": {
+   "title": "Giữ an toàn",
+   "what": "Không bao giờ chia sẻ cụm từ khôi phục hay khóa riêng với bất kỳ ai, kể cả chúng tôi: không ai từ trang này sẽ hỏi bạn điều đó. Bỏ qua tin nhắn riêng hứa giúp đỡ hay phần thưởng, và kiểm tra từng địa chỉ từng ký tự.",
+   "steps": [
+    "Cụm từ khôi phục ghi trên giấy, offline",
+    "Không bao giờ gõ nó trên trang web hay trong chat",
+    "Kiểm tra địa chỉ từng ký tự",
+    "Khi nghi ngờ, hãy dừng lại"
+   ],
+   "cta": "Meme an toàn"
+  },
+  "coin": {
+   "title": "Về đồng $MAIGA",
+   "what": "$MAIGA là một đồng meme châm biếm trên Solana. Trang HQ hiển thị thông tin công khai và địa chỉ hợp đồng (CA) thật: 3eMVbLZndiVZc4kPvLwUs4wdW1ChQ9R47seZv3Jppump. Các token khác dùng cùng tên, nên hãy luôn kiểm tra CA. Chỉ để giải trí, không phải lời khuyên tài chính, DYOR.",
+   "steps": [
+    "Đọc thông tin đồng coin trên HQ",
+    "So sánh CA từng ký tự",
+    "Chỉ chi số tiền bạn chấp nhận mất"
+   ],
+   "cta": "Thông tin coin (HQ)"
+  },
+  "partners": {
+   "title": "Vị trí đối tác hoặc nhà tài trợ",
+   "what": "Các vị trí quảng cáo và tài trợ được ghi nhãn rõ ràng trên trang, kèm quy tắc về những gì chúng tôi chấp nhận và từ chối.",
+   "steps": [
+    "Đọc các vị trí và quy tắc",
+    "Xem những gì chúng tôi chấp nhận",
+    "Đăng ký qua email"
+   ],
+   "cta": "Trang đối tác"
+  },
+  "privacy": {
+   "title": "Quyền riêng tư và cookie",
+   "what": "Hầu hết công cụ chỉ chạy trong trình duyệt và không lưu gì phía chúng tôi. Trang quyền riêng tư và cookie giải thích chính xác những gì được lưu, ở đâu và vì sao.",
+   "steps": [
+    "Đọc chính sách quyền riêng tư",
+    "Đọc chính sách cookie",
+    "Có câu hỏi? Gửi email tới geopolcoins1@gmail.com"
+   ],
+   "cta": "Chính sách quyền riêng tư"
+  },
+  "contact": {
+   "title": "Liên hệ",
+   "what": "Gửi email tới geopolcoins1@gmail.com hoặc theo dõi @greenlandusa1 trên X. Chúng tôi sẽ không bao giờ nhắn tin trước để xin tiền, khóa hay cụm từ khôi phục.",
+   "steps": [
+    "Viết email kèm câu hỏi của bạn",
+    "Hoặc trả lời chúng tôi trên X"
+   ],
+   "cta": "Thông tin pháp lý"
+  },
+  "rug": {
+   "title": "Spot the Rug Pull: trò chơi tìm lừa đảo",
+   "what": "Mỗi vòng có năm token Solana bịa, một là rug pull. Tìm ra nó rồi xem dấu hiệu nào đã tố cáo nó. Năm vòng, vòng sau khó hơn. Miễn phí, không cần ví, mọi token đều giả.",
+   "steps": [
+    "Xem năm thẻ token",
+    "Chạm vào thẻ bạn nghĩ là rug pull",
+    "Đọc các dấu hiệu rồi chơi vòng tiếp",
+    "Chia sẻ điểm và kiểm tra một token thật"
+   ],
+   "cta": "Chơi Spot the Rug Pull"
+  }
+ }
+}

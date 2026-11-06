@@ -27,7 +27,7 @@ const text = (status: number, body: string) => new Response(body, { status, head
 
 Deno.serve(async (req) => {
   if (req.method !== "POST") return text(405, "POST only");
-  const expected = Deno.env.get("KOFI_VERIFICATION_TOKEN") ?? "";
+  const expected = (Deno.env.get("KOFI_VERIFICATION_TOKEN") ?? "").trim();
   if (expected.length < 8) return text(503, "not configured");
 
   const raw = await req.text();
@@ -43,7 +43,12 @@ Deno.serve(async (req) => {
     return text(400, "bad payload");
   }
 
-  if (!safeEqual(String(data.verification_token ?? ""), expected)) return text(401, "unauthorized");
+  const got = String(data.verification_token ?? "").trim();
+  if (!safeEqual(got, expected)) {
+    // lengths only, never the values: helps the owner spot a wrong paste
+    console.warn("kofi token mismatch", JSON.stringify({ got_len: got.length, expected_len: expected.length }));
+    return text(401, "unauthorized");
+  }
   delete data.verification_token;
 
   const key = serviceKey();

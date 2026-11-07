@@ -1,7 +1,14 @@
-"""Original chiptune soundtrack made in code (no samples) for make_short.py: 26 s, 120 BPM.
-0-3.5 hook, 3.5-21 five items (3.5 s each), 21-26 end card."""
-import numpy as np, wave, sys
-SR, DUR = 48000, 26.0
+"""Original chiptune soundtrack made in code (no samples) for make_short.py, 120 BPM.
+Default: 0-3.5 hook, 3.5-21 five items (3.5 s each), 21-26 end card.
+    python3 score.py out.wav                       # default 26 s timing
+    python3 score.py out.wav '[4,4.5,3.5,4,4,4,6]' # scene lengths (hook, 5 items, end); voiced = no typewriter blips
+"""
+import numpy as np, wave, sys, json
+SR = 48000
+SC = json.loads(sys.argv[2]) if len(sys.argv) > 2 else [3.5] * 6 + [5.0]
+VOICED = len(sys.argv) > 2
+S = [sum(SC[:k]) for k in range(len(SC))]  # scene starts
+DUR = sum(SC); HK, EN = S[1], S[-1]          # drop (end of hook) and start of the end card
 N = int(SR * DUR); mix = np.zeros((N, 2)); beat = 0.5; bar = 2.0
 rng = np.random.default_rng(11)
 def note(m): return 440 * 2 ** ((m - 69) / 12)
@@ -23,13 +30,13 @@ for k in range(int(DUR / bar) + 1):
     put(sig * e * .045, t0)
 # arpeggio all the way, brighter after the drop
 k = 0; t = 0.0
-while t < 24.0:
+while t < EN + 3.0:
     c = ch(t); m = [c[2], c[3], c[4], c[3] + 12][k % 4] + 12
     s = sq(note(m), .13, .25) * env(int(.13 * SR), d=18)
-    put(s, t, pan=-.3 if k % 2 else .3, g=.03 if t < 3.5 else .045); t += beat / 2; k += 1
+    put(s, t, pan=-.3 if k % 2 else .3, g=.03 if t < HK else .045); t += beat / 2; k += 1
 # lead hook on the drop and in the tools section (simple 2-bar motif)
 motif = [(0, 12), (.5, 15), (1.0, 19), (1.5, 17), (2.0, 15), (2.75, 12), (3.0, 10), (3.5, 12)]
-for start in (3.5, 10.5, 17.5):
+for start in (S[1], S[3], S[5]):
     for dt, iv in motif:
         tt = start + dt; base = ch(tt)[0] + 24
         put(sq(note(base + iv - 12 + 12), .32, .5) * env(int(.32 * SR), d=5), tt, g=.035)
@@ -47,33 +54,33 @@ def groove(a, b, g=1.0):
         c = ch(t); put(sq(note(c[0] - 12), .22, .5) * env(int(.22 * SR), d=9), t, g=.08 * g)
         put(kick(), t, g=.55 * g) if i % 2 == 0 else put(snare(), t, g=.17 * g)
         put(hat(), t + beat / 2, pan=.25, g=.06 * g); t += beat; i += 1
-groove(3.5, 21); groove(21, 24, .5)
+groove(HK, EN); groove(EN, EN + 3, .5)
 # riser into the drop and out of the break
 def riser(t0, dur):
     n = int(dur * SR); tt = np.arange(n) / SR
     noise = rng.standard_normal(n) * (tt / dur) ** 2
     put(noise, t0, g=.08)
-riser(2.0, 1.5)
+riser(HK - 1.5, 1.5)
 # impact on the drop and on the end card
 def impact(t0, g=.5):
     n = int(1.4 * SR); tt = np.arange(n) / SR
     put((np.sin(2 * np.pi * 50 * tt) + .3 * rng.standard_normal(n) * np.exp(-tt * 18)) * np.exp(-tt * 3), t0, g=g)
-impact(3.5); impact(21.0, .4)
+impact(HK); impact(EN, .4)
 # whoosh/tick on every cut
 def blip(f0, f1, dur=.09):
     n = int(dur * SR); tt = np.arange(n) / SR; f = np.linspace(f0, f1, n)
     return np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * np.exp(-tt * 25)
-for i, c in enumerate([3.5 + 3.5 * j for j in range(6)]):
+for i, c in enumerate(S[1:]):
     put(blip(700 + 50 * (i % 8), 1500 + 70 * (i % 8)), c - .01, g=.07)
 # Jean-Phil "voice": soft square blips while he talks (typewriter)
 talk = [(0.5, 39 / 34)] + [(3.5 + 3.5 * j + .25, L / 40) for j, L in enumerate([57, 50, 41, 51, 48])] + [(21.9, 26 / 30)]
-for t0, d in talk:
+for t0, d in ([] if VOICED else talk):
     t = t0; i = 0
     while t < t0 + d:
         f = note(70 + [0, 3, 5, 3, 7, 5][i % 6])
         put(sq(f, .045, .3) * env(int(.045 * SR), d=40), t, pan=-.1, g=.035); t += .075; i += 1
 # end coin sound
-put(sq(note(83), .08, .5) * env(int(.08 * SR), d=10), 21.15, g=.07); put(sq(note(88), .4, .5) * env(int(.4 * SR), d=6), 21.23, g=.07)
+put(sq(note(83), .08, .5) * env(int(.08 * SR), d=10), EN + .15, g=.07); put(sq(note(88), .4, .5) * env(int(.4 * SR), d=6), EN + .23, g=.07)
 fo = int(2.0 * SR); mix[-fo:] *= np.linspace(1, 0, fo)[:, None]
 fi = int(.05 * SR); mix[:fi] *= np.linspace(0, 1, fi)[:, None]
 mix /= np.max(np.abs(mix)) + 1e-9; mix *= .9

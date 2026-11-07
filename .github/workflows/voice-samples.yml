@@ -1,0 +1,46 @@
+name: Voice samples (pick a voice for the Shorts)
+
+# Makes reference clips from synthetic Kokoro voices (Apache-2.0) and one Chatterbox sample (Dutch +
+# English) per voice. Samples and clips go to the "media" branch under voice-samples/.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  samples:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: System tools
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg espeak-ng
+      - name: Cache the voice models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: voice-samples-v1
+      - name: Reference clips (Kokoro, own venv)
+        run: |
+          python3 -m venv /tmp/kk
+          /tmp/kk/bin/pip install -q torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          /tmp/kk/bin/pip install -q kokoro==0.9.4 soundfile==0.12.1
+          /tmp/kk/bin/python tools/shorts/make_voices.py tools/shorts/voices
+      - name: Chatterbox samples
+        run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7
+          python3 tools/shorts/voice.py samples --dir .samples
+      - name: Push to the media branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch -q origin media
+          git worktree add -q .media origin/media
+          mkdir -p .media/voice-samples
+          cp .samples/*.mp3 tools/shorts/voices/*.wav .media/voice-samples/
+          cd .media && git add voice-samples && git commit -qm "Voice samples" && git push -q origin HEAD:media

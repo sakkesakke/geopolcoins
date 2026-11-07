@@ -1,0 +1,87 @@
+name: Voice the Shorts (Chatterbox, open source)
+
+# Renders Shorts from tools/shorts/topics.json and gives them a human voice with Chatterbox
+# (Resemble AI, MIT license). Runs on GitHub's servers because the voice model is downloaded from
+# Hugging Face. Voiced videos go to the "media" branch; the topics get "video": "<id>.mp4" so the
+# YouTube scheduling task uploads the voiced file instead of rendering a silent one.
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: "comma-separated topic ids, or 'queue' = every topic not posted/scheduled yet"
+        default: queue
+
+permissions:
+  contents: write
+
+concurrency:
+  group: voice
+  cancel-in-progress: false
+
+jobs:
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: System tools
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg fonts-inter
+      - name: Cache the voice model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: chatterbox-mtl-v2
+      - name: Python packages (CPU torch first, so no CUDA download)
+        run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7 pillow==11.0.0
+      - name: Pick topics
+        id: pick
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          want = os.environ.get("IDS", "queue").strip()
+          T = json.load(open("tools/shorts/topics.json", encoding="utf-8"))
+          if want == "queue":
+              ids = [t["id"] for t in T if not t.get("posted") and not t.get("slot") and not t.get("video")]
+          else:
+              ok = {t["id"] for t in T}
+              ids = [i.strip() for i in want.split(",") if i.strip() in ok]
+          print("ids=" + ",".join(ids))
+          PY
+        env:
+          IDS: ${{ github.event.inputs.ids }}
+      - name: Render and voice
+        if: steps.pick.outputs.ids != ''
+        run: |
+          mkdir -p .shorts
+          for id in $(echo "${{ steps.pick.outputs.ids }}" | tr ',' ' '); do
+            python3 tools/shorts/make_short.py "$id" .shorts
+          done
+          python3 tools/shorts/voice.py --ids "${{ steps.pick.outputs.ids }}" --dir .shorts
+      - name: Push videos to the media branch and mark the topics
+        if: steps.pick.outputs.ids != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch -q origin media
+          git worktree add -q .media origin/media
+          cp .shorts/*.mp4 .media/
+          cd .media && git add *.mp4 && git commit -qm "Voiced Shorts (Chatterbox)" && git push -q origin HEAD:media && cd ..
+          python3 - <<'PY'
+          import json, os
+          ids = set(os.environ["IDS"].split(","))
+          p = "tools/shorts/topics.json"; T = json.load(open(p, encoding="utf-8"))
+          for t in T:
+              if t["id"] in ids:
+                  t["video"] = t["id"] + ".mp4"; t["voice"] = "chatterbox"
+          json.dump(T, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+          PY
+          git add tools/shorts/topics.json
+          git diff --cached --quiet || git commit -qm "Shorts: mark voiced videos"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 5; done
+        env:
+          IDS: ${{ steps.pick.outputs.ids }}

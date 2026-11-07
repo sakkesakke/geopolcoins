@@ -22,3 +22,12 @@ Output: `<id>.mp4` and `<id>_check.jpg` (four frames to check by eye) in `.short
 3. Set `"posted": "<date>"` on the topic and open a PR.
 
 Rules: education only, no price talk or promises, always "Entertainment only. Not financial advice. DYOR."
+
+## Voice (human-like narration)
+`.github/workflows/voice.yml` (run it from the Actions tab or the API, input `ids` = `queue` or a list) renders the topics,
+then `voice.py` lets Jean-Phil read his speech bubbles with **Chatterbox Multilingual** by Resemble AI
+(MIT, https://github.com/resemble-ai/chatterbox), its built-in default voice, music ducked under the voice.
+It runs on GitHub because the model comes from Hugging Face. Indonesian uses the Malay voice (closest language).
+Voiced files go to the `media` branch and the topic gets `"video": "<id>.mp4"`, so scheduling uploads the voiced version.
+Chatterbox adds Resemble's inaudible PerTh watermark (marks the audio as AI-generated). The voice belongs to a cartoon
+character, not a real person, so YouTube's "altered or synthetic content" label (meant for realistic people and events) stays "No".

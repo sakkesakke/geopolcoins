@@ -231,6 +231,9 @@ def feed():
             f"<link>{SITE}blog.html</link><description>Crypto safety, AI and free tools explained.</description><language>en</language>"
             + "".join(items) + "</channel></rss>\n")
 
+HOME_PICKS = ["solana-token-scam-check", "trending-solana-tokens-red-flags", "can-ai-predict-crypto-prices"]
+
+
 def main():
     names = []
     for lang, posts in LANGS.items():
@@ -244,6 +247,14 @@ def main():
             open(os.path.join(ROOT, f), "w", encoding="utf-8").write(article(p, i, lang))
         open(os.path.join(ROOT, fname(lang)), "w", encoding="utf-8").write(index(lang)); names.append(fname(lang))
     open(os.path.join(ROOT, "blog-feed.xml"), "w", encoding="utf-8").write(feed())
+    # three featured guides per language for the homepage "From the blog" block
+    picks = {}
+    for lang, posts in LANGS.items():
+        by_en = {p["en"] if lang != "en" else p["slug"]: p for p in posts}
+        picks[lang] = {"all": "/" + fname(lang), "posts": [{"t": by_en[e]["title"], "d": by_en[e]["desc"], "tag": by_en[e]["tag"], "u": "/" + fname(lang, by_en[e]["slug"])} for e in HOME_PICKS]}
+    os.makedirs(os.path.join(ROOT, "i18n"), exist_ok=True)
+    open(os.path.join(ROOT, "i18n", "blog-picks.js"), "w", encoding="utf-8").write(
+        "/* built by tools/build_blog.py: do not edit */\nwindow.MAIGA_BLOG=" + json.dumps(picks, ensure_ascii=False, separators=(",", ":")) + ";\n")
     sm = os.path.join(ROOT, "sitemap.xml"); s = open(sm, encoding="utf-8").read()
     add = ""
     for name in names:

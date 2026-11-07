@@ -102,7 +102,12 @@
   "fLeg": "Yasal",
   "fTerms": "Koşullar",
   "fine": "© 2026 geopolcoins.xyz. Verimlilik ve eğlence araçları. Yapay zekâ hata yapabilir. Finansal, hukuki ya da tıbbi tavsiye değildir.",
-  "k14p": "Beş uydurma token, biri dolandırıcılık. Rug pull'u bulabilir misin?"
+  "k14p": "Beş uydurma token, biri dolandırıcılık. Rug pull'u bulabilir misin?",
+  "bH": "Blogdan",
+  "bP": "Kısa ve dürüst rehberler: dolandırıcılığı fark et, grafik oku, yapay zekâ vaatlerini test et. Altı dilde (Türkçe henüz yok).",
+  "bAll": "Tüm rehberler",
+  "fol": "Bizi takip et:",
+  "nBlog2": "Blog"
  },
  "radar": {
   "skip": "İçeriğe geç",

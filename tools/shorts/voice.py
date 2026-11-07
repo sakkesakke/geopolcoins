@@ -75,9 +75,9 @@ def voice_one(engine, tid, d):
         write_wav(raw, engine.say(text, lang), engine.sr)
         speed = min(1.35, max(1.0, dur(raw) / room))  # fit the scene, never slower than natural
         inputs += ["-i", raw]
-        filters.append(f"[{k + 1}:a]atempo={speed:.3f},aresample=48000,adelay={int(start * 1000)}|{int(start * 1000)},volume=1.0[v{k}]")
+        filters.append(f"[{k + 1}:a]atempo={speed:.3f},loudnorm=I=-16:TP=-2:LRA=7,aresample=48000,adelay={int(start * 1000)}|{int(start * 1000)}[v{k}]")
     n = len(inputs) // 2
-    mix = "".join(f"[v{k}]" for k in range(n)) + f"amix=inputs={n}:normalize=0:dropout_transition=0,loudnorm=I=-15:TP=-1.5[voice]"
+    mix = "".join(f"[v{k}]" for k in range(n)) + f"amix=inputs={n}:normalize=0:dropout_transition=0[voice]"
     duck = "[0:a]volume=0.32[music]"
     out = os.path.join(work, "out.mp4")
     fc = ";".join(filters + [mix, duck, "[music][voice]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.95[a]"])
@@ -85,6 +85,7 @@ def voice_one(engine, tid, d):
                     "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", out], check=True)
     os.replace(out, src)
     print("voiced", tid, lang, f"{n} lines")
+    print("line lengths:", ", ".join(f"{dur(os.path.join(work, f'l{k}.wav')):.1f}s" for k in range(n)))
 
 
 if __name__ == "__main__":

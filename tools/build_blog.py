@@ -10,9 +10,11 @@ from blog_posts_fr import POSTS as POSTS_FR
 from blog_posts_es import POSTS as POSTS_ES
 from blog_posts_pt import POSTS as POSTS_PT
 from blog_posts_de import POSTS as POSTS_DE
-LANGS = {"en": POSTS, "nl": POSTS_NL, "fr": POSTS_FR, "es": POSTS_ES, "pt": POSTS_PT, "de": POSTS_DE}
+from blog_posts_tr import POSTS as POSTS_TR
+from blog_posts_id import POSTS as POSTS_ID
+LANGS = {"en": POSTS, "nl": POSTS_NL, "fr": POSTS_FR, "es": POSTS_ES, "pt": POSTS_PT, "de": POSTS_DE, "tr": POSTS_TR, "id": POSTS_ID}
 EN_BY_SLUG = {p["slug"]: p for p in POSTS}
-for _l in ("nl", "fr", "es", "pt", "de"):
+for _l in ("nl", "fr", "es", "pt", "de", "tr", "id"):
     for _p in LANGS[_l]:
         _e = EN_BY_SLUG[_p["en"]]
         _p.setdefault("date", _e["date"]); _p.setdefault("tool", _e["tool"])
@@ -48,8 +50,18 @@ UI = {
             idx_h="Der <span style=\"color:var(--amber)\">Blog</span>", idx_lead="Kurze, ehrliche Guides: Betrug erkennen, Charts lesen, KI-Versprechen testen und unsere kostenlosen Tools nutzen. Kein Hype, kein Kursgerede.",
             foot="Bildung und Unterhaltung. Keine Finanzberatung.", privacy="Datenschutz", legal="Rechtliches", other="Auch auf",
             months=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]),
+ "tr": dict(skip="İçeriğe geç", home="Ana sayfa", blog="Blog", quick="Kısa cevap", read="dk okuma", tool="Araç", next="Şunu da oku", qs="Sorular",
+            idx_title="Blog: kripto güvenliği, yapay zekâ ve ücretsiz araçlar", idx_desc="Solana dolandırıcılıklarını fark etme, grafik okuma, yapay zekâ ve kripto, blockchain, ücretsiz yapay zekâ botları ve $MAIGA üzerine sade rehberler.",
+            idx_h="<span style=\"color:var(--amber)\">Blog</span>", idx_lead="Kısa ve dürüst rehberler: dolandırıcılığı fark et, grafik oku, yapay zekâ vaatlerini test et ve ücretsiz araçlarımızı kullan. Abartı yok, fiyat konuşması yok.",
+            foot="Eğitim ve eğlence. Yatırım tavsiyesi değildir.", privacy="Gizlilik", legal="Yasal", other="Diğer diller",
+            months=["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"]),
+ "id": dict(skip="Langsung ke konten", home="Beranda", blog="Blog", quick="Jawaban singkat", read="menit baca", tool="Alat", next="Baca juga", qs="Pertanyaan",
+            idx_title="Blog: keamanan kripto, AI, dan alat gratis", idx_desc="Panduan sederhana untuk mengenali penipuan Solana, membaca grafik, memahami AI dan kripto, blockchain, bot AI gratis, dan meme coin $MAIGA.",
+            idx_h="<span style=\"color:var(--amber)\">Blog</span>", idx_lead="Panduan singkat dan jujur: kenali penipuan, baca grafik, uji janji AI, dan pakai alat gratis kami. Tanpa hype, tanpa obrolan harga.",
+            foot="Edukasi dan hiburan. Bukan nasihat keuangan.", privacy="Privasi", legal="Hukum", other="Juga dalam",
+            months=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"]),
 }
-LNAME = {"en": "English", "nl": "Nederlands", "fr": "Français", "es": "Español", "pt": "Português", "de": "Deutsch"}
+LNAME = {"en": "English", "nl": "Nederlands", "fr": "Français", "es": "Español", "pt": "Português", "de": "Deutsch", "tr": "Türkçe", "id": "Bahasa Indonesia"}
 def fname(lang, slug=None):
     if slug is None: return "blog.html" if lang == "en" else f"blog-{lang}.html"
     return f"blog-{slug}.html" if lang == "en" else f"blog-{lang}-{slug}.html"
@@ -60,7 +72,7 @@ def alt(lang, en_slug):
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://geopolcoins.xyz/"
 CSP = ("default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; "
-       "font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'")
+       "font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'")
 TAGC = {"Safety": "#ff6b6b", "Veiligheid": "#ff6b6b", "Sécurité": "#ff6b6b", "AI": "#c8a8ff", "IA": "#c8a8ff", "Learn": "#5fd3c6", "Leren": "#5fd3c6", "Apprendre": "#5fd3c6", "Business": "#ffb547", "Create": "#f3ecd9", "Maken": "#f3ecd9", "Créer": "#f3ecd9", "$MAIGA": "#ffb547"}
 ORG = {"@type": "Organization", "name": "geopolcoins.xyz", "url": SITE, "logo": SITE + "logo.png"}
 
@@ -152,6 +164,7 @@ def head(title, desc, url, ld, ogtype="article", lang="en", alts=None):
 def foot(lang):
     u = UI[lang]
     return f"""<footer><a href="/">{u["home"]}</a><a href="/{fname(lang)}">{u["blog"]}</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">{u["privacy"]}</a><a href="/legal.html">{u["legal"]}</a><span>{u["foot"]}</span></footer>
+<script src="/track.js" data-page="blog" defer></script>
 <script src="/guide.js" defer></script>
 </body>
 </html>
@@ -259,7 +272,7 @@ def main():
     add = ""
     for name in names:
         if f"{SITE}{name}</loc>" not in s:
-            add += f"  <url><loc>{SITE}{name}</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><priority>{'0.8' if name in ('blog.html','blog-nl.html','blog-fr.html','blog-es.html','blog-pt.html','blog-de.html') else '0.6'}</priority></url>\n"
+            add += f"  <url><loc>{SITE}{name}</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><priority>{'0.8' if name in ('blog.html','blog-nl.html','blog-fr.html','blog-es.html','blog-pt.html','blog-de.html','blog-tr.html','blog-id.html') else '0.6'}</priority></url>\n"
     if add:
         s = s.replace("</urlset>", add + "</urlset>"); open(sm, "w", encoding="utf-8").write(s)
     print(f"blog: {len(names)} pages in {len(LANGS)} languages; sitemap +{add.count('<url>')}")

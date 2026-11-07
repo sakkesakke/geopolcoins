@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src https://api.geckoterminal.com https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Token Checkup widget | geopolcoins.xyz</title>
+<link rel="canonical" href="https://geopolcoins.xyz/widget.html">
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-display:swap}
+:root{--bg:#191427;--card:#251c38;--line:rgba(241,235,224,.14);--text:#f1ebe0;--dim:#b3a9c4;--amber:#ffb547;--red:#ff6b6b;--ok:#5be38a;--warn:#ffb547}
+.light{--bg:#fbf7ef;--card:#fff;--line:rgba(30,20,50,.14);--text:#1f1830;--dim:#5d5470;--amber:#c97a00;--red:#d63c3c;--ok:#1f9e55;--warn:#b86e00}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{padding:12px;border:1px solid var(--line);border-radius:14px;min-height:100%}
+.top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.top img{width:26px;height:26px;image-rendering:pixelated}
+.top b{font:400 22px/1 "Jersey 10",monospace;letter-spacing:.3px}
+form{display:flex;gap:6px}
+input{flex:1;min-width:0;padding:9px 10px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--text);font:13px ui-monospace,Consolas,monospace}
+button{padding:0 12px;min-height:38px;border-radius:9px;border:0;background:var(--amber);color:#1a1206;font-weight:800;cursor:pointer}
+button:disabled{opacity:.6;cursor:default}
+.msg{margin:8px 0 0;color:var(--dim);font-size:13px}.msg.bad{color:var(--red)}
+.res{margin-top:10px}
+.name{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.name b{font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pill{flex:0 0 auto;font-weight:800;font-size:12px;padding:4px 9px;border-radius:999px;color:#1a1206}
+.pill.bad{background:var(--red);color:#fff}.pill.warn{background:var(--warn)}.pill.ok{background:var(--ok)}
+ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:5px}
+li{display:flex;gap:7px;align-items:flex-start;font-size:13px}
+li i{flex:0 0 9px;height:9px;border-radius:50%;margin-top:5px;background:var(--dim)}
+li.bad i{background:var(--red)}li.warn i{background:var(--warn)}li.ok i{background:var(--ok)}
+.more{display:inline-block;margin-top:9px;color:var(--amber);font-weight:700;text-decoration:none}
+.ft{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:11.5px;color:var(--dim);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.ft a{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="w">
+ <div class="top"><img src="/meme/pxmint.png" alt="" width="26" height="26"><b>Token Checkup</b></div>
+ <form id="f" autocomplete="off"><input id="in" aria-label="Solana token address" placeholder="Paste a Solana token address" spellcheck="false"><button id="go" type="submit">Check</button></form>
+ <p class="msg" id="msg" role="status" aria-live="polite"></p>
+ <div class="res" id="res" hidden>
+  <div class="name"><b id="nm"></b><span class="pill" id="pill"></span></div>
+  <ul id="list"></ul>
+  <a class="more" id="more" target="_blank" rel="noopener">Full checkup on geopolcoins.xyz ↗</a>
+ </div>
+ <div class="ft"><span>Public data · not advice · NFA</span><a href="https://geopolcoins.xyz/widget.html" target="_blank" rel="noopener">Powered by geopolcoins.xyz</a></div>
+</div>
+<script src="/checkup-core.js"></script>
+<script>
+(function(){
+'use strict';
+var C=window.MAIGA_CORE,P=new URLSearchParams(location.search),busy=false,last=0;
+if(P.get('theme')==='light')document.documentElement.className='light';
+function $(id){return document.getElementById(id);}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function msg(t,bad){var m=$('msg');m.textContent=t||'';m.className='msg'+(bad?' bad':'');}
+function size(){try{parent.postMessage({maiga:'checkup-height',h:document.documentElement.scrollHeight},'*');}catch(e){}}
+function show(o){var v=C.verdict(o);$('nm').textContent=o.name+(o.sym?' ($'+o.sym+')':'');var p=$('pill');p.textContent=v.s;p.className='pill '+v.c;
+ var order={bad:0,warn:1,unk:2,ok:3,info:4},ul=$('list');ul.textContent='';
+ o.checks.slice().sort(function(a,b){return order[a.l]-order[b.l];}).slice(0,5).forEach(function(c){var li=el('li',c.l);li.appendChild(el('i'));li.appendChild(el('span',null,c.t));ul.appendChild(li);});
+ $('more').href='https://geopolcoins.xyz/hq.html?check='+encodeURIComponent(o.mint)+'#checkup';$('res').hidden=false;size();}
+function run(mint){mint=String(mint||'').trim();
+ if(!C.B58.test(mint)){msg('That is not a Solana token address.',true);size();return;}
+ if(busy)return;if(Date.now()-last<4000){msg('Please wait a few seconds.',true);return;}
+ busy=true;last=Date.now();$('go').disabled=true;msg('Mevrouw Mintje is reading the data…');
+ C.fetchAll(mint).then(function(R){if(!R.tok.ok&&!R.inf.ok&&!R.pools.ok&&![R.tok,R.inf,R.pools].some(function(r){return /http 404/.test(r.e);})){msg('Data source not reachable. Try again in a minute.',true);return;}
+  show(C.analyse(mint,R));msg('');}).catch(function(){msg('Something went wrong. Try again.',true);}).then(function(){busy=false;$('go').disabled=false;size();});}
+$('f').addEventListener('submit',function(e){e.preventDefault();run($('in').value);});
+var m=P.get('mint');if(m&&C.B58.test(m)){$('in').value=m;if(P.get('fixed')==='1')$('f').hidden=true;run(m);}
+size();window.addEventListener('resize',size);
+})();
+</script>
+<script src="/track.js" data-page="widget" defer></script>
+</body>
+</html>

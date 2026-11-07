@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Candlestick-grafieken lezen: een gids voor beginners</title>
 <meta name="description" content="Candles, volume, voortschrijdend gemiddelde en RSI in gewone woorden uitgelegd, met gratis oefengrafieken met verzonnen data.">
@@ -13,6 +13,8 @@
 <link rel="alternate" hreflang="es" href="https://geopolcoins.xyz/blog-es-como-leer-graficos-de-velas.html">
 <link rel="alternate" hreflang="pt" href="https://geopolcoins.xyz/blog-pt-como-ler-graficos-de-candles.html">
 <link rel="alternate" hreflang="de" href="https://geopolcoins.xyz/blog-de-kerzencharts-lesen.html">
+<link rel="alternate" hreflang="tr" href="https://geopolcoins.xyz/blog-tr-mum-grafikleri-nasil-okunur.html">
+<link rel="alternate" hreflang="id" href="https://geopolcoins.xyz/blog-id-cara-membaca-grafik-candlestick.html">
 <link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-how-to-read-candlestick-charts.html">
 <link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
 <meta property="og:type" content="article">
@@ -66,7 +68,7 @@ footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padd
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog-nl.html">Blog</a></nav>
 <article><span class="tag" style="background:#5fd3c6">Leren</span><h1>Candlestick-grafieken lezen: een gids voor beginners</h1>
 <p class="meta">6 november 2026 · 1 min lezen · Tool: <a href="/chart.html">Chart School</a></p>
-<p class="langs">Ook in: <a href="/blog-how-to-read-candlestick-charts.html" hreflang="en" lang="en">English</a> <a href="/blog-fr-lire-graphique-chandeliers.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-es-como-leer-graficos-de-velas.html" hreflang="es" lang="es">Español</a> <a href="/blog-pt-como-ler-graficos-de-candles.html" hreflang="pt" lang="pt">Português</a> <a href="/blog-de-kerzencharts-lesen.html" hreflang="de" lang="de">Deutsch</a></p>
+<p class="langs">Ook in: <a href="/blog-how-to-read-candlestick-charts.html" hreflang="en" lang="en">English</a> <a href="/blog-fr-lire-graphique-chandeliers.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-es-como-leer-graficos-de-velas.html" hreflang="es" lang="es">Español</a> <a href="/blog-pt-como-ler-graficos-de-candles.html" hreflang="pt" lang="pt">Português</a> <a href="/blog-de-kerzencharts-lesen.html" hreflang="de" lang="de">Deutsch</a> <a href="/blog-tr-mum-grafikleri-nasil-okunur.html" hreflang="tr" lang="tr">Türkçe</a> <a href="/blog-id-cara-membaca-grafik-candlestick.html" hreflang="id" lang="id">Bahasa Indonesia</a></p>
 <div class="quick"><b>Kort antwoord</b><p>Elke candle toont vier prijzen voor één periode: opening, hoogste, laagste en slot. Een groene candle sloot hoger dan hij opende, een rode lager. Volume toont hoeveel er verhandeld werd. Leer de vormen op oefengrafieken voor je naar echt geld kijkt.</p></div>
 <h2>Eén candle, vier prijzen</h2>
 <ul><li><strong>Body:</strong> het deel tussen opening en slot.</li><li><strong>Lontjes (wicks):</strong> de dunne lijnen erboven en eronder, met de hoogste en laagste prijs.</li><li><strong>Kleur:</strong> groen (of hol) als hij hoger sloot, rood als hij lager sloot.</li></ul>
@@ -85,6 +87,7 @@ footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padd
 <h2>Lees ook</h2><ul class="more"><li><a class="card" href="/blog-nl-hoe-werkt-een-blockchain.html"><span class="tag" style="background:#5fd3c6">Leren</span><h3>Hoe werkt een blockchain? Bouw er een in je browser</h3><p>Hashes, blokken, minen en waarom je de geschiedenis niet kunt veranderen, uitgelegd met een mini-blockchain die je zelf kunt breken.</p></a></li><li><a class="card" href="/blog-nl-is-solana-veilig-tegen-quantumcomputers.html"><span class="tag" style="background:#5fd3c6">Leren</span><h3>Is Solana veilig tegen quantumcomputers? Eenvoudig uitgelegd</h3><p>Waarom de handtekeningen van vandaag ooit gebroken kunnen worden door een grote quantumcomputer, wat post-quantum handtekeningen zijn, en hoe je ze uitprobeert.</p></a></li><li><a class="card" href="/blog-nl-solana-token-scam-checken.html"><span class="tag" style="background:#ff6b6b">Veiligheid</span><h3>Hoe check je of een Solana-token een scam is? (gratis, 1 minuut)</h3><p>Een eenvoudige checklist van de publieke rode vlaggen achter de meeste Solana-rug pulls, en een gratis tool die ze voor elke token nakijkt.</p></a></li></ul>
 </main>
 <footer><a href="/">Home</a><a href="/blog-nl.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Juridisch</a><span>Uitleg en ontspanning. Geen financieel advies.</span></footer>
+<script src="/track.js" data-page="blog" defer></script>
 <script src="/guide.js" defer></script>
 </body>
 </html>

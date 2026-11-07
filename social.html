@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Posts van deze week | MAIGA</title>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-display:swap}
+body{margin:0;background:#120f1e;color:#f1ebe0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font:400 48px/1 "Jersey 10",monospace;margin:10px 0 4px}p.sub{color:#b3a9c4;margin:0 0 18px}
+.post{background:#251c38;border-radius:16px;padding:14px;margin:0 0 18px}
+.post h2{margin:0 0 10px;font-size:18px}.post h2 small{color:#ffb547;font-weight:800;margin-right:8px}
+.post img{width:100%;border-radius:10px;display:block}
+pre{white-space:pre-wrap;background:#120f1e;border-radius:10px;padding:12px;font:15px/1.5 system-ui,sans-serif;margin:10px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;border:0;background:#ffb547;color:#1a1206;font-weight:800;text-decoration:none;cursor:pointer;font-size:15px}
+.btn.g{background:#2f2446;color:#f1ebe0}
+.err{color:#ff6b6b}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Posts van deze week</h1>
+<p class="sub" id="sub">Laden…</p>
+<div id="list"></div>
+<p class="sub">Elke zondagavond maakt de site deze 3 posts automatisch. Jij kiest wanneer je ze plaatst. Tip: maandag, woensdag en vrijdag.</p>
+</div>
+<script>
+(function(){
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+fetch('/social/kit.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(k){
+ document.getElementById('sub').textContent='Week '+k.week+' · gemaakt '+String(k.made).replace('T',' ').slice(0,16)+' UTC';
+ var L=document.getElementById('list');
+ k.posts.forEach(function(p){var box=el('div','post');var h=el('h2');h.appendChild(el('small',null,p.day));h.appendChild(document.createTextNode(p.label));box.appendChild(h);
+  var img=el('img');img.src='/'+p.image.replace(/^\//,'')+'?w='+encodeURIComponent(k.week);img.alt=p.label;box.appendChild(img);
+  var pre=el('pre',null,p.text);box.appendChild(pre);
+  var row=el('div','row'),c=el('button','btn','Kopieer tekst');c.type='button';
+  c.addEventListener('click',function(){(navigator.clipboard?navigator.clipboard.writeText(p.text):Promise.reject()).then(function(){c.textContent='Gekopieerd ✓';setTimeout(function(){c.textContent='Kopieer tekst';},1500);},function(){c.textContent='Selecteer en kopieer';});});
+  var d=el('a','btn g','Download beeld');d.href=img.src;d.download=p.image.split('/').pop();
+  var x=el('a','btn g','Open X');x.href='https://x.com/intent/post?text='+encodeURIComponent(p.text);x.target='_blank';x.rel='noopener';
+  row.appendChild(c);row.appendChild(d);row.appendChild(x);box.appendChild(row);L.appendChild(box);});
+}).catch(function(){var s=document.getElementById('sub');s.textContent='Nog geen posts. De eerste komen zondagavond.';s.className='sub err';});
+})();
+</script>
+</body>
+</html>

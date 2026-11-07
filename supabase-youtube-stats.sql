@@ -1,4 +1,4 @@
--- YouTube channel numbers for the weekly e-mail (NOT YET APPLIED, waiting for owner approval).
+-- YouTube channel numbers for the weekly e-mail. Applied 2026-11-07.
 -- Needs a free YouTube Data API key in the Supabase Vault named 'youtube_api_key', entered by the owner.
 -- Without a key nothing is fetched and the e-mail simply skips the YouTube section.
 create table if not exists public.yt_stats (day date primary key, subscribers integer, views bigint, videos integer);

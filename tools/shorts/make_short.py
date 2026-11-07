@@ -78,7 +78,24 @@ def wrap(d, text, f, maxw):
         out.append(cur)
     return out
 
+def pixtext(t):
+    # the pixel font has no accents: strip them (É -> E, Ç -> C) for the big plates only
+    import unicodedata
+    return ''.join(c for c in unicodedata.normalize('NFKD', t) if not unicodedata.combining(c)).replace('ß', 'SS')
+
+
+END = {'en': ('CHECK ANY TOKEN', 'Free Token Checkup  ·  No wallet', 'Solana  ·  10 languages', 'Education and entertainment. Not financial advice.'),
+       'nl': ('CHECK ELKE TOKEN', 'Gratis Token Checkup  ·  Geen wallet', 'Solana  ·  10 talen', 'Educatie en entertainment. Geen financieel advies.'),
+       'fr': ('VERIFIE UN TOKEN', 'Token Checkup gratuit  ·  Sans wallet', 'Solana  ·  10 langues', 'Éducation et divertissement. Pas un conseil financier.'),
+       'es': ('REVISA UN TOKEN', 'Token Checkup gratis  ·  Sin wallet', 'Solana  ·  10 idiomas', 'Educación y entretenimiento. No es asesoría financiera.'),
+       'de': ('PRUEF JEDEN TOKEN', 'Gratis Token Checkup  ·  Kein Wallet', 'Solana  ·  10 Sprachen', 'Bildung und Unterhaltung. Keine Finanzberatung.'),
+       'pt': ('CONFIRA UM TOKEN', 'Token Checkup grátis  ·  Sem carteira', 'Solana  ·  10 idiomas', 'Educação e entretenimento. Não é conselho financeiro.'),
+       'id': ('CEK TOKEN APA SAJA', 'Token Checkup gratis  ·  Tanpa dompet', 'Solana  ·  10 bahasa', 'Edukasi dan hiburan. Bukan nasihat keuangan.')}
+LANG = TOPIC.get('lang', 'en') if TOPIC.get('lang', 'en') in END else 'en'
+
+
 def marquee(d, text, f, cx, y, color, k=1.0, left=None):
+    text = pixtext(text)
     """Arcade marquee plate. k = pop scale 0..1+ (applied as vertical squash)."""
     w = d.textlength(text, font=f); pad = 34; h = f.size + 26
     x0 = (cx - w / 2 - pad) if left is None else left
@@ -169,8 +186,8 @@ def redflag(im, cx, cy, s, tl):
 @scene(3.5)
 def s_hook(tl, T):
     im = night_bg(tl, RED).convert('RGBA'); d = ImageDraw.Draw(im)
-    marquee(d, TOPIC['hook'][0], font(PIX, 150 if len(TOPIC['hook'][0]) < 12 else 112), W / 2, 190, RED, back(tl / 0.3))
-    marquee(d, TOPIC['hook'][1], font(PIX, 112 if len(TOPIC['hook'][1]) < 15 else 88), W / 2, 380, AMBER, back((tl - 0.18) / 0.3))
+    marquee(d, TOPIC['hook'][0], font(PIX, 150 if len(TOPIC['hook'][0]) < 12 else 112 if len(TOPIC['hook'][0]) < 16 else 92), W / 2, 190, RED, back(tl / 0.3))
+    marquee(d, TOPIC['hook'][1], font(PIX, 112 if len(TOPIC['hook'][1]) < 15 else 88 if len(TOPIC['hook'][1]) < 19 else 74), W / 2, 380, AMBER, back((tl - 0.18) / 0.3))
     tmp = Image.new('RGBA', (W, H))
     talking, _ = bubble(tmp, TOPIC['hook_line'], 120, 640, 840, tl, 0.5, cps=34, size=60, tail='down')
     sp = jp(22, tl, talking); zin = ease(tl / 0.35)
@@ -186,7 +203,7 @@ for i, (name, line) in enumerate(FLAGS):
             chip = f'{i + 1}/5'; fc = font(PIX, 70); cw = d.textlength(chip, font=fc)
             d.rounded_rectangle((W - 48 - cw - 44, 70, W - 48, 70 + 104), 18, fill=NIGHT, outline=RED, width=6)
             d.text((W - 48 - cw - 22, 82), chip, font=fc, fill=RED)
-            marquee(d, name, font(PIX, 104 if len(name) < 14 else 88), W / 2, 260, AMBER if i % 2 else CREAM, back(tl / 0.22))
+            marquee(d, name, font(PIX, 104 if len(name) < 14 else 88 if len(name) < 19 else 72), W / 2, 260, AMBER if i % 2 else CREAM, back(tl / 0.22))
             k = back((tl - 0.1) / 0.3)
             if k > 0: redflag(im, W // 2 - 140, int(1000 - 60 * (1 - min(1, k))), 40, tl)
             tmp = Image.new('RGBA', (W, H))
@@ -200,10 +217,10 @@ for i, (name, line) in enumerate(FLAGS):
 @scene(5.0)
 def s_end(tl, T):
     im = flash(night_bg(tl, TEAL), tl).convert('RGBA'); d = ImageDraw.Draw(im)
-    marquee(d, 'CHECK ANY TOKEN', font(PIX, 112), W / 2, 170, TEAL, back(tl / 0.3))
+    marquee(d, END[LANG][0], font(PIX, 112 if len(END[LANG][0]) < 16 else 96), W / 2, 170, TEAL, back(tl / 0.3))
     marquee(d, 'geopolcoins.xyz', font(PIX, 120), W / 2, 360, AMBER, back((tl - 0.12) / 0.3))
     f = font(SANS, 52)
-    for j, (txt, col) in enumerate([('Free Token Checkup  ·  No wallet', CREAM), ('Solana  ·  10 languages', TEAL)]):
+    for j, (txt, col) in enumerate([(END[LANG][1], CREAM), (END[LANG][2], TEAL)]):
         a = ease((tl - 0.5 - j * 0.2) / 0.35)
         if a > 0:
             w = d.textlength(txt, font=f); d.text(((W - w) / 2, 640 + j * 86 + 30 * (1 - a)), txt, font=f, fill=tuple(int(c * a) for c in col))
@@ -211,7 +228,7 @@ def s_end(tl, T):
     talking, _ = bubble(tmp, TOPIC.get('end_line', 'Follow for more!'), 220, 930, 660, tl, 0.9, cps=30, size=56, tail='down')
     sp = jp(18, tl, talking); im.alpha_composite(sp, ((W - sp.width) // 2, 1200 + int(8 * math.sin(tl * 5))))
     im.alpha_composite(tmp)
-    d = ImageDraw.Draw(im); fs = font(SANS, 34); txt = 'Education and entertainment. Not financial advice.'
+    d = ImageDraw.Draw(im); fs = font(SANS, 34); txt = END[LANG][3]
     w = d.textlength(txt, font=fs); d.text(((W - w) / 2, 1820), txt, font=fs, fill=DIM)
     return im.convert('RGB')
 

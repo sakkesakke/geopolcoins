@@ -1,0 +1,24 @@
+{
+ "week": "2026-W45",
+ "made": "2026-11-07T07:26+00:00",
+ "posts": [
+  {
+   "day": "Monday",
+   "label": "Language War winner",
+   "image": "social/war.png",
+   "text": "🏆 The MAIGA Raid Language War is open and no team has scored yet.\n\nPick your language team, beat Lord Rugpull and put your country on the board. Free, no wallet:\nhttps://geopolcoins.xyz/raid.html"
+  },
+  {
+   "day": "Wednesday",
+   "label": "Red Flag Report",
+   "image": "social/report.png",
+   "text": "🚩 Red Flag Report: we checked 20 trending Solana pools this week.\n\n5% had a serious red flag.\n5% thin liquidity · 0% buys with zero sells · 10% pumped 300%+ in a day\n\nFacts, not signals. NFA.\nhttps://geopolcoins.xyz/report.html"
+  },
+  {
+   "day": "Friday",
+   "label": "Tip of the week",
+   "image": "social/tip.png",
+   "text": "💡 How to check if a Solana token is a scam (free, in 1 minute)\n\nPaste the token's mint address into a checker and look at five things: liquidity, pool age, mint and freeze authority, how concentrated the holders…\n\nhttps://geopolcoins.xyz/blog-solana-token-scam-check.html"
+  }
+ ]
+}

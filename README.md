@@ -8,3 +8,4 @@ Instructions for the free Oracle server of geopolcoins.xyz. The server pulls thi
 3. Personal pixel Shorts: visitor enters a token address -> 20 s Jean-Phil Short with its public red flags, to download/share.
 4. Daily news cartoon: daily pixel Short about crypto-safety news, 10 languages, posted to YouTube via the official API (owner creates the OAuth key himself).
 5. Safety net: nightly Supabase backup to Oracle Object Storage + uptime alerts.
+6. Live chat on the site and in the Pixel World (owner chose option 3): free text through a server filter that removes all links/domains, scam words and swearing (AI filter on this server), rate limit, plain-text rendering, report + mute; only the server may broadcast into the world channel. Update privacy pages.

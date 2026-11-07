@@ -111,7 +111,10 @@
   "k15": "Pixelwelt",
   "k15p": "Lauf live mit anderen Besuchern herum und besuche jedes Tool.",
   "chNone": "Sprachkrieg-Champion: noch niemand. Hol ihn für deine Sprache!",
-  "chWin": "🏆 Champion der letzten Woche: {t}"
+  "chWin": "🏆 Champion der letzten Woche: {t}",
+  "wH": "Schau: 30-Sekunden-Lektionen",
+  "wP": "Pixel-Shorts über Krypto-Sicherheit. Ein Video lädt erst von YouTube, wenn du tippst.",
+  "wAll": "Alle Videos auf YouTube"
  },
  "radar": {
   "skip": "Zum Inhalt springen",

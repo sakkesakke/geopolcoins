@@ -111,7 +111,10 @@
   "k15": "Piksel Dünya",
   "k15p": "Diğer ziyaretçilerle canlı dolaş ve her aracı ziyaret et.",
   "chNone": "Dil savaşı şampiyonu: henüz yok. Dilin için kazan!",
-  "chWin": "🏆 Geçen haftanın şampiyonu: {t}"
+  "chWin": "🏆 Geçen haftanın şampiyonu: {t}",
+  "wH": "İzle: 30 saniyelik dersler",
+  "wP": "Kripto güvenliği hakkında piksel Shorts. Video yalnızca dokununca YouTube'dan yüklenir.",
+  "wAll": "Tüm videolar YouTube'da"
  },
  "radar": {
   "skip": "İçeriğe geç",

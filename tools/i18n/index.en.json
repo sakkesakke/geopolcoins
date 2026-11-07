@@ -111,5 +111,8 @@
  "fTerms": "Terms",
  "fine": "© 2026 geopolcoins.xyz. Productivity and fun tools. AI can make mistakes. Not financial, legal or medical advice.",
  "chNone": "Language war champion: nobody yet. Win it for your language!",
- "chWin": "🏆 Last week’s champion: {t}"
+ "chWin": "🏆 Last week’s champion: {t}",
+ "wH": "Watch: 30-second lessons",
+ "wP": "Pixel Shorts about crypto safety. A video only loads from YouTube when you tap it.",
+ "wAll": "All videos on YouTube"
 }

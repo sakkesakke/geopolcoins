@@ -111,7 +111,10 @@
   "k15": "Dunia Piksel",
   "k15p": "Jalan-jalan langsung bersama pengunjung lain dan kunjungi setiap alat.",
   "chNone": "Juara perang bahasa: belum ada. Menangkan untuk bahasamu!",
-  "chWin": "🏆 Juara minggu lalu: {t}"
+  "chWin": "🏆 Juara minggu lalu: {t}",
+  "wH": "Tonton: pelajaran 30 detik",
+  "wP": "Shorts piksel tentang keamanan kripto. Video baru dimuat dari YouTube saat kamu ketuk.",
+  "wAll": "Semua video di YouTube"
  },
  "radar": {
   "skip": "Langsung ke konten",

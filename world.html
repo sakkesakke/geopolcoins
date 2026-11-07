@@ -191,7 +191,7 @@ var cv=$('cv'),cx=cv.getContext('2d');cx.imageSmoothingEnabled=false;
 cv.addEventListener('pointerdown',function(e){var r=cv.getBoundingClientRect();tap={x:cam.x+(e.clientX-r.left)/r.width*VW,y:cam.y+(e.clientY-r.top)/r.height*VH};});
 
 /* ---------- realtime (Supabase Realtime broadcast + presence, public channel, no tables) ---------- */
-var K='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN',TOPIC='realtime:maiga-world',ws=null,ref=0,joined=false,peers={},online=0,myKey=Math.random().toString(36).slice(2,10),lastSent=0,lastHb=0,retry=1000,hbTimer=null;
+var K='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN',TOPIC='realtime:maiga-world',ws=null,ref=0,joined=false,peers=new Map(),online=0,myKey=Math.random().toString(36).slice(2,10),lastSent=0,lastHb=0,retry=1000,hbTimer=null;
 function wsSend(ev,payload){if(ws&&ws.readyState===1)ws.send(JSON.stringify({topic:TOPIC,event:ev,payload:payload,ref:String(++ref)}));}
 function connect(){if(document.hidden)return;try{ws=new WebSocket('wss://zslzbfbqrtfpvgbjhssd.supabase.co/realtime/v1/websocket?apikey='+K+'&vsn=1.0.0');}catch(e){return later();}
  ws.onopen=function(){retry=1000;wsSend('phx_join',{config:{broadcast:{self:false},presence:{key:myKey},private:false}});
@@ -200,25 +200,25 @@ function connect(){if(document.hidden)return;try{ws=new WebSocket('wss://zslzbfb
   if(msg.event==='phx_reply'&&!joined&&msg.payload&&msg.payload.status==='ok'){joined=true;wsSend('presence',{type:'presence',event:'track',payload:{t:Date.now()}});send(true);updHud();}
   else if(msg.event==='presence_state'){online=Object.keys(msg.payload||{}).length;updHud();}
   else if(msg.event==='presence_diff'){var p=msg.payload||{};online+=Object.keys(p.joins||{}).length-Object.keys(p.leaves||{}).length;if(online<1)online=1;
-   Object.keys(p.leaves||{}).forEach(function(k){delete peers[k];});updHud();}
+   Object.keys(p.leaves||{}).forEach(function(k){peers.delete(k);});updHud();}
   else if(msg.event==='broadcast'&&msg.payload)onPeer(msg.payload.event,msg.payload.payload);};
  ws.onclose=function(){joined=false;clearInterval(hbTimer);updHud();later();};ws.onerror=function(){try{ws.close();}catch(x){}};}
 function later(){setTimeout(connect,retry);retry=Math.min(retry*2,30000);}
 document.addEventListener('visibilitychange',function(){if(document.hidden){if(ws)try{ws.close();}catch(e){}}else if(!ws||ws.readyState>1)connect();});
 var EMO=['👋','🚩','🎉','😂','🤔','🔥'];
 function clampN(v,a,b){v=+v;return v>=a&&v<=b?v:null;}
-function onPeer(ev,p){if(!p||typeof p.k!=='string'||p.k.length>12||p.k===myKey)return;
- var o=peers[p.k]||(peers[p.k]={x:0,y:0,rx:0,ry:0,d:1,a:'jp',n:[0,0],t:'en',seen:0,emo:null,emoT:0});o.seen=Date.now();
+function onPeer(ev,p){if(!p||typeof p.k!=='string'||!/^[a-z0-9]{1,12}$/.test(p.k)||p.k===myKey)return;if(!peers.has(p.k)&&peers.size>=200)return;
+ var o=peers.get(p.k);if(!o){o={x:0,y:0,rx:0,ry:0,d:1,a:'jp',n:[0,0],t:'en',seen:0,emo:null,emoT:0};peers.set(p.k,o);}o.seen=Date.now();
  if(ev==='p'){var x=clampN(p.x,0,MW*TS),y=clampN(p.y,0,MH*TS);if(x===null||y===null)return;if(!o.rx){o.rx=x;o.ry=y;}o.x=x;o.y=y;o.d=p.d===-1?-1:1;
   if(AV.some(function(a){return a[0]===p.a;}))o.a=p.a;if(Array.isArray(p.n))o.n=[(p.n[0]|0)&15,(p.n[1]|0)&15];if(TEAMS.indexOf(p.t)>=0)o.t=p.t;}
  else if(ev==='e'){var i=p.e|0;if(i>=0&&i<EMO.length){o.emo=EMO[i];o.emoT=Date.now();}}}
-function send(force){if(!joined)return;var now=Date.now(),n=Object.keys(peers).length,gap=n>20?500:200;if(!force&&now-lastSent<gap)return;lastSent=now;lastHb=now;
+function send(force){if(!joined)return;var now=Date.now(),n=peers.size,gap=n>20?500:200;if(!force&&now-lastSent<gap)return;lastSent=now;lastHb=now;
  wsSend('broadcast',{type:'broadcast',event:'p',payload:{k:myKey,x:Math.round(me.x),y:Math.round(me.y),d:me.d,a:me.a,n:me.n,t:me.t}});}
 var emos=$('emos');EMO.forEach(function(em,i){var b=document.createElement('button');b.type='button';b.className='btn emo';b.textContent=em;b.setAttribute('aria-label','emote '+em);
  var last=0;b.addEventListener('click',function(){var now=Date.now();if(now-last<1500)return;last=now;me.emo=em;me.emoT=now;if(joined)wsSend('broadcast',{type:'broadcast',event:'e',payload:{k:myKey,e:i}});});emos.appendChild(b);});
 function updHud(){var el=$('online');if(!el)return;var s=el.querySelector('span');
  if(!joined){el.classList.add('off');s.textContent=ws&&ws.readyState===0?tr('conn'):tr('off');}
- else{el.classList.remove('off');var n=Math.max(online,1+Object.keys(peers).length);s.textContent=n<=1?tr('solo'):fmt(tr('on'),{n:n});}
+ else{el.classList.remove('off');var n=Math.max(online,1+peers.size);s.textContent=n<=1?tr('solo'):fmt(tr('on'),{n:n});}
  $('who').textContent=nameOf(me.n);}
 
 /* ---------- loop ---------- */
@@ -237,7 +237,7 @@ function step(t){var dt=Math.min(0.05,(t-last)/1000);last=t;var sp=90*dt,vx=0,vy
  var bo=npcs[0];if(!nb&&Math.hypot(bo.x-me.x,bo.y-me.y)<26)nb={bolt:true};
  if(nb!==near){near=nb;if(near){go.hidden=false;go.textContent=near.bolt?tr('talk'):fmt(tr('enter'),{p:tr('p.'+near[5])});}else go.hidden=true;}
  // peers smoothing + timeout
- var now=Date.now();Object.keys(peers).forEach(function(k){var o=peers[k];if(now-o.seen>15000){delete peers[k];return;}o.rx+=(o.x-o.rx)*Math.min(1,dt*10);o.ry+=(o.y-o.ry)*Math.min(1,dt*10);});
+ var now=Date.now();peers.forEach(function(o,k){if(now-o.seen>15000){peers.delete(k);return;}o.rx+=(o.x-o.rx)*Math.min(1,dt*10);o.ry+=(o.y-o.ry)*Math.min(1,dt*10);});
  cam.x=Math.max(0,Math.min(MW*TS-VW,me.x-VW/2));cam.y=Math.max(0,Math.min(MH*TS-VH,me.y-VH/2));
  draw(now,t);requestAnimationFrame(step);}
 function drawChar(a,x,y,d,label,col,emo,emoT,now,t,moving){var im=IMG[a];var X=Math.round(x-cam.x),Y=Math.round(y-cam.y);
@@ -250,7 +250,7 @@ function drawChar(a,x,y,d,label,col,emo,emoT,now,t,moving){var im=IMG[a];var X=M
 var FLAG={en:'EN',nl:'NL',fr:'FR',es:'ES',pt:'PT',de:'DE',tr:'TR',id:'ID',vi:'VI',ar:'AR'};
 function draw(now,t){cx.drawImage(map,cam.x,cam.y,VW,VH,0,0,VW,VH);
  var list=[];npcs.forEach(function(n){list.push({y:n.y,f:function(){drawChar(n.a,n.x,n.y,1,n.label,'#5fd3c6',null,0,now,t,!n.bolt);}});});
- Object.keys(peers).slice(0,50).forEach(function(k){var o=peers[k];list.push({y:o.ry,f:function(){drawChar(o.a,o.rx,o.ry,o.d,nameOf(o.n)+' '+(FLAG[o.t]||''),'#f3ecd9',o.emo,o.emoT,now,t,Math.abs(o.x-o.rx)+Math.abs(o.y-o.ry)>1);}});});
+ Array.from(peers.values()).slice(0,50).forEach(function(o){list.push({y:o.ry,f:function(){drawChar(o.a,o.rx,o.ry,o.d,nameOf(o.n)+' '+(FLAG[o.t]||''),'#f3ecd9',o.emo,o.emoT,now,t,Math.abs(o.x-o.rx)+Math.abs(o.y-o.ry)>1);}});});
  list.push({y:me.y,f:function(){drawChar(me.a,me.x,me.y,me.d,nameOf(me.n),'#ffb547',me.emo,me.emoT,now,t,!!(keys.u||keys.d||keys.l||keys.r||tap));}});
  list.sort(function(a,b){return a.y-b.y;}).forEach(function(i){i.f();});
  // Bolt tip bubble

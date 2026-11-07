@@ -163,7 +163,7 @@ def head(title, desc, url, ld, ogtype="article", lang="en", alts=None):
 
 def foot(lang):
     u = UI[lang]
-    return f"""<footer><a href="/">{u["home"]}</a><a href="/{fname(lang)}">{u["blog"]}</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">{u["privacy"]}</a><a href="/legal.html">{u["legal"]}</a><span>{u["foot"]}</span></footer>
+    return f"""<footer><a href="/">{u["home"]}</a><a href="/{fname(lang)}">{u["blog"]}</a><a href="/blog-feed.xml">RSS</a><a href="https://www.youtube.com/@geopolcoins" target="_blank" rel="noopener noreferrer">YouTube</a><a href="/privacy.html">{u["privacy"]}</a><a href="/legal.html">{u["legal"]}</a><span>{u["foot"]}</span></footer>
 <script src="/track.js" data-page="blog" defer></script>
 <script src="/guide.js" defer></script>
 </body>

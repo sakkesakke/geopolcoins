@@ -1,0 +1,6 @@
+# Installed automatically on the server for user "maiga" (from branch "server" of sakkesakke/geopolcoins).
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+*/5 * * * * /opt/maiga/pull.sh >> /opt/maiga/logs/pull.log 2>&1
+*/5 * * * * /opt/maiga/repo/jobs/sitewatch.sh >> /opt/maiga/logs/sitewatch.log 2>&1
+7 * * * * /opt/maiga/repo/server/status.sh > /opt/maiga/logs/status.txt 2>&1

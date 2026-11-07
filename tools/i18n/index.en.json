@@ -109,5 +109,7 @@
  "fCook": "Cookies",
  "fLeg": "Legal",
  "fTerms": "Terms",
- "fine": "© 2026 geopolcoins.xyz. Productivity and fun tools. AI can make mistakes. Not financial, legal or medical advice."
+ "fine": "© 2026 geopolcoins.xyz. Productivity and fun tools. AI can make mistakes. Not financial, legal or medical advice.",
+ "chNone": "Language war champion: nobody yet. Win it for your language!",
+ "chWin": "🏆 Last week’s champion: {t}"
 }

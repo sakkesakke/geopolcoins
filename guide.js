@@ -3,6 +3,7 @@
    from the pages). Search: MiniSearch by Luca Ongaro (MIT), /vendor/minisearch.min.js, loaded on first open. */
 (function () {
   if (window.__boltGuide) return; window.__boltGuide = 1;
+  if (!window.MAIGA_BADGES && !document.querySelector('script[src$="badges.js"]')) { var bj = document.createElement('script'); bj.src = '/badges.js'; bj.defer = true; document.head.appendChild(bj); }
   function pickLang() {
     var s = null; try { s = localStorage.getItem('maiga_lang'); } catch (e) {}
     var l = s || document.documentElement.lang || navigator.language || 'en';
@@ -136,6 +137,7 @@
   var SAFE = /\b(seed|phrase|recovery|private key|prive sleutel|cle privee|scam|scammer|oplichter|arnaque|hack|hacked|gehackt|pirate|phishing|dm)\b/;
   function ask(q, hit) {
     bubble(q, true);
+    if (window.MAIGA_BADGES) window.MAIGA_BADGES.earn('bolt');
     if (hit) { hit.t ? showTopic(hit.t, rel(hit.t)) : showPage(hit.p); return; }
     var n = norm(q);
     if (SAFE.test(n)) { showTopic(topic('safe'), [{ t: topic('check') }]); return; }

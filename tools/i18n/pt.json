@@ -107,7 +107,11 @@
   "bP": "Guias curtos e honestos: identificar golpes, ler um gráfico e testar promessas de IA. Em oito idiomas.",
   "bAll": "Todos os guias",
   "fol": "Siga a gente:",
-  "nBlog2": "Blog"
+  "nBlog2": "Blog",
+  "k15": "Mundo pixel",
+  "k15p": "Passeie ao vivo com outros visitantes e visite cada ferramenta.",
+  "chNone": "Campeão da guerra de idiomas: ninguém ainda. Ganhe para o seu idioma!",
+  "chWin": "🏆 Campeão da semana passada: {t}"
  },
  "radar": {
   "skip": "Pular para o conteúdo",

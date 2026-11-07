@@ -3,6 +3,7 @@
 
   growth.py sample --data DIR    take a snapshot of the trending Solana pools (public GeckoTerminal data)
   growth.py weekly --data DIR    build this week's post kit (social/), report.html and the history file
+  growth.py monthly --data DIR   build the State of Rugs page (rugs.html) + social/rugs.png for last month
 
 Facts, not signals: we only count public red flags across many pools and never name or rate one token.
 No secrets: the Supabase key used for the Language War is the public, read-only publishable key.
@@ -268,7 +269,7 @@ footer{{border-top:1px solid var(--line);margin:40px 0 0;padding:18px 0 40px;col
 <p>You may reuse these numbers with a link to this page (CC BY 4.0).</p>
 <section class="faq" aria-labelledby="hQ"><h2 id="hQ">Questions</h2>{faq_html}</section>
 </main>
-<footer><a href="/">Home</a><a href="radar.html">MAIGA Radar</a><a href="widget.html">Widget</a><a href="blog.html">Blog</a><a href="privacy.html">Privacy</a><a href="legal.html">Legal</a><span>Facts, not signals. Not financial advice.</span></footer>
+<footer><a href="/">Home</a><a href="radar.html">MAIGA Radar</a><a href="rugs.html">State of Rugs</a><a href="widget.html">Widget</a><a href="blog.html">Blog</a><a href="privacy.html">Privacy</a><a href="legal.html">Legal</a><span>Facts, not signals. Not financial advice.</span></footer>
 </div>
 <script src="/track.js" data-page="report" defer></script>
 <script src="/guide.js" defer></script>
@@ -311,9 +312,157 @@ def weekly(data_dir):
     print(json.dumps({"week": wk, "pools": s["pools"], "any": s["any"], "war": len(war)}, ensure_ascii=False))
 
 
+# ---------------------------------------------------------------- 3) monthly State of Rugs
+def month_pools(data_dir, ym):
+    """All pools sampled in ISO weeks whose Thursday falls in month ym (YYYY-MM); each pool counted once."""
+    pools = {}
+    for f in sorted(glob.glob(os.path.join(data_dir, "redflags-*.json"))):
+        wk = os.path.basename(f)[9:-5]
+        try:
+            y, w = wk.split("-W"); thu = dt.date.fromisocalendar(int(y), int(w), 4)
+        except ValueError:
+            continue
+        if thu.strftime("%Y-%m") != ym:
+            continue
+        for addr, p in (json.load(open(f)).get("pools") or {}).items():
+            q = pools.setdefault(addr, {"flags": set()}); q["flags"].update(p.get("flags") or [])
+    return pools
+
+
+def month_stats(pools, ym):
+    n = len(pools)
+    pct = lambda fn: round(100 * sum(1 for p in pools.values() if fn(p["flags"])) / n) if n else 0
+    s = {"month": ym, "pools": n, "any": pct(lambda f: "thin" in f or "nosell" in f), "thin": pct(lambda f: "thin" in f),
+         "nosell": pct(lambda f: "nosell" in f), "vol": pct(lambda f: "vol" in f), "pump": pct(lambda f: "pump" in f), "crash": pct(lambda f: "crash" in f)}
+    names = {"thin": "Thin liquidity", "nosell": "Buys but zero sells", "vol": "Bot-like volume", "pump": "+300% in a day", "crash": "-60% in a day"}
+    k = max(names, key=lambda x: s[x]) if n else "thin"
+    s["top"] = names[k]; s["top_pct"] = s[k]
+    return s
+
+
+def month_champs(ym):
+    try:
+        rows = get_json(SB + "/rest/v1/rpc/raid_champions", {"apikey": SB_KEY, "Content-Type": "application/json"}, b'{"p_weeks":6}')
+        return [r for r in rows if str(r.get("week_start", ""))[:7] == ym and r.get("team") in TEAM_NAMES]
+    except Exception as e:
+        print("champions unavailable:", e); return []
+
+
+def img_rugs(s, prev, out):
+    im, d, PIX, SANS = canvas("STATE OF RUGS", (255, 181, 71))
+    label = dt.date.fromisoformat(s["month"] + "-01").strftime("%B %Y")
+    d.text((60, 190), f"{label} · {s['pools']} trending Solana pools", font=SANS(38), fill=(243, 236, 217))
+    d.text((60, 250), f"{s['any']}%", font=PIX(230), fill=(255, 107, 107))
+    d.text((60 + d.textlength(f"{s['any']}%", font=PIX(230)) + 30, 330), "had a serious\nred flag", font=PIX(80), fill=(243, 236, 217), spacing=6)
+    if prev and prev.get("pools"):
+        diff = s["any"] - prev["any"]
+        d.text((60, 520), f"{'+' if diff >= 0 else ''}{diff} points vs last month", font=SANS(36), fill=(255, 181, 71) if diff > 0 else (95, 211, 198))
+    d.text((60, 590), f"Most common trick: {s['top']} ({s['top_pct']}%)", font=SANS(36), fill=(179, 169, 196))
+    im.save(out, optimize=True)
+
+
+def rugs_page(s, months, champs):
+    e = html.escape
+    label = lambda ym: dt.date.fromisoformat(ym + "-01").strftime("%B %Y")
+    prev = next((m for m in reversed(months) if m["month"] < s["month"] and m.get("pools")), None)
+    trend = ""
+    if prev:
+        diff = s["any"] - prev["any"]
+        trend = f"<p class=\"trend\">{'▲' if diff > 0 else '▼' if diff < 0 else '='} {abs(diff)} points compared with {e(label(prev['month']))} ({prev['any']}%).</p>"
+    bars = "".join(f'<div class="bar"><span>{e(l)}</span><i style="--w:{v}%"></i><b>{v}%</b></div>' for l, v in
+                   [("Thin liquidity (under $10,000)", s["thin"]), ("Buys but zero sells (honeypot sign)", s["nosell"]), ("Volume over 50x the liquidity", s["vol"]), ("Price +300% in 24 hours", s["pump"]), ("Price -60% in 24 hours", s["crash"])])
+    champ = ("<ul class=\"ch\">" + "".join(f"<li>{TEAM_FLAGS[c['team']]} <b>{e(TEAM_NAMES[c['team']])}</b> · week of {e(str(c['week_start']))} · {int(c['points'])} points</li>" for c in champs) + "</ul>") if champs else "<p class=\"dim\">No Language War champion this month yet. Play MAIGA Raid and win the next trophy for your language.</p>"
+    rows = "".join(f"<tr><td>{e(label(m['month']))}</td><td>{m['pools']}</td><td><b>{m['any']}%</b></td><td>{m['thin']}%</td><td>{m['nosell']}%</td><td>{e(m['top'])}</td></tr>" for m in reversed(months[-24:]) if m.get("pools"))
+    lead = (f"<div class=\"big\"><b>{s['any']}%</b><span>of the {s['pools']} trending Solana pools we saw in {e(label(s['month']))} had a serious red flag. The most common trick: <strong>{e(s['top'])}</strong> ({s['top_pct']}%).</span></div>{trend}<h2>The tricks this month</h2>{bars}"
+            if s["pools"] else "<div class=\"big\"><span>The first monthly report appears on the 1st of next month.</span></div>")
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Dataset", "name": "State of Rugs: monthly Solana red flag report", "description": "Monthly share of trending Solana pools with public red flags.",
+                     "url": "https://geopolcoins.xyz/rugs.html", "license": "https://creativecommons.org/licenses/by/4.0/", "creator": {"@type": "Organization", "name": "geopolcoins.xyz"},
+                     "dateModified": dt.date.today().isoformat(), "isAccessibleForFree": True}, ensure_ascii=False)
+    return f"""<!doctype html>
+<html lang="en" data-page="rugs">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>State of Rugs: monthly Solana scam report | MAIGA</title>
+<meta name="description" content="Every month: how many trending Solana pools showed public rug-pull red flags, which tricks were most common and how it changed. Free data, no signals.">
+<link rel="canonical" href="https://geopolcoins.xyz/rugs.html">
+<meta property="og:type" content="article"><meta property="og:title" content="State of Rugs {e(label(s['month']))}: {s['any']}% of trending Solana pools had a serious red flag">
+<meta property="og:description" content="Monthly public red-flag report for trending Solana pools. Facts, not signals.">
+<meta property="og:url" content="https://geopolcoins.xyz/rugs.html"><meta property="og:image" content="https://geopolcoins.xyz/social/rugs.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{ld}</script>
+<style>
+@font-face{{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-display:swap}}
+:root{{--night:#120f1e;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--red:#ff6b6b;--teal:#5fd3c6;--pix:"Jersey 10",ui-monospace,monospace}}
+*{{box-sizing:border-box}}body{{margin:0;background:var(--night);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}}
+a{{color:var(--amber)}}a:focus-visible{{outline:3px solid var(--teal);outline-offset:2px}}
+.skip{{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800}}.skip:focus{{top:8px}}
+.wrap{{max-width:980px;margin:0 auto;padding:0 16px}}.top{{display:flex;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}}
+.brand{{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}}.brand b{{color:var(--amber)}}.top nav a{{color:var(--dim);text-decoration:none;margin-left:12px}}
+h1{{font:400 clamp(48px,8vw,80px)/.95 var(--pix);margin:22px 0 10px}}h1 span{{color:var(--amber)}}h2{{font:400 clamp(30px,4vw,40px)/1 var(--pix);margin:36px 0 10px}}
+.lead{{color:var(--dim);font-size:18px;max-width:62ch}}.dim{{color:var(--dim)}}.trend{{font-weight:700;color:var(--amber)}}
+.big{{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;background:var(--cab);border-radius:16px;padding:18px 20px;margin:18px 0}}
+.big b{{font:400 clamp(80px,14vw,140px)/1 var(--pix);color:var(--red)}}.big span{{font-size:20px;max-width:34ch}}
+.bar{{display:grid;grid-template-columns:minmax(0,1fr) 2fr 54px;gap:12px;align-items:center;margin:8px 0}}.bar span{{color:var(--dim)}}
+.bar i{{display:block;height:16px;border-radius:8px;background:linear-gradient(90deg,var(--amber) var(--w),#2f2446 var(--w))}}.bar b{{text-align:right}}
+.ch{{list-style:none;padding:0}}.ch li{{background:var(--cab);border-radius:12px;padding:10px 14px;margin:6px 0}}
+table{{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}}th,td{{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}}th{{color:var(--mute);font-weight:600}}.tw{{overflow-x:auto}}
+.note{{border:1px dashed rgba(255,181,71,.55);border-radius:12px;padding:10px 14px;background:rgba(255,181,71,.07);font-size:14px}}
+.cta{{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}}.btn{{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;background:var(--amber);color:#1a1206;font-weight:800;text-decoration:none}}.btn.g{{background:var(--cab);color:var(--text);border:1px solid var(--line)}}
+footer{{border-top:1px solid var(--line);margin:40px 0 0;padding:18px 0 40px;color:var(--mute);font-size:13.5px;display:flex;gap:14px;flex-wrap:wrap}}footer a{{color:var(--dim)}}
+@media (max-width:620px){{.bar{{grid-template-columns:1fr 54px}}.bar i{{grid-column:1/3;grid-row:2}}}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="report.html">Weekly report</a><a href="hq.html#checkup">Token Checkup</a><a href="badges.html">Badges</a></nav></header>
+<main id="main">
+<h1>State of <span>Rugs</span></h1>
+<p class="lead">Once a month we add up the public red flags across every trending Solana pool we sampled (four times a day). Facts, not signals: we never name or rate a single token.</p>
+{lead}
+<h2>Language War champions</h2>
+{champ}
+<div class="cta"><a class="btn" href="hq.html#checkup">Check a token yourself</a><a class="btn g" href="report.html">This week's numbers</a><a class="btn g" href="rug.html">Practise: Spot the Rug Pull</a></div>
+<p class="note">Trending means many people trade it now, not that it is good. No flags does not mean safe. Data: GeckoTerminal public API; each pool counts once per month. Education only, not financial advice.</p>
+<h2>All months</h2>
+<div class="tw"><table><thead><tr><th>Month</th><th>Pools</th><th>Serious flag</th><th>Thin liquidity</th><th>No sells</th><th>Top trick</th></tr></thead><tbody>{rows}</tbody></table></div>
+<p>Journalists and bloggers: you may reuse these numbers with a link to this page (CC BY 4.0).</p>
+</main>
+<footer><a href="/">Home</a><a href="report.html">Weekly report</a><a href="radar.html">MAIGA Radar</a><a href="blog.html">Blog</a><a href="privacy.html">Privacy</a><a href="legal.html">Legal</a><span>Facts, not signals. Not financial advice.</span></footer>
+</div>
+<script src="/track.js" data-page="rugs" defer></script>
+<script src="/guide.js" defer></script>
+</body>
+</html>
+"""
+
+
+def monthly(data_dir, ym=None):
+    if not ym:
+        first = dt.date.today().replace(day=1)
+        ym = (first - dt.timedelta(days=1)).strftime("%Y-%m")
+    s = month_stats(month_pools(data_dir, ym), ym)
+    path = os.path.join(ROOT, "data", "rugs-monthly.json")
+    months = json.load(open(path)) if os.path.exists(path) else []
+    prev = next((m for m in reversed(months) if m["month"] < ym and m.get("pools")), None)
+    months = sorted([m for m in months if m["month"] != ym] + ([s] if s["pools"] else []), key=lambda m: m["month"])
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    json.dump(months, open(path, "w"), indent=1)
+    champs = month_champs(ym)
+    os.makedirs(os.path.join(ROOT, "social"), exist_ok=True)
+    if s["pools"]:
+        img_rugs(s, prev, os.path.join(ROOT, "social", "rugs.png"))
+    open(os.path.join(ROOT, "rugs.html"), "w", encoding="utf-8").write(rugs_page(s, months, champs))
+    print(json.dumps({"month": ym, "pools": s["pools"], "any": s["any"], "champs": len(champs)}))
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["sample", "weekly"])
+    ap.add_argument("cmd", choices=["sample", "weekly", "monthly"])
+    ap.add_argument("--month", default=None)
     ap.add_argument("--data", default=os.path.join(ROOT, ".growth-data"))
     a = ap.parse_args()
-    sample(a.data) if a.cmd == "sample" else weekly(a.data)
+    {"sample": lambda: sample(a.data), "weekly": lambda: weekly(a.data), "monthly": lambda: monthly(a.data, a.month)}[a.cmd]()

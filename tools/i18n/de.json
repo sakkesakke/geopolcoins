@@ -107,7 +107,11 @@
   "bP": "Kurze, ehrliche Guides: Betrug erkennen, Charts lesen und KI-Versprechen testen. In acht Sprachen.",
   "bAll": "Alle Guides",
   "fol": "Folge uns:",
-  "nBlog2": "Blog"
+  "nBlog2": "Blog",
+  "k15": "Pixelwelt",
+  "k15p": "Lauf live mit anderen Besuchern herum und besuche jedes Tool.",
+  "chNone": "Sprachkrieg-Champion: noch niemand. Hol ihn für deine Sprache!",
+  "chWin": "🏆 Champion der letzten Woche: {t}"
  },
  "radar": {
   "skip": "Zum Inhalt springen",

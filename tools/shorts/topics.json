@@ -73,7 +73,9 @@
   "end_line": "Block, report, move on!",
   "title": "5 crypto DM scams and how to spot them #Shorts",
   "description": "Fake support, seed phrase requests, double-your-coins, fake urgency and look-alike links.",
-  "tags": "shorts,crypto scam,DM scam,seed phrase,phishing,crypto safety,pixel art,geopolcoins"
+  "tags": "shorts,crypto scam,DM scam,seed phrase,phishing,crypto safety,pixel art,geopolcoins",
+  "video": "scam-dms.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "seed-phrase",
@@ -107,7 +109,9 @@
   "end_line": "Your keys, your rules!",
   "title": "5 golden rules for your seed phrase #Shorts",
   "description": "How to keep your wallet recovery phrase safe, in 26 seconds.",
-  "tags": "shorts,seed phrase,crypto wallet,crypto safety,self custody,pixel art,geopolcoins"
+  "tags": "shorts,seed phrase,crypto wallet,crypto safety,self custody,pixel art,geopolcoins",
+  "video": "seed-phrase.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "rug-types",
@@ -141,7 +145,9 @@
   "end_line": "Check before you ape!",
   "title": "5 types of rug pull explained #Shorts",
   "description": "Liquidity pull, slow dump, honeypot, mint and dump, fake team.",
-  "tags": "shorts,rug pull,honeypot,crypto scam,crypto safety,Solana,pixel art,geopolcoins"
+  "tags": "shorts,rug pull,honeypot,crypto scam,crypto safety,Solana,pixel art,geopolcoins",
+  "video": "rug-types.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "fomo",
@@ -175,7 +181,9 @@
   "end_line": "Calm wins the game!",
   "title": "Crypto FOMO: 5 ways to stay calm #Shorts",
   "description": "Simple habits that protect you from buying in a panic.",
-  "tags": "shorts,FOMO,crypto,crypto safety,trading psychology,pixel art,geopolcoins"
+  "tags": "shorts,FOMO,crypto,crypto safety,trading psychology,pixel art,geopolcoins",
+  "video": "fomo.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "fake-airdrops",
@@ -209,7 +217,9 @@
   "end_line": "Ignore it, stay safe!",
   "title": "Fake crypto airdrops: 5 warning signs #Shorts",
   "description": "Why random free tokens and claim links can empty your wallet.",
-  "tags": "shorts,airdrop scam,crypto scam,wallet drainer,crypto safety,pixel art,geopolcoins"
+  "tags": "shorts,airdrop scam,crypto scam,wallet drainer,crypto safety,pixel art,geopolcoins",
+  "video": "fake-airdrops.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "words-1",
@@ -243,7 +253,9 @@
   "end_line": "Now you speak crypto!",
   "title": "5 crypto words explained in 26 seconds #Shorts",
   "description": "Wallet, liquidity, market cap, gas fee and DYOR explained simply.",
-  "tags": "shorts,crypto for beginners,crypto words,learn crypto,blockchain,pixel art,geopolcoins"
+  "tags": "shorts,crypto for beginners,crypto words,learn crypto,blockchain,pixel art,geopolcoins",
+  "video": "words-1.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "safe-habits",
@@ -277,7 +289,9 @@
   "end_line": "Stay safe out there!",
   "title": "5 habits that keep your crypto safe #Shorts",
   "description": "Bookmarks, two wallets, 2FA, reading before you sign, updates.",
-  "tags": "shorts,crypto safety,2FA,crypto wallet,crypto tips,pixel art,geopolcoins"
+  "tags": "shorts,crypto safety,2FA,crypto wallet,crypto tips,pixel art,geopolcoins",
+  "video": "safe-habits.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "pump-dump",
@@ -311,7 +325,9 @@
   "end_line": "Don't be the exit!",
   "title": "Pump and dump explained in 26 seconds #Shorts",
   "description": "The five steps of a pump and dump, so you can spot one early.",
-  "tags": "shorts,pump and dump,crypto scam,meme coin,crypto safety,pixel art,geopolcoins"
+  "tags": "shorts,pump and dump,crypto scam,meme coin,crypto safety,pixel art,geopolcoins",
+  "video": "pump-dump.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "check-token",
@@ -345,7 +361,9 @@
   "end_line": "Try it free on the site!",
   "title": "How to check a Solana token in 5 steps #Shorts",
   "description": "Mint and freeze authority, holders, liquidity, age and volume.",
-  "tags": "shorts,Solana,token checker,crypto safety,rug pull,DYOR,pixel art,geopolcoins"
+  "tags": "shorts,Solana,token checker,crypto safety,rug pull,DYOR,pixel art,geopolcoins",
+  "video": "check-token.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "redflags-5-nl",
@@ -382,7 +400,7 @@
   "description": "Mint aan, freeze aan, pool niet vast, weinig wallets, 100x-beloftes. Check dit voor je koopt.\n\nCheck elke Solana-token gratis (geen wallet nodig): https://geopolcoins.xyz",
   "tags": "shorts,crypto,veiligheid,rug pull,rode vlaggen,crypto scam,Solana,geopolcoins",
   "video": "redflags-5-nl.mp4",
-  "voice": "chatterbox"
+  "voice": "chatterbox:george"
  },
  {
   "id": "redflags-5-fr",
@@ -417,7 +435,9 @@
   "end_line": "Abonne-toi pour plus d'alertes !",
   "title": "5 alertes rouges avant d'acheter un token crypto #Shorts",
   "description": "Mint activé, freeze activé, pool non bloqué, peu de wallets, promesses 100x. Vérifie avant d'acheter.\n\nVérifie n'importe quel token Solana gratuitement (sans wallet) : https://geopolcoins.xyz",
-  "tags": "shorts,crypto,sécurité,rug pull,arnaque crypto,Solana,geopolcoins"
+  "tags": "shorts,crypto,sécurité,rug pull,arnaque crypto,Solana,geopolcoins",
+  "video": "redflags-5-fr.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "redflags-5-es",
@@ -452,7 +472,9 @@
   "end_line": "¡Sígueme para más banderas rojas!",
   "title": "5 banderas rojas antes de comprar un token cripto #Shorts",
   "description": "Mint activo, freeze activo, pool sin bloqueo, pocas wallets, promesas 100x. Revísalo antes de comprar.\n\nRevisa cualquier token de Solana gratis (sin wallet): https://geopolcoins.xyz",
-  "tags": "shorts,cripto,seguridad,rug pull,estafa cripto,Solana,geopolcoins"
+  "tags": "shorts,cripto,seguridad,rug pull,estafa cripto,Solana,geopolcoins",
+  "video": "redflags-5-es.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "redflags-5-de",
@@ -487,7 +509,9 @@
   "end_line": "Folge für mehr Warnzeichen!",
   "title": "5 Warnzeichen vor dem Kauf eines Krypto-Tokens #Shorts",
   "description": "Mint an, Freeze an, Pool nicht gesperrt, wenige Wallets, 100x-Versprechen. Prüf das vor dem Kauf.\n\nPrüfe jeden Solana-Token gratis (ohne Wallet): https://geopolcoins.xyz",
-  "tags": "shorts,krypto,sicherheit,rug pull,krypto betrug,Solana,geopolcoins"
+  "tags": "shorts,krypto,sicherheit,rug pull,krypto betrug,Solana,geopolcoins",
+  "video": "redflags-5-de.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "redflags-5-pt",
@@ -522,7 +546,9 @@
   "end_line": "Siga para mais sinais vermelhos!",
   "title": "5 sinais vermelhos antes de comprar um token cripto #Shorts",
   "description": "Mint ligado, freeze ligado, pool sem trava, poucas carteiras, promessas 100x. Confira antes de comprar.\n\nConfira qualquer token Solana grátis (sem carteira): https://geopolcoins.xyz",
-  "tags": "shorts,cripto,segurança,rug pull,golpe cripto,Solana,geopolcoins"
+  "tags": "shorts,cripto,segurança,rug pull,golpe cripto,Solana,geopolcoins",
+  "video": "redflags-5-pt.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "redflags-5-id",
@@ -557,7 +583,9 @@
   "end_line": "Follow untuk tanda bahaya lainnya!",
   "title": "5 tanda bahaya sebelum beli token kripto #Shorts",
   "description": "Mint aktif, freeze aktif, pool tidak dikunci, sedikit dompet, janji 100x. Cek sebelum beli.\n\nCek token Solana apa saja gratis (tanpa dompet): https://geopolcoins.xyz",
-  "tags": "shorts,kripto,keamanan,rug pull,penipuan kripto,Solana,geopolcoins"
+  "tags": "shorts,kripto,keamanan,rug pull,penipuan kripto,Solana,geopolcoins",
+  "video": "redflags-5-id.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "seed-phrase-nl",
@@ -592,7 +620,9 @@
   "end_line": "Jouw sleutels, jouw regels!",
   "title": "5 gouden regels voor je seed phrase #Shorts",
   "description": "Zo hou je de herstelzin van je wallet veilig, in 26 seconden.\n\nCheck elke Solana-token gratis (geen wallet nodig): https://geopolcoins.xyz",
-  "tags": "shorts,seed phrase,crypto wallet,crypto veiligheid,geopolcoins"
+  "tags": "shorts,seed phrase,crypto wallet,crypto veiligheid,geopolcoins",
+  "video": "seed-phrase-nl.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "seed-phrase-fr",
@@ -627,7 +657,9 @@
   "end_line": "Tes clés, tes règles !",
   "title": "5 règles d'or pour ta seed phrase #Shorts",
   "description": "Comment protéger la phrase de récupération de ton wallet, en 26 secondes.\n\nVérifie n'importe quel token Solana gratuitement (sans wallet) : https://geopolcoins.xyz",
-  "tags": "shorts,seed phrase,wallet crypto,sécurité crypto,geopolcoins"
+  "tags": "shorts,seed phrase,wallet crypto,sécurité crypto,geopolcoins",
+  "video": "seed-phrase-fr.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "seed-phrase-es",
@@ -662,7 +694,9 @@
   "end_line": "¡Tus llaves, tus reglas!",
   "title": "5 reglas de oro para tu seed phrase #Shorts",
   "description": "Cómo mantener segura la frase de recuperación de tu wallet, en 26 segundos.\n\nRevisa cualquier token de Solana gratis (sin wallet): https://geopolcoins.xyz",
-  "tags": "shorts,seed phrase,wallet cripto,seguridad cripto,geopolcoins"
+  "tags": "shorts,seed phrase,wallet cripto,seguridad cripto,geopolcoins",
+  "video": "seed-phrase-es.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "seed-phrase-de",
@@ -697,7 +731,9 @@
   "end_line": "Deine Schlüssel, deine Regeln!",
   "title": "5 goldene Regeln für deine Seed Phrase #Shorts",
   "description": "So bleibt die Wiederherstellungsphrase deines Wallets sicher, in 26 Sekunden.\n\nPrüfe jeden Solana-Token gratis (ohne Wallet): https://geopolcoins.xyz",
-  "tags": "shorts,seed phrase,krypto wallet,krypto sicherheit,geopolcoins"
+  "tags": "shorts,seed phrase,krypto wallet,krypto sicherheit,geopolcoins",
+  "video": "seed-phrase-de.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "seed-phrase-pt",
@@ -732,7 +768,9 @@
   "end_line": "Suas chaves, suas regras!",
   "title": "5 regras de ouro para sua seed phrase #Shorts",
   "description": "Como manter segura a frase de recuperação da sua carteira, em 26 segundos.\n\nConfira qualquer token Solana grátis (sem carteira): https://geopolcoins.xyz",
-  "tags": "shorts,seed phrase,carteira cripto,segurança cripto,geopolcoins"
+  "tags": "shorts,seed phrase,carteira cripto,segurança cripto,geopolcoins",
+  "video": "seed-phrase-pt.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "seed-phrase-id",
@@ -767,6 +805,8 @@
   "end_line": "Kuncimu, aturanmu!",
   "title": "5 aturan emas untuk seed phrase kamu #Shorts",
   "description": "Cara menjaga frasa pemulihan dompetmu tetap aman, dalam 26 detik.\n\nCek token Solana apa saja gratis (tanpa dompet): https://geopolcoins.xyz",
-  "tags": "shorts,seed phrase,dompet kripto,keamanan kripto,geopolcoins"
+  "tags": "shorts,seed phrase,dompet kripto,keamanan kripto,geopolcoins",
+  "video": "seed-phrase-id.mp4",
+  "voice": "chatterbox:george"
  }
 ]

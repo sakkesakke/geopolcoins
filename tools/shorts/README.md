@@ -8,6 +8,9 @@ python3 tools/shorts/make_short.py next            # first topic without "posted
 python3 tools/shorts/make_short.py scam-dms out/   # a specific topic
 ```
 
+Languages: set `"lang"` on a topic (en, nl, fr, es, de, pt, id). Accents are stripped only on the big pixel plates (the pixel font has none); speech bubbles keep them.
+Ready-made videos: a topic with `"video": "file.mp4"` is not rendered; that file on the `media` branch is uploaded as is.
+
 Output: `<id>.mp4` and `<id>_check.jpg` (four frames to check by eye) in `.shorts/` (git-ignored) or the folder you give.
 
 ## Posting (YouTube @geopolcoins)

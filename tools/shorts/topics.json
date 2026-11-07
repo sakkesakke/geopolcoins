@@ -1,121 +1,770 @@
 [
-  {"id": "redflags-5", "posted": "2026-11-07",
-   "hook": ["5 RED FLAGS", "BEFORE YOU BUY"], "hook_line": "Check these 5 things. Takes 30 seconds.",
-   "items": [["MINT IS ON", "The dev can print new tokens anytime. Your share shrinks."],
-             ["FREEZE IS ON", "They can freeze your tokens. Then you cannot sell."],
-             ["POOL NOT LOCKED", "They can pull the money pool and vanish."],
-             ["FEW WALLETS OWN IT", "If the top 10 hold most of it, they can dump on you."],
-             ["100X PROMISES", "Nobody can promise profit. Big promises mean run."]],
-   "end_line": "Follow for more red flags!",
-   "title": "5 red flags before you buy a crypto token #Shorts",
-   "description": "Mint on, freeze on, unlocked pool, a few wallets own it, 100x promises. Check these before you buy.",
-   "tags": "shorts,crypto safety,rug pull,red flags,crypto scam,Solana,token checker,pixel art,geopolcoins"},
-
-  {"id": "scam-dms",
-   "hook": ["DM SCAMS", "5 CLASSIC TRICKS"], "hook_line": "A stranger slides into your DMs. Now what?",
-   "items": [["FAKE SUPPORT", "Real support never DMs you first. Never."],
-             ["SEED PHRASE ASK", "Anyone asking for your seed phrase is a thief."],
-             ["DOUBLE YOUR COINS", "Send 1, get 2 back? You only get 0."],
-             ["URGENT! ACT NOW!", "Rush means scam. Real deals can wait."],
-             ["LOOK-ALIKE LINK", "One wrong letter in a link can empty a wallet."]],
-   "end_line": "Block, report, move on!",
-   "title": "5 crypto DM scams and how to spot them #Shorts",
-   "description": "Fake support, seed phrase requests, double-your-coins, fake urgency and look-alike links.",
-   "tags": "shorts,crypto scam,DM scam,seed phrase,phishing,crypto safety,pixel art,geopolcoins"},
-
-  {"id": "seed-phrase",
-   "hook": ["SEED PHRASE", "5 GOLDEN RULES"], "hook_line": "Your seed phrase is the key to everything.",
-   "items": [["WRITE IT ON PAPER", "Paper or metal. Not a photo, not a screenshot."],
-             ["NEVER TYPE IT", "No website, form or chat ever needs it."],
-             ["NOBODY ASKS", "Not support, not a friend, not a bot."],
-             ["TWO SAFE PLACES", "Keep copies in two places only you can reach."],
-             ["TEST SMALL", "Try a restore with a tiny wallet first."]],
-   "end_line": "Your keys, your rules!",
-   "title": "5 golden rules for your seed phrase #Shorts",
-   "description": "How to keep your wallet recovery phrase safe, in 26 seconds.",
-   "tags": "shorts,seed phrase,crypto wallet,crypto safety,self custody,pixel art,geopolcoins"},
-
-  {"id": "rug-types",
-   "hook": ["RUG PULLS", "5 TYPES"], "hook_line": "Not every rug looks the same.",
-   "items": [["LIQUIDITY PULL", "The dev removes the pool. Price drops to zero."],
-             ["SLOW DUMP", "Insiders sell a bit every day until it is dead."],
-             ["HONEYPOT", "You can buy, but the code will not let you sell."],
-             ["MINT AND DUMP", "New tokens get printed and sold on you."],
-             ["FAKE TEAM", "Stolen photos, fake names, then they vanish."]],
-   "end_line": "Check before you ape!",
-   "title": "5 types of rug pull explained #Shorts",
-   "description": "Liquidity pull, slow dump, honeypot, mint and dump, fake team.",
-   "tags": "shorts,rug pull,honeypot,crypto scam,crypto safety,Solana,pixel art,geopolcoins"},
-
-  {"id": "fomo",
-   "hook": ["FOMO", "5 WAYS TO BEAT IT"], "hook_line": "Everyone is buying. Should you?",
-   "items": [["WAIT 24 HOURS", "If it is good today, it is good tomorrow."],
-             ["SET A LIMIT", "Only play with money you can lose."],
-             ["CHECK THE TOKEN", "Two minutes of checks beat two years of regret."],
-             ["MUTE THE HYPE", "Loud accounts are often paid to be loud."],
-             ["NO BORROWED MONEY", "Never buy crypto with a loan."]],
-   "end_line": "Calm wins the game!",
-   "title": "Crypto FOMO: 5 ways to stay calm #Shorts",
-   "description": "Simple habits that protect you from buying in a panic.",
-   "tags": "shorts,FOMO,crypto,crypto safety,trading psychology,pixel art,geopolcoins"},
-
-  {"id": "fake-airdrops",
-   "hook": ["FREE AIRDROP?", "5 WARNING SIGNS"], "hook_line": "Free tokens landed in your wallet. Careful!",
-   "items": [["UNKNOWN TOKEN", "Random tokens can be bait. Do not touch them."],
-             ["CLAIM SITE", "A claim link from a stranger can drain you."],
-             ["APPROVE ALL", "Never approve unlimited spending for a gift."],
-             ["PAY A FEE", "A real airdrop never asks you to pay first."],
-             ["TOO MUCH VALUE", "Thousands for free? That is the trap."]],
-   "end_line": "Ignore it, stay safe!",
-   "title": "Fake crypto airdrops: 5 warning signs #Shorts",
-   "description": "Why random free tokens and claim links can empty your wallet.",
-   "tags": "shorts,airdrop scam,crypto scam,wallet drainer,crypto safety,pixel art,geopolcoins"},
-
-  {"id": "words-1",
-   "hook": ["CRYPTO WORDS", "IN 26 SECONDS"], "hook_line": "Five words every beginner hears.",
-   "items": [["WALLET", "An app that holds your keys, not your coins."],
-             ["LIQUIDITY", "Money in a pool so people can buy and sell."],
-             ["MARKET CAP", "Price times all tokens. Not money in the bank."],
-             ["GAS FEE", "A small fee to pay the network for your move."],
-             ["DYOR", "Do your own research. Always."]],
-   "end_line": "Now you speak crypto!",
-   "title": "5 crypto words explained in 26 seconds #Shorts",
-   "description": "Wallet, liquidity, market cap, gas fee and DYOR explained simply.",
-   "tags": "shorts,crypto for beginners,crypto words,learn crypto,blockchain,pixel art,geopolcoins"},
-
-  {"id": "safe-habits",
-   "hook": ["SAFE CRYPTO", "5 HABITS"], "hook_line": "Small habits, big protection.",
-   "items": [["BOOKMARK SITES", "Use bookmarks, not search ads or DMs."],
-             ["TWO WALLETS", "One to hold, one small one to play."],
-             ["2FA ON", "Turn on two-step login on every account."],
-             ["READ BEFORE SIGN", "Check what a wallet pop-up asks before you click."],
-             ["UPDATE APPS", "Old apps can have old holes."]],
-   "end_line": "Stay safe out there!",
-   "title": "5 habits that keep your crypto safe #Shorts",
-   "description": "Bookmarks, two wallets, 2FA, reading before you sign, updates.",
-   "tags": "shorts,crypto safety,2FA,crypto wallet,crypto tips,pixel art,geopolcoins"},
-
-  {"id": "pump-dump",
-   "hook": ["PUMP & DUMP", "HOW IT WORKS"], "hook_line": "Here is how they take your money.",
-   "items": [["1. BUY CHEAP", "Insiders buy a tiny coin before anyone knows."],
-             ["2. HYPE IT", "Paid posts, fake groups, rocket emojis."],
-             ["3. YOU BUY", "New buyers push the price up."],
-             ["4. THEY SELL", "Insiders sell everything at the top."],
-             ["5. CRASH", "The price falls. Late buyers are left holding."]],
-   "end_line": "Don't be the exit!",
-   "title": "Pump and dump explained in 26 seconds #Shorts",
-   "description": "The five steps of a pump and dump, so you can spot one early.",
-   "tags": "shorts,pump and dump,crypto scam,meme coin,crypto safety,pixel art,geopolcoins"},
-
-  {"id": "check-token",
-   "hook": ["CHECK A TOKEN", "IN 5 STEPS"], "hook_line": "Two minutes that can save you a lot.",
-   "items": [["COPY THE MINT", "Get the token address from a trusted place."],
-             ["MINT + FREEZE", "Both should be off. Turned off for good."],
-             ["HOLDERS", "Look at how much the top wallets hold."],
-             ["POOL", "Is the liquidity locked or burned?"],
-             ["AGE + VOLUME", "Brand new and huge volume? Extra careful."]],
-   "end_line": "Try it free on the site!",
-   "title": "How to check a Solana token in 5 steps #Shorts",
-   "description": "Mint and freeze authority, holders, liquidity, age and volume.",
-   "tags": "shorts,Solana,token checker,crypto safety,rug pull,DYOR,pixel art,geopolcoins"}
+ {
+  "id": "redflags-5",
+  "posted": "2026-11-07",
+  "hook": [
+   "5 RED FLAGS",
+   "BEFORE YOU BUY"
+  ],
+  "hook_line": "Check these 5 things. Takes 30 seconds.",
+  "items": [
+   [
+    "MINT IS ON",
+    "The dev can print new tokens anytime. Your share shrinks."
+   ],
+   [
+    "FREEZE IS ON",
+    "They can freeze your tokens. Then you cannot sell."
+   ],
+   [
+    "POOL NOT LOCKED",
+    "They can pull the money pool and vanish."
+   ],
+   [
+    "FEW WALLETS OWN IT",
+    "If the top 10 hold most of it, they can dump on you."
+   ],
+   [
+    "100X PROMISES",
+    "Nobody can promise profit. Big promises mean run."
+   ]
+  ],
+  "end_line": "Follow for more red flags!",
+  "title": "5 red flags before you buy a crypto token #Shorts",
+  "description": "Mint on, freeze on, unlocked pool, a few wallets own it, 100x promises. Check these before you buy.",
+  "tags": "shorts,crypto safety,rug pull,red flags,crypto scam,Solana,token checker,pixel art,geopolcoins"
+ },
+ {
+  "id": "new-features",
+  "video": "new-features-short.mp4",
+  "title": "4 new free things on geopolcoins.xyz #Shorts",
+  "description": "Pixel World (walk around live with other visitors), 12 Scam Hunter badges, the weekly Language War trophy and the monthly State of Rugs report. No account, no wallet, 10 languages.",
+  "tags": "shorts,pixel art,crypto safety,browser game,geopolcoins,rug pull,badges"
+ },
+ {
+  "id": "scam-dms",
+  "hook": [
+   "DM SCAMS",
+   "5 CLASSIC TRICKS"
+  ],
+  "hook_line": "A stranger slides into your DMs. Now what?",
+  "items": [
+   [
+    "FAKE SUPPORT",
+    "Real support never DMs you first. Never."
+   ],
+   [
+    "SEED PHRASE ASK",
+    "Anyone asking for your seed phrase is a thief."
+   ],
+   [
+    "DOUBLE YOUR COINS",
+    "Send 1, get 2 back? You only get 0."
+   ],
+   [
+    "URGENT! ACT NOW!",
+    "Rush means scam. Real deals can wait."
+   ],
+   [
+    "LOOK-ALIKE LINK",
+    "One wrong letter in a link can empty a wallet."
+   ]
+  ],
+  "end_line": "Block, report, move on!",
+  "title": "5 crypto DM scams and how to spot them #Shorts",
+  "description": "Fake support, seed phrase requests, double-your-coins, fake urgency and look-alike links.",
+  "tags": "shorts,crypto scam,DM scam,seed phrase,phishing,crypto safety,pixel art,geopolcoins"
+ },
+ {
+  "id": "seed-phrase",
+  "hook": [
+   "SEED PHRASE",
+   "5 GOLDEN RULES"
+  ],
+  "hook_line": "Your seed phrase is the key to everything.",
+  "items": [
+   [
+    "WRITE IT ON PAPER",
+    "Paper or metal. Not a photo, not a screenshot."
+   ],
+   [
+    "NEVER TYPE IT",
+    "No website, form or chat ever needs it."
+   ],
+   [
+    "NOBODY ASKS",
+    "Not support, not a friend, not a bot."
+   ],
+   [
+    "TWO SAFE PLACES",
+    "Keep copies in two places only you can reach."
+   ],
+   [
+    "TEST SMALL",
+    "Try a restore with a tiny wallet first."
+   ]
+  ],
+  "end_line": "Your keys, your rules!",
+  "title": "5 golden rules for your seed phrase #Shorts",
+  "description": "How to keep your wallet recovery phrase safe, in 26 seconds.",
+  "tags": "shorts,seed phrase,crypto wallet,crypto safety,self custody,pixel art,geopolcoins"
+ },
+ {
+  "id": "rug-types",
+  "hook": [
+   "RUG PULLS",
+   "5 TYPES"
+  ],
+  "hook_line": "Not every rug looks the same.",
+  "items": [
+   [
+    "LIQUIDITY PULL",
+    "The dev removes the pool. Price drops to zero."
+   ],
+   [
+    "SLOW DUMP",
+    "Insiders sell a bit every day until it is dead."
+   ],
+   [
+    "HONEYPOT",
+    "You can buy, but the code will not let you sell."
+   ],
+   [
+    "MINT AND DUMP",
+    "New tokens get printed and sold on you."
+   ],
+   [
+    "FAKE TEAM",
+    "Stolen photos, fake names, then they vanish."
+   ]
+  ],
+  "end_line": "Check before you ape!",
+  "title": "5 types of rug pull explained #Shorts",
+  "description": "Liquidity pull, slow dump, honeypot, mint and dump, fake team.",
+  "tags": "shorts,rug pull,honeypot,crypto scam,crypto safety,Solana,pixel art,geopolcoins"
+ },
+ {
+  "id": "fomo",
+  "hook": [
+   "FOMO",
+   "5 WAYS TO BEAT IT"
+  ],
+  "hook_line": "Everyone is buying. Should you?",
+  "items": [
+   [
+    "WAIT 24 HOURS",
+    "If it is good today, it is good tomorrow."
+   ],
+   [
+    "SET A LIMIT",
+    "Only play with money you can lose."
+   ],
+   [
+    "CHECK THE TOKEN",
+    "Two minutes of checks beat two years of regret."
+   ],
+   [
+    "MUTE THE HYPE",
+    "Loud accounts are often paid to be loud."
+   ],
+   [
+    "NO BORROWED MONEY",
+    "Never buy crypto with a loan."
+   ]
+  ],
+  "end_line": "Calm wins the game!",
+  "title": "Crypto FOMO: 5 ways to stay calm #Shorts",
+  "description": "Simple habits that protect you from buying in a panic.",
+  "tags": "shorts,FOMO,crypto,crypto safety,trading psychology,pixel art,geopolcoins"
+ },
+ {
+  "id": "fake-airdrops",
+  "hook": [
+   "FREE AIRDROP?",
+   "5 WARNING SIGNS"
+  ],
+  "hook_line": "Free tokens landed in your wallet. Careful!",
+  "items": [
+   [
+    "UNKNOWN TOKEN",
+    "Random tokens can be bait. Do not touch them."
+   ],
+   [
+    "CLAIM SITE",
+    "A claim link from a stranger can drain you."
+   ],
+   [
+    "APPROVE ALL",
+    "Never approve unlimited spending for a gift."
+   ],
+   [
+    "PAY A FEE",
+    "A real airdrop never asks you to pay first."
+   ],
+   [
+    "TOO MUCH VALUE",
+    "Thousands for free? That is the trap."
+   ]
+  ],
+  "end_line": "Ignore it, stay safe!",
+  "title": "Fake crypto airdrops: 5 warning signs #Shorts",
+  "description": "Why random free tokens and claim links can empty your wallet.",
+  "tags": "shorts,airdrop scam,crypto scam,wallet drainer,crypto safety,pixel art,geopolcoins"
+ },
+ {
+  "id": "words-1",
+  "hook": [
+   "CRYPTO WORDS",
+   "IN 26 SECONDS"
+  ],
+  "hook_line": "Five words every beginner hears.",
+  "items": [
+   [
+    "WALLET",
+    "An app that holds your keys, not your coins."
+   ],
+   [
+    "LIQUIDITY",
+    "Money in a pool so people can buy and sell."
+   ],
+   [
+    "MARKET CAP",
+    "Price times all tokens. Not money in the bank."
+   ],
+   [
+    "GAS FEE",
+    "A small fee to pay the network for your move."
+   ],
+   [
+    "DYOR",
+    "Do your own research. Always."
+   ]
+  ],
+  "end_line": "Now you speak crypto!",
+  "title": "5 crypto words explained in 26 seconds #Shorts",
+  "description": "Wallet, liquidity, market cap, gas fee and DYOR explained simply.",
+  "tags": "shorts,crypto for beginners,crypto words,learn crypto,blockchain,pixel art,geopolcoins"
+ },
+ {
+  "id": "safe-habits",
+  "hook": [
+   "SAFE CRYPTO",
+   "5 HABITS"
+  ],
+  "hook_line": "Small habits, big protection.",
+  "items": [
+   [
+    "BOOKMARK SITES",
+    "Use bookmarks, not search ads or DMs."
+   ],
+   [
+    "TWO WALLETS",
+    "One to hold, one small one to play."
+   ],
+   [
+    "2FA ON",
+    "Turn on two-step login on every account."
+   ],
+   [
+    "READ BEFORE SIGN",
+    "Check what a wallet pop-up asks before you click."
+   ],
+   [
+    "UPDATE APPS",
+    "Old apps can have old holes."
+   ]
+  ],
+  "end_line": "Stay safe out there!",
+  "title": "5 habits that keep your crypto safe #Shorts",
+  "description": "Bookmarks, two wallets, 2FA, reading before you sign, updates.",
+  "tags": "shorts,crypto safety,2FA,crypto wallet,crypto tips,pixel art,geopolcoins"
+ },
+ {
+  "id": "pump-dump",
+  "hook": [
+   "PUMP & DUMP",
+   "HOW IT WORKS"
+  ],
+  "hook_line": "Here is how they take your money.",
+  "items": [
+   [
+    "1. BUY CHEAP",
+    "Insiders buy a tiny coin before anyone knows."
+   ],
+   [
+    "2. HYPE IT",
+    "Paid posts, fake groups, rocket emojis."
+   ],
+   [
+    "3. YOU BUY",
+    "New buyers push the price up."
+   ],
+   [
+    "4. THEY SELL",
+    "Insiders sell everything at the top."
+   ],
+   [
+    "5. CRASH",
+    "The price falls. Late buyers are left holding."
+   ]
+  ],
+  "end_line": "Don't be the exit!",
+  "title": "Pump and dump explained in 26 seconds #Shorts",
+  "description": "The five steps of a pump and dump, so you can spot one early.",
+  "tags": "shorts,pump and dump,crypto scam,meme coin,crypto safety,pixel art,geopolcoins"
+ },
+ {
+  "id": "check-token",
+  "hook": [
+   "CHECK A TOKEN",
+   "IN 5 STEPS"
+  ],
+  "hook_line": "Two minutes that can save you a lot.",
+  "items": [
+   [
+    "COPY THE MINT",
+    "Get the token address from a trusted place."
+   ],
+   [
+    "MINT + FREEZE",
+    "Both should be off. Turned off for good."
+   ],
+   [
+    "HOLDERS",
+    "Look at how much the top wallets hold."
+   ],
+   [
+    "POOL",
+    "Is the liquidity locked or burned?"
+   ],
+   [
+    "AGE + VOLUME",
+    "Brand new and huge volume? Extra careful."
+   ]
+  ],
+  "end_line": "Try it free on the site!",
+  "title": "How to check a Solana token in 5 steps #Shorts",
+  "description": "Mint and freeze authority, holders, liquidity, age and volume.",
+  "tags": "shorts,Solana,token checker,crypto safety,rug pull,DYOR,pixel art,geopolcoins"
+ },
+ {
+  "id": "redflags-5-nl",
+  "lang": "nl",
+  "hook": [
+   "5 RODE VLAGGEN",
+   "VOOR JE KOOPT"
+  ],
+  "hook_line": "Check deze 5 dingen. Duurt 30 seconden.",
+  "items": [
+   [
+    "MINT STAAT AAN",
+    "De maker kan altijd nieuwe tokens bijmaken."
+   ],
+   [
+    "FREEZE STAAT AAN",
+    "Ze kunnen je tokens bevriezen. Dan kun je niet verkopen."
+   ],
+   [
+    "POOL NIET VAST",
+    "Ze kunnen het geld uit de pool halen en verdwijnen."
+   ],
+   [
+    "WEINIG WALLETS",
+    "Als de top 10 bijna alles heeft, kunnen ze dumpen."
+   ],
+   [
+    "100X BELOFTES",
+    "Niemand kan winst beloven. Grote beloftes: wegwezen."
+   ]
+  ],
+  "end_line": "Volg voor meer rode vlaggen!",
+  "title": "5 rode vlaggen voor je een crypto-token koopt #Shorts",
+  "description": "Mint aan, freeze aan, pool niet vast, weinig wallets, 100x-beloftes. Check dit voor je koopt.\n\nCheck elke Solana-token gratis (geen wallet nodig): https://geopolcoins.xyz",
+  "tags": "shorts,crypto,veiligheid,rug pull,rode vlaggen,crypto scam,Solana,geopolcoins"
+ },
+ {
+  "id": "redflags-5-fr",
+  "lang": "fr",
+  "hook": [
+   "5 ALERTES ROUGES",
+   "AVANT D'ACHETER"
+  ],
+  "hook_line": "Vérifie ces 5 points. Ça prend 30 secondes.",
+  "items": [
+   [
+    "MINT ACTIVÉ",
+    "Le créateur peut imprimer de nouveaux tokens à tout moment."
+   ],
+   [
+    "FREEZE ACTIVÉ",
+    "Ils peuvent geler tes tokens. Impossible de vendre."
+   ],
+   [
+    "POOL NON BLOQUÉ",
+    "Ils peuvent retirer l'argent du pool et disparaître."
+   ],
+   [
+    "PEU DE WALLETS",
+    "Si le top 10 détient presque tout, ils peuvent te vendre dessus."
+   ],
+   [
+    "PROMESSES 100X",
+    "Personne ne peut promettre un profit. Fuis."
+   ]
+  ],
+  "end_line": "Abonne-toi pour plus d'alertes !",
+  "title": "5 alertes rouges avant d'acheter un token crypto #Shorts",
+  "description": "Mint activé, freeze activé, pool non bloqué, peu de wallets, promesses 100x. Vérifie avant d'acheter.\n\nVérifie n'importe quel token Solana gratuitement (sans wallet) : https://geopolcoins.xyz",
+  "tags": "shorts,crypto,sécurité,rug pull,arnaque crypto,Solana,geopolcoins"
+ },
+ {
+  "id": "redflags-5-es",
+  "lang": "es",
+  "hook": [
+   "5 BANDERAS ROJAS",
+   "ANTES DE COMPRAR"
+  ],
+  "hook_line": "Revisa estas 5 cosas. Tarda 30 segundos.",
+  "items": [
+   [
+    "MINT ACTIVO",
+    "El creador puede imprimir tokens nuevos cuando quiera."
+   ],
+   [
+    "FREEZE ACTIVO",
+    "Pueden congelar tus tokens. Así no puedes vender."
+   ],
+   [
+    "POOL SIN BLOQUEO",
+    "Pueden sacar el dinero del pool y desaparecer."
+   ],
+   [
+    "POCAS WALLETS",
+    "Si el top 10 tiene casi todo, pueden vender sobre ti."
+   ],
+   [
+    "PROMESAS 100X",
+    "Nadie puede prometer ganancias. Huye."
+   ]
+  ],
+  "end_line": "¡Sígueme para más banderas rojas!",
+  "title": "5 banderas rojas antes de comprar un token cripto #Shorts",
+  "description": "Mint activo, freeze activo, pool sin bloqueo, pocas wallets, promesas 100x. Revísalo antes de comprar.\n\nRevisa cualquier token de Solana gratis (sin wallet): https://geopolcoins.xyz",
+  "tags": "shorts,cripto,seguridad,rug pull,estafa cripto,Solana,geopolcoins"
+ },
+ {
+  "id": "redflags-5-de",
+  "lang": "de",
+  "hook": [
+   "5 WARNZEICHEN",
+   "VOR DEM KAUF"
+  ],
+  "hook_line": "Prüf diese 5 Dinge. Dauert 30 Sekunden.",
+  "items": [
+   [
+    "MINT IST AN",
+    "Der Entwickler kann jederzeit neue Tokens drucken."
+   ],
+   [
+    "FREEZE IST AN",
+    "Sie können deine Tokens einfrieren. Dann kein Verkauf."
+   ],
+   [
+    "POOL NICHT GESPERRT",
+    "Sie können das Geld aus dem Pool ziehen und weg sein."
+   ],
+   [
+    "WENIGE WALLETS",
+    "Halten die Top 10 fast alles, können sie dich abladen."
+   ],
+   [
+    "100X VERSPRECHEN",
+    "Niemand kann Gewinn versprechen. Lauf weg."
+   ]
+  ],
+  "end_line": "Folge für mehr Warnzeichen!",
+  "title": "5 Warnzeichen vor dem Kauf eines Krypto-Tokens #Shorts",
+  "description": "Mint an, Freeze an, Pool nicht gesperrt, wenige Wallets, 100x-Versprechen. Prüf das vor dem Kauf.\n\nPrüfe jeden Solana-Token gratis (ohne Wallet): https://geopolcoins.xyz",
+  "tags": "shorts,krypto,sicherheit,rug pull,krypto betrug,Solana,geopolcoins"
+ },
+ {
+  "id": "redflags-5-pt",
+  "lang": "pt",
+  "hook": [
+   "5 SINAIS VERMELHOS",
+   "ANTES DE COMPRAR"
+  ],
+  "hook_line": "Confira estas 5 coisas. Leva 30 segundos.",
+  "items": [
+   [
+    "MINT LIGADO",
+    "O criador pode imprimir novos tokens a qualquer hora."
+   ],
+   [
+    "FREEZE LIGADO",
+    "Podem congelar seus tokens. Aí você não vende."
+   ],
+   [
+    "POOL SEM TRAVA",
+    "Podem tirar o dinheiro do pool e sumir."
+   ],
+   [
+    "POUCAS CARTEIRAS",
+    "Se o top 10 tem quase tudo, podem despejar em você."
+   ],
+   [
+    "PROMESSAS 100X",
+    "Ninguém pode prometer lucro. Fuja."
+   ]
+  ],
+  "end_line": "Siga para mais sinais vermelhos!",
+  "title": "5 sinais vermelhos antes de comprar um token cripto #Shorts",
+  "description": "Mint ligado, freeze ligado, pool sem trava, poucas carteiras, promessas 100x. Confira antes de comprar.\n\nConfira qualquer token Solana grátis (sem carteira): https://geopolcoins.xyz",
+  "tags": "shorts,cripto,segurança,rug pull,golpe cripto,Solana,geopolcoins"
+ },
+ {
+  "id": "redflags-5-id",
+  "lang": "id",
+  "hook": [
+   "5 TANDA BAHAYA",
+   "SEBELUM BELI"
+  ],
+  "hook_line": "Cek 5 hal ini. Cuma 30 detik.",
+  "items": [
+   [
+    "MINT MASIH AKTIF",
+    "Pembuat bisa mencetak token baru kapan saja."
+   ],
+   [
+    "FREEZE AKTIF",
+    "Token kamu bisa dibekukan. Kamu tidak bisa jual."
+   ],
+   [
+    "POOL TIDAK DIKUNCI",
+    "Mereka bisa menarik uang di pool lalu kabur."
+   ],
+   [
+    "SEDIKIT DOMPET",
+    "Kalau top 10 pegang hampir semua, mereka bisa dump."
+   ],
+   [
+    "JANJI 100X",
+    "Tidak ada yang bisa janji untung. Kabur."
+   ]
+  ],
+  "end_line": "Follow untuk tanda bahaya lainnya!",
+  "title": "5 tanda bahaya sebelum beli token kripto #Shorts",
+  "description": "Mint aktif, freeze aktif, pool tidak dikunci, sedikit dompet, janji 100x. Cek sebelum beli.\n\nCek token Solana apa saja gratis (tanpa dompet): https://geopolcoins.xyz",
+  "tags": "shorts,kripto,keamanan,rug pull,penipuan kripto,Solana,geopolcoins"
+ },
+ {
+  "id": "seed-phrase-nl",
+  "lang": "nl",
+  "hook": [
+   "SEED PHRASE",
+   "5 GOUDEN REGELS"
+  ],
+  "hook_line": "Je seed phrase is de sleutel tot alles.",
+  "items": [
+   [
+    "SCHRIJF OP PAPIER",
+    "Papier of metaal. Geen foto, geen screenshot."
+   ],
+   [
+    "NOOIT INTYPEN",
+    "Geen website, formulier of chat heeft hem nodig."
+   ],
+   [
+    "NIEMAND VRAAGT",
+    "Geen support, geen vriend, geen bot."
+   ],
+   [
+    "TWEE VEILIGE PLEKKEN",
+    "Bewaar kopieën op twee plekken die alleen jij kent."
+   ],
+   [
+    "TEST KLEIN",
+    "Probeer eerst een herstel met een klein wallet."
+   ]
+  ],
+  "end_line": "Jouw sleutels, jouw regels!",
+  "title": "5 gouden regels voor je seed phrase #Shorts",
+  "description": "Zo hou je de herstelzin van je wallet veilig, in 26 seconden.\n\nCheck elke Solana-token gratis (geen wallet nodig): https://geopolcoins.xyz",
+  "tags": "shorts,seed phrase,crypto wallet,crypto veiligheid,geopolcoins"
+ },
+ {
+  "id": "seed-phrase-fr",
+  "lang": "fr",
+  "hook": [
+   "SEED PHRASE",
+   "5 RÈGLES D'OR"
+  ],
+  "hook_line": "Ta seed phrase est la clé de tout.",
+  "items": [
+   [
+    "ÉCRIS SUR PAPIER",
+    "Papier ou métal. Pas de photo, pas de capture."
+   ],
+   [
+    "JAMAIS LA TAPER",
+    "Aucun site, formulaire ou chat n'en a besoin."
+   ],
+   [
+    "PERSONNE NE DEMANDE",
+    "Ni le support, ni un ami, ni un bot."
+   ],
+   [
+    "DEUX LIEUX SÛRS",
+    "Garde deux copies là où toi seul peux aller."
+   ],
+   [
+    "TESTE PETIT",
+    "Essaie d'abord une restauration avec un petit wallet."
+   ]
+  ],
+  "end_line": "Tes clés, tes règles !",
+  "title": "5 règles d'or pour ta seed phrase #Shorts",
+  "description": "Comment protéger la phrase de récupération de ton wallet, en 26 secondes.\n\nVérifie n'importe quel token Solana gratuitement (sans wallet) : https://geopolcoins.xyz",
+  "tags": "shorts,seed phrase,wallet crypto,sécurité crypto,geopolcoins"
+ },
+ {
+  "id": "seed-phrase-es",
+  "lang": "es",
+  "hook": [
+   "SEED PHRASE",
+   "5 REGLAS DE ORO"
+  ],
+  "hook_line": "Tu seed phrase es la llave de todo.",
+  "items": [
+   [
+    "ESCRIBE EN PAPEL",
+    "Papel o metal. Ni foto ni captura."
+   ],
+   [
+    "NUNCA LA ESCRIBAS",
+    "Ninguna web, formulario o chat la necesita."
+   ],
+   [
+    "NADIE LA PIDE",
+    "Ni soporte, ni un amigo, ni un bot."
+   ],
+   [
+    "DOS SITIOS SEGUROS",
+    "Guarda copias en dos sitios que solo tú conoces."
+   ],
+   [
+    "PRUEBA EN PEQUEÑO",
+    "Haz primero una restauración con una wallet pequeña."
+   ]
+  ],
+  "end_line": "¡Tus llaves, tus reglas!",
+  "title": "5 reglas de oro para tu seed phrase #Shorts",
+  "description": "Cómo mantener segura la frase de recuperación de tu wallet, en 26 segundos.\n\nRevisa cualquier token de Solana gratis (sin wallet): https://geopolcoins.xyz",
+  "tags": "shorts,seed phrase,wallet cripto,seguridad cripto,geopolcoins"
+ },
+ {
+  "id": "seed-phrase-de",
+  "lang": "de",
+  "hook": [
+   "SEED PHRASE",
+   "5 GOLDENE REGELN"
+  ],
+  "hook_line": "Deine Seed Phrase ist der Schlüssel zu allem.",
+  "items": [
+   [
+    "AUF PAPIER",
+    "Papier oder Metall. Kein Foto, kein Screenshot."
+   ],
+   [
+    "NIE EINTIPPEN",
+    "Keine Website, kein Formular, kein Chat braucht sie."
+   ],
+   [
+    "NIEMAND FRAGT",
+    "Kein Support, kein Freund, kein Bot."
+   ],
+   [
+    "ZWEI SICHERE ORTE",
+    "Bewahre Kopien an zwei Orten auf, die nur du kennst."
+   ],
+   [
+    "KLEIN TESTEN",
+    "Teste die Wiederherstellung erst mit einem kleinen Wallet."
+   ]
+  ],
+  "end_line": "Deine Schlüssel, deine Regeln!",
+  "title": "5 goldene Regeln für deine Seed Phrase #Shorts",
+  "description": "So bleibt die Wiederherstellungsphrase deines Wallets sicher, in 26 Sekunden.\n\nPrüfe jeden Solana-Token gratis (ohne Wallet): https://geopolcoins.xyz",
+  "tags": "shorts,seed phrase,krypto wallet,krypto sicherheit,geopolcoins"
+ },
+ {
+  "id": "seed-phrase-pt",
+  "lang": "pt",
+  "hook": [
+   "SEED PHRASE",
+   "5 REGRAS DE OURO"
+  ],
+  "hook_line": "Sua seed phrase é a chave de tudo.",
+  "items": [
+   [
+    "ESCREVA NO PAPEL",
+    "Papel ou metal. Nada de foto ou print."
+   ],
+   [
+    "NUNCA DIGITE",
+    "Nenhum site, formulário ou chat precisa dela."
+   ],
+   [
+    "NINGUÉM PEDE",
+    "Nem suporte, nem amigo, nem bot."
+   ],
+   [
+    "DOIS LUGARES SEGUROS",
+    "Guarde cópias em dois lugares que só você acessa."
+   ],
+   [
+    "TESTE PEQUENO",
+    "Teste a recuperação antes com uma carteira pequena."
+   ]
+  ],
+  "end_line": "Suas chaves, suas regras!",
+  "title": "5 regras de ouro para sua seed phrase #Shorts",
+  "description": "Como manter segura a frase de recuperação da sua carteira, em 26 segundos.\n\nConfira qualquer token Solana grátis (sem carteira): https://geopolcoins.xyz",
+  "tags": "shorts,seed phrase,carteira cripto,segurança cripto,geopolcoins"
+ },
+ {
+  "id": "seed-phrase-id",
+  "lang": "id",
+  "hook": [
+   "SEED PHRASE",
+   "5 ATURAN EMAS"
+  ],
+  "hook_line": "Seed phrase kamu adalah kunci segalanya.",
+  "items": [
+   [
+    "TULIS DI KERTAS",
+    "Kertas atau logam. Bukan foto, bukan screenshot."
+   ],
+   [
+    "JANGAN DIKETIK",
+    "Tidak ada situs, formulir, atau chat yang butuh itu."
+   ],
+   [
+    "TIDAK ADA YANG MINTA",
+    "Bukan support, bukan teman, bukan bot."
+   ],
+   [
+    "DUA TEMPAT AMAN",
+    "Simpan salinan di dua tempat yang hanya kamu tahu."
+   ],
+   [
+    "TES KECIL DULU",
+    "Coba pemulihan dulu dengan dompet kecil."
+   ]
+  ],
+  "end_line": "Kuncimu, aturanmu!",
+  "title": "5 aturan emas untuk seed phrase kamu #Shorts",
+  "description": "Cara menjaga frasa pemulihan dompetmu tetap aman, dalam 26 detik.\n\nCek token Solana apa saja gratis (tanpa dompet): https://geopolcoins.xyz",
+  "tags": "shorts,seed phrase,dompet kripto,keamanan kripto,geopolcoins"
+ }
 ]

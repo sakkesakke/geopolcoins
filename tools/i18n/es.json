@@ -111,7 +111,10 @@
   "k15": "Mundo píxel",
   "k15p": "Pasea en directo con otros visitantes y visita cada herramienta.",
   "chNone": "Campeón de la guerra de idiomas: nadie aún. ¡Gánalo para tu idioma!",
-  "chWin": "🏆 Campeón de la semana pasada: {t}"
+  "chWin": "🏆 Campeón de la semana pasada: {t}",
+  "wH": "Mira: lecciones de 30 segundos",
+  "wP": "Shorts pixel sobre seguridad cripto. El vídeo solo se carga desde YouTube al tocarlo.",
+  "wAll": "Todos los vídeos en YouTube"
  },
  "radar": {
   "skip": "Saltar al contenido",

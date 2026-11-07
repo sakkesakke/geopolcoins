@@ -106,6 +106,7 @@ privacy=f'''
 <p>We do not sell or rent personal data, and we do not share it for advertising. We use these service providers (processors), which process data only on our instructions:</p>
 <ul>
 <li><strong>Supabase</strong> (database, hosted in the EU, Frankfurt): stores the data in section 2.</li>
+<li><strong>YouTube</strong> (Google, privacy-enhanced mode youtube-nocookie.com): only when you tap a video on the homepage. Before that, nothing is loaded from YouTube. After you tap, YouTube receives your IP address and may store data in your browser under its own policy.</li>
 <li><strong>Brevo</strong> (Sendinblue SAS, France, EU): sends the Starter Kit tip emails to people who signed up. It receives your email, first name, business type and language, and counts opens and clicks so we can see if the tips help. Every email has an unsubscribe link.</li>
 <li><strong>X</strong> (X Corp., USA): only when you choose "Log in with X" in MAIGA Raid. X confirms who you are and sends us your basic profile; X's own privacy policy applies to your X account.</li>
 <li><strong>GitHub Pages</strong> (GitHub Inc., USA): hosts the website and keeps short technical logs.</li>

@@ -8,10 +8,11 @@ on:
   schedule:
     - cron: "11 1,7,13,19 * * *"   # snapshots
     - cron: "37 20 * * 0"          # Sunday 20:37 UTC: weekly kit
+    - cron: "23 6 1 * *"           # 1st of the month 06:23 UTC: State of Rugs
   workflow_dispatch:
     inputs:
       task:
-        description: "sample, weekly or both"
+        description: "sample, weekly, both or monthly"
         default: both
 
 permissions:
@@ -44,7 +45,7 @@ jobs:
         run: |
           T="${{ github.event.inputs.task }}"
           if [ -z "$T" ]; then
-            if [ "${{ github.event.schedule }}" = "37 20 * * 0" ]; then T=both; else T=sample; fi
+            case "${{ github.event.schedule }}" in "37 20 * * 0") T=both;; "23 6 1 * *") T=monthly;; *) T=sample;; esac
           fi
           echo "task=$T" >> "$GITHUB_OUTPUT"
       - name: Snapshot trending pools
@@ -75,3 +76,21 @@ jobs:
           for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 5; done
           gh issue create --title "Posts for $(python3 -c "import json;print(json.loads(open('weekly.json').read().strip().splitlines()[-1])['week'])") are ready" \
             --body "Three posts (Language War, Red Flag Report, tip) are ready to copy: https://geopolcoins.xyz/social.html (give the site 2 minutes to update). Nothing was posted automatically. Close this issue when you are done." || true
+      - name: Build the monthly State of Rugs
+        if: steps.what.outputs.task == 'monthly'
+        run: |
+          pip install -q pillow==11.0.0 fonttools==4.55.0 brotli==1.1.0
+          python3 tools/growth.py monthly --data .growth-data | tee monthly.json
+      - name: Commit the monthly report and notify
+        if: steps.what.outputs.task == 'monthly' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rugs.html social data
+          git diff --cached --quiet && exit 0
+          git commit -qm "Growth: monthly State of Rugs"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 5; done
+          gh issue create --title "State of Rugs for $(python3 -c "import json;print(json.loads(open('monthly.json').read().strip().splitlines()[-1])['month'])") is live" \
+            --body "The monthly report is on https://geopolcoins.xyz/rugs.html with a share image at https://geopolcoins.xyz/social/rugs.png . Nothing was posted automatically. Close this issue when you are done." || true

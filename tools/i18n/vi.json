@@ -107,7 +107,11 @@
   "bP": "Hướng dẫn ngắn, trung thực: nhận ra lừa đảo, đọc biểu đồ và kiểm chứng lời hứa của AI. Có tám ngôn ngữ (chưa có tiếng Việt).",
   "bAll": "Tất cả hướng dẫn",
   "fol": "Theo dõi chúng tôi:",
-  "nBlog2": "Blog"
+  "nBlog2": "Blog",
+  "k15": "Thế giới pixel",
+  "k15p": "Dạo chơi trực tiếp cùng khách khác và ghé thăm mọi công cụ.",
+  "chNone": "Nhà vô địch cuộc chiến ngôn ngữ: chưa có ai. Hãy giành nó cho ngôn ngữ của bạn!",
+  "chWin": "🏆 Vô địch tuần trước: {t}"
  },
  "radar": {
   "skip": "Đi tới nội dung",

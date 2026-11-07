@@ -107,7 +107,11 @@
   "bP": "Panduan singkat dan jujur: kenali penipuan, baca grafik, dan uji janji AI. Dalam delapan bahasa, termasuk bahasa Indonesia.",
   "bAll": "Semua panduan",
   "fol": "Ikuti kami:",
-  "nBlog2": "Blog"
+  "nBlog2": "Blog",
+  "k15": "Dunia Piksel",
+  "k15p": "Jalan-jalan langsung bersama pengunjung lain dan kunjungi setiap alat.",
+  "chNone": "Juara perang bahasa: belum ada. Menangkan untuk bahasamu!",
+  "chWin": "🏆 Juara minggu lalu: {t}"
  },
  "radar": {
   "skip": "Langsung ke konten",

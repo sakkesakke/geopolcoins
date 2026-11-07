@@ -107,7 +107,11 @@
   "bP": "Guías cortas y honestas: detectar estafas, leer un gráfico y poner a prueba las promesas de la IA. En ocho idiomas.",
   "bAll": "Todas las guías",
   "fol": "Síguenos:",
-  "nBlog2": "Blog"
+  "nBlog2": "Blog",
+  "k15": "Mundo píxel",
+  "k15p": "Pasea en directo con otros visitantes y visita cada herramienta.",
+  "chNone": "Campeón de la guerra de idiomas: nadie aún. ¡Gánalo para tu idioma!",
+  "chWin": "🏆 Campeón de la semana pasada: {t}"
  },
  "radar": {
   "skip": "Saltar al contenido",

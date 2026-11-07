@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Qu&#x27;est-ce qu&#x27;un token honeypot, et comment le repérer ?</title>
 <meta name="description" content="Un honeypot vous laisse acheter mais jamais vendre. Apprenez les signes d&#x27;alerte dans les données publiques avant de perdre de l&#x27;argent.">
@@ -13,6 +13,8 @@
 <link rel="alternate" hreflang="es" href="https://geopolcoins.xyz/blog-es-que-es-un-token-honeypot.html">
 <link rel="alternate" hreflang="pt" href="https://geopolcoins.xyz/blog-pt-o-que-e-um-token-honeypot.html">
 <link rel="alternate" hreflang="de" href="https://geopolcoins.xyz/blog-de-was-ist-ein-honeypot-token.html">
+<link rel="alternate" hreflang="tr" href="https://geopolcoins.xyz/blog-tr-honeypot-token-nedir.html">
+<link rel="alternate" hreflang="id" href="https://geopolcoins.xyz/blog-id-apa-itu-token-honeypot.html">
 <link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-what-is-a-honeypot-token.html">
 <link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
 <meta property="og:type" content="article">
@@ -67,7 +69,7 @@ footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padd
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Accueil</a> › <a href="/blog-fr.html">Blog</a></nav>
 <article><span class="tag" style="background:#ff6b6b">Sécurité</span><h1>Qu&#x27;est-ce qu&#x27;un token honeypot, et comment le repérer ?</h1>
 <p class="meta">6 novembre 2026 · 1 min de lecture · Outil: <a href="/hq.html#checkup">Token Checkup</a></p>
-<p class="langs">Aussi en: <a href="/blog-what-is-a-honeypot-token.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-wat-is-een-honeypot-token.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-es-que-es-un-token-honeypot.html" hreflang="es" lang="es">Español</a> <a href="/blog-pt-o-que-e-um-token-honeypot.html" hreflang="pt" lang="pt">Português</a> <a href="/blog-de-was-ist-ein-honeypot-token.html" hreflang="de" lang="de">Deutsch</a></p>
+<p class="langs">Aussi en: <a href="/blog-what-is-a-honeypot-token.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-wat-is-een-honeypot-token.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-es-que-es-un-token-honeypot.html" hreflang="es" lang="es">Español</a> <a href="/blog-pt-o-que-e-um-token-honeypot.html" hreflang="pt" lang="pt">Português</a> <a href="/blog-de-was-ist-ein-honeypot-token.html" hreflang="de" lang="de">Deutsch</a> <a href="/blog-tr-honeypot-token-nedir.html" hreflang="tr" lang="tr">Türkçe</a> <a href="/blog-id-apa-itu-token-honeypot.html" hreflang="id" lang="id">Bahasa Indonesia</a></p>
 <div class="quick"><b>Réponse rapide</b><p>Un token honeypot est conçu pour que l'achat fonctionne, mais que la vente échoue ou soit taxée presque à zéro. Le signe public le plus clair : beaucoup d'achats et aucune vente. Vérifiez avant d'acheter ; après, il est trop tard.</p></div>
 <h2>Comment fonctionne un honeypot</h2>
 <p>L'astuce se trouve dans les règles du token ou dans la configuration du pool. Le graphique ne fait que monter, parce que personne ne peut vendre. Ce graphique qui monte, c'est l'appât. Les gens achètent, essaient de vendre, et découvrent qu'ils ne peuvent pas.</p>
@@ -82,6 +84,7 @@ footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padd
 <h2>À lire aussi</h2><ul class="more"><li><a class="card" href="/blog-fr-verifier-arnaque-token-solana.html"><span class="tag" style="background:#ff6b6b">Sécurité</span><h3>Vérifier si un token Solana est une arnaque (gratuit, 1 minute)</h3><p>Une checklist simple des signaux d&#x27;alerte publics derrière la plupart des rug pulls Solana, et un outil gratuit qui les vérifie pour n&#x27;importe quel token.</p></a></li><li><a class="card" href="/blog-fr-tokens-solana-tendance-signaux-alerte.html"><span class="tag" style="background:#ff6b6b">Sécurité</span><h3>Tokens Solana tendance : ce que veulent vraiment dire les alertes</h3><p>Tendance ne veut pas dire sûr. Comment lire la liquidité, l&#x27;âge du pool, les achats et ventes, le volume et les pics de prix sur un token tendance.</p></a></li><li><a class="card" href="/blog-fr-ia-peut-elle-predire-les-cours-crypto.html"><span class="tag" style="background:#c8a8ff">IA</span><h3>L&#x27;IA peut-elle prédire la crypto ? Nous l&#x27;avons testée 120 fois</h3><p>Nous avons laissé le modèle open source Kronos prédire 120 moments passés de BTC, ETH, SOL, DOGE, XRP et PEPE. Voici le score honnête.</p></a></li></ul>
 </main>
 <footer><a href="/">Accueil</a><a href="/blog-fr.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Confidentialité</a><a href="/legal.html">Mentions légales</a><span>Éducation et divertissement. Pas un conseil financier.</span></footer>
+<script src="/track.js" data-page="blog" defer></script>
 <script src="/guide.js" defer></script>
 </body>
 </html>

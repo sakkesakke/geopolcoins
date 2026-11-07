@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>A Solana está segura contra computadores quânticos?</title>
 <meta name="description" content="Por que um grande computador quântico poderia um dia quebrar as assinaturas atuais, o que são assinaturas pós-quânticas e como testá-las.">
@@ -13,6 +13,8 @@
 <link rel="alternate" hreflang="es" href="https://geopolcoins.xyz/blog-es-esta-solana-a-salvo-de-los-ordenadores-cuanticos.html">
 <link rel="alternate" hreflang="pt" href="https://geopolcoins.xyz/blog-pt-a-solana-esta-segura-contra-computadores-quanticos.html">
 <link rel="alternate" hreflang="de" href="https://geopolcoins.xyz/blog-de-ist-solana-sicher-vor-quantencomputern.html">
+<link rel="alternate" hreflang="tr" href="https://geopolcoins.xyz/blog-tr-solana-kuantum-bilgisayarlara-karsi-guvenli-mi.html">
+<link rel="alternate" hreflang="id" href="https://geopolcoins.xyz/blog-id-apakah-solana-aman-dari-komputer-kuantum.html">
 <link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-is-solana-quantum-safe.html">
 <link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
 <meta property="og:type" content="article">
@@ -67,7 +69,7 @@ footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padd
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Início</a> › <a href="/blog-pt.html">Blog</a></nav>
 <article><span class="tag" style="background:#ffb547">Aprender</span><h1>A Solana está segura contra computadores quânticos?</h1>
 <p class="meta">6 novembro 2026 · 1 min de leitura · Ferramenta: <a href="/quantum.html">Quantum Lab</a></p>
-<p class="langs">Também em: <a href="/blog-is-solana-quantum-safe.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-is-solana-veilig-tegen-quantumcomputers.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-solana-ordinateurs-quantiques.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-es-esta-solana-a-salvo-de-los-ordenadores-cuanticos.html" hreflang="es" lang="es">Español</a> <a href="/blog-de-ist-solana-sicher-vor-quantencomputern.html" hreflang="de" lang="de">Deutsch</a></p>
+<p class="langs">Também em: <a href="/blog-is-solana-quantum-safe.html" hreflang="en" lang="en">English</a> <a href="/blog-nl-is-solana-veilig-tegen-quantumcomputers.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-solana-ordinateurs-quantiques.html" hreflang="fr" lang="fr">Français</a> <a href="/blog-es-esta-solana-a-salvo-de-los-ordenadores-cuanticos.html" hreflang="es" lang="es">Español</a> <a href="/blog-de-ist-solana-sicher-vor-quantencomputern.html" hreflang="de" lang="de">Deutsch</a> <a href="/blog-tr-solana-kuantum-bilgisayarlara-karsi-guvenli-mi.html" hreflang="tr" lang="tr">Türkçe</a> <a href="/blog-id-apakah-solana-aman-dari-komputer-kuantum.html" hreflang="id" lang="id">Bahasa Indonesia</a></p>
 <div class="quick"><b>Resposta rápida</b><p>Não por si só. As carteiras da Solana assinam com Ed25519, que um computador quântico grande o bastante poderia quebrar com o algoritmo de Shor. Esse computador não existe hoje. Assinaturas pós-quânticas como a ML-DSA (padrão dos EUA desde agosto de 2024) foram feitas para resistir a esse ataque.</p></div>
 <h2>O que uma assinatura faz</h2>
 <p>Quando você envia moedas, sua carteira assina a transação com sua chave privada. Qualquer um pode conferir a assinatura com sua chave pública, mas ninguém consegue falsificá-la sem a chave privada.</p>
@@ -84,6 +86,7 @@ footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padd
 <h2>Leia também</h2><ul class="more"><li><a class="card" href="/blog-pt-como-ler-graficos-de-candles.html"><span class="tag" style="background:#ffb547">Aprender</span><h3>Como ler gráficos de candles: guia para iniciantes</h3><p>Candles, volume, médias móveis e RSI explicados em palavras simples, com gráficos de treino grátis que usam dados inventados.</p></a></li><li><a class="card" href="/blog-pt-como-funciona-uma-blockchain.html"><span class="tag" style="background:#ffb547">Aprender</span><h3>Como funciona uma blockchain? Monte uma minúscula no navegador</h3><p>Hashes, blocos, mineração e por que não dá para mudar o passado, explicado com uma mini blockchain que você mesmo pode quebrar.</p></a></li><li><a class="card" href="/blog-pt-como-saber-se-um-token-da-solana-e-golpe.html"><span class="tag" style="background:#ffb547">Segurança</span><h3>Como saber se um token da Solana é golpe (grátis, em 1 minuto)</h3><p>Uma lista simples dos sinais públicos por trás da maioria dos rug pulls na Solana, e uma ferramenta grátis que verifica tudo em qualquer token.</p></a></li></ul>
 </main>
 <footer><a href="/">Início</a><a href="/blog-pt.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="/privacy.html">Privacidade</a><a href="/legal.html">Aviso legal</a><span>Educação e entretenimento. Não é aconselhamento financeiro.</span></footer>
+<script src="/track.js" data-page="blog" defer></script>
 <script src="/guide.js" defer></script>
 </body>
 </html>

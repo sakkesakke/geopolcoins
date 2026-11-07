@@ -1,0 +1,77 @@
+name: Growth machine (Red Flag Report + weekly posts)
+
+# 1) Four times a day: snapshot the trending Solana pools (public GeckoTerminal data) into the
+#    "growth-data" branch, so main is not filled with data commits.
+# 2) Sunday evening: build report.html, social/kit.json + 3 images, commit them to main and open an
+#    issue so the owner gets a notification. Nothing is posted automatically.
+on:
+  schedule:
+    - cron: "11 1,7,13,19 * * *"   # snapshots
+    - cron: "37 20 * * 0"          # Sunday 20:37 UTC: weekly kit
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "sample, weekly or both"
+        default: both
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: growth
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Get the data branch
+        run: |
+          git fetch -q origin growth-data || true
+          if git rev-parse -q --verify origin/growth-data >/dev/null; then
+            git worktree add -q .growth-data origin/growth-data
+          else
+            git worktree add -q --orphan -b growth-data .growth-data
+          fi
+      - name: What to do
+        id: what
+        run: |
+          T="${{ github.event.inputs.task }}"
+          if [ -z "$T" ]; then
+            if [ "${{ github.event.schedule }}" = "37 20 * * 0" ]; then T=both; else T=sample; fi
+          fi
+          echo "task=$T" >> "$GITHUB_OUTPUT"
+      - name: Snapshot trending pools
+        if: steps.what.outputs.task == 'sample' || steps.what.outputs.task == 'both'
+        run: |
+          python3 tools/growth.py sample --data .growth-data
+          cd .growth-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -qm "Red flag snapshot"
+          git push -q origin HEAD:growth-data
+      - name: Build the weekly kit
+        if: steps.what.outputs.task == 'weekly' || steps.what.outputs.task == 'both'
+        run: |
+          pip install -q pillow==11.0.0 fonttools==4.55.0 brotli==1.1.0
+          python3 tools/growth.py weekly --data .growth-data | tee weekly.json
+      - name: Commit to main and notify
+        if: (steps.what.outputs.task == 'weekly' || steps.what.outputs.task == 'both') && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add report.html social data/redflag-history.json
+          git diff --cached --quiet && exit 0
+          git commit -qm "Growth: weekly Red Flag Report and post kit"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 5; done
+          gh issue create --title "Posts for $(python3 -c "import json;print(json.loads(open('weekly.json').read().strip().splitlines()[-1])['week'])") are ready" \
+            --body "Three posts (Language War, Red Flag Report, tip) are ready to copy: https://geopolcoins.xyz/social.html (give the site 2 minutes to update). Nothing was posted automatically. Close this issue when you are done." || true

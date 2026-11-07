@@ -10,6 +10,9 @@ on:
       ids:
         description: "comma-separated topic ids, or 'queue' = every topic not posted/scheduled yet"
         default: queue
+      voice:
+        description: "'default' or a clip name in tools/shorts/voices/ (e.g. george)"
+        default: default
 
 permissions:
   contents: write
@@ -58,10 +61,14 @@ jobs:
         if: steps.pick.outputs.ids != ''
         run: |
           mkdir -p .shorts
-          for id in $(echo "${{ steps.pick.outputs.ids }}" | tr ',' ' '); do
-            python3 tools/shorts/make_short.py "$id" .shorts
+          python3 tools/shorts/voice.py lines --ids "$IDS" --dir .shorts --voice "$VOICE"
+          for id in $(echo "$IDS" | tr ',' ' '); do
+            SHORT_TIMING=".shorts/$id.timing.json" python3 tools/shorts/make_short.py "$id" .shorts
           done
-          python3 tools/shorts/voice.py --ids "${{ steps.pick.outputs.ids }}" --dir .shorts
+          python3 tools/shorts/voice.py mix --ids "$IDS" --dir .shorts
+        env:
+          IDS: ${{ steps.pick.outputs.ids }}
+          VOICE: ${{ github.event.inputs.voice || 'default' }}
       - name: Push videos to the media branch and mark the topics
         if: steps.pick.outputs.ids != ''
         run: |
@@ -77,7 +84,7 @@ jobs:
           p = "tools/shorts/topics.json"; T = json.load(open(p, encoding="utf-8"))
           for t in T:
               if t["id"] in ids:
-                  t["video"] = t["id"] + ".mp4"; t["voice"] = "chatterbox"
+                  t["video"] = t["id"] + ".mp4"; t["voice"] = "chatterbox:" + os.environ.get("VOICE", "default")
           json.dump(T, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
           PY
           git add tools/shorts/topics.json
@@ -85,3 +92,4 @@ jobs:
           for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 5; done
         env:
           IDS: ${{ steps.pick.outputs.ids }}
+          VOICE: ${{ github.event.inputs.voice || 'default' }}

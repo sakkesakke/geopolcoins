@@ -170,6 +170,12 @@ BLIPS = []  # (time, kind) for the soundtrack
 
 
 # ---------- scenes ----------
+# Optional timing from voice.py (SHORT_TIMING=<json file>): scenes stretch to fit the spoken lines,
+# and the speech bubble types at the speed of the voice.
+TIMING = json.load(open(os.environ['SHORT_TIMING'])) if os.environ.get('SHORT_TIMING') else None
+def cps(k, text, default):
+    if TIMING and TIMING['talk'][k]: return max(8.0, len(text) / TIMING['talk'][k])
+    return default
 SCENES = []
 def scene(dur):
     def deco(fn): SCENES.append((dur, fn)); return fn
@@ -189,7 +195,7 @@ def s_hook(tl, T):
     marquee(d, TOPIC['hook'][0], font(PIX, 150 if len(TOPIC['hook'][0]) < 12 else 112 if len(TOPIC['hook'][0]) < 16 else 92), W / 2, 190, RED, back(tl / 0.3))
     marquee(d, TOPIC['hook'][1], font(PIX, 112 if len(TOPIC['hook'][1]) < 15 else 88 if len(TOPIC['hook'][1]) < 19 else 74), W / 2, 380, AMBER, back((tl - 0.18) / 0.3))
     tmp = Image.new('RGBA', (W, H))
-    talking, _ = bubble(tmp, TOPIC['hook_line'], 120, 640, 840, tl, 0.5, cps=34, size=60, tail='down')
+    talking, _ = bubble(tmp, TOPIC['hook_line'], 120, 640, 840, tl, 0.5, cps=cps(0, TOPIC['hook_line'], 34), size=60, tail='down')
     sp = jp(22, tl, talking); zin = ease(tl / 0.35)
     im.alpha_composite(sp, ((W - sp.width) // 2, int(1180 - 40 * (1 - zin)) + int(10 * math.sin(tl * 5))))
     im.alpha_composite(tmp)
@@ -207,7 +213,7 @@ for i, (name, line) in enumerate(FLAGS):
             k = back((tl - 0.1) / 0.3)
             if k > 0: redflag(im, W // 2 - 140, int(1000 - 60 * (1 - min(1, k))), 40, tl)
             tmp = Image.new('RGBA', (W, H))
-            talking, _ = bubble(tmp, line, 320, 1380, 720, tl, 0.25, cps=40, size=54)
+            talking, _ = bubble(tmp, line, 320, 1380, 720, tl, 0.25, cps=cps(i + 1, line, 40), size=54)
             sp = jp(10, tl, talking); im.alpha_composite(sp, (40, H - sp.height - 70 + int(6 * math.sin(tl * 6 + i))))
             im.alpha_composite(tmp)
             return im.convert('RGB')
@@ -225,13 +231,14 @@ def s_end(tl, T):
         if a > 0:
             w = d.textlength(txt, font=f); d.text(((W - w) / 2, 640 + j * 86 + 30 * (1 - a)), txt, font=f, fill=tuple(int(c * a) for c in col))
     tmp = Image.new('RGBA', (W, H))
-    talking, _ = bubble(tmp, TOPIC.get('end_line', 'Follow for more!'), 220, 930, 660, tl, 0.9, cps=30, size=56, tail='down')
+    talking, _ = bubble(tmp, TOPIC.get('end_line', 'Follow for more!'), 220, 930, 660, tl, 0.9, cps=cps(6, TOPIC.get('end_line', 'Follow for more!'), 30), size=56, tail='down')
     sp = jp(18, tl, talking); im.alpha_composite(sp, ((W - sp.width) // 2, 1200 + int(8 * math.sin(tl * 5))))
     im.alpha_composite(tmp)
     d = ImageDraw.Draw(im); fs = font(SANS, 34); txt = END[LANG][3]
     w = d.textlength(txt, font=fs); d.text(((W - w) / 2, 1820), txt, font=fs, fill=DIM)
     return im.convert('RGB')
 
+if TIMING: SCENES = [(d, fn) for d, (_, fn) in zip(TIMING['scenes'], SCENES)]
 STARTS = []; acc = 0.0
 for dur, fn in SCENES: STARTS.append(acc); acc += dur
 DUR = acc
@@ -260,13 +267,13 @@ if __name__ == '__main__':
         if ff.wait() != 0: sys.exit('scene %d failed' % j)
     open(os.path.join(work, 'list.txt'), 'w').write(''.join(f"file '{p}'\n" for p in parts))
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', os.path.join(work, 'list.txt'), '-c', 'copy', os.path.join(work, 'v.mp4')], check=True)
-    subprocess.run([sys.executable, os.path.join(HERE, 'score.py'), os.path.join(work, 'score.wav')], check=True)
+    subprocess.run([sys.executable, os.path.join(HERE, 'score.py'), os.path.join(work, 'score.wav')] + ([json.dumps([d for d, _ in SCENES])] if TIMING else []), check=True)
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', os.path.join(work, 'score.wav'), '-af', 'loudnorm=I=-14:TP=-1.5', '-ar', '48000', os.path.join(work, 'n.wav')], check=True)
     final = os.path.join(OUT, TOPIC['id'] + '.mp4')
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', os.path.join(work, 'v.mp4'), '-i', os.path.join(work, 'n.wav'), '-map', '0:v', '-map', '1:a',
                     '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', final], check=True)
     sheet = Image.new('RGB', (270 * 4, 480))
-    for i, ts in enumerate((2.5, 5.5, 13.0, 24.0)): sheet.paste(frame(ts).resize((270, 480)), (i * 270, 0))
+    for i, ts in enumerate((2.5, STARTS[1] + 2.0, STARTS[3] + 2.5, STARTS[6] + 3.0)): sheet.paste(frame(ts).resize((270, 480)), (i * 270, 0))
     sheet.save(os.path.join(OUT, TOPIC['id'] + '_check.jpg'), quality=85)
     shutil.rmtree(work, ignore_errors=True)
     print(final)

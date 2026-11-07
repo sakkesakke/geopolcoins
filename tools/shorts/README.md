@@ -26,7 +26,11 @@ Rules: education only, no price talk or promises, always "Entertainment only. No
 ## Voice (human-like narration)
 `.github/workflows/voice.yml` (run it from the Actions tab or the API, input `ids` = `queue` or a list) renders the topics,
 then `voice.py` lets Jean-Phil read his speech bubbles with **Chatterbox Multilingual** by Resemble AI
-(MIT, https://github.com/resemble-ai/chatterbox), its built-in default voice, music ducked under the voice.
+(MIT, https://github.com/resemble-ai/chatterbox), music ducked under the voice.
+The voice is spoken first at a calm pace; the scenes then stretch to fit it (`<id>.timing.json`, read by make_short.py
+and score.py), so nothing is sped up. Input `voice` = `default` (Chatterbox's own voice) or a clip in `voices/`.
+Those clips come from synthetic **Kokoro** voices (hexgrad/kokoro, Apache-2.0) via `make_voices.py`; run
+`voice-samples.yml` to hear every voice (mp3s land in `media/voice-samples/`). No real person's voice is cloned.
 It runs on GitHub because the model comes from Hugging Face. Indonesian uses the Malay voice (closest language).
 Voiced files go to the `media` branch and the topic gets `"video": "<id>.mp4"`, so scheduling uploads the voiced version.
 Chatterbox adds Resemble's inaudible PerTh watermark (marks the audio as AI-generated). The voice belongs to a cartoon

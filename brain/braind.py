@@ -1,28 +1,36 @@
 #!/usr/bin/env python3
-"""The Brain: answers visitor questions on geopolcoins.xyz with the local AI model (Ollama + Qwen2.5 1.5B).
+"""The Brain: answers visitor questions on geopolcoins.xyz with a local AI model (Ollama + Qwen2.5 3B, Apache-2.0).
 
-Grounded in the site's own knowledge file (guide-kb.json): the best 3 matching topics/pages go into the
-prompt. Education only: no price predictions, no buy/sell advice, never asks for keys or seed phrases.
-The answer is cleaned (no outside links) before the visitor sees it. Questions are deleted after 1 day.
+Strictly grounded: the prompt holds only our own notes (brain/facts.json + the site's guide-kb.json). The model
+writes in English (its strongest language) and, for other languages, translates its own checked answer.
+Every answer passes checks (no repetition, no outside links, no price/buy talk, nothing negative about $MAIGA);
+if a check fails the visitor gets "no answer" instead of a bad one. Questions are deleted after 1 day.
 """
 import json, os, re, time, urllib.request
 
 SB = "https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/"
 KEY = "sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN"   # public website key, not a secret
-OLLAMA = "http://127.0.0.1:11434/api/generate"
-MODEL = "qwen2.5:1.5b"
+OLLAMA = "http://127.0.0.1:11434/api/"
+MODEL = "qwen2.5:3b"
+HERE = os.path.dirname(os.path.abspath(__file__))
 KB_URL = "https://geopolcoins.xyz/guide-kb.json"
 KB_FILE = "/opt/maiga/brain/kb.json"
 LOG = "/opt/maiga/logs/brain.log"
 LANGS = {"en": "English", "nl": "Dutch", "fr": "French", "es": "Spanish", "pt": "Portuguese", "de": "German",
          "tr": "Turkish", "id": "Indonesian", "vi": "Vietnamese", "ar": "Arabic"}
-SYSTEM = ("You are The Brain, the friendly AI of geopolcoins.xyz, a free crypto-safety education site around the satirical "
-          "meme coin $MAIGA. Answer in {lang}, in at most 80 words, plainly and kindly. Use the site notes when they help and "
-          "mention the page path (like /radar.html) if useful. Rules: education only; never predict prices; never tell anyone to "
-          "buy, sell or hold anything; never ask for or accept wallet keys or seed phrases; for a specific token say to check it "
-          "with the free Token Checkup at /hq.html#checkup; if you are not sure, say so. Always end with: Entertainment only, NFA.")
-WORD = re.compile(r"[a-zà-ÿ0-9]{3,}")
+WORDRE = re.compile(r"[a-zà-ÿ0-9$]{3,}")
+STOP = set("the and what how who why when where which can does did for are you your with this that from have has was were not but all any out get got its it's about into than then them they their there here is a an to of in on at be or do i me my we our us one more most very just also some".split())
+class _W:
+    @staticmethod
+    def findall(t): return [w for w in WORDRE.findall(t) if w not in STOP]
+WORD = _W()
+FACTS = [(set(WORD.findall(k.lower())) | set(WORD.findall(v.lower())), set(WORD.findall(k.lower())), v)
+         for k, v in json.load(open(os.path.join(HERE, "facts.json")))]
 KB, KB_AT = [], 0.0
+SYSTEM = ("You are The Brain, the friendly AI of geopolcoins.xyz (a free crypto-safety site). Answer the visitor's question "
+          "in clear, simple English in at most 70 words, using ONLY the facts in NOTES. If the notes do not answer it, say: "
+          "\"I don't know that one yet. Try the Token Checkup at /hq.html#checkup or ask in the live chat.\" Never predict prices, "
+          "never tell anyone to buy, sell or hold, never ask for keys or seed phrases. No lists longer than 3 items. Do not repeat yourself.")
 
 
 def log(s):
@@ -30,10 +38,33 @@ def log(s):
         f.write(time.strftime("%Y-%m-%dT%H:%M:%SZ ", time.gmtime()) + s + "\n")
 
 
-def rpc(fn, body):
-    req = urllib.request.Request(SB + fn, json.dumps(body).encode(), {"apikey": KEY, "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as r:
+def post(url, body, timeout):
+    req = urllib.request.Request(url, json.dumps(body).encode(), {"Content-Type": "application/json", "apikey": KEY})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read() or "null")
+
+
+def rpc(fn, body):
+    return post(SB + fn, body, 20)
+
+
+def gen(prompt, n=160):
+    return post(OLLAMA + "generate", {"model": MODEL, "prompt": prompt, "stream": False,
+                                       "options": {"temperature": 0.2, "num_predict": n, "repeat_penalty": 1.25}}, 240).get("response", "").strip()
+
+
+def ensure_model():
+    try:
+        tags = json.loads(urllib.request.urlopen(OLLAMA + "tags", timeout=10).read())
+        if any(m.get("name", "").startswith(MODEL) for m in tags.get("models", [])):
+            return True
+        log("pulling " + MODEL)
+        post(OLLAMA + "pull", {"model": MODEL, "stream": False}, 3600)
+        log("pulled " + MODEL)
+        return True
+    except Exception as e:
+        log("model not ready " + type(e).__name__)
+        return False
 
 
 def en(x):
@@ -46,66 +77,98 @@ def load_kb():
         return
     try:
         os.makedirs(os.path.dirname(KB_FILE), exist_ok=True)
-        req = urllib.request.Request(KB_URL, headers={"User-Agent": "geopolcoins-brain/1.0"})
-        raw = urllib.request.urlopen(req, timeout=30).read()
+        raw = urllib.request.urlopen(urllib.request.Request(KB_URL, headers={"User-Agent": "geopolcoins-brain/2.0"}), timeout=30).read()
         open(KB_FILE, "wb").write(raw)
     except Exception:
-        raw = open(KB_FILE, "rb").read() if os.path.exists(KB_FILE) else b'{"topics":[],"pages":[]}'
-    j = json.loads(raw); docs = []
-    for t in j.get("topics", []):
-        steps = t.get("steps"); steps = steps.get("en", []) if isinstance(steps, dict) else []
-        body = f"{en(t.get('title'))} ({t.get('url', '')}): {en(t.get('what'))} Steps: {'; '.join(steps)}"
-        docs.append((set(WORD.findall((t.get("kw", "") + " " + body).lower())), body[:600]))
-    for p in j.get("pages", []):
-        body = f"{p.get('title', '')} (/{p.get('url', '')}): {p.get('desc', '')}"
-        docs.append((set(WORD.findall((body + " " + p.get("text", "")).lower())), body[:400]))
+        raw = open(KB_FILE, "rb").read() if os.path.exists(KB_FILE) else b'{"topics":[]}'
+    docs = []
+    for t in json.loads(raw).get("topics", []):
+        body = f"{en(t.get('title'))} ({t.get('url', '')}): {en(t.get('what'))}"
+        docs.append((set(WORD.findall((t.get("kw", "") + " " + body).lower())), body[:420]))
     KB, KB_AT = docs, time.time()
 
 
-def context(q):
-    words = set(WORD.findall(q.lower()))
-    scored = sorted(KB, key=lambda d: -len(words & d[0]))
-    return "\n".join("- " + d[1] for d in scored[:3] if words & d[0])
+def notes(q):
+    w = set(WORD.findall(q.lower()))
+    f = sorted(FACTS, key=lambda d: -(3 * len(w & d[1]) + len(w & d[0])))
+    k = sorted(KB, key=lambda d: -len(w & d[0]))
+    out = [d[2] for d in f[:2] if w & d[0]] + [d[1] for d in k[:2] if len(w & d[0]) >= 2]
+    return out
+
+
+def english_query(q, lang):
+    if lang == "en":
+        return q
+    return gen(f"Translate this {LANGS.get(lang, 'foreign')} question into English. Reply with the English question only.\n\n{q}", 60) or q
 
 
 OUTLINK = re.compile(r"(https?://(?!geopolcoins\.xyz)\S+|www\.\S+)", re.I)
-BAD = re.compile(r"(seed\s*phrase|private\s*key).{0,30}(send|share|give|enter|type)|guaranteed|will (moon|pump|go up)|buy now", re.I)
+BAD = re.compile(r"(will|going to) (moon|pump|rise|go up|10x|100x)|guaranteed|you should (buy|sell|hold)|buy now|"
+                 r"(send|share|give|enter|type)\s+(me|us)?\s*(your)?\s*(seed|private key)", re.I)
+MAIGA_NEG = re.compile(r"maiga[^.]{0,60}(rug|scam|fraud|honeypot|ponzi)|(rug|scam|fraud|honeypot|ponzi)[^.]{0,40}\$?maiga", re.I)
+MAIGA_OK = re.compile(r"\bnot\b|satiric|entertainment|meme coin|niet|pas |kein|no es|não", re.I)
+
+
+def maiga_bad(a):
+    return any(MAIGA_NEG.search(s) and not MAIGA_OK.search(s) for s in re.split(r"[.!?\n]+", a))
+
+
+def repetitive(a):
+    sents = [s.strip().lower() for s in re.split(r"[.!?\n]+", a) if len(s.strip()) > 12]
+    if len(sents) != len(set(sents)):
+        return True
+    words = a.lower().split()
+    tri = [" ".join(words[i:i + 3]) for i in range(len(words) - 2)]
+    return len(tri) > 12 and len(set(tri)) < 0.8 * len(tri)
+
+
+def check(a):
+    a = OUTLINK.sub("", a).strip()
+    if not a or len(a) < 20 or BAD.search(a) or maiga_bad(a) or repetitive(a):
+        return ""
+    return a
 
 
 def answer(item):
-    lang = LANGS.get(item.get("lang", "en"), "English")
+    lang = item.get("lang", "en") if item.get("lang") in LANGS else "en"
     q = item["q"][:300]
-    ctx = context(q)
-    prompt = (SYSTEM.format(lang=lang) + ("\n\nSite notes:\n" + ctx if ctx else "") +
-              "\n\nVisitor question: " + json.dumps(q, ensure_ascii=False) + "\n\nThe Brain:")
-    body = {"model": MODEL, "prompt": prompt, "stream": False, "options": {"temperature": 0.3, "num_predict": 170}}
-    req = urllib.request.Request(OLLAMA, json.dumps(body).encode(), {"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=150) as r:
-        a = json.loads(r.read()).get("response", "").strip()
-    a = OUTLINK.sub("", a)
-    if not a or BAD.search(a):
-        return ""
-    if "NFA" not in a:
-        a += " Entertainment only, NFA."
-    return a[:1500]
+    qe = english_query(q, lang)
+    ns = notes(qe + " " + q)
+    if not ns:
+        a = "I don't know that one yet. Try the Token Checkup at /hq.html#checkup or ask in the live chat."
+    else:
+        a = check(gen(SYSTEM + "\n\nNOTES:\n" + "\n".join("- " + n for n in ns) + f"\n\nQUESTION: {qe}\n\nANSWER:"))
+    if not a:
+        return "", "check-en"
+    if lang != "en":
+        tr = gen(f"Translate this text into {LANGS[lang]}. Keep paths like /hq.html exactly as they are. Reply with the translation only.\n\n{a}", 220)
+        tr = check(tr)
+        if not tr:
+            return "", "check-tr"
+        a = tr
+    return a.rstrip() + ("" if "NFA" in a else " (NFA)"), "ok"
 
 
 def main():
-    global TOKEN
-    TOKEN = open("/opt/maiga/secret/server-token").read().strip()
-    log("braind start")
+    token = open("/opt/maiga/secret/server-token").read().strip()
+    log("braind v2 start")
+    ready = False
     while True:
         try:
+            if not ready:
+                ready = ensure_model()
+                if not ready:
+                    time.sleep(30); continue
             load_kb()
-            items = rpc("server_ask_pull", {"p_token": TOKEN}) or []
+            items = rpc("server_ask_pull", {"p_token": token}) or []
             for it in items:
                 t0 = time.time()
                 try:
-                    a = answer(it)
+                    a, why = answer(it)
                 except Exception as e:
-                    a = ""; log("ai error " + type(e).__name__)
-                rpc("server_ask_answer", {"p_token": TOKEN, "p_id": it["id"], "p_answer": a})
-                log(f"#{it['id']} {it.get('lang')} {'ok' if a else 'failed'} {time.time() - t0:.1f}s")
+                    a, why = "", "error " + type(e).__name__
+                rpc("server_ask_answer", {"p_token": token, "p_id": it["id"], "p_answer": a})
+                log(f"#{it['id']} {it.get('lang')} {why} {time.time() - t0:.0f}s")
             time.sleep(2 if items else 3)
         except Exception as e:
             log("error " + type(e).__name__); time.sleep(10)

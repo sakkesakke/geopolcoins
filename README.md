@@ -20,5 +20,8 @@ Instructions for the free Oracle server of geopolcoins.xyz. The server pulls thi
 - `radar/radar.py` (every 5 min): Rug Radar 24/7. Watches new + trending Solana pools via the free GeckoTerminal
   API, keeps each pool 48 h in a local SQLite file, detects liquidity pulls (liquidity falls below 10% of its peak,
   peak at least $5k). Pushes only totals to `public.radar_live` (shown on radar.html). Never names a token.
-- `brain/braind.py`: "The Brain" answers visitor questions (Ask Bolt fallback) with the same local AI model, grounded in
-  the site's guide-kb.json. Education only, no price talk, no outside links. Questions are deleted after 1 day.
+- `brain/braind.py` v2: "The Brain" answers visitor questions (Ask The Brain in Bolt) with Qwen2.5 3B. Only our own
+  notes go into the prompt (`brain/facts.json` + guide-kb.json); it answers in English and translates its checked answer.
+  Checks block repetition, outside links, price/buy talk and anything negative about $MAIGA; then the visitor gets
+  "no answer" instead of a bad one. Public access is switched in the database (`srv.settings.brain_enabled`).
+  Put a file `brain/DISABLED` in this branch to stop it within a minute.

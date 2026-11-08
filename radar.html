@@ -114,6 +114,7 @@ footer a{color:var(--dim)}
 
 <nav class="chips" aria-label="Sections"><a href="#trend" data-i="cT">Trending + red flags</a><a href="#new" data-i="cN">New pools</a><a href="#market" data-i="cM">Market</a><a href="#defi" data-i="cD">DeFi</a></nav>
 
+<section id="live" aria-label="Rug Radar 24/7"></section>
 <section id="trend" aria-labelledby="hT">
  <div class="sh"><h2 id="hT"><span class="mq" style="background:var(--red)" data-i="hT">Trending on Solana</span></h2><p data-i="pT">The 20 pools people trade most right now, each with automatic red flags from public data.</p><button type="button" class="btn" data-reload="trend" data-i="rf">Refresh</button></div>
  <div id="trendBox"><p class="st" data-i="ld">Loading…</p></div>
@@ -147,7 +148,7 @@ footer a{color:var(--dim)}
 </main>
 <footer><a href="/" data-i="fHome">Home</a><a href="hq.html#checkup">Token Checkup</a><a href="chart.html">Chart School</a><a href="privacy.html" data-i="fPriv">Privacy</a><a href="legal.html" data-i="fLegal">Legal</a><span data-i="fSrc">Data: GeckoTerminal, CoinGecko, alternative.me, DefiLlama. Not financial advice.</span></footer>
 </div>
-<script src="/i18n/radar.js"></script><script src="/lang-more.js"></script>
+<script src="/i18n/radar.js"></script><script src="/radar-live.js" defer></script><script src="/lang-more.js"></script>
 <script>
 (function(){
 'use strict';

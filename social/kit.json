@@ -1,6 +1,6 @@
 {
  "week": "2026-W45",
- "made": "2026-11-07T07:26+00:00",
+ "made": "2026-11-08T23:57+00:00",
  "posts": [
   {
    "day": "Monday",
@@ -12,7 +12,7 @@
    "day": "Wednesday",
    "label": "Red Flag Report",
    "image": "social/report.png",
-   "text": "🚩 Red Flag Report: we checked 20 trending Solana pools this week.\n\n5% had a serious red flag.\n5% thin liquidity · 0% buys with zero sells · 10% pumped 300%+ in a day\n\nFacts, not signals. NFA.\nhttps://geopolcoins.xyz/report.html"
+   "text": "🚩 Red Flag Report: we checked 48 trending Solana pools this week.\n\n10% had a serious red flag.\n10% thin liquidity · 0% buys with zero sells · 10% pumped 300%+ in a day\n\nFacts, not signals. NFA.\nhttps://geopolcoins.xyz/report.html"
   },
   {
    "day": "Friday",

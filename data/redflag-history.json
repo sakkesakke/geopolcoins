@@ -1,12 +1,12 @@
 [
  {
   "week": "2026-W45",
-  "pools": 20,
-  "any": 5,
-  "thin": 5,
+  "pools": 48,
+  "any": 10,
+  "thin": 10,
   "nosell": 0,
-  "vol": 10,
+  "vol": 12,
   "pump": 10,
-  "crash": 5
+  "crash": 25
  }
 ]

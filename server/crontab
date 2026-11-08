@@ -6,3 +6,6 @@ PATH=/usr/local/bin:/usr/bin:/bin
 7 * * * * /opt/maiga/repo/server/status.sh > /opt/maiga/logs/status.txt 2>&1
 */10 * * * * /opt/maiga/repo/jobs/hello.sh >> /opt/maiga/logs/hello.log 2>&1
 @reboot sleep 60 && /opt/maiga/repo/jobs/hello.sh >> /opt/maiga/logs/hello.log 2>&1
+* * * * * /opt/maiga/repo/chat/run.sh
+*/30 * * * * /opt/maiga/repo/chat/ai-setup.sh >> /opt/maiga/logs/ai-setup.log 2>&1
+@reboot sleep 90 && /opt/maiga/repo/chat/ai-setup.sh >> /opt/maiga/logs/ai-setup.log 2>&1

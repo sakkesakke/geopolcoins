@@ -9,3 +9,11 @@ Instructions for the free Oracle server of geopolcoins.xyz. The server pulls thi
 4. Daily news cartoon: daily pixel Short about crypto-safety news, 10 languages, posted to YouTube via the official API (owner creates the OAuth key himself).
 5. Safety net: nightly Supabase backup to Oracle Object Storage + uptime alerts.
 6. Live chat on the site and in the Pixel World (owner chose option 3): free text through a server filter that removes all links/domains, scam words and swearing (AI filter on this server), rate limit, plain-text rendering, report + mute; only the server may broadcast into the world channel. Update privacy pages.
+
+## Running now
+- `jobs/hello.sh` (every 10 min): checks in with the database. The server made its own random token
+  (`/opt/maiga/secret/server-token`, chmod 600, never printed or committed); Supabase stores only its sha256
+  and accepted the first registration only from this server's IP (51.170.140.207).
+- `chat/` live chat filter (option 3): `chatd.py` pulls new visitor messages, removes links/domains/handles/
+  addresses/phone numbers, blocks scam phrases and swearing, asks a local AI model (Ollama, MIT + Qwen2.5 1.5B,
+  Apache-2.0) SAFE/BLOCK, then publishes or blocks. `run.sh` keeps it running; `ai-setup.sh` installs the model.

@@ -9,3 +9,4 @@ PATH=/usr/local/bin:/usr/bin:/bin
 * * * * * /opt/maiga/repo/chat/run.sh
 */30 * * * * /opt/maiga/repo/chat/ai-setup.sh >> /opt/maiga/logs/ai-setup.log 2>&1
 @reboot sleep 90 && /opt/maiga/repo/chat/ai-setup.sh >> /opt/maiga/logs/ai-setup.log 2>&1
+*/5 * * * * cd /opt/maiga && python3 /opt/maiga/repo/radar/radar.py >> /opt/maiga/logs/radar.log 2>&1

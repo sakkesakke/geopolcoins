@@ -20,3 +20,5 @@ Instructions for the free Oracle server of geopolcoins.xyz. The server pulls thi
 - `radar/radar.py` (every 5 min): Rug Radar 24/7. Watches new + trending Solana pools via the free GeckoTerminal
   API, keeps each pool 48 h in a local SQLite file, detects liquidity pulls (liquidity falls below 10% of its peak,
   peak at least $5k). Pushes only totals to `public.radar_live` (shown on radar.html). Never names a token.
+- `brain/braind.py`: "The Brain" answers visitor questions (Ask Bolt fallback) with the same local AI model, grounded in
+  the site's guide-kb.json. Education only, no price talk, no outside links. Questions are deleted after 1 day.

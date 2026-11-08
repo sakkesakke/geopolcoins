@@ -132,3 +132,9 @@ revoke all on function public.chat_status(), public.chat_send(text, text, text, 
   public.server_chat_pull(text), public.server_chat_verdict(text, jsonb) from public;
 grant execute on function public.chat_status(), public.chat_send(text, text, text, text), public.chat_report(bigint, text),
   public.server_chat_pull(text), public.server_chat_verdict(text, jsonb) to anon, authenticated;
+
+-- 2026-11-08 hardening (applied as migration hardening_hello_and_reports):
+--  * server_hello checks a valid token first, so flooding the function cannot block the real server's check-in;
+--  * chat_report counts reports per IP (max 10 per IP per hour), so one person cannot hide messages alone.
+-- 2026-11-08 Rug Radar 24/7 (migration radar_live): public.radar_live (read-only for visitors, one row),
+--  srv.radar_daily, public.server_radar_push(p_token, p_stats) for the server only.

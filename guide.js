@@ -90,9 +90,10 @@
     return c;
   }
   function rpc(fn, body) { return fetch(SBU + fn, { method: 'POST', headers: { apikey: SBK, 'Content-Type': 'application/json' }, body: JSON.stringify(body), credentials: 'omit' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
-  function brainChip(q) { return sbOK() ? chipBtn(BR[0], function () { askBrain(q); }) : null; }
+  var BRAIN_ON = false; /* paused until the answers are good enough */
+  function brainChip(q) { return BRAIN_ON && sbOK() ? chipBtn(BR[0], function () { askBrain(q); }) : null; }
   function offerBrain(q) {
-    if (!sbOK()) return;
+    if (!BRAIN_ON || !sbOK()) return;
     var b = el('div', 'align-self:flex-start;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:#9fb0cc', BR[7] + ' ');
     b.append(brainChip(q)); log.append(b); log.scrollTop = log.scrollHeight;
   }
@@ -124,7 +125,7 @@
     });
   }
   var BRN = { en: '"Ask The Brain" sends only that question to our own server.', nl: '"Vraag het The Brain" stuurt alleen die vraag naar onze eigen server.', fr: '« Demander à The Brain » envoie seulement cette question à notre serveur.', es: '"Pregunta a The Brain" envía solo esa pregunta a nuestro servidor.', pt: '"Pergunte ao The Brain" envia só essa pergunta ao nosso servidor.', de: '„Frag The Brain“ sendet nur diese Frage an unseren eigenen Server.', tr: '"The Brain\'e sor" yalnızca o soruyu kendi sunucumuza gönderir.', id: '"Tanya The Brain" hanya mengirim pertanyaan itu ke server kami.', vi: '"Hỏi The Brain" chỉ gửi câu hỏi đó tới máy chủ của chúng tôi.', ar: '"اسأل The Brain" يرسل ذلك السؤال فقط إلى خادمنا.' };
-  if (sbOK()) foot.textContent = UI.note + ' ' + (BRN[L] || BRN.en);
+  if (BRAIN_ON && sbOK()) foot.textContent = UI.note + ' ' + (BRN[L] || BRN.en);
   if (sbOK() && !document.querySelector('script[src$="chat.js"]')) { var cj = document.createElement('script'); cj.src = '/chat.js'; cj.defer = true; document.head.appendChild(cj); }
   function T(o) { return o && (o[L] || o.en) || ''; }
   function urlOf(t) { return t['url_' + L] || t.url; }

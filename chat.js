@@ -27,7 +27,11 @@
   var muted = {}; try { muted = JSON.parse(store('maiga_chat_mute') || '{}') || {}; } catch (e) { muted = {}; }
   var lastId = 0, open = false, timer = null, pending = 0;
 
-  var css = '#mc-btn{position:fixed;left:14px;bottom:14px;z-index:9996;background:#0f1424;color:#f4ecd8;border:2px solid #f2b84b;border-radius:999px;padding:9px 14px;font:600 14px/1 system-ui,Segoe UI,Roboto,sans-serif;cursor:pointer;box-shadow:0 4px 18px #0006}' +
+  var css = '#mc-btn{position:fixed;left:14px;bottom:14px;z-index:9996;display:flex;align-items:center;gap:8px;background:#b078ff;color:#120a24;border:3px solid #000;border-radius:999px;padding:6px 14px 6px 6px;min-height:48px;font:900 15px/1 system-ui,Segoe UI,Roboto,sans-serif;cursor:pointer;box-shadow:4px 4px 0 #000}' +
+    '#mc-btn img{width:36px;height:36px;image-rendering:pixelated;background:#120a24;border-radius:50%;padding:2px}#mc-btn .mc-live{width:10px;height:10px;border-radius:50%;background:#3dff8a;box-shadow:0 0 0 0 #3dff8a;animation:mcpulse 1.6s infinite}#mc-btn.off .mc-live{background:#777;animation:none}' +
+    '@keyframes mcpulse{0%{box-shadow:0 0 0 0 rgba(61,255,138,.7)}70%{box-shadow:0 0 0 9px rgba(61,255,138,0)}100%{box-shadow:0 0 0 0 rgba(61,255,138,0)}}' +
+    '#mc-peek{position:fixed;left:14px;bottom:72px;z-index:9996;max-width:min(280px,calc(100vw - 28px));background:#f4ecd8;color:#120a24;border:3px solid #000;border-radius:14px;padding:10px 30px 10px 12px;font:600 14px/1.35 system-ui,Segoe UI,Roboto,sans-serif;box-shadow:4px 4px 0 #000;cursor:pointer}#mc-peek b{display:block;margin-bottom:2px}#mc-peek button{position:absolute;right:4px;top:2px;background:none;border:0;font-size:18px;cursor:pointer;min-width:28px;min-height:28px}' +
+    '@media (prefers-reduced-motion:reduce){#mc-btn .mc-live{animation:none}}' +
     '#mc-box{position:fixed;left:14px;bottom:62px;z-index:9996;width:min(340px,calc(100vw - 28px));height:min(440px,calc(100vh - 120px));background:#0f1424;color:#f4ecd8;border:2px solid #f2b84b;border-radius:14px;display:none;flex-direction:column;font:14px/1.4 system-ui,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 30px #0008}' +
     '#mc-box.on{display:flex}#mc-h{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-bottom:1px solid #2a3150;font-weight:700}#mc-h button{background:none;border:0;color:#f4ecd8;font-size:18px;cursor:pointer}' +
     '#mc-list{flex:1;overflow-y:auto;padding:8px 12px;display:flex;flex-direction:column;gap:6px}.mc-m{word-wrap:break-word}.mc-m b{color:#f2b84b;margin-right:4px}.mc-m .mc-a{opacity:.0;font-size:11px;margin-left:6px;color:#9aa3c7;background:none;border:0;cursor:pointer;padding:0}.mc-m:hover .mc-a,.mc-m:focus-within .mc-a{opacity:1}' +
@@ -35,13 +39,15 @@
     '#mc-st{font-size:12px;color:#f2b84b;padding:0 12px 6px;min-height:6px}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
-  var btn = document.createElement('button'); btn.id = 'mc-btn'; btn.type = 'button'; btn.textContent = '💬 ' + S[0];
+  var btn = document.createElement('button'); btn.id = 'mc-btn'; btn.type = 'button';
+  var bim = document.createElement('img'); bim.src = '/brain-96.png'; bim.alt = ''; var bdot = document.createElement('span'); bdot.className = 'mc-live';
+  btn.append(bim, document.createTextNode(S[0]), bdot);
   var box = document.createElement('div'); box.id = 'mc-box'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', S[0]);
   box.innerHTML = '<div id="mc-h"><span></span><button type="button" aria-label="Close">×</button></div><div id="mc-list" aria-live="polite"></div><div id="mc-note"></div><div id="mc-st"></div>' +
     '<form id="mc-f"><input id="mc-name" maxlength="16" autocomplete="off"><input id="mc-in" maxlength="200" autocomplete="off"><button type="submit"></button></form>';
   document.body.appendChild(btn); document.body.appendChild(box);
   var $ = function (s) { return box.querySelector(s); };
-  $('#mc-h span').textContent = '💬 ' + S[0]; $('#mc-note').textContent = S[4];
+  $('#mc-h span').textContent = '💬 ' + S[0] + ' · 🧠 The Brain'; $('#mc-note').textContent = S[4];
   $('#mc-name').value = name; $('#mc-name').placeholder = S[3]; $('#mc-name').setAttribute('aria-label', S[3]);
   $('#mc-in').placeholder = S[1]; $('#mc-in').setAttribute('aria-label', S[1]); $('#mc-f button').textContent = S[2];
   var list = $('#mc-list');
@@ -76,15 +82,44 @@
   }
   function status() {
     api('/rest/v1/rpc/chat_status', {}).then(function (s) {
-      var off = s !== 'open'; $('#mc-in').disabled = off; $('#mc-f button').disabled = off; say(off ? S[5] : (pending ? S[6] : ''));
+      var off = s !== 'open'; $('#mc-in').disabled = off; $('#mc-f button').disabled = off; btn.classList.toggle('off', off);
+      if (open) say(off ? S[5] : (pending ? S[6] : ''));
+      if (!off && !open) peek();
     });
   }
+  var PK = {
+    en: ['🧠 The Brain guards this chat', 'Say hi to other visitors. Links and scams never get through.'],
+    nl: ['🧠 The Brain bewaakt deze chat', 'Zeg hoi tegen andere bezoekers. Links en scams komen er nooit door.'],
+    fr: ['🧠 The Brain surveille ce chat', 'Dis bonjour aux autres visiteurs. Liens et arnaques ne passent jamais.'],
+    es: ['🧠 The Brain vigila este chat', 'Saluda a otros visitantes. Enlaces y estafas nunca pasan.'],
+    pt: ['🧠 The Brain protege este chat', 'Diga oi para outros visitantes. Links e golpes nunca passam.'],
+    de: ['🧠 The Brain bewacht diesen Chat', 'Sag hallo zu anderen Besuchern. Links und Scams kommen nie durch.'],
+    tr: ['🧠 Bu sohbeti The Brain koruyor', 'Diğer ziyaretçilere merhaba de. Linkler ve dolandırıcılık asla geçemez.'],
+    id: ['🧠 The Brain menjaga obrolan ini', 'Sapa pengunjung lain. Tautan dan penipuan tidak akan lolos.'],
+    vi: ['🧠 The Brain bảo vệ cuộc trò chuyện này', 'Chào những người khác. Link và lừa đảo không bao giờ lọt qua.'],
+    ar: ['🧠 The Brain يحرس هذه الدردشة', 'قل مرحبا للزوار الآخرين. الروابط والاحتيال لا تمر أبدا.']
+  }[L] || null;
+  function peek() {
+    var today = new Date().toISOString().slice(0, 10);
+    if (!PK || store('maiga_chat_peek') === today || document.getElementById('mc-peek')) return;
+    setTimeout(function () {
+      if (open) return;
+      store('maiga_chat_peek', today);
+      var pk = document.createElement('div'); pk.id = 'mc-peek'; pk.setAttribute('role', 'status');
+      var b = document.createElement('b'); b.textContent = PK[0]; pk.appendChild(b); pk.appendChild(document.createTextNode(PK[1]));
+      var x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'Close');
+      x.onclick = function (e) { e.stopPropagation(); pk.remove(); }; pk.appendChild(x);
+      pk.onclick = function () { pk.remove(); toggle(true); };
+      document.body.appendChild(pk); setTimeout(function () { if (pk.parentNode) pk.remove(); }, 12000);
+    }, 6000);
+  }
   function toggle(on) {
-    open = on; box.classList.toggle('on', on);
+    open = on; box.classList.toggle('on', on); var pkk = document.getElementById('mc-peek'); if (pkk) pkk.remove();
     clearInterval(timer);
     if (on) { status(); load(true); timer = setInterval(function () { if (!document.hidden) load(false); }, 4000); setTimeout(function () { $('#mc-in').focus(); }, 50); }
   }
   btn.onclick = function () { toggle(!open); };
+  status();
   $('#mc-h button').onclick = function () { toggle(false); };
   $('#mc-f').onsubmit = function (e) {
     e.preventDefault();

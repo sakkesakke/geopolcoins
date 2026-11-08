@@ -1,5 +1,5 @@
 /* Bolt the guide: knows every tool, game and page on geopolcoins.xyz and explains them in 10 languages.
-   No AI, no tracking, nothing you type is sent anywhere. Knowledge: /guide-kb.json (rebuilt automatically
+   Bolt itself is no AI and sends nothing; only when the visitor taps "Ask The Brain" is the question sent to our own server. Knowledge: /guide-kb.json (rebuilt automatically
    from the pages). Search: MiniSearch by Luca Ongaro (MIT), /vendor/minisearch.min.js, loaded on first open. */
 (function () {
   if (window.__boltGuide) return; window.__boltGuide = 1;
@@ -66,6 +66,66 @@
     var c = el('button', 'background:transparent;color:#ffd800;border:1px solid #ffd800;border-radius:999px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer;min-height:34px', label);
     c.type = 'button'; c.addEventListener('click', fn); return c;
   }
+
+  /* The Brain: only when the visitor taps "Ask The Brain", the question goes to the AI on our own server
+     (not a third party), is answered there and deleted after 1 day. */
+  var BRS = {
+    en: ['🧠 Ask The Brain', 'The Brain is thinking…', 'The Brain', 'The Brain is offline right now. Try again later.', 'Too many questions, wait a moment.', 'Answered by the AI on our own server, not a third party. Your question is deleted after 1 day. Can make mistakes. NFA.', 'No answer this time. Try asking it differently.', 'Not what you meant?'],
+    nl: ['🧠 Vraag het The Brain', 'The Brain denkt na…', 'The Brain', 'The Brain is nu offline. Probeer later opnieuw.', 'Te veel vragen, wacht even.', 'Beantwoord door de AI op onze eigen server, geen ander bedrijf. Je vraag wordt na 1 dag gewist. Kan fouten maken. Geen financieel advies.', 'Deze keer geen antwoord. Vraag het anders.', 'Niet wat je bedoelde?'],
+    fr: ['🧠 Demander à The Brain', 'The Brain réfléchit…', 'The Brain', 'The Brain est hors ligne. Réessayez plus tard.', 'Trop de questions, patientez un peu.', "Réponse de l'IA sur notre propre serveur, pas un tiers. Votre question est effacée après 1 jour. Peut se tromper. Pas un conseil financier.", 'Pas de réponse cette fois. Reformulez.', 'Pas ce que vous cherchiez ?'],
+    es: ['🧠 Pregunta a The Brain', 'The Brain está pensando…', 'The Brain', 'The Brain está desconectado. Inténtalo más tarde.', 'Demasiadas preguntas, espera un momento.', 'Responde la IA de nuestro propio servidor, no un tercero. Tu pregunta se borra tras 1 día. Puede equivocarse. No es asesoramiento financiero.', 'Sin respuesta esta vez. Pregunta de otra forma.', '¿No era eso?'],
+    pt: ['🧠 Pergunte ao The Brain', 'The Brain está pensando…', 'The Brain', 'The Brain está offline. Tente mais tarde.', 'Perguntas demais, espere um pouco.', 'Respondido pela IA do nosso próprio servidor, não por terceiros. Sua pergunta é apagada após 1 dia. Pode errar. Não é conselho financeiro.', 'Sem resposta desta vez. Pergunte de outro jeito.', 'Não era isso?'],
+    de: ['🧠 Frag The Brain', 'The Brain denkt nach…', 'The Brain', 'The Brain ist gerade offline. Versuch es später.', 'Zu viele Fragen, warte kurz.', 'Antwort der KI auf unserem eigenen Server, kein Drittanbieter. Deine Frage wird nach 1 Tag gelöscht. Kann sich irren. Keine Finanzberatung.', 'Diesmal keine Antwort. Frag anders.', 'Nicht das Richtige?'],
+    tr: ["🧠 The Brain'e sor", 'The Brain düşünüyor…', 'The Brain', 'The Brain şu an çevrimdışı. Sonra tekrar dene.', 'Çok fazla soru, biraz bekle.', 'Yanıtı kendi sunucumuzdaki yapay zekâ verir, üçüncü taraf değil. Sorun 1 gün sonra silinir. Hata yapabilir. Yatırım tavsiyesi değildir.', 'Bu sefer yanıt yok. Farklı sor.', 'Aradığın bu değil mi?'],
+    id: ['🧠 Tanya The Brain', 'The Brain sedang berpikir…', 'The Brain', 'The Brain sedang offline. Coba lagi nanti.', 'Terlalu banyak pertanyaan, tunggu sebentar.', 'Dijawab oleh AI di server kami sendiri, bukan pihak ketiga. Pertanyaanmu dihapus setelah 1 hari. Bisa salah. Bukan nasihat keuangan.', 'Tidak ada jawaban kali ini. Coba tanya dengan cara lain.', 'Bukan yang kamu maksud?'],
+    vi: ['🧠 Hỏi The Brain', 'The Brain đang suy nghĩ…', 'The Brain', 'The Brain đang ngoại tuyến. Thử lại sau.', 'Quá nhiều câu hỏi, chờ một chút.', 'Trả lời bởi AI trên máy chủ riêng của chúng tôi, không phải bên thứ ba. Câu hỏi bị xóa sau 1 ngày. Có thể sai. Không phải lời khuyên tài chính.', 'Lần này không có câu trả lời. Hãy hỏi cách khác.', 'Không đúng ý bạn?'],
+    ar: ['🧠 اسأل The Brain', 'The Brain يفكر…', 'The Brain', 'The Brain غير متصل الآن. حاول لاحقا.', 'أسئلة كثيرة، انتظر قليلا.', 'يجيب الذكاء الاصطناعي على خادمنا الخاص، وليس طرفا ثالثا. يُحذف سؤالك بعد يوم. قد يخطئ. ليست نصيحة مالية.', 'لا إجابة هذه المرة. اسأل بطريقة أخرى.', 'ليس ما تقصده؟']
+  };
+  var BR = BRS[L] || BRS.en;
+  var SBU = 'https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/', SBK = 'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';
+  function sbOK() { var m = document.querySelector('meta[http-equiv="Content-Security-Policy"]'); return !m || /zslzbfbqrtfpvgbjhssd\.supabase\.co/.test(m.content); }
+  function cid() {
+    var c = null; try { c = localStorage.getItem('maiga_chat_id'); } catch (e) {}
+    if (!c || !/^[a-z0-9]{8,32}$/.test(c)) { c = (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)).replace(/[^a-z0-9]/g, '').slice(0, 16); try { localStorage.setItem('maiga_chat_id', c); } catch (e) {} }
+    return c;
+  }
+  function rpc(fn, body) { return fetch(SBU + fn, { method: 'POST', headers: { apikey: SBK, 'Content-Type': 'application/json' }, body: JSON.stringify(body), credentials: 'omit' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
+  function brainChip(q) { return sbOK() ? chipBtn(BR[0], function () { askBrain(q); }) : null; }
+  function offerBrain(q) {
+    if (!sbOK()) return;
+    var b = el('div', 'align-self:flex-start;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:#9fb0cc', BR[7] + ' ');
+    b.append(brainChip(q)); log.append(b); log.scrollTop = log.scrollHeight;
+  }
+  function askBrain(q) {
+    bubble(q, true);
+    var b = bubble(''); b.style.border = '1px solid #b078ff'; b.style.background = '#1a1440';
+    var h = el('div', 'display:flex;align-items:center;gap:8px;font-weight:800;color:#d6b4ff;margin-bottom:4px');
+    var im = el('img', 'width:28px;height:28px;image-rendering:pixelated'); im.src = '/brain-96.png'; im.alt = '';
+    h.append(im, el('span', null, BR[2]));
+    var body = el('div', 'white-space:pre-wrap', BR[1]), note = el('div', 'font-size:11px;color:#9fb0cc;margin-top:6px', BR[5]);
+    b.append(h, body, note);
+    var dots = 0, tick = setInterval(function () { dots = (dots + 1) % 4; body.textContent = BR[1].replace('…', '') + '.'.repeat(dots + 1); }, 500);
+    function end(t) { clearInterval(tick); body.textContent = t; log.scrollTop = log.scrollHeight; }
+    var me = cid();
+    rpc('brain_ask', { p_q: String(q).slice(0, 300), p_lang: L, p_page: location.pathname.slice(0, 80), p_client: me }).then(function (r) {
+      if (!r || r.status === 'closed') return end(BR[3]);
+      if (r.status === 'slow' || r.status === 'busy') return end(BR[4]);
+      if (r.status !== 'queued') return end(BR[6]);
+      var tries = 0;
+      (function poll() {
+        setTimeout(function () {
+          rpc('brain_answer', { p_id: r.id, p_client: me }).then(function (a) {
+            if (a && a.status === 'done' && a.answer) return end(a.answer);
+            if ((a && a.status === 'failed') || ++tries > 60) return end(BR[6]);
+            poll();
+          });
+        }, 2500);
+      })();
+    });
+  }
+  var BRN = { en: '"Ask The Brain" sends only that question to our own server.', nl: '"Vraag het The Brain" stuurt alleen die vraag naar onze eigen server.', fr: '« Demander à The Brain » envoie seulement cette question à notre serveur.', es: '"Pregunta a The Brain" envía solo esa pregunta a nuestro servidor.', pt: '"Pergunte ao The Brain" envia só essa pergunta ao nosso servidor.', de: '„Frag The Brain“ sendet nur diese Frage an unseren eigenen Server.', tr: '"The Brain\'e sor" yalnızca o soruyu kendi sunucumuza gönderir.', id: '"Tanya The Brain" hanya mengirim pertanyaan itu ke server kami.', vi: '"Hỏi The Brain" chỉ gửi câu hỏi đó tới máy chủ của chúng tôi.', ar: '"اسأل The Brain" يرسل ذلك السؤال فقط إلى خادمنا.' };
+  if (sbOK()) foot.textContent = UI.note + ' ' + (BRN[L] || BRN.en);
+  if (sbOK() && !document.querySelector('script[src$="chat.js"]')) { var cj = document.createElement('script'); cj.src = '/chat.js'; cj.defer = true; document.head.appendChild(cj); }
   function T(o) { return o && (o[L] || o.en) || ''; }
   function urlOf(t) { return t['url_' + L] || t.url; }
   function topic(id) { return KB.topics.filter(function (t) { return t.id === id; })[0]; }
@@ -147,10 +207,11 @@
     if (!res.length || res[0].score < 2) {
       var b = bubble(UI.none); var row = el('div', 'display:flex;flex-wrap:wrap;gap:6px;margin-top:8px');
       ['site', 'garage', 'meme', 'raid', 'safe'].forEach(function (id) { var t = topic(id); row.append(chipBtn(T(t.title).replace(/:.*$/, ''), function () { bubble(T(t.title), true); showTopic(t, rel(t)); })); });
-      row.append(chipBtn(UI.all, function () { bubble(UI.all, true); showAll(); })); b.append(row); return;
+      row.append(chipBtn(UI.all, function () { bubble(UI.all, true); showAll(); })); var bc = brainChip(q); if (bc) row.prepend(bc); b.append(row); return;
     }
     var top = toHit(res[0]), more = res.slice(1, 3).map(toHit);
     top.t ? showTopic(top.t, more) : (showPage(top.p), more.length && more[0].t && showTopic(more[0].t, []));
+    offerBrain(q);
   }
   function greetHere(asked) {
     var h = here();

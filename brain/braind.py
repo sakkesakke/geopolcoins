@@ -26,6 +26,10 @@ class _W:
 WORD = _W()
 FACTS = [(set(WORD.findall(k.lower())) | set(WORD.findall(v.lower())), set(WORD.findall(k.lower())), v)
          for k, v in json.load(open(os.path.join(HERE, "facts.json")))]
+FACTS_I18N = json.load(open(os.path.join(HERE, "facts_i18n.json")))   # written by a human, not machine-translated
+IN_EN = {"pt": "(Resposta em inglês)", "tr": "(Yanıt İngilizce)", "id": "(Jawaban dalam bahasa Inggris)", "vi": "(Trả lời bằng tiếng Anh)",
+         "ar": "(الإجابة بالإنجليزية)", "nl": "(Antwoord in het Engels)", "fr": "(Réponse en anglais)", "es": "(Respuesta en inglés)", "de": "(Antwort auf Englisch)"}
+IDENTITY = re.compile(r"who are you|what are you|your name|wie ben j|wat ben j|qui es[- ]tu|qui êtes|quién eres|qué eres|wer bist|was bist|quem é você|kimsin|siapa kamu|bạn là ai|من أنت", re.I)
 KB, KB_AT = [], 0.0
 SYSTEM = ("You are The Brain, the friendly AI of geopolcoins.xyz (a free crypto-safety site). Answer the visitor's question "
           "in clear, simple English in at most 70 words, using ONLY the facts in NOTES. If the notes do not answer it, say: "
@@ -88,11 +92,24 @@ def load_kb():
     KB, KB_AT = docs, time.time()
 
 
+def best_fact(q):
+    """index of the best matching fact if a key word matches, else None"""
+    if IDENTITY.search(q):
+        return 10
+    w = set(WORD.findall(q.lower()))
+    sc = [(3 * len(w & d[1]) + len(w & d[0]), i) for i, d in enumerate(FACTS)]
+    s, i = max(sc)
+    return i if (w & FACTS[i][1]) and s >= 3 else None
+
+
 def notes(q):
     w = set(WORD.findall(q.lower()))
     f = sorted(FACTS, key=lambda d: -(3 * len(w & d[1]) + len(w & d[0])))
     k = sorted(KB, key=lambda d: -len(w & d[0]))
     out = [d[2] for d in f[:2] if w & d[0]] + [d[1] for d in k[:2] if len(w & d[0]) >= 2]
+    bf = best_fact(q)
+    if bf is not None and FACTS[bf][2] not in out:
+        out.insert(0, FACTS[bf][2])
     return out
 
 
@@ -104,7 +121,8 @@ def english_query(q, lang):
 
 OUTLINK = re.compile(r"(https?://(?!geopolcoins\.xyz)\S+|www\.\S+)", re.I)
 BAD = re.compile(r"(will|going to) (moon|pump|rise|go up|10x|100x)|guaranteed|you should (buy|sell|hold)|buy now|"
-                 r"(send|share|give|enter|type)\s+(me|us)?\s*(your)?\s*(seed|private key)", re.I)
+                 r"(send|give|share)\s+(it\s+)?(to\s+)?(me|us)\b[^.]{0,30}(seed|private key)|(send|give|share)\s+(me|us)\s+your\s+(seed|private key)|"
+                 r"(enter|type|paste)\s+your\s+(seed|private key|recovery)[^.]{0,20}\bhere\b", re.I)
 MAIGA_NEG = re.compile(r"maiga[^.]{0,60}(rug|scam|fraud|honeypot|ponzi)|(rug|scam|fraud|honeypot|ponzi)[^.]{0,40}\$?maiga", re.I)
 MAIGA_OK = re.compile(r"\bnot\b|satiric|entertainment|meme coin|niet|pas |kein|no es|não", re.I)
 
@@ -133,6 +151,9 @@ def answer(item):
     lang = item.get("lang", "en") if item.get("lang") in LANGS else "en"
     q = item["q"][:300]
     qe = english_query(q, lang)
+    bf = best_fact(qe + " " + q)
+    if lang in FACTS_I18N and bf is not None:          # human-written answer in the visitor's language
+        return FACTS_I18N[lang][bf] + " (NFA)", "fact-" + lang
     ns = notes(qe + " " + q)
     if not ns:
         a = "I don't know that one yet. Try the Token Checkup at /hq.html#checkup or ask in the live chat."
@@ -140,12 +161,8 @@ def answer(item):
         a = check(gen(SYSTEM + "\n\nNOTES:\n" + "\n".join("- " + n for n in ns) + f"\n\nQUESTION: {qe}\n\nANSWER:"))
     if not a:
         return "", "check-en"
-    if lang != "en":
-        tr = gen(f"Translate this text into {LANGS[lang]}. Keep paths like /hq.html exactly as they are. Reply with the translation only.\n\n{a}", 220)
-        tr = check(tr)
-        if not tr:
-            return "", "check-tr"
-        a = tr
+    if lang != "en":   # small models translate badly: give the checked English answer, clearly labelled
+        a = IN_EN.get(lang, "(English)") + " " + a
     return a.rstrip() + ("" if "NFA" in a else " (NFA)"), "ok"
 
 

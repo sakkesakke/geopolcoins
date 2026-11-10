@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. -->
+<resources>
+    <string name="app_name">Human Override</string>
+    <string name="app_title">HUMAN OVERRIDE</string>
+    <string name="subtitle">De AI kill switch</string>
+    <string name="on">✋ AI GEBLOKKEERD</string>
+    <string name="off">○ AI TOEGESTAAN</string>
+    <string name="tap_on">Tik om AI te blokkeren</string>
+    <string name="tap_off">Tik om AI weer toe te laten</string>
+    <string name="stats" formatted="true">Vandaag %1$d AI-opvragingen geblokkeerd · %2$d in totaal</string>
+    <string name="pin_title">Pincode</string>
+    <string name="pin_hint">4 tot 12 cijfers</string>
+    <string name="pin_set">Pincode instellen</string>
+    <string name="pin_remove">Pincode wissen</string>
+    <string name="pin_on">Pincode staat aan: AI weer toelaten of de pincode wissen vraagt de pincode.</string>
+    <string name="pin_off">Stel een pincode in zodat niemand anders de blokkering in deze app kan uitzetten.</string>
+    <string name="ask_pin">Vul eerst de pincode in.</string>
+    <string name="bad_pin">Verkeerde pincode.</string>
+    <string name="locked">Te veel foute pincodes. Wacht even en probeer opnieuw.</string>
+    <string name="pin_format">Gebruik 4 tot 12 cijfers.</string>
+    <string name="always_title">Altijd aan</string>
+    <string name="always_text">Open in de Android-instellingen VPN, tik op ⚙ naast Human Override en zet \"Altijd-aan VPN\" aan. Dan start het vanzelf na een herstart. Gebruik voor kinderen ook Google Family Link, zodat ze de instellingen niet kunnen wijzigen.</string>
+    <string name="open_vpn_settings">VPN-instellingen openen</string>
+    <string name="honest_title">Eerlijke grenzen</string>
+    <string name="honest_text">Human Override blokkeert AI-diensten in elke app op deze telefoon door hun adresopvragingen te beantwoorden met \"bestaat niet\". Het kan geen AI blokkeren die ingebouwd is in apps die je toelaat, AI die volledig op de telefoon draait, of apps met een eigen beveiligde DNS. Android laat de eigenaar van de telefoon elke VPN uitzetten in Instellingen.</string>
+    <string name="donate">❤ Altijd gratis. Steun het met een koffie</string>
+    <string name="footer">Human Override © 2026 Amghar Said. Alle rechten voorbehouden. · geopolcoins.xyz</string>
+</resources>

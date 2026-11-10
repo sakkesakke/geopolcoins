@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. -->
+<resources>
+    <string name="app_name">Human Override</string>
+    <string name="app_title">HUMAN OVERRIDE</string>
+    <string name="subtitle">The AI kill switch</string>
+    <string name="on">✋ AI BLOCKED</string>
+    <string name="off">○ AI ALLOWED</string>
+    <string name="tap_on">Tap to block AI</string>
+    <string name="tap_off">Tap to allow AI again</string>
+    <string name="stats" formatted="true">%1$d AI lookups blocked today · %2$d in total</string>
+    <string name="pin_title">PIN lock</string>
+    <string name="pin_hint">4 to 12 digits</string>
+    <string name="pin_set">Set PIN</string>
+    <string name="pin_remove">Remove PIN</string>
+    <string name="pin_on">PIN is set: turning AI back on or removing the PIN needs the PIN.</string>
+    <string name="pin_off">Set a PIN so nobody else can turn the block off in this app.</string>
+    <string name="ask_pin">Enter the PIN first.</string>
+    <string name="bad_pin">Wrong PIN.</string>
+    <string name="locked">Too many wrong PINs. Wait a moment and try again.</string>
+    <string name="pin_format">Use 4 to 12 digits.</string>
+    <string name="always_title">Make it always on</string>
+    <string name="always_text">In Android settings, open VPN, tap the ⚙ next to Human Override and switch on \"Always-on VPN\". Then it starts by itself after a restart. For children, also use Google Family Link so they cannot change settings.</string>
+    <string name="open_vpn_settings">Open VPN settings</string>
+    <string name="honest_title">Honest limits</string>
+    <string name="honest_text">Human Override blocks AI services in every app on this phone by answering their address lookups with \"does not exist\". It cannot block AI built into apps you allow, AI that runs fully on the phone, or apps that use their own secure DNS. Android lets the phone owner switch any VPN off in Settings.</string>
+    <string name="donate">❤ Free forever. Support it with a coffee</string>
+    <string name="footer">Human Override © 2026 Amghar Said. All rights reserved. · geopolcoins.xyz</string>
+</resources>

@@ -1,0 +1,18 @@
+Human Override
+Copyright (c) 2026 Amghar Said. All rights reserved.
+
+This software (the browser extension, its code, block lists, icons, texts and the name "Human Override")
+is the property of Amghar Said.
+
+You may install and use the official, unmodified version for free, for personal, school or business use.
+
+Without prior written permission from Amghar Said you may NOT:
+- copy, modify, translate or create derivative works of the code, icons or block lists;
+- redistribute, sell, sublicense, rent or publish this software or any part of it, including in app or extension stores;
+- remove or change this copyright notice or the name and branding.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE. It blocks AI services in the browser only and cannot
+guarantee that no AI can ever be reached.
+
+Contact: https://geopolcoins.xyz/human-override.html

@@ -29,7 +29,7 @@ PACE = 0.94                         # a touch slower than the model's natural sp
 
 
 def lines_of(t):
-    return [t["hook_line"]] + [line for _, line in t["items"]] + [t.get("end_line", "")]
+    return [t["hook_line"]] + [it[1] for it in t["items"]] + [t.get("end_line", "")]
 
 
 def half_up(x):

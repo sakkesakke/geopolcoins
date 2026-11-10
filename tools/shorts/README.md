@@ -35,3 +35,10 @@ It runs on GitHub because the model comes from Hugging Face. Indonesian uses the
 Voiced files go to the `media` branch and the topic gets `"video": "<id>.mp4"`, so scheduling uploads the voiced version.
 Chatterbox adds Resemble's inaudible PerTh watermark (marks the audio as AI-generated). The voice belongs to a cartoon
 character, not a real person, so YouTube's "altered or synthetic content" label (meant for realistic people and events) stays "No".
+
+## Formats and fields
+- Default: hook + 5 tips (`items` = `[title, spoken line]`).
+- `"kind": "quiz"`: "Scam or not?" — `items` = `[message on screen, spoken answer, "scam" | "safe"]`. The message shows first,
+  the viewer guesses (big "?"), then the stamp (SCAM/SAFE in the topic language) and Jean-Phil's reason.
+- `"no_extra": true`: upload the description as written (no crypto footer); for non-crypto videos like Human Override.
+- `"format": "landscape"`: a normal (16:9) video, not a Short; upload it the same way, it lands under Videos instead of Shorts.

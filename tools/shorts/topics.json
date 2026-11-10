@@ -1,5 +1,24 @@
 [
  {
+  "id": "human-override-short",
+  "lang": "en",
+  "video": "human-override-short.mp4",
+  "no_extra": true,
+  "title": "One switch. No AI. The AI kill switch for parents, schools and companies #Shorts",
+  "description": "Your kid's \"AI friend\" at midnight. A contract pasted into a chatbot. Case files in a public AI.\nHuman Override is a free AI kill switch: one switch, one PIN, 150+ AI services blocked on browser, Android, Windows, Mac and whole networks.\n\nFree download: https://geopolcoins.xyz/human-override.html\nGuides for parents, schools and companies on the site.\n\n© 2026 Amghar Said",
+  "tags": "block chatgpt,parental controls,ai blocker,block ai,human override,school,ai kill switch"
+ },
+ {
+  "id": "human-override-promo",
+  "lang": "en",
+  "video": "human-override-promo.mp4",
+  "no_extra": true,
+  "format": "landscape",
+  "title": "Human Override: the AI kill switch (block ChatGPT and 150+ AI tools, free)",
+  "description": "Your kid's \"AI friend\" at midnight. A contract pasted into a chatbot. Case files in a public AI.\nHuman Override is a free AI kill switch: one switch, one PIN, 150+ AI services blocked on browser, Android, Windows, Mac and whole networks.\n\nFree download: https://geopolcoins.xyz/human-override.html\nGuides for parents, schools and companies on the site.\n\n© 2026 Amghar Said",
+  "tags": "block chatgpt,parental controls,ai blocker,block ai,human override,school it,ai policy,ai kill switch"
+ },
+ {
   "id": "redflags-5",
   "posted": "2026-11-07",
   "hook": [
@@ -808,5 +827,128 @@
   "tags": "shorts,seed phrase,dompet kripto,keamanan kripto,geopolcoins",
   "video": "seed-phrase-id.mp4",
   "voice": "chatterbox:george"
+ },
+ {
+  "id": "quiz-scam-or-not-1",
+  "lang": "en",
+  "kind": "quiz",
+  "hook": [
+   "SCAM OR NOT?",
+   "GUESS FIRST!"
+  ],
+  "hook_line": "Scam or not? Guess before I tell you!",
+  "items": [
+   [
+    "Support: your wallet is locked. Verify here with your seed phrase.",
+    "Scam! Real support never asks for your seed phrase. Ever.",
+    "scam"
+   ],
+   [
+    "Congrats! You won 5,000 dollars in USDT. Pay a small fee to claim.",
+    "Scam! If you must pay to get a prize, there is no prize.",
+    "scam"
+   ],
+   [
+    "Your exchange app asks you to turn on two-factor login.",
+    "Safe! Two-factor makes your account much harder to steal.",
+    "safe"
+   ],
+   [
+    "A stranger: send 1 coin, I send 2 back. Limited time!",
+    "Scam! Nobody doubles your money. Fake giveaways are old tricks.",
+    "scam"
+   ],
+   [
+    "Your wallet shows a token you never bought.",
+    "Careful, could be a trap. Do not touch it and never connect to its website.",
+    "scam"
+   ]
+  ],
+  "end_line": "How many did you get right? Tell me below!",
+  "title": "Scam or not? Test yourself in 30 seconds #Shorts",
+  "description": "Scam or not? Guess before the answer. Crypto safety in 30 seconds.",
+  "tags": "crypto scam,scam or not,crypto safety,seed phrase,quiz"
+ },
+ {
+  "id": "quiz-scam-of-niet-1",
+  "lang": "nl",
+  "kind": "quiz",
+  "hook": [
+   "SCAM OF NIET?",
+   "RAAD EERST!"
+  ],
+  "hook_line": "Scam of niet? Raad mee voor ik het zeg!",
+  "items": [
+   [
+    "Support: je wallet is geblokkeerd. Bevestig hier met je seed phrase.",
+    "Scam! Echte support vraagt nooit je seed phrase. Nooit.",
+    "scam"
+   ],
+   [
+    "Proficiat! Je won 5.000 dollar. Betaal een kleine kost om het op te halen.",
+    "Scam! Moet je betalen voor een prijs, dan is er geen prijs.",
+    "scam"
+   ],
+   [
+    "Je app vraagt om inloggen in twee stappen aan te zetten.",
+    "Veilig! Twee stappen maken je account veel moeilijker te stelen.",
+    "safe"
+   ],
+   [
+    "Een onbekende: stuur 1 munt, ik stuur er 2 terug!",
+    "Scam! Niemand verdubbelt je geld. Dat is een oude truc.",
+    "scam"
+   ],
+   [
+    "Er staat een token in je wallet die je nooit kocht.",
+    "Opgelet, dat kan een val zijn. Niet aanraken en nooit de site ervan openen.",
+    "scam"
+   ]
+  ],
+  "end_line": "Hoeveel had je juist? Zeg het hieronder!",
+  "title": "Scam of niet? Test jezelf in 30 seconden #Shorts",
+  "description": "Scam of niet? Raad mee voor het antwoord komt. Crypto-veiligheid in 30 seconden.",
+  "tags": "crypto scam,scam of niet,crypto veiligheid,seed phrase,quiz"
+ },
+ {
+  "id": "quiz-arnaque-ou-pas-1",
+  "lang": "fr",
+  "kind": "quiz",
+  "hook": [
+   "ARNAQUE OU PAS?",
+   "DEVINE D'ABORD!"
+  ],
+  "hook_line": "Arnaque ou pas ? Devine avant ma réponse !",
+  "items": [
+   [
+    "Support : ton portefeuille est bloqué. Vérifie ici avec ta seed phrase.",
+    "Arnaque ! Le vrai support ne demande jamais ta seed phrase.",
+    "scam"
+   ],
+   [
+    "Bravo ! Tu as gagné 5 000 dollars. Paie de petits frais pour les recevoir.",
+    "Arnaque ! S'il faut payer pour un prix, il n'y a pas de prix.",
+    "scam"
+   ],
+   [
+    "Ton appli te propose d'activer la connexion en deux étapes.",
+    "Sûr ! Deux étapes rendent ton compte bien plus difficile à voler.",
+    "safe"
+   ],
+   [
+    "Un inconnu : envoie 1 jeton, je t'en renvoie 2 !",
+    "Arnaque ! Personne ne double ton argent. C'est un vieux piège.",
+    "scam"
+   ],
+   [
+    "Un jeton que tu n'as jamais acheté apparaît dans ton portefeuille.",
+    "Attention, piège possible. N'y touche pas et n'ouvre jamais son site.",
+    "scam"
+   ]
+  ],
+  "end_line": "Combien de bonnes réponses ? Dis-le en commentaire !",
+  "title": "Arnaque ou pas ? Teste-toi en 30 secondes #Shorts",
+  "description": "Arnaque ou pas ? Devine avant la réponse. La sécurité crypto en 30 secondes.",
+  "tags": "arnaque crypto,arnaque ou pas,sécurité crypto,seed phrase,quiz"
  }
 ]

@@ -1,0 +1,179 @@
+{
+ "version": "2026-11-08",
+ "categories": {
+  "chat": {
+   "name": "AI chatbots",
+   "domains": [
+    "chatgpt.com",
+    "chat.openai.com",
+    "openai.com",
+    "sora.com",
+    "claude.ai",
+    "anthropic.com",
+    "gemini.google.com",
+    "bard.google.com",
+    "aistudio.google.com",
+    "notebooklm.google.com",
+    "copilot.microsoft.com",
+    "copilot.cloud.microsoft",
+    "perplexity.ai",
+    "poe.com",
+    "character.ai",
+    "chat.mistral.ai",
+    "deepseek.com",
+    "chat.deepseek.com",
+    "grok.com",
+    "x.ai",
+    "meta.ai",
+    "pi.ai",
+    "chat.qwen.ai",
+    "kimi.com",
+    "kimi.moonshot.cn",
+    "chatglm.cn",
+    "doubao.com",
+    "yiyan.baidu.com",
+    "huggingchat.co",
+    "janitorai.com",
+    "replika.com",
+    "chai-research.com",
+    "talkie-ai.com",
+    "chatbotapp.ai",
+    "chatsonic.com",
+    "jenni.ai",
+    "monica.im",
+    "merlin.foyer.work",
+    "getmerlin.in",
+    "sider.ai",
+    "maxai.me",
+    "hix.ai",
+    "chatpdf.com",
+    "humata.ai"
+   ],
+   "paths": [
+    "bing.com/chat",
+    "duck.ai",
+    "duckduckgo.com/aichat",
+    "github.com/copilot",
+    "huggingface.co/chat",
+    "www.bing.com/chat"
+   ]
+  },
+  "search": {
+   "name": "AI search & research",
+   "domains": [
+    "you.com",
+    "phind.com",
+    "consensus.app",
+    "elicit.com",
+    "scite.ai",
+    "andisearch.com",
+    "komo.ai",
+    "felo.ai",
+    "genspark.ai",
+    "iask.ai"
+   ],
+   "paths": []
+  },
+  "image": {
+   "name": "AI images",
+   "domains": [
+    "midjourney.com",
+    "leonardo.ai",
+    "ideogram.ai",
+    "stability.ai",
+    "dreamstudio.ai",
+    "playground.com",
+    "krea.ai",
+    "civitai.com",
+    "nightcafe.studio",
+    "deepai.org",
+    "craiyon.com",
+    "lexica.art",
+    "firefly.adobe.com",
+    "starryai.com",
+    "getimg.ai",
+    "tensor.art",
+    "seaart.ai",
+    "pixai.art",
+    "recraft.ai"
+   ],
+   "paths": [
+    "bing.com/images/create",
+    "freepik.com/pikaso",
+    "www.bing.com/images/create"
+   ]
+  },
+  "media": {
+   "name": "AI video, voice & music",
+   "domains": [
+    "runwayml.com",
+    "pika.art",
+    "lumalabs.ai",
+    "klingai.com",
+    "hailuoai.video",
+    "haiper.ai",
+    "synthesia.io",
+    "heygen.com",
+    "d-id.com",
+    "suno.com",
+    "udio.com",
+    "elevenlabs.io",
+    "murf.ai",
+    "play.ht",
+    "invideo.io",
+    "veed.io",
+    "descript.com",
+    "captions.ai",
+    "vidu.com",
+    "pollo.ai"
+   ],
+   "paths": []
+  },
+  "writing": {
+   "name": "AI writing & homework",
+   "domains": [
+    "jasper.ai",
+    "writesonic.com",
+    "copy.ai",
+    "rytr.me",
+    "quillbot.com",
+    "wordtune.com",
+    "gamma.app",
+    "tome.app",
+    "beautiful.ai",
+    "photomath.com",
+    "mathway.com",
+    "gauthmath.com",
+    "brainly.com",
+    "socratic.org",
+    "chegg.com",
+    "undetectable.ai",
+    "stealthgpt.ai",
+    "humanizeai.pro",
+    "smodin.io",
+    "writehuman.ai"
+   ],
+   "paths": [
+    "studocu.com/ai"
+   ]
+  },
+  "coding": {
+   "name": "AI coding",
+   "domains": [
+    "cursor.com",
+    "windsurf.com",
+    "codeium.com",
+    "tabnine.com",
+    "v0.dev",
+    "v0.app",
+    "bolt.new",
+    "lovable.dev",
+    "blackbox.ai",
+    "codegpt.co"
+   ],
+   "paths": [
+    "replit.com/ai"
+   ]
+  }
+ }
+}

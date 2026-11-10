@@ -1,0 +1,59 @@
+name: Voice a promo video (Chatterbox, open source)
+
+# Speaks the lines of tools/promo/<name>.json with Chatterbox (Resemble AI, MIT) and a synthetic reference
+# voice, then pushes the clips to the "media" branch under promo/<name>/ so the video can be cut to the voice.
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "script name in tools/promo/ (without .json)"
+        default: human-override
+      voice:
+        description: "'default' or a clip name in tools/shorts/voices/"
+        default: george
+
+permissions:
+  contents: write
+
+concurrency:
+  group: voice
+  cancel-in-progress: false
+
+jobs:
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: System tools
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - name: Cache the voice model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: chatterbox-mtl-v2
+      - name: Python packages (CPU torch first, so no CUDA download)
+        run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7
+      - name: Speak the lines
+        run: |
+          case "$NAME" in *[!a-z0-9-]*|"") echo "bad name"; exit 1;; esac
+          case "$VOICE" in *[!a-z0-9-]*|"") echo "bad voice"; exit 1;; esac
+          python3 tools/promo/voice_lines.py "$NAME" --voice "$VOICE" --out ".promo/$NAME"
+        env:
+          NAME: ${{ github.event.inputs.name }}
+          VOICE: ${{ github.event.inputs.voice }}
+      - name: Push the clips to the media branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch -q origin media
+          git worktree add -q .media origin/media
+          mkdir -p ".media/promo/$NAME" && cp .promo/$NAME/* ".media/promo/$NAME/"
+          cd .media && git add promo && git commit -qm "Promo voice: $NAME" && git push -q origin HEAD:media
+        env:
+          NAME: ${{ github.event.inputs.name }}

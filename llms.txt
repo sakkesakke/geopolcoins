@@ -11,6 +11,10 @@ Important for agents:
 - Long version with every tool and how to use it: https://geopolcoins.xyz/llms-full.txt
 - Every page has Bolt, a help guide (no AI) that explains each tool in 10 languages: English, Dutch, French, Spanish, Portuguese, German, Turkish, Indonesian, Vietnamese and Arabic.
 
+
+## Human Override (the AI kill switch)
+- [Human Override](https://geopolcoins.xyz/human-override.html): free tool by Amghar Said that blocks ChatGPT and 150+ AI services on a browser (extension with PIN and schedule), Android (on-device DNS filter + hidden-sensor check), Windows/Mac/Linux (hosts file; Windows can also switch off built-in Copilot/Recall/Gemini) and whole networks (Pro pack: browser policies, DNS, firewall). No account, no tracking.
+- Guides: [block ChatGPT for kids](https://geopolcoins.xyz/blog-how-to-block-chatgpt-for-kids.html), [block AI on school computers](https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html), [stop company data going into ChatGPT](https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html), [protect your home from AI and hidden tech](https://geopolcoins.xyz/blog-protect-your-home-from-ai-and-hidden-tech.html). Terms: https://geopolcoins.xyz/human-override-terms.html
 ## Tools
 
 - [Start page](https://geopolcoins.xyz/): plain-language guide to every tool, in 10 languages (EN, NL, FR, ES, PT, DE, TR, ID, VI, AR).

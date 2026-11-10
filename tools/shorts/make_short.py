@@ -201,8 +201,45 @@ def s_hook(tl, T):
     im.alpha_composite(tmp)
     return im.convert('RGB')
 
+VERDICT = {'en': ('SCAM', 'SAFE'), 'nl': ('SCAM', 'VEILIG'), 'fr': ('ARNAQUE', 'SÛR'), 'es': ('ESTAFA', 'SEGURO'),
+           'de': ('BETRUG', 'SICHER'), 'pt': ('GOLPE', 'SEGURO'), 'id': ('PENIPUAN', 'AMAN')}
+
+def quiz_card(tl, i, msg, line, scam):
+    """'Scam or not?' format: a message appears, the viewer guesses, then the stamp and Jean-Phil's reason."""
+    def fn(tl, T):
+        reveal = 1.1
+        im = flash(night_bg(tl + i, RED if (scam and tl > reveal) else TEAL), tl).convert('RGBA'); d = ImageDraw.Draw(im)
+        chip = f'{i + 1}/5'; fc = font(PIX, 70); cw = d.textlength(chip, font=fc)
+        d.rounded_rectangle((W - 48 - cw - 44, 70, W - 48, 70 + 104), 18, fill=NIGHT, outline=AMBER, width=6)
+        d.text((W - 48 - cw - 22, 82), chip, font=fc, fill=AMBER)
+        marquee(d, TOPIC['hook'][0], font(PIX, 92), W / 2, 110, AMBER, 1.0, left=60)
+        # the message, as a phone notification card
+        k = back(tl / 0.3); f = font(SANS, 58); lines = wrap(d, msg, f, 800)
+        y0 = int(330 + 40 * (1 - min(1, max(0, k)))); h = 70 * len(lines) + 120
+        d.rounded_rectangle((90, y0, W - 90, y0 + h), 36, fill=CREAM)
+        d.text((140, y0 + 28), 'New message', font=font(SANS, 34), fill=(110, 100, 90))
+        for j, l in enumerate(lines): d.text((140, y0 + 80 + j * 70), l, font=f, fill=NIGHT)
+        if tl < reveal:   # guessing time
+            q = font(PIX, 330); txt = '?'; w = d.textlength(txt, font=q)
+            d.text(((W - w) / 2, y0 + h + 80 + 10 * math.sin(tl * 8)), txt, font=q, fill=AMBER)
+        else:
+            s = back((tl - reveal) / 0.25); word = VERDICT.get(LANG, VERDICT['en'])[0 if scam else 1]
+            col = RED if scam else TEAL; fs = font(PIX, int(170 * max(0.6, min(1.15, 0.6 + 0.55 * s))))
+            w = d.textlength(word, font=fs); y = y0 + h + 60
+            d.rounded_rectangle(((W - w) / 2 - 40, y - 10, (W + w) / 2 + 40, y + fs.size + 30), 24, outline=col, width=12)
+            d.text(((W - w) / 2, y), word, font=fs, fill=col)
+        tmp = Image.new('RGBA', (W, H))
+        talking, _ = bubble(tmp, line, 320, 1380, 720, tl, reveal, cps=cps(i + 1, line, 40), size=54)
+        sp = jp(10, tl, talking); im.alpha_composite(sp, (40, H - sp.height - 70 + int(6 * math.sin(tl * 6 + i))))
+        im.alpha_composite(tmp)
+        return im.convert('RGB')
+    return fn
+
 FLAGS = [tuple(x) for x in TOPIC['items']]
-for i, (name, line) in enumerate(FLAGS):
+for i, item in enumerate(FLAGS):
+    if TOPIC.get('kind') == 'quiz':
+        SCENES.append((4.5, quiz_card(0, i, item[0], item[1], item[2] == 'scam'))); continue
+    name, line = item[0], item[1]
     def mk(name=name, line=line, i=i):
         def fn(tl, T):
             im = flash(night_bg(tl + i, RED), tl).convert('RGBA'); d = ImageDraw.Draw(im)

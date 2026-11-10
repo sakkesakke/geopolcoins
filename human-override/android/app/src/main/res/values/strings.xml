@@ -32,4 +32,5 @@
     <string name="terms_read">Read terms</string>
     <string name="terms_decline">Close</string>
     <string name="terms_link">Terms of use</string>
+    <string name="private_dns_warn">Warning: \"Private DNS\" is set to a custom provider in Android settings. That can bypass the block. Set it to Off or Automatic (Settings &gt; Network &gt; Private DNS).</string>
 </resources>

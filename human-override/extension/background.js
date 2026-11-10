@@ -10,7 +10,7 @@ const PATH = /^([a-z0-9-]{1,63}\.)+[a-z]{2,24}\/[a-z0-9\-\/_.]{1,80}$/;
 const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.com', 'microsoft.com', 'live.com', 'outlook.com', 'office.com', 'apple.com', 'icloud.com',
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
   'geopolcoins.xyz', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
-const MAX_REGEX = 800;   // browsers allow about 1000 regex rules; stay well below
+const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
 const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true }, custom: [], allow: [], pin: null, count: 0, day: '', today: 0 };
 
 async function getState() { const s = await api.storage.local.get(null); return Object.assign({}, DEFAULTS, s, { cats: Object.assign({}, DEFAULTS.cats, s.cats || {}) }); }
@@ -40,12 +40,20 @@ async function apply() {
     const viaRegex = doms.slice(0, MAX_REGEX - Math.min(paths.length, 100)), rest = doms.slice(viaRegex.length);
     for (const d of viaRegex) {
       rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },
-        condition: { regexFilter: '^https?://([a-z0-9-]+\\.)*' + esc(d) + '(:[0-9]+)?(/.*)?$', resourceTypes: ['main_frame'] } });
+        condition: { regexFilter: '^https?://([a-z0-9-]+\\.)*' + esc(d) + '\\.?(:[0-9]+)?(/.*)?$', resourceTypes: ['main_frame'] } });
     }
     for (const p of paths.slice(0, 100)) {
       rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },
         condition: { regexFilter: '^https?://([a-z0-9-]+\\.)*' + esc(p) + '([/?#].*)?$', resourceTypes: ['main_frame'] } });
     }
+    // Google Translate can show any site through <site-with-dashes>.translate.goog: block those copies too
+    for (const d of viaRegex.slice(0, 300)) {
+      const t = d.replace(/-/g, '--').replace(/\./g, '-');
+      rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },
+        condition: { regexFilter: '^https?://' + esc(t) + '\\.translate\\.goog\\.?(/.*)?$', resourceTypes: ['main_frame', 'sub_frame'] } });
+    }
+    if (st.cats.search) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },   // Google "AI Mode"
+      condition: { regexFilter: '^https?://(www\\.)?google\\.[a-z.]{2,12}/search\\?(.*&)?udm=50(&.*)?$', resourceTypes: ['main_frame'] } });
     if (rest.length) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: { requestDomains: rest, resourceTypes: ['main_frame'] } });
     if (doms.length) rules.push({ id: id++, priority: 1, action: { type: 'block' },

@@ -32,4 +32,5 @@
     <string name="terms_read">Voorwaarden lezen</string>
     <string name="terms_decline">Sluiten</string>
     <string name="terms_link">Gebruiksvoorwaarden</string>
+    <string name="private_dns_warn">Let op: \"Privé-DNS\" staat op een eigen provider in de Android-instellingen. Daarmee kan de blokkering omzeild worden. Zet het op Uit of Automatisch (Instellingen &gt; Netwerk &gt; Privé-DNS).</string>
 </resources>

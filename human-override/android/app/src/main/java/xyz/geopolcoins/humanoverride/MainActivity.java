@@ -101,13 +101,16 @@ public class MainActivity extends Activity {
         big.setBackground(round(on ? RED : 0xFF5D5875, 18));
         big.setContentDescription(on ? getString(R.string.tap_off) : getString(R.string.tap_on));
         status.setText(getString(R.string.stats, Stats.today(this), Stats.total(this)));
+        String pdm = null;
+        try { pdm = Settings.Global.getString(getContentResolver(), "private_dns_mode"); } catch (Exception ignored) { }
+        if (on && "hostname".equals(pdm)) { msg.setTextColor(AMBER); msg.setText(R.string.private_dns_warn); }
         boolean ps = Pin.isSet(this);
         pinBtn.setText(ps ? getString(R.string.pin_remove) : getString(R.string.pin_set));
         pinNote.setText(ps ? getString(R.string.pin_on) : getString(R.string.pin_off));
     }
 
     private void toggle() {
-        msg.setText("");
+        msg.setTextColor(RED); msg.setText("");
         if (!termsOk()) { askTerms(this::toggle); return; }
         if (!BlockVpnService.running) {
             Intent prep = VpnService.prepare(this);

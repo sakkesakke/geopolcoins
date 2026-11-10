@@ -17,16 +17,22 @@ final class Lists {
     static final String URL_LIST = "https://geopolcoins.xyz/human-override/domains.txt";
     static final int MAX = 5000;
 
+    /** Bundled list plus the downloaded one (union): an online list can add blocks but never remove the built-in ones. */
     static Set<String> load(Context c) {
+        Set<String> all = bundled(c);
         File f = new File(c.getFilesDir(), "domains.txt");
         try {
             if (f.exists()) {
                 Set<String> s = DnsLogic.parseList(new String(java.nio.file.Files.readAllBytes(f.toPath()), StandardCharsets.UTF_8), MAX);
-                if (s.size() >= 20) return s;
+                if (s.size() >= 20) all.addAll(s);
             }
         } catch (Exception ignored) { }
+        return all;
+    }
+
+    private static Set<String> bundled(Context c) {
         try (InputStream in = c.getAssets().open("domains.txt")) {
-            return DnsLogic.parseList(read(in, 1 << 20), MAX);
+            return new java.util.HashSet<>(DnsLogic.parseList(read(in, 1 << 20), MAX));
         } catch (Exception e) {
             return new java.util.HashSet<>();
         }
@@ -49,7 +55,8 @@ final class Lists {
             File tmp = new File(c.getFilesDir(), "domains.tmp");
             try (FileOutputStream o = new FileOutputStream(tmp)) { o.write(txt.getBytes(StandardCharsets.UTF_8)); }
             if (!tmp.renameTo(f)) return null;
-            return s;
+            Set<String> all = bundled(c); all.addAll(s);
+            return all;
         } catch (Exception e) {
             return null;
         } finally {

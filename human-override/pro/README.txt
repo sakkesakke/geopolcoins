@@ -24,4 +24,5 @@ Honest limits: DNS and firewall lists block whole domains; AI built into allowed
 device, and traffic over a VPN or another DNS (DNS-over-HTTPS) can bypass them. Block outside DNS/DoH and VPNs on your
 firewall for full effect. Test in a pilot group first.
 
+Terms of use (provided "as is", limits of liability): https://geopolcoins.xyz/human-override-terms.html
 Human Override Pro (help with roll-out, custom lists, weekly reports): https://geopolcoins.xyz/human-override.html#pro

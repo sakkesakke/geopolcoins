@@ -18,6 +18,7 @@ PY
 }
 look() { adb shell "ping -c 1 -W 3 $1 2>&1" | head -1; }
 echo "== before"; for h in chatgpt.com www.google.com; do echo "$h: $(look $h)"; done
+tap "I agree" || exit 1; sleep 2
 tap "AI ALLOWED" || exit 1; sleep 6
 adb shell uiautomator dump /sdcard/ui.xml >/dev/null; adb pull /sdcard/ui.xml /tmp/ui.xml >/dev/null
 grep -q "AI BLOCKED" /tmp/ui.xml && echo "UI: AI BLOCKED shown" || { echo "FAIL: button did not switch"; exit 1; }

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Human Override: the AI kill switch",
   "short_name": "Human Override",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "The AI kill switch. One switch blocks 130+ AI chatbots and AI tools in this browser. PIN lock. Free, no account, no tracking.",
   "homepage_url": "https://geopolcoins.xyz/human-override.html",
   "icons": {
@@ -38,8 +38,8 @@
       "resources": [
         "blocked.html",
         "blocked.js",
-        "style.css",
-        "icons/128.png"
+        "icons/128.png",
+        "style.css"
       ],
       "matches": [
         "<all_urls>"

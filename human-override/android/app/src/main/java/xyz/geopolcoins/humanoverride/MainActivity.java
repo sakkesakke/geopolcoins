@@ -2,6 +2,7 @@
 package xyz.geopolcoins.humanoverride;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -67,12 +68,30 @@ public class MainActivity extends Activity {
 
         Button don = button(getString(R.string.donate), PINK, Color.BLACK);
         don.setOnClickListener(v -> open("https://ko-fi.com/geopolcoins")); col.addView(don, lp(dp(18)));
+        TextView tl = text(getString(R.string.terms_link), 13, AMBER, false); tl.setGravity(Gravity.CENTER);
+        tl.setOnClickListener(v -> open(TERMS_URL)); col.addView(tl, lp(dp(14)));
         TextView site = text(getString(R.string.footer), 12, DIM, false); site.setGravity(Gravity.CENTER);
         site.setOnClickListener(v -> open("https://geopolcoins.xyz/human-override.html")); col.addView(site, lp(dp(14)));
         setContentView(sv);
     }
 
-    @Override protected void onResume() { super.onResume(); h.post(tick); }
+    static final int TERMS_VERSION = 1;
+    static final String TERMS_URL = "https://geopolcoins.xyz/human-override-terms.html";
+
+    private boolean termsOk() { return Stats.prefs(this).getInt("terms_v", 0) >= TERMS_VERSION; }
+
+    private void askTerms(Runnable then) {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.terms_title)
+            .setMessage(R.string.terms_text)
+            .setCancelable(false)
+            .setPositiveButton(R.string.terms_agree, (d, w) -> { Stats.prefs(this).edit().putInt("terms_v", TERMS_VERSION).apply(); if (then != null) then.run(); })
+            .setNeutralButton(R.string.terms_read, (d, w) -> { open(TERMS_URL); askTerms(then); })
+            .setNegativeButton(R.string.terms_decline, (d, w) -> finish())
+            .show();
+    }
+
+    @Override protected void onResume() { super.onResume(); h.post(tick); if (!termsOk()) askTerms(null); }
     @Override protected void onPause() { super.onPause(); h.removeCallbacks(tick); }
 
     private void refresh() {
@@ -89,6 +108,7 @@ public class MainActivity extends Activity {
 
     private void toggle() {
         msg.setText("");
+        if (!termsOk()) { askTerms(this::toggle); return; }
         if (!BlockVpnService.running) {
             Intent prep = VpnService.prepare(this);
             if (prep != null) startActivityForResult(prep, 1); else onActivityResult(1, RESULT_OK, null);

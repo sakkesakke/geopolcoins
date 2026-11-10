@@ -14,6 +14,13 @@ strip() { awk -v s="$START" -v e="$END" '$0==s{skip=1;next} $0==e{skip=0;next} !
 flush() { (dscacheutil -flushcache 2>/dev/null; killall -HUP mDNSResponder 2>/dev/null; resolvectl flush-caches 2>/dev/null) || true; }
 case "${1:-on}" in
   on)
+    if [ "${2:-}" != "--agree" ]; then
+      echo "Terms: Human Override is provided \"as is\" and cannot guarantee that every AI is blocked."
+      echo "To the maximum extent permitted by law, Amghar Said is not liable for any damage or consequence of using it."
+      echo "Full terms: https://geopolcoins.xyz/human-override-terms.html"
+      printf "Type Y to agree and continue: "; read -r A
+      case "$A" in [YyJj]*) ;; *) echo "Nothing was changed."; exit 1 ;; esac
+    fi
     TMP=$(mktemp)
     if ! curl -fsSL --max-time 20 "$URL" -o "$TMP" 2>/dev/null; then
       [ -f "$(dirname "$0")/hosts.txt" ] && cp "$(dirname "$0")/hosts.txt" "$TMP" || { echo "Could not download the list."; exit 1; }

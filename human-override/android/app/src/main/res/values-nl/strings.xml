@@ -26,4 +26,10 @@
     <string name="honest_text">Human Override blokkeert AI-diensten in elke app op deze telefoon door hun adresopvragingen te beantwoorden met \"bestaat niet\". Het kan geen AI blokkeren die ingebouwd is in apps die je toelaat, AI die volledig op de telefoon draait, of apps met een eigen beveiligde DNS. Android laat de eigenaar van de telefoon elke VPN uitzetten in Instellingen.</string>
     <string name="donate">❤ Altijd gratis. Steun het met een koffie</string>
     <string name="footer">Human Override © 2026 Amghar Said. Alle rechten voorbehouden. · geopolcoins.xyz</string>
+    <string name="terms_title">Gebruiksvoorwaarden</string>
+    <string name="terms_text">Human Override is gratis software van Amghar Said, geleverd \"zoals het is\". Het helpt AI-diensten te blokkeren, maar kan niet garanderen dat elke AI geblokkeerd wordt. Je gebruikt het op eigen risico en blijft zelf verantwoordelijk voor je toestellen en beslissingen. Voor zover de wet het toelaat, is Amghar Said niet aansprakelijk voor schade of gevolgen van het gebruik.</string>
+    <string name="terms_agree">Ik ga akkoord</string>
+    <string name="terms_read">Voorwaarden lezen</string>
+    <string name="terms_decline">Sluiten</string>
+    <string name="terms_link">Gebruiksvoorwaarden</string>
 </resources>

@@ -98,7 +98,8 @@ async function unlocked(pin) {
   return false;
 }
 
-api.runtime.onInstalled.addListener(async () => { await apply().catch(() => {}); refreshList(); api.alarms.create('list', { periodInMinutes: 720 }); });
+api.runtime.onInstalled.addListener(async (d) => { await apply().catch(() => {}); refreshList();
+  if (d && d.reason === 'install') api.tabs.create({ url: api.runtime.getURL('welcome.html') }); api.alarms.create('list', { periodInMinutes: 720 }); });
 api.runtime.onStartup && api.runtime.onStartup.addListener(() => apply().catch(() => {}));
 api.alarms.onAlarm.addListener(a => { if (a.name === 'list') refreshList(); });
 

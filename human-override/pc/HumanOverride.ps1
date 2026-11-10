@@ -37,6 +37,12 @@ Write-Host ''
 Write-Host '  HUMAN OVERRIDE  -  the AI kill switch' -ForegroundColor Red
 Write-Host '  (c) 2026 Amghar Said  ·  geopolcoins.xyz/human-override.html'
 Write-Host ''
+Write-Host '  Terms: Human Override is provided "as is". It cannot guarantee that every AI is blocked.'
+Write-Host '  To the maximum extent permitted by law, Amghar Said is not liable for any damage or'
+Write-Host '  consequence of using it. Full terms: https://geopolcoins.xyz/human-override-terms.html'
+$agree = Read-Host '  Type Y to agree and continue'
+if ($agree -notmatch '^[YyJj]') { Write-Host '  Nothing was changed.'; Read-Host '  Press Enter to close'; exit }
+Write-Host ''
 Write-Host '  1) Block AI on this PC (or update the list)'
 Write-Host '  2) Allow AI again (remove the block)'
 Write-Host '  3) Quit'

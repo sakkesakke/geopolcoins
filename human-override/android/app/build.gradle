@@ -1,0 +1,26 @@
+// Human Override for Android - Copyright (c) 2026 Amghar Said. All rights reserved.
+plugins { id 'com.android.application' }
+android {
+    namespace 'xyz.geopolcoins.humanoverride'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'xyz.geopolcoins.humanoverride'
+        minSdk 26
+        targetSdk 34
+        versionCode Integer.parseInt(System.getenv('HO_VERSION_CODE') ?: '1')
+        versionName '0.1.' + (System.getenv('HO_VERSION_CODE') ?: '0')
+    }
+    signingConfigs {
+        release {
+            storeFile file(System.getenv('HO_KEYSTORE') ?: 'missing.jks')
+            storePassword System.getenv('HO_KS_PASS')
+            keyAlias 'ho'
+            keyPassword System.getenv('HO_KS_PASS')
+        }
+    }
+    buildTypes {
+        release { minifyEnabled false; signingConfig signingConfigs.release }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    lint { abortOnError false; checkReleaseBuilds false }
+}

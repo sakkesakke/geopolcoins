@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. -->
+<resources>
+    <string name="app_name">Human Override</string>
+    <string name="app_title">HUMAN OVERRIDE</string>
+    <string name="subtitle">Le kill switch de l’IA</string>
+    <string name="on">✋ IA BLOQUÉE</string>
+    <string name="off">○ IA AUTORISÉE</string>
+    <string name="tap_on">Touchez pour bloquer l’IA</string>
+    <string name="tap_off">Touchez pour réautoriser l’IA</string>
+    <string name="stats" formatted="true">%1$d requêtes IA bloquées aujourd’hui · %2$d au total</string>
+    <string name="pin_title">Code PIN</string>
+    <string name="pin_hint">4 à 12 chiffres</string>
+    <string name="pin_set">Définir le PIN</string>
+    <string name="pin_remove">Retirer le PIN</string>
+    <string name="pin_on">PIN actif : réautoriser l’IA ou retirer le PIN demande le PIN.</string>
+    <string name="pin_off">Définissez un PIN pour que personne d’autre ne puisse désactiver le blocage dans cette appli.</string>
+    <string name="ask_pin">Entrez d’abord le PIN.</string>
+    <string name="bad_pin">Mauvais PIN.</string>
+    <string name="locked">Trop de PIN erronés. Patientez un peu et réessayez.</string>
+    <string name="pin_format">Utilisez 4 à 12 chiffres.</string>
+    <string name="always_title">Toujours actif</string>
+    <string name="always_text">Dans les paramètres Android, ouvrez VPN, touchez ⚙ à côté de Human Override et activez « VPN permanent ». Il redémarre alors tout seul. Pour les enfants, utilisez aussi Google Family Link pour qu’ils ne puissent pas changer les réglages.</string>
+    <string name="open_vpn_settings">Ouvrir les réglages VPN</string>
+    <string name="honest_title">Limites honnêtes</string>
+    <string name="honest_text">Human Override bloque les services d’IA dans toutes les applis de ce téléphone en répondant « n’existe pas » à leurs recherches d’adresse. Il ne peut pas bloquer l’IA intégrée aux applis autorisées, l’IA qui tourne entièrement sur le téléphone, ni les applis qui utilisent leur propre DNS sécurisé. Android permet au propriétaire de désactiver tout VPN dans les Réglages.</string>
+    <string name="donate">❤ Gratuit pour toujours. Soutenez-le avec un café</string>
+    <string name="footer">Human Override © 2026 Amghar Said. Tous droits réservés. · geopolcoins.xyz</string>
+</resources>

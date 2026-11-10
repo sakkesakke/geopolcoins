@@ -2,7 +2,7 @@
    Pages: network first (always fresh when online), cached copy only when offline.
    Own static files: served from cache, refreshed in the background.
    Other sites (Supabase, AI providers, swap, Ko-fi) are never cached. */
-var VERSION = 'maiga-2026-11-10u';
+var VERSION = 'maiga-2026-11-10v';
 var CORE = ['/', '/lang-more.js', '/i18n/index.js', '/i18n/blog-picks.js', '/rug.html', '/i18n/rug.js', '/hq.html', '/app.html', '/garage.html', '/chain.html', '/offline.html', '/pwa.js', '/site.webmanifest',
   '/icon-192.png', '/icon-512.png', '/favicon-32.png', '/apple-touch-icon.png', '/logo.png', '/jp-pump.png', '/guide.js', '/geo-guard.js', '/motion.css', '/arcade.css', '/fonts/jersey-10.woff2', '/guide-kb.json', '/vendor/minisearch.min.js', '/bolt.png', '/free-ai-api.html', '/meme.html', '/lend.html', '/agent-tools.js', '/meme/templates.json',
   '/meme/mw1.png', '/meme/mw2.png', '/meme/mw3.png', '/meme/mw4.png', '/meme/mw5.png', '/meme/mw6.png', '/meme/pxjp.png', '/meme/pxeg.png', '/meme/pxmint.png', '/meme/shades.png', '/meme/crown.png',

@@ -46,6 +46,13 @@ jobs:
             gradle -p human-override/android :app:assembleRelease --no-daemon -q
           rm -f "$RUNNER_TEMP/ho.jks"
           ls -la human-override/android/app/build/outputs/apk/release/
+      - name: Verify the APK (official Android tools)
+        run: |
+          APK=human-override/android/app/build/outputs/apk/release/app-release.apk
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/apksigner" verify --verbose --print-certs "$APK" | grep -E "Verified|Signer #1 certificate DN|scheme"
+          "$BT/aapt2" dump badging "$APK" | grep -E "^package|sdkVersion|targetSdkVersion|uses-permission|application-label:|launchable"
+          unzip -l "$APK" | grep -E "assets/domains.txt|classes.dex"
       - name: Publish the APK on the site
         if: github.event_name != 'pull_request'
         run: |

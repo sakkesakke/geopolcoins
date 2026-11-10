@@ -31,7 +31,7 @@ final class Pin {
         } catch (Exception e) { return false; }
     }
 
-    static void clear(Context c) { Stats.prefs(c).edit().remove("pin_salt").remove("pin_hash").putInt("pin_fails", 0).putLong("pin_until", 0).apply(); }
+    static void clear(Context c) { Tamper.record(c, "pinoff"); Stats.prefs(c).edit().remove("pin_salt").remove("pin_hash").putInt("pin_fails", 0).putLong("pin_until", 0).apply(); }
 
     /** 1 = ok, 0 = wrong, -1 = locked for now. */
     static int check(Context c, String pin) {
@@ -48,6 +48,7 @@ final class Pin {
         int f = p.getInt("pin_fails", 0) + 1;
         long until = f >= 5 ? System.currentTimeMillis() + Math.min(3600000L, 60000L << Math.min(6, f - 5)) : 0;
         p.edit().putInt("pin_fails", f).putLong("pin_until", until).apply();
+        Tamper.record(c, f >= 5 ? "pinlock" : "pinbad");
         return 0;
     }
 }

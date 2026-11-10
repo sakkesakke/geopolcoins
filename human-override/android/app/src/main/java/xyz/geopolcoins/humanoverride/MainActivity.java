@@ -33,7 +33,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
     private static final int BG = 0xFF0D0B16, CARD = 0xFF17142A, TXT = 0xFFF3ECD9, DIM = 0xFFA79FBF, RED = 0xFFFF4F4F, AMBER = 0xFFFFB547, PINK = 0xFFFF5E7A;
     private Button big, pinBtn;
-    private TextView status, msg, pinNote;
+    private TextView status, msg, pinNote, tlog;
     private EditText pin;
     private final Handler h = new Handler(Looper.getMainLooper());
     private final Runnable tick = new Runnable() { public void run() { refresh(); h.postDelayed(this, 1500); } };
@@ -41,8 +41,16 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle s) {
         super.onCreate(s);
-        getWindow().setStatusBarColor(BG);
+        if (Build.VERSION.SDK_INT < 35) getWindow().setStatusBarColor(BG);
         ScrollView sv = new ScrollView(this); sv.setBackgroundColor(BG);
+        // Android 15+ draws apps edge to edge: keep the content clear of the status bar, navigation bar and keyboard
+        sv.setOnApplyWindowInsetsListener((v, in) -> {
+            if (Build.VERSION.SDK_INT >= 30) {
+                android.graphics.Insets i = in.getInsets(android.view.WindowInsets.Type.systemBars() | android.view.WindowInsets.Type.displayCutout() | android.view.WindowInsets.Type.ime());
+                v.setPadding(i.left, i.top, i.right, i.bottom);
+            } else v.setPadding(in.getSystemWindowInsetLeft(), in.getSystemWindowInsetTop(), in.getSystemWindowInsetRight(), in.getSystemWindowInsetBottom());
+            return in;
+        });
         LinearLayout col = new LinearLayout(this); col.setOrientation(LinearLayout.VERTICAL);
         int pad = dp(20); col.setPadding(pad, dp(28), pad, dp(28)); sv.addView(col);
 
@@ -81,6 +89,10 @@ public class MainActivity extends Activity {
         });
         gc.addView(gs, lp(dp(10)));
 
+        LinearLayout tc = card(col, getString(R.string.tamper_log_title));
+        tc.addView(text(getString(R.string.tamper_log_text), 13, DIM, false));
+        tlog = text("", 13, TXT, false); tc.addView(tlog, lp(dp(8)));
+
         LinearLayout sc = card(col, getString(R.string.sensor_title));
         sc.addView(text(getString(R.string.sensor_text), 14, DIM, false));
         Button sb = button(getString(R.string.sensor_btn), CARD, TXT); sb.setOnClickListener(v -> sensorCheck()); sc.addView(sb, lp(dp(10)));
@@ -92,6 +104,8 @@ public class MainActivity extends Activity {
         don.setOnClickListener(v -> open("https://ko-fi.com/geopolcoins")); col.addView(don, lp(dp(18)));
         TextView tl = text(getString(R.string.terms_link), 13, AMBER, false); tl.setGravity(Gravity.CENTER);
         tl.setOnClickListener(v -> open(TERMS_URL)); col.addView(tl, lp(dp(14)));
+        TextView pl = text(getString(R.string.privacy_link), 13, AMBER, false); pl.setGravity(Gravity.CENTER);
+        pl.setOnClickListener(v -> open("https://geopolcoins.xyz/privacy.html")); col.addView(pl, lp(dp(10)));
         TextView site = text(getString(R.string.footer), 12, DIM, false); site.setGravity(Gravity.CENTER);
         site.setOnClickListener(v -> open("https://geopolcoins.xyz/human-override.html")); col.addView(site, lp(dp(14)));
         setContentView(sv);
@@ -113,7 +127,11 @@ public class MainActivity extends Activity {
             .show();
     }
 
-    @Override protected void onResume() { super.onResume(); h.post(tick); if (!termsOk()) askTerms(null); }
+    @Override protected void onResume() {
+        super.onResume(); h.post(tick); if (!termsOk()) askTerms(null);
+        // protection was on, but is not running now (stopped behind the app's back, e.g. force-stopped): note it once
+        if (Tamper.wanted(this) && !BlockVpnService.running) { Tamper.want(this, false); Tamper.alert(this, "stopped", getString(R.string.tamper_stopped_text)); }
+    }
     @Override protected void onPause() { super.onPause(); h.removeCallbacks(tick); }
 
     private void refresh() {
@@ -129,6 +147,7 @@ public class MainActivity extends Activity {
         boolean ps = Pin.isSet(this);
         pinBtn.setText(ps ? getString(R.string.pin_remove) : getString(R.string.pin_set));
         pinNote.setText(ps ? getString(R.string.pin_on) : getString(R.string.pin_off));
+        tlog.setText(Tamper.text(this));
     }
 
     private void toggle() {
@@ -144,7 +163,7 @@ public class MainActivity extends Activity {
         new Thread(() -> {
             int r = Pin.check(this, p);
             runOnUiThread(() -> {
-                if (r == 1) { startService(new Intent(this, BlockVpnService.class).setAction(BlockVpnService.ACTION_STOP)); pin.setText(""); }
+                if (r == 1) { Tamper.record(this, "off"); startService(new Intent(this, BlockVpnService.class).setAction(BlockVpnService.ACTION_STOP)); pin.setText(""); }
                 else msg.setText(r < 0 ? R.string.locked : R.string.bad_pin);
             });
         }).start();
@@ -167,7 +186,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
-        if (req == 1 && res == RESULT_OK) startService(new Intent(this, BlockVpnService.class));
+        if (req == 1 && res == RESULT_OK) {
+            startService(new Intent(this, BlockVpnService.class));
+            if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 9);   // for tamper alerts
+        }
     }
 
     // ---------- Sensor check: nearby Wi-Fi radios that look like small DIY sensor boards (everything stays on the phone) ----------

@@ -51,4 +51,17 @@
     <string name="guard_switch">Warn me when the camera or microphone turns on</string>
     <string name="guard_cam">📷 Your camera is being used right now. Was that you? If not, check which apps have camera access in Settings &gt; Privacy.</string>
     <string name="guard_mic">🎤 Your microphone is being used right now. Was that you? If not, check which apps have microphone access in Settings &gt; Privacy.</string>
+    <string name="tamper_title">Human Override was switched off</string>
+    <string name="tamper_log_title">Tamper log</string>
+    <string name="tamper_log_text">What happened on this phone: wrong PINs, and when the protection was switched off. Kept only on this phone.</string>
+    <string name="tamper_none">Nothing happened yet.</string>
+    <string name="tamper_revoked">Switched off outside the app</string>
+    <string name="tamper_revoked_text">AI blocking was switched off in Android settings or by another VPN app. If that was not you, open Human Override and switch it on again.</string>
+    <string name="tamper_stopped">Found not running</string>
+    <string name="tamper_stopped_text">AI blocking was on, but it is not running any more (for example after the app was force-stopped). Tap the button to switch it on again.</string>
+    <string name="tamper_off">Switched off with the PIN</string>
+    <string name="tamper_pinbad">Wrong PIN tried</string>
+    <string name="tamper_pinlock">Locked after 5 wrong PINs</string>
+    <string name="tamper_pinoff">PIN removed</string>
+    <string name="privacy_link">Privacy policy</string>
 </resources>

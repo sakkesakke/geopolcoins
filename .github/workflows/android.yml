@@ -1,7 +1,9 @@
 name: Human Override Android app
 
 # Builds the Human Override Android app (c) 2026 Amghar Said and publishes the APK on the site.
-# Beta signing: a fresh random key per build (no secret stored anywhere). A permanent release key comes later.
+# Signing: the owner's permanent upload key from GitHub secrets (HO_UPLOAD_KEYSTORE_B64, HO_UPLOAD_STORE_PASS,
+# HO_UPLOAD_KEY_ALIAS, HO_UPLOAD_KEY_PASS) when they exist; otherwise a fresh random beta key per build.
+# Also builds an .aab for Google Play (kept as a workflow artifact, not published on the site).
 on:
   workflow_dispatch:
   push:
@@ -29,7 +31,7 @@ jobs:
           java-version: "17"
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "8.7"
+          gradle-version: "8.13"
       - name: Unit tests (DNS filter logic)
         run: |
           mkdir -p /tmp/t && cd /tmp/t
@@ -37,17 +39,32 @@ jobs:
           java -cp . DnsLogicTest
           javac -d . "$GITHUB_WORKSPACE/human-override/android/app/src/main/java/xyz/geopolcoins/humanoverride/SensorCheck.java" "$GITHUB_WORKSPACE/human-override/android/test-jvm/SensorCheckTest.java"
           java -cp . SensorCheckTest
+          javac -d . "$GITHUB_WORKSPACE/human-override/android/app/src/main/java/xyz/geopolcoins/humanoverride/TamperLog.java" "$GITHUB_WORKSPACE/human-override/android/test-jvm/TamperTest.java"
+          java -cp . TamperTest
       - name: Fresh block list into the app
         run: cp human-override/domains.txt human-override/android/app/src/main/assets/domains.txt
-      - name: Build signed APK
+      - name: Build signed APK and AAB
+        env:
+          KS_B64: ${{ secrets.HO_UPLOAD_KEYSTORE_B64 }}
+          KS_PASS: ${{ secrets.HO_UPLOAD_STORE_PASS }}
+          KEY_ALIAS: ${{ secrets.HO_UPLOAD_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.HO_UPLOAD_KEY_PASS }}
         run: |
-          PASS=$(openssl rand -hex 24); echo "::add-mask::$PASS"
-          keytool -genkeypair -keystore "$RUNNER_TEMP/ho.jks" -alias ho -keyalg RSA -keysize 3072 -validity 10000 \
-            -storepass "$PASS" -keypass "$PASS" -dname "CN=Amghar Said, O=Human Override, C=BE" >/dev/null 2>&1
-          HO_KEYSTORE="$RUNNER_TEMP/ho.jks" HO_KS_PASS="$PASS" HO_VERSION_CODE="${{ github.run_number }}" \
-            gradle -p human-override/android :app:assembleRelease --no-daemon -q
+          if [ -n "$KS_B64" ] && [ -n "$KS_PASS" ]; then
+            echo "Signing with the permanent upload key"
+            echo "$KS_B64" | base64 -d > "$RUNNER_TEMP/ho.jks"
+            export HO_KS_PASS="$KS_PASS" HO_KEY_ALIAS="${KEY_ALIAS:-ho}" HO_KEY_PASS="${KEY_PASS:-$KS_PASS}"
+          else
+            echo "No upload key secret yet: signing with a fresh random beta key"
+            PASS=$(openssl rand -hex 24); echo "::add-mask::$PASS"
+            keytool -genkeypair -keystore "$RUNNER_TEMP/ho.jks" -alias ho -keyalg RSA -keysize 3072 -validity 10000 \
+              -storepass "$PASS" -keypass "$PASS" -dname "CN=Amghar Said, O=Human Override, C=BE" >/dev/null 2>&1
+            export HO_KS_PASS="$PASS"
+          fi
+          HO_KEYSTORE="$RUNNER_TEMP/ho.jks" HO_VERSION_CODE="${{ github.run_number }}" \
+            gradle -p human-override/android :app:assembleRelease :app:bundleRelease --no-daemon -q
           rm -f "$RUNNER_TEMP/ho.jks"
-          ls -la human-override/android/app/build/outputs/apk/release/
+          ls -la human-override/android/app/build/outputs/apk/release/ human-override/android/app/build/outputs/bundle/release/
       - name: Verify the APK (official Android tools)
         run: |
           APK=human-override/android/app/build/outputs/apk/release/app-release.apk
@@ -72,6 +89,12 @@ jobs:
           name: human-override-android
           path: human-override/android/app/build/outputs/apk/release/app-release.apk
           retention-days: 14
+      - name: Google Play bundle (.aab) for the Play Console
+        uses: actions/upload-artifact@v4
+        with:
+          name: human-override-google-play-aab
+          path: human-override/android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 30
 
   e2e:
     needs: build

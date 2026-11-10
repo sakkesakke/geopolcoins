@@ -1,3 +1,4 @@
+/* Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
 /* Human Override: blocks AI services in this browser with declarativeNetRequest.
    Nothing is sent anywhere. The only network request is a daily download of the public block list
    from geopolcoins.xyz (no data about you is included). */
@@ -66,8 +67,15 @@ async function sha(s) { const b = await crypto.subtle.digest('SHA-256', new Text
 async function unlocked(pin) {
   const st = await getState();
   if (!st.pin) return true;
+  const lock = (await api.storage.local.get('lock')).lock || { fails: 0, until: 0 };
+  if (Date.now() < lock.until) return 'locked';
   if (typeof pin !== 'string' || pin.length < 4 || pin.length > 12) return false;
-  return (await sha(st.pin.salt + pin)) === st.pin.hash;
+  const ok = (await sha(st.pin.salt + pin)) === st.pin.hash;
+  if (ok) { await api.storage.local.set({ lock: { fails: 0, until: 0 } }); return true; }
+  lock.fails += 1;
+  if (lock.fails >= 5) lock.until = Date.now() + Math.min(3600000, 60000 * Math.pow(2, lock.fails - 5));
+  await api.storage.local.set({ lock });
+  return false;
 }
 
 api.runtime.onInstalled.addListener(async () => { await apply(); refreshList(); api.alarms.create('list', { periodInMinutes: 720 }); });
@@ -85,7 +93,7 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
     }
     // every change below needs the PIN if one is set
     const needsPin = ['set', 'pin'].includes(m.t);
-    if (needsPin && !(await unlocked(m.pin))) return reply({ ok: false, err: 'pin' });
+    if (needsPin) { const u = await unlocked(m.pin); if (u !== true) return reply({ ok: false, err: u === 'locked' ? 'locked' : 'pin' }); }
     if (m.t === 'set') {
       const ch = {};
       if (typeof m.on === 'boolean') ch.on = m.on;

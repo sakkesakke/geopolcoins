@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Human Override: AI blocker",
   "short_name": "Human Override",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "One switch, no AI. Blocks AI chatbots, AI image, video and writing tools on this browser. PIN lock. Free, no account, no tracking.",
   "homepage_url": "https://geopolcoins.xyz/human-override.html",
   "icons": {
@@ -55,6 +55,10 @@
           "none"
         ]
       }
+    },
+    "gecko_android": {
+      "strict_min_version": "128.0"
     }
-  }
+  },
+  "author": "Amghar Said"
 }

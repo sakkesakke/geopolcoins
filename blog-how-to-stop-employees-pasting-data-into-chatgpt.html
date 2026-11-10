@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to stop employees pasting company data into ChatGPT</title>
+<meta name="description" content="A practical guide for companies, courts and government services: block public AI chatbots on work devices and the office network, and allow only approved tools.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-bedrijfsgegevens-niet-in-chatgpt.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-empecher-les-donnees-de-l-entreprise-dans-chatgpt.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to stop employees pasting company data into ChatGPT">
+<meta property="og:description" content="A practical guide for companies, courts and government services: block public AI chatbots on work devices and the office network, and allow only approved tools.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to stop employees pasting company data into ChatGPT","description":"A practical guide for companies, courts and government services: block public AI chatbots on work devices and the office network, and allow only approved tools.","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"en","wordCount":272,"about":"Human Override","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"How to stop employees pasting company data into ChatGPT","item":"https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is the Pro pack really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Organisations can ask for paid help with roll-out or a custom list."}},{"@type":"Question","name":"Will Microsoft 365 or Google Workspace stop working?","acceptedAnswer":{"@type":"Answer","text":"No. Only AI-specific addresses are listed; protected everyday domains such as microsoft.com and google.com are never blocked."}},{"@type":"Question","name":"Does it work for courts and government?","acceptedAnswer":{"@type":"Answer","text":"Yes. The files are standard formats that government IT can review and roll out."}}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog.html">Blog</a></nav>
+<article><span class="tag" style="background:#c8a8ff">AI</span><h1>How to stop employees pasting company data into ChatGPT</h1>
+<p class="meta">10 November 2026 · 1 min read · Tool: <a href="/human-override.html">Human Override</a></p>
+<p class="langs">Also in: <a href="/blog-nl-bedrijfsgegevens-niet-in-chatgpt.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-empecher-les-donnees-de-l-entreprise-dans-chatgpt.html" hreflang="fr" lang="fr">Français</a></p>
+<div class="quick"><b>Quick answer</b><p>Write a short AI policy, choose which AI tools are approved, and block the rest on work devices and the office network with browser policies and DNS or firewall rules. Human Override's free Pro pack has ready-made blocklists for these.</p></div>
+<p>An employee pastes a client contract into a chatbot to “summarise” it. Nobody meant harm, but confidential data has now left the company. For courts, police and government services, case files and witness statements must never end up in a public AI service at all.</p>
+<h2>1. Decide what is allowed</h2>
+<p>Make a list of approved AI tools (for example an enterprise version with a data agreement) and say clearly what may never be pasted anywhere: client data, contracts, source code, case files, personal data.</p>
+<h2>2. Block the rest on work devices</h2>
+<ul><li>Push the <strong>Chrome/Edge URLBlocklist</strong> or <strong>Firefox WebsiteFilter</strong> policy through Intune, Google Admin or Group Policy.</li><li>Keep the approved tools off the list, or use the allow list in the Human Override extension.</li></ul>
+<h2>3. Block it on the network</h2>
+<p>Load the AI domain list into your DNS server (BIND RPZ, Unbound, dnsmasq, Windows DNS policies), your firewall or your proxy. Every device on the office network then gets “does not exist” for public AI services.</p>
+<h2>4. Check and keep it current</h2>
+<p>New AI services appear every month. The Human Override list is public and updated; download the latest Pro pack when you review your rules.</p>
+<p class="note">Blocking is one layer, not the whole answer. Data protection rules (such as the GDPR) still apply, and people need training and a clear policy. This guide is not legal advice.</p>
+<p class="cta"><a class="btn" href="/human-override.html#pro">Get the free Pro pack</a></p>
+<h2>Questions</h2><div class="faq"><details><summary>Is the Pro pack really free?</summary><p>Yes. Organisations can ask for paid help with roll-out or a custom list.</p></details><details><summary>Will Microsoft 365 or Google Workspace stop working?</summary><p>No. Only AI-specific addresses are listed; protected everyday domains such as microsoft.com and google.com are never blocked.</p></details><details><summary>Does it work for courts and government?</summary><p>Yes. The files are standard formats that government IT can review and roll out.</p></details></div>
+</article>
+<h2>Read next</h2><ul class="more"><li><a class="card" href="/blog-how-to-block-chatgpt-for-kids.html"><span class="tag" style="background:#c8a8ff">AI</span><h3>How to block ChatGPT and AI chatbots for kids (free)</h3><p>A plain guide for parents: block ChatGPT, AI companions and 150+ AI tools on your child&#x27;s phone, browser and computer, with a PIN so they cannot turn it off.</p></a></li><li><a class="card" href="/blog-how-to-block-ai-on-school-computers.html"><span class="tag" style="background:#c8a8ff">AI</span><h3>How to block ChatGPT and AI tools on school computers</h3><p>Three free ways for schools to block AI chatbots during lessons and exams: per computer, with browser policies, or on the whole network with DNS and firewall rules.</p></a></li><li><a class="card" href="/blog-solana-token-scam-check.html"><span class="tag" style="background:#ff6b6b">Safety</span><h3>How to check if a Solana token is a scam (free, in 1 minute)</h3><p>A plain checklist of the public red flags behind most Solana rug pulls, and a free tool that checks them for any token address.</p></a></li></ul>
+</main>
+<footer><a href="/">Home</a><a href="/blog.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="https://www.youtube.com/@geopolcoins" target="_blank" rel="noopener noreferrer">YouTube</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal</a><span>Education and entertainment. Not financial advice.</span></footer>
+<script src="/track.js" data-page="blog" defer></script>
+<script src="/guide.js" defer></script>
+</body>
+</html>

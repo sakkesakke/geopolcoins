@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Human Override: AI blocker",
   "short_name": "Human Override",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "One switch, no AI. Blocks AI chatbots, AI image, video and writing tools on this browser. PIN lock. Free, no account, no tracking.",
   "homepage_url": "https://geopolcoins.xyz/human-override.html",
   "icons": {

@@ -867,7 +867,9 @@
   "end_line": "How many did you get right? Tell me below!",
   "title": "Scam or not? Test yourself in 30 seconds #Shorts",
   "description": "Scam or not? Guess before the answer. Crypto safety in 30 seconds.",
-  "tags": "crypto scam,scam or not,crypto safety,seed phrase,quiz"
+  "tags": "crypto scam,scam or not,crypto safety,seed phrase,quiz",
+  "video": "quiz-scam-or-not-1.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "quiz-scam-of-niet-1",
@@ -908,7 +910,9 @@
   "end_line": "Hoeveel had je juist? Zeg het hieronder!",
   "title": "Scam of niet? Test jezelf in 30 seconden #Shorts",
   "description": "Scam of niet? Raad mee voor het antwoord komt. Crypto-veiligheid in 30 seconden.",
-  "tags": "crypto scam,scam of niet,crypto veiligheid,seed phrase,quiz"
+  "tags": "crypto scam,scam of niet,crypto veiligheid,seed phrase,quiz",
+  "video": "quiz-scam-of-niet-1.mp4",
+  "voice": "chatterbox:george"
  },
  {
   "id": "quiz-arnaque-ou-pas-1",
@@ -949,6 +953,8 @@
   "end_line": "Combien de bonnes réponses ? Dis-le en commentaire !",
   "title": "Arnaque ou pas ? Teste-toi en 30 secondes #Shorts",
   "description": "Arnaque ou pas ? Devine avant la réponse. La sécurité crypto en 30 secondes.",
-  "tags": "arnaque crypto,arnaque ou pas,sécurité crypto,seed phrase,quiz"
+  "tags": "arnaque crypto,arnaque ou pas,sécurité crypto,seed phrase,quiz",
+  "video": "quiz-arnaque-ou-pas-1.mp4",
+  "voice": "chatterbox:george"
  }
 ]

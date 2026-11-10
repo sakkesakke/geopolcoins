@@ -41,7 +41,7 @@ final class PrivacyGuard {
                 @Override public void onCameraUnavailable(String id) {
                     boolean first = camsInUse.isEmpty(); camsInUse.add(id);
                     long now = System.currentTimeMillis();
-                    if (first && now - lastCam > 60000) { lastCam = now; notify(c, 101, c.getString(R.string.guard_cam)); }
+                    if (first && now - lastCam > 60000) { lastCam = now; alert(c, 101, c.getString(R.string.guard_cam)); }
                 }
                 @Override public void onCameraAvailable(String id) { camsInUse.remove(id); }
             };
@@ -53,7 +53,7 @@ final class PrivacyGuard {
                 @Override public void onRecordingConfigChanged(List<AudioRecordingConfiguration> cfgs) {
                     boolean now = cfgs != null && !cfgs.isEmpty();
                     long t = System.currentTimeMillis();
-                    if (now && !micInUse && t - lastMic > 60000) { lastMic = t; notify(c, 102, c.getString(R.string.guard_mic)); }
+                    if (now && !micInUse && t - lastMic > 60000) { lastMic = t; alert(c, 102, c.getString(R.string.guard_mic)); }
                     micInUse = now;
                 }
             };
@@ -76,7 +76,7 @@ final class PrivacyGuard {
         if (nm != null) nm.createNotificationChannel(new NotificationChannel(CH, c.getString(R.string.guard_title), NotificationManager.IMPORTANCE_HIGH));
     }
 
-    private static void notify(Context c, int id, String text) {
+    private static void alert(Context c, int id, String text) {
         try {
             NotificationManager nm = c.getSystemService(NotificationManager.class);
             if (nm == null) return;

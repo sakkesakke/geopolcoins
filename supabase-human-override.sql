@@ -1,0 +1,6 @@
+-- Human Override Pro requests (applied 2026-11-10 as migration human_override_requests).
+-- Table srv.ho_requests (private schema, RLS on, no public access; only the owner reads it).
+-- public.ho_request(p_email, p_org, p_devices, p_lang, p_message, p_consent) -> 'ok' | 'bad' | 'slow'
+--   checks: valid email, org in (school, company, parent, other), devices in (1-5, 6-50, 51-500, 500+), lang in (en, nl, fr),
+--   consent text required; max 3 per IP per hour, 60 per hour overall, one per email per 7 days.
+-- Read requests:  select email, org, devices, lang, message, at from srv.ho_requests order by at desc;

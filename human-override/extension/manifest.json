@@ -2,14 +2,59 @@
   "manifest_version": 3,
   "name": "Human Override: AI blocker",
   "short_name": "Human Override",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "One switch, no AI. Blocks AI chatbots, AI image, video and writing tools on this browser. PIN lock. Free, no account, no tracking.",
   "homepage_url": "https://geopolcoins.xyz/human-override.html",
-  "icons": {"16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png"},
-  "action": {"default_popup": "popup.html", "default_title": "Human Override", "default_icon": {"16": "icons/16.png", "32": "icons/32.png"}},
-  "background": {"service_worker": "background.js", "scripts": ["background.js"]},
-  "permissions": ["declarativeNetRequest", "storage", "alarms"],
-  "host_permissions": ["<all_urls>"],
-  "web_accessible_resources": [{"resources": ["blocked.html", "blocked.js", "style.css", "icons/128.png"], "matches": ["<all_urls>"]}],
-  "browser_specific_settings": {"gecko": {"id": "human-override@geopolcoins.xyz", "strict_min_version": "128.0"}}
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Human Override",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "permissions": [
+    "declarativeNetRequest",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "blocked.html",
+        "blocked.js",
+        "style.css",
+        "icons/128.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "human-override@geopolcoins.xyz",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
 }

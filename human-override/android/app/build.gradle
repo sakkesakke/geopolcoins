@@ -2,20 +2,21 @@
 plugins { id 'com.android.application' }
 android {
     namespace 'xyz.geopolcoins.humanoverride'
-    compileSdk 34
+    compileSdk 36
     defaultConfig {
         applicationId 'xyz.geopolcoins.humanoverride'
         minSdk 26
-        targetSdk 34
+        targetSdk 36
         versionCode Integer.parseInt(System.getenv('HO_VERSION_CODE') ?: '1')
         versionName '0.1.' + (System.getenv('HO_VERSION_CODE') ?: '0')
     }
     signingConfigs {
         release {
+            // CI: the owner's permanent upload key (GitHub secrets) when present, otherwise a fresh random beta key
             storeFile file(System.getenv('HO_KEYSTORE') ?: 'missing.jks')
             storePassword System.getenv('HO_KS_PASS')
-            keyAlias 'ho'
-            keyPassword System.getenv('HO_KS_PASS')
+            keyAlias System.getenv('HO_KEY_ALIAS') ?: 'ho'
+            keyPassword System.getenv('HO_KEY_PASS') ?: System.getenv('HO_KS_PASS')
         }
     }
     buildTypes {

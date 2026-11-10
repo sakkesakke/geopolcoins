@@ -42,7 +42,7 @@ public class BlockVpnService extends VpnService implements Runnable {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && ACTION_STOP.equals(intent.getAction())) { stopVpn(); return START_NOT_STICKY; }
+        if (intent != null && ACTION_STOP.equals(intent.getAction())) { Tamper.want(this, false); stopVpn(); return START_NOT_STICKY; }
         startVpn();
         return START_STICKY;
     }
@@ -62,6 +62,7 @@ public class BlockVpnService extends VpnService implements Runnable {
         if (tun == null) { stopSelf(); return; }
         out = new FileOutputStream(tun.getFileDescriptor());
         running = true;
+        Tamper.want(this, true);
         pool = Executors.newFixedThreadPool(4);
         thread = new Thread(this, "ho-dns");
         thread.start();
@@ -80,7 +81,8 @@ public class BlockVpnService extends VpnService implements Runnable {
         stopSelf();
     }
 
-    @Override public void onRevoke() { stopVpn(); super.onRevoke(); }
+    // Android calls onRevoke when the VPN is switched off outside this app (VPN settings or another VPN app): a tamper alert.
+    @Override public void onRevoke() { stopVpn(); Tamper.alert(this, "revoked", getString(R.string.tamper_revoked_text)); super.onRevoke(); }
     @Override public void onDestroy() { running = false; PrivacyGuard.stop(this); try { if (tun != null) tun.close(); } catch (IOException ignored) { } super.onDestroy(); }
 
     @Override

@@ -51,4 +51,17 @@
     <string name="guard_switch">M’avertir quand la caméra ou le micro s’allume</string>
     <string name="guard_cam">📷 Votre caméra est utilisée en ce moment. Était-ce vous ? Sinon, vérifiez dans Paramètres &gt; Confidentialité quelles applis y ont accès.</string>
     <string name="guard_mic">🎤 Votre micro est utilisé en ce moment. Était-ce vous ? Sinon, vérifiez dans Paramètres &gt; Confidentialité quelles applis y ont accès.</string>
+    <string name="tamper_title">Human Override a été désactivé</string>
+    <string name="tamper_log_title">Journal anti-sabotage</string>
+    <string name="tamper_log_text">Ce qui s’est passé sur ce téléphone : mauvais PIN et moments où la protection a été coupée. Reste uniquement sur ce téléphone.</string>
+    <string name="tamper_none">Rien ne s’est encore passé.</string>
+    <string name="tamper_revoked">Désactivé hors de l’appli</string>
+    <string name="tamper_revoked_text">Le blocage de l’IA a été coupé dans les réglages Android ou par une autre appli VPN. Ce n’était pas vous ? Ouvrez Human Override et réactivez-le.</string>
+    <string name="tamper_stopped">Trouvé arrêté</string>
+    <string name="tamper_stopped_text">Le blocage de l’IA était actif mais ne tourne plus (par exemple après un arrêt forcé de l’appli). Touchez le bouton pour le réactiver.</string>
+    <string name="tamper_off">Désactivé avec le PIN</string>
+    <string name="tamper_pinbad">Mauvais PIN essayé</string>
+    <string name="tamper_pinlock">Verrouillé après 5 mauvais PIN</string>
+    <string name="tamper_pinoff">PIN retiré</string>
+    <string name="privacy_link">Politique de confidentialité</string>
 </resources>

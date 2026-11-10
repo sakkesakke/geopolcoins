@@ -51,4 +51,17 @@
     <string name="guard_switch">Waarschuw me als de camera of microfoon aangaat</string>
     <string name="guard_cam">📷 Je camera wordt nu gebruikt. Was jij dat? Zo niet, kijk in Instellingen &gt; Privacy welke apps cameratoegang hebben.</string>
     <string name="guard_mic">🎤 Je microfoon wordt nu gebruikt. Was jij dat? Zo niet, kijk in Instellingen &gt; Privacy welke apps microfoontoegang hebben.</string>
+    <string name="tamper_title">Human Override is uitgezet</string>
+    <string name="tamper_log_title">Sabotage-logboek</string>
+    <string name="tamper_log_text">Wat er op deze telefoon gebeurde: foute pincodes en wanneer de bescherming uitging. Blijft alleen op deze telefoon.</string>
+    <string name="tamper_none">Nog niets gebeurd.</string>
+    <string name="tamper_revoked">Uitgezet buiten de app</string>
+    <string name="tamper_revoked_text">Het AI-blokkeren is uitgezet in de Android-instellingen of door een andere VPN-app. Was jij dat niet? Open Human Override en zet het weer aan.</string>
+    <string name="tamper_stopped">Bleek niet meer actief</string>
+    <string name="tamper_stopped_text">Het AI-blokkeren stond aan, maar werkt niet meer (bijvoorbeeld nadat de app geforceerd gestopt is). Tik op de knop om het weer aan te zetten.</string>
+    <string name="tamper_off">Uitgezet met de pincode</string>
+    <string name="tamper_pinbad">Verkeerde pincode geprobeerd</string>
+    <string name="tamper_pinlock">Vergrendeld na 5 foute pincodes</string>
+    <string name="tamper_pinoff">Pincode gewist</string>
+    <string name="privacy_link">Privacybeleid</string>
 </resources>

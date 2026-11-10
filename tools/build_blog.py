@@ -67,7 +67,8 @@ def fname(lang, slug=None):
     return f"blog-{slug}.html" if lang == "en" else f"blog-{lang}-{slug}.html"
 def alt(lang, en_slug):
     if en_slug is None: return fname(lang)
-    p = next(q for q in LANGS[lang] if q["en"] == en_slug); return fname(lang, p["slug"])
+    p = next((q for q in LANGS[lang] if q["en"] == en_slug), None)   # a post may exist in fewer languages
+    return fname(lang, p["slug"]) if p else None
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://geopolcoins.xyz/"
@@ -183,7 +184,7 @@ def card(p, h="h3", lang="en"):
 def article(p, i, lang="en"):
     u = UI[lang]; posts = LANGS[lang]
     url = SITE + fname(lang, p["slug"])
-    alts = {l: alt(l, p["en"]) for l in LANGS}
+    alts = {l: a for l in LANGS if (a := alt(l, p["en"]))}
     words = sum(len(plain(v if isinstance(v, str) else " ".join(v) if isinstance(v, list) else " ".join(v)).split()) for k, v in p["body"])
     ld = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": p["title"], "description": p["desc"], "datePublished": p["date"],
            "dateModified": p.get("updated", p["date"]), "author": ORG, "publisher": ORG, "mainEntityOfPage": url, "image": SITE + "og-image.jpg",
@@ -196,7 +197,7 @@ def article(p, i, lang="en"):
         ld.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]})
     c = TAGC.get(p["tag"], "#ffb547")
-    others_l = " ".join(f'<a href="/{alts[l]}" hreflang="{l}" lang="{l}">{LNAME[l]}</a>' for l in LANGS if l != lang)
+    others_l = " ".join(f'<a href="/{alts[l]}" hreflang="{l}" lang="{l}">{LNAME[l]}</a>' for l in alts if l != lang)
     out = [head(p["title"], p["desc"], url, ld, lang=lang, alts=alts), '<main id="main" class="wrap">',
            f'<nav class="crumbs" aria-label="Breadcrumb"><a href="/">{u["home"]}</a> › <a href="/{fname(lang)}">{u["blog"]}</a></nav>',
            f'<article><span class="tag" style="background:{c}">{html.escape(p["tag"])}</span><h1>{html.escape(p["title"])}</h1>',
@@ -251,7 +252,7 @@ def main():
     names = []
     for lang, posts in LANGS.items():
         seen = set()
-        assert {p["en"] for p in posts} == set(EN_BY_SLUG), f"{lang}: posts must match the English set"
+        assert {p["en"] for p in posts} <= set(EN_BY_SLUG), f"{lang}: every post needs an English original"
         for i, p in enumerate(posts):
             assert p["slug"] not in seen and re.fullmatch(r"[a-z0-9-]+", p["slug"]); seen.add(p["slug"])
             assert len(p["desc"]) <= 165, (lang, p["slug"], len(p["desc"]))

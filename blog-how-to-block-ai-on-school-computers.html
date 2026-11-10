@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to block ChatGPT and AI tools on school computers</title>
+<meta name="description" content="Three free ways for schools to block AI chatbots during lessons and exams: per computer, with browser policies, or on the whole network with DNS and firewall rules.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-ai-blokkeren-op-schoolcomputers.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-bloquer-l-ia-sur-les-ordinateurs-de-l-ecole.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to block ChatGPT and AI tools on school computers">
+<meta property="og:description" content="Three free ways for schools to block AI chatbots during lessons and exams: per computer, with browser policies, or on the whole network with DNS and firewall rules.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to block ChatGPT and AI tools on school computers","description":"Three free ways for schools to block AI chatbots during lessons and exams: per computer, with browser policies, or on the whole network with DNS and firewall rules.","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"en","wordCount":250,"about":"Human Override","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"How to block ChatGPT and AI tools on school computers","item":"https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this block Google search?","acceptedAnswer":{"@type":"Answer","text":"No. Normal search keeps working. Google's separate AI Mode is blocked by the browser extension."}},{"@type":"Question","name":"Can teachers still use AI?","acceptedAnswer":{"@type":"Answer","text":"Yes. Allow specific tools, or switch blocking off on teacher accounts or devices."}},{"@type":"Question","name":"How often is the list updated?","acceptedAnswer":{"@type":"Answer","text":"The public list updates as new AI services appear; the apps and extension download it daily."}}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog.html">Blog</a></nav>
+<article><span class="tag" style="background:#c8a8ff">AI</span><h1>How to block ChatGPT and AI tools on school computers</h1>
+<p class="meta">10 November 2026 · 1 min read · Tool: <a href="/human-override.html">Human Override</a></p>
+<p class="langs">Also in: <a href="/blog-nl-ai-blokkeren-op-schoolcomputers.html" hreflang="nl" lang="nl">Nederlands</a> <a href="/blog-fr-bloquer-l-ia-sur-les-ordinateurs-de-l-ecole.html" hreflang="fr" lang="fr">Français</a></p>
+<div class="quick"><b>Quick answer</b><p>For a few computers, install a blocker such as Human Override. For the whole school, let IT push a browser URL blocklist (Chrome or Edge policy) and block AI domains on the school DNS or firewall. The free Human Override Pro pack has ready-made files for all of these.</p></div>
+<p>Exam week, and half the class has a chatbot open in another tab. Schools do not need to ban AI forever, but they do need a switch they control: off during tests, on when a teacher wants to use it.</p>
+<h2>Option 1: per computer (a few minutes)</h2>
+<p>Install <a href="/human-override.html">Human Override</a> on each computer. The Windows and Mac versions block AI for every browser and app; the browser extension adds a PIN lock. Good for a single classroom or a library.</p>
+<h2>Option 2: browser policy (IT, whole school)</h2>
+<p>Chrome and Edge accept a <strong>URLBlocklist</strong> policy that IT can push through Google Admin, Intune or Group Policy. Firefox has a similar <strong>WebsiteFilter</strong> policy. The Pro pack contains both, filled with the current AI list.</p>
+<h2>Option 3: the network (IT, every device)</h2>
+<ul><li><strong>DNS:</strong> files for BIND (RPZ), Unbound, dnsmasq and Windows DNS Server policies, so AI addresses return “does not exist”.</li><li><strong>Firewall:</strong> a plain domain list for firewalls that accept external lists.</li><li><strong>Proxy:</strong> a Squid ACL file.</li><li>Network blocking also covers student phones on the school Wi-Fi.</li></ul>
+<p class="note">Students on mobile data or a VPN are outside the school network. Combine network rules with clear rules in the classroom.</p>
+<p class="cta"><a class="btn" href="/human-override.html#pro">Get the free Pro pack</a></p>
+<h2>Questions</h2><div class="faq"><details><summary>Does this block Google search?</summary><p>No. Normal search keeps working. Google&#x27;s separate AI Mode is blocked by the browser extension.</p></details><details><summary>Can teachers still use AI?</summary><p>Yes. Allow specific tools, or switch blocking off on teacher accounts or devices.</p></details><details><summary>How often is the list updated?</summary><p>The public list updates as new AI services appear; the apps and extension download it daily.</p></details></div>
+</article>
+<h2>Read next</h2><ul class="more"><li><a class="card" href="/blog-how-to-block-chatgpt-for-kids.html"><span class="tag" style="background:#c8a8ff">AI</span><h3>How to block ChatGPT and AI chatbots for kids (free)</h3><p>A plain guide for parents: block ChatGPT, AI companions and 150+ AI tools on your child&#x27;s phone, browser and computer, with a PIN so they cannot turn it off.</p></a></li><li><a class="card" href="/blog-how-to-stop-employees-pasting-data-into-chatgpt.html"><span class="tag" style="background:#c8a8ff">AI</span><h3>How to stop employees pasting company data into ChatGPT</h3><p>A practical guide for companies, courts and government services: block public AI chatbots on work devices and the office network, and allow only approved tools.</p></a></li><li><a class="card" href="/blog-solana-token-scam-check.html"><span class="tag" style="background:#ff6b6b">Safety</span><h3>How to check if a Solana token is a scam (free, in 1 minute)</h3><p>A plain checklist of the public red flags behind most Solana rug pulls, and a free tool that checks them for any token address.</p></a></li></ul>
+</main>
+<footer><a href="/">Home</a><a href="/blog.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="https://www.youtube.com/@geopolcoins" target="_blank" rel="noopener noreferrer">YouTube</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal</a><span>Education and entertainment. Not financial advice.</span></footer>
+<script src="/track.js" data-page="blog" defer></script>
+<script src="/guide.js" defer></script>
+</body>
+</html>

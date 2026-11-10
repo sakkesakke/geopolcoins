@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://zslzbfbqrtfpvgbjhssd.supabase.co; manifest-src 'self'; worker-src 'self'; frame-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zo voorkom je dat werknemers bedrijfsgegevens in ChatGPT plakken</title>
+<meta name="description" content="Gids voor bedrijven, rechtbanken en overheid: blokkeer publieke AI-chatbots op werktoestellen en het netwerk, en laat alleen goedgekeurde tools toe.">
+<link rel="canonical" href="https://geopolcoins.xyz/blog-nl-bedrijfsgegevens-niet-in-chatgpt.html">
+<link rel="alternate" hreflang="en" href="https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html">
+<link rel="alternate" hreflang="nl" href="https://geopolcoins.xyz/blog-nl-bedrijfsgegevens-niet-in-chatgpt.html">
+<link rel="alternate" hreflang="fr" href="https://geopolcoins.xyz/blog-fr-empecher-les-donnees-de-l-entreprise-dans-chatgpt.html">
+<link rel="alternate" hreflang="x-default" href="https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html">
+<link rel="alternate" type="application/rss+xml" title="geopolcoins.xyz blog" href="/blog-feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zo voorkom je dat werknemers bedrijfsgegevens in ChatGPT plakken">
+<meta property="og:description" content="Gids voor bedrijven, rechtbanken en overheid: blokkeer publieke AI-chatbots op werktoestellen en het netwerk, en laat alleen goedgekeurde tools toe.">
+<meta property="og:url" content="https://geopolcoins.xyz/blog-nl-bedrijfsgegevens-niet-in-chatgpt.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#120f1e">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Zo voorkom je dat werknemers bedrijfsgegevens in ChatGPT plakken","description":"Gids voor bedrijven, rechtbanken en overheid: blokkeer publieke AI-chatbots op werktoestellen en het netwerk, en laat alleen goedgekeurde tools toe.","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"publisher":{"@type":"Organization","name":"geopolcoins.xyz","url":"https://geopolcoins.xyz/","logo":"https://geopolcoins.xyz/logo.png"},"mainEntityOfPage":"https://geopolcoins.xyz/blog-nl-bedrijfsgegevens-niet-in-chatgpt.html","image":"https://geopolcoins.xyz/og-image.jpg","inLanguage":"nl","wordCount":234,"about":"Human Override","isAccessibleForFree":true}</script>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Zo voorkom je dat werknemers bedrijfsgegevens in ChatGPT plakken","item":"https://geopolcoins.xyz/blog-nl-bedrijfsgegevens-niet-in-chatgpt.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is het Pro-pakket echt gratis?","acceptedAnswer":{"@type":"Answer","text":"Ja. Organisaties kunnen betaalde hulp vragen bij de uitrol of een lijst op maat."}},{"@type":"Question","name":"Blijven Microsoft 365 en Google Workspace werken?","acceptedAnswer":{"@type":"Answer","text":"Ja. Alleen AI-adressen staan op de lijst; gewone domeinen zoals microsoft.com en google.com worden nooit geblokkeerd."}},{"@type":"Question","name":"Werkt het voor rechtbanken en overheid?","acceptedAnswer":{"@type":"Answer","text":"Ja. De bestanden zijn standaardformaten die de IT van de overheid kan nakijken en uitrollen."}}]}</script>
+<style>
+@font-face{font-family:"Jersey 10";src:url(/fonts/jersey-10.woff2) format("woff2");font-weight:400;font-display:swap}
+:root{--night:#120f1e;--floor:#191427;--cab:#251c38;--line:rgba(241,235,224,.12);--text:#f1ebe0;--dim:#b3a9c4;--mute:#8f85a3;--amber:#ffb547;--cream:#f3ecd9;--teal:#5fd3c6;--red:#ff6b6b;--pix:"Jersey 10",ui-monospace,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--night);color:var(--text);font:18px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber)}a:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--amber);color:#1a1206;padding:10px 14px;border-radius:8px;font-weight:800;z-index:5}.skip:focus{top:8px}
+.top{max-width:1100px;margin:0 auto;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{color:var(--text);text-decoration:none;font-weight:800;margin-right:auto}.brand b{color:var(--amber)}
+.top nav a{color:var(--dim);text-decoration:none;font-size:15px;margin-left:12px}
+.langs{font-size:14px;color:var(--mute);margin:-12px 0 22px}.langs a{color:var(--dim);margin-right:10px}
+.wrap{max-width:740px;margin:0 auto;padding:0 16px 40px}
+.crumbs{font-size:14px;color:var(--mute);margin:8px 0 18px}.crumbs a{color:var(--dim)}
+.tag{display:inline-block;font:400 18px/1 var(--pix);padding:4px 10px 2px;border-radius:7px;color:#1a1206}
+h1{font:400 clamp(38px,6.5vw,58px)/1 var(--pix);margin:12px 0 10px;letter-spacing:0;text-wrap:balance}
+.meta{color:var(--mute);font-size:14px;margin:0 0 22px}
+h2{font:400 32px/1.1 var(--pix);margin:34px 0 8px;letter-spacing:0;color:var(--cream)}
+p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
+.quick{background:var(--cab);border-left:5px solid var(--teal);border-radius:12px;padding:14px 18px;margin:0 0 22px}
+.quick b{font:400 22px/1 var(--pix);color:var(--teal)}.quick p{margin:6px 0 0}
+.note{border:1px dashed rgba(255,181,71,.5);border-radius:10px;padding:10px 14px;color:var(--cream);font-size:15.5px;background:rgba(255,181,71,.06)}
+.btn{display:inline-block;background:var(--amber);color:#1a1206;text-decoration:none;font-weight:800;padding:12px 20px;border-radius:10px}
+.cta{margin:28px 0}
+.faq details{background:var(--cab);border-radius:10px;padding:10px 14px;margin:8px 0}.faq summary{cursor:pointer;font-weight:700}.faq p{margin:6px 0 2px;font-size:16.5px}
+.more{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}
+.card{display:block;background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--amber)}.card h3{font:400 26px/1.1 var(--pix);margin:8px 0 6px;letter-spacing:0}.card p{margin:0;color:var(--dim);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
+.lead{color:var(--dim);font-size:19px;margin:0 0 6px}
+footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+@media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}
+</style>
+<link rel="stylesheet" href="/motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="top"><a class="brand" href="/"><b>$MAIGA</b> · geopolcoins.xyz</a><nav aria-label="Main"><a href="/blog-nl.html">Blog</a><a href="/radar.html">Radar</a><a href="/hq.html#checkup">Token Checkup</a><a href="/kronos.html">Kronos Lab</a></nav></header>
+
+<main id="main" class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog-nl.html">Blog</a></nav>
+<article><span class="tag" style="background:#c8a8ff">AI</span><h1>Zo voorkom je dat werknemers bedrijfsgegevens in ChatGPT plakken</h1>
+<p class="meta">10 november 2026 · 1 min lezen · Tool: <a href="/human-override.html">Human Override</a></p>
+<p class="langs">Ook in: <a href="/blog-how-to-stop-employees-pasting-data-into-chatgpt.html" hreflang="en" lang="en">English</a> <a href="/blog-fr-empecher-les-donnees-de-l-entreprise-dans-chatgpt.html" hreflang="fr" lang="fr">Français</a></p>
+<div class="quick"><b>Kort antwoord</b><p>Schrijf een kort AI-beleid, kies welke AI-tools goedgekeurd zijn en blokkeer de rest op werktoestellen en het kantoornetwerk met browserbeleid en DNS- of firewallregels. Het gratis Pro-pakket van Human Override heeft kant-en-klare blokkeerlijsten.</p></div>
+<p>Een werknemer plakt een klantencontract in een chatbot om het te “samenvatten”. Niemand bedoelde kwaad, maar vertrouwelijke gegevens hebben het bedrijf verlaten. Voor rechtbanken, politie en overheid mogen dossiers en getuigenverklaringen nooit in een publieke AI-dienst belanden.</p>
+<h2>1. Beslis wat mag</h2>
+<p>Maak een lijst van goedgekeurde AI-tools (bijvoorbeeld een zakelijke versie met een verwerkersovereenkomst) en zeg duidelijk wat nergens geplakt mag worden: klantgegevens, contracten, broncode, dossiers, persoonsgegevens.</p>
+<h2>2. Blokkeer de rest op werktoestellen</h2>
+<ul><li>Rol het <strong>Chrome/Edge URLBlocklist</strong>- of <strong>Firefox WebsiteFilter</strong>-beleid uit via Intune, Google Admin of Groepsbeleid.</li><li>Hou goedgekeurde tools van de lijst, of gebruik de toegestane lijst in de Human Override-extensie.</li></ul>
+<h2>3. Blokkeer het op het netwerk</h2>
+<p>Laad de lijst met AI-domeinen in je DNS-server (BIND RPZ, Unbound, dnsmasq, Windows DNS), je firewall of je proxy. Elk toestel op het kantoornetwerk krijgt dan “bestaat niet” voor publieke AI-diensten.</p>
+<h2>4. Controleer en hou het actueel</h2>
+<p>Elke maand verschijnen nieuwe AI-diensten. De Human Override-lijst is openbaar en wordt bijgewerkt; download het nieuwste Pro-pakket wanneer je je regels nakijkt.</p>
+<p class="note">Blokkeren is één laag, niet het hele antwoord. Privacyregels (zoals de GDPR/AVG) blijven gelden, en mensen hebben opleiding en een duidelijk beleid nodig. Deze gids is geen juridisch advies.</p>
+<p class="cta"><a class="btn" href="/human-override.html#pro">Neem het gratis Pro-pakket</a></p>
+<h2>Vragen</h2><div class="faq"><details><summary>Is het Pro-pakket echt gratis?</summary><p>Ja. Organisaties kunnen betaalde hulp vragen bij de uitrol of een lijst op maat.</p></details><details><summary>Blijven Microsoft 365 en Google Workspace werken?</summary><p>Ja. Alleen AI-adressen staan op de lijst; gewone domeinen zoals microsoft.com en google.com worden nooit geblokkeerd.</p></details><details><summary>Werkt het voor rechtbanken en overheid?</summary><p>Ja. De bestanden zijn standaardformaten die de IT van de overheid kan nakijken en uitrollen.</p></details></div>
+</article>
+<h2>Lees ook</h2><ul class="more"><li><a class="card" href="/blog-nl-chatgpt-blokkeren-voor-kinderen.html"><span class="tag" style="background:#c8a8ff">AI</span><h3>ChatGPT en AI-chatbots blokkeren voor je kinderen (gratis)</h3><p>Een eenvoudige gids voor ouders: blokkeer ChatGPT, AI-vrienden en 150+ AI-tools op de telefoon, browser en computer van je kind, met een pincode.</p></a></li><li><a class="card" href="/blog-nl-ai-blokkeren-op-schoolcomputers.html"><span class="tag" style="background:#c8a8ff">AI</span><h3>ChatGPT en AI-tools blokkeren op schoolcomputers</h3><p>Drie gratis manieren voor scholen om AI-chatbots te blokkeren tijdens lessen en examens: per computer, met browserbeleid of op het hele netwerk.</p></a></li><li><a class="card" href="/blog-nl-solana-token-scam-checken.html"><span class="tag" style="background:#ff6b6b">Veiligheid</span><h3>Hoe check je of een Solana-token een scam is? (gratis, 1 minuut)</h3><p>Een eenvoudige checklist van de publieke rode vlaggen achter de meeste Solana-rug pulls, en een gratis tool die ze voor elke token nakijkt.</p></a></li></ul>
+</main>
+<footer><a href="/">Home</a><a href="/blog-nl.html">Blog</a><a href="/blog-feed.xml">RSS</a><a href="https://www.youtube.com/@geopolcoins" target="_blank" rel="noopener noreferrer">YouTube</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Juridisch</a><span>Uitleg en ontspanning. Geen financieel advies.</span></footer>
+<script src="/track.js" data-page="blog" defer></script>
+<script src="/guide.js" defer></script>
+</body>
+</html>

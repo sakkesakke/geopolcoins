@@ -32,6 +32,67 @@ function Get-List {
   return $lines
 }
 
+# Windows' own AI features, switched off with official policies (Microsoft Policy CSP WindowsAI,
+# Microsoft Edge and Google Chrome enterprise policies). The previous values are saved first,
+# so option 4 restores exactly what was there before (an IT admin's own settings stay intact).
+$AiPolicies = @(
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot', 'TurnOffWindowsCopilot', 1),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'AllowRecallEnablement', 0),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableAIDataAnalysis', 1),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableClickToDo', 1),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsAI', 'DisableSettingsAgent', 1),
+  @('HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Paint', 'DisableCocreator', 1),
+  @('HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Paint', 'DisableGenerativeFill', 1),
+  @('HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Paint', 'DisableImageCreator', 1),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Edge', 'HubsSidebarEnabled', 0),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Edge', 'Microsoft365CopilotChatIconEnabled', 0),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Edge', 'ComposeInlineEnabled', 0),
+  @('HKLM:\SOFTWARE\Policies\Microsoft\Edge', 'GenAILocalFoundationalModelSettings', 1),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'GeminiSettings', 1),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'AIModeSettings', 1),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'HelpMeWriteSettings', 2),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'TabCompareSettings', 2),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'HistorySearchSettings', 2),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'CreateThemesSettings', 2),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'DevToolsGenAiSettings', 2),
+  @('HKLM:\SOFTWARE\Policies\Google\Chrome', 'GenAILocalFoundationalModelSettings', 1)
+)
+$BackupKey = 'HKLM:\SOFTWARE\HumanOverride'
+
+function Disable-BuiltinAI {
+  $saved = @()
+  if (Test-Path $BackupKey) { $old = (Get-ItemProperty $BackupKey -ErrorAction SilentlyContinue).BuiltinAIBackup; if ($old) { $saved = @($old | ConvertFrom-Json) } }
+  foreach ($p in $AiPolicies) {
+    $key, $name, $val = $p
+    $already = $saved | Where-Object { $_.k -eq $key -and $_.n -eq $name }
+    if (-not $already) {   # remember the value from BEFORE Human Override (only the first time)
+      $prev = $null
+      if (Test-Path $key) { $prev = (Get-ItemProperty $key -Name $name -ErrorAction SilentlyContinue).$name }
+      $saved += [pscustomobject]@{ k = $key; n = $name; v = $prev }
+    }
+    if (-not (Test-Path $key)) { New-Item -Path $key -Force | Out-Null }
+    New-ItemProperty -Path $key -Name $name -Value $val -PropertyType DWord -Force | Out-Null
+  }
+  if (-not (Test-Path $BackupKey)) { New-Item -Path $BackupKey -Force | Out-Null }
+  New-ItemProperty -Path $BackupKey -Name 'BuiltinAIBackup' -Value ($saved | ConvertTo-Json -Compress) -PropertyType String -Force | Out-Null
+  return $AiPolicies.Count
+}
+
+function Restore-BuiltinAI {
+  if (-not (Test-Path $BackupKey)) { return 0 }
+  $raw = (Get-ItemProperty $BackupKey -ErrorAction SilentlyContinue).BuiltinAIBackup
+  if (-not $raw) { return 0 }
+  $n = 0
+  foreach ($e in @($raw | ConvertFrom-Json)) {
+    if (-not (Test-Path $e.k)) { continue }
+    if ($null -eq $e.v) { Remove-ItemProperty -Path $e.k -Name $e.n -ErrorAction SilentlyContinue }
+    else { New-ItemProperty -Path $e.k -Name $e.n -Value ([int]$e.v) -PropertyType DWord -Force | Out-Null }
+    $n++
+  }
+  Remove-ItemProperty -Path $BackupKey -Name 'BuiltinAIBackup' -ErrorAction SilentlyContinue
+  return $n
+}
+
 Clear-Host
 Write-Host ''
 Write-Host '  HUMAN OVERRIDE  -  the AI kill switch' -ForegroundColor Red
@@ -45,8 +106,10 @@ if ($agree -notmatch '^[YyJj]') { Write-Host '  Nothing was changed.'; Read-Host
 Write-Host ''
 Write-Host '  1) Block AI on this PC (or update the list)'
 Write-Host '  2) Allow AI again (remove the block)'
-Write-Host '  3) Quit'
-$c = Read-Host '  Choose 1, 2 or 3'
+Write-Host '  3) Turn off the AI built into Windows, Edge and Chrome (Copilot, Recall, Click to Do, Paint AI, Gemini)'
+Write-Host '  4) Turn that built-in AI back on (restores the settings from before)'
+Write-Host '  5) Quit'
+$c = Read-Host '  Choose 1, 2, 3, 4 or 5'
 $current = Get-Content $Hosts -Raw -ErrorAction SilentlyContinue
 if ($null -eq $current) { $current = '' }
 if ($c -eq '1') {
@@ -64,6 +127,15 @@ if ($c -eq '1') {
   ipconfig /flushdns | Out-Null
   Write-Host ''
   Write-Host '  AI is allowed again on this PC.' -ForegroundColor Yellow
+} elseif ($c -eq '3') {
+  $n = Disable-BuiltinAI
+  Write-Host ''
+  Write-Host ("  Done: {0} built-in AI settings are switched off. Restart Edge and Chrome; sign out and in again for Windows." -f $n) -ForegroundColor Green
+  Write-Host '  Note: Edge and Chrome may show "Managed by your organisation". That is normal: it means these settings are locked.'
+} elseif ($c -eq '4') {
+  $n = Restore-BuiltinAI
+  Write-Host ''
+  if ($n -gt 0) { Write-Host ("  Built-in AI settings restored ({0})." -f $n) -ForegroundColor Yellow } else { Write-Host '  Nothing to restore.' }
 }
 Write-Host ''
 Read-Host '  Press Enter to close'

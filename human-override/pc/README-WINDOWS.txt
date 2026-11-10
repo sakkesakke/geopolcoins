@@ -15,6 +15,12 @@ IMPORTANT: if a browser uses its own "Secure DNS" / "DNS over HTTPS" with a cust
 In Chrome/Edge: Settings > Privacy > Use secure DNS > "With your current service provider" (or off).
 
 TURN OFF: run it again and type 2.
+
+AI BUILT INTO WINDOWS (option 3): switches off Copilot, Recall, Click to Do, the AI in Paint,
+the Copilot sidebar and writing help in Edge, and Gemini / AI Mode / "Help me write" in Chrome,
+with Microsoft's and Google's official policy settings. Restart Edge and Chrome; sign out and in for Windows.
+Edge and Chrome then show "Managed by your organisation": that is normal, it means the setting is locked.
+Option 4 puts back exactly the settings that were there before.
 TIP: give children or staff a normal (non-administrator) Windows account; then they cannot undo it.
 Microsoft Defender may sometimes remove Microsoft domains (like Copilot) from the block; run it again to restore.
 

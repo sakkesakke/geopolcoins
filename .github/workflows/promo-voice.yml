@@ -1,16 +1,19 @@
 name: Voice a promo video (Chatterbox, open source)
 
-# Speaks the lines of tools/promo/<name>.json with Chatterbox (Resemble AI, MIT) and a synthetic reference
-# voice, then pushes the clips to the "media" branch under promo/<name>/ so the video can be cut to the voice.
+# Speaks the lines of tools/promo/<name>.json with Kokoro (Apache-2.0) or Chatterbox (MIT), synthetic voices only,
+# checks every line by transcribing it with faster-whisper (MIT), then pushes the clips to the "media" branch under promo/<name>/ so the video can be cut to the voice.
 on:
   workflow_dispatch:
     inputs:
       name:
         description: "script name in tools/promo/ (without .json)"
         default: human-override
+      engine:
+        description: "kokoro (clear) or chatterbox (more expressive)"
+        default: kokoro
       voice:
-        description: "'default' or a clip name in tools/shorts/voices/"
-        default: george
+        description: "kokoro: bm_george, am_michael...; chatterbox: default or a clip in tools/shorts/voices/"
+        default: bm_george
 
 permissions:
   contents: write
@@ -29,31 +32,36 @@ jobs:
         with:
           python-version: "3.11"
       - name: System tools
-        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg espeak-ng
       - name: Cache the voice model
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
-          key: chatterbox-mtl-v2
+          key: promo-voice-v2
       - name: Python packages (CPU torch first, so no CUDA download)
         run: |
           pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
-          pip install -q chatterbox-tts==0.1.7
+          pip install -q faster-whisper==1.1.1
+          if [ "$ENGINE" = chatterbox ]; then pip install -q chatterbox-tts==0.1.7; else pip install -q kokoro==0.9.4 soundfile==0.12.1; fi
+        env:
+          ENGINE: ${{ github.event.inputs.engine }}
       - name: Speak the lines
         run: |
           case "$NAME" in *[!a-z0-9-]*|"") echo "bad name"; exit 1;; esac
-          case "$VOICE" in *[!a-z0-9-]*|"") echo "bad voice"; exit 1;; esac
-          python3 tools/promo/voice_lines.py "$NAME" --voice "$VOICE" --out ".promo/$NAME"
+          case "$VOICE" in *[!a-z0-9_-]*|"") echo "bad voice"; exit 1;; esac
+          case "$ENGINE" in kokoro|chatterbox) ;; *) echo "bad engine"; exit 1;; esac
+          python3 tools/promo/voice_lines.py "$NAME" --engine "$ENGINE" --voice "$VOICE" --out ".promo/$NAME"
         env:
           NAME: ${{ github.event.inputs.name }}
           VOICE: ${{ github.event.inputs.voice }}
+          ENGINE: ${{ github.event.inputs.engine }}
       - name: Push the clips to the media branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch -q origin media
           git worktree add -q .media origin/media
-          mkdir -p ".media/promo/$NAME" && cp .promo/$NAME/* ".media/promo/$NAME/"
-          cd .media && git add promo && git commit -qm "Promo voice: $NAME" && git push -q origin HEAD:media
+          rm -rf ".media/promo/$NAME" && mkdir -p ".media/promo/$NAME" && cp .promo/$NAME/* ".media/promo/$NAME/"
+          cd .media && git add -A promo && git commit -qm "Promo voice: $NAME" && git push -q origin HEAD:media
         env:
           NAME: ${{ github.event.inputs.name }}

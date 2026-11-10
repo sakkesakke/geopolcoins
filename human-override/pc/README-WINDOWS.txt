@@ -11,6 +11,9 @@ INSTALL
     This appears because the script is new and not yet signed.)
 4. Type 1 and press Enter. Done. Restart your browser.
 
+IMPORTANT: if a browser uses its own "Secure DNS" / "DNS over HTTPS" with a custom provider, it may skip this block.
+In Chrome/Edge: Settings > Privacy > Use secure DNS > "With your current service provider" (or off).
+
 TURN OFF: run it again and type 2.
 TIP: give children or staff a normal (non-administrator) Windows account; then they cannot undo it.
 Microsoft Defender may sometimes remove Microsoft domains (like Copilot) from the block; run it again to restore.
@@ -18,3 +21,6 @@ Microsoft Defender may sometimes remove Microsoft domains (like Copilot) from th
 It sends nothing about you anywhere. It only downloads the public block list from geopolcoins.xyz
 (it also includes a copy in this folder for when you are offline).
 More: https://geopolcoins.xyz/human-override.html
+
+TERMS OF USE: provided "as is", no guarantee that every AI is blocked; Amghar Said is not liable for any damage
+or consequence of use to the maximum extent permitted by law. https://geopolcoins.xyz/human-override-terms.html

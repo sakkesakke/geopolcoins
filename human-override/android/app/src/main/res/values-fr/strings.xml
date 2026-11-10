@@ -26,4 +26,11 @@
     <string name="honest_text">Human Override bloque les services d’IA dans toutes les applis de ce téléphone en répondant « n’existe pas » à leurs recherches d’adresse. Il ne peut pas bloquer l’IA intégrée aux applis autorisées, l’IA qui tourne entièrement sur le téléphone, ni les applis qui utilisent leur propre DNS sécurisé. Android permet au propriétaire de désactiver tout VPN dans les Réglages.</string>
     <string name="donate">❤ Gratuit pour toujours. Soutenez-le avec un café</string>
     <string name="footer">Human Override © 2026 Amghar Said. Tous droits réservés. · geopolcoins.xyz</string>
+    <string name="terms_title">Conditions d’utilisation</string>
+    <string name="terms_text">Human Override est un logiciel gratuit d’Amghar Said, fourni « tel quel ». Il aide à bloquer les services d’IA mais ne peut garantir que toute IA soit bloquée. Vous l’utilisez à vos risques et restez responsable de vos appareils et décisions. Dans toute la mesure permise par la loi, Amghar Said n’est pas responsable des dommages ou conséquences de son utilisation.</string>
+    <string name="terms_agree">J’accepte</string>
+    <string name="terms_read">Lire les conditions</string>
+    <string name="terms_decline">Fermer</string>
+    <string name="terms_link">Conditions d’utilisation</string>
+    <string name="private_dns_warn">Attention : le « DNS privé » est réglé sur un fournisseur personnalisé dans Android. Cela peut contourner le blocage. Réglez-le sur Désactivé ou Automatique (Paramètres &gt; Réseau &gt; DNS privé).</string>
 </resources>

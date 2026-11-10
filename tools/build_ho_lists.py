@@ -15,13 +15,16 @@ src = os.path.join(D, 'extension', 'lists.json')
 L = json.load(open(src))
 DOM = re.compile(r'^([a-z0-9-]{1,63}\.)+[a-z]{2,24}$')
 doms = sorted({d for c in L['categories'].values() for d in c['domains'] if DOM.match(d)})
+# Google Translate proxy copies (<site-with-dashes>.translate.goog) for DNS-based tools (Android app, hosts, routers)
+proxies = sorted({d.replace('-', '--').replace('.', '-') + '.translate.goog' for d in doms})
+dns_doms = sorted(set(doms) | {p for p in proxies if DOM.match(p)})
 shutil.copyfile(src, os.path.join(D, 'lists.json'))
 today = datetime.date.today().isoformat()
 head = ['Human Override AI block list (https://geopolcoins.xyz/human-override.html)', f'Updated: {today}  Domains: {len(doms)}',
         'Free to use. Blocks AI chatbots, AI search, AI image/video/voice/music, AI writing/homework and AI coding services.']
-open(os.path.join(D, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in head) + '\n' + '\n'.join(doms) + '\n')
-open(os.path.join(D, 'hosts.txt'), 'w').write('\n'.join('# ' + h for h in head) + '\n' + '\n'.join(f'0.0.0.0 {d}\n0.0.0.0 www.{d}' for d in doms) + '\n')
-open(os.path.join(D, 'adblock.txt'), 'w').write('! Title: Human Override AI block list\n' + '\n'.join('! ' + h for h in head) + '\n' + '\n'.join(f'||{d}^' for d in doms) + '\n')
+open(os.path.join(D, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in head) + '\n' + '\n'.join(dns_doms) + '\n')
+open(os.path.join(D, 'hosts.txt'), 'w').write('\n'.join('# ' + h for h in head) + '\n' + '\n'.join(f'0.0.0.0 {d}\n0.0.0.0 www.{d}' for d in doms) + '\n' + '\n'.join(f'0.0.0.0 {p}' for p in proxies) + '\n')
+open(os.path.join(D, 'adblock.txt'), 'w').write('! Title: Human Override AI block list\n' + '\n'.join('! ' + h for h in head) + '\n' + '\n'.join(f'||{d}^' for d in dns_doms) + '\n')
 print('domains', len(doms))
 
 # ---------- Pro pack for IT departments (justice, government, schools, companies) ----------
@@ -75,6 +78,7 @@ Honest limits: DNS and firewall lists block whole domains; AI built into allowed
 device, and traffic over a VPN or another DNS (DNS-over-HTTPS) can bypass them. Block outside DNS/DoH and VPNs on your
 firewall for full effect. Test in a pilot group first.
 
+Terms of use (provided "as is", limits of liability): https://geopolcoins.xyz/human-override-terms.html
 Human Override Pro (help with roll-out, custom lists, weekly reports): https://geopolcoins.xyz/human-override.html#pro
 ''')
 print('pro pack files', len(os.listdir(P)))

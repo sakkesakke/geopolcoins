@@ -33,4 +33,17 @@
     <string name="terms_decline">Close</string>
     <string name="terms_link">Terms of use</string>
     <string name="private_dns_warn">Warning: \"Private DNS\" is set to a custom provider in Android settings. That can bypass the block. Set it to Off or Automatic (Settings &gt; Network &gt; Private DNS).</string>
+    <string name="sensor_title">Sensor check</string>
+    <string name="sensor_text">Some gadgets can sense movement through walls using Wi-Fi, or hide a camera or tracker. Many run on small ESP chips. This check looks for such chips nearby. Everything stays on this phone.</string>
+    <string name="sensor_btn">🔍 Check for hidden sensors nearby</string>
+    <string name="sensor_scanning">Scanning nearby Wi-Fi…</string>
+    <string name="sensor_wifi_off">Turn Wi-Fi on first, then try again.</string>
+    <string name="sensor_perm">The check needs permission to see nearby Wi-Fi devices. Nothing is sent anywhere.</string>
+    <string name="sensor_empty">No Wi-Fi radios found. On older Android, turn on Location (it is needed to see Wi-Fi) and try again.</string>
+    <string name="sensor_clean">Checked %1$d Wi-Fi radios. No small sensor boards found nearby. 👍</string>
+    <string name="sensor_found">Checked %2$d Wi-Fi radios. %1$d look like small ESP boards:</string>
+    <string name="sensor_far">far</string>
+    <string name="sensor_near">nearby</string>
+    <string name="sensor_close">very close</string>
+    <string name="sensor_advice">Many of these are normal smart plugs, lamps or doorbells. Do you not know a device that is \"very close\"? Walk around with this check, look for small boxes with a USB cable, and ask your landlord or housemates. Change your Wi-Fi password if you are unsure.</string>
 </resources>

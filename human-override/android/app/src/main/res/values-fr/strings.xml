@@ -33,4 +33,17 @@
     <string name="terms_decline">Fermer</string>
     <string name="terms_link">Conditions d’utilisation</string>
     <string name="private_dns_warn">Attention : le « DNS privé » est réglé sur un fournisseur personnalisé dans Android. Cela peut contourner le blocage. Réglez-le sur Désactivé ou Automatique (Paramètres &gt; Réseau &gt; DNS privé).</string>
+    <string name="sensor_title">Détecteur de capteurs</string>
+    <string name="sensor_text">Certains appareils peuvent détecter des mouvements à travers les murs grâce au Wi-Fi, ou cacher une caméra ou un traceur. Beaucoup utilisent de petites puces ESP. Ce contrôle les cherche à proximité. Tout reste sur ce téléphone.</string>
+    <string name="sensor_btn">🔍 Chercher des capteurs cachés</string>
+    <string name="sensor_scanning">Analyse du Wi-Fi à proximité…</string>
+    <string name="sensor_wifi_off">Activez d’abord le Wi-Fi, puis réessayez.</string>
+    <string name="sensor_perm">Le contrôle a besoin de l’autorisation de voir les appareils Wi-Fi à proximité. Rien n’est envoyé.</string>
+    <string name="sensor_empty">Aucun émetteur Wi-Fi trouvé. Sur un ancien Android, activez la localisation (nécessaire pour voir le Wi-Fi) et réessayez.</string>
+    <string name="sensor_clean">%1$d émetteurs Wi-Fi vérifiés. Aucune petite carte capteur à proximité. 👍</string>
+    <string name="sensor_found">%2$d émetteurs Wi-Fi vérifiés. %1$d ressemblent à de petites cartes ESP :</string>
+    <string name="sensor_far">loin</string>
+    <string name="sensor_near">à proximité</string>
+    <string name="sensor_close">très proche</string>
+    <string name="sensor_advice">Beaucoup sont des prises, lampes ou sonnettes connectées normales. Vous ne connaissez pas un appareil « très proche » ? Promenez-vous avec ce contrôle, cherchez de petits boîtiers avec un câble USB et demandez à votre propriétaire ou colocataires. En cas de doute, changez votre mot de passe Wi-Fi.</string>
 </resources>

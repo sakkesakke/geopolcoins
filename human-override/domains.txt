@@ -1,5 +1,5 @@
 # Human Override AI block list (https://geopolcoins.xyz/human-override.html)
-# Updated: 2026-11-10  Domains: 145
+# Updated: 2026-11-10  Domains: 161
 # Free to use. Blocks AI chatbots, AI search, AI image/video/voice/music, AI writing/homework and AI coding services.
 aistudio-google-com.translate.goog
 aistudio.google.com
@@ -7,6 +7,8 @@ andisearch-com.translate.goog
 andisearch.com
 anthropic-com.translate.goog
 anthropic.com
+avoma-com.translate.goog
+avoma.com
 bard-google-com.translate.goog
 bard.google.com
 beautiful-ai.translate.goog
@@ -89,8 +91,12 @@ elevenlabs-io.translate.goog
 elevenlabs.io
 elicit-com.translate.goog
 elicit.com
+fathom-video.translate.goog
+fathom.video
 felo-ai.translate.goog
 felo.ai
+fireflies-ai.translate.goog
+fireflies.ai
 firefly-adobe-com.translate.goog
 firefly.adobe.com
 gamma-app.translate.goog
@@ -107,6 +113,8 @@ getimg-ai.translate.goog
 getimg.ai
 getmerlin-in.translate.goog
 getmerlin.in
+granola-ai.translate.goog
+granola.ai
 grok-com.translate.goog
 grok.com
 groq-com.translate.goog
@@ -153,6 +161,8 @@ leonardo-ai.translate.goog
 leonardo.ai
 lexica-art.translate.goog
 lexica.art
+limitless-ai.translate.goog
+limitless.ai
 lmarena-ai.translate.goog
 lmarena.ai
 lmsys-org.translate.goog
@@ -169,6 +179,10 @@ mathway-com.translate.goog
 mathway.com
 maxai-me.translate.goog
 maxai.me
+meetgeek-ai.translate.goog
+meetgeek.ai
+meetjamie-ai.translate.goog
+meetjamie.ai
 merlin-foyer-work.translate.goog
 merlin.foyer.work
 meta-ai.translate.goog
@@ -187,6 +201,8 @@ notebooklm-google-com.translate.goog
 notebooklm-google.translate.goog
 notebooklm.google
 notebooklm.google.com
+notta-ai.translate.goog
+notta.ai
 oaistatic-com.translate.goog
 oaistatic.com
 oaiusercontent-com.translate.goog
@@ -195,6 +211,8 @@ openai-com.translate.goog
 openai.com
 openrouter-ai.translate.goog
 openrouter.ai
+otter-ai.translate.goog
+otter.ai
 perplexity-ai.translate.goog
 perplexity.ai
 phind-com.translate.goog
@@ -207,6 +225,8 @@ pika-art.translate.goog
 pika.art
 pixai-art.translate.goog
 pixai.art
+plaud-ai.translate.goog
+plaud.ai
 play-ht.translate.goog
 play.ht
 playground-com.translate.goog
@@ -221,10 +241,14 @@ quillbot-com.translate.goog
 quillbot.com
 qwen-ai.translate.goog
 qwen.ai
+read-ai.translate.goog
+read.ai
 recraft-ai.translate.goog
 recraft.ai
 replika-com.translate.goog
 replika.com
+rewind-ai.translate.goog
+rewind.ai
 runwayml-com.translate.goog
 runwayml.com
 rytr-me.translate.goog
@@ -233,6 +257,8 @@ scite-ai.translate.goog
 scite.ai
 seaart-ai.translate.goog
 seaart.ai
+sembly-ai.translate.goog
+sembly.ai
 sider-ai.translate.goog
 sider.ai
 smodin-io.translate.goog
@@ -249,16 +275,22 @@ stealthgpt-ai.translate.goog
 stealthgpt.ai
 suno-com.translate.goog
 suno.com
+supernormal-com.translate.goog
+supernormal.com
 synthesia-io.translate.goog
 synthesia.io
 t3-chat.translate.goog
 t3.chat
 tabnine-com.translate.goog
 tabnine.com
+tactiq-io.translate.goog
+tactiq.io
 talkie--ai-com.translate.goog
 talkie-ai.com
 tensor-art.translate.goog
 tensor.art
+tldv-io.translate.goog
+tldv.io
 tome-app.translate.goog
 tome.app
 udio-com.translate.goog

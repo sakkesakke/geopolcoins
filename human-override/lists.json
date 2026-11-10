@@ -1,5 +1,5 @@
 {
- "version": "2026-11-10b",
+ "version": "2026-11-10c",
  "categories": {
   "chat": {
    "name": "AI chatbots",
@@ -196,6 +196,26 @@
    ],
    "paths": [
     "replit.com/ai"
+   ]
+  },
+  "record": {
+   "domains": [
+    "otter.ai",
+    "fireflies.ai",
+    "read.ai",
+    "fathom.video",
+    "tldv.io",
+    "notta.ai",
+    "sembly.ai",
+    "meetgeek.ai",
+    "avoma.com",
+    "supernormal.com",
+    "granola.ai",
+    "meetjamie.ai",
+    "tactiq.io",
+    "limitless.ai",
+    "rewind.ai",
+    "plaud.ai"
    ]
   }
  }

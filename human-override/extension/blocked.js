@@ -1,3 +1,4 @@
+/* Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
 const api = globalThis.browser || globalThis.chrome;
 const L = (navigator.language || 'en').slice(0, 2);
 const T = { en: ['A human said <em>no AI</em> here.', 'Human Override blocked {s} on this browser.', 'AI attempts blocked today: {n}'],

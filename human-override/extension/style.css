@@ -20,3 +20,4 @@ button{font:inherit;cursor:pointer}input{font:inherit}
 .don{display:block;text-align:center;background:#ff5e7a;color:#000;border:2px solid #000;border-radius:10px;padding:8px;font-weight:800;text-decoration:none;margin:4px 0 8px;box-shadow:3px 3px 0 #000}
 
 .days{display:flex;gap:4px;margin:6px 0}.days button{flex:1;padding:6px 0;border-radius:8px;border:1px solid #3a3456;background:transparent;color:inherit;font-weight:700;cursor:pointer}.days button[aria-pressed=true]{background:#ffbe46;color:#1a1206;border-color:#ffbe46}
+.log{list-style:none;margin:0;padding:0;font-size:12px;max-height:150px;overflow:auto}.log li{padding:3px 0;border-bottom:1px solid #241f3d}.log time{color:var(--dim)}.log li.warn{color:var(--red)}

@@ -11,9 +11,27 @@ const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.c
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
   'geopolcoins.xyz', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
-const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], pin: null, count: 0, day: '', today: 0,
+const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
   sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00' } };
 const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
+const REMOVED_URL = 'https://geopolcoins.xyz/human-override-removed.html';
+const ALERT = new Set(['pinbad', 'pinlock']);   // these light up a red "!" on the icon until the popup is opened
+
+// Tamper log: what happened and when (never page content). Last 50 events, only on this device.
+let logChain = Promise.resolve(), pinChain = Promise.resolve();
+function serial(which, fn) { const r = (which === 'pin' ? pinChain : logChain).then(fn); const done = r.catch(() => {}); if (which === 'pin') pinChain = done; else logChain = done; return r; }
+function note(k) { return serial('log', () => noteNow(k)); }
+async function noteNow(k) {
+  const s = await api.storage.local.get(['log', 'alert']);
+  const log = (Array.isArray(s.log) ? s.log : []).concat({ k, at: Date.now() }).slice(-50);
+  await api.storage.local.set({ log, alert: !!s.alert || ALERT.has(k) });
+  badge();
+}
+async function badge() {
+  const st = await getState(), act = active(st);
+  api.action.setBadgeText({ text: st.alert ? '!' : !st.on ? 'OFF' : act ? '' : 'zz' });
+  api.action.setBadgeBackgroundColor({ color: '#c0392b' });
+}
 
 async function getState() { const s = await api.storage.local.get(null); return Object.assign({}, DEFAULTS, s, { cats: Object.assign({}, DEFAULTS.cats, s.cats || {}), sched: Object.assign({}, DEFAULTS.sched, s.sched || {}) }); }
 
@@ -73,8 +91,7 @@ async function apply() {
   }
   await api.declarativeNetRequest.updateDynamicRules({ removeRuleIds: old.map(r => r.id), addRules: rules });
   await api.storage.local.set({ act });
-  api.action.setBadgeText({ text: !st.on ? 'OFF' : act ? '' : 'zz' });
-  api.action.setBadgeBackgroundColor({ color: '#c0392b' });
+  await badge();
 }
 
 async function refreshList() {
@@ -101,7 +118,8 @@ async function kdf(salt, pin) {
   return [...new Uint8Array(bits)].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 async function sha(s) { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); }
-async function unlocked(pin) {
+function unlocked(pin) { return serial('pin', () => unlockedNow(pin)); }   // one PIN try at a time, so the lockout cannot be raced
+async function unlockedNow(pin) {
   const st = await getState();
   if (!st.pin) return true;
   const lock = (await api.storage.local.get('lock')).lock || { fails: 0, until: 0 };
@@ -116,33 +134,41 @@ async function unlocked(pin) {
   lock.fails += 1;
   if (lock.fails >= 5) lock.until = Date.now() + Math.min(3600000, 60000 * Math.pow(2, lock.fails - 5));
   await api.storage.local.set({ lock });
+  await note(lock.fails >= 5 ? 'pinlock' : 'pinbad');
   return false;
 }
 
 api.runtime.onInstalled.addListener(async (d) => { await apply().catch(() => {}); refreshList();
+  setUninstall();
   if (d && d.reason === 'install') api.tabs.create({ url: api.runtime.getURL('welcome.html') }); api.alarms.create('list', { periodInMinutes: 720 }); api.alarms.create('sched', { periodInMinutes: 1 }); });
-api.runtime.onStartup && api.runtime.onStartup.addListener(() => { api.alarms.create('sched', { periodInMinutes: 1 }); apply().catch(() => {}); });
+function setUninstall() { try { const r = api.runtime.setUninstallURL(REMOVED_URL); if (r && r.catch) r.catch(() => {}); } catch (e) { /* not supported */ } }
+api.runtime.onStartup && api.runtime.onStartup.addListener(() => { setUninstall(); api.alarms.create('sched', { periodInMinutes: 1 }); apply().catch(() => {}); });
 api.alarms.onAlarm.addListener(async a => {
   if (a.name === 'list') refreshList();
   if (a.name === 'sched') { const st = await getState(), was = (await api.storage.local.get('act')).act; if (active(st) !== was) apply().catch(() => {}); }   // only rebuild rules when the schedule flips
 });
 
 api.runtime.onMessage.addListener((m, sender, reply) => {
-  if (!m || typeof m !== 'object' || sender.id !== api.runtime.id) return false;   // only our own pages
+  if (!m || typeof m !== 'object' || sender.id !== api.runtime.id) return false;   // only this extension
+  const own = typeof sender.url === 'string' && sender.url.startsWith(api.runtime.getURL(''));
+  if (!own && m.t !== 'paste') return false;   // content scripts on AI sites may only report a paste choice
   (async () => {
     const st = await getState();
-    if (m.t === 'state') return reply({ on: st.on, active: active(st), sched: st.sched, cats: st.cats, custom: st.custom, allow: st.allow, hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
+    if (m.t === 'state') return reply({ guard: st.guard !== false, log: st.log.slice(-10).reverse(), alert: !!st.alert, on: st.on, active: active(st), sched: st.sched, cats: st.cats, custom: st.custom, allow: st.allow, hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
     if (m.t === 'blocked') {
       const day = new Date().toISOString().slice(0, 10);
       await api.storage.local.set({ count: st.count + 1, day, today: (st.day === day ? st.today : 0) + 1 });
       return reply({ ok: true });
     }
+    if (m.t === 'paste') { if (['no', 'mask', 'yes'].includes(m.v)) await note('paste_' + m.v); return reply({ ok: true }); }
     // every change below needs the PIN if one is set
-    const needsPin = ['set', 'pin'].includes(m.t);
+    const needsPin = ['set', 'pin', 'seen'].includes(m.t);
     if (needsPin) { const u = await unlocked(m.pin); if (u !== true) return reply({ ok: false, err: u === 'locked' ? 'locked' : 'pin' }); }
+    if (m.t === 'seen') { await api.storage.local.set({ alert: false }); await badge(); return reply({ ok: true }); }   // clearing the red ! needs the PIN
     if (m.t === 'set') {
       const ch = {};
       if (typeof m.on === 'boolean') ch.on = m.on;
+      if (typeof m.guard === 'boolean') ch.guard = m.guard;
       if (m.cats && typeof m.cats === 'object') ch.cats = Object.fromEntries(Object.keys(DEFAULTS.cats).map(k => [k, m.cats[k] !== false]));
       if (Array.isArray(m.custom)) ch.custom = [...new Set(m.custom.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
       if (m.sched && typeof m.sched === 'object') {
@@ -151,10 +177,14 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
         ch.sched = { on: sc.on, days, from: sc.from, to: sc.to };
       }
       if (Array.isArray(m.allow)) ch.allow = [...new Set(m.allow.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
-      await api.storage.local.set(ch); await apply(); return reply({ ok: true });
+      await api.storage.local.set(ch); await apply();
+      if (ch.on === false && st.on) await note('off'); else if (ch.on === true && !st.on) await note('on');
+      if (ch.guard === false && st.guard !== false) await note('guardoff');
+      if (ch.cats || ch.custom || ch.allow || ch.sched) await note('changed');
+      return reply({ ok: true });
     }
     if (m.t === 'pin') {
-      if (m.newPin === null) { await api.storage.local.remove('pin'); return reply({ ok: true }); }
+      if (m.newPin === null) { await api.storage.local.remove('pin'); await note('pinoff'); return reply({ ok: true }); }
       if (!/^[0-9]{4,12}$/.test(m.newPin || '')) return reply({ ok: false, err: 'format' });
       const salt = [...crypto.getRandomValues(new Uint8Array(16))].map(x => x.toString(16).padStart(2, '0')).join('');
       await api.storage.local.set({ pin: { kdf: 'pbkdf2', salt, hash: await kdf(salt, m.newPin) }, lock: { fails: 0, until: 0 } }); return reply({ ok: true });

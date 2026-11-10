@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://geopolcoins.xyz'
 # pages that should NOT be in search on purpose
-PRIVATE = {'admin.html', 'reset.html', 'start.html', 'offline.html', '404.html', 'google9970ace9218804f6.html', 'marketing.html'}
+PRIVATE = {'admin.html', 'reset.html', 'start.html', 'offline.html', '404.html', 'google9970ace9218804f6.html', 'marketing.html', 'human-override-removed.html'}
 
 
 class P(html.parser.HTMLParser):

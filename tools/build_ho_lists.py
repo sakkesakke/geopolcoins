@@ -95,3 +95,19 @@ mkzip('human-override-mac-linux.zip', [('human-override.sh', os.path.join(pc, 'h
       ('README-MAC-LINUX.txt', os.path.join(pc, 'README-MAC-LINUX.txt'))])
 mkzip('human-override-pro-pack.zip', [(f, os.path.join(P, f)) for f in sorted(os.listdir(P)) if f != 'LICENSE.txt'] + [('LICENSE.txt', lic)])
 print('zips ok')
+
+# ---------- browser extension: paste guard sites + versioned zip ----------
+# The paste guard content script only runs on AI chat, search, writing and coding sites (never on other pages).
+mf_path = os.path.join(D, 'extension', 'manifest.json')
+MF = json.load(open(mf_path))
+guard = sorted({d for k in ('chat', 'search', 'writing', 'coding') for d in L['categories'].get(k, {}).get('domains', []) if DOM.match(d)})
+MF['content_scripts'] = [{'matches': [f'*://*.{d}/*' for d in guard], 'js': ['detect.js', 'paste.js'], 'run_at': 'document_start'}]
+json.dump(MF, open(mf_path, 'w'), indent=2, ensure_ascii=False); open(mf_path, 'a').write('\n')
+ext = os.path.join(D, 'extension'); zname = f"human-override-{MF['version']}.zip"
+for old in os.listdir(D):
+    if re.fullmatch(r'human-override-\d+\.\d+\.\d+\.zip', old) and old != zname: os.remove(os.path.join(D, old))
+with zipfile.ZipFile(os.path.join(D, zname), 'w', zipfile.ZIP_DEFLATED) as z:
+    for root, _, files in os.walk(ext):
+        for f in sorted(files):
+            p = os.path.join(root, f); z.write(p, os.path.relpath(p, ext))
+print('extension zip', zname, 'paste guard sites', len(guard))

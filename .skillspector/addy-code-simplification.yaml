@@ -1,0 +1,9 @@
+# Reviewed by hand on 2026-11-10: addyosmani/agent-skills "code-simplification" (MIT). Instruction-only.
+version: 2
+rules:
+  - id: "RA1"
+    path: "*SKILL.md"
+    reason: "False positive: table row 'Redundant type assertions -> Remove the assertion' (refactoring advice)."
+  - id: "EA3"
+    path: "*SKILL.md"
+    reason: "Reviewed: refactoring workflow step; changes stay within the code being simplified."

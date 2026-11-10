@@ -1,0 +1,6 @@
+# Reviewed by hand on 2026-11-10: addyosmani/agent-skills (MIT). Instruction-only.
+version: 2
+rules:
+  - id: "RP1"
+    path: "*SKILL.md"
+    reason: "False positive: example CI commands (npx tsc, bundlesize, @lhci/cli) for the user's own pipeline; no MCP server or remote tool is loaded by the skill."

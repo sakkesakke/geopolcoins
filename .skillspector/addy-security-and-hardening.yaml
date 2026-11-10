@@ -1,0 +1,19 @@
+# Reviewed by hand on 2026-11-10: addyosmani/agent-skills "security-and-hardening" (MIT). Instruction-only, no scripts.
+# A defensive security guide: the static scan reads the attack names it explains (SSRF, secrets, privilege) as attacks. Scoped to this skill only.
+version: 2
+rules:
+  - id: "AE1"
+    path: "*SKILL.md"
+    reason: "False positive: lines are links to sections of the bundled references/hardening-patterns.md, not hidden content."
+  - id: "YR4"
+    path: "*SKILL.md"
+    reason: "False positive: heading 'Threat Model First' (defensive process)."
+  - id: "MP3"
+    path: "*SKILL.md"
+    reason: "False positive: advice to keep secrets out of git and rotate leaked ones."
+  - id: "SSRF1"
+    path: "*hardening-patterns.md"
+    reason: "False positive: example code that BLOCKS internal/metadata IPs to prevent SSRF."
+  - id: "PE3"
+    path: "*hardening-patterns.md"
+    reason: "False positive: .env/.gitignore layout to keep secrets out of the repo."

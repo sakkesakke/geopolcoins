@@ -4,7 +4,7 @@ Read with the `maiga-ops` skill (owner, trust rules, git + SQL workflow). Read f
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-10u`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-10v`).
 - Legal: `python3 tools/build_legal.py "" "" ""` (keep "[contact email]"), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
 

@@ -224,5 +224,13 @@ var s=null;try{s=localStorage.getItem('maiga_lang');}catch(e){}var nav=(navigato
 })();
 </script>
 <script src="/guide.js" defer></script>
+<script>/* Anonymous counter: visits and download clicks per day (no cookies, no personal data). */
+(function(){try{if(navigator.webdriver||/bot|crawl|spider|slurp|preview|headless/i.test(navigator.userAgent))return;
+var r='direct';if(document.referrer){var h=new URL(document.referrer).hostname.replace(/^www\./,'').toLowerCase();r=h===location.hostname.replace(/^www\./,'').toLowerCase()?'internal':(h==='t.co'?'x.com':h);}
+function t(p){try{fetch('https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/track_view',{method:'POST',keepalive:true,credentials:'omit',headers:{apikey:'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN','Content-Type':'application/json'},body:JSON.stringify({p_page:p,p_ref:r.slice(0,60)})}).catch(function(){});}catch(e){}}
+t('ho');
+var K=[[/human-override-\d[\d.]*\.zip$/,'ho_ext'],[/android\.apk$/,'ho_android'],[/windows\.zip$/,'ho_win'],[/mac-linux\.zip$/,'ho_mac'],[/pro-pack\.zip$/,'ho_pro']],seen={};
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var u=a.getAttribute('href');
+for(var i=0;i<K.length;i++){if(K[i][0].test(u)&&!seen[K[i][1]]){seen[K[i][1]]=1;t(K[i][1]);break;}}},true);}catch(e){}})();</script>
 </body>
 </html>

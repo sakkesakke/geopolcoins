@@ -11,9 +11,21 @@ const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.c
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
   'geopolcoins.xyz', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
-const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true }, custom: [], allow: [], pin: null, count: 0, day: '', today: 0 };
+const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true }, custom: [], allow: [], pin: null, count: 0, day: '', today: 0,
+  sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00' } };
+const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 
-async function getState() { const s = await api.storage.local.get(null); return Object.assign({}, DEFAULTS, s, { cats: Object.assign({}, DEFAULTS.cats, s.cats || {}) }); }
+async function getState() { const s = await api.storage.local.get(null); return Object.assign({}, DEFAULTS, s, { cats: Object.assign({}, DEFAULTS.cats, s.cats || {}), sched: Object.assign({}, DEFAULTS.sched, s.sched || {}) }); }
+
+// Schedule: block only on the chosen days between "from" and "to" (a window may run past midnight, e.g. 21:00-07:00).
+function mins(hhmm) { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; }
+function inWindow(sc, d = new Date()) {
+  const now = d.getHours() * 60 + d.getMinutes(), f = mins(sc.from), t = mins(sc.to), day = d.getDay(), prev = (day + 6) % 7;
+  if (f === t) return sc.days.includes(day);                         // whole day
+  if (f < t) return sc.days.includes(day) && now >= f && now < t;
+  return (sc.days.includes(day) && now >= f) || (sc.days.includes(prev) && now < t);   // past midnight
+}
+function active(st) { return st.on && (!st.sched.on || inWindow(st.sched)); }
 
 async function bundled() { const r = await fetch(api.runtime.getURL('lists.json')); return r.json(); }
 async function lists() { const s = await api.storage.local.get('remote'); return (s.remote && s.remote.categories) ? s.remote : bundled(); }
@@ -23,8 +35,8 @@ function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 async function apply() {
   const st = await getState(), L = await lists();
   const old = await api.declarativeNetRequest.getDynamicRules();
-  const rules = [];
-  if (st.on) {
+  const rules = [], act = active(st);
+  if (act) {
     const allow = new Set(st.allow);
     let doms = [], paths = [];
     for (const [k, c] of Object.entries(L.categories || {})) {
@@ -60,7 +72,8 @@ async function apply() {
       condition: { requestDomains: doms, resourceTypes: ['sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other'] } });
   }
   await api.declarativeNetRequest.updateDynamicRules({ removeRuleIds: old.map(r => r.id), addRules: rules });
-  api.action.setBadgeText({ text: st.on ? '' : 'OFF' });
+  await api.storage.local.set({ act });
+  api.action.setBadgeText({ text: !st.on ? 'OFF' : act ? '' : 'zz' });
   api.action.setBadgeBackgroundColor({ color: '#c0392b' });
 }
 
@@ -107,15 +120,18 @@ async function unlocked(pin) {
 }
 
 api.runtime.onInstalled.addListener(async (d) => { await apply().catch(() => {}); refreshList();
-  if (d && d.reason === 'install') api.tabs.create({ url: api.runtime.getURL('welcome.html') }); api.alarms.create('list', { periodInMinutes: 720 }); });
-api.runtime.onStartup && api.runtime.onStartup.addListener(() => apply().catch(() => {}));
-api.alarms.onAlarm.addListener(a => { if (a.name === 'list') refreshList(); });
+  if (d && d.reason === 'install') api.tabs.create({ url: api.runtime.getURL('welcome.html') }); api.alarms.create('list', { periodInMinutes: 720 }); api.alarms.create('sched', { periodInMinutes: 1 }); });
+api.runtime.onStartup && api.runtime.onStartup.addListener(() => { api.alarms.create('sched', { periodInMinutes: 1 }); apply().catch(() => {}); });
+api.alarms.onAlarm.addListener(async a => {
+  if (a.name === 'list') refreshList();
+  if (a.name === 'sched') { const st = await getState(), was = (await api.storage.local.get('act')).act; if (active(st) !== was) apply().catch(() => {}); }   // only rebuild rules when the schedule flips
+});
 
 api.runtime.onMessage.addListener((m, sender, reply) => {
   if (!m || typeof m !== 'object' || sender.id !== api.runtime.id) return false;   // only our own pages
   (async () => {
     const st = await getState();
-    if (m.t === 'state') return reply({ on: st.on, cats: st.cats, custom: st.custom, allow: st.allow, hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
+    if (m.t === 'state') return reply({ on: st.on, active: active(st), sched: st.sched, cats: st.cats, custom: st.custom, allow: st.allow, hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
     if (m.t === 'blocked') {
       const day = new Date().toISOString().slice(0, 10);
       await api.storage.local.set({ count: st.count + 1, day, today: (st.day === day ? st.today : 0) + 1 });
@@ -129,6 +145,11 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
       if (typeof m.on === 'boolean') ch.on = m.on;
       if (m.cats && typeof m.cats === 'object') ch.cats = Object.fromEntries(Object.keys(DEFAULTS.cats).map(k => [k, m.cats[k] !== false]));
       if (Array.isArray(m.custom)) ch.custom = [...new Set(m.custom.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
+      if (m.sched && typeof m.sched === 'object') {
+        const sc = m.sched, days = Array.isArray(sc.days) ? [...new Set(sc.days.map(Number).filter(d => Number.isInteger(d) && d >= 0 && d <= 6))] : [];
+        if (typeof sc.on !== 'boolean' || !HHMM.test(sc.from) || !HHMM.test(sc.to) || (sc.on && !days.length)) return reply({ ok: false, err: 'sched' });
+        ch.sched = { on: sc.on, days, from: sc.from, to: sc.to };
+      }
       if (Array.isArray(m.allow)) ch.allow = [...new Set(m.allow.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
       await api.storage.local.set(ch); await apply(); return reply({ ok: true });
     }

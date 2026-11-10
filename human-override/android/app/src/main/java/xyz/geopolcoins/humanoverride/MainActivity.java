@@ -3,6 +3,13 @@ package xyz.geopolcoins.humanoverride;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -62,6 +69,10 @@ public class MainActivity extends Activity {
         ac.addView(text(getString(R.string.always_text), 14, DIM, false));
         Button vs = button(getString(R.string.open_vpn_settings), CARD, TXT);
         vs.setOnClickListener(v -> startActivity(new Intent(Settings.ACTION_VPN_SETTINGS))); ac.addView(vs, lp(dp(10)));
+
+        LinearLayout sc = card(col, getString(R.string.sensor_title));
+        sc.addView(text(getString(R.string.sensor_text), 14, DIM, false));
+        Button sb = button(getString(R.string.sensor_btn), CARD, TXT); sb.setOnClickListener(v -> sensorCheck()); sc.addView(sb, lp(dp(10)));
 
         LinearLayout hc = card(col, getString(R.string.honest_title));
         hc.addView(text(getString(R.string.honest_text), 13, DIM, false));
@@ -146,6 +157,43 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
         if (req == 1 && res == RESULT_OK) startService(new Intent(this, BlockVpnService.class));
+    }
+
+    // ---------- Sensor check: nearby Wi-Fi radios that look like small DIY sensor boards (everything stays on the phone) ----------
+    private static final int REQ_WIFI = 7;
+    private boolean scanDone;
+    private void sensorCheck() {
+        String perm = Build.VERSION.SDK_INT >= 33 ? "android.permission.NEARBY_WIFI_DEVICES" : "android.permission.ACCESS_FINE_LOCATION";
+        if (checkSelfPermission(perm) != PackageManager.PERMISSION_GRANTED) { requestPermissions(new String[]{perm}, REQ_WIFI); return; }
+        final WifiManager wm = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (wm == null || !wm.isWifiEnabled()) { showSensor(getString(R.string.sensor_wifi_off)); return; }
+        msg.setTextColor(DIM); msg.setText(R.string.sensor_scanning); scanDone = false;
+        final BroadcastReceiver rc = new BroadcastReceiver() { @Override public void onReceive(Context c, Intent i) { finishScan(wm, this); } };
+        IntentFilter f = new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+        if (Build.VERSION.SDK_INT >= 33) registerReceiver(rc, f, Context.RECEIVER_NOT_EXPORTED); else registerReceiver(rc, f);
+        try { wm.startScan(); } catch (Exception ignored) { }   // may be throttled by Android: then the last results are used
+        h.postDelayed(() -> finishScan(wm, rc), 6000);
+    }
+    private void finishScan(WifiManager wm, BroadcastReceiver rc) {
+        if (scanDone) return; scanDone = true;
+        try { unregisterReceiver(rc); } catch (Exception ignored) { }
+        msg.setText(""); msg.setTextColor(RED);
+        java.util.List<String> ss = new java.util.ArrayList<>(), ms = new java.util.ArrayList<>(); java.util.List<Integer> ls = new java.util.ArrayList<>();
+        try { for (ScanResult r : wm.getScanResults()) { ss.add(r.SSID); ms.add(r.BSSID); ls.add(r.level); } }
+        catch (SecurityException e) { showSensor(getString(R.string.sensor_perm)); return; }
+        if (ms.isEmpty()) { showSensor(getString(R.string.sensor_empty)); return; }
+        java.util.List<SensorCheck.Finding> found = SensorCheck.check(ss, ms, ls);
+        StringBuilder b = new StringBuilder(found.isEmpty() ? getString(R.string.sensor_clean, ms.size()) : getString(R.string.sensor_found, found.size(), ms.size()));
+        String[] dist = { getString(R.string.sensor_far), getString(R.string.sensor_near), getString(R.string.sensor_close) };
+        for (SensorCheck.Finding x : found) b.append("\n\n• ").append(x.name).append("  (").append(dist[SensorCheck.distance(x.level)]).append(")\n   ").append(x.mac);
+        if (!found.isEmpty()) b.append("\n\n").append(getString(R.string.sensor_advice));
+        showSensor(b.toString());
+    }
+    private void showSensor(String t) { new AlertDialog.Builder(this).setTitle(R.string.sensor_title).setMessage(t).setPositiveButton(android.R.string.ok, null).show(); }
+    @Override public void onRequestPermissionsResult(int code, String[] p, int[] g) {
+        super.onRequestPermissionsResult(code, p, g);
+        if (code != REQ_WIFI) return;
+        if (g.length > 0 && g[0] == PackageManager.PERMISSION_GRANTED) sensorCheck(); else showSensor(getString(R.string.sensor_perm));
     }
 
     private void open(String url) { try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))); } catch (Exception ignored) { } }

@@ -33,4 +33,17 @@
     <string name="terms_decline">Sluiten</string>
     <string name="terms_link">Gebruiksvoorwaarden</string>
     <string name="private_dns_warn">Let op: \"Privé-DNS\" staat op een eigen provider in de Android-instellingen. Daarmee kan de blokkering omzeild worden. Zet het op Uit of Automatisch (Instellingen &gt; Netwerk &gt; Privé-DNS).</string>
+    <string name="sensor_title">Sensorcheck</string>
+    <string name="sensor_text">Sommige toestellen kunnen via wifi beweging door muren waarnemen, of verbergen een camera of tracker. Veel ervan werken met kleine ESP-chips. Deze check zoekt zulke chips in de buurt. Alles blijft op deze telefoon.</string>
+    <string name="sensor_btn">🔍 Zoek verborgen sensoren in de buurt</string>
+    <string name="sensor_scanning">Wifi in de buurt wordt gescand…</string>
+    <string name="sensor_wifi_off">Zet eerst wifi aan en probeer opnieuw.</string>
+    <string name="sensor_perm">De check heeft toestemming nodig om wifi-toestellen in de buurt te zien. Er wordt niets verstuurd.</string>
+    <string name="sensor_empty">Geen wifi-zenders gevonden. Zet op oudere Android Locatie aan (nodig om wifi te zien) en probeer opnieuw.</string>
+    <string name="sensor_clean">%1$d wifi-zenders gecontroleerd. Geen kleine sensorbordjes in de buurt. 👍</string>
+    <string name="sensor_found">%2$d wifi-zenders gecontroleerd. %1$d lijken op kleine ESP-bordjes:</string>
+    <string name="sensor_far">ver</string>
+    <string name="sensor_near">in de buurt</string>
+    <string name="sensor_close">heel dichtbij</string>
+    <string name="sensor_advice">Veel hiervan zijn gewone slimme stekkers, lampen of deurbellen. Ken je een toestel \"heel dichtbij\" niet? Loop rond met deze check, zoek kleine doosjes met een USB-kabel en vraag het aan je verhuurder of huisgenoten. Twijfel je, verander dan je wifi-wachtwoord.</string>
 </resources>

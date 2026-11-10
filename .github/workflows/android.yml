@@ -35,6 +35,8 @@ jobs:
           mkdir -p /tmp/t && cd /tmp/t
           javac -d . "$GITHUB_WORKSPACE/human-override/android/app/src/main/java/xyz/geopolcoins/humanoverride/DnsLogic.java" "$GITHUB_WORKSPACE/human-override/android/test-jvm/DnsLogicTest.java"
           java -cp . DnsLogicTest
+          javac -d . "$GITHUB_WORKSPACE/human-override/android/app/src/main/java/xyz/geopolcoins/humanoverride/SensorCheck.java" "$GITHUB_WORKSPACE/human-override/android/test-jvm/SensorCheckTest.java"
+          java -cp . SensorCheckTest
       - name: Fresh block list into the app
         run: cp human-override/domains.txt human-override/android/app/src/main/assets/domains.txt
       - name: Build signed APK

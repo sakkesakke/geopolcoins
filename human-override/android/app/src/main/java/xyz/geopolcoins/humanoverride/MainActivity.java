@@ -70,6 +70,17 @@ public class MainActivity extends Activity {
         Button vs = button(getString(R.string.open_vpn_settings), CARD, TXT);
         vs.setOnClickListener(v -> startActivity(new Intent(Settings.ACTION_VPN_SETTINGS))); ac.addView(vs, lp(dp(10)));
 
+        LinearLayout gc = card(col, getString(R.string.guard_title));
+        gc.addView(text(getString(R.string.guard_text), 14, DIM, false));
+        android.widget.Switch gs = new android.widget.Switch(this); gs.setText(R.string.guard_switch); gs.setTextColor(TXT); gs.setChecked(PrivacyGuard.enabled(this));
+        gs.setOnCheckedChangeListener((v, on) -> {
+            Stats.prefs(this).edit().putBoolean("guard", on).apply();
+            if (on && Build.VERSION.SDK_INT >= 33 && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 8);
+            if (on && BlockVpnService.running) PrivacyGuard.start(this); else if (!on) PrivacyGuard.stop(this);
+        });
+        gc.addView(gs, lp(dp(10)));
+
         LinearLayout sc = card(col, getString(R.string.sensor_title));
         sc.addView(text(getString(R.string.sensor_text), 14, DIM, false));
         Button sb = button(getString(R.string.sensor_btn), CARD, TXT); sb.setOnClickListener(v -> sensorCheck()); sc.addView(sb, lp(dp(10)));

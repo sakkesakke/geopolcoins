@@ -26,4 +26,12 @@ echo "== while blocking"; fail=0
 for h in chatgpt.com claude.ai gemini.google.com chat.openai.com chat.com duck.ai chatgpt-com.translate.goog lmarena.ai; do r=$(look $h); echo "$h: $r"; echo "$r" | grep -qi "unknown host" || { echo "FAIL: $h not blocked"; fail=1; }; done
 for h in www.google.com example.org wikipedia.org; do r=$(look $h); echo "$h: $r"; echo "$r" | grep -qi "unknown host" && { echo "FAIL: $h wrongly blocked"; fail=1; }; done
 adb shell "dumpsys connectivity | grep -i 'VPN' | head -3"
+echo "== camera guard (informative: needs an emulated camera)"
+adb shell am start -n $PKG/.MainActivity; sleep 2
+found=0; for i in 1 2 3 4 5 6 7 8; do if tap "Warn me when" >/dev/null 2>&1; then found=1; break; fi; adb shell input swipe 500 1400 500 900 400; sleep 1; done
+if [ $found = 1 ]; then echo "guard switch tapped"; sleep 2
+  adb shell am start -a android.media.action.STILL_IMAGE_CAMERA >/dev/null 2>&1; sleep 8
+  adb shell dumpsys notification --noredact 2>/dev/null | grep -qi "camera is being used" && echo "guard: camera notification shown" || echo "WARN: no camera notification (emulator may have no camera)"
+  adb shell input keyevent KEYCODE_HOME
+else echo "WARN: guard switch not found"; fi
 exit $fail

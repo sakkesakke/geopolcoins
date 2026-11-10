@@ -1,0 +1,80 @@
+[
+ {
+  "k": 0,
+  "text": "AI is everywhere now. In your child's bedroom. In your office. Even in the courtroom.",
+  "heard": "AI is everywhere now, in your child's bedroom, in your office, even in the courtroom.",
+  "score": 1.0
+ },
+ {
+  "k": 1,
+  "text": "But who decides when it's switched on?",
+  "heard": "But who decides when it's switched on?",
+  "score": 1.0
+ },
+ {
+  "k": 2,
+  "text": "Midnight. An eleven-year-old, chatting with an AI friend.",
+  "heard": "midnight and 11-year-old chatting with an AI friend.",
+  "score": 0.8
+ },
+ {
+  "k": 3,
+  "text": "Parents switch AI off on the phone, the browser and the family computer. Locked with a PIN.",
+  "heard": "Parents switch AI off on the phone, the browser and the family computer, locked with a pin.",
+  "score": 1.0
+ },
+ {
+  "k": 4,
+  "text": "Exam week. Half the class has a chatbot open in another tab.",
+  "heard": "Exam week. Half the class has a chatbot open in another tab.",
+  "score": 1.0
+ },
+ {
+  "k": 5,
+  "text": "Schools block AI on every computer, or on the whole school network.",
+  "heard": "Schools block AI on every computer or on the whole school network.",
+  "score": 1.0
+ },
+ {
+  "k": 6,
+  "text": "A client contract, pasted into a public chatbot.",
+  "heard": "A client contract pasted into a public chatbot.",
+  "score": 1.0
+ },
+ {
+  "k": 7,
+  "text": "Companies keep their data out of public AI. Only the tools they approve get through.",
+  "heard": "Companies keep their data out of public AI, only the tools they approve get through.",
+  "score": 1.0
+ },
+ {
+  "k": 8,
+  "text": "Case files and witness statements must never end up in a public AI service.",
+  "heard": "Case files and witness statements must never end up in a public AI service.",
+  "score": 1.0
+ },
+ {
+  "k": 9,
+  "text": "Courts and governments roll out ready-made DNS, firewall and browser rules today.",
+  "heard": "Courts and governments roll out readymade DNS, firewall, and browser rules today.",
+  "score": 0.88
+ },
+ {
+  "k": 10,
+  "text": "One switch. One PIN. More than a hundred and fifty AI services blocked. Everything else keeps working.",
+  "heard": "One switch, one pin, more than 150 AI services blocked. Everything else keeps working.",
+  "score": 0.839
+ },
+ {
+  "k": 11,
+  "text": "Human Override. The AI kill switch. Free for browser, Android, Windows and Mac.",
+  "heard": "Human override, the AI kills switch, free for browser, Android, Windows, and Mac.",
+  "score": 0.923
+ },
+ {
+  "k": 12,
+  "text": "Humans decide.",
+  "heard": "humans decide.",
+  "score": 1.0
+ }
+]

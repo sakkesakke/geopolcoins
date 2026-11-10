@@ -46,4 +46,9 @@
     <string name="sensor_near">nearby</string>
     <string name="sensor_close">very close</string>
     <string name="sensor_advice">Many of these are normal smart plugs, lamps or doorbells. Do you not know a device that is \"very close\"? Walk around with this check, look for small boxes with a USB cable, and ask your landlord or housemates. Change your Wi-Fi password if you are unsure.</string>
+    <string name="guard_title">Camera &amp; microphone guard</string>
+    <string name="guard_text">Get a notification when an app starts using your camera or microphone while Human Override is on (for example an app that secretly listens or records for AI). Android does not say which app; check the green dot at the top of the screen. Nothing is stored or sent.</string>
+    <string name="guard_switch">Warn me when the camera or microphone turns on</string>
+    <string name="guard_cam">📷 Your camera is being used right now. Was that you? If not, check which apps have camera access in Settings &gt; Privacy.</string>
+    <string name="guard_mic">🎤 Your microphone is being used right now. Was that you? If not, check which apps have microphone access in Settings &gt; Privacy.</string>
 </resources>

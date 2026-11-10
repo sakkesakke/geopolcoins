@@ -46,4 +46,9 @@
     <string name="sensor_near">à proximité</string>
     <string name="sensor_close">très proche</string>
     <string name="sensor_advice">Beaucoup sont des prises, lampes ou sonnettes connectées normales. Vous ne connaissez pas un appareil « très proche » ? Promenez-vous avec ce contrôle, cherchez de petits boîtiers avec un câble USB et demandez à votre propriétaire ou colocataires. En cas de doute, changez votre mot de passe Wi-Fi.</string>
+    <string name="guard_title">Garde caméra et micro</string>
+    <string name="guard_text">Recevez une notification quand une appli commence à utiliser votre caméra ou votre micro pendant que Human Override est actif (par exemple une appli qui écoute ou enregistre en secret pour l’IA). Android ne dit pas quelle appli ; regardez le point vert en haut de l’écran. Rien n’est stocké ni envoyé.</string>
+    <string name="guard_switch">M’avertir quand la caméra ou le micro s’allume</string>
+    <string name="guard_cam">📷 Votre caméra est utilisée en ce moment. Était-ce vous ? Sinon, vérifiez dans Paramètres &gt; Confidentialité quelles applis y ont accès.</string>
+    <string name="guard_mic">🎤 Votre micro est utilisé en ce moment. Était-ce vous ? Sinon, vérifiez dans Paramètres &gt; Confidentialité quelles applis y ont accès.</string>
 </resources>

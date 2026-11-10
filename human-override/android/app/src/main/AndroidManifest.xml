@@ -2,6 +2,8 @@
 <!-- Human Override for Android - Copyright (c) 2026 Amghar Said. All rights reserved. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Camera & microphone guard (opt-in): notifications only -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- Sensor check only (button press): see nearby Wi-Fi radios. Nothing is sent anywhere. -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />

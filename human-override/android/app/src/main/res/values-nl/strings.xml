@@ -46,4 +46,9 @@
     <string name="sensor_near">in de buurt</string>
     <string name="sensor_close">heel dichtbij</string>
     <string name="sensor_advice">Veel hiervan zijn gewone slimme stekkers, lampen of deurbellen. Ken je een toestel \"heel dichtbij\" niet? Loop rond met deze check, zoek kleine doosjes met een USB-kabel en vraag het aan je verhuurder of huisgenoten. Twijfel je, verander dan je wifi-wachtwoord.</string>
+    <string name="guard_title">Camera- en microfoonwacht</string>
+    <string name="guard_text">Krijg een melding wanneer een app je camera of microfoon begint te gebruiken terwijl Human Override aanstaat (bijvoorbeeld een app die stiekem meeluistert of opneemt voor AI). Android zegt niet welke app; kijk naar het groene bolletje bovenaan je scherm. Er wordt niets bewaard of verstuurd.</string>
+    <string name="guard_switch">Waarschuw me als de camera of microfoon aangaat</string>
+    <string name="guard_cam">📷 Je camera wordt nu gebruikt. Was jij dat? Zo niet, kijk in Instellingen &gt; Privacy welke apps cameratoegang hebben.</string>
+    <string name="guard_mic">🎤 Je microfoon wordt nu gebruikt. Was jij dat? Zo niet, kijk in Instellingen &gt; Privacy welke apps microfoontoegang hebben.</string>
 </resources>

@@ -66,11 +66,13 @@ public class BlockVpnService extends VpnService implements Runnable {
         thread = new Thread(this, "ho-dns");
         thread.start();
         timer = Executors.newSingleThreadScheduledExecutor();
+        PrivacyGuard.start(this);
         timer.scheduleWithFixedDelay(() -> { Set<String> n = Lists.update(this); if (n != null) list = n; }, 5, 3 * 3600, TimeUnit.SECONDS);
     }
 
     synchronized void stopVpn() {
         running = false;
+        PrivacyGuard.stop(this);
         if (timer != null) timer.shutdownNow();
         if (pool != null) pool.shutdownNow();
         try { if (tun != null) tun.close(); } catch (IOException ignored) { }
@@ -79,7 +81,7 @@ public class BlockVpnService extends VpnService implements Runnable {
     }
 
     @Override public void onRevoke() { stopVpn(); super.onRevoke(); }
-    @Override public void onDestroy() { running = false; try { if (tun != null) tun.close(); } catch (IOException ignored) { } super.onDestroy(); }
+    @Override public void onDestroy() { running = false; PrivacyGuard.stop(this); try { if (tun != null) tun.close(); } catch (IOException ignored) { } super.onDestroy(); }
 
     @Override
     public void run() {

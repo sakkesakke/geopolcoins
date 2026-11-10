@@ -1,0 +1,19 @@
+:root{--bg:#0d0b16;--card:#17142a;--line:#2c2748;--txt:#f3ecd9;--dim:#a79fbf;--red:#ff4f4f;--green:#3dff8a;--amber:#ffb547}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,Segoe UI,Roboto,sans-serif}
+button{font:inherit;cursor:pointer}input{font:inherit}
+.pop{width:340px;padding:14px}
+.head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.head img{width:36px;height:36px;image-rendering:pixelated}.head b{font-size:17px;letter-spacing:.3px}
+.big{width:100%;border:3px solid #000;border-radius:16px;padding:16px;font-size:20px;font-weight:900;box-shadow:4px 4px 0 #000;color:#000}
+.big.on{background:var(--red)}.big.off{background:#5d5875;color:#fff}
+.status{text-align:center;margin:10px 0 12px;color:var(--dim)}.status b{color:var(--txt)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px}
+.card h3{margin:0 0 6px;font-size:13px;color:var(--amber);text-transform:uppercase;letter-spacing:.6px}
+.cat{display:flex;align-items:center;gap:8px;padding:3px 0}.cat span{flex:1}.cat small{color:var(--dim)}
+.row{display:flex;gap:6px}.row input{flex:1;min-width:0;background:#0d0b16;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px}
+.row button,.btn{background:var(--amber);border:0;border-radius:8px;padding:7px 10px;font-weight:800;color:#000}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}.tags span{background:#241f3d;border-radius:999px;padding:2px 8px;font-size:12px}.tags button{background:none;border:0;color:var(--dim);padding:0 0 0 4px}
+.msg{color:var(--red);min-height:18px;font-size:12px}.foot{color:var(--dim);font-size:11px;text-align:center}.foot a{color:var(--dim)}
+.blocked{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+.blocked .box{max-width:520px}.blocked img{width:120px;height:120px;image-rendering:pixelated}
+.blocked h1{font-size:34px;margin:12px 0 6px}.blocked h1 em{color:var(--red);font-style:normal}.blocked p{color:var(--dim);font-size:16px}
+.blocked code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--txt)}

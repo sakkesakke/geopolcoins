@@ -127,6 +127,7 @@ p,li{color:#e4dcef}li{margin:4px 0}ul,ol{padding-left:22px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;list-style:none;padding:0;margin:20px 0 0}
 .lead{color:var(--dim);font-size:19px;margin:0 0 6px}
 footer{border-top:1px solid var(--line);max-width:1100px;margin:30px auto 0;padding:18px 16px 40px;color:var(--mute);font-size:14px;display:flex;gap:14px;flex-wrap:wrap}footer a{color:var(--dim)}
+article{overflow-wrap:anywhere}
 @media (max-width:600px){body{font-size:17px}.top nav{width:100%}.top nav a{margin:0 12px 0 0}}"""
 
 def head(title, desc, url, ld, ogtype="article", lang="en", alts=None):

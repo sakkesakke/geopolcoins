@@ -19,11 +19,13 @@ jobs:
           check() {
             url="$1"; needle="$2"
             body=$(curl -fsSL --max-time 30 "$url") || { echo "::error::$url did not load"; fail=1; return; }
-            echo "$body" | grep -qi "$needle" || { echo "::error::$url is missing: $needle"; fail=1; return; }
+            grep -qi -- "$needle" <<<"$body" || { echo "::error::$url is missing: $needle"; fail=1; return; }
             echo "OK $url"
           }
           check "https://geopolcoins.xyz/" "MAIGA"
-          check "https://geopolcoins.xyz/" 'id="factory"'
+          check "https://geopolcoins.xyz/" 'id="doors"'
+          check "https://geopolcoins.xyz/human-override.html" "Human Override"
+          check "https://geopolcoins.xyz/human-override/lists.json" "categories"
           check "https://geopolcoins.xyz/factory.html" "Meme Factory"
           check "https://geopolcoins.xyz/partners.html" "Partner"
           check "https://geopolcoins.xyz/garage.html" "BOT GARAGE"

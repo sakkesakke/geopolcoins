@@ -1,8 +1,7 @@
-import asyncio, sys, json, time, os
-os.environ['PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS'] = '1'
+import asyncio, json, time, os
+os.environ['PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS'] = '1'   # lets the routes below also answer the extension's own requests
 from playwright.async_api import async_playwright
-import os
-EXT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'extension'))
+from common import start, Checks, opens as _opens
 PAGE = '<html><body><h1>AI SITE</h1></body></html>'
 DB = {}   # fake server with the same rules as the SQL functions
 async def api(route):
@@ -17,28 +16,15 @@ async def api(route):
     await route.fulfill(status=200, content_type='application/json', body=json.dumps(out), headers={'access-control-allow-origin': '*', 'access-control-allow-headers': '*'})
 async def main():
     async with async_playwright() as p:
-        ctx = await p.chromium.launch_persistent_context('/tmp/ho-e2e-prof4', channel='chromium', headless=True,
-            args=[f'--disable-extensions-except={EXT}', f'--load-extension={EXT}'], permissions=['clipboard-read', 'clipboard-write'])
         async def site(route):
             if route.request.method == 'OPTIONS': return await route.fulfill(status=204, headers={'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'POST'})
             await route.fulfill(status=200, content_type='text/html', body=PAGE)
-        await ctx.route('https://**/*', site)
         async def sb(route):
             if route.request.method == 'OPTIONS': return await route.fulfill(status=204, headers={'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'POST'})
             await api(route)
-        await ctx.route('https://zslzbfbqrtfpvgbjhssd.supabase.co/**', sb)
-        sw = ctx.service_workers[0] if ctx.service_workers else await ctx.wait_for_event('serviceworker')
-        eid = sw.url.split('/')[2]; await asyncio.sleep(1.5)
-        for pg in ctx.pages:
-            if 'welcome' in pg.url: await pg.close()
-        ok = True
-        def check(c, m):
-            nonlocal ok; print(('PASS ' if c else 'FAIL ') + m); ok = ok and c
-        async def opens(url):
-            pg = await ctx.new_page()
-            try: await pg.goto(url, timeout=8000)
-            except Exception: pass
-            await asyncio.sleep(0.4); u = pg.url; await pg.close(); return not u.startswith('chrome-extension://')
+        ctx, sw, eid = await start(p, 'exam', [('https://**/*', site), ('https://zslzbfbqrtfpvgbjhssd.supabase.co/**', sb)])
+        check = Checks()
+        opens = lambda url: _opens(ctx, url)
         tp = await ctx.new_page(); await tp.set_viewport_size({'width': 390, 'height': 900})
         await tp.goto('http://127.0.0.1:8765/human-override-class.html'); await asyncio.sleep(0.5)
         await tp.click('#mk'); await asyncio.sleep(0.8)
@@ -88,5 +74,5 @@ async def main():
         await tp.goto('http://127.0.0.1:8765/human-override-class.html#WXYZ2345.' + 'c' * 64); await asyncio.sleep(0.6)
         check(await tp.inner_text('#code') == 'ABCD-2345' and 'another class' in await tp.inner_text('#msg'), 'a link cannot silently replace the class this device already has')
         await pop.reload(); await asyncio.sleep(0.8); await pop.screenshot(path='/tmp/ho-e2e-popup3.png', full_page=True); await tp.screenshot(path='/tmp/ho-e2e-teacher.png', full_page=True)
-        await ctx.close(); sys.exit(0 if ok else 1)
+        await ctx.close(); check.done()
 asyncio.run(main())

@@ -2,6 +2,8 @@
 
 Loaded automatically through `CLAUDE.md`. Rules, owner and git/SQL workflow: `maiga-ops` skill.
 Read other files only when the task needs them. Update this file after every larger task (keep it under ~50 lines).
+Code map: graphify (Apache-2.0, pinned 0.9.106) builds `graphify-out/` at session start (`tools/graphify_session.sh`,
+local AST only, git-ignored). Use `graphify query|explain|path` before grep/read; `graphify update .` after edits.
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
@@ -27,7 +29,8 @@ Open:
 3. Android camera/mic guard + tamper notification not yet tested on a real phone.
 4. Teacher exam button is live (11 Nov): page `/human-override-class.html`, SQL `supabase-ho-exam.sql` (RPCs exam_create /
    exam_set / exam_status, tables srv.ho_classes + srv.ho_exam_brake, only hashes). Backend work goes on Supabase, not
-   the Oracle server (no open ports). Browser tests (Playwright + Chromium): `human-override/test/e2e/*.py` (exam test needs `python3 -m http.server 8765` in the repo root).
+   the Oracle server (no open ports). Browser tests: `python3 human-override/test/e2e/<name>.py` (shared setup in `common.py`; exam test needs
+   `python3 -m http.server 8765` in the repo root).
    Next features: IT dashboard / central management, AI Act/GDPR report, Human Override Box.
    Never: antivirus, own VPN, through-wall Wi-Fi surveillance.
 

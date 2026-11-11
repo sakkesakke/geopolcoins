@@ -1,25 +1,12 @@
-import asyncio, sys
+import asyncio
 from playwright.async_api import async_playwright
-import os
-EXT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'extension'))
+from common import start, Checks, opens as _opens
 PAGE = '<html><body><h1 id=ok>AI SITE</h1><textarea id=a></textarea></body></html>'
 async def main():
     async with async_playwright() as p:
-        ctx = await p.chromium.launch_persistent_context('/tmp/ho-e2e-prof3', channel='chromium', headless=True,
-            args=[f'--disable-extensions-except={EXT}', f'--load-extension={EXT}'], permissions=['clipboard-read', 'clipboard-write'])
-        sw = ctx.service_workers[0] if ctx.service_workers else await ctx.wait_for_event('serviceworker')
-        eid = sw.url.split('/')[2]; await asyncio.sleep(1.5)
-        for pg in ctx.pages:
-            if 'welcome' in pg.url: await pg.close()
-        await ctx.route('https://**/*', lambda r: r.fulfill(status=200, content_type='text/html', body=PAGE))
-        ok = True
-        def check(c, m):
-            nonlocal ok; print(('PASS ' if c else 'FAIL ') + m); ok = ok and c
-        async def opens(url):
-            pg = await ctx.new_page()
-            try: await pg.goto(url, timeout=8000)
-            except Exception: pass
-            await asyncio.sleep(0.4); u = pg.url; await pg.close(); return not u.startswith('chrome-extension://')
+        ctx, sw, eid = await start(p, 'approved', [('https://**/*', lambda r: r.fulfill(status=200, content_type='text/html', body=PAGE))])
+        check = Checks()
+        opens = lambda url: _opens(ctx, url)
         check(not await opens('https://chatgpt.com/'), 'chatgpt.com blocked by default')
         check(not await opens('https://chat.mistral.ai/'), 'chat.mistral.ai blocked by default')
         pop = await ctx.new_page(); await pop.set_viewport_size({'width': 380, 'height': 1700})
@@ -60,5 +47,5 @@ async def main():
         check(not await opens('https://character.ai/'), 'online list cannot widen an approved service')
         await pop.reload(); await asyncio.sleep(0.8); await pop.screenshot(path='/tmp/ho-e2e-popup2.png', full_page=True)
         ov = await pop.evaluate("document.documentElement.scrollWidth - window.innerWidth"); check(ov <= 1, 'popup has no sideways scroll')
-        await ctx.close(); sys.exit(0 if ok else 1)
+        await ctx.close(); check.done()
 asyncio.run(main())

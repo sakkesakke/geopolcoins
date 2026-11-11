@@ -1,3 +1,6 @@
 __pycache__/
 .growth-data/
 .shorts/
+
+# graphify code graph: rebuilt locally at session start (tools/graphify_session.sh)
+graphify-out/

@@ -1,26 +1,17 @@
-import asyncio, sys
+import asyncio
 from playwright.async_api import async_playwright
-import os
-EXT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'extension'))
+from common import start, Checks
 PAGE = '<html><body><textarea id=a></textarea><div id=b contenteditable=true style="min-height:40px;border:1px solid"></div></body></html>'
 async def main():
     async with async_playwright() as p:
-        ctx = await p.chromium.launch_persistent_context('/tmp/ho-e2e-prof', channel='chromium', headless=True,
-            args=[f'--disable-extensions-except={EXT}', f'--load-extension={EXT}'], permissions=['clipboard-read', 'clipboard-write'])
-        sw = ctx.service_workers[0] if ctx.service_workers else await ctx.wait_for_event('serviceworker')
-        eid = sw.url.split('/')[2]
+        ctx, sw, eid = await start(p, 'paste')
         await sw.evaluate("chrome.storage.local.set({on:false}).then(() => apply())")
-        await asyncio.sleep(1)
-        for pg in ctx.pages:
-            if 'welcome' in pg.url: await pg.close()
         await ctx.route('https://chatgpt.com/**', lambda r: r.fulfill(status=200, content_type='text/html', body=PAGE))
         page = await ctx.new_page(); await page.goto('https://chatgpt.com/')
         async def paste(sel, text):
             await page.evaluate('t => navigator.clipboard.writeText(t)', text)
             await page.click(sel); await page.keyboard.press('Control+V'); await asyncio.sleep(0.5)
-        ok = True
-        def check(c, m):
-            nonlocal ok; print(('PASS ' if c else 'FAIL ') + m); ok = ok and c
+        check = Checks()
         await paste('#a', 'hello world normal text'); check(await page.input_value('#a') == 'hello world normal text', 'clean text pastes normally')
         await page.fill('#a', '')
         await paste('#a', 'IBAN BE71 0961 2345 6769 thanks')
@@ -69,5 +60,5 @@ async def main():
         await ctx.route('https://example.org/**', lambda r: r.fulfill(status=200, content_type='text/html', body=PAGE))
         await page.goto('https://example.org/'); await sw.evaluate("chrome.storage.local.set({guard:true})")
         await paste('#a', 'IBAN BE71 0961 2345 6769'); check('BE71' in await page.input_value('#a'), 'not active on normal sites')
-        await ctx.close(); sys.exit(0 if ok else 1)
+        await ctx.close(); check.done()
 asyncio.run(main())

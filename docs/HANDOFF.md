@@ -35,6 +35,10 @@ fails when the pane is hidden). Owner's own account @saidamghar7086 comments on 
 ## Decisions
 - NotebookLM as "brain": no (no official API; unofficial tools need the owner's Google login).
 - Open Generative AI (uncensored model hub): owner said do not use.
+- Later (owner's choice, "niet nu"): own domain for Human Override (advice: humanoverride.app + .com, ~$26/yr;
+  owner buys). Leave sakkemoto.com (old WordPress.com Business finance blog): export → merge best posts into
+  geopolcoins blog + redirects, domain to Namecheap, cancel plan last. Founder test: blocking is free elsewhere;
+  money is in business paste guard per seat (~€2-3/user/month) and schools.
 
 ## Reminders
 12 Nov Public APIs · 14 Nov pricing · 5 Jan 2027 Moroccan crypto law. The Brain stays disabled.

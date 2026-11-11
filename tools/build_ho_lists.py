@@ -101,7 +101,8 @@ print('zips ok')
 mf_path = os.path.join(D, 'extension', 'manifest.json')
 MF = json.load(open(mf_path))
 guard = sorted({d for k in ('chat', 'search', 'writing', 'coding') for d in L['categories'].get(k, {}).get('domains', []) if DOM.match(d)})
-MF['content_scripts'] = [{'matches': [f'*://*.{d}/*' for d in guard], 'js': ['detect.js', 'paste.js'], 'run_at': 'document_start'}]
+gpaths = sorted({p for k in ('chat', 'search', 'writing', 'coding') for p in L['categories'].get(k, {}).get('paths', [])})
+MF['content_scripts'] = [{'matches': [f'*://*.{d}/*' for d in guard] + [f'*://*.{p}*' for p in gpaths], 'js': ['detect.js', 'paste.js'], 'run_at': 'document_start'}]
 json.dump(MF, open(mf_path, 'w'), indent=2, ensure_ascii=False); open(mf_path, 'a').write('\n')
 ext = os.path.join(D, 'extension'); zname = f"human-override-{MF['version']}.zip"
 for old in os.listdir(D):

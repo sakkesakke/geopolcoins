@@ -4,20 +4,24 @@
    text is never stored or sent. */
 (() => {
   const api = globalThis.browser || globalThis.chrome;
-  let on = true;
-  api.storage.local.get('guard').then(s => { on = s.guard !== false; }, () => {});
-  api.storage.onChanged.addListener((c, area) => { if (area === 'local' && c.guard) on = c.guard.newValue !== false; });
+  let on = true, words = [];
+  api.storage.local.get(['guard', 'words']).then(s => { on = s.guard !== false; words = Array.isArray(s.words) ? s.words : []; }, () => {});
+  api.storage.onChanged.addListener((c, area) => {
+    if (area !== 'local') return;
+    if (c.guard) on = c.guard.newValue !== false;
+    if (c.words) words = Array.isArray(c.words.newValue) ? c.words.newValue : [];
+  });
 
   const L = (navigator.language || 'en').slice(0, 2);
   const TX = {
     en: { h: 'Wait: this may be private', p: 'What you are pasting into this AI site seems to contain:', no: 'Don’t paste', mask: 'Paste without the private parts', yes: 'Paste anyway',
-      k: { iban: 'a bank account number (IBAN)', card: 'a payment card number', id: 'a national ID number', email: 'a list of e-mail addresses', secret: 'a password or secret key', label: 'a “confidential” label', long: 'a very long text that is too big to check' },
+      k: { iban: 'a bank account number (IBAN)', card: 'a payment card number', id: 'a national ID number', email: 'a list of e-mail addresses', secret: 'a password or secret key', label: 'a “confidential” label', long: 'a very long text that is too big to check', custom: 'a word from your own private list' },
       f: 'Human Override paste guard · checked on your device, nothing is sent' },
     nl: { h: 'Wacht: dit kan privé zijn', p: 'Wat je in deze AI-site plakt, lijkt dit te bevatten:', no: 'Niet plakken', mask: 'Plakken zonder de privé-stukken', yes: 'Toch plakken',
-      k: { iban: 'een bankrekeningnummer (IBAN)', card: 'een betaalkaartnummer', id: 'een rijksregisternummer', email: 'een lijst e-mailadressen', secret: 'een wachtwoord of geheime sleutel', label: 'het label “vertrouwelijk”', long: 'een heel lange tekst die te groot is om te controleren' },
+      k: { iban: 'een bankrekeningnummer (IBAN)', card: 'een betaalkaartnummer', id: 'een rijksregisternummer', email: 'een lijst e-mailadressen', secret: 'een wachtwoord of geheime sleutel', label: 'het label “vertrouwelijk”', long: 'een heel lange tekst die te groot is om te controleren', custom: 'een woord uit je eigen privélijst' },
       f: 'Human Override plakbewaker · gecontroleerd op je toestel, er wordt niets verstuurd' },
     fr: { h: 'Attendez : ceci peut être privé', p: 'Ce que vous collez dans ce site d’IA semble contenir :', no: 'Ne pas coller', mask: 'Coller sans les parties privées', yes: 'Coller quand même',
-      k: { iban: 'un numéro de compte (IBAN)', card: 'un numéro de carte de paiement', id: 'un numéro de registre national', email: 'une liste d’adresses e-mail', secret: 'un mot de passe ou une clé secrète', label: 'la mention « confidentiel »', long: 'un très long texte, trop grand pour être vérifié' },
+      k: { iban: 'un numéro de compte (IBAN)', card: 'un numéro de carte de paiement', id: 'un numéro de registre national', email: 'une liste d’adresses e-mail', secret: 'un mot de passe ou une clé secrète', label: 'la mention « confidentiel »', long: 'un très long texte, trop grand pour être vérifié', custom: 'un mot de votre propre liste privée' },
       f: 'Garde-collage Human Override · vérifié sur votre appareil, rien n’est envoyé' }
   };
   const t = TX[L] || TX.en;
@@ -48,7 +52,7 @@
     const ul = document.createElement('ul');
     [...new Set(found.map(f => f.kind))].forEach(k => { const li = document.createElement('li'); li.textContent = t.k[k]; ul.appendChild(li); });
     const btn = (cls, label, v) => { const b = document.createElement('button'); b.type = 'button'; b.className = cls; b.textContent = label; b.onclick = () => close(v); return b; };
-    const bNo = btn('no', t.no, 'no'), canMask = found.some(f => f.kind !== 'label' && f.kind !== 'long');
+    const bNo = btn('no', t.no, 'no'), canMask = !found.some(f => f.kind === 'long') && found.some(f => f.kind !== 'label');
     const sm = document.createElement('small'); sm.textContent = t.f;
     box.append(h, p, ul, bNo); if (canMask) box.append(btn('mask', t.mask, 'mask')); box.append(btn('yes', t.yes, 'yes'), sm);
     bg.appendChild(box); sh.append(st, bg);
@@ -67,7 +71,7 @@
     if (!on || !e.isTrusted || !e.clipboardData) return;
     const text = e.clipboardData.getData('text/plain');
     if (!text || text.length < 6 || !globalThis.HOPaste) return;
-    const found = HOPaste.scan(text);
+    const found = HOPaste.scan(text, words);
     if (!found.length) return;
     e.preventDefault(); e.stopImmediatePropagation();
     const target = e.target && e.target.closest ? (e.target.closest('textarea,input,[contenteditable],[contenteditable=""],[contenteditable="true"]') || e.target) : document.activeElement;
@@ -76,7 +80,7 @@
     else if (sel && sel.rangeCount) saved.range = sel.getRangeAt(0).cloneRange();
     ask(found, v => {
       try { api.runtime.sendMessage({ t: 'paste', v }); } catch (err) { /* extension reloaded */ }
-      if (v === 'yes') insert(target, saved, text); else if (v === 'mask') insert(target, saved, HOPaste.mask(text)); else target.focus && target.focus();
+      if (v === 'yes') insert(target, saved, text); else if (v === 'mask') insert(target, saved, HOPaste.mask(text, words)); else target.focus && target.focus();
     });
   }, true);
 })();

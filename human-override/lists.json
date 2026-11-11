@@ -218,5 +218,81 @@
     "plaud.ai"
    ]
   }
+ },
+ "services": {
+  "chatgpt": {
+   "name": "ChatGPT",
+   "domains": [
+    "chatgpt.com",
+    "chat.openai.com",
+    "openai.com",
+    "oaistatic.com",
+    "oaiusercontent.com",
+    "chat.com"
+   ]
+  },
+  "copilot": {
+   "name": "Microsoft Copilot",
+   "domains": [
+    "copilot.microsoft.com",
+    "copilot.cloud.microsoft",
+    "m365copilot.com"
+   ],
+   "paths": [
+    "bing.com/chat"
+   ]
+  },
+  "gemini": {
+   "name": "Google Gemini",
+   "domains": [
+    "gemini.google.com",
+    "gemini.google",
+    "bard.google.com"
+   ]
+  },
+  "claude": {
+   "name": "Claude",
+   "domains": [
+    "claude.ai",
+    "claude.com",
+    "claudeusercontent.com",
+    "anthropic.com"
+   ]
+  },
+  "mistral": {
+   "name": "Mistral Le Chat",
+   "domains": [
+    "chat.mistral.ai",
+    "mistral.ai"
+   ]
+  },
+  "perplexity": {
+   "name": "Perplexity",
+   "domains": [
+    "perplexity.ai",
+    "pplx.ai"
+   ]
+  },
+  "notebooklm": {
+   "name": "NotebookLM",
+   "domains": [
+    "notebooklm.google.com",
+    "notebooklm.google"
+   ]
+  },
+  "deepseek": {
+   "name": "DeepSeek",
+   "domains": [
+    "chat.deepseek.com",
+    "deepseek.com"
+   ]
+  },
+  "ghcopilot": {
+   "name": "GitHub Copilot",
+   "domains": [],
+   "paths": [
+    "github.com/copilot"
+   ]
+  }
  }
 }

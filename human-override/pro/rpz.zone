@@ -1,6 +1,6 @@
 ; Human Override RPZ zone for BIND / PowerDNS / Infoblox / Knot. (c) 2026 Amghar Said. All rights reserved. Human Override - the AI kill switch. https://geopolcoins.xyz/human-override.html
 $TTL 300
-@ IN SOA localhost. root.localhost. (2026111001 3600 600 86400 300)
+@ IN SOA localhost. root.localhost. (2026111101 3600 600 86400 300)
 @ IN NS localhost.
 aistudio.google.com CNAME .
 *.aistudio.google.com CNAME .

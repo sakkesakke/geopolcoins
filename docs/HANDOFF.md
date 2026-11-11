@@ -5,7 +5,7 @@ Read other files only when the task needs them. Update this file after every lar
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-10v`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-11a`).
 - Legal: `python3 tools/build_legal.py "" "" ""` (keep "[contact email]"), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
 - Extension changes: `python3 tools/build_ho_lists.py` (zip + content-script matches), then
@@ -31,6 +31,11 @@ Pipeline `tools/shorts/` (README). Task "YouTube Shorts wachtrij bijvullen" Wed 
 Claude desktop app). Upload in Studio with the built-in browser: set fields with `form_input` (keyboard typing
 fails when the pane is hidden). Owner's own account @saidamghar7086 comments on the channel: never reply to those
 (fake engagement). Pinning comments needs YouTube advanced-feature verification (owner).
+
+## Site check 11 Nov
+Full check done (audits, all 180 pages at 390 px, links, labels, workflows). Fixed: mobile overflow in blog posts +
+kronos, 14 field labels, uptime check (was always red), link checker root dir, third-party actions pinned to SHAs.
+Open for owner: legal pages still show "[contact email]" (visitors cannot contact; hello@geopolcoins.xyz?).
 
 ## Decisions
 - NotebookLM as "brain": no (no official API; unofficial tools need the owner's Google login).

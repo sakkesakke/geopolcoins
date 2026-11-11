@@ -882,13 +882,13 @@ body.playing .hp{display:none!important}
         <button id="tabLocal" onclick="MAIGA_GAME.setLBScope('local')">MY SCORES</button>
       </div>
       <div id="lbList"><div class="lb-empty">Loading…</div></div>
-      <input type="text" id="pilotName" class="name-input" maxlength="12" placeholder="YOUR PILOT NAME">
+      <input type="text" id="pilotName" class="name-input" maxlength="12" placeholder="YOUR PILOT NAME" aria-label="YOUR PILOT NAME">
     </div>
     <div class="panel green">
       <h4>AIRDROP WALLET</h4>
       <div class="wallet-claimed" id="claimedWallet" style="display:none;"></div>
       <div id="walletForm">
-        <input type="text" id="walletInput" class="wallet-input" placeholder="YOUR SOLANA WALLET" maxlength="44" spellcheck="false">
+        <input type="text" id="walletInput" class="wallet-input" placeholder="YOUR SOLANA WALLET" maxlength="44" spellcheck="false" aria-label="YOUR SOLANA WALLET">
         <button class="wallet-btn" id="claimBtn" onclick="MAIGA_GAME.submitWallet()">SUBMIT WALLET</button>
       </div>
       <div class="vp-box" id="vpBox">
@@ -916,7 +916,7 @@ body.playing .hp{display:none!important}
     <div class="ma-box">
       <h4><svg class="i" aria-hidden="true"><use href="#i-bot"></use></svg> MEME AGENT · NEED AN IDEA?</h4>
       <div class="ma-row">
-        <input type="text" id="maIdea" maxlength="24" placeholder="Your idea in 1 to 3 words (frog, monday, coffee)" autocomplete="off">
+        <input type="text" id="maIdea" maxlength="24" placeholder="Your idea in 1 to 3 words (frog, monday, coffee)" autocomplete="off" aria-label="Your idea in 1 to 3 words (frog, monday, coffee)">
         <select id="maTone" aria-label="Tone">
           <option value="funny">Funny</option>
           <option value="degen">Crypto humor</option>
@@ -926,8 +926,8 @@ body.playing .hp{display:none!important}
       </div>
       <div id="maRes" class="ma-res" aria-live="polite"></div>
     </div>
-    <input type="text" id="launchTop" maxlength="100" placeholder="Top text" autocomplete="off">
-    <input type="text" id="launchBottom" maxlength="100" placeholder="Bottom text" autocomplete="off">
+    <input type="text" id="launchTop" maxlength="100" placeholder="Top text" autocomplete="off" aria-label="Top text">
+    <input type="text" id="launchBottom" maxlength="100" placeholder="Bottom text" autocomplete="off" aria-label="Bottom text">
     <select id="launchTemplate" aria-label="Meme template">
       <option value="custom"><svg class="i" aria-hidden="true"><use href="#i-star"></use></svg> My own image (recommended for your coin)</option>
       <option value="buzz">Buzz Lightyear</option>
@@ -939,7 +939,7 @@ body.playing .hp{display:none!important}
       <option value="rollsafe">Roll Safe</option>
       <option value="mordor">One Does Not Simply</option>
     </select>
-    <input type="url" id="launchBg" placeholder="Direct link to your image (https://…jpg / png)" autocomplete="off">
+    <input type="url" id="launchBg" placeholder="Direct link to your image (https://…jpg / png)" autocomplete="off" aria-label="Direct link to your image (https://…jpg / png)">
     <button type="button" class="lh-btn purple" id="lhMemeBtn">GENERATE MEME</button>
     <div id="launchMemeResult" class="lh-result"></div>
     <p class="lh-note">Most meme templates are other people's copyrighted images. For a coin you will sell or promote, use your own original image.</p>
@@ -959,7 +959,7 @@ body.playing .hp{display:none!important}
     </div>
     <div id="teamList"></div>
     <div class="lh-row">
-      <input type="text" id="teamName" maxlength="30" placeholder="Name / @handle" autocomplete="off" style="flex:1;min-width:140px;margin:0">
+      <input type="text" id="teamName" maxlength="30" placeholder="Name / @handle" autocomplete="off" style="flex:1;min-width:140px;margin:0" aria-label="Name / @handle">
       <select id="teamRole" aria-label="Role" style="margin:0">
         <option value="creator">Creator</option>
         <option value="dev">Dev</option>
@@ -973,11 +973,11 @@ body.playing .hp{display:none!important}
     <div class="tm-box">
       <h4><svg class="i" aria-hidden="true"><use href="#i-bot"></use></svg> TEAM MATCH AGENT · FIND TEAMMATES</h4>
       <div class="tm-row">
-        <input type="text" id="tmNick" maxlength="16" placeholder="Nickname (letters, numbers)" autocomplete="off">
+        <input type="text" id="tmNick" maxlength="16" placeholder="Nickname (letters, numbers)" autocomplete="off" aria-label="Nickname (letters, numbers)">
         <div><span class="tm-lbl">I AM A</span><select id="tmMy" aria-label="My role"><option value="creator">Creator</option><option value="dev">Dev</option><option value="design">Designer</option><option value="marketing">Marketing</option><option value="community">Community</option></select></div>
         <div><span class="tm-lbl">I NEED A</span><select id="tmLook" aria-label="Role I need"><option value="dev">Dev</option><option value="design">Designer</option><option value="marketing">Marketing</option><option value="community">Community</option><option value="creator">Creator</option></select></div>
       </div>
-      <textarea id="tmPitch" maxlength="140" rows="2" placeholder="Your pitch in 10 to 140 characters. No links, no @handles."></textarea>
+      <textarea id="tmPitch" maxlength="140" rows="2" placeholder="Your pitch in 10 to 140 characters. No links, no @handles." aria-label="Your pitch in 10 to 140 characters. No links, no @handles."></textarea>
       <div class="tm-row">
         <button type="button" class="lh-btn green" id="tmPost">POST ON THE BOARD</button>
         <button type="button" class="lh-btn ghost" id="tmFind">FIND MY MATCHES</button>
@@ -995,10 +995,10 @@ body.playing .hp{display:none!important}
   <div class="lh-step gold">
     <h3>STEP 3 · <svg class="i" aria-hidden="true"><use href="#i-rocket"></use></svg> LAUNCH ON PUMP.FUN</h3>
     <div class="lh-row">
-      <input type="text" id="coinName" maxlength="32" placeholder="Coin name" autocomplete="off" style="flex:2;min-width:150px;margin:0">
-      <input type="text" id="coinTicker" maxlength="10" placeholder="TICKER" autocomplete="off" style="flex:1;min-width:90px;margin:0;text-transform:uppercase">
+      <input type="text" id="coinName" maxlength="32" placeholder="Coin name" autocomplete="off" style="flex:2;min-width:150px;margin:0" aria-label="Coin name">
+      <input type="text" id="coinTicker" maxlength="10" placeholder="TICKER" autocomplete="off" style="flex:1;min-width:90px;margin:0;text-transform:uppercase" aria-label="TICKER">
     </div>
-    <textarea id="coinDesc" maxlength="300" rows="3" placeholder="Short description (max 300 characters)"></textarea>
+    <textarea id="coinDesc" maxlength="300" rows="3" placeholder="Short description (max 300 characters)" aria-label="Short description (max 300 characters)"></textarea>
     <button type="button" class="lh-btn green" id="lhCheckBtn" style="margin-bottom:10px"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg> RUN LAUNCH CHECK</button>
     <div id="lhCheckResult" class="lh-check" aria-live="polite"></div>
     <button type="button" class="lh-btn ghost" id="copyPlanBtn"><svg class="i" aria-hidden="true"><use href="#i-clipboard"></use></svg> COPY MY LAUNCH PLAN</button>

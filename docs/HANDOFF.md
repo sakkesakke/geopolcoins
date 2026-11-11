@@ -5,8 +5,9 @@ Read other files only when the task needs them. Update this file after every lar
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-11a`).
-- Legal: `python3 tools/build_legal.py "" "" ""` (keep "[contact email]"), then `seo_enhance.py` again.
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-11b`).
+- Legal: `python3 tools/build_legal.py "" "" "hello@geopolcoins.xyz"` (owner OK 11 Nov; never his private
+  address), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
 - Extension changes: `python3 tools/build_ho_lists.py` (zip + content-script matches), then
   `git checkout` the 3 other HO zips (only timestamps change). Tests: `node --test human-override/test/detect.test.js`.
@@ -35,7 +36,7 @@ fails when the pane is hidden). Owner's own account @saidamghar7086 comments on 
 ## Site check 11 Nov
 Full check done (audits, all 180 pages at 390 px, links, labels, workflows). Fixed: mobile overflow in blog posts +
 kronos, 14 field labels, uptime check (was always red), link checker root dir, third-party actions pinned to SHAs.
-Open for owner: legal pages still show "[contact email]" (visitors cannot contact; hello@geopolcoins.xyz?).
+Contact address on legal pages: hello@geopolcoins.xyz (owner must check it reaches his inbox).
 
 ## Decisions
 - NotebookLM as "brain": no (no official API; unofficial tools need the owner's Google login).

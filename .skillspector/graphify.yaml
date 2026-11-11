@@ -1,0 +1,23 @@
+# Reviewed by hand on 2026-11-11: graphify skill (Apache-2.0, safishamsi/graphify, CLI pinned to 0.9.106).
+# Every flagged line was read. None sends code anywhere or asks to bypass rules. Each rule below is scoped to this skill.
+# Note: graphify can call an AI service (Gemini/OpenAI/...) for docs/images ONLY when such an API key is set; none is set here.
+version: 2
+rules:
+  - id: "TM1"
+    message: "*rm -f*"
+    reason: "Reviewed: rm -f only removes graphify's own temp files inside graphify-out/ (SKILL.md 427, 713, 715; references/update.md 221)."
+  - id: "TM1"
+    reason: "Reviewed: cleanup of graphify-out/ temp files only."
+  - id: "AE1"
+    path: "*SKILL.md"
+    reason: "False positive: line 638 explains which export steps run only when their flag is given; no evasion."
+  - id: "AR2"
+    reason: "False positive: 'never run HTML viz on >5000 nodes without warning the user' and 'read every file completely' are care rules, not anti-refusal."
+  - id: "EA1"
+    path: "*SKILL.md"
+    reason: "Reviewed: '--help prints usage and stops' (line 56)."
+  - id: "EA2"
+    reason: "Reviewed: defaults (path '.', use an existing graph, run --update after an explicit /graphify add, no API key needed); no extra powers."
+  - id: "RP1"
+    path: "*SKILL.md"
+    reason: "Reviewed: 'uv tool run --from graphifyy' only locates the already installed graphify Python; our session script pins graphifyy==0.9.106."

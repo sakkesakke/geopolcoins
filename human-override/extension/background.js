@@ -1,6 +1,8 @@
 /* Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
 /* Human Override: blocks AI services in this browser with declarativeNetRequest.
-   Nothing is sent anywhere. The only network request is a daily download of the public block list
+   Nothing about you is sent anywhere. Network requests: a daily download of the public block list and, only when this
+   browser joined a class, a question once a minute whether the teacher's exam mode is on (only the class code is sent).
+   The public block list comes
    from geopolcoins.xyz (no data about you is included). */
 const api = globalThis.browser || globalThis.chrome;
 const LIST_URL = 'https://geopolcoins.xyz/human-override/lists.json';
@@ -11,15 +13,21 @@ const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.c
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
   'geopolcoins.xyz', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
-const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], allowSvc: [], words: [], pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
+const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
   sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00' } };
 const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
+// Exam mode (only when this browser joined a class): once a minute the extension asks how long the teacher's exam still
+// lasts. Only the class code is sent; no name, no browsing data.
+const EXAM_URL = 'https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/exam_status';
+const EXAM_KEY = 'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';   // public by design (read-only question)
+const CODE = /^[A-HJ-NP-Z2-9]{8}$/;
 const REMOVED_URL = 'https://geopolcoins.xyz/human-override-removed.html';
 const ALERT = new Set(['pinbad', 'pinlock']);   // these light up a red "!" on the icon until the popup is opened
 
 // Tamper log: what happened and when (never page content). Last 50 events, only on this device.
-let logChain = Promise.resolve(), pinChain = Promise.resolve();
-function serial(which, fn) { const r = (which === 'pin' ? pinChain : logChain).then(fn); const done = r.catch(() => {}); if (which === 'pin') pinChain = done; else logChain = done; return r; }
+// One queue per kind of work ('log', 'pin', 'apply'): jobs of the same kind run one after the other, never mixed.
+const chains = {};
+function serial(name, fn) { const r = (chains[name] || Promise.resolve()).then(fn); chains[name] = r.catch(() => {}); return r; }
 function note(k) { return serial('log', () => noteNow(k)); }
 async function noteNow(k) {
   const s = await api.storage.local.get(['log', 'alert']);
@@ -29,7 +37,7 @@ async function noteNow(k) {
 }
 async function badge() {
   const st = await getState(), act = active(st);
-  api.action.setBadgeText({ text: st.alert ? '!' : !st.on ? 'OFF' : act ? '' : 'zz' });
+  api.action.setBadgeText({ text: st.alert ? '!' : examOn(st) ? 'EX' : !st.on ? 'OFF' : act ? '' : 'zz' });
   api.action.setBadgeBackgroundColor({ color: '#c0392b' });
 }
 
@@ -43,7 +51,29 @@ function inWindow(sc, d = new Date()) {
   if (f < t) return sc.days.includes(day) && now >= f && now < t;
   return (sc.days.includes(day) && now >= f) || (sc.days.includes(prev) && now < t);   // past midnight
 }
-function active(st) { return st.on && (!st.sched.on || inWindow(st.sched)); }
+function examOn(st) { return !!st.klass && !!st.exam && Date.now() < st.exam.until; }
+function active(st) { return examOn(st) || (st.on && (!st.sched.on || inWindow(st.sched))); }
+function mode(st) { return examOn(st) ? 'exam' : active(st) ? 'on' : 'off'; }   // rules are rebuilt whenever this changes
+
+async function examAsk(code) {   // seconds left, 0 = no exam, -1 = unknown class, null = could not ask
+  try {
+    const r = await fetch(EXAM_URL, { method: 'POST', cache: 'no-store', credentials: 'omit', headers: { apikey: EXAM_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ p_code: code }) });
+    if (!r.ok) return null;
+    const n = await r.json();
+    return Number.isInteger(n) && n >= -1 && n <= 14400 ? n : null;
+  } catch (e) { return null; }
+}
+async function examPoll() {
+  const st = await getState();
+  if (!st.klass) return;
+  const left = await examAsk(st.klass);
+  if (left === null) return;                       // offline: keep what we know, a running exam simply runs out
+  if ((await getState()).klass !== st.klass) return;   // joined or left another class while we were asking: this answer is stale
+  const was = examOn(st), until = left > 0 ? Date.now() + left * 1000 : 0;   // counted from the server's answer, so changing the PC clock does not end an exam
+  await api.storage.local.set({ exam: { until } });
+  const now = until > Date.now();
+  if (now !== was) { await note(now ? 'examon' : 'examoff'); await apply(); }
+}
 
 async function bundled() { const r = await fetch(api.runtime.getURL('lists.json')); return r.json(); }
 // Known AI services for the "approved AI" picker. Always read from the list shipped inside the extension:
@@ -60,17 +90,19 @@ async function lists() { const s = await api.storage.local.get('remote'); return
 
 function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
-async function apply() {
+// One rebuild at a time: two rebuilds at once (popup change + minute check) would write half of each other's rules.
+function apply() { return serial('apply', applyNow); }
+async function applyNow() {
   const st = await getState(), L = await lists();
   const old = await api.declarativeNetRequest.getDynamicRules();
-  const rules = [], act = active(st);
+  const rules = [], act = active(st), ex = examOn(st);   // during an exam every category is blocked and nothing is "approved"
   if (act) {
-    const SV = await services(), allow = new Set(st.allow), okPaths = new Set();
-    for (const k of st.allowSvc) if (SV[k]) { SV[k].domains.forEach(d => allow.add(d)); SV[k].paths.forEach(p => okPaths.add(p)); }
+    const SV = await services(), allow = new Set(ex ? [] : st.allow), okPaths = new Set();
+    if (!ex) for (const k of st.allowSvc) if (SV[k]) { SV[k].domains.forEach(d => allow.add(d)); SV[k].paths.forEach(p => okPaths.add(p)); }
     const allowed = d => { for (const a of allow) if (d === a || d.endsWith('.' + a)) return true; return false; };   // an allowed site includes its sub-sites
     let doms = [], paths = [];
     for (const [k, c] of Object.entries(L.categories || {})) {
-      if (!st.cats[k]) continue;
+      if (!ex && !st.cats[k]) continue;
       doms = doms.concat((c.domains || []).filter(d => DOMAIN.test(d)));
       paths = paths.concat((c.paths || []).filter(p => PATH.test(p)));
     }
@@ -94,7 +126,7 @@ async function apply() {
       rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },
         condition: { regexFilter: '^https?://' + esc(t) + '\\.translate\\.goog\\.?(/.*)?$', resourceTypes: ['main_frame', 'sub_frame'] } });
     }
-    if (st.cats.search) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },   // Google "AI Mode"
+    if (ex || st.cats.search) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },   // Google "AI Mode"
       condition: { regexFilter: '^https?://(www\\.)?google\\.[a-z.]{2,12}/search\\?(.*&)?udm=50(&.*)?$', resourceTypes: ['main_frame'] } });
     if (rest.length) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: { requestDomains: rest, resourceTypes: ['main_frame'] } });
@@ -105,7 +137,7 @@ async function apply() {
       condition: { requestDomains: doms, resourceTypes: ['sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other'] } });
   }
   await api.declarativeNetRequest.updateDynamicRules({ removeRuleIds: old.map(r => r.id), addRules: rules });
-  await api.storage.local.set({ act });
+  await api.storage.local.set({ act: mode(st) });
   await badge();
 }
 
@@ -157,10 +189,10 @@ api.runtime.onInstalled.addListener(async (d) => { await apply().catch(() => {})
   setUninstall();
   if (d && d.reason === 'install') api.tabs.create({ url: api.runtime.getURL('welcome.html') }); api.alarms.create('list', { periodInMinutes: 720 }); api.alarms.create('sched', { periodInMinutes: 1 }); });
 function setUninstall() { try { const r = api.runtime.setUninstallURL(REMOVED_URL); if (r && r.catch) r.catch(() => {}); } catch (e) { /* not supported */ } }
-api.runtime.onStartup && api.runtime.onStartup.addListener(() => { setUninstall(); api.alarms.create('sched', { periodInMinutes: 1 }); apply().catch(() => {}); });
+api.runtime.onStartup && api.runtime.onStartup.addListener(() => { setUninstall(); api.alarms.create('sched', { periodInMinutes: 1 }); apply().catch(() => {}).then(() => examPoll()).catch(() => {}); });
 api.alarms.onAlarm.addListener(async a => {
   if (a.name === 'list') refreshList();
-  if (a.name === 'sched') { const st = await getState(), was = (await api.storage.local.get('act')).act; if (active(st) !== was) apply().catch(() => {}); }   // only rebuild rules when the schedule flips
+  if (a.name === 'sched') { await examPoll().catch(() => {}); const st = await getState(), was = (await api.storage.local.get('act')).act; if (mode(st) !== was) apply().catch(() => {}); }   // only rebuild rules when the schedule flips
 });
 
 api.runtime.onMessage.addListener((m, sender, reply) => {
@@ -169,7 +201,7 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
   if (!own && m.t !== 'paste') return false;   // content scripts on AI sites may only report a paste choice
   (async () => {
     const st = await getState();
-    if (m.t === 'state') return reply({ guard: st.guard !== false, log: st.log.slice(-10).reverse(), alert: !!st.alert, on: st.on, active: active(st), sched: st.sched, cats: st.cats, custom: st.custom, allow: st.allow, allowSvc: st.allowSvc, words: st.words, services: Object.fromEntries(Object.entries(await services()).map(([k, v]) => [k, v.name])), hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
+    if (m.t === 'state') return reply({ guard: st.guard !== false, log: st.log.slice(-10).reverse(), alert: !!st.alert, on: st.on, active: active(st), sched: st.sched, cats: st.cats, klass: st.klass, examLeft: examOn(st) ? Math.ceil((st.exam.until - Date.now()) / 60000) : 0, custom: st.custom, allow: st.allow, allowSvc: st.allowSvc, words: st.words, services: Object.fromEntries(Object.entries(await services()).map(([k, v]) => [k, v.name])), hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
     if (m.t === 'blocked') {
       const day = new Date().toISOString().slice(0, 10);
       await api.storage.local.set({ count: st.count + 1, day, today: (st.day === day ? st.today : 0) + 1 });
@@ -200,7 +232,17 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
         if (w.length > 100) return reply({ ok: false, err: 'max' });
         ch.words = w;
       }
+      if (m.klass === null && st.klass) { ch.klass = null; ch.exam = { until: 0 }; }
+      else if (typeof m.klass === 'string') {
+        const code = m.klass.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        if (!CODE.test(code)) return reply({ ok: false, err: 'class' });
+        const left = await examAsk(code);
+        if (left === null) return reply({ ok: false, err: 'net' });
+        if (left < 0) return reply({ ok: false, err: 'class' });
+        ch.klass = code; ch.exam = { until: left > 0 ? Date.now() + left * 1000 : 0 };
+      }
       await api.storage.local.set(ch); await apply();
+      if ('klass' in ch) await note(ch.klass ? 'classon' : 'classoff');
       if (ch.on === false && st.on) await note('off'); else if (ch.on === true && !st.on) await note('on');
       if (ch.guard === false && st.guard !== false) await note('guardoff');
       if (ch.cats || ch.custom || ch.allow || ch.allowSvc || ch.words || ch.sched) await note('changed');

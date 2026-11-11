@@ -1,0 +1,73 @@
+import asyncio, sys
+from playwright.async_api import async_playwright
+import os
+EXT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'extension'))
+PAGE = '<html><body><textarea id=a></textarea><div id=b contenteditable=true style="min-height:40px;border:1px solid"></div></body></html>'
+async def main():
+    async with async_playwright() as p:
+        ctx = await p.chromium.launch_persistent_context('/tmp/ho-e2e-prof', channel='chromium', headless=True,
+            args=[f'--disable-extensions-except={EXT}', f'--load-extension={EXT}'], permissions=['clipboard-read', 'clipboard-write'])
+        sw = ctx.service_workers[0] if ctx.service_workers else await ctx.wait_for_event('serviceworker')
+        eid = sw.url.split('/')[2]
+        await sw.evaluate("chrome.storage.local.set({on:false}).then(() => apply())")
+        await asyncio.sleep(1)
+        for pg in ctx.pages:
+            if 'welcome' in pg.url: await pg.close()
+        await ctx.route('https://chatgpt.com/**', lambda r: r.fulfill(status=200, content_type='text/html', body=PAGE))
+        page = await ctx.new_page(); await page.goto('https://chatgpt.com/')
+        async def paste(sel, text):
+            await page.evaluate('t => navigator.clipboard.writeText(t)', text)
+            await page.click(sel); await page.keyboard.press('Control+V'); await asyncio.sleep(0.5)
+        ok = True
+        def check(c, m):
+            nonlocal ok; print(('PASS ' if c else 'FAIL ') + m); ok = ok and c
+        await paste('#a', 'hello world normal text'); check(await page.input_value('#a') == 'hello world normal text', 'clean text pastes normally')
+        await page.fill('#a', '')
+        await paste('#a', 'IBAN BE71 0961 2345 6769 thanks')
+        dlg = await page.evaluate("[...document.body.children].some(e => e.shadowRoot === null && e.style.zIndex === '2147483647')")
+        check(dlg and await page.input_value('#a') == '', 'IBAN: paste stopped and dialog shown')
+        await page.keyboard.press('Control+V'); await asyncio.sleep(0.3)
+        check(await page.input_value('#a') == '', 'second paste while the dialog is open is stopped too')
+        await page.keyboard.press('Escape'); await asyncio.sleep(0.3)
+        check(await page.input_value('#a') == '', 'Escape = do not paste')
+        # dialog buttons are in a closed shadow root: use keyboard (Tab to mask, Enter)
+        await paste('#a', 'IBAN BE71 0961 2345 6769 thanks')
+        await page.keyboard.press('Tab'); await page.keyboard.press('Enter'); await asyncio.sleep(0.4)
+        check(await page.input_value('#a') == 'IBAN [IBAN] thanks', 'mask button pastes without the IBAN: ' + repr(await page.input_value('#a')))
+        await paste('#a', 'IBAN BE71 0961 2345 6769 again')
+        await page.evaluate("[...document.body.children].filter(e => e.style.zIndex === '2147483647').forEach(e => e.remove())")
+        await paste('#a', 'IBAN BE71 0961 2345 6769 again')
+        check('BE71' not in await page.input_value('#a'), 'page removing the dialog does not switch the guard off')
+        await page.keyboard.press('Escape'); await asyncio.sleep(0.3)
+        await paste('#b', 'a@x.be b@y.be secret')
+        await page.keyboard.press('Tab'); await page.keyboard.press('Tab'); await page.keyboard.press('Enter'); await asyncio.sleep(0.4)
+        check('a@x.be' in await page.inner_text('#b'), 'paste anyway works in contenteditable: ' + repr(await page.inner_text('#b')))
+        log = await sw.evaluate("chrome.storage.local.get('log').then(s => s.log.map(e => e.k))")
+        check(log[-4:] == ['paste_no', 'paste_mask', 'paste_no', 'paste_yes'], 'tamper log: ' + str(log))
+        # popup
+        pop = await ctx.new_page(); await pop.set_viewport_size({'width': 380, 'height': 1300})
+        await pop.goto(f'chrome-extension://{eid}/popup.html'); await asyncio.sleep(0.8)
+        txt = await pop.inner_text('body')
+        check('PASTE GUARD' in txt.upper() and 'Private data pasted anyway' in txt, 'popup shows guard and log')
+        await pop.fill('#pin', '1234'); await pop.click('#pinB'); await asyncio.sleep(1.5)
+        await pop.fill('#pin', '9999'); await pop.click('#gOn'); await asyncio.sleep(1.5)
+        check(await pop.is_checked('#gOn'), 'wrong PIN cannot turn the paste guard off')
+        badge = await sw.evaluate("chrome.action.getBadgeText({})")
+        check(badge == '!', 'wrong PIN lights the ! badge: ' + repr(badge))
+        await pop.fill('#pin', '1234'); await pop.click('#gOn'); await asyncio.sleep(1.5)
+        check(not await pop.is_checked('#gOn'), 'right PIN turns it off')
+        await pop.screenshot(path='/tmp/ho-e2e-popup.png', full_page=True)
+        await paste('#a', 'IBAN BE71 0961 2345 6769')
+        check('BE71' in await page.input_value('#a'), 'guard off: pastes normally')
+        await pop.reload(); await asyncio.sleep(0.8)
+        badge = await sw.evaluate("chrome.action.getBadgeText({})")
+        check(badge == '!', 'opening the popup does NOT clear the badge')
+        await pop.fill('#pin', '1234'); await pop.click('#seen'); await asyncio.sleep(1.5)
+        badge = await sw.evaluate("chrome.action.getBadgeText({})")
+        check(badge != '!', 'Mark as seen with the PIN clears it')
+        # off-site: no content script on example.org
+        await ctx.route('https://example.org/**', lambda r: r.fulfill(status=200, content_type='text/html', body=PAGE))
+        await page.goto('https://example.org/'); await sw.evaluate("chrome.storage.local.set({guard:true})")
+        await paste('#a', 'IBAN BE71 0961 2345 6769'); check('BE71' in await page.input_value('#a'), 'not active on normal sites')
+        await ctx.close(); sys.exit(0 if ok else 1)
+asyncio.run(main())

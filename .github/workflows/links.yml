@@ -23,6 +23,7 @@ jobs:
             --root-dir ${{ github.workspace }}
             --exclude 'supabase\.co' --exclude 'x\.com' --exclude 'twitter\.com'
             --exclude 'jup\.ag' --exclude 'dexscreener' --exclude 'esm\.sh'
+            --exclude 'pump\.fun' --exclude 'platform\.openai\.com' --exclude 'console\.mistral\.ai'
             './*.html'
           fail: false
       - name: Open an issue when links are broken

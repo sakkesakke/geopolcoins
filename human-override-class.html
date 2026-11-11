@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https://zslzbfbqrtfpvgbjhssd.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Exam button for teachers | Human Override</title>
+<meta name="description" content="Free exam button for teachers: switch all AI chatbots off for your whole class during a test, with one tap. No accounts and no pupil names.">
+<link rel="canonical" href="https://geopolcoins.xyz/human-override-class.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Exam button for teachers | Human Override">
+<meta property="og:description" content="Switch all AI chatbots off for your whole class during a test, with one tap. Free, no accounts, no pupil names.">
+<meta property="og:url" content="https://geopolcoins.xyz/human-override-class.html">
+<meta property="og:image" content="https://geopolcoins.xyz/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta name="theme-color" content="#120f1e">
+<style>
+:root{--night:#120f1e;--cab:#251c38;--line:rgba(241,235,224,.14);--text:#f1ebe0;--dim:#b3a9c4;--amber:#ffb547;--red:#ff4f4f;--green:#59d98e}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--night);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--amber)}.wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:30px;line-height:1.15;margin:18px 0 8px}h1 em{color:var(--red);font-style:normal}h2{font-size:18px;color:var(--amber);margin:0 0 8px}
+.lead{color:var(--dim);margin:0 0 18px}
+.box{background:var(--cab);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.langs button{background:none;border:1px solid var(--line);color:var(--dim);border-radius:8px;padding:4px 9px;cursor:pointer;font:inherit;font-size:13px}.langs button[aria-pressed=true]{background:var(--amber);color:#1a1206}
+.btn{display:inline-block;border:2px solid #000;border-radius:12px;padding:12px 18px;font:700 17px system-ui,sans-serif;cursor:pointer;background:var(--amber);color:#1a1206}
+.btn.red{background:var(--red);color:#000;width:100%;font-size:20px;padding:16px}.btn.ghost{background:transparent;color:var(--dim);border-color:var(--line);font-weight:600;font-size:14px;padding:8px 12px}
+.btn:disabled{opacity:.5;cursor:default}
+.code{font:800 40px/1.1 ui-monospace,Consolas,monospace;letter-spacing:.08em;color:var(--amber);margin:6px 0 10px;overflow-wrap:anywhere}
+.state{font-weight:700;font-size:20px;margin:0 0 12px}.state.on{color:var(--red)}.state.off{color:var(--green)}
+select{font:inherit;background:#17142a;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px;margin:0 0 10px;width:100%}
+ol{margin:6px 0 0;padding-left:22px}li{margin:4px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.msg{min-height:22px;color:var(--red);font-size:15px;margin:8px 0 0}
+.small{color:var(--dim);font-size:14px}.foot{color:var(--dim);font-size:13px;margin-top:30px}
+</style>
+<script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://geopolcoins.xyz/"},{"@type":"ListItem","position":2,"name":"Exam button for teachers","item":"https://geopolcoins.xyz/human-override-class.html"}]}</script>
+</head>
+<body><main class="wrap">
+<div class="langs" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button> <button type="button" data-l="nl" aria-pressed="false">NL</button> <button type="button" data-l="fr" aria-pressed="false">FR</button></div>
+<h1 data-t="h1">Exam button: <em>no AI</em> during the test</h1>
+<p class="lead" data-t="lead">One tap switches every AI chatbot off in the browsers of your class, for as long as the test lasts. Free, no accounts, no pupil names.</p>
+
+<section class="box" id="make">
+<h2 data-t="mkH">1. Make your class</h2>
+<p data-t="mkP">You get a class code for the pupils and a private teacher link for you.</p>
+<button class="btn" id="mk" type="button" data-t="mkB">Make a class</button>
+</section>
+
+<section class="box" id="klass" hidden>
+<h2 data-t="clH">Your class code</h2>
+<div class="code" id="code" aria-live="polite"></div>
+<ol>
+<li data-t="s1">Pupils install Human Override in their browser (school computers: once).</li>
+<li data-t="s2">They open the extension, go to “Class · exam mode”, type this code and tap Join.</li>
+<li data-t="s3">The school or teacher sets the PIN in the extension (not the pupil), so a pupil cannot leave the class.</li>
+</ol>
+<div class="row"><button class="btn ghost" id="copy" type="button" data-t="cp">Copy my private teacher link</button><button class="btn ghost" id="forget" type="button" data-t="fg">Forget this class on this device</button></div>
+<p class="small" data-t="keep">Keep the teacher link private: who has it can start and stop the exam. Save it as a bookmark to use the class on another device.</p>
+</section>
+
+<section class="box" id="exam" hidden>
+<h2 data-t="exH">2. Exam mode</h2>
+<p class="state off" id="state" aria-live="polite"></p>
+<label class="small" for="mins" data-t="dur">How long?</label>
+<select id="mins"><option value="30">30 min</option><option value="45">45 min</option><option value="60" selected>60 min</option><option value="90">90 min</option><option value="120">120 min</option><option value="180">180 min</option><option value="240">240 min</option></select>
+<button class="btn red" id="go" type="button" data-t="go">✋ Start exam mode</button>
+<div class="row"><button class="btn ghost" id="stop" type="button" data-t="st">Stop now</button></div>
+<p class="small" data-t="lim">Honest limits: it works in browsers where the extension joined your class, and it can take up to one minute before every browser follows. It does not block phones or other browsers, and a pupil who controls the whole computer can remove the extension: on school computers, install it with browser policy. All AI categories are blocked during the exam, also AI your school normally approves.</p>
+</section>
+<p class="msg" id="msg" role="alert"></p>
+
+<p class="foot">Human Override © 2026 Amghar Said · <a href="/human-override.html" data-t="back">About Human Override</a> · <a href="/human-override-terms.html" data-t="terms">Terms</a> · <a href="/privacy.html" data-t="priv">Privacy</a><br><span data-t="pv">This page stores your class code and teacher key only in this browser. Our server keeps no names and no e-mail addresses.</span></p>
+</main>
+<script>
+(function(){
+var API='https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/',KEY='sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';
+var CODE=/^[A-HJ-NP-Z2-9]{8}$/,TKEY=/^[0-9a-f]{64}$/;
+var T={en:{on:'EXAM MODE IS ON: {t} left',off:'Exam mode is off. AI follows the normal settings.',slow:'Too many requests right now. Try again in a minute.',net:'Could not reach the server. Check your internet and try again.',bad:'This teacher link is not valid (any more).',copied:'Copied. Keep it private.',other:'This link is for another class. This device already has a class: tap “Forget this class on this device” first, then open the link again.',sure:'Forget this class on this device? Without your teacher link you cannot control it again.',yes:'Tap again to forget'},
+nl:{h1:'Examenknop: <em>geen AI</em> tijdens de toets',lead:'Eén tik zet elke AI-chatbot uit in de browsers van je klas, zolang de toets duurt. Gratis, geen accounts, geen namen van leerlingen.',mkH:'1. Maak je klas',mkP:'Je krijgt een klascode voor de leerlingen en een privé-lerarenlink voor jou.',mkB:'Klas maken',clH:'Je klascode',s1:'Leerlingen installeren Human Override in hun browser (schoolcomputers: één keer).',s2:'Ze openen de extensie, gaan naar “Klas · examenmodus”, typen deze code en tikken op Koppelen.',s3:'De school of leraar stelt de pincode in de extensie in (niet de leerling), zodat een leerling de klas niet kan verlaten.',cp:'Kopieer mijn privé-lerarenlink',fg:'Vergeet deze klas op dit toestel',keep:'Hou de lerarenlink privé: wie hem heeft, kan het examen starten en stoppen. Bewaar hem als bladwijzer om de klas op een ander toestel te gebruiken.',exH:'2. Examenmodus',dur:'Hoe lang?',go:'✋ Start examenmodus',st:'Nu stoppen',lim:'Eerlijke grenzen: het werkt in browsers waar de extensie aan je klas gekoppeld is, en het kan tot één minuut duren voor elke browser volgt. Het blokkeert geen telefoons of andere browsers, en een leerling die de hele computer beheert kan de extensie verwijderen: installeer ze op schoolcomputers via browserbeleid. Tijdens het examen zijn alle AI-categorieën geblokkeerd, ook AI die je school normaal goedkeurt.',back:'Over Human Override',terms:'Voorwaarden',priv:'Privacy',pv:'Deze pagina bewaart je klascode en lerarensleutel alleen in deze browser. Onze server bewaart geen namen en geen e-mailadressen.',on:'EXAMENMODUS STAAT AAN: nog {t}',off:'Examenmodus staat uit. AI volgt de gewone instellingen.',slow:'Te veel aanvragen op dit moment. Probeer over een minuut opnieuw.',net:'De server is niet bereikbaar. Controleer je internet en probeer opnieuw.',bad:'Deze lerarenlink is niet (meer) geldig.',copied:'Gekopieerd. Hou hem privé.',other:'Deze link is voor een andere klas. Dit toestel heeft al een klas: tik eerst op “Vergeet deze klas op dit toestel” en open de link daarna opnieuw.',yes:'Tik nog eens om te vergeten'},
+fr:{h1:'Bouton examen : <em>pas d’IA</em> pendant le test',lead:'Un geste coupe tous les chatbots IA dans les navigateurs de votre classe, pendant toute la durée du test. Gratuit, sans compte, sans noms d’élèves.',mkH:'1. Créez votre classe',mkP:'Vous recevez un code de classe pour les élèves et un lien enseignant privé pour vous.',mkB:'Créer une classe',clH:'Votre code de classe',s1:'Les élèves installent Human Override dans leur navigateur (ordinateurs de l’école : une seule fois).',s2:'Ils ouvrent l’extension, vont dans « Classe · mode examen », tapent ce code et touchent Rejoindre.',s3:'L’école ou l’enseignant définit le PIN dans l’extension (pas l’élève), pour qu’un élève ne puisse pas quitter la classe.',cp:'Copier mon lien enseignant privé',fg:'Oublier cette classe sur cet appareil',keep:'Gardez le lien enseignant privé : celui qui l’a peut démarrer et arrêter l’examen. Enregistrez-le en favori pour utiliser la classe sur un autre appareil.',exH:'2. Mode examen',dur:'Combien de temps ?',go:'✋ Démarrer le mode examen',st:'Arrêter maintenant',lim:'Limites honnêtes : cela fonctionne dans les navigateurs où l’extension a rejoint votre classe, et il peut falloir jusqu’à une minute avant que chaque navigateur suive. Cela ne bloque pas les téléphones ni les autres navigateurs, et un élève qui contrôle tout l’ordinateur peut retirer l’extension : sur les ordinateurs de l’école, installez-la par stratégie de navigateur. Pendant l’examen, toutes les catégories d’IA sont bloquées, même les IA que votre école approuve d’habitude.',back:'À propos de Human Override',terms:'Conditions',priv:'Confidentialité',pv:'Cette page conserve votre code de classe et votre clé enseignant uniquement dans ce navigateur. Notre serveur ne conserve ni noms ni adresses e-mail.',on:'MODE EXAMEN ACTIVÉ : encore {t}',off:'Le mode examen est désactivé. L’IA suit les réglages habituels.',slow:'Trop de demandes pour le moment. Réessayez dans une minute.',net:'Serveur injoignable. Vérifiez votre connexion et réessayez.',bad:'Ce lien enseignant n’est pas (ou plus) valide.',copied:'Copié. Gardez-le privé.',other:'Ce lien concerne une autre classe. Cet appareil a déjà une classe : touchez d’abord « Oublier cette classe sur cet appareil », puis rouvrez le lien.',yes:'Touchez encore pour oublier'}};
+var EN={};document.querySelectorAll('[data-t]').forEach(function(e){EN[e.getAttribute('data-t')]=e.innerHTML;});
+var lang='en',$=function(i){return document.getElementById(i)},C=null,until=0,armed=0;
+function tx(k){return (T[lang]&&T[lang][k])||T.en[k]||''}
+function setLang(l){lang=l;document.documentElement.lang=l;
+  document.querySelectorAll('[data-t]').forEach(function(e){var k=e.getAttribute('data-t');e.innerHTML=(T[l]&&T[l][k])||EN[k];});   // fixed texts from this page only
+  document.querySelectorAll('[data-l]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-l')===l)});draw();}
+function msg(s){$('msg').textContent=s||''}
+function rpc(fn,body){return fetch(API+fn,{method:'POST',cache:'no-store',credentials:'omit',headers:{apikey:KEY,'Content-Type':'application/json'},body:JSON.stringify(body||{})}).then(function(r){if(!r.ok)throw new Error('http');return r.json()})}
+function load(){var other=false;try{var s=JSON.parse(localStorage.getItem('ho_class')||'null');if(s&&CODE.test(s.code)&&TKEY.test(s.key))C={code:s.code,key:s.key};
+  var h=location.hash.slice(1).split('.');if(h.length===2&&CODE.test(h[0])&&TKEY.test(h[1])){history.replaceState(null,'',location.pathname);
+    if(C&&(C.code!==h[0]||C.key!==h[1]))other=true;   // a link never silently replaces the class you already have
+    else{C={code:h[0],key:h[1]};save()}}}catch(e){}return other}
+function save(){try{if(C)localStorage.setItem('ho_class',JSON.stringify(C));else localStorage.removeItem('ho_class')}catch(e){}}
+function fmt(ms){var s=Math.max(0,Math.round(ms/1000)),m=Math.floor(s/60);s=s%60;return m+':'+(s<10?'0':'')+s}
+function draw(){$('make').hidden=!!C;$('klass').hidden=!C;$('exam').hidden=!C;if(!C)return;
+  $('code').textContent=C.code.slice(0,4)+'-'+C.code.slice(4);
+  var on=until>Date.now(),st=$('state');st.className='state '+(on?'on':'off');st.textContent=on?tx('on').replace('{t}',fmt(until-Date.now())):tx('off');
+  $('stop').disabled=!on;}
+function poll(){if(!C)return;rpc('exam_status',{p_code:C.code}).then(function(n){if(n===-1){msg(tx('bad'));return}if(typeof n==='number'){until=n>0?Date.now()+n*1000:0;draw()}}).catch(function(){})}
+function set(min){msg('');$('go').disabled=true;rpc('exam_set',{p_code:C.code,p_key:C.key,p_minutes:min}).then(function(j){$('go').disabled=false;
+  if(j&&j.ok){until=min>0?Date.now()+min*60000:0;draw()}else msg(tx(j&&j.err==='slow'?'slow':'bad'))}).catch(function(){$('go').disabled=false;msg(tx('net'))})}
+$('mk').onclick=function(){msg('');$('mk').disabled=true;rpc('exam_create').then(function(j){$('mk').disabled=false;
+  if(j&&CODE.test(j.code)&&TKEY.test(j.key)){C={code:j.code,key:j.key};save();until=0;draw()}else msg(tx('slow'))}).catch(function(){$('mk').disabled=false;msg(tx('net'))})};
+$('go').onclick=function(){set(parseInt($('mins').value,10)||60)};
+$('stop').onclick=function(){set(0)};
+$('copy').onclick=function(){var u=location.origin+location.pathname+'#'+C.code+'.'+C.key;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){msg(tx('copied'))},function(){msg(u)})};
+$('forget').onclick=function(){if(Date.now()-armed>5000){armed=Date.now();$('forget').textContent=tx('yes');return}C=null;save();until=0;armed=0;$('forget').textContent=(T[lang]&&T[lang].fg)||EN.fg;draw()};
+document.querySelectorAll('[data-l]').forEach(function(b){b.onclick=function(){setLang(b.getAttribute('data-l'))}});
+addEventListener('hashchange',function(){if(location.hash.length>1){var o=load();until=0;draw();poll();msg(o?tx('other'):'')}});
+var other=load();var n=(navigator.language||'en').slice(0,2);setLang(n==='nl'||n==='fr'?n:'en');poll();setInterval(poll,20000);setInterval(draw,1000);if(other)msg(tx('other'));
+})();
+</script>
+</body></html>

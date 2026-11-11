@@ -1,6 +1,6 @@
-# Human Override — store kit (extension 1.1.0)
+# Human Override — store kit (extension 1.2.0)
 
-Upload file: `human-override/human-override-1.1.0.zip` (built by `python3 tools/build_ho_lists.py`).
+Upload file: `human-override/human-override-1.2.0.zip` (built by `python3 tools/build_ho_lists.py`).
 Pictures: `docs/store-kit/screenshots/` (1280×800 screenshots + 440×280 promo tile). Icon: `human-override/extension/icons/128.png`.
 Privacy policy URL: https://geopolcoins.xyz/privacy.html · Homepage: https://geopolcoins.xyz/human-override.html
 Support: https://geopolcoins.xyz/human-override.html · Category: Productivity (Chrome/Edge), Privacy & Security (Firefox).
@@ -20,10 +20,11 @@ Human Override is the AI kill switch for parents, schools, companies and anyone 
 • Paste guard: on AI sites, a warning before you paste a bank number, card number, ID number, a list of e-mail addresses, a secret key or text marked "confidential". Choose: don't paste, paste without the private parts, or paste anyway.
 • Approved AI (new): tick the AI your school or company allows (ChatGPT, Copilot, Gemini, Claude, Mistral...). Everything else stays blocked and the paste guard keeps watching.
 • Your own private words (new): add project names or customer numbers; the paste guard warns for those too.
+• Exam button for teachers (new): a teacher makes a class at geopolcoins.xyz/human-override-class.html and switches all AI off for the whole class during a test. No accounts, no pupil names.
 • Tamper log: see wrong PIN attempts, when it was switched off and when settings changed. A red "!" appears on the icon after a wrong PIN.
 • Your own block and allow lists. The public block list updates once a day.
 
-Private by design: no account, no tracking, no ads. Everything is checked on your device. Pasted text is never stored or sent.
+Private by design: no account, no tracking, no ads. Nothing is sent to us, unless you choose to join a class for exam mode: then only the class code is sent, once a minute. Everything is checked on your device. Pasted text is never stored or sent.
 Honest limits: it works in this browser only. Someone with full control of the computer can remove it (the browser then opens a page that says so). Schools and companies can force-install it with browser policy.
 © 2026 Amghar Said. Free to use; see the terms of use.
 
@@ -36,10 +37,11 @@ Help people keep AI services out of their browser: block AI websites and warn be
 - alarms: refresh the public block list once a day and switch the schedule on/off.
 - Host permission `<all_urls>`: needed so the blocking rules can redirect any AI address to the "blocked" page and also block AI copies served through translate.goog.
 - Content script (AI sites and AI pages such as bing.com/chat and github.com/copilot, all listed in the manifest): the paste guard checks pasted text on AI chat, search, writing and coding sites. The check runs locally; nothing is sent.
+- Network: daily block list from geopolcoins.xyz; optional exam mode asks zslzbfbqrtfpvgbjhssd.supabase.co (class code only).
 - Remote code: No. The daily block list is data (domain names), not code.
 
 ## Data usage answers
-Chrome "Privacy practices": collects no user data (tick none). Certify: not sold, not used for unrelated purposes, not used for credit.
+Chrome "Privacy practices": collects no user data (tick none). Explain in the notes field: "Optional exam mode: if the user joins a class, the extension sends only the class code to our database once a minute to ask whether the teacher's exam is running. No personal data, no browsing data." Certify: not sold, not used for unrelated purposes, not used for credit.
 Firefox: `data_collection_permissions: none` is already in the manifest.
 Edge: same answers as Chrome.
 

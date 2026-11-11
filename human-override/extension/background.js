@@ -11,7 +11,7 @@ const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.c
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
   'geopolcoins.xyz', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
-const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
+const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], allowSvc: [], words: [], pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
   sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00' } };
 const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 const REMOVED_URL = 'https://geopolcoins.xyz/human-override-removed.html';
@@ -46,6 +46,16 @@ function inWindow(sc, d = new Date()) {
 function active(st) { return st.on && (!st.sched.on || inWindow(st.sched)); }
 
 async function bundled() { const r = await fetch(api.runtime.getURL('lists.json')); return r.json(); }
+// Known AI services for the "approved AI" picker. Always read from the list shipped inside the extension:
+// the daily online list can add blocked sites, but can never decide what gets unblocked.
+async function services() {
+  const sv = (await bundled()).services || {}, out = {};
+  for (const [k, v] of Object.entries(sv)) {
+    if (!/^[a-z0-9]{2,20}$/.test(k) || !v || typeof v.name !== 'string') continue;
+    out[k] = { name: v.name.slice(0, 40), domains: (v.domains || []).filter(d => DOMAIN.test(d)), paths: (v.paths || []).filter(p => PATH.test(p)) };
+  }
+  return out;
+}
 async function lists() { const s = await api.storage.local.get('remote'); return (s.remote && s.remote.categories) ? s.remote : bundled(); }
 
 function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
@@ -55,7 +65,9 @@ async function apply() {
   const old = await api.declarativeNetRequest.getDynamicRules();
   const rules = [], act = active(st);
   if (act) {
-    const allow = new Set(st.allow);
+    const SV = await services(), allow = new Set(st.allow), okPaths = new Set();
+    for (const k of st.allowSvc) if (SV[k]) { SV[k].domains.forEach(d => allow.add(d)); SV[k].paths.forEach(p => okPaths.add(p)); }
+    const allowed = d => { for (const a of allow) if (d === a || d.endsWith('.' + a)) return true; return false; };   // an allowed site includes its sub-sites
     let doms = [], paths = [];
     for (const [k, c] of Object.entries(L.categories || {})) {
       if (!st.cats[k]) continue;
@@ -63,8 +75,8 @@ async function apply() {
       paths = paths.concat((c.paths || []).filter(p => PATH.test(p)));
     }
     doms = doms.concat(st.custom.filter(d => DOMAIN.test(d)));
-    doms = [...new Set(doms)].filter(d => !allow.has(d) && !(PROTECT.has(d) && !st.custom.includes(d)));
-    paths = [...new Set(paths)].filter(p => !allow.has(p.split('/')[0]));
+    doms = [...new Set(doms)].filter(d => !allowed(d) && !(PROTECT.has(d) && !st.custom.includes(d)));
+    paths = [...new Set(paths)].filter(p => !allowed(p.split('/')[0]) && !okPaths.has(p) && !okPaths.has(p.replace(/^www\./, '')));
     const page = api.runtime.getURL('blocked.html');
     let id = 1;
     const viaRegex = doms.slice(0, MAX_REGEX - Math.min(paths.length, 100)), rest = doms.slice(viaRegex.length);
@@ -86,6 +98,9 @@ async function apply() {
       condition: { regexFilter: '^https?://(www\\.)?google\\.[a-z.]{2,12}/search\\?(.*&)?udm=50(&.*)?$', resourceTypes: ['main_frame'] } });
     if (rest.length) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: { requestDomains: rest, resourceTypes: ['main_frame'] } });
+    // allowed sites win over every block rule (for example: chat.mistral.ai allowed while mistral.ai is on the list)
+    if (allow.size) rules.push({ id: id++, priority: 2, action: { type: 'allow' },
+      condition: { requestDomains: [...allow], resourceTypes: ['main_frame', 'sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other'] } });
     if (doms.length) rules.push({ id: id++, priority: 1, action: { type: 'block' },
       condition: { requestDomains: doms, resourceTypes: ['sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other'] } });
   }
@@ -154,7 +169,7 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
   if (!own && m.t !== 'paste') return false;   // content scripts on AI sites may only report a paste choice
   (async () => {
     const st = await getState();
-    if (m.t === 'state') return reply({ guard: st.guard !== false, log: st.log.slice(-10).reverse(), alert: !!st.alert, on: st.on, active: active(st), sched: st.sched, cats: st.cats, custom: st.custom, allow: st.allow, hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
+    if (m.t === 'state') return reply({ guard: st.guard !== false, log: st.log.slice(-10).reverse(), alert: !!st.alert, on: st.on, active: active(st), sched: st.sched, cats: st.cats, custom: st.custom, allow: st.allow, allowSvc: st.allowSvc, words: st.words, services: Object.fromEntries(Object.entries(await services()).map(([k, v]) => [k, v.name])), hasPin: !!st.pin, count: st.count, today: st.day === new Date().toISOString().slice(0, 10) ? st.today : 0, cats_meta: Object.fromEntries(Object.entries((await lists()).categories).map(([k, c]) => [k, (c.domains || []).length + (c.paths || []).length])) });
     if (m.t === 'blocked') {
       const day = new Date().toISOString().slice(0, 10);
       await api.storage.local.set({ count: st.count + 1, day, today: (st.day === day ? st.today : 0) + 1 });
@@ -177,10 +192,18 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
         ch.sched = { on: sc.on, days, from: sc.from, to: sc.to };
       }
       if (Array.isArray(m.allow)) ch.allow = [...new Set(m.allow.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
+      if (Array.isArray(m.allowSvc)) { const SV = await services(); ch.allowSvc = [...new Set(m.allowSvc.map(String).filter(k => Object.prototype.hasOwnProperty.call(SV, k)))]; }
+      if (Array.isArray(m.words)) {
+        const all = m.words.map(x => typeof x === 'string' ? x.trim().toLowerCase() : '');
+        if (all.some(x => x.length < 3 || x.length > 60)) return reply({ ok: false, err: 'word' });
+        const w = [...new Set(all)];   // the same word twice is simply kept once
+        if (w.length > 100) return reply({ ok: false, err: 'max' });
+        ch.words = w;
+      }
       await api.storage.local.set(ch); await apply();
       if (ch.on === false && st.on) await note('off'); else if (ch.on === true && !st.on) await note('on');
       if (ch.guard === false && st.guard !== false) await note('guardoff');
-      if (ch.cats || ch.custom || ch.allow || ch.sched) await note('changed');
+      if (ch.cats || ch.custom || ch.allow || ch.allowSvc || ch.words || ch.sched) await note('changed');
       return reply({ ok: true });
     }
     if (m.t === 'pin') {

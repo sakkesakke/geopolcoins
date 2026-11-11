@@ -5,7 +5,7 @@ Read other files only when the task needs them. Update this file after every lar
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-11b`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-11c`).
 - Legal: `python3 tools/build_legal.py "" "" "hello@geopolcoins.xyz"` (owner OK 11 Nov; never his private
   address), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
@@ -14,7 +14,8 @@ Read other files only when the task needs them. Update this file after every lar
 
 ## Human Override (main product, © 2026 Amghar Said; birthplace never published)
 Page `/human-override.html`, terms `/human-override-terms.html`. Code in `human-override/`:
-extension 1.0.9 (`extension/`: paste guard, tamper log, PIN, schedule; lists in `extension/lists.json`),
+extension 1.1.0 (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
+tamper log, PIN, schedule; lists in `extension/lists.json`),
 Android (`android/`: tamper alerts, target SDK 36, CI builds APK + .aab), Windows `pc/HumanOverride.ps1`,
 Mac/Linux `pc/human-override.sh`. Promo video live: https://youtu.be/c-_Isw8tUY8 (10 Nov).
 Anonymous counter (site_views): `ho` = page visits; `ho_ext/ho_android/ho_win/ho_mac/ho_pro` = download clicks.
@@ -24,7 +25,7 @@ Open:
 2. Google Play — owner steps in `docs/google-play.md` (upload key → secrets HO_UPLOAD_*, $25, VPN declaration,
    12 testers × 14 days). Store kit for Chrome/Edge/Firefox in `docs/store-kit/`; owner submits.
 3. Android camera/mic guard + tamper notification not yet tested on a real phone.
-4. Next features: teacher exam button (needs backend), IT dashboard, AI Act/GDPR report, Human Override Box.
+4. Next features: teacher exam button (build on Supabase, not the Oracle server: no open ports; owner said go 11 Nov), IT dashboard, AI Act/GDPR report, Human Override Box.
    Never: antivirus, own VPN, through-wall Wi-Fi surveillance.
 
 ## YouTube @geopolcoins

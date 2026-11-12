@@ -47,7 +47,7 @@
       '.no{background:#ff4f4f;color:#000}.mask{background:#ffb547;color:#000}.yes{background:transparent;color:#a79fbf;border-color:#5d5875}small{display:block;margin-top:12px;color:#a79fbf;font-size:12px}';
     const bg = document.createElement('div'); bg.className = 'bg';
     const box = document.createElement('div'); box.className = 'box'; box.setAttribute('role', 'alertdialog'); box.setAttribute('aria-modal', 'true');
-    const h = document.createElement('h2'); h.textContent = '✋ ' + t.h; box.setAttribute('aria-label', t.h);
+    const h = document.createElement('h2'); h.textContent = t.h; box.setAttribute('aria-label', t.h);
     const p = document.createElement('div'); p.textContent = t.p;
     const ul = document.createElement('ul');
     [...new Set(found.map(f => f.kind))].forEach(k => { const li = document.createElement('li'); li.textContent = t.k[k]; ul.appendChild(li); });

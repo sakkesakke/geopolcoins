@@ -32,7 +32,7 @@ function tags(el, list, key) {
 async function load() {
   S = await send({ t: 'state' });
   const b = $('big'); b.className = 'big ' + (S.on ? 'on' : 'off');
-  b.textContent = (S.on ? '✋ ' + t.on : '○ ' + t.off); b.title = S.on ? t.tapOff : t.tapOn;
+  b.textContent = S.on ? t.on : t.off; b.title = S.on ? t.tapOff : t.tapOn;
   const st = $('status'); st.textContent = '';
   t.st.replace('{n}', S.count).split(/(<b>\{t\}<\/b>)/).forEach(part => { if (part === '<b>{t}</b>') { const b = document.createElement('b'); b.textContent = S.today; st.appendChild(b); } else st.appendChild(document.createTextNode(part)); });
   const box = $('cats'); box.textContent = '';

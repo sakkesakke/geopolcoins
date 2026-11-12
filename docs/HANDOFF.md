@@ -30,7 +30,7 @@ Open:
    12 testers × 14 days). Store kit for Chrome/Edge/Firefox in `docs/store-kit/`; owner submits.
 3. Android camera/mic guard + tamper notification not yet tested on a real phone.
 4. Teacher exam button is live (11 Nov): page `/human-override-class.html`, SQL `supabase-ho-exam.sql` (RPCs exam_create /
-   exam_set / exam_status, tables srv.ho_classes + srv.ho_exam_brake, only hashes). Backend work goes on Supabase, not
+   exam_set / exam_status, table srv.ho_classes, only hashes; brake = 10 classes per device per hour via a hashed IP kept 1 h). Backend work goes on Supabase, not
    the Oracle server (no open ports). Browser tests: `python3 human-override/test/e2e/<name>.py` (shared setup in `common.py`; exam test needs
    `python3 -m http.server 8765` in the repo root).
    Next features: IT dashboard / central management, AI Act/GDPR report, Human Override Box.
@@ -58,4 +58,6 @@ Contact address on legal pages: hello@geopolcoins.xyz (owner must check it reach
   money is in business paste guard per seat (~€2-3/user/month) and schools.
 
 ## Reminders
-12 Nov Public APIs · 14 Nov pricing · 5 Jan 2027 Moroccan crypto law. The Brain stays disabled.
+12 Nov 12:00 hello@ forwarding (owner, Namecheap) · 12 Nov 19:00 launch sites · 12 Nov Public APIs · 14 Nov pricing ·
+5 Jan 2027 Moroccan crypto law. YouTube task re-enabled 11 Nov (that day's run skipped: PC off). Owner to-do: disable old
+skill `maiga-site-rules`; submit the extension to the stores. The Brain stays disabled.

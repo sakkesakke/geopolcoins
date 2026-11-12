@@ -7,7 +7,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-12b`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-12c`).
 - Legal: `python3 tools/build_legal.py "" "" "hello@geopolcoins.xyz"` (owner OK 11 Nov; never his private
   address), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
@@ -63,7 +63,8 @@ repo; build script was in the session scratchpad). pro-bots.html button points t
 
 ## Checked done (12 Nov)
 Admin 2FA (verified factor, is_admin needs aal2). Brevo: key in Vault, brevo-sync cron, DOI templates EN/NL/FR,
-3 automations "Starter Kit EN/NL/FR - 5 tips" Active. public.leads still 0 sign-ups.
+3 automations "Starter Kit EN/NL/FR - 5 tips" Active. public.leads 0 sign-ups on 12 Nov (30 days: ~415 views, home 197).
+Starter Kit CTAs added 12 Nov: home banner (src=home-banner, EN/NL/FR) + garage (src=garage). Measure leads by p_source.
 
 ## Token saving (12 Nov)
 Cloud sessions: run `bash tools/graphify_session.sh` after the clone. 20 unused project skills removed (#160);

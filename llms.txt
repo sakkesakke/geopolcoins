@@ -13,6 +13,7 @@ Important for agents:
 
 
 ## Human Override (the AI kill switch)
+- [Password leak check](https://geopolcoins.xyz/password-check.html): free check against Have I Been Pwned's leaked-password list with k-anonymity (the password is hashed in the browser; only 5 hash characters are sent).
 - [Human Override](https://geopolcoins.xyz/human-override.html): free tool by Amghar Said that blocks ChatGPT and 150+ AI services on a browser (extension with PIN and schedule), Android (on-device DNS filter + hidden-sensor check), Windows/Mac/Linux (hosts file; Windows can also switch off built-in Copilot/Recall/Gemini) and whole networks (Pro pack: browser policies, DNS, firewall). No account, no tracking.
 - Guides: [block ChatGPT for kids](https://geopolcoins.xyz/blog-how-to-block-chatgpt-for-kids.html), [block AI on school computers](https://geopolcoins.xyz/blog-how-to-block-ai-on-school-computers.html), [stop company data going into ChatGPT](https://geopolcoins.xyz/blog-how-to-stop-employees-pasting-data-into-chatgpt.html), [protect your home from AI and hidden tech](https://geopolcoins.xyz/blog-protect-your-home-from-ai-and-hidden-tech.html). Terms: https://geopolcoins.xyz/human-override-terms.html
 ## Tools

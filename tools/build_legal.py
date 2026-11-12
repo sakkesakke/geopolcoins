@@ -99,6 +99,7 @@ privacy=f'''
 <li><strong>GeckoTerminal</strong> (coin info, trending list, Token Checkup): we request public token data.</li>
 <li><strong>CoinGecko, alternative.me and DefiLlama</strong> (MAIGA Radar): we request public market data, the Fear &amp; Greed index and DeFi totals.</li>
 <li><strong>memegen.link</strong> (classic meme templates in the Meme Studio and Factory).</li>
+<li><strong>Have I Been Pwned – Pwned Passwords</strong> (only when you press Check on the password check page): your browser sends the first 5 characters of a SHA-1 hash of the password, never the password itself; the comparison happens in your browser and nothing is stored.</li>
 <li><strong>Your browser's speech feature</strong>: only when you press "Jean-Phil reads it" on the MAIGA Radar. We send nothing; your browser reads the text aloud. Some browsers use an online voice from the browser maker (for example Google or Microsoft) under their own policy.</li>
 <li><strong>MyMemory by Translated</strong> (translated.net, Italy): only when you press Translate in the Meme Studio. The text lines of your meme and the two language codes are sent to be translated; nothing else (no picture, no name). MyMemory's own privacy policy applies.</li>
 <li><strong>Jupiter</strong> (swap widget on the home page): its script loads on the home page; swaps are signed in your own wallet.</li>

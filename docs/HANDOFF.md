@@ -57,7 +57,11 @@ Contact address on legal pages: hello@geopolcoins.xyz (owner must check it reach
   geopolcoins blog + redirects, domain to Namecheap, cancel plan last. Founder test: blocking is free elsewhere;
   money is in business paste guard per seat (~€2-3/user/month) and schools.
 
+## Token saving (12 Nov)
+Cloud sessions: run `bash tools/graphify_session.sh` after the clone. 20 unused project skills removed (#160);
+old skill `maiga-site-rules` disabled by owner.
+
 ## Reminders
 12 Nov 12:00 hello@ forwarding (owner, Namecheap) · 12 Nov 19:00 launch sites · 12 Nov Public APIs · 14 Nov pricing ·
-5 Jan 2027 Moroccan crypto law. YouTube task re-enabled 11 Nov (that day's run skipped: PC off). Owner to-do: disable old
-skill `maiga-site-rules`; submit the extension to the stores. The Brain stays disabled.
+5 Jan 2027 Moroccan crypto law. YouTube task re-enabled 11 Nov (that day's run skipped: PC off). Owner to-do:
+submit the extension to the stores. The Brain stays disabled.

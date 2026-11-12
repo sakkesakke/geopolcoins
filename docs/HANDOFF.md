@@ -65,6 +65,8 @@ repo; build script was in the session scratchpad). pro-bots.html button points t
 Admin 2FA (verified factor, is_admin needs aal2). Brevo: key in Vault, brevo-sync cron, DOI templates EN/NL/FR,
 3 automations "Starter Kit EN/NL/FR - 5 tips" Active. public.leads 0 sign-ups on 12 Nov (30 days: ~415 views, home 197).
 Starter Kit CTAs added 12 Nov: home banner (src=home-banner, EN/NL/FR) + garage (src=garage). Measure leads by p_source.
+X post with free.html?src=x posted by owner 12 Nov. Typefully API cannot publish X posts that contain a URL
+(X policy): make the draft, owner clicks Publish.
 
 ## Token saving (12 Nov)
 Cloud sessions: run `bash tools/graphify_session.sh` after the clone. 20 unused project skills removed (#160);

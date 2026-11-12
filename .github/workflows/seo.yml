@@ -13,7 +13,7 @@ jobs:
   seo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Titles, descriptions, canonical, one H1, alt text, schema, sitemap, links, og:image, llms.txt
         run: python3 tools/seo_audit.py
       - name: Security basics (CSP on every page, safe links, no keys)

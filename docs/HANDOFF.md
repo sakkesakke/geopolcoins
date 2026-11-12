@@ -41,8 +41,11 @@ Open:
 Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonymity, only 5 hash chars leave the browser.
 
 ## Human Override own site (plan 12 Nov, not built yet)
+NEW BRAND (owner 12 Nov): **Mindveto** — "the human override for AI". Owner bought **mindveto.app** (Namecheap).
+TMview 12 Nov: no "Mindveto" mark (only unrelated "MindVet"). mindveto.com/.eu were free. Repo name: sakkesakke/mindveto.
+Rename extension/app/store texts to Mindveto before the first store submission.
 Plan doc: https://claude.ai/artifact/LNN3Fe2GHRQgCNqSuWCq8L (competition, prices, legal per region, sales test, design).
-Domain: humanoverride.app (free on 12 Nov; .com parked at Afternic) — owner buys. New repo sakkesakke/human-override,
+Domain: mindveto.app (bought). Old idea humanoverride.app dropped. New repo sakkesakke/mindveto,
 Astro static, GitHub Pages, self-hosted fonts (Newsreader/Atkinson Hyperlegible/IBM Plex Mono), no cookies/trackers →
 no banner, no geo-IP. Design "Kalme controle" (editorial + one real switch), NOT geopol style, no crypto.
 Keep old list URLs on geopolcoins.xyz working forever (extension/Android/PC fetch them). Prices proposed: Free / Plus

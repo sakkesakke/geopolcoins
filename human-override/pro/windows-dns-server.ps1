@@ -1,4 +1,4 @@
-# Human Override for Windows Server DNS (run as administrator on the DNS server). (c) 2026 Amghar Said. All rights reserved. Human Override - the AI kill switch. https://geopolcoins.xyz/human-override.html
+# Mindveto for Windows Server DNS (run as administrator on the DNS server). (c) 2026 Amghar Said. All rights reserved. Mindveto - the AI kill switch (formerly Human Override). https://mindveto.app/
 # Adds DNS query resolution policies that refuse AI domains for all clients.
 # Remove with: Get-DnsServerQueryResolutionPolicy | Where-Object Name -like "HumanOverrideAI*" | ForEach-Object { Remove-DnsServerQueryResolutionPolicy -Name $_.Name -Force }
 Get-DnsServerQueryResolutionPolicy -ErrorAction SilentlyContinue | Where-Object Name -like "HumanOverrideAI*" | ForEach-Object { Remove-DnsServerQueryResolutionPolicy -Name $_.Name -Force }
@@ -11,4 +11,4 @@ Add-DnsServerQueryResolutionPolicy -Name 'HumanOverrideAI6' -Action DENY -FQDN '
 Add-DnsServerQueryResolutionPolicy -Name 'HumanOverrideAI7' -Action DENY -FQDN 'EQ,*.read.ai,read.ai,*.recraft.ai,recraft.ai,*.replika.com,replika.com,*.rewind.ai,rewind.ai,*.runwayml.com,runwayml.com,*.rytr.me,rytr.me,*.scite.ai,scite.ai,*.seaart.ai,seaart.ai,*.sembly.ai,sembly.ai,*.sider.ai,sider.ai,*.smodin.io,smodin.io,*.socratic.org,socratic.org,*.sora.com,sora.com,*.stability.ai,stability.ai,*.starryai.com,starryai.com,*.stealthgpt.ai,stealthgpt.ai,*.suno.com,suno.com,*.supernormal.com,supernormal.com,*.synthesia.io,synthesia.io,*.t3.chat,t3.chat' -ProcessingOrder 7
 Add-DnsServerQueryResolutionPolicy -Name 'HumanOverrideAI8' -Action DENY -FQDN 'EQ,*.tabnine.com,tabnine.com,*.tactiq.io,tactiq.io,*.talkie-ai.com,talkie-ai.com,*.tensor.art,tensor.art,*.tldv.io,tldv.io,*.tome.app,tome.app,*.udio.com,udio.com,*.undetectable.ai,undetectable.ai,*.v0.app,v0.app,*.v0.dev,v0.dev,*.veed.io,veed.io,*.venice.ai,venice.ai,*.vidu.com,vidu.com,*.windsurf.com,windsurf.com,*.wordtune.com,wordtune.com,*.writehuman.ai,writehuman.ai,*.writesonic.com,writesonic.com,*.x.ai,x.ai,*.yiyan.baidu.com,yiyan.baidu.com,*.you.com,you.com' -ProcessingOrder 8
 Add-DnsServerQueryResolutionPolicy -Name 'HumanOverrideAI9' -Action DENY -FQDN 'EQ,*.z.ai,z.ai' -ProcessingOrder 9
-Write-Host "Human Override: AI domains are now refused by this DNS server."
+Write-Host "Mindveto: AI domains are now refused by this DNS server."

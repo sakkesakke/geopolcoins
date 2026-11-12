@@ -1,5 +1,5 @@
 #!/bin/sh
-# Human Override for Mac and Linux - the AI kill switch
+# Mindveto for Mac and Linux - the AI kill switch
 # Copyright (c) 2026 Amghar Said. All rights reserved.
 # Blocks AI services for every browser and app on this computer via /etc/hosts.
 #   sudo sh human-override.sh on     block AI (or update the list)
@@ -15,9 +15,9 @@ flush() { (dscacheutil -flushcache 2>/dev/null; killall -HUP mDNSResponder 2>/de
 case "${1:-on}" in
   on)
     if [ "${2:-}" != "--agree" ]; then
-      echo "Terms: Human Override is provided \"as is\" and cannot guarantee that every AI is blocked."
+      echo "Terms: Mindveto is provided \"as is\" and cannot guarantee that every AI is blocked."
       echo "To the maximum extent permitted by law, Amghar Said is not liable for any damage or consequence of using it."
-      echo "Full terms: https://geopolcoins.xyz/human-override-terms.html"
+      echo "Full terms: https://mindveto.app/terms/"
       printf "Type Y to agree and continue: "; read -r A
       case "$A" in [YyJj]*) ;; *) echo "Nothing was changed."; exit 1 ;; esac
     fi

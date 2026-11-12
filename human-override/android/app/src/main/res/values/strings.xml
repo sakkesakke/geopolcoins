@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. -->
+<!-- Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. -->
 <resources>
-    <string name="app_name">Human Override</string>
+    <string name="app_name">Mindveto</string>
     <string name="app_title">HUMAN OVERRIDE</string>
     <string name="subtitle">The AI kill switch</string>
     <string name="on">✋ AI BLOCKED</string>
@@ -20,14 +20,14 @@
     <string name="locked">Too many wrong PINs. Wait a moment and try again.</string>
     <string name="pin_format">Use 4 to 12 digits.</string>
     <string name="always_title">Make it always on</string>
-    <string name="always_text">In Android settings, open VPN, tap the ⚙ next to Human Override and switch on \"Always-on VPN\". Then it starts by itself after a restart. For children, also use Google Family Link so they cannot change settings.</string>
+    <string name="always_text">In Android settings, open VPN, tap the ⚙ next to Mindveto and switch on \"Always-on VPN\". Then it starts by itself after a restart. For children, also use Google Family Link so they cannot change settings.</string>
     <string name="open_vpn_settings">Open VPN settings</string>
     <string name="honest_title">Honest limits</string>
-    <string name="honest_text">Human Override blocks AI services in every app on this phone by answering their address lookups with \"does not exist\". It cannot block AI built into apps you allow, AI that runs fully on the phone, or apps that use their own secure DNS. Android lets the phone owner switch any VPN off in Settings.</string>
+    <string name="honest_text">Mindveto blocks AI services in every app on this phone by answering their address lookups with \"does not exist\". It cannot block AI built into apps you allow, AI that runs fully on the phone, or apps that use their own secure DNS. Android lets the phone owner switch any VPN off in Settings.</string>
     <string name="donate">❤ Free forever. Support it with a coffee</string>
-    <string name="footer">Human Override © 2026 Amghar Said. All rights reserved. · geopolcoins.xyz</string>
+    <string name="footer">Mindveto © 2026 Amghar Said. All rights reserved. · mindveto.app</string>
     <string name="terms_title">Terms of use</string>
-    <string name="terms_text">Human Override is free software by Amghar Said, provided \"as is\". It helps block AI services but cannot guarantee that every AI is blocked. You use it at your own risk and stay responsible for your devices and decisions. To the maximum extent permitted by law, Amghar Said is not liable for any damage or consequence of using it.</string>
+    <string name="terms_text">Mindveto is free software by Amghar Said, provided \"as is\". It helps block AI services but cannot guarantee that every AI is blocked. You use it at your own risk and stay responsible for your devices and decisions. To the maximum extent permitted by law, Amghar Said is not liable for any damage or consequence of using it.</string>
     <string name="terms_agree">I agree</string>
     <string name="terms_read">Read terms</string>
     <string name="terms_decline">Close</string>
@@ -47,16 +47,16 @@
     <string name="sensor_close">very close</string>
     <string name="sensor_advice">Many of these are normal smart plugs, lamps or doorbells. Do you not know a device that is \"very close\"? Walk around with this check, look for small boxes with a USB cable, and ask your landlord or housemates. Change your Wi-Fi password if you are unsure.</string>
     <string name="guard_title">Camera &amp; microphone guard</string>
-    <string name="guard_text">Get a notification when an app starts using your camera or microphone while Human Override is on (for example an app that secretly listens or records for AI). Android does not say which app; check the green dot at the top of the screen. Nothing is stored or sent.</string>
+    <string name="guard_text">Get a notification when an app starts using your camera or microphone while Mindveto is on (for example an app that secretly listens or records for AI). Android does not say which app; check the green dot at the top of the screen. Nothing is stored or sent.</string>
     <string name="guard_switch">Warn me when the camera or microphone turns on</string>
     <string name="guard_cam">📷 Your camera is being used right now. Was that you? If not, check which apps have camera access in Settings &gt; Privacy.</string>
     <string name="guard_mic">🎤 Your microphone is being used right now. Was that you? If not, check which apps have microphone access in Settings &gt; Privacy.</string>
-    <string name="tamper_title">Human Override was switched off</string>
+    <string name="tamper_title">Mindveto was switched off</string>
     <string name="tamper_log_title">Tamper log</string>
     <string name="tamper_log_text">What happened on this phone: wrong PINs, and when the protection was switched off. Kept only on this phone.</string>
     <string name="tamper_none">Nothing happened yet.</string>
     <string name="tamper_revoked">Switched off outside the app</string>
-    <string name="tamper_revoked_text">AI blocking was switched off in Android settings or by another VPN app. If that was not you, open Human Override and switch it on again.</string>
+    <string name="tamper_revoked_text">AI blocking was switched off in Android settings or by another VPN app. If that was not you, open Mindveto and switch it on again.</string>
     <string name="tamper_stopped">Found not running</string>
     <string name="tamper_stopped_text">AI blocking was on, but it is not running any more (for example after the app was force-stopped). Tap the button to switch it on again.</string>
     <string name="tamper_off">Switched off with the PIN</string>

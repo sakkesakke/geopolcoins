@@ -1,4 +1,4 @@
-# Human Override for Windows - the AI kill switch
+# Mindveto for Windows - the AI kill switch
 # Copyright (c) 2026 Amghar Said. All rights reserved.
 # Blocks AI services for every browser and app on this PC by adding them to the Windows hosts file.
 # Only needs administrator rights. Sends nothing about you anywhere; it only downloads the public list.
@@ -65,7 +65,7 @@ function Disable-BuiltinAI {
   foreach ($p in $AiPolicies) {
     $key, $name, $val = $p
     $already = $saved | Where-Object { $_.k -eq $key -and $_.n -eq $name }
-    if (-not $already) {   # remember the value from BEFORE Human Override (only the first time)
+    if (-not $already) {   # remember the value from BEFORE Mindveto (only the first time)
       $prev = $null
       if (Test-Path $key) { $prev = (Get-ItemProperty $key -Name $name -ErrorAction SilentlyContinue).$name }
       $saved += [pscustomobject]@{ k = $key; n = $name; v = $prev }
@@ -96,11 +96,11 @@ function Restore-BuiltinAI {
 Clear-Host
 Write-Host ''
 Write-Host '  HUMAN OVERRIDE  -  the AI kill switch' -ForegroundColor Red
-Write-Host '  (c) 2026 Amghar Said  ·  geopolcoins.xyz/human-override.html'
+Write-Host '  (c) 2026 Amghar Said  ·  mindveto.app'
 Write-Host ''
-Write-Host '  Terms: Human Override is provided "as is". It cannot guarantee that every AI is blocked.'
+Write-Host '  Terms: Mindveto is provided "as is". It cannot guarantee that every AI is blocked.'
 Write-Host '  To the maximum extent permitted by law, Amghar Said is not liable for any damage or'
-Write-Host '  consequence of using it. Full terms: https://geopolcoins.xyz/human-override-terms.html'
+Write-Host '  consequence of using it. Full terms: https://mindveto.app/terms/'
 $agree = Read-Host '  Type Y to agree and continue'
 if ($agree -notmatch '^[YyJj]') { Write-Host '  Nothing was changed.'; Read-Host '  Press Enter to close'; exit }
 Write-Host ''

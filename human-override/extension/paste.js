@@ -1,4 +1,4 @@
-/* Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
+/* Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
 /* Paste guard: runs only on AI sites. When you paste text with a bank number, card number, several e-mail addresses,
    a secret key, an ID number or a "confidential" label, it asks first. The check happens on this device; the pasted
    text is never stored or sent. */
@@ -16,13 +16,13 @@
   const TX = {
     en: { h: 'Wait: this may be private', p: 'What you are pasting into this AI site seems to contain:', no: 'Don’t paste', mask: 'Paste without the private parts', yes: 'Paste anyway',
       k: { iban: 'a bank account number (IBAN)', card: 'a payment card number', id: 'a national ID number', email: 'a list of e-mail addresses', secret: 'a password or secret key', label: 'a “confidential” label', long: 'a very long text that is too big to check', custom: 'a word from your own private list' },
-      f: 'Human Override paste guard · checked on your device, nothing is sent' },
+      f: 'Mindveto paste guard · checked on your device, nothing is sent' },
     nl: { h: 'Wacht: dit kan privé zijn', p: 'Wat je in deze AI-site plakt, lijkt dit te bevatten:', no: 'Niet plakken', mask: 'Plakken zonder de privé-stukken', yes: 'Toch plakken',
       k: { iban: 'een bankrekeningnummer (IBAN)', card: 'een betaalkaartnummer', id: 'een rijksregisternummer', email: 'een lijst e-mailadressen', secret: 'een wachtwoord of geheime sleutel', label: 'het label “vertrouwelijk”', long: 'een heel lange tekst die te groot is om te controleren', custom: 'een woord uit je eigen privélijst' },
-      f: 'Human Override plakbewaker · gecontroleerd op je toestel, er wordt niets verstuurd' },
+      f: 'Mindveto plakbewaker · gecontroleerd op je toestel, er wordt niets verstuurd' },
     fr: { h: 'Attendez : ceci peut être privé', p: 'Ce que vous collez dans ce site d’IA semble contenir :', no: 'Ne pas coller', mask: 'Coller sans les parties privées', yes: 'Coller quand même',
       k: { iban: 'un numéro de compte (IBAN)', card: 'un numéro de carte de paiement', id: 'un numéro de registre national', email: 'une liste d’adresses e-mail', secret: 'un mot de passe ou une clé secrète', label: 'la mention « confidentiel »', long: 'un très long texte, trop grand pour être vérifié', custom: 'un mot de votre propre liste privée' },
-      f: 'Garde-collage Human Override · vérifié sur votre appareil, rien n’est envoyé' }
+      f: 'Garde-collage Mindveto · vérifié sur votre appareil, rien n’est envoyé' }
   };
   const t = TX[L] || TX.en;
   let open = false, cur = null;

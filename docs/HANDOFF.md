@@ -16,7 +16,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Human Override (main product, © 2026 Amghar Said; birthplace never published)
 Page `/human-override.html`, terms `/human-override-terms.html`. Code in `human-override/`:
-extension 1.2.1 (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
+extension 1.3.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
 class + exam mode, tamper log, PIN, schedule + school holidays (skip/only, 8 regions BE/NL/FR, dates ONLY from the
 bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholidaysapi.data>`, ODbL, refresh yearly;
 BE German community has no data yet); lists in `extension/lists.json`),
@@ -44,7 +44,8 @@ Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonym
 Astro static, 18 pages x EN/NL/FR, Lighthouse 100/100/100/100, axe 0, self-hosted Atkinson Hyperlegible Next.
 Pages source = GitHub Actions, custom domain mindveto.app; Namecheap DNS: 4 A @ 185.199.108-111.153 + CNAME www.
 Downloads copied daily from human-override/ by sync-lists.yml. Rules for that repo: its own CLAUDE.md.
-Open: Enforce HTTPS after cert; hello@mindveto.app forwarding (owner); rename extension/app to Mindveto.
+Open: Enforce HTTPS after cert. Done 12 Nov: hello@mindveto.app → owner Gmail (Namecheap), apps renamed to Mindveto 1.3.0.
+Still on geopolcoins.xyz on purpose: extension LIST_URL + REMOVED_URL, PC hosts URL (old installs fetch them).
 
 ## Human Override own site (plan 12 Nov)
 NEW BRAND (owner 12 Nov): **Mindveto** — "the human override for AI". Owner bought **mindveto.app** (Namecheap).

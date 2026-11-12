@@ -1,4 +1,4 @@
-/* Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
+/* Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
 /* Paste guard detector: finds bank numbers, card numbers, lists of e-mail addresses, secret keys, ID numbers and
    "confidential" labels in text. Runs only on this device; nothing is stored or sent. */
 (function (root) {

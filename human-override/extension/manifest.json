@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Human Override: the AI kill switch",
-  "short_name": "Human Override",
-  "version": "1.2.1",
+  "name": "Mindveto: the AI kill switch",
+  "short_name": "Mindveto",
+  "version": "1.3.0",
   "description": "The AI kill switch. One switch blocks 130+ AI chatbots and AI tools in this browser. PIN lock. Free, no account, no tracking.",
-  "homepage_url": "https://geopolcoins.xyz/human-override.html",
+  "homepage_url": "https://mindveto.app/",
   "icons": {
     "16": "icons/16.png",
     "32": "icons/32.png",
@@ -13,7 +13,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Human Override",
+    "default_title": "Mindveto",
     "default_icon": {
       "16": "icons/16.png",
       "32": "icons/32.png"
@@ -48,7 +48,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "human-override@geopolcoins.xyz",
+      "id": "mindveto@mindveto.app",
       "strict_min_version": "128.0",
       "data_collection_permissions": {
         "required": [

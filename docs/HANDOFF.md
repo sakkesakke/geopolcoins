@@ -7,7 +7,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-12a`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-12b`).
 - Legal: `python3 tools/build_legal.py "" "" "hello@geopolcoins.xyz"` (owner OK 11 Nov; never his private
   address), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
@@ -56,6 +56,10 @@ Contact address on legal pages: hello@geopolcoins.xyz (owner must check it reach
   owner buys). Leave sakkemoto.com (old WordPress.com Business finance blog): export → merge best posts into
   geopolcoins blog + redirects, domain to Namecheap, cancel plan last. Founder test: blocking is free elsewhere;
   money is in business paste guard per seat (~€2-3/user/month) and schools.
+
+## Ko-fi (12 Nov)
+Pro Bot Blueprints live: ko-fi.com/s/2e4140cd37 ($39 PWYW; 21-page PDF + prompts + tools JSON, zip kept OUT of the
+repo; build script was in the session scratchpad). pro-bots.html button points to it.
 
 ## Token saving (12 Nov)
 Cloud sessions: run `bash tools/graphify_session.sh` after the clone. 20 unused project skills removed (#160);

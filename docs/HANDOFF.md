@@ -54,8 +54,8 @@ Pages source = GitHub Actions, custom domain mindveto.app; Namecheap DNS: 4 A @ 
 Downloads copied daily from human-override/ by sync-lists.yml. Rules for that repo: its own CLAUDE.md.
 Open: Enforce HTTPS after cert. Done 12 Nov: hello@mindveto.app → owner Gmail (Namecheap), apps renamed to Mindveto 1.3.0.
 SEO + security pass 12 Nov: sitemap hreflang/x-default + lastmod, VideoObject, IndexNow ping in deploy.yml (public key
-file), actions pinned to SHAs, dependabot, /.well-known/security.txt; npm audit 0. OPEN (owner): Google Search Console +
-Bing Webmaster verification; DMARC TXT `_dmarc` missing (spoofing of hello@ possible) — add at Namecheap after owner OK.
+file), actions pinned to SHAs, dependabot, /.well-known/security.txt; npm audit 0. Google Search Console verified 12 Nov (account geopolcoins1@,
+file public/google28b43fb835ba26d8.html — never delete), sitemap-index.xml submitted OK. OPEN (owner): Bing Webmaster; DMARC TXT `_dmarc` missing (spoofing of hello@ possible) — add at Namecheap after owner OK.
 Still on geopolcoins.xyz on purpose: extension LIST_URL + REMOVED_URL, PC hosts URL (old installs fetch them).
 
 ## Human Override own site (plan 12 Nov)

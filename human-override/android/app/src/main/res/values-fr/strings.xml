@@ -2,10 +2,10 @@
 <!-- Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. -->
 <resources>
     <string name="app_name">Mindveto</string>
-    <string name="app_title">HUMAN OVERRIDE</string>
+    <string name="app_title">MINDVETO</string>
     <string name="subtitle">Le kill switch de l’IA</string>
-    <string name="on">✋ IA BLOQUÉE</string>
-    <string name="off">○ IA AUTORISÉE</string>
+    <string name="on">IA BLOQUÉE</string>
+    <string name="off">IA AUTORISÉE</string>
     <string name="tap_on">Touchez pour bloquer l’IA</string>
     <string name="tap_off">Touchez pour réautoriser l’IA</string>
     <string name="stats" formatted="true">%1$d requêtes IA bloquées aujourd’hui · %2$d au total</string>

@@ -2,10 +2,10 @@
 <!-- Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. -->
 <resources>
     <string name="app_name">Mindveto</string>
-    <string name="app_title">HUMAN OVERRIDE</string>
+    <string name="app_title">MINDVETO</string>
     <string name="subtitle">De AI kill switch</string>
-    <string name="on">✋ AI GEBLOKKEERD</string>
-    <string name="off">○ AI TOEGESTAAN</string>
+    <string name="on">AI GEBLOKKEERD</string>
+    <string name="off">AI TOEGESTAAN</string>
     <string name="tap_on">Tik om AI te blokkeren</string>
     <string name="tap_off">Tik om AI weer toe te laten</string>
     <string name="stats" formatted="true">Vandaag %1$d AI-opvragingen geblokkeerd · %2$d in totaal</string>

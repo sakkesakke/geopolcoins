@@ -2,8 +2,8 @@
 # Mindveto for Mac and Linux - the AI kill switch
 # Copyright (c) 2026 Amghar Said. All rights reserved.
 # Blocks AI services for every browser and app on this computer via /etc/hosts.
-#   sudo sh human-override.sh on     block AI (or update the list)
-#   sudo sh human-override.sh off    allow AI again
+#   sudo sh mindveto.sh on     block AI (or update the list)
+#   sudo sh mindveto.sh off    allow AI again
 set -eu
 HOSTS=/etc/hosts
 START='# >>> Human Override (do not edit this block)'

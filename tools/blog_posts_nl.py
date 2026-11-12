@@ -33,7 +33,7 @@ dict(en="turn-off-copilot-recall-gemini-windows", slug="copilot-recall-gemini-ui
  ("p", "Windows 11 en de grote browsers hebben nu ingebouwde AI. Een deel kijkt mee op je scherm (Recall), een deel zit in elke werkbalk (Copilot, Gemini). Wil je dat niet, dan kun je het uitzetten. Je hoeft geen IT-expert te zijn."),
  ("h2", "De snelle manier (1 minuut)"),
  ("ul", ["Download Human Override voor Windows op [de Human Override-pagina](/human-override.html#pc) en pak het uit.",
-         "Dubbelklik op **Start-HumanOverride.bat** en klik op **Ja** voor beheerdersrechten.",
+         "Dubbelklik op **Start-Mindveto.bat** en klik op **Ja** voor beheerdersrechten.",
          "Typ **Y** om de voorwaarden te aanvaarden, daarna **3**. Herstart Edge en Chrome, en meld je af en weer aan in Windows.",
          "Edge en Chrome tonen nu **\"Beheerd door je organisatie\"**. Dat is normaal: de instelling is vastgezet."]),
  ("h2", "Met de hand"),

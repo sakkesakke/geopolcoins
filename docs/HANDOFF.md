@@ -20,8 +20,8 @@ extension 1.3.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Hu
 class + exam mode, tamper log, PIN, schedule + school holidays (skip/only, 8 regions BE/NL/FR, dates ONLY from the
 bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholidaysapi.data>`, ODbL, refresh yearly;
 BE German community has no data yet); lists in `extension/lists.json`),
-Android (`android/`: tamper alerts, target SDK 36, CI builds APK + .aab), Windows `pc/HumanOverride.ps1`,
-Mac/Linux `pc/human-override.sh`. Promo video live: https://youtu.be/c-_Isw8tUY8 (10 Nov).
+Android (`android/`: tamper alerts, target SDK 36, CI builds APK + .aab), Windows `pc/Mindveto.ps1`,
+Mac/Linux `pc/mindveto.sh`. Promo video live: https://youtu.be/c-_Isw8tUY8 (10 Nov).
 Anonymous counter (site_views): `ho` = page visits; `ho_ext/ho_android/ho_win/ho_mac/ho_pro` = download clicks.
 
 Open:

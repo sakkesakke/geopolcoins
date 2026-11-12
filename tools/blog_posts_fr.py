@@ -33,7 +33,7 @@ dict(en="turn-off-copilot-recall-gemini-windows", slug="desactiver-copilot-recal
  ("p", "Windows 11 et les grands navigateurs intègrent désormais l'IA. Une partie regarde votre écran (Recall), une autre est dans chaque barre d'outils (Copilot, Gemini). Si vous n'en voulez pas, vous pouvez la couper, sans être expert."),
  ("h2", "La méthode rapide (1 minute)"),
  ("ul", ["Téléchargez Human Override pour Windows sur [la page Human Override](/human-override.html#pc) et décompressez-le.",
-         "Double-cliquez sur **Start-HumanOverride.bat** et cliquez sur **Oui** pour les droits d'administrateur.",
+         "Double-cliquez sur **Start-Mindveto.bat** et cliquez sur **Oui** pour les droits d'administrateur.",
          "Tapez **Y** pour accepter les conditions, puis **3**. Redémarrez Edge et Chrome, et reconnectez-vous à Windows.",
          "Edge et Chrome affichent alors **« Géré par votre organisation »**. C'est normal : le réglage est verrouillé."]),
  ("h2", "À la main"),

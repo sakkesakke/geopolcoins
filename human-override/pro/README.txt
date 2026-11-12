@@ -2,7 +2,7 @@ HUMAN OVERRIDE PRO PACK - the AI kill switch for organisations
 (c) 2026 Amghar Said. All rights reserved. Human Override - the AI kill switch. https://geopolcoins.xyz/human-override.html
 
 For IT departments of courts, police, government, schools and companies that must keep AI chatbots and AI tools
-off their network and devices. Domains: 161. Updated: 2026-11-11. Fresh copies: https://geopolcoins.xyz/human-override/pro/
+off their network and devices. Domains: 161. Updated: 2026-11-12. Fresh copies: https://geopolcoins.xyz/human-override/pro/
 
 Pick what fits your network (you can combine them):
 

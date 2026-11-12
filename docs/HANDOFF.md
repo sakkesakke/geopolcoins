@@ -32,6 +32,10 @@ Open:
    1.3.0 store-ready 12 Nov: addons-linter 0 errors (1 expected warning: service_worker ignored by Firefox), gecko min 140,
    popup/blocked/welcome/paste dialog restyled to Mindveto (bundled Atkinson font, zip ~93 KB), screenshots EN/NL/FR in store-kit.
    Chrome Web Store dashboard does not load in the built-in browser; Claude in Chrome was not connected.
+   Firefox AMO: SUBMITTED 12 Nov 17:35 ("Mindveto", slug mindveto-the-ai-kill-switch, Privacy & Security, All Rights
+   Reserved), 3 EN screenshots + captions + icon saved; review pending (mail to hello@mindveto.app).
+   Edge: Partner Center login works, enrollment form half filled (Belgium + Individual, Mindveto, hello@, site) but NOT
+   submitted: Microsoft shows the contact address publicly → owner chose to wait for a business address.
 3. Android camera/mic guard + tamper notification not yet tested on a real phone.
 4. Teacher exam button is live (11 Nov): page `/human-override-class.html`, SQL `supabase-ho-exam.sql` (RPCs exam_create /
    exam_set / exam_status, table srv.ho_classes, only hashes; brake = 10 classes per device per hour via a hashed IP kept 1 h). Backend work goes on Supabase, not

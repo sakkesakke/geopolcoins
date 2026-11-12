@@ -61,6 +61,10 @@ Contact address on legal pages: hello@geopolcoins.xyz (owner must check it reach
 Pro Bot Blueprints live: ko-fi.com/s/2e4140cd37 ($39 PWYW; 21-page PDF + prompts + tools JSON, zip kept OUT of the
 repo; build script was in the session scratchpad). pro-bots.html button points to it.
 
+## Checked done (12 Nov)
+Admin 2FA (verified factor, is_admin needs aal2). Brevo: key in Vault, brevo-sync cron, DOI templates EN/NL/FR,
+3 automations "Starter Kit EN/NL/FR - 5 tips" Active. public.leads still 0 sign-ups.
+
 ## Token saving (12 Nov)
 Cloud sessions: run `bash tools/graphify_session.sh` after the clone. 20 unused project skills removed (#160);
 old skill `maiga-site-rules` disabled by owner.

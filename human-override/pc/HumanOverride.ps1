@@ -95,7 +95,7 @@ function Restore-BuiltinAI {
 
 Clear-Host
 Write-Host ''
-Write-Host '  HUMAN OVERRIDE  -  the AI kill switch' -ForegroundColor Red
+Write-Host '  MINDVETO  -  the AI kill switch' -ForegroundColor Red
 Write-Host '  (c) 2026 Amghar Said  ·  mindveto.app'
 Write-Host ''
 Write-Host '  Terms: Mindveto is provided "as is". It cannot guarantee that every AI is blocked.'

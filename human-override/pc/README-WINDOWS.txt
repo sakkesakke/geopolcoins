@@ -1,4 +1,4 @@
-HUMAN OVERRIDE for Windows - the AI kill switch
+MINDVETO for Windows - the AI kill switch
 (c) 2026 Amghar Said. All rights reserved.
 
 Blocks AI chatbots and AI tools in EVERY browser and app on this PC.

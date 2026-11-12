@@ -2,7 +2,7 @@
 <!-- Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. -->
 <resources>
     <string name="app_name">Mindveto</string>
-    <string name="app_title">HUMAN OVERRIDE</string>
+    <string name="app_title">MINDVETO</string>
     <string name="subtitle">The AI kill switch</string>
     <string name="on">✋ AI BLOCKED</string>
     <string name="off">○ AI ALLOWED</string>

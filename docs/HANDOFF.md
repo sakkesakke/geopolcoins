@@ -28,6 +28,8 @@ Open:
 1. Pricing — reminder Sat 14 Nov 09:00 Brussels (proposal: Free / Plus €15/yr / Pro €180/yr / Custom).
 2. Google Play — owner steps in `docs/google-play.md` (upload key → secrets HO_UPLOAD_*, $25, VPN declaration,
    12 testers × 14 days). Store kit for Chrome/Edge/Firefox in `docs/store-kit/`; owner submits.
+   Owner 12 Nov: NO paid accounts for now (no Chrome $5, no Play $25) → only free stores (Firefox AMO, Edge).
+   Chrome Web Store dashboard does not load in the built-in browser; Claude in Chrome was not connected.
 3. Android camera/mic guard + tamper notification not yet tested on a real phone.
 4. Teacher exam button is live (11 Nov): page `/human-override-class.html`, SQL `supabase-ho-exam.sql` (RPCs exam_create /
    exam_set / exam_status, table srv.ho_classes, only hashes; brake = 10 classes per device per hour via a hashed IP kept 1 h). Backend work goes on Supabase, not

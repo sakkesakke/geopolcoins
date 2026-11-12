@@ -49,7 +49,7 @@ Open:
 Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonymity, only 5 hash chars leave the browser.
 
 ## Mindveto site (BUILT 12 Nov) — repo sakkesakke/mindveto, live at mindveto.app (DNS set 12 Nov 15:40)
-Astro static, 20 pages x EN/NL/FR, Lighthouse 100/100/100/100, axe 0, self-hosted Atkinson Hyperlegible Next.
+Astro static, 20 pages x 8 languages (EN/NL/FR/ES/DE/PT/IT/AR, Arabic RTL; 'made in Belgium' removed from marketing 12 Nov; apps still EN/NL/FR only — next: translate extension/app), Lighthouse 100/100/100/100, axe 0, self-hosted Atkinson Hyperlegible Next.
 Pages source = GitHub Actions, custom domain mindveto.app; Namecheap DNS: 4 A @ 185.199.108-111.153 + CNAME www.
 Downloads copied daily from human-override/ by sync-lists.yml. Rules for that repo: its own CLAUDE.md.
 Open: Enforce HTTPS after cert. Done 12 Nov: hello@mindveto.app → owner Gmail (Namecheap), apps renamed to Mindveto 1.3.0.
@@ -69,7 +69,7 @@ Astro static, GitHub Pages, self-hosted fonts (Newsreader/Atkinson Hyperlegible/
 no banner, no geo-IP. Design "Kalme controle" (editorial + one real switch), NOT geopol style, no crypto.
 Keep old list URLs on geopolcoins.xyz working forever (extension/Android/PC fetch them). Prices proposed: Free / Plus
 €14,99/yr / School €1/pupil (min €149) / Business €2,50/user/mo. Play promo codes max 90 days → Founder (first 250,
-1 yr free) via in-app counter. Before selling: KBO registration + business address (owner). UK mark "The Human Override"
+1 yr free) via in-app counter. Before selling: KBO registration + business address (owner). German Impressum needs the business address too. UK mark "The Human Override"
 filed 16 Mar 2026 (cl. 35/41) — trademark check before UK launch.
 
 ## YouTube @geopolcoins

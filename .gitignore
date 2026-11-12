@@ -4,3 +4,4 @@ __pycache__/
 
 # graphify code graph: rebuilt locally at session start (tools/graphify_session.sh)
 graphify-out/
+human-override/extension/_metadata/

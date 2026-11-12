@@ -5,13 +5,13 @@ import asyncio, os, shutil, sys
 EXT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'extension'))
 
 
-async def start(p, name, routes=()):
+async def start(p, name, routes=(), args=()):
     """Fresh Chromium with the extension loaded. routes: (pattern, handler) pairs set before the extension starts.
     Returns (context, service worker, extension id)."""
     prof = f'/tmp/ho-e2e-{name}'
     shutil.rmtree(prof, ignore_errors=True)
     ctx = await p.chromium.launch_persistent_context(prof, channel='chromium', headless=True,
-        args=[f'--disable-extensions-except={EXT}', f'--load-extension={EXT}'], permissions=['clipboard-read', 'clipboard-write'])
+        args=[f'--disable-extensions-except={EXT}', f'--load-extension={EXT}', *args], permissions=['clipboard-read', 'clipboard-write'])
     for pattern, handler in routes:
         await ctx.route(pattern, handler)
     sw = ctx.service_workers[0] if ctx.service_workers else await ctx.wait_for_event('serviceworker')

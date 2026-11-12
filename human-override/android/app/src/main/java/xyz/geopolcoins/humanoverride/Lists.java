@@ -38,6 +38,22 @@ final class Lists {
         }
     }
 
+    /** Family filter: the adult-content list bundled with the app (about 64,000 domains, read once, only when switched on). */
+    private static volatile Set<String> adult;
+    static Set<String> adult(Context c) {
+        Set<String> a = adult;
+        if (a != null) return a;
+        synchronized (Lists.class) {
+            if (adult == null) {
+                try (InputStream in = c.getAssets().open("adult.txt")) { adult = DnsLogic.parseList(read(in, 4 << 20), 200000); }
+                catch (Exception e) { adult = new java.util.HashSet<>(); }
+            }
+            return adult;
+        }
+    }
+    static boolean adultOn(Context c) { return Stats.prefs(c).getBoolean("adult", false); }
+    static boolean safeOn(Context c) { return Stats.prefs(c).getBoolean("safe", false); }
+
     /** Downloads the newest list at most every 12 hours. Returns the new list or null. */
     static Set<String> update(Context c) {
         File f = new File(c.getFilesDir(), "domains.txt");

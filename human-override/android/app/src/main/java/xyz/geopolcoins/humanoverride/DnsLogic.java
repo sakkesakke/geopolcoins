@@ -123,4 +123,71 @@ public final class DnsLogic {
         }
         return out;
     }
+
+    // ---------- SafeSearch (family filter): answer search engines' names with the address of their strict version ----------
+    private static final java.util.regex.Pattern GOOGLE = java.util.regex.Pattern.compile("^(www\\.)?google\\.(com|[a-z]{2}|co\\.[a-z]{2}|com\\.[a-z]{2})$");
+    private static final Set<String> YOUTUBE = new HashSet<>(java.util.Arrays.asList("www.youtube.com", "m.youtube.com", "youtube.com",
+        "youtubei.googleapis.com", "youtube.googleapis.com", "www.youtube-nocookie.com"));
+
+    /** The official strict-mode name for a search engine host (Google, Bing, DuckDuckGo, YouTube), or null. */
+    public static String safeTarget(String host) {
+        if (host == null) return null;
+        String h = host.toLowerCase(Locale.ROOT);
+        if (h.endsWith(".")) h = h.substring(0, h.length() - 1);
+        if (GOOGLE.matcher(h).matches()) return "forcesafesearch.google.com";
+        if (h.equals("bing.com") || h.equals("www.bing.com")) return "strict.bing.com";
+        if (h.equals("duckduckgo.com") || h.equals("www.duckduckgo.com") || h.equals("start.duckduckgo.com") || h.equals("html.duckduckgo.com")) return "safe.duckduckgo.com";
+        if (YOUTUBE.contains(h)) return "restrict.youtube.com";
+        return null;
+    }
+
+    /** The same DNS query (id, flags, type, class) but asking for another name. */
+    public static byte[] withQuestion(byte[] p, int off, int len, String name) {
+        int i = off + 12;
+        while (i < len && p[i] != 0) i += 1 + (p[i] & 0xFF);
+        if (i + 5 > len) return null;
+        java.io.ByteArrayOutputStream o = new java.io.ByteArrayOutputStream();
+        o.write(p, off, 4); o.write(0); o.write(1); for (int k = 0; k < 6; k++) o.write(0);   // id + flags, 1 question, no other records
+        for (String l : name.split("\\.")) { byte[] b = l.getBytes(java.nio.charset.StandardCharsets.US_ASCII); o.write(b.length); o.write(b, 0, b.length); }
+        o.write(0); o.write(p, i + 1, 4);                                                    // end of name, then QTYPE + QCLASS
+        return o.toByteArray();
+    }
+
+    /** Builds the answer to the original query from the upstream answer for the strict name: the A/AAAA records are
+     *  kept and given the original name, so the app connects to the strict server while asking for the normal one. */
+    public static byte[] rewriteAnswer(byte[] q, int off, int len, byte[] r, int rlen) {
+        if (rlen < 12 || len - off < 12) return null;
+        int qend = off + 12;
+        while (qend < len && q[qend] != 0) qend += 1 + (q[qend] & 0xFF);
+        qend += 5;
+        if (qend > len) return null;
+        int qd = ((r[4] & 0xFF) << 8) | (r[5] & 0xFF), an = ((r[6] & 0xFF) << 8) | (r[7] & 0xFF);
+        int i = 12;
+        for (int k = 0; k < qd; k++) { i = skipName(r, i, rlen); if (i < 0 || i + 4 > rlen) return null; i += 4; }
+        java.io.ByteArrayOutputStream rr = new java.io.ByteArrayOutputStream(); int count = 0;
+        for (int k = 0; k < an && i < rlen; k++) {
+            i = skipName(r, i, rlen); if (i < 0 || i + 10 > rlen) return null;
+            int type = ((r[i] & 0xFF) << 8) | (r[i + 1] & 0xFF), dl = ((r[i + 8] & 0xFF) << 8) | (r[i + 9] & 0xFF);
+            if (i + 10 + dl > rlen) return null;
+            if (type == 1 || type == 28) { rr.write(0xC0); rr.write(0x0C); rr.write(r, i, 10 + dl); count++; }   // name = pointer to the question
+            i += 10 + dl;
+        }
+        java.io.ByteArrayOutputStream o = new java.io.ByteArrayOutputStream();
+        o.write(q, off, 2); o.write(0x80 | (q[off + 2] & 0x01)); o.write(0x80 | (r[3] & 0x0F));   // QR + RD, RA + upstream RCODE
+        o.write(0); o.write(1); o.write(count >> 8); o.write(count); for (int k = 0; k < 4; k++) o.write(0);
+        o.write(q, off + 12, qend - off - 12);
+        byte[] a = rr.toByteArray(); o.write(a, 0, a.length);
+        return o.toByteArray();
+    }
+
+    private static int skipName(byte[] b, int i, int len) {
+        for (int guard = 0; guard < 128 && i < len; guard++) {
+            int l = b[i] & 0xFF;
+            if (l == 0) return i + 1;
+            if ((l & 0xC0) == 0xC0) return i + 2 <= len ? i + 2 : -1;
+            if (l > 63) return -1;
+            i += 1 + l;
+        }
+        return -1;
+    }
 }

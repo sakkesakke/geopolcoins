@@ -89,6 +89,12 @@ public class MainActivity extends Activity {
         });
         gc.addView(gs, lp(dp(10)));
 
+        // Family filter (not AI): adult sites and SafeSearch, off by default; switching off needs the PIN
+        LinearLayout fc = card(col, getString(R.string.fam_title));
+        fc.addView(text(getString(R.string.fam_text), 14, DIM, false));
+        fc.addView(famSwitch("adult", R.string.fam_adult), lp(dp(10)));
+        fc.addView(famSwitch("safe", R.string.fam_safe), lp(dp(6)));
+
         LinearLayout tc = card(col, getString(R.string.tamper_log_title));
         tc.addView(text(getString(R.string.tamper_log_text), 13, DIM, false));
         tlog = text("", 13, TXT, false); tc.addView(tlog, lp(dp(8)));
@@ -228,6 +234,25 @@ public class MainActivity extends Activity {
         super.onRequestPermissionsResult(code, p, g);
         if (code != REQ_WIFI) return;
         if (g.length > 0 && g[0] == PackageManager.PERMISSION_GRANTED) sensorCheck(); else showSensor(getString(R.string.sensor_perm));
+    }
+
+    private android.widget.Switch famSwitch(String key, int label) {
+        android.widget.Switch sw = new android.widget.Switch(this); sw.setText(label); sw.setTextColor(TXT);
+        sw.setChecked(Stats.prefs(this).getBoolean(key, false));
+        sw.setOnCheckedChangeListener((v, on) -> {
+            if (on) { Stats.prefs(this).edit().putBoolean(key, true).apply(); Tamper.record(this, "famon"); return; }
+            if (!Pin.isSet(this)) { Stats.prefs(this).edit().putBoolean(key, false).apply(); Tamper.record(this, "famoff"); return; }
+            final String p = pin.getText().toString().trim();
+            if (p.isEmpty()) { msg.setTextColor(RED); msg.setText(R.string.ask_pin); v.setChecked(true); return; }
+            new Thread(() -> {
+                int r = Pin.check(this, p);
+                runOnUiThread(() -> {
+                    if (r == 1) { Stats.prefs(this).edit().putBoolean(key, false).apply(); Tamper.record(this, "famoff"); pin.setText(""); msg.setText(""); }
+                    else { msg.setTextColor(RED); msg.setText(r < 0 ? R.string.locked : R.string.bad_pin); v.setChecked(true); }
+                });
+            }).start();
+        });
+        return sw;
     }
 
     private void open(String url) { try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))); } catch (Exception ignored) { } }

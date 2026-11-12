@@ -64,4 +64,10 @@
     <string name="tamper_pinlock">Vergrendeld na 5 foute pincodes</string>
     <string name="tamper_pinoff">Pincode gewist</string>
     <string name="privacy_link">Privacybeleid</string>
+    <string name="fam_title">Gezinsfilter (geen AI)</string>
+    <string name="fam_text">Blokkeer ook sites voor volwassenen (18+) en dwing veilig zoeken af in Google, Bing, DuckDuckGo en YouTube. Werkt in elke app zolang Mindveto aan staat. Geen enkele filter vangt alles: beelden kunnen nog verschijnen in apps, chats of sociale media.</string>
+    <string name="fam_adult">Sites voor volwassenen blokkeren (18+)</string>
+    <string name="fam_safe">Veilig zoeken afdwingen</string>
+    <string name="tamper_famon">Gezinsfilter aangezet</string>
+    <string name="tamper_famoff">Gezinsfilter uitgezet</string>
 </resources>

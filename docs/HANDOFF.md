@@ -40,6 +40,16 @@ Open:
 
 Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonymity, only 5 hash chars leave the browser.
 
+## Human Override own site (plan 12 Nov, not built yet)
+Plan doc: https://claude.ai/artifact/LNN3Fe2GHRQgCNqSuWCq8L (competition, prices, legal per region, sales test, design).
+Domain: humanoverride.app (free on 12 Nov; .com parked at Afternic) — owner buys. New repo sakkesakke/human-override,
+Astro static, GitHub Pages, self-hosted fonts (Newsreader/Atkinson Hyperlegible/IBM Plex Mono), no cookies/trackers →
+no banner, no geo-IP. Design "Kalme controle" (editorial + one real switch), NOT geopol style, no crypto.
+Keep old list URLs on geopolcoins.xyz working forever (extension/Android/PC fetch them). Prices proposed: Free / Plus
+€14,99/yr / School €1/pupil (min €149) / Business €2,50/user/mo. Play promo codes max 90 days → Founder (first 250,
+1 yr free) via in-app counter. Before selling: KBO registration + business address (owner). UK mark "The Human Override"
+filed 16 Mar 2026 (cl. 35/41) — trademark check before UK launch.
+
 ## YouTube @geopolcoins
 Pipeline `tools/shorts/` (README). Task "YouTube Shorts wachtrij bijvullen" Wed + Sun 18:47 Brussels (owner PC on +
 Claude desktop app). Upload in Studio with the built-in browser: set fields with `form_input` (keyboard typing

@@ -5,3 +5,9 @@ useDefault = true
 [allowlist]
 description = "Public-by-design values"
 regexes = ['''sb_publishable_[A-Za-z0-9_-]+''']
+# Generated domain block lists (only public domain names, e.g. "api.example.com" trips generic-api-key)
+paths = [
+  '''^human-override/extension/rules_adult\.json$''',
+  '''^human-override/adult/(adult|domains|hosts|adblock)\.txt$''',
+  '''^human-override/android/app/src/main/assets/adult\.txt$''',
+]

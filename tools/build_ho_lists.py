@@ -90,9 +90,9 @@ def mkzip(name, files):
     with zipfile.ZipFile(os.path.join(D, name), 'w', zipfile.ZIP_DEFLATED) as z:
         for arc, src in files: z.write(src, arc)
 lic = os.path.join(D, 'extension', 'LICENSE.txt'); pc = os.path.join(D, 'pc'); hosts = os.path.join(D, 'hosts.txt')
-mkzip('human-override-windows.zip', [('Start-HumanOverride.bat', os.path.join(pc, 'Start-HumanOverride.bat')), ('HumanOverride.ps1', os.path.join(pc, 'HumanOverride.ps1')),
+mkzip('human-override-windows.zip', [('Start-Mindveto.bat', os.path.join(pc, 'Start-Mindveto.bat')), ('Mindveto.ps1', os.path.join(pc, 'Mindveto.ps1')),
       ('hosts.txt', hosts), ('LICENSE.txt', lic), ('README-WINDOWS.txt', os.path.join(pc, 'README-WINDOWS.txt'))])
-mkzip('human-override-mac-linux.zip', [('human-override.sh', os.path.join(pc, 'human-override.sh')), ('hosts.txt', hosts), ('LICENSE.txt', lic),
+mkzip('human-override-mac-linux.zip', [('mindveto.sh', os.path.join(pc, 'mindveto.sh')), ('hosts.txt', hosts), ('LICENSE.txt', lic),
       ('README-MAC-LINUX.txt', os.path.join(pc, 'README-MAC-LINUX.txt'))])
 mkzip('human-override-pro-pack.zip', [(f, os.path.join(P, f)) for f in sorted(os.listdir(P)) if f != 'LICENSE.txt'] + [('LICENSE.txt', lic)])
 print('zips ok')

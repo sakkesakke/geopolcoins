@@ -5,7 +5,7 @@ Blocks AI chatbots and AI tools in EVERY browser and app on this PC.
 
 INSTALL
 1. Unzip this folder (right click > Extract all).
-2. Double-click "Start-HumanOverride.bat".
+2. Double-click "Start-Mindveto.bat".
 3. Click "Yes" when Windows asks for administrator rights.
    (Windows may first show "Windows protected your PC": click "More info" > "Run anyway".
     This appears because the script is new and not yet signed.)

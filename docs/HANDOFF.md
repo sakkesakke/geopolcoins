@@ -1,4 +1,4 @@
-# Handoff (short) — state 11 Nov 2026
+# Handoff (short) — state 12 Nov 2026
 
 Loaded automatically through `CLAUDE.md`. Rules, owner and git/SQL workflow: `maiga-ops` skill.
 Read other files only when the task needs them. Update this file after every larger task (keep it under ~50 lines).
@@ -7,7 +7,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-11d`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-12a`).
 - Legal: `python3 tools/build_legal.py "" "" "hello@geopolcoins.xyz"` (owner OK 11 Nov; never his private
   address), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
@@ -16,8 +16,10 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Human Override (main product, © 2026 Amghar Said; birthplace never published)
 Page `/human-override.html`, terms `/human-override-terms.html`. Code in `human-override/`:
-extension 1.2.0 (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
-class + exam mode, tamper log, PIN, schedule; lists in `extension/lists.json`),
+extension 1.2.1 (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
+class + exam mode, tamper log, PIN, schedule + school holidays (skip/only, 8 regions BE/NL/FR, dates ONLY from the
+bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholidaysapi.data>`, ODbL, refresh yearly;
+BE German community has no data yet); lists in `extension/lists.json`),
 Android (`android/`: tamper alerts, target SDK 36, CI builds APK + .aab), Windows `pc/HumanOverride.ps1`,
 Mac/Linux `pc/human-override.sh`. Promo video live: https://youtu.be/c-_Isw8tUY8 (10 Nov).
 Anonymous counter (site_views): `ho` = page visits; `ho_ext/ho_android/ho_win/ho_mac/ho_pro` = download clicks.
@@ -33,6 +35,8 @@ Open:
    `python3 -m http.server 8765` in the repo root).
    Next features: IT dashboard / central management, AI Act/GDPR report, Human Override Box.
    Never: antivirus, own VPN, through-wall Wi-Fi surveillance.
+
+Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonymity, only 5 hash chars leave the browser.
 
 ## YouTube @geopolcoins
 Pipeline `tools/shorts/` (README). Task "YouTube Shorts wachtrij bijvullen" Wed + Sun 18:47 Brussels (owner PC on +

@@ -1,6 +1,6 @@
 # Human Override — store kit (extension 1.2.0)
 
-Upload file: `human-override/human-override-1.2.0.zip` (built by `python3 tools/build_ho_lists.py`).
+Upload file: `human-override/human-override-1.2.1.zip` (built by `python3 tools/build_ho_lists.py`).
 Pictures: `docs/store-kit/screenshots/` (1280×800 screenshots + 440×280 promo tile). Icon: `human-override/extension/icons/128.png`.
 Privacy policy URL: https://geopolcoins.xyz/privacy.html · Homepage: https://geopolcoins.xyz/human-override.html
 Support: https://geopolcoins.xyz/human-override.html · Category: Productivity (Chrome/Edge), Privacy & Security (Firefox).

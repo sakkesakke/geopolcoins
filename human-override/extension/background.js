@@ -14,7 +14,8 @@ const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.c
   'geopolcoins.xyz', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
 const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
-  sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00' } };
+  sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00', hol: 'off', region: 'BE-NL' } };
+const REGIONS = ['BE-NL', 'BE-FR', 'NL-NO', 'NL-MI', 'NL-ZU', 'FR-ZA', 'FR-ZB', 'FR-ZC'];
 const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 // Exam mode (only when this browser joined a class): once a minute the extension asks how long the teacher's exam still
 // lasts. Only the class code is sent; no name, no browsing data.
@@ -52,7 +53,16 @@ function inWindow(sc, d = new Date()) {
   return (sc.days.includes(day) && now >= f) || (sc.days.includes(prev) && now < t);   // past midnight
 }
 function examOn(st) { return !!st.klass && !!st.exam && Date.now() < st.exam.until; }
-function active(st) { return examOn(st) || (st.on && (!st.sched.on || inWindow(st.sched))); }
+// School holidays: 'skip' = no blocking on holiday days, 'only' = block only on holiday days. The dates of the chosen
+// region come from the list inside the extension and are kept in storage ('holR') so these checks stay quick and synchronous.
+function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function inHoliday(ranges, d = new Date()) { const t = ymd(d); return Array.isArray(ranges) && ranges.some(r => t >= r[0] && t <= r[1]); }
+function schedOk(sc, ranges, d = new Date()) {
+  if (sc.hol === 'skip' && inHoliday(ranges, d)) return false;
+  if (sc.hol === 'only' && !inHoliday(ranges, d)) return false;
+  return inWindow(sc, d);
+}
+function active(st) { return examOn(st) || (st.on && (!st.sched.on || schedOk(st.sched, st.holR))); }
 function mode(st) { return examOn(st) ? 'exam' : active(st) ? 'on' : 'off'; }   // rules are rebuilt whenever this changes
 
 async function examAsk(code) {   // seconds left, 0 = no exam, -1 = unknown class, null = could not ask
@@ -94,6 +104,10 @@ function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 function apply() { return serial('apply', applyNow); }
 async function applyNow() {
   const st = await getState(), L = await lists();
+  // holidays only from the list shipped inside the extension: a tampered online list could otherwise turn every day into a
+  // "holiday" and so switch blocking off (the online list may add blocks, never remove them)
+  const holR = st.sched.hol === 'off' ? [] : (((await bundled()).holidays || {}).regions || {})[st.sched.region] || [];
+  if (JSON.stringify(holR) !== JSON.stringify(st.holR)) { await api.storage.local.set({ holR }); st.holR = holR; }
   const old = await api.declarativeNetRequest.getDynamicRules();
   const rules = [], act = active(st), ex = examOn(st);   // during an exam every category is blocked and nothing is "approved"
   if (act) {
@@ -154,6 +168,7 @@ async function refreshList() {
       n += c.domains.length;
     }
     if (n > 3000) return;
+    delete j.holidays;   // holidays are only read from the list inside the extension
     await api.storage.local.set({ remote: j });
     await apply();
   } catch (e) { /* offline: keep the list we have */ }
@@ -221,7 +236,8 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
       if (m.sched && typeof m.sched === 'object') {
         const sc = m.sched, days = Array.isArray(sc.days) ? [...new Set(sc.days.map(Number).filter(d => Number.isInteger(d) && d >= 0 && d <= 6))] : [];
         if (typeof sc.on !== 'boolean' || !HHMM.test(sc.from) || !HHMM.test(sc.to) || (sc.on && !days.length)) return reply({ ok: false, err: 'sched' });
-        ch.sched = { on: sc.on, days, from: sc.from, to: sc.to };
+        const hol = ['off', 'skip', 'only'].includes(sc.hol) ? sc.hol : 'off', region = REGIONS.includes(sc.region) ? sc.region : 'BE-NL';
+        ch.sched = { on: sc.on, days, from: sc.from, to: sc.to, hol, region };
       }
       if (Array.isArray(m.allow)) ch.allow = [...new Set(m.allow.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
       if (Array.isArray(m.allowSvc)) { const SV = await services(); ch.allowSvc = [...new Set(m.allowSvc.map(String).filter(k => Object.prototype.hasOwnProperty.call(SV, k)))]; }

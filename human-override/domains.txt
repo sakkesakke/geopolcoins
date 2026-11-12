@@ -1,5 +1,5 @@
 # Human Override AI block list (https://geopolcoins.xyz/human-override.html)
-# Updated: 2026-11-11  Domains: 161
+# Updated: 2026-11-12  Domains: 161
 # Free to use. Blocks AI chatbots, AI search, AI image/video/voice/music, AI writing/homework and AI coding services.
 aistudio-google-com.translate.goog
 aistudio.google.com

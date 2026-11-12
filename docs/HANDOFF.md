@@ -40,7 +40,13 @@ Open:
 
 Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonymity, only 5 hash chars leave the browser.
 
-## Human Override own site (plan 12 Nov, not built yet)
+## Mindveto site (BUILT 12 Nov) — repo sakkesakke/mindveto, live at mindveto.app (DNS set 12 Nov 15:40)
+Astro static, 18 pages x EN/NL/FR, Lighthouse 100/100/100/100, axe 0, self-hosted Atkinson Hyperlegible Next.
+Pages source = GitHub Actions, custom domain mindveto.app; Namecheap DNS: 4 A @ 185.199.108-111.153 + CNAME www.
+Downloads copied daily from human-override/ by sync-lists.yml. Rules for that repo: its own CLAUDE.md.
+Open: Enforce HTTPS after cert; hello@mindveto.app forwarding (owner); rename extension/app to Mindveto.
+
+## Human Override own site (plan 12 Nov)
 NEW BRAND (owner 12 Nov): **Mindveto** — "the human override for AI". Owner bought **mindveto.app** (Namecheap).
 TMview 12 Nov: no "Mindveto" mark (only unrelated "MindVet"). mindveto.com/.eu were free. Repo name: sakkesakke/mindveto.
 Rename extension/app/store texts to Mindveto before the first store submission.

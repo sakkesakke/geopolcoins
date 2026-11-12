@@ -1,7 +1,7 @@
-Human Override
+Mindveto (formerly Human Override)
 Copyright (c) 2026 Amghar Said. All rights reserved.
 
-This software (the browser extension, its code, block lists, icons, texts and the name "Human Override")
+This software (the browser extension, its code, block lists, icons, texts and the names "Mindveto" and "Human Override")
 is the property of Amghar Said.
 
 You may install and use the official, unmodified version for free, for personal, school or business use.
@@ -15,4 +15,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO EVENT SHAL
 DAMAGES OR OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE. It blocks AI services in the browser only and cannot
 guarantee that no AI can ever be reached.
 
-Contact: https://geopolcoins.xyz/human-override.html
+Contact: https://mindveto.app/

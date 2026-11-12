@@ -1,4 +1,4 @@
-# Human Override AI block list (https://geopolcoins.xyz/human-override.html)
+# Mindveto AI block list (https://mindveto.app/)
 # Updated: 2026-11-12  Domains: 161
 # Free to use. Blocks AI chatbots, AI search, AI image/video/voice/music, AI writing/homework and AI coding services.
 aistudio-google-com.translate.goog

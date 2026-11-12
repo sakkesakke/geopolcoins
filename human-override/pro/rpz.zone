@@ -1,4 +1,4 @@
-; Human Override RPZ zone for BIND / PowerDNS / Infoblox / Knot. (c) 2026 Amghar Said. All rights reserved. Human Override - the AI kill switch. https://geopolcoins.xyz/human-override.html
+; Mindveto RPZ zone for BIND / PowerDNS / Infoblox / Knot. (c) 2026 Amghar Said. All rights reserved. Mindveto - the AI kill switch (formerly Human Override). https://mindveto.app/
 $TTL 300
 @ IN SOA localhost. root.localhost. (2026111201 3600 600 86400 300)
 @ IN NS localhost.

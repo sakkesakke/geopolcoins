@@ -1,5 +1,5 @@
-/* Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
-/* Human Override: blocks AI services in this browser with declarativeNetRequest.
+/* Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
+/* Mindveto: blocks AI services in this browser with declarativeNetRequest.
    Nothing about you is sent anywhere. Network requests: a daily download of the public block list and, only when this
    browser joined a class, a question once a minute whether the teacher's exam mode is on (only the class code is sent).
    The public block list comes
@@ -11,9 +11,9 @@ const PATH = /^([a-z0-9-]{1,63}\.)+[a-z]{2,24}\/[a-z0-9\-\/_.]{1,80}$/;
 // Big everyday sites that a block list may never block (protects against a broken or tampered list).
 const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.com', 'microsoft.com', 'live.com', 'outlook.com', 'office.com', 'apple.com', 'icloud.com',
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
-  'geopolcoins.xyz', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
+  'geopolcoins.xyz', 'mindveto.app', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
-const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
+const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true, social: false }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
   sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00', hol: 'off', region: 'BE-NL' } };
 const REGIONS = ['BE-NL', 'BE-FR', 'NL-NO', 'NL-MI', 'NL-ZU', 'FR-ZA', 'FR-ZB', 'FR-ZC'];
 const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
@@ -116,7 +116,7 @@ async function applyNow() {
     const allowed = d => { for (const a of allow) if (d === a || d.endsWith('.' + a)) return true; return false; };   // an allowed site includes its sub-sites
     let doms = [], paths = [];
     for (const [k, c] of Object.entries(L.categories || {})) {
-      if (!ex && !st.cats[k]) continue;
+      if (k === 'social' ? st.cats.social !== true : (!ex && !st.cats[k])) continue;   // exam mode forces AI categories only; social media stays the user's choice
       doms = doms.concat((c.domains || []).filter(d => DOMAIN.test(d)));
       paths = paths.concat((c.paths || []).filter(p => PATH.test(p)));
     }
@@ -231,7 +231,7 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
       const ch = {};
       if (typeof m.on === 'boolean') ch.on = m.on;
       if (typeof m.guard === 'boolean') ch.guard = m.guard;
-      if (m.cats && typeof m.cats === 'object') ch.cats = Object.fromEntries(Object.keys(DEFAULTS.cats).map(k => [k, m.cats[k] !== false]));
+      if (m.cats && typeof m.cats === 'object') ch.cats = Object.fromEntries(Object.keys(DEFAULTS.cats).map(k => [k, k === 'social' ? m.cats[k] === true : m.cats[k] !== false]));
       if (Array.isArray(m.custom)) ch.custom = [...new Set(m.custom.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
       if (m.sched && typeof m.sched === 'object') {
         const sc = m.sched, days = Array.isArray(sc.days) ? [...new Set(sc.days.map(Number).filter(d => Number.isInteger(d) && d >= 0 && d <= 6))] : [];

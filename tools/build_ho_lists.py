@@ -14,35 +14,36 @@ D = os.path.join(HERE, '..', 'human-override')
 src = os.path.join(D, 'extension', 'lists.json')
 L = json.load(open(src))
 DOM = re.compile(r'^([a-z0-9-]{1,63}\.)+[a-z]{2,24}$')
-doms = sorted({d for c in L['categories'].values() for d in c['domains'] if DOM.match(d)})
+AI_CATS = {k: c for k, c in L['categories'].items() if k != 'social'}   # social media is an optional extension-only category
+doms = sorted({d for c in AI_CATS.values() for d in c['domains'] if DOM.match(d)})
 # Google Translate proxy copies (<site-with-dashes>.translate.goog) for DNS-based tools (Android app, hosts, routers)
 proxies = sorted({d.replace('-', '--').replace('.', '-') + '.translate.goog' for d in doms})
 dns_doms = sorted(set(doms) | {p for p in proxies if DOM.match(p)})
 shutil.copyfile(src, os.path.join(D, 'lists.json'))
 today = datetime.date.today().isoformat()
-head = ['Human Override AI block list (https://geopolcoins.xyz/human-override.html)', f'Updated: {today}  Domains: {len(doms)}',
+head = ['Mindveto AI block list (https://mindveto.app/)', f'Updated: {today}  Domains: {len(doms)}',
         'Free to use. Blocks AI chatbots, AI search, AI image/video/voice/music, AI writing/homework and AI coding services.']
 open(os.path.join(D, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in head) + '\n' + '\n'.join(dns_doms) + '\n')
 open(os.path.join(D, 'hosts.txt'), 'w').write('\n'.join('# ' + h for h in head) + '\n' + '\n'.join(f'0.0.0.0 {d}\n0.0.0.0 www.{d}' for d in doms) + '\n' + '\n'.join(f'0.0.0.0 {p}' for p in proxies) + '\n')
-open(os.path.join(D, 'adblock.txt'), 'w').write('! Title: Human Override AI block list\n' + '\n'.join('! ' + h for h in head) + '\n' + '\n'.join(f'||{d}^' for d in dns_doms) + '\n')
+open(os.path.join(D, 'adblock.txt'), 'w').write('! Title: Mindveto AI block list\n' + '\n'.join('! ' + h for h in head) + '\n' + '\n'.join(f'||{d}^' for d in dns_doms) + '\n')
 print('domains', len(doms))
 
 # ---------- Pro pack for IT departments (justice, government, schools, companies) ----------
 P = os.path.join(D, 'pro'); os.makedirs(P, exist_ok=True)
-paths = sorted({p for c in L['categories'].values() for p in c.get('paths', [])})
-cr = '(c) 2026 Amghar Said. All rights reserved. Human Override - the AI kill switch. https://geopolcoins.xyz/human-override.html'
+paths = sorted({p for c in AI_CATS.values() for p in c.get('paths', [])})
+cr = '(c) 2026 Amghar Said. All rights reserved. Mindveto - the AI kill switch (formerly Human Override). https://mindveto.app/'
 pats = [f'{d}' for d in doms] + paths
 json.dump({"_comment": "Chrome and Edge enterprise policy (GPO/Intune/Jamf/Google Admin). " + cr,
            "URLBlocklist": pats}, open(os.path.join(P, 'chrome-edge-policy.json'), 'w'), indent=1)
 json.dump({"_comment": cr, "policies": {"WebsiteFilter": {"Block": [f"*://*.{d}/*" for d in doms] + [f"*://{d}/*" for d in doms] + [f"*://{p}*" for p in paths] + [f"*://*.{p}*" for p in paths]}}},
           open(os.path.join(P, 'firefox-policies.json'), 'w'), indent=1)
-open(os.path.join(P, 'rpz.zone'), 'w').write(f'; Human Override RPZ zone for BIND / PowerDNS / Infoblox / Knot. {cr}\n$TTL 300\n@ IN SOA localhost. root.localhost. ({today.replace("-", "")}01 3600 600 86400 300)\n@ IN NS localhost.\n' +
+open(os.path.join(P, 'rpz.zone'), 'w').write(f'; Mindveto RPZ zone for BIND / PowerDNS / Infoblox / Knot. {cr}\n$TTL 300\n@ IN SOA localhost. root.localhost. ({today.replace("-", "")}01 3600 600 86400 300)\n@ IN NS localhost.\n' +
     ''.join(f'{d} CNAME .\n*.{d} CNAME .\n' for d in doms))
-open(os.path.join(P, 'unbound.conf'), 'w').write(f'# Human Override for Unbound / OPNsense / pfSense. {cr}\nserver:\n' + ''.join(f'  local-zone: "{d}." always_nxdomain\n' for d in doms))
-open(os.path.join(P, 'dnsmasq.conf'), 'w').write(f'# Human Override for dnsmasq / OpenWrt / Pi-hole (custom dnsmasq). {cr}\n' + ''.join(f'address=/{d}/0.0.0.0\n' for d in doms))
-open(os.path.join(P, 'squid-acl.conf'), 'w').write(f'# Human Override for Squid proxy. {cr}\nacl human_override_ai dstdomain ' + ' '.join('.' + d for d in doms) + '\nhttp_access deny human_override_ai\n')
+open(os.path.join(P, 'unbound.conf'), 'w').write(f'# Mindveto for Unbound / OPNsense / pfSense. {cr}\nserver:\n' + ''.join(f'  local-zone: "{d}." always_nxdomain\n' for d in doms))
+open(os.path.join(P, 'dnsmasq.conf'), 'w').write(f'# Mindveto for dnsmasq / OpenWrt / Pi-hole (custom dnsmasq). {cr}\n' + ''.join(f'address=/{d}/0.0.0.0\n' for d in doms))
+open(os.path.join(P, 'squid-acl.conf'), 'w').write(f'# Mindveto for Squid proxy. {cr}\nacl human_override_ai dstdomain ' + ' '.join('.' + d for d in doms) + '\nhttp_access deny human_override_ai\n')
 open(os.path.join(P, 'firewall-edl.txt'), 'w').write(''.join(f'{d}\n*.{d}\n' for d in doms))
-ps = [f'# Human Override for Windows Server DNS (run as administrator on the DNS server). {cr}',
+ps = [f'# Mindveto for Windows Server DNS (run as administrator on the DNS server). {cr}',
       '# Adds DNS query resolution policies that refuse AI domains for all clients.',
       '# Remove with: Get-DnsServerQueryResolutionPolicy | Where-Object Name -like "HumanOverrideAI*" | ForEach-Object { Remove-DnsServerQueryResolutionPolicy -Name $_.Name -Force }',
       'Get-DnsServerQueryResolutionPolicy -ErrorAction SilentlyContinue | Where-Object Name -like "HumanOverrideAI*" | ForEach-Object { Remove-DnsServerQueryResolutionPolicy -Name $_.Name -Force }']
@@ -50,7 +51,7 @@ for i in range(0, len(doms), 20):
     part = doms[i:i + 20]
     crit = 'EQ,' + ','.join(f'*.{d},{d}' for d in part)
     ps.append(f"Add-DnsServerQueryResolutionPolicy -Name 'HumanOverrideAI{i // 20 + 1}' -Action DENY -FQDN '{crit}' -ProcessingOrder {i // 20 + 1}")
-ps.append('Write-Host "Human Override: AI domains are now refused by this DNS server."')
+ps.append('Write-Host "Mindveto: AI domains are now refused by this DNS server."')
 open(os.path.join(P, 'windows-dns-server.ps1'), 'w').write('\r\n'.join(ps) + '\r\n')
 open(os.path.join(P, 'README.txt'), 'w').write(f'''HUMAN OVERRIDE PRO PACK - the AI kill switch for organisations
 {cr}
@@ -78,8 +79,8 @@ Honest limits: DNS and firewall lists block whole domains; AI built into allowed
 device, and traffic over a VPN or another DNS (DNS-over-HTTPS) can bypass them. Block outside DNS/DoH and VPNs on your
 firewall for full effect. Test in a pilot group first.
 
-Terms of use (provided "as is", limits of liability): https://geopolcoins.xyz/human-override-terms.html
-Human Override Pro (help with roll-out, custom lists, weekly reports): https://geopolcoins.xyz/human-override.html#pro
+Terms of use (provided "as is", limits of liability): https://mindveto.app/terms/
+Help with roll-out: hello@mindveto.app · https://mindveto.app/network/
 ''')
 print('pro pack files', len(os.listdir(P)))
 

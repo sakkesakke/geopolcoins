@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. -->
+<!-- Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. -->
 <resources>
-    <string name="app_name">Human Override</string>
+    <string name="app_name">Mindveto</string>
     <string name="app_title">HUMAN OVERRIDE</string>
     <string name="subtitle">Le kill switch de l’IA</string>
     <string name="on">✋ IA BLOQUÉE</string>
@@ -20,14 +20,14 @@
     <string name="locked">Trop de PIN erronés. Patientez un peu et réessayez.</string>
     <string name="pin_format">Utilisez 4 à 12 chiffres.</string>
     <string name="always_title">Toujours actif</string>
-    <string name="always_text">Dans les paramètres Android, ouvrez VPN, touchez ⚙ à côté de Human Override et activez « VPN permanent ». Il redémarre alors tout seul. Pour les enfants, utilisez aussi Google Family Link pour qu’ils ne puissent pas changer les réglages.</string>
+    <string name="always_text">Dans les paramètres Android, ouvrez VPN, touchez ⚙ à côté de Mindveto et activez « VPN permanent ». Il redémarre alors tout seul. Pour les enfants, utilisez aussi Google Family Link pour qu’ils ne puissent pas changer les réglages.</string>
     <string name="open_vpn_settings">Ouvrir les réglages VPN</string>
     <string name="honest_title">Limites honnêtes</string>
-    <string name="honest_text">Human Override bloque les services d’IA dans toutes les applis de ce téléphone en répondant « n’existe pas » à leurs recherches d’adresse. Il ne peut pas bloquer l’IA intégrée aux applis autorisées, l’IA qui tourne entièrement sur le téléphone, ni les applis qui utilisent leur propre DNS sécurisé. Android permet au propriétaire de désactiver tout VPN dans les Réglages.</string>
+    <string name="honest_text">Mindveto bloque les services d’IA dans toutes les applis de ce téléphone en répondant « n’existe pas » à leurs recherches d’adresse. Il ne peut pas bloquer l’IA intégrée aux applis autorisées, l’IA qui tourne entièrement sur le téléphone, ni les applis qui utilisent leur propre DNS sécurisé. Android permet au propriétaire de désactiver tout VPN dans les Réglages.</string>
     <string name="donate">❤ Gratuit pour toujours. Soutenez-le avec un café</string>
-    <string name="footer">Human Override © 2026 Amghar Said. Tous droits réservés. · geopolcoins.xyz</string>
+    <string name="footer">Mindveto © 2026 Amghar Said. Tous droits réservés. · mindveto.app</string>
     <string name="terms_title">Conditions d’utilisation</string>
-    <string name="terms_text">Human Override est un logiciel gratuit d’Amghar Said, fourni « tel quel ». Il aide à bloquer les services d’IA mais ne peut garantir que toute IA soit bloquée. Vous l’utilisez à vos risques et restez responsable de vos appareils et décisions. Dans toute la mesure permise par la loi, Amghar Said n’est pas responsable des dommages ou conséquences de son utilisation.</string>
+    <string name="terms_text">Mindveto est un logiciel gratuit d’Amghar Said, fourni « tel quel ». Il aide à bloquer les services d’IA mais ne peut garantir que toute IA soit bloquée. Vous l’utilisez à vos risques et restez responsable de vos appareils et décisions. Dans toute la mesure permise par la loi, Amghar Said n’est pas responsable des dommages ou conséquences de son utilisation.</string>
     <string name="terms_agree">J’accepte</string>
     <string name="terms_read">Lire les conditions</string>
     <string name="terms_decline">Fermer</string>
@@ -47,16 +47,16 @@
     <string name="sensor_close">très proche</string>
     <string name="sensor_advice">Beaucoup sont des prises, lampes ou sonnettes connectées normales. Vous ne connaissez pas un appareil « très proche » ? Promenez-vous avec ce contrôle, cherchez de petits boîtiers avec un câble USB et demandez à votre propriétaire ou colocataires. En cas de doute, changez votre mot de passe Wi-Fi.</string>
     <string name="guard_title">Garde caméra et micro</string>
-    <string name="guard_text">Recevez une notification quand une appli commence à utiliser votre caméra ou votre micro pendant que Human Override est actif (par exemple une appli qui écoute ou enregistre en secret pour l’IA). Android ne dit pas quelle appli ; regardez le point vert en haut de l’écran. Rien n’est stocké ni envoyé.</string>
+    <string name="guard_text">Recevez une notification quand une appli commence à utiliser votre caméra ou votre micro pendant que Mindveto est actif (par exemple une appli qui écoute ou enregistre en secret pour l’IA). Android ne dit pas quelle appli ; regardez le point vert en haut de l’écran. Rien n’est stocké ni envoyé.</string>
     <string name="guard_switch">M’avertir quand la caméra ou le micro s’allume</string>
     <string name="guard_cam">📷 Votre caméra est utilisée en ce moment. Était-ce vous ? Sinon, vérifiez dans Paramètres &gt; Confidentialité quelles applis y ont accès.</string>
     <string name="guard_mic">🎤 Votre micro est utilisé en ce moment. Était-ce vous ? Sinon, vérifiez dans Paramètres &gt; Confidentialité quelles applis y ont accès.</string>
-    <string name="tamper_title">Human Override a été désactivé</string>
+    <string name="tamper_title">Mindveto a été désactivé</string>
     <string name="tamper_log_title">Journal anti-sabotage</string>
     <string name="tamper_log_text">Ce qui s’est passé sur ce téléphone : mauvais PIN et moments où la protection a été coupée. Reste uniquement sur ce téléphone.</string>
     <string name="tamper_none">Rien ne s’est encore passé.</string>
     <string name="tamper_revoked">Désactivé hors de l’appli</string>
-    <string name="tamper_revoked_text">Le blocage de l’IA a été coupé dans les réglages Android ou par une autre appli VPN. Ce n’était pas vous ? Ouvrez Human Override et réactivez-le.</string>
+    <string name="tamper_revoked_text">Le blocage de l’IA a été coupé dans les réglages Android ou par une autre appli VPN. Ce n’était pas vous ? Ouvrez Mindveto et réactivez-le.</string>
     <string name="tamper_stopped">Trouvé arrêté</string>
     <string name="tamper_stopped_text">Le blocage de l’IA était actif mais ne tourne plus (par exemple après un arrêt forcé de l’appli). Touchez le bouton pour le réactiver.</string>
     <string name="tamper_off">Désactivé avec le PIN</string>

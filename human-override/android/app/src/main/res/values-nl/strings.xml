@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Human Override - Copyright (c) 2026 Amghar Said. All rights reserved. -->
+<!-- Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. -->
 <resources>
-    <string name="app_name">Human Override</string>
+    <string name="app_name">Mindveto</string>
     <string name="app_title">HUMAN OVERRIDE</string>
     <string name="subtitle">De AI kill switch</string>
     <string name="on">✋ AI GEBLOKKEERD</string>
@@ -20,14 +20,14 @@
     <string name="locked">Te veel foute pincodes. Wacht even en probeer opnieuw.</string>
     <string name="pin_format">Gebruik 4 tot 12 cijfers.</string>
     <string name="always_title">Altijd aan</string>
-    <string name="always_text">Open in de Android-instellingen VPN, tik op ⚙ naast Human Override en zet \"Altijd-aan VPN\" aan. Dan start het vanzelf na een herstart. Gebruik voor kinderen ook Google Family Link, zodat ze de instellingen niet kunnen wijzigen.</string>
+    <string name="always_text">Open in de Android-instellingen VPN, tik op ⚙ naast Mindveto en zet \"Altijd-aan VPN\" aan. Dan start het vanzelf na een herstart. Gebruik voor kinderen ook Google Family Link, zodat ze de instellingen niet kunnen wijzigen.</string>
     <string name="open_vpn_settings">VPN-instellingen openen</string>
     <string name="honest_title">Eerlijke grenzen</string>
-    <string name="honest_text">Human Override blokkeert AI-diensten in elke app op deze telefoon door hun adresopvragingen te beantwoorden met \"bestaat niet\". Het kan geen AI blokkeren die ingebouwd is in apps die je toelaat, AI die volledig op de telefoon draait, of apps met een eigen beveiligde DNS. Android laat de eigenaar van de telefoon elke VPN uitzetten in Instellingen.</string>
+    <string name="honest_text">Mindveto blokkeert AI-diensten in elke app op deze telefoon door hun adresopvragingen te beantwoorden met \"bestaat niet\". Het kan geen AI blokkeren die ingebouwd is in apps die je toelaat, AI die volledig op de telefoon draait, of apps met een eigen beveiligde DNS. Android laat de eigenaar van de telefoon elke VPN uitzetten in Instellingen.</string>
     <string name="donate">❤ Altijd gratis. Steun het met een koffie</string>
-    <string name="footer">Human Override © 2026 Amghar Said. Alle rechten voorbehouden. · geopolcoins.xyz</string>
+    <string name="footer">Mindveto © 2026 Amghar Said. Alle rechten voorbehouden. · mindveto.app</string>
     <string name="terms_title">Gebruiksvoorwaarden</string>
-    <string name="terms_text">Human Override is gratis software van Amghar Said, geleverd \"zoals het is\". Het helpt AI-diensten te blokkeren, maar kan niet garanderen dat elke AI geblokkeerd wordt. Je gebruikt het op eigen risico en blijft zelf verantwoordelijk voor je toestellen en beslissingen. Voor zover de wet het toelaat, is Amghar Said niet aansprakelijk voor schade of gevolgen van het gebruik.</string>
+    <string name="terms_text">Mindveto is gratis software van Amghar Said, geleverd \"zoals het is\". Het helpt AI-diensten te blokkeren, maar kan niet garanderen dat elke AI geblokkeerd wordt. Je gebruikt het op eigen risico en blijft zelf verantwoordelijk voor je toestellen en beslissingen. Voor zover de wet het toelaat, is Amghar Said niet aansprakelijk voor schade of gevolgen van het gebruik.</string>
     <string name="terms_agree">Ik ga akkoord</string>
     <string name="terms_read">Voorwaarden lezen</string>
     <string name="terms_decline">Sluiten</string>
@@ -47,16 +47,16 @@
     <string name="sensor_close">heel dichtbij</string>
     <string name="sensor_advice">Veel hiervan zijn gewone slimme stekkers, lampen of deurbellen. Ken je een toestel \"heel dichtbij\" niet? Loop rond met deze check, zoek kleine doosjes met een USB-kabel en vraag het aan je verhuurder of huisgenoten. Twijfel je, verander dan je wifi-wachtwoord.</string>
     <string name="guard_title">Camera- en microfoonwacht</string>
-    <string name="guard_text">Krijg een melding wanneer een app je camera of microfoon begint te gebruiken terwijl Human Override aanstaat (bijvoorbeeld een app die stiekem meeluistert of opneemt voor AI). Android zegt niet welke app; kijk naar het groene bolletje bovenaan je scherm. Er wordt niets bewaard of verstuurd.</string>
+    <string name="guard_text">Krijg een melding wanneer een app je camera of microfoon begint te gebruiken terwijl Mindveto aanstaat (bijvoorbeeld een app die stiekem meeluistert of opneemt voor AI). Android zegt niet welke app; kijk naar het groene bolletje bovenaan je scherm. Er wordt niets bewaard of verstuurd.</string>
     <string name="guard_switch">Waarschuw me als de camera of microfoon aangaat</string>
     <string name="guard_cam">📷 Je camera wordt nu gebruikt. Was jij dat? Zo niet, kijk in Instellingen &gt; Privacy welke apps cameratoegang hebben.</string>
     <string name="guard_mic">🎤 Je microfoon wordt nu gebruikt. Was jij dat? Zo niet, kijk in Instellingen &gt; Privacy welke apps microfoontoegang hebben.</string>
-    <string name="tamper_title">Human Override is uitgezet</string>
+    <string name="tamper_title">Mindveto is uitgezet</string>
     <string name="tamper_log_title">Sabotage-logboek</string>
     <string name="tamper_log_text">Wat er op deze telefoon gebeurde: foute pincodes en wanneer de bescherming uitging. Blijft alleen op deze telefoon.</string>
     <string name="tamper_none">Nog niets gebeurd.</string>
     <string name="tamper_revoked">Uitgezet buiten de app</string>
-    <string name="tamper_revoked_text">Het AI-blokkeren is uitgezet in de Android-instellingen of door een andere VPN-app. Was jij dat niet? Open Human Override en zet het weer aan.</string>
+    <string name="tamper_revoked_text">Het AI-blokkeren is uitgezet in de Android-instellingen of door een andere VPN-app. Was jij dat niet? Open Mindveto en zet het weer aan.</string>
     <string name="tamper_stopped">Bleek niet meer actief</string>
     <string name="tamper_stopped_text">Het AI-blokkeren stond aan, maar werkt niet meer (bijvoorbeeld nadat de app geforceerd gestopt is). Tik op de knop om het weer aan te zetten.</string>
     <string name="tamper_off">Uitgezet met de pincode</string>

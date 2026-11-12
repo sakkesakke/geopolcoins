@@ -217,6 +217,31 @@
     "rewind.ai",
     "plaud.ai"
    ]
+  },
+  "social": {
+   "name": "Social media (optional)",
+   "domains": [
+    "bereal.com",
+    "bsky.app",
+    "discord.com",
+    "douyin.com",
+    "facebook.com",
+    "instagram.com",
+    "kick.com",
+    "likee.video",
+    "pinterest.com",
+    "reddit.com",
+    "snapchat.com",
+    "threads.com",
+    "threads.net",
+    "tiktok.com",
+    "triller.co",
+    "tumblr.com",
+    "twitch.tv",
+    "twitter.com",
+    "vk.com",
+    "x.com"
+   ]
   }
  },
  "services": {

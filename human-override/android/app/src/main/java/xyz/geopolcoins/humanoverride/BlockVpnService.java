@@ -100,8 +100,11 @@ public class BlockVpnService extends VpnService implements Runnable {
                 if (name != null && DnsLogic.blocked(name, list)) {
                     write(DnsLogic.udpReply(pkt, DnsLogic.nxdomain(pkt, off, n)));
                     Stats.inc(this);
+                } else if (name != null && Lists.adultOn(this) && DnsLogic.blocked(name, Lists.adult(this))) {
+                    write(DnsLogic.udpReply(pkt, DnsLogic.nxdomain(pkt, off, n)));   // family filter: not counted as an AI lookup
                 } else if (pool != null && !pool.isShutdown()) {
-                    try { pool.execute(() -> forward(pkt, o)); } catch (Exception ignored) { }
+                    final String safe = Lists.safeOn(this) ? DnsLogic.safeTarget(name) : null;
+                    try { pool.execute(() -> forward(pkt, o, safe)); } catch (Exception ignored) { }
                 }
             }
         } catch (Exception ignored) {
@@ -109,8 +112,11 @@ public class BlockVpnService extends VpnService implements Runnable {
         }
     }
 
-    private void forward(byte[] pkt, int off) {
-        byte[] q = Arrays.copyOfRange(pkt, off, pkt.length);
+    /** Sends the question to the real DNS. With safe != null the strict name is asked instead (SafeSearch) and the
+     *  answer is given back under the original name. */
+    private void forward(byte[] pkt, int off, String safe) {
+        byte[] q = safe == null ? Arrays.copyOfRange(pkt, off, pkt.length) : DnsLogic.withQuestion(pkt, off, pkt.length, safe);
+        if (q == null) return;
         for (InetAddress up : upstreams()) {
             try (DatagramSocket s = new DatagramSocket()) {
                 protect(s);                                    // goes around this VPN, straight to the network
@@ -120,7 +126,9 @@ public class BlockVpnService extends VpnService implements Runnable {
                 DatagramPacket rp = new DatagramPacket(r, r.length);
                 s.receive(rp);
                 if (rp.getLength() >= 12 && r[0] == q[0] && r[1] == q[1]) {   // same query id
-                    write(DnsLogic.udpReply(pkt, Arrays.copyOf(r, rp.getLength())));
+                    byte[] ans = safe == null ? Arrays.copyOf(r, rp.getLength()) : DnsLogic.rewriteAnswer(pkt, off, pkt.length, r, rp.getLength());
+                    if (ans == null) continue;
+                    write(DnsLogic.udpReply(pkt, ans));
                     return;
                 }
             } catch (Exception ignored) { }

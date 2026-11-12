@@ -13,7 +13,7 @@ const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.c
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
   'geopolcoins.xyz', 'mindveto.app', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
-const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true, social: false }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
+const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true, social: false, adult: false, safe: false }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
   sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00', hol: 'off', region: 'BE-NL' } };
 const REGIONS = ['BE-NL', 'BE-FR', 'NL-NO', 'NL-MI', 'NL-ZU', 'FR-ZA', 'FR-ZB', 'FR-ZC'];
 const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
@@ -23,7 +23,11 @@ const EXAM_URL = 'https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/exam_stat
 const EXAM_KEY = 'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';   // public by design (read-only question)
 const CODE = /^[A-HJ-NP-Z2-9]{8}$/;
 const REMOVED_URL = 'https://geopolcoins.xyz/human-override-removed.html';
-const ALERT = new Set(['pinbad', 'pinlock']);   // these light up a red "!" on the icon until the popup is opened
+const ALERT = new Set(['pinbad', 'pinlock']);
+const OPTIN = ['social', 'adult', 'safe'];   // off unless the user switches them on (family filter + social media)
+// SafeSearch: the search engines' own strict filter, forced in the address (Google, Bing, DuckDuckGo) and with YouTube's official header
+const YT = ['youtube.com', 'youtube-nocookie.com', 'youtubei.googleapis.com', 'youtube.googleapis.com'];
+const ALL_TYPES = ['main_frame', 'sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other'];   // these light up a red "!" on the icon until the popup is opened
 
 // Tamper log: what happened and when (never page content). Last 50 events, only on this device.
 // One queue per kind of work ('log', 'pin', 'apply'): jobs of the same kind run one after the other, never mixed.
@@ -116,7 +120,7 @@ async function applyNow() {
     const allowed = d => { for (const a of allow) if (d === a || d.endsWith('.' + a)) return true; return false; };   // an allowed site includes its sub-sites
     let doms = [], paths = [];
     for (const [k, c] of Object.entries(L.categories || {})) {
-      if (k === 'social' ? st.cats.social !== true : (!ex && !st.cats[k])) continue;   // exam mode forces AI categories only; social media stays the user's choice
+      if (OPTIN.includes(k) ? st.cats[k] !== true : (!ex && !st.cats[k])) continue;   // exam mode forces AI categories only; social media stays the user's choice
       doms = doms.concat((c.domains || []).filter(d => DOMAIN.test(d)));
       paths = paths.concat((c.paths || []).filter(p => PATH.test(p)));
     }
@@ -140,7 +144,7 @@ async function applyNow() {
       rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },
         condition: { regexFilter: '^https?://' + esc(t) + '\\.translate\\.goog\\.?(/.*)?$', resourceTypes: ['main_frame', 'sub_frame'] } });
     }
-    if (ex || st.cats.search) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },   // Google "AI Mode"
+    if (ex || st.cats.search) rules.push({ id: id++, priority: 4, action: { type: 'redirect', redirect: { regexSubstitution: page + '#\\0' } },   // Google "AI Mode"
       condition: { regexFilter: '^https?://(www\\.)?google\\.[a-z.]{2,12}/search\\?(.*&)?udm=50(&.*)?$', resourceTypes: ['main_frame'] } });
     if (rest.length) rules.push({ id: id++, priority: 1, action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: { requestDomains: rest, resourceTypes: ['main_frame'] } });
@@ -150,7 +154,23 @@ async function applyNow() {
     if (doms.length) rules.push({ id: id++, priority: 1, action: { type: 'block' },
       condition: { requestDomains: doms, resourceTypes: ['sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other'] } });
   }
+  // Family filter: works on its own, also when AI is allowed or paused by the schedule (only the PIN can switch it off)
+  if (st.cats.safe === true) {
+    let id = 9000;
+    const q = (re, key, value) => ({ id: id++, priority: 3, action: { type: 'redirect', redirect: { transform: { queryTransform: { addOrReplaceParams: [{ key, value }] } } } },
+      condition: { regexFilter: re, resourceTypes: ['main_frame', 'sub_frame', 'xmlhttprequest'] } });
+    rules.push(q('^https?://(www\\.)?google\\.[a-z.]{2,12}/(search|webhp|imgres)\\?', 'safe', 'active'));
+    rules.push(q('^https?://(www\\.|cn\\.)?bing\\.com/(search|images/search|videos/search|images/async)\\?', 'adlt', 'strict'));
+    rules.push(q('^https?://(html\\.|lite\\.)?duckduckgo\\.com/(html/?|lite/?)?\\?', 'kp', '1'));
+    rules.push({ id: id++, priority: 3, action: { type: 'modifyHeaders', requestHeaders: [{ header: 'YouTube-Restrict', operation: 'set', value: 'Strict' }] },
+      condition: { requestDomains: YT, resourceTypes: ALL_TYPES } });
+  }
   await api.declarativeNetRequest.updateDynamicRules({ removeRuleIds: old.map(r => r.id), addRules: rules });
+  try {
+    const on = (await api.declarativeNetRequest.getEnabledRulesets()).includes('adult');
+    if (st.cats.adult === true && !on) await api.declarativeNetRequest.updateEnabledRulesets({ enableRulesetIds: ['adult'] });
+    if (st.cats.adult !== true && on) await api.declarativeNetRequest.updateEnabledRulesets({ disableRulesetIds: ['adult'] });
+  } catch (e) { /* browser without static rulesets: the adult list cannot be used here */ }
   await api.storage.local.set({ act: mode(st) });
   await badge();
 }
@@ -231,7 +251,7 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
       const ch = {};
       if (typeof m.on === 'boolean') ch.on = m.on;
       if (typeof m.guard === 'boolean') ch.guard = m.guard;
-      if (m.cats && typeof m.cats === 'object') ch.cats = Object.fromEntries(Object.keys(DEFAULTS.cats).map(k => [k, k === 'social' ? m.cats[k] === true : m.cats[k] !== false]));
+      if (m.cats && typeof m.cats === 'object') ch.cats = Object.fromEntries(Object.keys(DEFAULTS.cats).map(k => [k, OPTIN.includes(k) ? m.cats[k] === true : m.cats[k] !== false]));
       if (Array.isArray(m.custom)) ch.custom = [...new Set(m.custom.map(d => String(d).toLowerCase().trim()).filter(d => DOMAIN.test(d)))].slice(0, 500);
       if (m.sched && typeof m.sched === 'object') {
         const sc = m.sched, days = Array.isArray(sc.days) ? [...new Set(sc.days.map(Number).filter(d => Number.isInteger(d) && d >= 0 && d <= 6))] : [];
@@ -261,6 +281,7 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
       if ('klass' in ch) await note(ch.klass ? 'classon' : 'classoff');
       if (ch.on === false && st.on) await note('off'); else if (ch.on === true && !st.on) await note('on');
       if (ch.guard === false && st.guard !== false) await note('guardoff');
+      if (ch.cats && (ch.cats.adult !== (st.cats.adult === true) || ch.cats.safe !== (st.cats.safe === true))) await note((st.cats.adult === true && !ch.cats.adult) || (st.cats.safe === true && !ch.cats.safe) ? 'famoff' : 'famon');
       if (ch.cats || ch.custom || ch.allow || ch.allowSvc || ch.words || ch.sched) await note('changed');
       return reply({ ok: true });
     }

@@ -64,4 +64,10 @@
     <string name="tamper_pinlock">Locked after 5 wrong PINs</string>
     <string name="tamper_pinoff">PIN removed</string>
     <string name="privacy_link">Privacy policy</string>
+    <string name="fam_title">Family filter (not AI)</string>
+    <string name="fam_text">Also block adult sites (18+) and force SafeSearch in Google, Bing, DuckDuckGo and YouTube. Works in every app while Mindveto is on. No filter catches everything: images can still appear in apps, chats or social media.</string>
+    <string name="fam_adult">Block adult sites (18+)</string>
+    <string name="fam_safe">Force SafeSearch</string>
+    <string name="tamper_famon">Family filter switched on</string>
+    <string name="tamper_famoff">Family filter switched off</string>
 </resources>

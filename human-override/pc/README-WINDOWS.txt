@@ -21,6 +21,12 @@ the Copilot sidebar and writing help in Edge, and Gemini / AI Mode / "Help me wr
 with Microsoft's and Google's official policy settings. Restart Edge and Chrome; sign out and in for Windows.
 Edge and Chrome then show "Managed by your organisation": that is normal, it means the setting is locked.
 Option 4 puts back exactly the settings that were there before.
+FAMILY FILTER (option 5, not AI): blocks about 64,000 adult sites (18+) and forces SafeSearch in Google, Bing,
+DuckDuckGo and YouTube (Chrome and Edge with official policies, other browsers through the hosts file).
+Option 6 switches it off and restores the earlier browser settings. The adult list is large: if opening websites
+becomes slow on an older PC, switch it off and use the Mindveto browser extension instead.
+No filter catches everything: images can still appear in apps, chats or social media.
+The adult list is built from MIT-licensed public lists: see THIRD_PARTY_NOTICES.txt.
 TIP: give children or staff a normal (non-administrator) Windows account; then they cannot undo it.
 Microsoft Defender may sometimes remove Microsoft domains (like Copilot) from the block; run it again to restore.
 

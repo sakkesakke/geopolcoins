@@ -45,6 +45,41 @@ public class DnsLogicTest {
     ok(crashes == 0, "20,000 random packets, no crash");
     byte[] loop = query("a.com", 1); loop[28 + 12] = (byte) 0xC0;   // compression pointer in question
     ok(DnsLogic.questionName(loop, 28, loop.length) == null, "rejects compression pointer");
+
+    // SafeSearch (family filter)
+    ok("forcesafesearch.google.com".equals(DnsLogic.safeTarget("www.google.com")), "google.com -> forcesafesearch");
+    ok("forcesafesearch.google.com".equals(DnsLogic.safeTarget("www.google.co.uk.")), "google.co.uk -> forcesafesearch");
+    ok("forcesafesearch.google.com".equals(DnsLogic.safeTarget("google.be")), "google.be -> forcesafesearch");
+    ok(DnsLogic.safeTarget("mail.google.com") == null, "gmail untouched");
+    ok(DnsLogic.safeTarget("forcesafesearch.google.com") == null, "no loop on the strict name");
+    ok("strict.bing.com".equals(DnsLogic.safeTarget("www.bing.com")), "bing -> strict");
+    ok("safe.duckduckgo.com".equals(DnsLogic.safeTarget("duckduckgo.com")), "duckduckgo -> safe");
+    ok("restrict.youtube.com".equals(DnsLogic.safeTarget("m.youtube.com")), "youtube -> restrict");
+    ok(DnsLogic.safeTarget("example.com") == null, "other sites untouched");
+    byte[] g = query("www.google.com", 0x4321); int go = DnsLogic.dnsPayloadOffset(g, g.length);
+    byte[] wq = DnsLogic.withQuestion(g, go, g.length, "forcesafesearch.google.com");
+    ok(wq != null && (wq[0] & 0xFF) == 0x43 && (wq[1] & 0xFF) == 0x21, "rewritten query keeps id");
+    byte[] wp = new byte[28 + wq.length]; System.arraycopy(g, 0, wp, 0, 28); System.arraycopy(wq, 0, wp, 28, wq.length);
+    ok("forcesafesearch.google.com".equals(DnsLogic.questionName(wp, 28, wp.length)), "rewritten query asks the strict name");
+    ok(wq[wq.length - 3] == 1 && wq[wq.length - 1] == 1, "type A, class IN kept");
+    // upstream answer: question forcesafesearch.google.com, one CNAME-free A record 216.239.38.120 and one TXT record
+    java.io.ByteArrayOutputStream up = new java.io.ByteArrayOutputStream();
+    up.write(wq, 0, 2); up.write(0x81); up.write(0x80); up.write(0); up.write(1); up.write(0); up.write(2); for (int i = 0; i < 4; i++) up.write(0);
+    up.write(wq, 12, wq.length - 12);
+    up.write(0xC0); up.write(0x0C); up.write(0); up.write(1); up.write(0); up.write(1); up.write(0); up.write(0); up.write(1); up.write(0x2C); up.write(0); up.write(4);
+    up.write(216); up.write(239); up.write(38); up.write(120);
+    up.write(0xC0); up.write(0x0C); up.write(0); up.write(16); up.write(0); up.write(1); for (int i = 0; i < 4; i++) up.write(0); up.write(0); up.write(2); up.write(1); up.write('x');
+    byte[] ub = up.toByteArray();
+    byte[] ans = DnsLogic.rewriteAnswer(g, go, g.length, ub, ub.length);
+    ok(ans != null && (ans[0] & 0xFF) == 0x43 && (ans[1] & 0xFF) == 0x21, "answer keeps the original id");
+    ok(ans != null && (ans[7] & 0xFF) == 1, "only the A record is kept");
+    byte[] ap = new byte[28 + ans.length]; System.arraycopy(g, 0, ap, 0, 28); System.arraycopy(ans, 0, ap, 28, ans.length);
+    ok("www.google.com".equals(DnsLogic.questionName(ap, 28, ap.length)), "answer is for the original name");
+    ok((ans[ans.length - 4] & 0xFF) == 216 && (ans[ans.length - 1] & 0xFF) == 120, "address of the strict server");
+    ok(DnsLogic.rewriteAnswer(g, go, g.length, new byte[]{1, 2, 3}, 3) == null, "short upstream answer rejected");
+    int crash2 = 0; for (int i = 0; i < 20000; i++) { byte[] b = new byte[rnd.nextInt(120)]; rnd.nextBytes(b);
+      try { DnsLogic.rewriteAnswer(g, go, g.length, b, b.length); } catch (Exception e) { crash2++; } }
+    ok(crash2 == 0, "20,000 random upstream answers, no crash");
     System.out.println(fails == 0 ? "ALL TESTS PASSED" : fails + " FAILED"); System.exit(fails == 0 ? 0 : 1);
   }
 }

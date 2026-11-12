@@ -40,6 +40,8 @@ final class Tamper {
             case "pinbad": return R.string.tamper_pinbad;
             case "pinlock": return R.string.tamper_pinlock;
             case "pinoff": return R.string.tamper_pinoff;
+            case "famon": return R.string.tamper_famon;
+            case "famoff": return R.string.tamper_famoff;
             default: return 0;
         }
     }

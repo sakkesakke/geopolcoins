@@ -79,10 +79,40 @@ Honest limits: DNS and firewall lists block whole domains; AI built into allowed
 device, and traffic over a VPN or another DNS (DNS-over-HTTPS) can bypass them. Block outside DNS/DoH and VPNs on your
 firewall for full effect. Test in a pilot group first.
 
+Family filter (optional, not AI): adult-content lists in the same formats at https://geopolcoins.xyz/human-override/adult/
+(hosts.txt, domains.txt, adblock.txt; MIT-licensed sources, see NOTICE.txt there). SafeSearch on a DNS server:
+answer google.com/www.google.<tld> with CNAME forcesafesearch.google.com, www.bing.com with strict.bing.com,
+duckduckgo.com with safe.duckduckgo.com and www.youtube.com/m.youtube.com/youtubei.googleapis.com with restrict.youtube.com.
+
 Terms of use (provided "as is", limits of liability): https://mindveto.app/terms/
 Help with roll-out: hello@mindveto.app · https://mindveto.app/network/
 ''')
 print('pro pack files', len(os.listdir(P)))
+
+# ---------- family filter: adult content (optional, OFF by default; built by tools/build_ho_adult.py) ----------
+A = os.path.join(D, 'adult')
+adult = sorted({l.strip() for l in open(os.path.join(A, 'adult.txt')) if l.strip() and not l.startswith('#') and DOM.match(l.strip())})
+ahead = ['Mindveto family filter: adult content (https://mindveto.app/)', f'Updated: {today}  Domains: {len(adult)}',
+         'Optional list. Built from MIT-licensed public lists, see https://geopolcoins.xyz/human-override/adult/NOTICE.txt']
+open(os.path.join(A, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in ahead) + '\n' + '\n'.join(adult) + '\n')
+open(os.path.join(A, 'hosts.txt'), 'w').write('\n'.join('# ' + h for h in ahead) + '\n' + '\n'.join(f'0.0.0.0 {d}\n0.0.0.0 www.{d}' for d in adult) + '\n')
+open(os.path.join(A, 'adblock.txt'), 'w').write('! Title: Mindveto family filter (adult content)\n' + '\n'.join('! ' + h for h in ahead) + '\n' + '\n'.join(f'||{d}^' for d in adult) + '\n')
+# browser extension: one static ruleset, switched on by the extension only when the family filter is on
+CH = 10000
+arules, rid = [], 1
+for i in range(0, len(adult), CH):
+    part = adult[i:i + CH]
+    arules.append({'id': rid, 'priority': 1, 'action': {'type': 'redirect', 'redirect': {'extensionPath': '/blocked.html?f=adult'}},
+                   'condition': {'requestDomains': part, 'resourceTypes': ['main_frame']}}); rid += 1
+    arules.append({'id': rid, 'priority': 1, 'action': {'type': 'block'},
+                   'condition': {'requestDomains': part, 'resourceTypes': ['sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other']}}); rid += 1
+json.dump(arules, open(os.path.join(D, 'extension', 'rules_adult.json'), 'w'), separators=(',', ':'))
+shutil.copyfile(os.path.join(A, 'NOTICE.txt'), os.path.join(D, 'extension', 'THIRD_PARTY_NOTICES.txt'))
+# Android app: bundled asset (the app reads it only when the family filter is on)
+aa = os.path.join(D, 'android', 'app', 'src', 'main', 'assets')
+open(os.path.join(aa, 'adult.txt'), 'w').write('\n'.join(adult) + '\n')
+shutil.copyfile(os.path.join(A, 'NOTICE.txt'), os.path.join(aa, 'THIRD_PARTY_NOTICES.txt'))
+print('adult domains', len(adult), 'extension rules', len(arules))
 
 # ---------- download zips (kept in sync with the lists) ----------
 import zipfile
@@ -90,9 +120,10 @@ def mkzip(name, files):
     with zipfile.ZipFile(os.path.join(D, name), 'w', zipfile.ZIP_DEFLATED) as z:
         for arc, src in files: z.write(src, arc)
 lic = os.path.join(D, 'extension', 'LICENSE.txt'); pc = os.path.join(D, 'pc'); hosts = os.path.join(D, 'hosts.txt')
+ah = os.path.join(A, 'hosts.txt'); an = os.path.join(A, 'NOTICE.txt')
 mkzip('human-override-windows.zip', [('Start-Mindveto.bat', os.path.join(pc, 'Start-Mindveto.bat')), ('Mindveto.ps1', os.path.join(pc, 'Mindveto.ps1')),
-      ('hosts.txt', hosts), ('LICENSE.txt', lic), ('README-WINDOWS.txt', os.path.join(pc, 'README-WINDOWS.txt'))])
-mkzip('human-override-mac-linux.zip', [('mindveto.sh', os.path.join(pc, 'mindveto.sh')), ('hosts.txt', hosts), ('LICENSE.txt', lic),
+      ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic), ('README-WINDOWS.txt', os.path.join(pc, 'README-WINDOWS.txt'))])
+mkzip('human-override-mac-linux.zip', [('mindveto.sh', os.path.join(pc, 'mindveto.sh')), ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic),
       ('README-MAC-LINUX.txt', os.path.join(pc, 'README-MAC-LINUX.txt'))])
 mkzip('human-override-pro-pack.zip', [(f, os.path.join(P, f)) for f in sorted(os.listdir(P)) if f != 'LICENSE.txt'] + [('LICENSE.txt', lic)])
 print('zips ok')
@@ -109,7 +140,8 @@ ext = os.path.join(D, 'extension'); zname = f"human-override-{MF['version']}.zip
 for old in os.listdir(D):
     if re.fullmatch(r'human-override-\d+\.\d+\.\d+\.zip', old) and old != zname: os.remove(os.path.join(D, old))
 with zipfile.ZipFile(os.path.join(D, zname), 'w', zipfile.ZIP_DEFLATED) as z:
-    for root, _, files in os.walk(ext):
+    for root, dirs, files in os.walk(ext):
+        dirs[:] = [d for d in dirs if d != '_metadata']   # created by Chrome when the folder is loaded unpacked
         for f in sorted(files):
             p = os.path.join(root, f); z.write(p, os.path.relpath(p, ext))
 print('extension zip', zname, 'paste guard sites', len(guard))

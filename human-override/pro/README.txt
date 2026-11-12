@@ -24,5 +24,10 @@ Honest limits: DNS and firewall lists block whole domains; AI built into allowed
 device, and traffic over a VPN or another DNS (DNS-over-HTTPS) can bypass them. Block outside DNS/DoH and VPNs on your
 firewall for full effect. Test in a pilot group first.
 
+Family filter (optional, not AI): adult-content lists in the same formats at https://geopolcoins.xyz/human-override/adult/
+(hosts.txt, domains.txt, adblock.txt; MIT-licensed sources, see NOTICE.txt there). SafeSearch on a DNS server:
+answer google.com/www.google.<tld> with CNAME forcesafesearch.google.com, www.bing.com with strict.bing.com,
+duckduckgo.com with safe.duckduckgo.com and www.youtube.com/m.youtube.com/youtubei.googleapis.com with restrict.youtube.com.
+
 Terms of use (provided "as is", limits of liability): https://mindveto.app/terms/
 Help with roll-out: hello@mindveto.app · https://mindveto.app/network/

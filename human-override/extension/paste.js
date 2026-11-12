@@ -41,10 +41,10 @@
     host.style.cssText = 'all:initial;position:fixed;inset:0;z-index:2147483647';
     const sh = host.attachShadow({ mode: 'closed' });
     const st = document.createElement('style');
-    st.textContent = '.bg{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font:15px/1.45 system-ui,sans-serif}' +
-      '.box{background:#17142a;color:#f3ecd9;max-width:420px;margin:16px;padding:20px;border-radius:14px;border:3px solid #ff4f4f;box-shadow:0 10px 40px rgba(0,0,0,.5)}' +
-      'h2{margin:0 0 8px;font-size:19px;color:#ffb547}ul{margin:8px 0 14px;padding-left:20px}button{display:block;width:100%;margin-top:8px;padding:11px;border-radius:10px;border:2px solid #000;font:600 15px system-ui,sans-serif;cursor:pointer}' +
-      '.no{background:#ff4f4f;color:#000}.mask{background:#ffb547;color:#000}.yes{background:transparent;color:#a79fbf;border-color:#5d5875}small{display:block;margin-top:12px;color:#a79fbf;font-size:12px}';
+    st.textContent = '.bg{position:fixed;inset:0;background:rgba(24,36,31,.45);display:flex;align-items:center;justify-content:center;font:15px/1.5 system-ui,sans-serif}' +
+      '.box{background:#f6f7f3;color:#18241f;max-width:420px;margin:16px;padding:22px;border-radius:12px;border-top:6px solid #5b3ce0;box-shadow:0 1px 2px rgba(24,36,31,.08),0 16px 40px rgba(24,36,31,.28)}' +
+      'h2{margin:0 0 8px;font-size:19px;font-weight:600;color:#18241f}ul{margin:8px 0 14px;padding-left:20px}button{display:block;width:100%;margin-top:8px;padding:11px;border-radius:10px;border:2px solid #18241f;font:600 15px system-ui,sans-serif;cursor:pointer}' +
+      '.no{background:#18241f;color:#fff}.mask{background:transparent;color:#18241f}.yes{background:transparent;color:#4a5753;border-color:transparent;text-decoration:underline}small{display:block;margin-top:12px;color:#4a5753;font-size:12px}button:focus-visible{outline:3px solid #5b3ce0;outline-offset:2px}';
     const bg = document.createElement('div'); bg.className = 'bg';
     const box = document.createElement('div'); box.className = 'box'; box.setAttribute('role', 'alertdialog'); box.setAttribute('aria-modal', 'true');
     const h = document.createElement('h2'); h.textContent = t.h; box.setAttribute('aria-label', t.h);

@@ -29,6 +29,8 @@ Open:
 2. Google Play — owner steps in `docs/google-play.md` (upload key → secrets HO_UPLOAD_*, $25, VPN declaration,
    12 testers × 14 days). Store kit for Chrome/Edge/Firefox in `docs/store-kit/`; owner submits.
    Owner 12 Nov: NO paid accounts for now (no Chrome $5, no Play $25) → only free stores (Firefox AMO, Edge).
+   1.3.0 store-ready 12 Nov: addons-linter 0 errors (1 expected warning: service_worker ignored by Firefox), gecko min 140,
+   popup/blocked/welcome/paste dialog restyled to Mindveto (bundled Atkinson font, zip ~93 KB), screenshots EN/NL/FR in store-kit.
    Chrome Web Store dashboard does not load in the built-in browser; Claude in Chrome was not connected.
 3. Android camera/mic guard + tamper notification not yet tested on a real phone.
 4. Teacher exam button is live (11 Nov): page `/human-override-class.html`, SQL `supabase-ho-exam.sql` (RPCs exam_create /

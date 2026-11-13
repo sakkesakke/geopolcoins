@@ -11,6 +11,7 @@ $FamStart = '# >>> Mindveto family filter (do not edit this block)'
 $FamEnd   = '# <<< Mindveto family filter'
 $AdultUrl = 'https://geopolcoins.xyz/human-override/adult/hosts.txt'
 $BypassUrl = 'https://geopolcoins.xyz/human-override/bypass/hosts.txt'
+$ExtraBase = 'https://geopolcoins.xyz/human-override'
 # SafeSearch: the search engines' own strict servers (official names). Their addresses are looked up when you switch it on.
 $SafeMap = [ordered]@{
   'forcesafesearch.google.com' = @('google.com','www.google.com','www.google.be','www.google.nl','www.google.fr','www.google.de','www.google.es','www.google.it','www.google.pt','www.google.co.uk','www.google.co.ma','www.google.com.br','www.google.ca')
@@ -57,6 +58,15 @@ function Get-AdultList {
 function Get-BypassList {
   try { $raw = (Invoke-WebRequest -Uri $BypassUrl -UseBasicParsing -TimeoutSec 30).Content }
   catch { $local = Join-Path $PSScriptRoot 'bypass-hosts.txt'; if (Test-Path $local) { $raw = Get-Content $local -Raw } else { return @() } }
+  $lines = $raw -split "`n" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^0\.0\.0\.0 ([a-z0-9-]{1,63}\.)+[a-z]{2,24}$' }
+  if ($lines.Count -lt 20) { return @() }
+  return $lines
+}
+
+# Optional family lists (gamble, dating): download, or use the copy in the zip
+function Get-ExtraList([string]$key) {
+  try { $raw = (Invoke-WebRequest -Uri "$ExtraBase/$key/hosts.txt" -UseBasicParsing -TimeoutSec 30).Content }
+  catch { $local = Join-Path $PSScriptRoot "$key-hosts.txt"; if (Test-Path $local) { $raw = Get-Content $local -Raw } else { return @() } }
   $lines = $raw -split "`n" | ForEach-Object { $_.Trim() } | Where-Object { $_ -match '^0\.0\.0\.0 ([a-z0-9-]{1,63}\.)+[a-z]{2,24}$' }
   if ($lines.Count -lt 20) { return @() }
   return $lines
@@ -197,7 +207,7 @@ Write-Host '  1) Block AI on this PC (or update the list)'
 Write-Host '  2) Allow AI again (remove the block)'
 Write-Host '  3) Turn off the AI built into Windows, Edge and Chrome (Copilot, Recall, Click to Do, Paint AI, Gemini)'
 Write-Host '  4) Turn that built-in AI back on (restores the settings from before)'
-Write-Host '  5) Family filter ON: block adult sites (18+), force SafeSearch, block VPN/proxy sites and secure DNS'
+Write-Host '  5) Family filter ON: block adult sites (18+), force SafeSearch, block VPN/proxy sites and secure DNS (asks about gambling and dating)'
 Write-Host '  6) Family filter OFF'
 Write-Host '  7) Quit'
 $c = Read-Host '  Choose 1, 2, 3, 4, 5, 6 or 7'
@@ -232,9 +242,12 @@ if ($c -eq '1') {
   $adult = Get-AdultList
   $safe = Get-SafeLines
   $bypass = Get-BypassList
+  $extra = @()
+  if ((Read-Host '  Also block gambling, betting and casino sites? (y/n)') -match '^[yYjJoO]') { $g = Get-ExtraList 'gamble'; $extra += $g; Write-Host ("  Gambling: {0} sites" -f ($g.Count / 2)) }
+  if ((Read-Host '  Also block dating apps and random video chat? (y/n)') -match '^[yYjJoO]') { $d = Get-ExtraList 'dating'; $extra += $d; Write-Host ("  Dating: {0} sites" -f ($d.Count / 2)) }
   Copy-Item $Hosts "$Hosts.human-override-backup" -Force
   $clean = (Remove-Block $current $FamStart $FamEnd).TrimEnd()
-  $block = @($FamStart) + $safe + $adult + $bypass + @($FamEnd)
+  $block = @($FamStart) + $safe + $adult + $bypass + $extra + @($FamEnd)
   Set-Content -Path $Hosts -Value ($clean + "`r`n`r`n" + ($block -join "`r`n") + "`r`n") -Encoding ASCII
   Set-Policies $SafePolicies 'SafeSearchBackup'
   ipconfig /flushdns | Out-Null

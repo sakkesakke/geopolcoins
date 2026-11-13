@@ -10,6 +10,7 @@ Blocks AI chatbots and AI tools in EVERY browser and app on this computer.
    Blocks about 64,000 adult sites (18+) and forces SafeSearch in Google, Bing, DuckDuckGo and YouTube.
    It also blocks about 90 VPN, proxy, Tor and secure-DNS addresses (on Linux it also switches off secure DNS in
    Chrome/Chromium). Check that the browser's own "secure DNS" is off. A VPN that is already installed may still work.
+   Also gambling and/or dating sites:  sudo sh mindveto.sh family-on gambling dating
    No filter catches everything. The adult list is built from MIT-licensed public lists: see THIRD_PARTY_NOTICES.txt.
 Run "on" again any time to update the list. A backup of your hosts file is kept as /etc/hosts.human-override-backup.
 More: https://mindveto.app/

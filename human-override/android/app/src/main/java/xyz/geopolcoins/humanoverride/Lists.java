@@ -69,6 +69,23 @@ final class Lists {
     }
     static boolean bypassOn(Context c) { return Stats.prefs(c).getBoolean("bypass", false); }
 
+    /** Family filter extras: gambling and dating lists (bundled assets gamble.txt, dating.txt), loaded on first use. */
+    private static final java.util.Map<String, Set<String>> extra = new java.util.concurrent.ConcurrentHashMap<>();
+    static Set<String> extra(Context c, String key) {
+        Set<String> e = extra.get(key);
+        if (e != null) return e;
+        synchronized (Lists.class) {
+            e = extra.get(key);
+            if (e == null) {
+                try (InputStream in = c.getAssets().open(key + ".txt")) { e = DnsLogic.parseList(read(in, 512 << 10), 20000); }
+                catch (Exception x) { e = new java.util.HashSet<>(); }
+                extra.put(key, e);
+            }
+            return e;
+        }
+    }
+    static boolean extraOn(Context c, String key) { return Stats.prefs(c).getBoolean(key, false); }
+
     /** Downloads the newest list at most every 12 hours. Returns the new list or null. */
     static Set<String> update(Context c) {
         File f = new File(c.getFilesDir(), "domains.txt");

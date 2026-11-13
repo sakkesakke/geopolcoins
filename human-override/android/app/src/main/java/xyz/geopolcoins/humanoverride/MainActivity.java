@@ -94,6 +94,8 @@ public class MainActivity extends Activity {
         fc.addView(text(getString(R.string.fam_text), 14, DIM, false));
         fc.addView(famSwitch("adult", R.string.fam_adult), lp(dp(10)));
         fc.addView(famSwitch("safe", R.string.fam_safe), lp(dp(6)));
+        fc.addView(famSwitch("gamble", R.string.fam_gamble), lp(dp(6)));
+        fc.addView(famSwitch("dating", R.string.fam_dating), lp(dp(6)));
         fc.addView(famSwitch("bypass", R.string.fam_bypass), lp(dp(6)));
 
         LinearLayout tc = card(col, getString(R.string.tamper_log_title));

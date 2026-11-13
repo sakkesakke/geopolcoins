@@ -83,6 +83,7 @@ Family filter (optional, not AI): adult-content lists in the same formats at htt
 (hosts.txt, domains.txt, adblock.txt; MIT-licensed sources, see NOTICE.txt there). SafeSearch on a DNS server:
 answer google.com/www.google.<tld> with CNAME forcesafesearch.google.com, www.bing.com with strict.bing.com,
 duckduckgo.com with safe.duckduckgo.com and www.youtube.com/m.youtube.com/youtubei.googleapis.com with restrict.youtube.com.
+Gambling and dating (optional): https://geopolcoins.xyz/human-override/gamble/ and .../dating/ (same formats).
 Anti-bypass (optional): web proxies, VPN services, Tor and secure-DNS (DoH/DoT) addresses at
 https://geopolcoins.xyz/human-override/bypass/ (same formats). Also block outgoing port 853 (DoT) and set the browser
 policy DnsOverHttpsMode = off (Chrome/Edge) or DNSOverHTTPS Enabled=false (Firefox).
@@ -135,16 +136,44 @@ json.dump(brules, open(os.path.join(D, 'extension', 'rules_bypass.json'), 'w'), 
 open(os.path.join(aa, 'bypass.txt'), 'w').write('\n'.join(bypass) + '\n')
 print('bypass domains', len(bypass))
 
+# ---------- family filter: gambling + dating (optional, OFF by default) ----------
+# gamble/gamble.txt is built by tools/build_ho_gamble.py (MIT list + own additions); dating/source.txt is hand-curated.
+EXTRA = {'gamble': ('gamble.txt', 'Mindveto family filter: gambling, betting and casino sites (https://mindveto.app/)',
+                    'Optional list. Sinfonietta/hostfiles gambling-hosts (MIT, (c) 2016 Sinfonietta) + own additions.'),
+         'dating': ('source.txt', 'Mindveto family filter: dating apps and random video chat (https://mindveto.app/)',
+                    'Optional list, hand-curated by Mindveto. (c) 2026 Amghar Said, free to use in your own filter.')}
+NEVER_X = {'google.com', 'youtube.com', 'facebook.com', 'instagram.com', 'snapchat.com', 'apple.com', 'microsoft.com', 'paypal.com'}
+for key, (src, title, note) in EXTRA.items():
+    X = os.path.join(D, key)
+    xs = sorted({l.strip() for l in open(os.path.join(X, src)) if l.strip() and not l.startswith('#') and DOM.match(l.strip())})
+    assert not (set(xs) & NEVER_X), set(xs) & NEVER_X
+    xhead = [title, f'Updated: {today}  Domains: {len(xs)}', note]
+    open(os.path.join(X, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in xhead) + '\n' + '\n'.join(xs) + '\n')
+    open(os.path.join(X, 'hosts.txt'), 'w').write('\n'.join('# ' + h for h in xhead) + '\n' + '\n'.join(f'0.0.0.0 {d}\n0.0.0.0 www.{d}' for d in xs) + '\n')
+    open(os.path.join(X, 'adblock.txt'), 'w').write(f'! Title: {title}\n' + '\n'.join('! ' + h for h in xhead) + '\n' + '\n'.join(f'||{d}^' for d in xs) + '\n')
+    xrules = [{'id': 1, 'priority': 1, 'action': {'type': 'redirect', 'redirect': {'extensionPath': f'/blocked.html?f={key}'}},
+               'condition': {'requestDomains': xs, 'resourceTypes': ['main_frame']}},
+              {'id': 2, 'priority': 1, 'action': {'type': 'block'},
+               'condition': {'requestDomains': xs, 'resourceTypes': ['sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other']}}]
+    json.dump(xrules, open(os.path.join(D, 'extension', f'rules_{key}.json'), 'w'), separators=(',', ':'))
+    open(os.path.join(aa, f'{key}.txt'), 'w').write('\n'.join(xs) + '\n')
+    print(key, 'domains', len(xs))
+# one notices file for everything we ship from third-party lists
+notice = open(os.path.join(A, 'NOTICE.txt')).read().rstrip('\n') + (
+    '\n\nThe gambling list uses Sinfonietta/hostfiles gambling-hosts (MIT License, (c) 2016 Sinfonietta), same license text as above.\n')
+for dst in (os.path.join(D, 'extension', 'THIRD_PARTY_NOTICES.txt'), os.path.join(aa, 'THIRD_PARTY_NOTICES.txt'), os.path.join(D, 'gamble', 'NOTICE.txt')):
+    open(dst, 'w').write(notice)
+
 # ---------- download zips (kept in sync with the lists) ----------
 import zipfile
 def mkzip(name, files):
     with zipfile.ZipFile(os.path.join(D, name), 'w', zipfile.ZIP_DEFLATED) as z:
         for arc, src in files: z.write(src, arc)
 lic = os.path.join(D, 'extension', 'LICENSE.txt'); pc = os.path.join(D, 'pc'); hosts = os.path.join(D, 'hosts.txt')
-ah = os.path.join(A, 'hosts.txt'); an = os.path.join(A, 'NOTICE.txt')
+ah = os.path.join(A, 'hosts.txt'); an = os.path.join(D, 'extension', 'THIRD_PARTY_NOTICES.txt')
 mkzip('human-override-windows.zip', [('Start-Mindveto.bat', os.path.join(pc, 'Start-Mindveto.bat')), ('Mindveto.ps1', os.path.join(pc, 'Mindveto.ps1')),
-      ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('bypass-hosts.txt', os.path.join(B, 'hosts.txt')), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic), ('README-WINDOWS.txt', os.path.join(pc, 'README-WINDOWS.txt'))])
-mkzip('human-override-mac-linux.zip', [('mindveto.sh', os.path.join(pc, 'mindveto.sh')), ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('bypass-hosts.txt', os.path.join(B, 'hosts.txt')), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic),
+      ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('bypass-hosts.txt', os.path.join(B, 'hosts.txt')), ('gamble-hosts.txt', os.path.join(D, 'gamble', 'hosts.txt')), ('dating-hosts.txt', os.path.join(D, 'dating', 'hosts.txt')), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic), ('README-WINDOWS.txt', os.path.join(pc, 'README-WINDOWS.txt'))])
+mkzip('human-override-mac-linux.zip', [('mindveto.sh', os.path.join(pc, 'mindveto.sh')), ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('bypass-hosts.txt', os.path.join(B, 'hosts.txt')), ('gamble-hosts.txt', os.path.join(D, 'gamble', 'hosts.txt')), ('dating-hosts.txt', os.path.join(D, 'dating', 'hosts.txt')), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic),
       ('README-MAC-LINUX.txt', os.path.join(pc, 'README-MAC-LINUX.txt'))])
 mkzip('human-override-pro-pack.zip', [(f, os.path.join(P, f)) for f in sorted(os.listdir(P)) if f != 'LICENSE.txt'] + [('LICENSE.txt', lic)])
 print('zips ok')

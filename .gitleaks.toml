@@ -9,5 +9,7 @@ regexes = ['''sb_publishable_[A-Za-z0-9_-]+''']
 paths = [
   '''^human-override/extension/rules_adult\.json$''',
   '''^human-override/adult/(adult|domains|hosts|adblock)\.txt$''',
-  '''^human-override/android/app/src/main/assets/adult\.txt$''',
+  '''^human-override/android/app/src/main/assets/(adult|gamble|dating|bypass)\.txt$''',
+  '''^human-override/(gamble|dating|bypass)/(gamble|domains|hosts|adblock|source|own)\.txt$''',
+  '''^human-override/extension/rules_(gamble|dating|bypass)\.json$''',
 ]

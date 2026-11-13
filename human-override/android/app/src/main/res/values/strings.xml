@@ -68,6 +68,8 @@
     <string name="fam_text">Also block adult sites (18+) and force SafeSearch in Google, Bing, DuckDuckGo and YouTube. Works in every app while Mindveto is on. No filter catches everything: images can still appear in apps, chats or social media.</string>
     <string name="fam_adult">Block adult sites (18+)</string>
     <string name="fam_safe">Force SafeSearch</string>
+    <string name="fam_gamble">Block gambling, betting and casino sites</string>
+    <string name="fam_dating">Block dating apps and random video chat</string>
     <string name="fam_bypass">Block VPN, proxy and secure-DNS services</string>
     <string name="tamper_famon">Family filter switched on</string>
     <string name="tamper_famoff">Family filter switched off</string>

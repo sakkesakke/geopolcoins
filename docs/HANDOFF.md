@@ -22,6 +22,8 @@ bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholid
 BE German community has no data yet); lists in `extension/lists.json`),
 Android (`android/`: tamper alerts, target SDK 36, CI builds APK + .aab), Windows `pc/Mindveto.ps1`,
 Mac/Linux `pc/mindveto.sh`. Promo video live: https://youtu.be/c-_Isw8tUY8 (10 Nov).
+Mindveto videos 13 Nov (not uploaded anywhere yet): promo 52 s + "in action" 57 s with Kokoro TTS voice (af_heart, Apache-2.0,
+model from GitHub thewh1teagle/kokoro-onnx), HTML scenes rendered with Playwright + ffmpeg. Owner: keep ENGLISH only (French voice rejected).
 Anonymous counter (site_views): `ho` = page visits; `ho_ext/ho_android/ho_win/ho_mac/ho_pro` = download clicks.
 
 Open:

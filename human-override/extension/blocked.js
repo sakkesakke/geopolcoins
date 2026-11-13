@@ -1,8 +1,12 @@
 /* Mindveto - Copyright (c) 2026 Amghar Said. All rights reserved. See LICENSE.txt. */
 const api = globalThis.browser || globalThis.chrome;
 const L = (navigator.language || 'en').slice(0, 2);
-const FAM = new URLSearchParams(location.search).get('f') === 'adult';   // blocked by the family filter, not as AI
-const T = (FAM ? { en: ['This site is <em>blocked</em> here.', 'The Mindveto family filter blocks adult sites on this browser.', ''],
+const F = new URLSearchParams(location.search).get('f');
+const FAM = F === 'adult' || F === 'bypass';   // blocked by the family filter, not as AI
+const T = (F === 'bypass' ? { en: ['This site is <em>blocked</em> here.', 'The Mindveto family filter blocks VPN, proxy and secure-DNS sites on this browser, so the filter cannot be skipped.', ''],
+  nl: ['Deze site is hier <em>geblokkeerd</em>.', 'De Mindveto-gezinsfilter blokkeert VPN-, proxy- en secure-DNS-sites in deze browser, zodat de filter niet omzeild kan worden.', ''],
+  fr: ['Ce site est <em>bloqué</em> ici.', 'Le filtre familial Mindveto bloque les sites de VPN, de proxy et de DNS sécurisé sur ce navigateur, pour que le filtre ne puisse pas être contourné.', ''] }
+  : FAM ? { en: ['This site is <em>blocked</em> here.', 'The Mindveto family filter blocks adult sites on this browser.', ''],
   nl: ['Deze site is hier <em>geblokkeerd</em>.', 'De Mindveto-gezinsfilter blokkeert sites voor volwassenen in deze browser.', ''],
   fr: ['Ce site est <em>bloqué</em> ici.', 'Le filtre familial Mindveto bloque les sites pour adultes sur ce navigateur.', ''] }
   : { en: ['A human said <em>no AI</em> here.', 'Mindveto blocked {s} on this browser.', 'AI attempts blocked today: {n}'],
@@ -10,7 +14,7 @@ const T = (FAM ? { en: ['This site is <em>blocked</em> here.', 'The Mindveto fam
   fr: ['Un humain a dit <em>pas d’IA</em> ici.', 'Mindveto a bloqué {s} sur ce navigateur.', 'Tentatives d’IA bloquées aujourd’hui : {n}'] })[L] || null;
 let host = 'this AI service';
 try { host = new URL(decodeURIComponent(location.hash.slice(1))).hostname || host; } catch (e) {}
-const t = T || (FAM ? ['This site is <em>blocked</em> here.', 'The Mindveto family filter blocks adult sites on this browser.', ''] : ['A human said <em>no AI</em> here.', 'Mindveto blocked {s} on this browser.', 'AI attempts blocked today: {n}']);
+const t = T || (F === 'bypass' ? ['This site is <em>blocked</em> here.', 'The Mindveto family filter blocks VPN, proxy and secure-DNS sites on this browser, so the filter cannot be skipped.', ''] : FAM ? ['This site is <em>blocked</em> here.', 'The Mindveto family filter blocks adult sites on this browser.', ''] : ['A human said <em>no AI</em> here.', 'Mindveto blocked {s} on this browser.', 'AI attempts blocked today: {n}']);
 const h = document.getElementById('h'); h.textContent = '';
 t[0].split(/<em>|<\/em>/).forEach((part, i) => { if (i % 2) { const e = document.createElement('em'); e.textContent = part; h.appendChild(e); } else h.appendChild(document.createTextNode(part)); });
 const p = document.getElementById('p');

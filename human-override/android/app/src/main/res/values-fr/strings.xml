@@ -68,6 +68,7 @@
     <string name="fam_text">Bloquez aussi les sites pour adultes (18+) et forcez la recherche sécurisée dans Google, Bing, DuckDuckGo et YouTube. Fonctionne dans toutes les applis tant que Mindveto est activé. Aucun filtre ne bloque tout : des images peuvent encore apparaître dans des applis, chats ou réseaux sociaux.</string>
     <string name="fam_adult">Bloquer les sites pour adultes (18+)</string>
     <string name="fam_safe">Forcer la recherche sécurisée</string>
+    <string name="fam_bypass">Bloquer les services de VPN, proxy et DNS sécurisé</string>
     <string name="tamper_famon">Filtre familial activé</string>
     <string name="tamper_famoff">Filtre familial désactivé</string>
 </resources>

@@ -2,7 +2,7 @@ HUMAN OVERRIDE PRO PACK - the AI kill switch for organisations
 (c) 2026 Amghar Said. All rights reserved. Mindveto - the AI kill switch (formerly Human Override). https://mindveto.app/
 
 For IT departments of courts, police, government, schools and companies that must keep AI chatbots and AI tools
-off their network and devices. Domains: 161. Updated: 2026-11-12. Fresh copies: https://geopolcoins.xyz/human-override/pro/
+off their network and devices. Domains: 161. Updated: 2026-11-13. Fresh copies: https://geopolcoins.xyz/human-override/pro/
 
 Pick what fits your network (you can combine them):
 
@@ -28,6 +28,9 @@ Family filter (optional, not AI): adult-content lists in the same formats at htt
 (hosts.txt, domains.txt, adblock.txt; MIT-licensed sources, see NOTICE.txt there). SafeSearch on a DNS server:
 answer google.com/www.google.<tld> with CNAME forcesafesearch.google.com, www.bing.com with strict.bing.com,
 duckduckgo.com with safe.duckduckgo.com and www.youtube.com/m.youtube.com/youtubei.googleapis.com with restrict.youtube.com.
+Anti-bypass (optional): web proxies, VPN services, Tor and secure-DNS (DoH/DoT) addresses at
+https://geopolcoins.xyz/human-override/bypass/ (same formats). Also block outgoing port 853 (DoT) and set the browser
+policy DnsOverHttpsMode = off (Chrome/Edge) or DNSOverHTTPS Enabled=false (Firefox).
 
 Terms of use (provided "as is", limits of liability): https://mindveto.app/terms/
 Help with roll-out: hello@mindveto.app · https://mindveto.app/network/

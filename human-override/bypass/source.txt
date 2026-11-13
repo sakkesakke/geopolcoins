@@ -1,0 +1,97 @@
+# Mindveto anti-bypass list (hand-curated by Mindveto, (c) 2026 Amghar Said)
+# Optional, OFF by default. Web proxies, VPN services and secure-DNS (DoH/DoT) addresses
+# that let someone skip a DNS, hosts or browser block. One domain per line; subdomains are covered.
+# Never add: shared clouds (cloudflare.com, amazonaws.com), mail (proton.me), or DNS filters our guides use (adguard-dns.com).
+
+## web proxies
+croxyproxy.com
+croxyproxy.net
+croxyproxy.rocks
+croxy.org
+croxy.network
+proxysite.com
+kproxy.com
+hidester.com
+proxyium.com
+4everproxy.com
+proxfree.com
+blockaway.net
+filterbypass.me
+unblock-websites.com
+hidemy.name
+hidemy.io
+genmirror.com
+proxyscrape.com
+whoer.net
+proxy-free.com
+megaproxy.com
+hide.me
+hidemyass.com
+anonymouse.org
+vpnbook.com
+## VPN services
+nordvpn.com
+nordcdn.com
+expressvpn.com
+protonvpn.com
+protonvpn.ch
+surfshark.com
+cyberghostvpn.com
+privateinternetaccess.com
+hotspotshield.com
+tunnelbear.com
+windscribe.com
+vyprvpn.com
+ipvanish.com
+purevpn.com
+atlasvpn.com
+mullvad.net
+urban-vpn.com
+betternet.co
+psiphon.ca
+psiphon3.com
+getlantern.org
+hola.org
+zenmate.com
+setupvpn.com
+browsec.com
+touchvpn.net
+hoxx.com
+xvpn.io
+privadovpn.com
+astrill.com
+strongvpn.com
+torguard.net
+airvpn.org
+ivpn.net
+ultrasurf.us
+planetfreevpn.com
+vpnly.com
+thunder-vpn.com
+turbovpn.com
+supervpn.net
+veepn.com
+1clickvpn.com
+## Tor
+torproject.org
+## secure DNS (DoH / DoT) that skips the local filter
+use-application-dns.net
+dns.google
+dns64.dns.google
+cloudflare-dns.com
+one.one.one.one
+dns.quad9.net
+dns9.quad9.net
+dns10.quad9.net
+dns11.quad9.net
+doh.opendns.com
+dns.nextdns.io
+dns.mullvad.net
+doh.mullvad.net
+doh.dns.sb
+dns.controld.com
+freedns.controld.com
+doh.cleanbrowsing.org
+dns.alidns.com
+doh.pub
+dns.twnic.tw

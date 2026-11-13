@@ -1,6 +1,6 @@
 # Mindveto — store kit (extension 1.2.0)
 
-Upload file: `human-override/human-override-1.4.0.zip` (1.3.0 was submitted to Firefox AMO on 12 Nov; 1.4.0 adds the family filter and is NOT submitted yet) (built by `python3 tools/build_ho_lists.py`).
+Upload file: `human-override/human-override-1.5.0.zip` (1.3.0 was submitted to Firefox AMO on 12 Nov; 1.5.0 adds the family filter + anti-bypass and is NOT submitted yet) (built by `python3 tools/build_ho_lists.py`).
 Pictures: `docs/store-kit/screenshots/` (1280×800 screenshots + 440×280 promo tile). Icon: `human-override/extension/icons/128.png`.
 Privacy policy URL: https://geopolcoins.xyz/privacy.html · Homepage: https://mindveto.app/
 Support: https://mindveto.app/ · Category: Productivity (Chrome/Edge), Privacy & Security (Firefox).

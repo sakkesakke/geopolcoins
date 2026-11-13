@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mindveto: the AI kill switch",
   "short_name": "Mindveto",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "The AI kill switch. One switch blocks 150+ AI chatbots and AI tools. Optional family filter: adult sites and SafeSearch. PIN lock. Free, no tracking.",
   "homepage_url": "https://mindveto.app/",
   "icons": {
@@ -193,6 +193,11 @@
         "id": "adult",
         "enabled": false,
         "path": "rules_adult.json"
+      },
+      {
+        "id": "bypass",
+        "enabled": false,
+        "path": "rules_bypass.json"
       }
     ]
   }

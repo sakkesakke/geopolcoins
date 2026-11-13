@@ -4,7 +4,7 @@
 # Blocks AI services for every browser and app on this computer via /etc/hosts.
 #   sudo sh mindveto.sh on     block AI (or update the list)
 #   sudo sh mindveto.sh off    allow AI again
-#   sudo sh mindveto.sh family-on    family filter: block adult sites (18+) and force SafeSearch
+#   sudo sh mindveto.sh family-on    family filter: block adult sites (18+), force SafeSearch, block VPN/proxy/secure-DNS
 #   sudo sh mindveto.sh family-off   switch the family filter off
 set -eu
 HOSTS=/etc/hosts
@@ -14,6 +14,8 @@ URL='https://geopolcoins.xyz/human-override/hosts.txt'
 FSTART='# >>> Mindveto family filter (do not edit this block)'
 FEND='# <<< Mindveto family filter'
 AURL='https://geopolcoins.xyz/human-override/adult/hosts.txt'
+BURL='https://geopolcoins.xyz/human-override/bypass/hosts.txt'
+POL='{"DnsOverHttpsMode":"off","ForceGoogleSafeSearch":true,"ForceYouTubeRestrict":2}'
 [ "$(id -u)" -eq 0 ] || { echo "Run with sudo:  sudo sh $0 on"; exit 1; }
 strip() { awk -v s="${1:-$START}" -v e="${2:-$END}" '$0==s{skip=1;next} $0==e{skip=0;next} !skip' "$HOSTS"; }
 # address of a search engine's official strict server (looked up now, so it stays correct)
@@ -28,6 +30,8 @@ safe_lines() {
   done
   true
 }
+# Linux Chrome/Chromium: our own policy file (secure DNS off + SafeSearch), removed again by family-off
+pol_dirs() { for d in /etc/opt/chrome /etc/chromium /etc/opt/chrome_for_testing; do [ -d "$d" ] && echo "$d/policies/managed"; done; true; }
 flush() { (dscacheutil -flushcache 2>/dev/null; killall -HUP mDNSResponder 2>/dev/null; resolvectl flush-caches 2>/dev/null) || true; }
 case "${1:-on}" in
   on)
@@ -61,13 +65,22 @@ case "${1:-on}" in
     N=$(printf '%s\n' "$LINES" | grep -c . || true)
     [ "$N" -ge 1000 ] || { echo "The family filter list looks wrong. Nothing changed."; rm -f "$TMP"; exit 1; }
     SAFE=$(safe_lines)
+    if ! curl -fsSL --max-time 20 "$BURL" -o "$TMP.b" 2>/dev/null; then
+      if [ -f "$(dirname "$0")/bypass-hosts.txt" ]; then cp "$(dirname "$0")/bypass-hosts.txt" "$TMP.b"; else : > "$TMP.b"; fi
+    fi
+    BL=$(grep -E '^0\.0\.0\.0 ([a-z0-9-]{1,63}\.)+[a-z]{2,24}$' "$TMP.b" || true)
+    BN=$(printf '%s\n' "$BL" | grep -c . || true)
+    if [ "$BN" -lt 20 ]; then BL=''; BN=0; fi
     cp "$HOSTS" "$HOSTS.human-override-backup"
-    { strip "$FSTART" "$FEND"; echo "$FSTART"; if [ -n "$SAFE" ]; then printf '%s\n' "$SAFE"; fi; printf '%s\n' "$LINES"; echo "$FEND"; } > "$TMP.new"
-    cat "$TMP.new" > "$HOSTS"; rm -f "$TMP" "$TMP.new"; flush
+    { strip "$FSTART" "$FEND"; echo "$FSTART"; if [ -n "$SAFE" ]; then printf '%s\n' "$SAFE"; fi; printf '%s\n' "$LINES"; if [ -n "$BL" ]; then printf '%s\n' "$BL"; fi; echo "$FEND"; } > "$TMP.new"
+    cat "$TMP.new" > "$HOSTS"; rm -f "$TMP" "$TMP.new" "$TMP.b"; flush
+    for d in $(pol_dirs); do mkdir -p "$d" && printf '%s\n' "$POL" > "$d/mindveto-family.json"; done
     echo "Done: $N adult addresses blocked. Restart your browser."
+    echo "Anti-bypass: $((BN / 2)) VPN, proxy and secure-DNS addresses blocked." 
     if [ -n "$SAFE" ]; then echo "SafeSearch is forced for Google, Bing, DuckDuckGo and YouTube."; else echo "SafeSearch could not be set (no internet?). Run family-on again later."; fi ;;
   family-off)
     TMP=$(mktemp); strip "$FSTART" "$FEND" > "$TMP"; cat "$TMP" > "$HOSTS"; rm -f "$TMP"; flush
+    for d in $(pol_dirs); do rm -f "$d/mindveto-family.json"; done
     echo "Family filter switched off." ;;
   *) echo "Use: sudo sh $0 on|off|family-on|family-off"; exit 1 ;;
 esac

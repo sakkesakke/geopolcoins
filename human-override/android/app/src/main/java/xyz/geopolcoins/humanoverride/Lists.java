@@ -54,6 +54,21 @@ final class Lists {
     static boolean adultOn(Context c) { return Stats.prefs(c).getBoolean("adult", false); }
     static boolean safeOn(Context c) { return Stats.prefs(c).getBoolean("safe", false); }
 
+    /** Anti-bypass: web proxies, VPN services, Tor and secure-DNS names (bundled, about 90 domains). */
+    private static volatile Set<String> bypass;
+    static Set<String> bypass(Context c) {
+        Set<String> b = bypass;
+        if (b != null) return b;
+        synchronized (Lists.class) {
+            if (bypass == null) {
+                try (InputStream in = c.getAssets().open("bypass.txt")) { bypass = DnsLogic.parseList(read(in, 64 << 10), 5000); }
+                catch (Exception e) { bypass = new java.util.HashSet<>(); }
+            }
+            return bypass;
+        }
+    }
+    static boolean bypassOn(Context c) { return Stats.prefs(c).getBoolean("bypass", false); }
+
     /** Downloads the newest list at most every 12 hours. Returns the new list or null. */
     static Set<String> update(Context c) {
         File f = new File(c.getFilesDir(), "domains.txt");

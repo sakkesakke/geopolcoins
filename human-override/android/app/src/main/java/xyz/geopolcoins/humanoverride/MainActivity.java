@@ -89,11 +89,12 @@ public class MainActivity extends Activity {
         });
         gc.addView(gs, lp(dp(10)));
 
-        // Family filter (not AI): adult sites and SafeSearch, off by default; switching off needs the PIN
+        // Family filter (not AI): adult sites, SafeSearch and anti-bypass, off by default; switching off needs the PIN
         LinearLayout fc = card(col, getString(R.string.fam_title));
         fc.addView(text(getString(R.string.fam_text), 14, DIM, false));
         fc.addView(famSwitch("adult", R.string.fam_adult), lp(dp(10)));
         fc.addView(famSwitch("safe", R.string.fam_safe), lp(dp(6)));
+        fc.addView(famSwitch("bypass", R.string.fam_bypass), lp(dp(6)));
 
         LinearLayout tc = card(col, getString(R.string.tamper_log_title));
         tc.addView(text(getString(R.string.tamper_log_text), 13, DIM, false));

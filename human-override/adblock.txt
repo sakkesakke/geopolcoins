@@ -1,6 +1,6 @@
 ! Title: Mindveto AI block list
 ! Mindveto AI block list (https://mindveto.app/)
-! Updated: 2026-11-12  Domains: 161
+! Updated: 2026-11-13  Domains: 161
 ! Free to use. Blocks AI chatbots, AI search, AI image/video/voice/music, AI writing/homework and AI coding services.
 ||aistudio-google-com.translate.goog^
 ||aistudio.google.com^

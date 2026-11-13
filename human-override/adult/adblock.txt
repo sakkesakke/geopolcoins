@@ -1,6 +1,6 @@
 ! Title: Mindveto family filter (adult content)
 ! Mindveto family filter: adult content (https://mindveto.app/)
-! Updated: 2026-11-12  Domains: 63822
+! Updated: 2026-11-13  Domains: 63822
 ! Optional list. Built from MIT-licensed public lists, see https://geopolcoins.xyz/human-override/adult/NOTICE.txt
 ||0.xd-cdn.com^
 ||0.xxx-cdn.com^

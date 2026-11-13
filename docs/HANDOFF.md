@@ -7,7 +7,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-12d`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-13a`).
 - Legal: `python3 tools/build_legal.py "" "" "hello@geopolcoins.xyz"` (owner OK 11 Nov; never his private
   address), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
@@ -16,7 +16,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Human Override (main product, © 2026 Amghar Said; birthplace never published)
 Page `/human-override.html`, terms `/human-override-terms.html`. Code in `human-override/`:
-extension 1.4.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
+extension 1.5.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
 class + exam mode, tamper log, PIN, schedule + school holidays (skip/only, 8 regions BE/NL/FR, dates ONLY from the
 bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholidaysapi.data>`, ODbL, refresh yearly;
 BE German community has no data yet); lists in `extension/lists.json`),
@@ -45,8 +45,10 @@ Open:
    `python3 -m http.server 8765` in the repo root).
    Family filter = round 1 DONE 12 Nov (1.4.0, free, opt-in, NOT in any store yet: owner decides): adult sites (63.8k domains,
    MIT lists only, `tools/build_ho_adult.py` + NOTICE) + SafeSearch (Google/Bing/DDG/YouTube) in extension, Android, Windows (menu 5/6,
-   browser policies with backup), Mac/Linux (`family-on/off`). Test `test/e2e/family_filter.py`. Next: round 2 anti-bypass (VPN/proxy),
-   round 3 gambling + dating (Plus).
+   browser policies with backup), Mac/Linux (`family-on/off`). Test `test/e2e/family_filter.py`.
+   Round 2 anti-bypass DONE 13 Nov (1.5.0, not in stores): hand-curated `bypass/source.txt` (88 proxy/VPN/Tor/DoH names,
+   own list, no GPL), extension switch, Android switch, PC family-on adds it + DoH off (Chrome/Edge/Firefox policies).
+   Next: round 3 gambling + dating (Plus).
    Next features: IT dashboard / central management, AI Act/GDPR report, Human Override Box.
    Never: antivirus, own VPN, through-wall Wi-Fi surveillance.
 

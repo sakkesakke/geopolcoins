@@ -83,6 +83,9 @@ Family filter (optional, not AI): adult-content lists in the same formats at htt
 (hosts.txt, domains.txt, adblock.txt; MIT-licensed sources, see NOTICE.txt there). SafeSearch on a DNS server:
 answer google.com/www.google.<tld> with CNAME forcesafesearch.google.com, www.bing.com with strict.bing.com,
 duckduckgo.com with safe.duckduckgo.com and www.youtube.com/m.youtube.com/youtubei.googleapis.com with restrict.youtube.com.
+Anti-bypass (optional): web proxies, VPN services, Tor and secure-DNS (DoH/DoT) addresses at
+https://geopolcoins.xyz/human-override/bypass/ (same formats). Also block outgoing port 853 (DoT) and set the browser
+policy DnsOverHttpsMode = off (Chrome/Edge) or DNSOverHTTPS Enabled=false (Firefox).
 
 Terms of use (provided "as is", limits of liability): https://mindveto.app/terms/
 Help with roll-out: hello@mindveto.app · https://mindveto.app/network/
@@ -114,6 +117,24 @@ open(os.path.join(aa, 'adult.txt'), 'w').write('\n'.join(adult) + '\n')
 shutil.copyfile(os.path.join(A, 'NOTICE.txt'), os.path.join(aa, 'THIRD_PARTY_NOTICES.txt'))
 print('adult domains', len(adult), 'extension rules', len(arules))
 
+# ---------- family filter: anti-bypass (optional, OFF by default; hand-curated human-override/bypass/source.txt) ----------
+B = os.path.join(D, 'bypass')
+bypass = sorted({l.strip() for l in open(os.path.join(B, 'source.txt')) if l.strip() and not l.startswith('#') and DOM.match(l.strip())})
+NEVER_B = {'cloudflare.com', 'amazonaws.com', 'proton.me', 'google.com', 'adguard-dns.com', 'microsoft.com', 'apple.com'}
+assert not (set(bypass) & NEVER_B), set(bypass) & NEVER_B
+bhead = ['Mindveto anti-bypass list: web proxies, VPN services, Tor and secure-DNS addresses (https://mindveto.app/)',
+         f'Updated: {today}  Domains: {len(bypass)}', 'Optional list, hand-curated by Mindveto. (c) 2026 Amghar Said, free to use in your own filter.']
+open(os.path.join(B, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in bhead) + '\n' + '\n'.join(bypass) + '\n')
+open(os.path.join(B, 'hosts.txt'), 'w').write('\n'.join('# ' + h for h in bhead) + '\n' + '\n'.join(f'0.0.0.0 {d}\n0.0.0.0 www.{d}' for d in bypass) + '\n')
+open(os.path.join(B, 'adblock.txt'), 'w').write('! Title: Mindveto anti-bypass\n' + '\n'.join('! ' + h for h in bhead) + '\n' + '\n'.join(f'||{d}^' for d in bypass) + '\n')
+brules = [{'id': 1, 'priority': 1, 'action': {'type': 'redirect', 'redirect': {'extensionPath': '/blocked.html?f=bypass'}},
+           'condition': {'requestDomains': bypass, 'resourceTypes': ['main_frame']}},
+          {'id': 2, 'priority': 1, 'action': {'type': 'block'},
+           'condition': {'requestDomains': bypass, 'resourceTypes': ['sub_frame', 'script', 'xmlhttprequest', 'websocket', 'image', 'media', 'other']}}]
+json.dump(brules, open(os.path.join(D, 'extension', 'rules_bypass.json'), 'w'), separators=(',', ':'))
+open(os.path.join(aa, 'bypass.txt'), 'w').write('\n'.join(bypass) + '\n')
+print('bypass domains', len(bypass))
+
 # ---------- download zips (kept in sync with the lists) ----------
 import zipfile
 def mkzip(name, files):
@@ -122,8 +143,8 @@ def mkzip(name, files):
 lic = os.path.join(D, 'extension', 'LICENSE.txt'); pc = os.path.join(D, 'pc'); hosts = os.path.join(D, 'hosts.txt')
 ah = os.path.join(A, 'hosts.txt'); an = os.path.join(A, 'NOTICE.txt')
 mkzip('human-override-windows.zip', [('Start-Mindveto.bat', os.path.join(pc, 'Start-Mindveto.bat')), ('Mindveto.ps1', os.path.join(pc, 'Mindveto.ps1')),
-      ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic), ('README-WINDOWS.txt', os.path.join(pc, 'README-WINDOWS.txt'))])
-mkzip('human-override-mac-linux.zip', [('mindveto.sh', os.path.join(pc, 'mindveto.sh')), ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic),
+      ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('bypass-hosts.txt', os.path.join(B, 'hosts.txt')), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic), ('README-WINDOWS.txt', os.path.join(pc, 'README-WINDOWS.txt'))])
+mkzip('human-override-mac-linux.zip', [('mindveto.sh', os.path.join(pc, 'mindveto.sh')), ('hosts.txt', hosts), ('adult-hosts.txt', ah), ('bypass-hosts.txt', os.path.join(B, 'hosts.txt')), ('THIRD_PARTY_NOTICES.txt', an), ('LICENSE.txt', lic),
       ('README-MAC-LINUX.txt', os.path.join(pc, 'README-MAC-LINUX.txt'))])
 mkzip('human-override-pro-pack.zip', [(f, os.path.join(P, f)) for f in sorted(os.listdir(P)) if f != 'LICENSE.txt'] + [('LICENSE.txt', lic)])
 print('zips ok')

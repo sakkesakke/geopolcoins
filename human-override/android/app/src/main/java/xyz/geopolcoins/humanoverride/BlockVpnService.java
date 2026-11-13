@@ -100,7 +100,8 @@ public class BlockVpnService extends VpnService implements Runnable {
                 if (name != null && DnsLogic.blocked(name, list)) {
                     write(DnsLogic.udpReply(pkt, DnsLogic.nxdomain(pkt, off, n)));
                     Stats.inc(this);
-                } else if (name != null && Lists.adultOn(this) && DnsLogic.blocked(name, Lists.adult(this))) {
+                } else if (name != null && ((Lists.adultOn(this) && DnsLogic.blocked(name, Lists.adult(this)))
+                        || (Lists.bypassOn(this) && DnsLogic.blocked(name, Lists.bypass(this))))) {
                     write(DnsLogic.udpReply(pkt, DnsLogic.nxdomain(pkt, off, n)));   // family filter: not counted as an AI lookup
                 } else if (pool != null && !pool.isShutdown()) {
                     final String safe = Lists.safeOn(this) ? DnsLogic.safeTarget(name) : null;

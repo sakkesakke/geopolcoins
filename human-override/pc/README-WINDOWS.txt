@@ -23,6 +23,8 @@ Edge and Chrome then show "Managed by your organisation": that is normal, it mea
 Option 4 puts back exactly the settings that were there before.
 FAMILY FILTER (option 5, not AI): blocks about 64,000 adult sites (18+) and forces SafeSearch in Google, Bing,
 DuckDuckGo and YouTube (Chrome and Edge with official policies, other browsers through the hosts file).
+It also blocks about 90 VPN, proxy, Tor and secure-DNS addresses and switches off "secure DNS" in Chrome, Edge and
+Firefox, so the filter cannot simply be skipped. A VPN that is already installed may still work: use a normal account.
 Option 6 switches it off and restores the earlier browser settings. The adult list is large: if opening websites
 becomes slow on an older PC, switch it off and use the Mindveto browser extension instead.
 No filter catches everything: images can still appear in apps, chats or social media.

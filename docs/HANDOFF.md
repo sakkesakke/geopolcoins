@@ -34,6 +34,8 @@ Open:
    Chrome Web Store dashboard does not load in the built-in browser; Claude in Chrome was not connected.
    Firefox AMO: SUBMITTED 12 Nov 17:35 ("Mindveto", slug mindveto-the-ai-kill-switch, Privacy & Security, All Rights
    Reserved), 3 EN screenshots + captions + icon saved; review pending (mail to hello@mindveto.app).
+   Firefox AMO 1.6.0 SUBMITTED 13 Nov 07:30 (owner OK; owner picked the zip, AMO CSP blocks scripted upload), release +
+   reviewer notes from docs/store-kit, source code = No (rules_*.json are domain lists), listing got a family-filter bullet.
    Edge: Partner Center login works, enrollment form half filled (Belgium + Individual, Mindveto, hello@, site) but NOT
    submitted: Microsoft shows the contact address publicly → owner chose to wait for a business address.
    Office pack done 12 Nov: demo videos + AI policy template live; 3 outreach drafts (NL/FR/EN, no recipients) in

@@ -49,3 +49,17 @@ Edge: same answers as Chrome.
 1. Click the toolbar icon: the big switch shows "AI BLOCKED". Open https://chatgpt.com: the Mindveto page appears.
 2. Tap the switch to "AI ALLOWED", open chatgpt.com and paste `IBAN BE71 0961 2345 6769`: the paste guard asks first.
 3. Set PIN 1234, enter a wrong PIN and try a change: it is refused and the tamper log shows "Wrong PIN tried".
+4. Family filter (version 1.4.0+, all off by default): tick "Block adult sites", "Block gambling" or "Block dating" in the
+   popup card "Family filter (not AI)" and open a listed site (e.g. bet365.com): the Mindveto family-filter page appears.
+   "Force SafeSearch" adds safe=active (Google), adlt=strict (Bing), kp=1 (DuckDuckGo) and the official YouTube-Restrict header.
+
+## Firefox AMO: version 1.6.0 (owner uploads, only after his OK)
+Where: addons.mozilla.org/developers → Mindveto → "Upload New Version" → file `human-override/human-override-1.6.0.zip`
+(linter 13 Nov: 0 errors, 1 expected warning). Source code: not needed (no minified or generated code; the rules_*.json files are
+domain lists built by `tools/build_ho_lists.py`, explain this in the reviewer notes).
+Release notes (EN): "New optional family filter, off by default: block adult sites (18+), force SafeSearch in Google, Bing,
+DuckDuckGo and YouTube, block VPN/proxy/secure-DNS sites, block gambling and dating sites. Switching it off needs the PIN."
+Notes to reviewer: "rules_adult.json, rules_bypass.json, rules_gamble.json and rules_dating.json are static declarativeNetRequest
+rulesets (domain lists only), disabled by default and enabled with updateEnabledRulesets when the user ticks the box. Lists:
+MIT-licensed public lists (see THIRD_PARTY_NOTICES.txt) and our own lists. No data is collected."
+Listing description: add the sentence "Optional family filter: block adult, gambling and dating sites and force SafeSearch."

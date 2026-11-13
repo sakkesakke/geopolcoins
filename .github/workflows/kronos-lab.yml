@@ -43,7 +43,7 @@ jobs:
           pip install -q numpy pandas==2.2.2 einops==0.8.1 huggingface_hub==0.33.1 safetensors==0.6.2 tqdm
       - name: Forecast past moments (${{ matrix.coin }})
         run: python3 tools/kronos_lab.py --kronos-dir /tmp/kronos --assets ${{ matrix.coin }} --out part-${{ matrix.coin }}.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: part-${{ matrix.coin }}
           path: part-${{ matrix.coin }}.json
@@ -62,7 +62,7 @@ jobs:
           merge-multiple: true
       - name: Join the coins
         run: python3 tools/kronos_lab.py --merge part-*.json --out data/kronos-lab.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: kronos-lab
           path: data/kronos-lab.json

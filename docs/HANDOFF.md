@@ -62,6 +62,9 @@ Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonym
 Astro static, 20 pages x 8 languages (EN/NL/FR/ES/DE/PT/IT/AR, Arabic RTL; 'made in Belgium' removed from marketing 12 Nov; apps still EN/NL/FR only — next: translate extension/app), Lighthouse 100/100/100/100, axe 0, self-hosted Atkinson Hyperlegible Next.
 Pages source = GitHub Actions, custom domain mindveto.app; Namecheap DNS: 4 A @ 185.199.108-111.153 + CNAME www.
 Downloads copied daily from human-override/ by sync-lists.yml. Rules for that repo: its own CLAUDE.md.
+13 Nov: family page `family` = /block-porn/ (8 languages, footer + parents + home + llms.txt); quality gate in deploy.yml: `scripts/check.py` (links,
+titles, hreflang) + `scripts/lighthouse.sh` (12 pages, every score >= 90; 13 Nov all 98-100). Android APK publish step was failing silently
+since 10 Nov (pull --rebase with unstaged file): fixed #188, site now serves the build with the family filter (389 KB). AMO summary says 150+.
 Open: Enforce HTTPS after cert. Done 12 Nov: hello@mindveto.app → owner Gmail (Namecheap), apps renamed to Mindveto 1.3.0.
 SEO + security pass 12 Nov: sitemap hreflang/x-default + lastmod, VideoObject, IndexNow ping in deploy.yml (public key
 file), actions pinned to SHAs, dependabot, /.well-known/security.txt; npm audit 0. Google Search Console verified 12 Nov (account geopolcoins1@,

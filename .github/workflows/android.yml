@@ -83,7 +83,9 @@ jobs:
           git add human-override/human-override-android.apk human-override/human-override-android.sha256
           git diff --cached --quiet && exit 0
           git commit -qm "Human Override Android app build ${{ github.run_number }}"
-          for i in 1 2 3; do git pull --rebase -q origin main && git push -q && break; sleep 5; done
+          # --autostash: the "fresh block list" step leaves assets/domains.txt changed, which made the pull fail silently
+          ok=0; for i in 1 2 3; do git pull --rebase --autostash -q origin main && git push -q && ok=1 && break; sleep 5; done
+          [ "$ok" = 1 ] || { echo "Could not publish the APK"; exit 1; }
       - uses: actions/upload-artifact@v4
         with:
           name: human-override-android

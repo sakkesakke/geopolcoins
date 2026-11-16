@@ -6,7 +6,8 @@
   "no_extra": true,
   "title": "One switch. No AI. The AI kill switch for parents, schools and companies #Shorts",
   "description": "Your kid's \"AI friend\" at midnight. A contract pasted into a chatbot. Case files in a public AI.\nHuman Override is a free AI kill switch: one switch, one PIN, 150+ AI services blocked on browser, Android, Windows, Mac and whole networks.\n\nFree download: https://geopolcoins.xyz/human-override.html\nGuides for parents, schools and companies on the site.\n\n© 2026 Amghar Said",
-  "tags": "block chatgpt,parental controls,ai blocker,block ai,human override,school,ai kill switch"
+  "tags": "block chatgpt,parental controls,ai blocker,block ai,human override,school,ai kill switch",
+  "slot": "2026-11-16"
  },
  {
   "id": "human-override-promo",
@@ -59,7 +60,8 @@
   "video": "new-features-short.mp4",
   "title": "4 new free things on geopolcoins.xyz #Shorts",
   "description": "Pixel World (walk around live with other visitors), 12 Scam Hunter badges, the weekly Language War trophy and the monthly State of Rugs report. No account, no wallet, 10 languages.",
-  "tags": "shorts,pixel art,crypto safety,browser game,geopolcoins,rug pull,badges"
+  "tags": "shorts,pixel art,crypto safety,browser game,geopolcoins,rug pull,badges",
+  "slot": "2026-11-21"
  },
  {
   "id": "scam-dms",
@@ -95,7 +97,8 @@
   "description": "Fake support, seed phrase requests, double-your-coins, fake urgency and look-alike links.",
   "tags": "shorts,crypto scam,DM scam,seed phrase,phishing,crypto safety,pixel art,geopolcoins",
   "video": "scam-dms.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-24"
  },
  {
   "id": "seed-phrase",
@@ -420,7 +423,8 @@
   "description": "Mint aan, freeze aan, pool niet vast, weinig wallets, 100x-beloftes. Check dit voor je koopt.\n\nCheck elke Solana-token gratis (geen wallet nodig): https://geopolcoins.xyz",
   "tags": "shorts,crypto,veiligheid,rug pull,rode vlaggen,crypto scam,Solana,geopolcoins",
   "video": "redflags-5-nl.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-17"
  },
  {
   "id": "redflags-5-fr",
@@ -457,7 +461,8 @@
   "description": "Mint activé, freeze activé, pool non bloqué, peu de wallets, promesses 100x. Vérifie avant d'acheter.\n\nVérifie n'importe quel token Solana gratuitement (sans wallet) : https://geopolcoins.xyz",
   "tags": "shorts,crypto,sécurité,rug pull,arnaque crypto,Solana,geopolcoins",
   "video": "redflags-5-fr.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-19"
  },
  {
   "id": "redflags-5-es",
@@ -494,7 +499,8 @@
   "description": "Mint activo, freeze activo, pool sin bloqueo, pocas wallets, promesas 100x. Revísalo antes de comprar.\n\nRevisa cualquier token de Solana gratis (sin wallet): https://geopolcoins.xyz",
   "tags": "shorts,cripto,seguridad,rug pull,estafa cripto,Solana,geopolcoins",
   "video": "redflags-5-es.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-23"
  },
  {
   "id": "redflags-5-de",
@@ -531,7 +537,8 @@
   "description": "Mint an, Freeze an, Pool nicht gesperrt, wenige Wallets, 100x-Versprechen. Prüf das vor dem Kauf.\n\nPrüfe jeden Solana-Token gratis (ohne Wallet): https://geopolcoins.xyz",
   "tags": "shorts,krypto,sicherheit,rug pull,krypto betrug,Solana,geopolcoins",
   "video": "redflags-5-de.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-25"
  },
  {
   "id": "redflags-5-pt",
@@ -870,7 +877,8 @@
   "description": "Scam or not? Guess before the answer. Crypto safety in 30 seconds.",
   "tags": "crypto scam,scam or not,crypto safety,seed phrase,quiz",
   "video": "quiz-scam-or-not-1.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-18"
  },
  {
   "id": "quiz-scam-of-niet-1",
@@ -913,7 +921,8 @@
   "description": "Scam of niet? Raad mee voor het antwoord komt. Crypto-veiligheid in 30 seconden.",
   "tags": "crypto scam,scam of niet,crypto veiligheid,seed phrase,quiz",
   "video": "quiz-scam-of-niet-1.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-20"
  },
  {
   "id": "quiz-arnaque-ou-pas-1",
@@ -956,6 +965,7 @@
   "description": "Arnaque ou pas ? Devine avant la réponse. La sécurité crypto en 30 secondes.",
   "tags": "arnaque crypto,arnaque ou pas,sécurité crypto,seed phrase,quiz",
   "video": "quiz-arnaque-ou-pas-1.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-22"
  }
 ]

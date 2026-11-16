@@ -1,4 +1,4 @@
-# Handoff (short) — state 12 Nov 2026
+# Handoff (short) — state 16 Nov 2026
 
 Loaded automatically through `CLAUDE.md`. Rules, owner and git/SQL workflow: `maiga-ops` skill.
 Read other files only when the task needs them. Update this file after every larger task (keep it under ~50 lines).
@@ -57,6 +57,14 @@ Open:
    Never: antivirus, own VPN, through-wall Wi-Fi surveillance.
 
 Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonymity, only 5 hash chars leave the browser.
+
+## Next task: backlink plan mindveto.app (owner asked 16 Nov)
+List the 20 best REAL free places for a link (AlternativeTo, Product Hunt, parental-control and AI-in-school lists, etc.),
+ready-made text per place (EN, NL/FR where the site is local). Owner wants Claude to post them itself in the built-in
+browser: owner makes accounts, types passwords/codes and solves CAPTCHAs; Claude fills the forms; get the owner's OK
+per place before clicking Submit/Post. Free places only, no bulk/spam links. Track status per place in this file.
+Done 14 Nov on mindveto: download page by situation (child's phone, laptop, Wi-Fi, iPhone note), offices button
+"Protect private data in ChatGPT"; privacy check: 0 third-party requests on 170 pages, fonts self-hosted, no cookies.
 
 ## Mindveto site (BUILT 12 Nov) — repo sakkesakke/mindveto, live at mindveto.app (DNS set 12 Nov 15:40)
 Astro static, 20 pages x 8 languages (EN/NL/FR/ES/DE/PT/IT/AR, Arabic RTL; 'made in Belgium' removed from marketing 12 Nov; apps still EN/NL/FR only — next: translate extension/app), Lighthouse 100/100/100/100, axe 0, self-hosted Atkinson Hyperlegible Next.

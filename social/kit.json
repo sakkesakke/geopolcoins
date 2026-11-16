@@ -1,6 +1,6 @@
 {
- "week": "2026-W45",
- "made": "2026-11-08T23:57+00:00",
+ "week": "2026-W47",
+ "made": "2026-11-16T00:18+00:00",
  "posts": [
   {
    "day": "Monday",
@@ -12,13 +12,13 @@
    "day": "Wednesday",
    "label": "Red Flag Report",
    "image": "social/report.png",
-   "text": "🚩 Red Flag Report: we checked 48 trending Solana pools this week.\n\n10% had a serious red flag.\n10% thin liquidity · 0% buys with zero sells · 10% pumped 300%+ in a day\n\nFacts, not signals. NFA.\nhttps://geopolcoins.xyz/report.html"
+   "text": "🚩 Red Flag Report: we checked 20 trending Solana pools this week.\n\n20% had a serious red flag.\n20% thin liquidity · 0% buys with zero sells · 5% pumped 300%+ in a day\n\nFacts, not signals. NFA.\nhttps://geopolcoins.xyz/report.html"
   },
   {
    "day": "Friday",
    "label": "Tip of the week",
    "image": "social/tip.png",
-   "text": "💡 How to check if a Solana token is a scam (free, in 1 minute)\n\nPaste the token's mint address into a checker and look at five things: liquidity, pool age, mint and freeze authority, how concentrated the holders…\n\nhttps://geopolcoins.xyz/blog-solana-token-scam-check.html"
+   "text": "💡 Trending Solana tokens: what the red flags actually mean\n\n\"Trending\" only means many people trade a token right now. It says nothing about whether it will go up or whether it is safe. Read the flags first:…\n\nhttps://geopolcoins.xyz/blog-trending-solana-tokens-red-flags.html"
   }
  ]
 }

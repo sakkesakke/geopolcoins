@@ -104,6 +104,12 @@ Keep old list URLs on geopolcoins.xyz working forever (extension/Android/PC fetc
 1 yr free) via in-app counter. Before selling: KBO registration + business address (owner). German Impressum needs the business address too. UK mark "The Human Override"
 filed 16 Mar 2026 (cl. 35/41) — trademark check before UK launch.
 
+## YouTube @mindvetoai (owner made it 17 Nov)
+ALL Mindveto videos live on the `media` branch under `mindveto/` (never only in a session): promo 52 s + "in action" 57 s
+(13 Nov, light Mindveto style, Kokoro af_heart, EN only), 5 Shorts s1-s5 (9:16), thumb-*.png, UPLOAD.md (titles, texts,
+order: 1 video + 1 Short a day). Old dark Human Override promo = geopolcoins only, not for Mindveto. Owner uploads (Chrome
+not reachable from cloud sessions). No bought views/bots.
+
 ## YouTube @geopolcoins
 Pipeline `tools/shorts/` (README). Task "YouTube Shorts wachtrij bijvullen" Wed + Sun 18:47 Brussels (owner PC on +
 Claude desktop app). Upload in Studio with the built-in browser: set fields with `form_input` (keyboard typing

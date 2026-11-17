@@ -1,6 +1,6 @@
 # Mindveto — store kit (extension 1.2.0)
 
-Upload file: `human-override/human-override-1.6.1.zip` (1.3.0 submitted to Firefox AMO 12 Nov, 1.6.0 on 13 Nov; 1.6.1 (17 Nov) only moves the list download to mindveto.app and is NOT submitted yet) (built by `python3 tools/build_ho_lists.py`).
+Upload file: `human-override/human-override-1.6.1.zip` (1.3.0 submitted to Firefox AMO 12 Nov, 1.6.0 on 13 Nov; 1.6.1 (17 Nov) only moves the list download to mindveto.app, submitted 17 Nov) (built by `python3 tools/build_ho_lists.py`).
 Pictures: `docs/store-kit/screenshots/` (1280×800 screenshots + 440×280 promo tile). Icon: `human-override/extension/icons/128.png`.
 Privacy policy URL: https://mindveto.app/privacy/ · Homepage: https://mindveto.app/
 Support: https://mindveto.app/ · Category: Productivity (Chrome/Edge), Privacy & Security (Firefox).

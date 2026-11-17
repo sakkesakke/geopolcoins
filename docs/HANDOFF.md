@@ -89,7 +89,7 @@ DMARC added 12 Nov: TXT `_dmarc` = `v=DMARC1; p=quarantine; adkim=r; aspf=r` (be
 PC scripts, pro README). Old geopolcoins.xyz/human-override/ files stay published forever (old installs). Still on geopolcoins.xyz:
 REMOVED_URL (no mindveto 'removed' page yet), Android TERMS_URL, never-block entry. 17 Nov: mindveto.app offers 1.6.1 (mindveto#5,
 sync-lists.yml names 1.6.1); 1.6.0 zip deleted from both repos.
-Owner: upload human-override-1.6.1.zip to Firefox AMO himself (notes in docs/store-kit/README.md).
+Firefox AMO 1.6.1 SUBMITTED 17 Nov by owner (addons-linter 10.15.0: 0 errors, 1 expected warning); review pending.
 
 ## Human Override own site (plan 12 Nov)
 NEW BRAND (owner 12 Nov): **Mindveto** — "the human override for AI". Owner bought **mindveto.app** (Namecheap).

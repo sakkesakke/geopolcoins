@@ -1,4 +1,4 @@
-# Handoff (short) — state 16 Nov 2026
+# Handoff (short) — state 17 Nov 2026
 
 Loaded automatically through `CLAUDE.md`. Rules, owner and git/SQL workflow: `maiga-ops` skill.
 Read other files only when the task needs them. Update this file after every larger task (keep it under ~50 lines).
@@ -65,6 +65,13 @@ browser: owner makes accounts, types passwords/codes and solves CAPTCHAs; Claude
 per place before clicking Submit/Post. Free places only, no bulk/spam links. Track status per place in this file.
 Done 14 Nov on mindveto: download page by situation (child's phone, laptop, Wi-Fi, iPhone note), offices button
 "Protect private data in ChatGPT"; privacy check: 0 third-party requests on 170 pages, fonts self-hosted, no cookies.
+
+## LinkedIn (owner profile linkedin.com/in/amghar-said-67a95a22)
+Profile redone 13 Nov (FR/EN/NL, photo + banner). Plan doc with the first 5 posts: https://claude.ai/artifact/TdHw7eig6NfAbsMz9iozhe.
+Post 1 (15 years, People first) by owner 13 Nov; post 2 ("Many parents I talk to...", EN, honest version, no invented
+story) posted 17 Nov with owner's OK. Next: posts 3-5 from the doc. Replies to comments: draft, show owner, post after OK.
+Post through the built-in browser (owner logged in on laptop); typing fails when the pane is hidden → insert text with
+document.execCommand('insertText') in the editor. Nothing about Vent Debout youngsters, ever.
 
 ## Mindveto site (BUILT 12 Nov) — repo sakkesakke/mindveto, live at mindveto.app (DNS set 12 Nov 15:40)
 Astro static, 20 pages x 8 languages (EN/NL/FR/ES/DE/PT/IT/AR, Arabic RTL; 'made in Belgium' removed from marketing 12 Nov; apps still EN/NL/FR only — next: translate extension/app), Lighthouse 100/100/100/100, axe 0, self-hosted Atkinson Hyperlegible Next.

@@ -34,7 +34,7 @@ The adult list is built from MIT-licensed public lists: see THIRD_PARTY_NOTICES.
 TIP: give children or staff a normal (non-administrator) Windows account; then they cannot undo it.
 Microsoft Defender may sometimes remove Microsoft domains (like Copilot) from the block; run it again to restore.
 
-It sends nothing about you anywhere. It only downloads the public block list from geopolcoins.xyz
+It sends nothing about you anywhere. It only downloads the public block list from mindveto.app
 (it also includes a copy in this folder for when you are offline).
 More: https://mindveto.app/
 

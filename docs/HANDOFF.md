@@ -1,4 +1,4 @@
-# Handoff (short) — state 17 Nov 2026
+# Handoff (short) — state 17 Nov 2026 (list URLs → mindveto.app)
 
 Loaded automatically through `CLAUDE.md`. Rules, owner and git/SQL workflow: `maiga-ops` skill.
 Read other files only when the task needs them. Update this file after every larger task (keep it under ~50 lines).
@@ -16,7 +16,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Human Override (main product, © 2026 Amghar Said; birthplace never published)
 Page `/human-override.html`, terms `/human-override-terms.html`. Code in `human-override/`:
-extension 1.6.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
+extension 1.6.1 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
 class + exam mode, tamper log, PIN, schedule + school holidays (skip/only, 8 regions BE/NL/FR, dates ONLY from the
 bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholidaysapi.data>`, ODbL, refresh yearly;
 BE German community has no data yet); lists in `extension/lists.json`),
@@ -85,7 +85,11 @@ SEO + security pass 12 Nov: sitemap hreflang/x-default + lastmod, VideoObject, I
 file), actions pinned to SHAs, dependabot, /.well-known/security.txt; npm audit 0. Google Search Console verified 12 Nov (account geopolcoins1@,
 file public/google28b43fb835ba26d8.html — never delete), sitemap-index.xml submitted OK. GEO 12 Nov: /llms.txt (built from EN content), guide page `guide` = /block-chatgpt/ (+NL/FR), WebPage + home SoftwareApplication schema. Bing Webmaster verified 12 Nov (meta msvalidate.01 on EN home in Base.astro — never remove), sitemap submitted.
 DMARC added 12 Nov: TXT `_dmarc` = `v=DMARC1; p=quarantine; adkim=r; aspf=r` (before sending AS hello@: set up DKIM first).
-Still on geopolcoins.xyz on purpose: extension LIST_URL + REMOVED_URL, PC hosts URL (old installs fetch them).
+17 Nov (1.6.1): NEW builds fetch lists from mindveto.app/downloads/ (extension LIST_URL, Android URL_LIST + privacy/site links,
+PC scripts, pro README). Old geopolcoins.xyz/human-override/ files stay published forever (old installs). Still on geopolcoins.xyz:
+REMOVED_URL (no mindveto 'removed' page yet), Android TERMS_URL, never-block entry. human-override-1.6.0.zip kept in the repo on
+purpose: mindveto sync-lists.yml + download links still name 1.6.0 → in sakkesakke/mindveto switch them to 1.6.1, then delete 1.6.0.
+Owner: upload human-override-1.6.1.zip to Firefox AMO himself (notes in docs/store-kit/README.md).
 
 ## Human Override own site (plan 12 Nov)
 NEW BRAND (owner 12 Nov): **Mindveto** — "the human override for AI". Owner bought **mindveto.app** (Namecheap).

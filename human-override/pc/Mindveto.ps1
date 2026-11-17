@@ -6,12 +6,12 @@ $ErrorActionPreference = 'Stop'
 $Hosts = "$env:SystemRoot\System32\drivers\etc\hosts"
 $Start = '# >>> Human Override (do not edit this block)'
 $End   = '# <<< Human Override'
-$ListUrl = 'https://geopolcoins.xyz/human-override/hosts.txt'
+$ListUrl = 'https://mindveto.app/downloads/hosts.txt'
 $FamStart = '# >>> Mindveto family filter (do not edit this block)'
 $FamEnd   = '# <<< Mindveto family filter'
-$AdultUrl = 'https://geopolcoins.xyz/human-override/adult/hosts.txt'
-$BypassUrl = 'https://geopolcoins.xyz/human-override/bypass/hosts.txt'
-$ExtraBase = 'https://geopolcoins.xyz/human-override'
+$AdultUrl = 'https://mindveto.app/downloads/adult/hosts.txt'
+$BypassUrl = 'https://mindveto.app/downloads/bypass/hosts.txt'
+$ExtraBase = 'https://mindveto.app/downloads'
 # SafeSearch: the search engines' own strict servers (official names). Their addresses are looked up when you switch it on.
 $SafeMap = [ordered]@{
   'forcesafesearch.google.com' = @('google.com','www.google.com','www.google.be','www.google.nl','www.google.fr','www.google.de','www.google.es','www.google.it','www.google.pt','www.google.co.uk','www.google.co.ma','www.google.com.br','www.google.ca')

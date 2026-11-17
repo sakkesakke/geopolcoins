@@ -11,10 +11,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
-/** Block list: bundled copy, plus a daily update of the public list from geopolcoins.xyz (nothing about the user is sent). */
+/** Block list: bundled copy, plus a daily update of the public list from mindveto.app/downloads/ (nothing about the user is sent). */
 final class Lists {
     private Lists() {}
-    static final String URL_LIST = "https://geopolcoins.xyz/human-override/domains.txt";
+    static final String URL_LIST = "https://mindveto.app/downloads/domains.txt";
     static final int MAX = 5000;
 
     /** Bundled list plus the downloaded one (union): an online list can add blocks but never remove the built-in ones. */

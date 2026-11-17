@@ -57,7 +57,7 @@ open(os.path.join(P, 'README.txt'), 'w').write(f'''HUMAN OVERRIDE PRO PACK - the
 {cr}
 
 For IT departments of courts, police, government, schools and companies that must keep AI chatbots and AI tools
-off their network and devices. Domains: {len(doms)}. Updated: {today}. Fresh copies: https://geopolcoins.xyz/human-override/pro/
+off their network and devices. Domains: {len(doms)}. Updated: {today}. Fresh copies: https://mindveto.app/downloads/human-override-pro-pack.zip
 
 Pick what fits your network (you can combine them):
 
@@ -79,13 +79,13 @@ Honest limits: DNS and firewall lists block whole domains; AI built into allowed
 device, and traffic over a VPN or another DNS (DNS-over-HTTPS) can bypass them. Block outside DNS/DoH and VPNs on your
 firewall for full effect. Test in a pilot group first.
 
-Family filter (optional, not AI): adult-content lists in the same formats at https://geopolcoins.xyz/human-override/adult/
+Family filter (optional, not AI): adult-content lists in the same formats at https://mindveto.app/downloads/adult/
 (hosts.txt, domains.txt, adblock.txt; MIT-licensed sources, see NOTICE.txt there). SafeSearch on a DNS server:
 answer google.com/www.google.<tld> with CNAME forcesafesearch.google.com, www.bing.com with strict.bing.com,
 duckduckgo.com with safe.duckduckgo.com and www.youtube.com/m.youtube.com/youtubei.googleapis.com with restrict.youtube.com.
-Gambling and dating (optional): https://geopolcoins.xyz/human-override/gamble/ and .../dating/ (same formats).
+Gambling and dating (optional): https://mindveto.app/downloads/gamble/ and .../dating/ (same formats).
 Anti-bypass (optional): web proxies, VPN services, Tor and secure-DNS (DoH/DoT) addresses at
-https://geopolcoins.xyz/human-override/bypass/ (same formats). Also block outgoing port 853 (DoT) and set the browser
+https://mindveto.app/downloads/bypass/ (same formats). Also block outgoing port 853 (DoT) and set the browser
 policy DnsOverHttpsMode = off (Chrome/Edge) or DNSOverHTTPS Enabled=false (Firefox).
 
 Terms of use (provided "as is", limits of liability): https://mindveto.app/terms/
@@ -97,7 +97,7 @@ print('pro pack files', len(os.listdir(P)))
 A = os.path.join(D, 'adult')
 adult = sorted({l.strip() for l in open(os.path.join(A, 'adult.txt')) if l.strip() and not l.startswith('#') and DOM.match(l.strip())})
 ahead = ['Mindveto family filter: adult content (https://mindveto.app/)', f'Updated: {today}  Domains: {len(adult)}',
-         'Optional list. Built from MIT-licensed public lists, see https://geopolcoins.xyz/human-override/adult/NOTICE.txt']
+         'Optional list. Built from MIT-licensed public lists, see https://mindveto.app/downloads/adult/NOTICE.txt']
 open(os.path.join(A, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in ahead) + '\n' + '\n'.join(adult) + '\n')
 open(os.path.join(A, 'hosts.txt'), 'w').write('\n'.join('# ' + h for h in ahead) + '\n' + '\n'.join(f'0.0.0.0 {d}\n0.0.0.0 www.{d}' for d in adult) + '\n')
 open(os.path.join(A, 'adblock.txt'), 'w').write('! Title: Mindveto family filter (adult content)\n' + '\n'.join('! ' + h for h in ahead) + '\n' + '\n'.join(f'||{d}^' for d in adult) + '\n')
@@ -187,8 +187,10 @@ gpaths = sorted({p for k in ('chat', 'search', 'writing', 'coding') for p in L['
 MF['content_scripts'] = [{'matches': [f'*://*.{d}/*' for d in guard] + [f'*://*.{p}*' for p in gpaths], 'js': ['detect.js', 'paste.js'], 'run_at': 'document_start'}]
 json.dump(MF, open(mf_path, 'w'), indent=2, ensure_ascii=False); open(mf_path, 'a').write('\n')
 ext = os.path.join(D, 'extension'); zname = f"human-override-{MF['version']}.zip"
+# KEEP: sakkesakke/mindveto sync-lists.yml still downloads this name (curl -f); remove once it names the new zip.
+KEEP = {'human-override-1.6.0.zip'}
 for old in os.listdir(D):
-    if re.fullmatch(r'human-override-\d+\.\d+\.\d+\.zip', old) and old != zname: os.remove(os.path.join(D, old))
+    if re.fullmatch(r'human-override-\d+\.\d+\.\d+\.zip', old) and old != zname and old not in KEEP: os.remove(os.path.join(D, old))
 with zipfile.ZipFile(os.path.join(D, zname), 'w', zipfile.ZIP_DEFLATED) as z:
     for root, dirs, files in os.walk(ext):
         dirs[:] = [d for d in dirs if d != '_metadata']   # created by Chrome when the folder is loaded unpacked

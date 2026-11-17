@@ -87,8 +87,8 @@ file public/google28b43fb835ba26d8.html — never delete), sitemap-index.xml sub
 DMARC added 12 Nov: TXT `_dmarc` = `v=DMARC1; p=quarantine; adkim=r; aspf=r` (before sending AS hello@: set up DKIM first).
 17 Nov (1.6.1): NEW builds fetch lists from mindveto.app/downloads/ (extension LIST_URL, Android URL_LIST + privacy/site links,
 PC scripts, pro README). Old geopolcoins.xyz/human-override/ files stay published forever (old installs). Still on geopolcoins.xyz:
-REMOVED_URL (no mindveto 'removed' page yet), Android TERMS_URL, never-block entry. human-override-1.6.0.zip kept in the repo on
-purpose: mindveto sync-lists.yml + download links still name 1.6.0 → in sakkesakke/mindveto switch them to 1.6.1, then delete 1.6.0.
+REMOVED_URL (no mindveto 'removed' page yet), Android TERMS_URL, never-block entry. 17 Nov: mindveto.app offers 1.6.1 (mindveto#5,
+sync-lists.yml names 1.6.1); 1.6.0 zip deleted from both repos.
 Owner: upload human-override-1.6.1.zip to Firefox AMO himself (notes in docs/store-kit/README.md).
 
 ## Human Override own site (plan 12 Nov)

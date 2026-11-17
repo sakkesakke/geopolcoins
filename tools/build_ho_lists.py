@@ -187,10 +187,8 @@ gpaths = sorted({p for k in ('chat', 'search', 'writing', 'coding') for p in L['
 MF['content_scripts'] = [{'matches': [f'*://*.{d}/*' for d in guard] + [f'*://*.{p}*' for p in gpaths], 'js': ['detect.js', 'paste.js'], 'run_at': 'document_start'}]
 json.dump(MF, open(mf_path, 'w'), indent=2, ensure_ascii=False); open(mf_path, 'a').write('\n')
 ext = os.path.join(D, 'extension'); zname = f"human-override-{MF['version']}.zip"
-# KEEP: sakkesakke/mindveto sync-lists.yml still downloads this name (curl -f); remove once it names the new zip.
-KEEP = {'human-override-1.6.0.zip'}
 for old in os.listdir(D):
-    if re.fullmatch(r'human-override-\d+\.\d+\.\d+\.zip', old) and old != zname and old not in KEEP: os.remove(os.path.join(D, old))
+    if re.fullmatch(r'human-override-\d+\.\d+\.\d+\.zip', old) and old != zname: os.remove(os.path.join(D, old))
 with zipfile.ZipFile(os.path.join(D, zname), 'w', zipfile.ZIP_DEFLATED) as z:
     for root, dirs, files in os.walk(ext):
         dirs[:] = [d for d in dirs if d != '_metadata']   # created by Chrome when the folder is loaded unpacked

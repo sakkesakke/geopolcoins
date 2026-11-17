@@ -2,7 +2,7 @@ HUMAN OVERRIDE PRO PACK - the AI kill switch for organisations
 (c) 2026 Amghar Said. All rights reserved. Mindveto - the AI kill switch (formerly Human Override). https://mindveto.app/
 
 For IT departments of courts, police, government, schools and companies that must keep AI chatbots and AI tools
-off their network and devices. Domains: 161. Updated: 2026-11-13. Fresh copies: https://geopolcoins.xyz/human-override/pro/
+off their network and devices. Domains: 161. Updated: 2026-11-17. Fresh copies: https://mindveto.app/downloads/human-override-pro-pack.zip
 
 Pick what fits your network (you can combine them):
 
@@ -24,12 +24,13 @@ Honest limits: DNS and firewall lists block whole domains; AI built into allowed
 device, and traffic over a VPN or another DNS (DNS-over-HTTPS) can bypass them. Block outside DNS/DoH and VPNs on your
 firewall for full effect. Test in a pilot group first.
 
-Family filter (optional, not AI): adult-content lists in the same formats at https://geopolcoins.xyz/human-override/adult/
+Family filter (optional, not AI): adult-content lists in the same formats at https://mindveto.app/downloads/adult/
 (hosts.txt, domains.txt, adblock.txt; MIT-licensed sources, see NOTICE.txt there). SafeSearch on a DNS server:
 answer google.com/www.google.<tld> with CNAME forcesafesearch.google.com, www.bing.com with strict.bing.com,
 duckduckgo.com with safe.duckduckgo.com and www.youtube.com/m.youtube.com/youtubei.googleapis.com with restrict.youtube.com.
+Gambling and dating (optional): https://mindveto.app/downloads/gamble/ and .../dating/ (same formats).
 Anti-bypass (optional): web proxies, VPN services, Tor and secure-DNS (DoH/DoT) addresses at
-https://geopolcoins.xyz/human-override/bypass/ (same formats). Also block outgoing port 853 (DoT) and set the browser
+https://mindveto.app/downloads/bypass/ (same formats). Also block outgoing port 853 (DoT) and set the browser
 policy DnsOverHttpsMode = off (Chrome/Edge) or DNSOverHTTPS Enabled=false (Firefox).
 
 Terms of use (provided "as is", limits of liability): https://mindveto.app/terms/

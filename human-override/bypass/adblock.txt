@@ -1,6 +1,6 @@
 ! Title: Mindveto anti-bypass
 ! Mindveto anti-bypass list: web proxies, VPN services, Tor and secure-DNS addresses (https://mindveto.app/)
-! Updated: 2026-11-13  Domains: 88
+! Updated: 2026-11-17  Domains: 88
 ! Optional list, hand-curated by Mindveto. (c) 2026 Amghar Said, free to use in your own filter.
 ||1clickvpn.com^
 ||4everproxy.com^

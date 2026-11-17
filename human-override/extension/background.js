@@ -2,10 +2,10 @@
 /* Mindveto: blocks AI services in this browser with declarativeNetRequest.
    Nothing about you is sent anywhere. Network requests: a daily download of the public block list and, only when this
    browser joined a class, a question once a minute whether the teacher's exam mode is on (only the class code is sent).
-   The public block list comes
-   from geopolcoins.xyz (no data about you is included). */
+   The public block list comes from mindveto.app/downloads/ (no data about you is included).
+   Old installs (1.6.0 and earlier) keep using geopolcoins.xyz/human-override/, which stays online. */
 const api = globalThis.browser || globalThis.chrome;
-const LIST_URL = 'https://geopolcoins.xyz/human-override/lists.json';
+const LIST_URL = 'https://mindveto.app/downloads/lists.json';
 const DOMAIN = /^(?=.{3,253}$)([a-z0-9-]{1,63}\.)+[a-z]{2,24}$/;
 const PATH = /^([a-z0-9-]{1,63}\.)+[a-z]{2,24}\/[a-z0-9\-\/_.]{1,80}$/;
 // Big everyday sites that a block list may never block (protects against a broken or tampered list).
@@ -22,7 +22,7 @@ const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
 const EXAM_URL = 'https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/exam_status';
 const EXAM_KEY = 'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';   // public by design (read-only question)
 const CODE = /^[A-HJ-NP-Z2-9]{8}$/;
-const REMOVED_URL = 'https://geopolcoins.xyz/human-override-removed.html';
+const REMOVED_URL = 'https://geopolcoins.xyz/human-override-removed.html';   // mindveto.app has no 'removed' page yet
 const ALERT = new Set(['pinbad', 'pinlock']);
 const OPTIN = ['social', 'adult', 'safe', 'bypass', 'gamble', 'dating'];   // off unless the user switches them on (family filter + social media)
 const FAMSETS = ['adult', 'bypass', 'gamble', 'dating'];   // static rulesets of the family filter

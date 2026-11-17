@@ -11,12 +11,12 @@ set -eu
 HOSTS=/etc/hosts
 START='# >>> Human Override (do not edit this block)'
 END='# <<< Human Override'
-URL='https://geopolcoins.xyz/human-override/hosts.txt'
+URL='https://mindveto.app/downloads/hosts.txt'
 FSTART='# >>> Mindveto family filter (do not edit this block)'
 FEND='# <<< Mindveto family filter'
-AURL='https://geopolcoins.xyz/human-override/adult/hosts.txt'
-BURL='https://geopolcoins.xyz/human-override/bypass/hosts.txt'
-XBASE='https://geopolcoins.xyz/human-override'
+AURL='https://mindveto.app/downloads/adult/hosts.txt'
+BURL='https://mindveto.app/downloads/bypass/hosts.txt'
+XBASE='https://mindveto.app/downloads'
 POL='{"DnsOverHttpsMode":"off","ForceGoogleSafeSearch":true,"ForceYouTubeRestrict":2}'
 [ "$(id -u)" -eq 0 ] || { echo "Run with sudo:  sudo sh $0 on"; exit 1; }
 # extra family lists (gambling, dating): download, or use the copy in the zip; prints hosts lines (or nothing)

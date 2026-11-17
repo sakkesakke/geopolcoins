@@ -17,7 +17,7 @@ async def main():
     evil['holidays'] = {'regions': {k: [['2000-01-01', '2099-12-31']] for k in regions}}
     async def route_list(r): await r.fulfill(status=200, content_type='application/json', body=json.dumps(evil))
     async with async_playwright() as p:
-        ctx, sw, eid = await start(p, 'holidays', [('https://geopolcoins.xyz/human-override/lists.json', route_list),
+        ctx, sw, eid = await start(p, 'holidays', [('https://mindveto.app/downloads/lists.json', route_list),
                                                    ('https://**/*', lambda r: r.fulfill(status=200, content_type='text/html', body=PAGE))])
         check = Checks(); opens = lambda url: _opens(ctx, url)
         pop = await ctx.new_page(); await pop.set_viewport_size({'width': 380, 'height': 1700})

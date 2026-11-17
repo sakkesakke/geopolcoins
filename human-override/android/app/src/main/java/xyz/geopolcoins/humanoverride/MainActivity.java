@@ -114,9 +114,9 @@ public class MainActivity extends Activity {
         TextView tl = text(getString(R.string.terms_link), 13, AMBER, false); tl.setGravity(Gravity.CENTER);
         tl.setOnClickListener(v -> open(TERMS_URL)); col.addView(tl, lp(dp(14)));
         TextView pl = text(getString(R.string.privacy_link), 13, AMBER, false); pl.setGravity(Gravity.CENTER);
-        pl.setOnClickListener(v -> open("https://geopolcoins.xyz/privacy.html")); col.addView(pl, lp(dp(10)));
+        pl.setOnClickListener(v -> open("https://mindveto.app/privacy/")); col.addView(pl, lp(dp(10)));
         TextView site = text(getString(R.string.footer), 12, DIM, false); site.setGravity(Gravity.CENTER);
-        site.setOnClickListener(v -> open("https://geopolcoins.xyz/human-override.html")); col.addView(site, lp(dp(14)));
+        site.setOnClickListener(v -> open("https://mindveto.app/")); col.addView(site, lp(dp(14)));
         setContentView(sv);
     }
 

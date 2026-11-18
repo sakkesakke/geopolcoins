@@ -1,6 +1,8 @@
 # Mindveto AI block list (https://mindveto.app/)
-# Updated: 2026-11-18  Domains: 161
+# Updated: 2026-11-18  Domains: 183
 # Free to use. Blocks AI chatbots, AI search, AI image/video/voice/music, AI writing/homework and AI coding services.
+aisekai-com.translate.goog
+aisekai.com
 aistudio-google-com.translate.goog
 aistudio.google.com
 andisearch-com.translate.goog
@@ -17,14 +19,20 @@ blackbox-ai.translate.goog
 blackbox.ai
 bolt-new.translate.goog
 bolt.new
+botify-ai.translate.goog
+botify.ai
 brainly-com.translate.goog
 brainly.com
 c-ai.translate.goog
 c.ai
+candy-ai.translate.goog
+candy.ai
 captions-ai.translate.goog
 captions.ai
 chai--research-com.translate.goog
+chai-ml.translate.goog
 chai-research.com
+chai.ml
 character-ai.translate.goog
 character.ai
 chat-com.translate.goog
@@ -49,6 +57,8 @@ chatsonic-com.translate.goog
 chatsonic.com
 chegg-com.translate.goog
 chegg.com
+chub-ai.translate.goog
+chub.ai
 civitai-com.translate.goog
 civitai.com
 claude-ai.translate.goog
@@ -71,6 +81,8 @@ copy-ai.translate.goog
 copy.ai
 craiyon-com.translate.goog
 craiyon.com
+crushon-ai.translate.goog
+crushon.ai
 cursor-com.translate.goog
 cursor.com
 d--id-com.translate.goog
@@ -81,8 +93,12 @@ deepseek-com.translate.goog
 deepseek.com
 descript-com.translate.goog
 descript.com
+dopple-ai.translate.goog
+dopple.ai
 doubao-com.translate.goog
 doubao.com
+dreamgf-ai.translate.goog
+dreamgf.ai
 dreamstudio-ai.translate.goog
 dreamstudio.ai
 duck-ai.translate.goog
@@ -145,16 +161,22 @@ jasper-ai.translate.goog
 jasper.ai
 jenni-ai.translate.goog
 jenni.ai
+joyland-ai.translate.goog
+joyland.ai
 kimi-com.translate.goog
 kimi-moonshot-cn.translate.goog
 kimi.com
 kimi.moonshot.cn
+kindroid-ai.translate.goog
+kindroid.ai
 klingai-com.translate.goog
 klingai.com
 komo-ai.translate.goog
 komo.ai
 krea-ai.translate.goog
 krea.ai
+kupid-ai.translate.goog
+kupid.ai
 labs-google.translate.goog
 labs.google
 leonardo-ai.translate.goog
@@ -193,16 +215,28 @@ mistral-ai.translate.goog
 mistral.ai
 monica-im.translate.goog
 monica.im
+muah-ai.translate.goog
+muah.ai
 murf-ai.translate.goog
 murf.ai
+myanima-ai.translate.goog
+myanima.ai
+nastia-ai.translate.goog
+nastia.ai
+nextpart-ai.translate.goog
+nextpart.ai
 nightcafe-studio.translate.goog
 nightcafe.studio
+nomi-ai.translate.goog
+nomi.ai
 notebooklm-google-com.translate.goog
 notebooklm-google.translate.goog
 notebooklm.google
 notebooklm.google.com
 notta-ai.translate.goog
 notta.ai
+nsfwcharacter-ai.translate.goog
+nsfwcharacter.ai
 oaistatic-com.translate.goog
 oaistatic.com
 oaiusercontent-com.translate.goog
@@ -213,6 +247,8 @@ openrouter-ai.translate.goog
 openrouter.ai
 otter-ai.translate.goog
 otter.ai
+pephop-ai.translate.goog
+pephop.ai
 perplexity-ai.translate.goog
 perplexity.ai
 phind-com.translate.goog
@@ -245,7 +281,9 @@ read-ai.translate.goog
 read.ai
 recraft-ai.translate.goog
 recraft.ai
+replika-ai.translate.goog
 replika-com.translate.goog
+replika.ai
 replika.com
 rewind-ai.translate.goog
 rewind.ai
@@ -259,6 +297,8 @@ seaart-ai.translate.goog
 seaart.ai
 sembly-ai.translate.goog
 sembly.ai
+sextingai-com.translate.goog
+sextingai.com
 sider-ai.translate.goog
 sider.ai
 smodin-io.translate.goog
@@ -267,6 +307,8 @@ socratic-org.translate.goog
 socratic.org
 sora-com.translate.goog
 sora.com
+spicychat-ai.translate.goog
+spicychat.ai
 stability-ai.translate.goog
 stability.ai
 starryai-com.translate.goog
@@ -287,6 +329,8 @@ tactiq-io.translate.goog
 tactiq.io
 talkie--ai-com.translate.goog
 talkie-ai.com
+tavern-ai.translate.goog
+tavern.ai
 tensor-art.translate.goog
 tensor.art
 tldv-io.translate.goog

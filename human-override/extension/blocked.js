@@ -23,5 +23,5 @@ const p = document.getElementById('p');
 if (FAM) p.textContent = t[1];   // the family filter does not show which site, and is not counted as an AI attempt
 else {
   const [a, b] = t[1].split('{s}'); p.textContent = a; const c = document.createElement('code'); c.textContent = host; p.append(c, b);
-  api.runtime.sendMessage({ t: 'blocked' }, () => api.runtime.sendMessage({ t: 'state' }, s => { if (s) document.getElementById('c').textContent = t[2].replace('{n}', s.today); }));
+  api.runtime.sendMessage({ t: 'blocked', h: host }, () => api.runtime.sendMessage({ t: 'state' }, s => { if (s) document.getElementById('c').textContent = t[2].replace('{n}', s.today); }));
 }

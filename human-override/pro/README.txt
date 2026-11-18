@@ -2,7 +2,7 @@ HUMAN OVERRIDE PRO PACK - the AI kill switch for organisations
 (c) 2026 Amghar Said. All rights reserved. Mindveto - the AI kill switch (formerly Human Override). https://mindveto.app/
 
 For IT departments of courts, police, government, schools and companies that must keep AI chatbots and AI tools
-off their network and devices. Domains: 161. Updated: 2026-11-18. Fresh copies: https://mindveto.app/downloads/human-override-pro-pack.zip
+off their network and devices. Domains: 183. Updated: 2026-11-18. Fresh copies: https://mindveto.app/downloads/human-override-pro-pack.zip
 
 Pick what fits your network (you can combine them):
 

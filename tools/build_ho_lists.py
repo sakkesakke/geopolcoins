@@ -161,7 +161,9 @@ for key, (src, title, note) in EXTRA.items():
     print(key, 'domains', len(xs))
 # one notices file for everything we ship from third-party lists
 notice = open(os.path.join(A, 'NOTICE.txt')).read().rstrip('\n') + (
-    '\n\nThe gambling list uses Sinfonietta/hostfiles gambling-hosts (MIT License, (c) 2016 Sinfonietta), same license text as above.\n')
+    '\n\nThe gambling list uses Sinfonietta/hostfiles gambling-hosts (MIT License, (c) 2016 Sinfonietta), same license text as above.\n'
+    '\nAI friend / companion apps (category "friend" in lists.json): picked from 0xDarkMatter/aegis-blocklist categories/ai-adult.txt,\n'
+    'CC0 1.0 Universal (public domain dedication), plus our own additions. Credited here with thanks.\n')
 for dst in (os.path.join(D, 'extension', 'THIRD_PARTY_NOTICES.txt'), os.path.join(aa, 'THIRD_PARTY_NOTICES.txt'), os.path.join(D, 'gamble', 'NOTICE.txt')):
     open(dst, 'w').write(notice)
 

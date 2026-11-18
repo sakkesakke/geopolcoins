@@ -1,5 +1,5 @@
 {
- "version": "2026-11-10c",
+ "version": "2026-11-18a",
  "categories": {
   "chat": {
    "name": "AI chatbots",
@@ -216,6 +216,39 @@
     "limitless.ai",
     "rewind.ai",
     "plaud.ai"
+   ]
+  },
+  "friend": {
+   "name": "AI friend and companion apps",
+   "domains": [
+    "aisekai.com",
+    "botify.ai",
+    "c.ai",
+    "candy.ai",
+    "chai-research.com",
+    "chai.ml",
+    "character.ai",
+    "chub.ai",
+    "crushon.ai",
+    "dopple.ai",
+    "dreamgf.ai",
+    "janitorai.com",
+    "joyland.ai",
+    "kindroid.ai",
+    "kupid.ai",
+    "muah.ai",
+    "myanima.ai",
+    "nastia.ai",
+    "nextpart.ai",
+    "nomi.ai",
+    "nsfwcharacter.ai",
+    "pephop.ai",
+    "replika.ai",
+    "replika.com",
+    "sextingai.com",
+    "spicychat.ai",
+    "talkie-ai.com",
+    "tavern.ai"
    ]
   },
   "social": {

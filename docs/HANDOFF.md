@@ -7,7 +7,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Release checklist
 - `python3 tools/seo_enhance.py`, `tools/seo_audit.py`, `tools/security_audit.py` → 0 problems.
-- Bump `VERSION` in `sw.js` (now `maiga-2026-11-13b`).
+- Bump `VERSION` in `sw.js` (now `maiga-2026-11-18a`).
 - Legal: `python3 tools/build_legal.py "" "" "hello@geopolcoins.xyz"` (owner OK 11 Nov; never his private
   address), then `seo_enhance.py` again.
 - Blog: `tools/blog_posts*.py` → `python3 tools/build_blog.py` (title ≤60, description 120-160).
@@ -16,7 +16,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Human Override (main product, © 2026 Amghar Said; birthplace never published)
 Page `/human-override.html`, terms `/human-override-terms.html`. Code in `human-override/`:
-extension 1.7.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
+extension 1.8.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
 class + exam mode, tamper log, PIN, schedule + school holidays (skip/only, 8 regions BE/NL/FR, dates ONLY from the
 bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholidaysapi.data>`, ODbL, refresh yearly;
 BE German community has no data yet); lists in `extension/lists.json`),
@@ -70,8 +70,7 @@ Done 14 Nov on mindveto: download page by situation (child's phone, laptop, Wi-F
 B1 School starter pack: mindveto.app page (8 langs) with AI policy + parent letter + exam/lesson settings + AI Act art. 4 checklist, printable.
 B2 Office "use our AI instead": blocked.html shows "your organisation uses <approved AI>, open it" (from allowSvc) instead of a bare block. Extension.
 B3 Shadow-AI count: extension keeps local counts per AI service of blocked tries (no URLs, no content); popup shows top 10; feeds B8.
-B4 AI-friend heads-up: companion apps (character.ai, replika, talkie...; see CC0 aegis ai-adult list) as own category; a try adds a
-   tamper-log line "AI friend app tried" + badge "!" (category + time only, on the device).
+B4 DONE 18 Nov (extension 1.8.0, not in stores): category `friend` in lists.json (28 companion apps from CC0 aegis ai-adult), on by default, own popup switch; a blocked try logs "AI friend app tried" + red "!" (kind + time only, max 1 line per 5 min). Test `test/e2e/ai_friend.py`. Android/PC: friend domains are in hosts/DNS lists (blocked) but no heads-up there yet.
 B5 Lesson switch: exam button gets 3 modes (all AI / approved only / none) per lesson. Supabase: new RPC arg, keep old clients working.
 B6 5-minute AI-literacy course: mindveto.app page, 8 langs, 8 short questions, printable certificate made in the browser (no data sent).
 B7 Rollout file: page that builds Chrome/Edge policy (.reg + JSON + Intune OMA-URI) to force-install Mindveto with chosen settings;

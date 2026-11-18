@@ -13,7 +13,7 @@ const PROTECT = new Set(['google.com', 'www.google.com', 'youtube.com', 'gmail.c
   'github.com', 'wikipedia.org', 'amazon.com', 'facebook.com', 'instagram.com', 'whatsapp.com', 'x.com', 'twitter.com', 'linkedin.com', 'bing.com', 'duckduckgo.com',
   'geopolcoins.xyz', 'mindveto.app', 'mozilla.org', 'firefox.com', 'chrome.google.com', 'microsoftedge.microsoft.com', 'addons.mozilla.org', 'gov.uk', 'europa.eu']);
 const MAX_REGEX = 450;   // plus the translate.goog copies, stays below the ~1000 regex rules browsers allow
-const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true, social: false, adult: false, safe: false, bypass: false, gamble: false, dating: false }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
+const DEFAULTS = { on: true, cats: { chat: true, search: true, image: true, media: true, writing: true, coding: true, record: true, friend: true, social: false, adult: false, safe: false, bypass: false, gamble: false, dating: false }, custom: [], allow: [], allowSvc: [], words: [], klass: null, exam: { until: 0 }, pin: null, count: 0, day: '', today: 0, guard: true, log: [], alert: false,
   sched: { on: false, days: [1, 2, 3, 4, 5], from: '08:00', to: '16:00', hol: 'off', region: 'BE-NL' } };
 const REGIONS = ['BE-NL', 'BE-FR', 'NL-NO', 'NL-MI', 'NL-ZU', 'FR-ZA', 'FR-ZB', 'FR-ZC'];
 const HHMM = /^([01][0-9]|2[0-3]):[0-5][0-9]$/;
@@ -23,7 +23,8 @@ const EXAM_URL = 'https://zslzbfbqrtfpvgbjhssd.supabase.co/rest/v1/rpc/exam_stat
 const EXAM_KEY = 'sb_publishable_90hLwzv3xb0aZmPtaHKZag_1hKkG0EN';   // public by design (read-only question)
 const CODE = /^[A-HJ-NP-Z2-9]{8}$/;
 const REMOVED_URL = 'https://geopolcoins.xyz/human-override-removed.html';   // mindveto.app has no 'removed' page yet
-const ALERT = new Set(['pinbad', 'pinlock']);
+const ALERT = new Set(['pinbad', 'pinlock', 'friend']);   // these light up a red "!" on the icon until "seen" (with the PIN)
+const FRIEND_GAP = 5 * 60000;   // AI friend heads-up: at most one log line per 5 minutes, so tries cannot push older events out of the log
 const OPTIN = ['social', 'adult', 'safe', 'bypass', 'gamble', 'dating'];   // off unless the user switches them on (family filter + social media)
 const FAMSETS = ['adult', 'bypass', 'gamble', 'dating'];   // static rulesets of the family filter
 const FAMKEYS = ['adult', 'safe', 'bypass', 'gamble', 'dating'];
@@ -103,6 +104,14 @@ async function services() {
   return out;
 }
 async function lists() { const s = await api.storage.local.get('remote'); return (s.remote && s.remote.categories) ? s.remote : bundled(); }
+// Is this blocked site an AI friend / companion app? (character.ai, Replika, Talkie...) Uses the shipped and the daily list.
+async function isFriend(h) {
+  h = String(h).toLowerCase().replace(/\.$/, '');
+  if (h.endsWith('.translate.goog')) h = h.slice(0, -15).replace(/--/g, '\0').replace(/-/g, '.').replace(/\0/g, '-');   // Google Translate copy
+  if (!DOMAIN.test(h)) return false;
+  const fr = L => (((L || {}).categories || {}).friend || {}).domains || [];
+  return fr(await lists()).concat(fr(await bundled())).some(d => h === d || h.endsWith('.' + d));
+}
 
 function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
@@ -120,10 +129,13 @@ async function applyNow() {
     const SV = await services(), allow = new Set(ex ? [] : st.allow), okPaths = new Set();
     if (!ex) for (const k of st.allowSvc) if (SV[k]) { SV[k].domains.forEach(d => allow.add(d)); SV[k].paths.forEach(p => okPaths.add(p)); }
     const allowed = d => { for (const a of allow) if (d === a || d.endsWith('.' + a)) return true; return false; };   // an allowed site includes its sub-sites
+    // AI friend apps: only the 'friend' switch decides about them (the list also keeps a few under 'chat' for older versions)
+    const FR = new Set(((L.categories || {}).friend || {}).domains || []);
     let doms = [], paths = [];
     for (const [k, c] of Object.entries(L.categories || {})) {
       if (OPTIN.includes(k) ? st.cats[k] !== true : (!ex && !st.cats[k])) continue;   // exam mode forces AI categories only; social media stays the user's choice
-      doms = doms.concat((c.domains || []).filter(d => DOMAIN.test(d)));
+      const ds = (c.domains || []).filter(d => DOMAIN.test(d) && (k === 'friend' || !FR.has(d)));
+      doms = k === 'friend' ? ds.concat(doms) : doms.concat(ds);   // friend apps first: they always get a rule that passes the site name (needed for the heads-up)
       paths = paths.concat((c.paths || []).filter(p => PATH.test(p)));
     }
     doms = doms.concat(st.custom.filter(d => DOMAIN.test(d)));
@@ -243,6 +255,10 @@ api.runtime.onMessage.addListener((m, sender, reply) => {
     if (m.t === 'blocked') {
       const day = new Date().toISOString().slice(0, 10);
       await api.storage.local.set({ count: st.count + 1, day, today: (st.day === day ? st.today : 0) + 1 });
+      // AI friend heads-up: only the kind of site and the time go in the log (no site name, no content), on this device
+      if (typeof m.h === 'string' && m.h.length < 300 && Date.now() - (st.friendAt || 0) > FRIEND_GAP && await isFriend(m.h)) {
+        await api.storage.local.set({ friendAt: Date.now() }); await note('friend');
+      }
       return reply({ ok: true });
     }
     if (m.t === 'paste') { if (['no', 'mask', 'yes'].includes(m.v)) await note('paste_' + m.v); return reply({ ok: true }); }

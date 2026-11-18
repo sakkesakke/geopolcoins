@@ -2,6 +2,8 @@
 $TTL 300
 @ IN SOA localhost. root.localhost. (2026111801 3600 600 86400 300)
 @ IN NS localhost.
+aisekai.com CNAME .
+*.aisekai.com CNAME .
 aistudio.google.com CNAME .
 *.aistudio.google.com CNAME .
 andisearch.com CNAME .
@@ -18,14 +20,20 @@ blackbox.ai CNAME .
 *.blackbox.ai CNAME .
 bolt.new CNAME .
 *.bolt.new CNAME .
+botify.ai CNAME .
+*.botify.ai CNAME .
 brainly.com CNAME .
 *.brainly.com CNAME .
 c.ai CNAME .
 *.c.ai CNAME .
+candy.ai CNAME .
+*.candy.ai CNAME .
 captions.ai CNAME .
 *.captions.ai CNAME .
 chai-research.com CNAME .
 *.chai-research.com CNAME .
+chai.ml CNAME .
+*.chai.ml CNAME .
 character.ai CNAME .
 *.character.ai CNAME .
 chat.com CNAME .
@@ -50,6 +58,8 @@ chatsonic.com CNAME .
 *.chatsonic.com CNAME .
 chegg.com CNAME .
 *.chegg.com CNAME .
+chub.ai CNAME .
+*.chub.ai CNAME .
 civitai.com CNAME .
 *.civitai.com CNAME .
 claude.ai CNAME .
@@ -72,6 +82,8 @@ copy.ai CNAME .
 *.copy.ai CNAME .
 craiyon.com CNAME .
 *.craiyon.com CNAME .
+crushon.ai CNAME .
+*.crushon.ai CNAME .
 cursor.com CNAME .
 *.cursor.com CNAME .
 d-id.com CNAME .
@@ -82,8 +94,12 @@ deepseek.com CNAME .
 *.deepseek.com CNAME .
 descript.com CNAME .
 *.descript.com CNAME .
+dopple.ai CNAME .
+*.dopple.ai CNAME .
 doubao.com CNAME .
 *.doubao.com CNAME .
+dreamgf.ai CNAME .
+*.dreamgf.ai CNAME .
 dreamstudio.ai CNAME .
 *.dreamstudio.ai CNAME .
 duck.ai CNAME .
@@ -146,16 +162,22 @@ jasper.ai CNAME .
 *.jasper.ai CNAME .
 jenni.ai CNAME .
 *.jenni.ai CNAME .
+joyland.ai CNAME .
+*.joyland.ai CNAME .
 kimi.com CNAME .
 *.kimi.com CNAME .
 kimi.moonshot.cn CNAME .
 *.kimi.moonshot.cn CNAME .
+kindroid.ai CNAME .
+*.kindroid.ai CNAME .
 klingai.com CNAME .
 *.klingai.com CNAME .
 komo.ai CNAME .
 *.komo.ai CNAME .
 krea.ai CNAME .
 *.krea.ai CNAME .
+kupid.ai CNAME .
+*.kupid.ai CNAME .
 labs.google CNAME .
 *.labs.google CNAME .
 leonardo.ai CNAME .
@@ -194,16 +216,28 @@ mistral.ai CNAME .
 *.mistral.ai CNAME .
 monica.im CNAME .
 *.monica.im CNAME .
+muah.ai CNAME .
+*.muah.ai CNAME .
 murf.ai CNAME .
 *.murf.ai CNAME .
+myanima.ai CNAME .
+*.myanima.ai CNAME .
+nastia.ai CNAME .
+*.nastia.ai CNAME .
+nextpart.ai CNAME .
+*.nextpart.ai CNAME .
 nightcafe.studio CNAME .
 *.nightcafe.studio CNAME .
+nomi.ai CNAME .
+*.nomi.ai CNAME .
 notebooklm.google CNAME .
 *.notebooklm.google CNAME .
 notebooklm.google.com CNAME .
 *.notebooklm.google.com CNAME .
 notta.ai CNAME .
 *.notta.ai CNAME .
+nsfwcharacter.ai CNAME .
+*.nsfwcharacter.ai CNAME .
 oaistatic.com CNAME .
 *.oaistatic.com CNAME .
 oaiusercontent.com CNAME .
@@ -214,6 +248,8 @@ openrouter.ai CNAME .
 *.openrouter.ai CNAME .
 otter.ai CNAME .
 *.otter.ai CNAME .
+pephop.ai CNAME .
+*.pephop.ai CNAME .
 perplexity.ai CNAME .
 *.perplexity.ai CNAME .
 phind.com CNAME .
@@ -246,6 +282,8 @@ read.ai CNAME .
 *.read.ai CNAME .
 recraft.ai CNAME .
 *.recraft.ai CNAME .
+replika.ai CNAME .
+*.replika.ai CNAME .
 replika.com CNAME .
 *.replika.com CNAME .
 rewind.ai CNAME .
@@ -260,6 +298,8 @@ seaart.ai CNAME .
 *.seaart.ai CNAME .
 sembly.ai CNAME .
 *.sembly.ai CNAME .
+sextingai.com CNAME .
+*.sextingai.com CNAME .
 sider.ai CNAME .
 *.sider.ai CNAME .
 smodin.io CNAME .
@@ -268,6 +308,8 @@ socratic.org CNAME .
 *.socratic.org CNAME .
 sora.com CNAME .
 *.sora.com CNAME .
+spicychat.ai CNAME .
+*.spicychat.ai CNAME .
 stability.ai CNAME .
 *.stability.ai CNAME .
 starryai.com CNAME .
@@ -288,6 +330,8 @@ tactiq.io CNAME .
 *.tactiq.io CNAME .
 talkie-ai.com CNAME .
 *.talkie-ai.com CNAME .
+tavern.ai CNAME .
+*.tavern.ai CNAME .
 tensor.art CNAME .
 *.tensor.art CNAME .
 tldv.io CNAME .

@@ -1,4 +1,4 @@
-# Handoff (short) — state 17 Nov 2026 (list URLs → mindveto.app)
+# Handoff (short) — state 18 Nov 2026
 
 Loaded automatically through `CLAUDE.md`. Rules, owner and git/SQL workflow: `maiga-ops` skill.
 Read other files only when the task needs them. Update this file after every larger task (keep it under ~50 lines).
@@ -16,7 +16,7 @@ local AST only, git-ignored). Use `graphify query|explain|path` before grep/read
 
 ## Human Override (main product, © 2026 Amghar Said; birthplace never published)
 Page `/human-override.html`, terms `/human-override-terms.html`. Code in `human-override/`:
-extension 1.6.1 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
+extension 1.7.0 = **Mindveto** (renamed 12 Nov; hosts/registry markers still "Human Override" so old installs can be undone; Android package id unchanged; optional `social` category, OFF by default, extension-only, never in hosts/DNS lists, not forced by exam mode; test `test/e2e/social_media.py`) (`extension/`: paste guard + own words, approved-AI picker (services in bundled lists.json only),
 class + exam mode, tamper log, PIN, schedule + school holidays (skip/only, 8 regions BE/NL/FR, dates ONLY from the
 bundled list: `python3 tools/build_ho_holidays.py <clone of openpotato/openholidaysapi.data>`, ODbL, refresh yearly;
 BE German community has no data yet); lists in `extension/lists.json`),
@@ -89,6 +89,11 @@ DMARC added 12 Nov: TXT `_dmarc` = `v=DMARC1; p=quarantine; adkim=r; aspf=r` (be
 PC scripts, pro README). Old geopolcoins.xyz/human-override/ files stay published forever (old installs). Still on geopolcoins.xyz:
 REMOVED_URL (no mindveto 'removed' page yet), Android TERMS_URL, never-block entry. 17 Nov: mindveto.app offers 1.6.1 (mindveto#5,
 sync-lists.yml names 1.6.1); 1.6.0 zip deleted from both repos.
+18 Nov (1.7.0, NOT in stores; owner decides): night-mode button in the schedule card (every night 22:00-07:00) +
+AI "undress"/fake-nude sites in the adult list (`adult/nudify.txt`, from CC0 aegis-blocklist ai-adult + clothoff.io; build_ho_lists merges it;
+reaches extension, Android asset and PC hosts). Test `test/e2e/night_nudify.py`. Night mode is extension-only for now.
+Council of 16 (18 Nov) picked: test page, honest bypass list, nudify blocker, night mode;
+next by group: school starter pack (8.0), office "use our AI instead" redirect (7.5), shadow-AI count scan (7.3).
 Firefox AMO 1.6.1 SUBMITTED 17 Nov by owner (addons-linter 10.15.0: 0 errors, 1 expected warning); review pending.
 
 ## Human Override own site (plan 12 Nov)

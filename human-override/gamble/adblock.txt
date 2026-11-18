@@ -1,6 +1,6 @@
 ! Title: Mindveto family filter: gambling, betting and casino sites (https://mindveto.app/)
 ! Mindveto family filter: gambling, betting and casino sites (https://mindveto.app/)
-! Updated: 2026-11-17  Domains: 1600
+! Updated: 2026-11-18  Domains: 1600
 ! Optional list. Sinfonietta/hostfiles gambling-hosts (MIT, (c) 2016 Sinfonietta) + own additions.
 ||10bet.co.uk^
 ||10bet.com^

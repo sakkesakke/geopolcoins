@@ -1,0 +1,38 @@
+# Mindveto family filter: AI 'undress' / fake-nude and AI porn generators (part of the adult list).
+# Source: 0xDarkMatter/aegis-blocklist categories/ai-adult.txt (CC0 1.0, public domain), only the nudify/deepfake/AI-porn
+# sites (AI companion chat apps left out). Own addition: clothoff.io. Hand-checked 2026-11-18.
+ai-nudes.com
+ai-porn.net
+aihentai.co
+ainudes.com
+aiporn.net
+cloth-off.ai
+cloth-off.io
+clothes-remover.com
+clothoff.app
+clothoff.info
+clothoff.io
+clothoff.net
+createporn.com
+deepfakesweb.com
+deepnude.to
+deepnudeapp.com
+deepswap.ai
+drawnudes.com
+nsfwgen.com
+nudes.ai
+nudify.cc
+nudify.online
+nudify.vip
+onlyfakes.app
+pornify.cc
+seduced.ai
+soulgen.net
+undress.app
+undress.cc
+undress.love
+undress.vip
+undressai.io
+undressbaby.com
+unstable.ai
+xpictures.io

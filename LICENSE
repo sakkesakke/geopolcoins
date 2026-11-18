@@ -1,0 +1,18 @@
+Copyright (c) 2026 Amghar Said. All rights reserved.
+
+This repository (the geopolcoins.xyz website and the Mindveto / Human Override apps in human-override/: code, texts,
+designs, images, videos, our own block lists and their selection and arrangement) is the property of Amghar Said.
+No license is granted to copy, modify, publish, distribute or sell any part of it without prior written permission.
+Being able to see this repository on GitHub does not give any of these rights.
+
+Not owned by Amghar Said (each part keeps its own license, which applies to that part only):
+- .claude/skills/: third-party skills, see ECC-LICENSE.txt, GRAPHIFY-LICENSE.txt, SUPABASE-SKILLS-LICENSE.txt there;
+- human-override/**/THIRD_PARTY_NOTICES.txt, human-override/adult/NOTICE.txt, human-override/gamble/NOTICE.txt:
+  domain lists from other projects (MIT License or CC0), credited in those files;
+- human-override/extension/fonts/: Atkinson Hyperlegible Next (SIL Open Font License 1.1, see OFL.txt there);
+- school holiday dates from the OpenHolidays API data (ODbL 1.0), credited in human-override/extension/lists.json;
+- meme templates shown by the Meme Studio come from jacebrowning/memegen (MIT), credited on that page;
+- any other file or folder that carries its own license or copyright notice.
+
+The Mindveto apps themselves are covered by human-override/LICENSE.txt (free to install and use, not to copy).
+Contact: https://mindveto.app/

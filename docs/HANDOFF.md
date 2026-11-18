@@ -77,6 +77,7 @@ B7 Rollout file: page that builds Chrome/Edge policy (.reg + JSON + Intune OMA-U
    extension reads chrome.storage.managed (add managed_schema). Store ID needed for Chrome force-install (no store yet: say so honestly).
 B8 AI Act / GDPR proof report: popup button "Print report" opens a local page with settings, allowed AI, paste guard state, B3 counts, date.
 Each: tests, check.py/axe/Lighthouse >= 90 for site work, extension e2e + version bump, privacy text if data handling changes.
+Owner 18 Nov: every new feature is ALSO explained on mindveto.app (8 langs; parents/browser-extension pages etc.) and its download bumped. 1.7.0 night mode + 1.8.0 AI friend: done (mindveto#9, #10).
 
 ## LinkedIn (owner profile linkedin.com/in/amghar-said-67a95a22)
 Profile redone 13 Nov (FR/EN/NL, photo + banner). Plan doc with the first 5 posts: https://claude.ai/artifact/TdHw7eig6NfAbsMz9iozhe.

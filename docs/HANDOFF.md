@@ -94,6 +94,9 @@ AI "undress"/fake-nude sites in the adult list (`adult/nudify.txt`, from CC0 aeg
 reaches extension, Android asset and PC hosts). Test `test/e2e/night_nudify.py`. Night mode is extension-only for now.
 Council of 16 (18 Nov) picked: test page, honest bypass list, nudify blocker, night mode;
 next by group: school starter pack (8.0), office "use our AI instead" redirect (7.5), shadow-AI count scan (7.3).
+Round 3 best: parents "AI friend" heads-up in the popup (6.7), schools per-lesson AI switch (7.7) + 5-min AI-literacy course (7.0),
+business Edge/Intune rollout file (7.0) + AI Act/GDPR proof report (6.8). Live 18 Nov on mindveto.app: /is-it-working/ (probes 8 AI
+sites on click, CSP widened on that page only) and /bypass-tricks/, 8 languages; site offers 1.7.0.
 Firefox AMO 1.6.1 SUBMITTED 17 Nov by owner (addons-linter 10.15.0: 0 errors, 1 expected warning); review pending.
 
 ## Human Override own site (plan 12 Nov)

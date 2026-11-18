@@ -66,6 +66,19 @@ per place before clicking Submit/Post. Free places only, no bulk/spam links. Tra
 Done 14 Nov on mindveto: download page by situation (child's phone, laptop, Wi-Fi, iPhone note), offices button
 "Protect private data in ChatGPT"; privacy check: 0 third-party requests on 170 pages, fonts self-hosted, no cookies.
 
+## Build queue (owner 18 Nov: "maak deze"; one item per new chat, owner pastes the item name)
+B1 School starter pack: mindveto.app page (8 langs) with AI policy + parent letter + exam/lesson settings + AI Act art. 4 checklist, printable.
+B2 Office "use our AI instead": blocked.html shows "your organisation uses <approved AI>, open it" (from allowSvc) instead of a bare block. Extension.
+B3 Shadow-AI count: extension keeps local counts per AI service of blocked tries (no URLs, no content); popup shows top 10; feeds B8.
+B4 AI-friend heads-up: companion apps (character.ai, replika, talkie...; see CC0 aegis ai-adult list) as own category; a try adds a
+   tamper-log line "AI friend app tried" + badge "!" (category + time only, on the device).
+B5 Lesson switch: exam button gets 3 modes (all AI / approved only / none) per lesson. Supabase: new RPC arg, keep old clients working.
+B6 5-minute AI-literacy course: mindveto.app page, 8 langs, 8 short questions, printable certificate made in the browser (no data sent).
+B7 Rollout file: page that builds Chrome/Edge policy (.reg + JSON + Intune OMA-URI) to force-install Mindveto with chosen settings;
+   extension reads chrome.storage.managed (add managed_schema). Store ID needed for Chrome force-install (no store yet: say so honestly).
+B8 AI Act / GDPR proof report: popup button "Print report" opens a local page with settings, allowed AI, paste guard state, B3 counts, date.
+Each: tests, check.py/axe/Lighthouse >= 90 for site work, extension e2e + version bump, privacy text if data handling changes.
+
 ## LinkedIn (owner profile linkedin.com/in/amghar-said-67a95a22)
 Profile redone 13 Nov (FR/EN/NL, photo + banner). Plan doc with the first 5 posts: https://claude.ai/artifact/TdHw7eig6NfAbsMz9iozhe.
 Post 1 (15 years, People first) by owner 13 Nov; post 2 ("Many parents I talk to...", EN, honest version, no invented

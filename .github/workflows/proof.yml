@@ -1,0 +1,47 @@
+name: Proof of date (OpenTimestamps)
+# Free, independent proof that the Mindveto code existed on a given day (copyright evidence for Amghar Said).
+# On every change in human-override/ a list of SHA-256 fingerprints of all its files is written to proof/ and stamped
+# with OpenTimestamps (free public calendars, anchored in the Bitcoin blockchain; no wallet, no cost, no data sent except
+# one hash). The daily run upgrades pending stamps to full proofs. Check one: pip install opentimestamps-client; ots verify FILE.ots
+on:
+  push:
+    branches: [main]
+    paths: ['human-override/**']
+  schedule:
+    - cron: '41 3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: proof
+  cancel-in-progress: false
+jobs:
+  stamp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install the OpenTimestamps client
+        run: pip install -q opentimestamps-client==0.8.0
+      - name: Fingerprint and stamp the current code
+        if: github.event_name != 'schedule'
+        run: |
+          set -e
+          f="proof/mindveto-code-$(date -u +%Y-%m-%d)-${GITHUB_SHA::7}.txt"
+          {
+            echo "Mindveto (formerly Human Override) - (c) Amghar Said. All rights reserved."
+            echo "Repository: ${GITHUB_REPOSITORY}  Commit: ${GITHUB_SHA}  Date (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "SHA-256 of every file in human-override/ at this commit:"
+            git ls-files -z human-override | xargs -0 sha256sum
+          } > "$f"
+          ots stamp "$f"
+      - name: Upgrade earlier stamps to full proofs
+        run: for o in proof/*.ots; do [ -e "$o" ] && (ots upgrade "$o" || true); done
+      - name: Save the proofs
+        run: |
+          git config user.name "mindveto-proof-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add proof
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -qm "Proof of date: OpenTimestamps"
+          ok=0; for i in 1 2 3; do git pull --rebase --autostash -q origin main && git push -q && ok=1 && break; sleep 5; done
+          [ "$ok" = 1 ]

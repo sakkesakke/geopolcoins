@@ -56,6 +56,10 @@ Open:
    Next features: IT dashboard / central management, AI Act/GDPR report, Human Override Box.
    Never: antivirus, own VPN, through-wall Wi-Fi surveillance.
 
+IP protection 18 Nov (free): `LICENSE` at the root of both repos + `human-override/LICENSE.txt` (all rights reserved, lists the
+third-party parts: MIT/CC0 lists, OFL font, ODbL holidays); `proof.yml` in both repos stamps SHA-256 lists of the code/site in `proof/`
+with OpenTimestamps (daily upgrade); mindveto `archive.yml` saves 28 pages in the Wayback Machine every Monday; takedown kit
+`docs/takedown/` (NL guide, EN DMCA + EU DSA notices, form links). Repos stay PUBLIC (free Pages + old installs). Trademark = owner (costs).
 Free tool `/password-check.html` (12 Nov): Have I Been Pwned range API, k-anonymity, only 5 hash chars leave the browser.
 
 ## Next task: backlink plan mindveto.app (owner asked 16 Nov)

@@ -1,13 +1,19 @@
 Mindveto (formerly Human Override)
 Copyright (c) 2026 Amghar Said. All rights reserved.
 
-This software (the browser extension, its code, block lists, icons, texts and the names "Mindveto" and "Human Override")
-is the property of Amghar Said.
+This software (the browser extension, the Android app, the Windows/Mac/Linux scripts, their code, our own block lists
+and their selection and arrangement, icons, texts, screenshots and the names "Mindveto" and "Human Override") is the
+property of Amghar Said, except the third-party parts listed below.
+
+Third-party parts (NOT owned by Amghar Said, used under their own licenses, which still apply to those parts):
+- domain lists from other projects (MIT License or CC0), named with their copyright notices in THIRD_PARTY_NOTICES.txt;
+- the Atkinson Hyperlegible Next font (SIL Open Font License 1.1, see fonts/OFL.txt in the extension);
+- school holiday dates from the OpenHolidays API data (ODbL 1.0), as credited in lists.json.
 
 You may install and use the official, unmodified version for free, for personal, school or business use.
 
 Without prior written permission from Amghar Said you may NOT:
-- copy, modify, translate or create derivative works of the code, icons or block lists;
+- copy, modify, translate or create derivative works of the code, icons, texts or our own block lists;
 - redistribute, sell, sublicense, rent or publish this software or any part of it, including in app or extension stores;
 - remove or change this copyright notice or the name and branding.
 

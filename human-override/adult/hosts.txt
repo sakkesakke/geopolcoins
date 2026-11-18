@@ -1,5 +1,5 @@
 # Mindveto family filter: adult content (https://mindveto.app/)
-# Updated: 2026-11-17  Domains: 63822
+# Updated: 2026-11-18  Domains: 63849
 # Optional list. Built from MIT-licensed public lists, see https://mindveto.app/downloads/adult/NOTICE.txt
 0.0.0.0 0.xd-cdn.com
 0.0.0.0 www.0.xd-cdn.com
@@ -3975,10 +3975,14 @@
 0.0.0.0 www.ahvideoscdn.net
 0.0.0.0 ahxxx.net
 0.0.0.0 www.ahxxx.net
+0.0.0.0 ai-nudes.com
+0.0.0.0 www.ai-nudes.com
 0.0.0.0 ai-porn.ai
 0.0.0.0 www.ai-porn.ai
 0.0.0.0 ai-porn.art
 0.0.0.0 www.ai-porn.art
+0.0.0.0 ai-porn.net
+0.0.0.0 www.ai-porn.net
 0.0.0.0 ai.phncdn.com
 0.0.0.0 www.ai.phncdn.com
 0.0.0.0 ai18.pics
@@ -4013,6 +4017,8 @@
 0.0.0.0 www.aindiansex.com
 0.0.0.0 aintgo.angelfire.com
 0.0.0.0 www.aintgo.angelfire.com
+0.0.0.0 ainudes.com
+0.0.0.0 www.ainudes.com
 0.0.0.0 aiohotgirl.com
 0.0.0.0 www.aiohotgirl.com
 0.0.0.0 aiohotzgirl.com
@@ -21833,6 +21839,20 @@
 0.0.0.0 www.closeup.booru.org
 0.0.0.0 closuptube.com
 0.0.0.0 www.closuptube.com
+0.0.0.0 cloth-off.ai
+0.0.0.0 www.cloth-off.ai
+0.0.0.0 cloth-off.io
+0.0.0.0 www.cloth-off.io
+0.0.0.0 clothes-remover.com
+0.0.0.0 www.clothes-remover.com
+0.0.0.0 clothoff.app
+0.0.0.0 www.clothoff.app
+0.0.0.0 clothoff.info
+0.0.0.0 www.clothoff.info
+0.0.0.0 clothoff.io
+0.0.0.0 www.clothoff.io
+0.0.0.0 clothoff.net
+0.0.0.0 www.clothoff.net
 0.0.0.0 cloud.perfectgirls.net
 0.0.0.0 www.cloud.perfectgirls.net
 0.0.0.0 cloudbate.com
@@ -25925,6 +25945,8 @@
 0.0.0.0 www.deepfakepornvideos.com
 0.0.0.0 deepfakesporn.com
 0.0.0.0 www.deepfakesporn.com
+0.0.0.0 deepfakesweb.com
+0.0.0.0 www.deepfakesweb.com
 0.0.0.0 deepfucks.com
 0.0.0.0 www.deepfucks.com
 0.0.0.0 deepgayxxx.com
@@ -25939,6 +25961,10 @@
 0.0.0.0 www.deepintheassporn.com
 0.0.0.0 deepmuff.com
 0.0.0.0 www.deepmuff.com
+0.0.0.0 deepnude.to
+0.0.0.0 www.deepnude.to
+0.0.0.0 deepnudeapp.com
+0.0.0.0 www.deepnudeapp.com
 0.0.0.0 deepnudenow.com
 0.0.0.0 www.deepnudenow.com
 0.0.0.0 deepporn.net
@@ -27697,6 +27723,8 @@
 0.0.0.0 www.drawn-hentai.com
 0.0.0.0 drawnsexlog.com
 0.0.0.0 www.drawnsexlog.com
+0.0.0.0 drawnudes.com
+0.0.0.0 www.drawnudes.com
 0.0.0.0 drazdanypruvodce.cz
 0.0.0.0 www.drazdanypruvodce.cz
 0.0.0.0 dream-filth.com
@@ -72881,6 +72909,8 @@
 0.0.0.0 www.nsfw247.to
 0.0.0.0 nsfw365.com
 0.0.0.0 www.nsfw365.com
+0.0.0.0 nsfwgen.com
+0.0.0.0 www.nsfwgen.com
 0.0.0.0 nsfwgify.com
 0.0.0.0 www.nsfwgify.com
 0.0.0.0 nsfwhomestuck.booru.org
@@ -73455,6 +73485,8 @@
 0.0.0.0 www.nuderedtube.com
 0.0.0.0 nuderoot.com
 0.0.0.0 www.nuderoot.com
+0.0.0.0 nudes.ai
+0.0.0.0 www.nudes.ai
 0.0.0.0 nudes.blog.br
 0.0.0.0 www.nudes.blog.br
 0.0.0.0 nudes.cz
@@ -73723,6 +73755,12 @@
 0.0.0.0 www.nudiesporn.com
 0.0.0.0 nudify-her.com
 0.0.0.0 www.nudify-her.com
+0.0.0.0 nudify.cc
+0.0.0.0 www.nudify.cc
+0.0.0.0 nudify.online
+0.0.0.0 www.nudify.online
+0.0.0.0 nudify.vip
+0.0.0.0 www.nudify.vip
 0.0.0.0 nudism-pics.com
 0.0.0.0 www.nudism-pics.com
 0.0.0.0 nudismgallery.eu
@@ -100239,6 +100277,8 @@
 0.0.0.0 www.sotransexuais.com
 0.0.0.0 soulgen.ai
 0.0.0.0 www.soulgen.ai
+0.0.0.0 soulgen.net
+0.0.0.0 www.soulgen.net
 0.0.0.0 soulkyn.ai
 0.0.0.0 www.soulkyn.ai
 0.0.0.0 soulkyn.com
@@ -110899,10 +110939,20 @@
 0.0.0.0 www.undertow.club
 0.0.0.0 underwatersexcam.com
 0.0.0.0 www.underwatersexcam.com
+0.0.0.0 undress.app
+0.0.0.0 www.undress.app
 0.0.0.0 undress.cc
 0.0.0.0 www.undress.cc
+0.0.0.0 undress.love
+0.0.0.0 www.undress.love
+0.0.0.0 undress.vip
+0.0.0.0 www.undress.vip
 0.0.0.0 undressai.com
 0.0.0.0 www.undressai.com
+0.0.0.0 undressai.io
+0.0.0.0 www.undressai.io
+0.0.0.0 undressbaby.com
+0.0.0.0 www.undressbaby.com
 0.0.0.0 undressmeslowly.com
 0.0.0.0 www.undressmeslowly.com
 0.0.0.0 unebonnemilf.fr
@@ -110989,6 +111039,8 @@
 0.0.0.0 www.unshavedwebcams.com
 0.0.0.0 unspecific.ru
 0.0.0.0 www.unspecific.ru
+0.0.0.0 unstable.ai
+0.0.0.0 www.unstable.ai
 0.0.0.0 unusualpeople.com
 0.0.0.0 www.unusualpeople.com
 0.0.0.0 unusualporn-net.comlocal.org
@@ -120715,6 +120767,8 @@
 0.0.0.0 www.xpicsnet.com
 0.0.0.0 xpicsstorm.com
 0.0.0.0 www.xpicsstorm.com
+0.0.0.0 xpictures.io
+0.0.0.0 www.xpictures.io
 0.0.0.0 xpicx1.xxxl.tube
 0.0.0.0 www.xpicx1.xxxl.tube
 0.0.0.0 xpicx2.xxxl.tube

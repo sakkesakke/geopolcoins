@@ -95,7 +95,8 @@ print('pro pack files', len(os.listdir(P)))
 
 # ---------- family filter: adult content (optional, OFF by default; built by tools/build_ho_adult.py) ----------
 A = os.path.join(D, 'adult')
-adult = sorted({l.strip() for l in open(os.path.join(A, 'adult.txt')) if l.strip() and not l.startswith('#') and DOM.match(l.strip())})
+# adult.txt (MIT lists, tools/build_ho_adult.py) + nudify.txt (hand-picked AI 'undress' sites, CC0 aegis-blocklist + own)
+adult = sorted({l.strip() for f in ('adult.txt', 'nudify.txt') for l in open(os.path.join(A, f)) if l.strip() and not l.startswith('#') and DOM.match(l.strip())})
 ahead = ['Mindveto family filter: adult content (https://mindveto.app/)', f'Updated: {today}  Domains: {len(adult)}',
          'Optional list. Built from MIT-licensed public lists, see https://mindveto.app/downloads/adult/NOTICE.txt']
 open(os.path.join(A, 'domains.txt'), 'w').write('\n'.join('# ' + h for h in ahead) + '\n' + '\n'.join(adult) + '\n')

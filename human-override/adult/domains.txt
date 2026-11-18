@@ -1,5 +1,5 @@
 # Mindveto family filter: adult content (https://mindveto.app/)
-# Updated: 2026-11-17  Domains: 63822
+# Updated: 2026-11-18  Domains: 63849
 # Optional list. Built from MIT-licensed public lists, see https://mindveto.app/downloads/adult/NOTICE.txt
 0.xd-cdn.com
 0.xxx-cdn.com
@@ -1988,8 +1988,10 @@ ahtops.com
 ahtranny.com
 ahvideoscdn.net
 ahxxx.net
+ai-nudes.com
 ai-porn.ai
 ai-porn.art
+ai-porn.net
 ai.phncdn.com
 ai18.pics
 aiallure.com
@@ -2007,6 +2009,7 @@ aincest.com
 aindianporn.com
 aindiansex.com
 aintgo.angelfire.com
+ainudes.com
 aiohotgirl.com
 aiohotzgirl.com
 aiporn.com.es
@@ -10917,6 +10920,13 @@ clop.booru.org
 closedmyvideo.com
 closeup.booru.org
 closuptube.com
+cloth-off.ai
+cloth-off.io
+clothes-remover.com
+clothoff.app
+clothoff.info
+clothoff.io
+clothoff.net
 cloud.perfectgirls.net
 cloudbate.com
 cloudembed.net
@@ -12963,6 +12973,7 @@ deepfake.com
 deepfakeporn.net
 deepfakepornvideos.com
 deepfakesporn.com
+deepfakesweb.com
 deepfucks.com
 deepgayxxx.com
 deepindianporn.com
@@ -12970,6 +12981,8 @@ deepindianporn.pro
 deepinsidejoslyn.com
 deepintheassporn.com
 deepmuff.com
+deepnude.to
+deepnudeapp.com
 deepnudenow.com
 deepporn.net
 deeppornmovies.com
@@ -13849,6 +13862,7 @@ drawfriends.booru.org
 drawincest.com
 drawn-hentai.com
 drawnsexlog.com
+drawnudes.com
 drazdanypruvodce.cz
 dream-filth.com
 dream5.cf
@@ -36441,6 +36455,7 @@ nsfw.works
 nsfw.xxx
 nsfw247.to
 nsfw365.com
+nsfwgen.com
 nsfwgify.com
 nsfwhomestuck.booru.org
 nsfwimg.com
@@ -36728,6 +36743,7 @@ nudepussybabe.fun
 nudepussypics.com
 nuderedtube.com
 nuderoot.com
+nudes.ai
 nudes.blog.br
 nudes.cz
 nudes.lol
@@ -36862,6 +36878,9 @@ nudgirls.top
 nudie.dk
 nudiesporn.com
 nudify-her.com
+nudify.cc
+nudify.online
+nudify.vip
 nudism-pics.com
 nudismgallery.eu
 nudismic.com
@@ -50120,6 +50139,7 @@ sotemnovinhas.com
 sotranny.com
 sotransexuais.com
 soulgen.ai
+soulgen.net
 soulkyn.ai
 soulkyn.com
 soundporno.de
@@ -55450,8 +55470,13 @@ undertable.co
 underthebed.com
 undertow.club
 underwatersexcam.com
+undress.app
 undress.cc
+undress.love
+undress.vip
 undressai.com
+undressai.io
+undressbaby.com
 undressmeslowly.com
 unebonnemilf.fr
 unegeekette.com
@@ -55495,6 +55520,7 @@ unselfishporn.com
 unshavedcuties.com
 unshavedwebcams.com
 unspecific.ru
+unstable.ai
 unusualpeople.com
 unusualporn-net.comlocal.org
 unusualporn-net.putaria.info
@@ -60358,6 +60384,7 @@ xpicsflash.bdsmsite.net
 xpicsflash.com
 xpicsnet.com
 xpicsstorm.com
+xpictures.io
 xpicx1.xxxl.tube
 xpicx2.xxxl.tube
 xpicx3.xxxl.tube

@@ -115,6 +115,7 @@ Round 3 best: parents "AI friend" heads-up in the popup (6.7), schools per-lesso
 business Edge/Intune rollout file (7.0) + AI Act/GDPR proof report (6.8). Live 18 Nov on mindveto.app: /is-it-working/ (probes 8 AI
 sites on click, CSP widened on that page only) and /bypass-tricks/, 8 languages. mindveto.app offers 1.8.0 since 18 Nov (mindveto#9; sync-lists.yml names the zip: bump it + rm the old zip on every version, else the daily sync 404s).
 18 Nov: checked with GoogleChrome/modern-web-guidance (CLI `npx modern-web-guidance@1.0.0 legacy-scan dist` = 0; `search`/`retrieve` for guides). mindveto#12: <pre><code> region, Speculation Rules prerender (moderate, no downloads), @view-transition, font-size-adjust.
+18 Nov blog (mindveto#13): /blog/ + 2 articles x 8 langs (charai = "Is Character.AI safe for kids?", aiact = "AI Act Article 4 for schools"); Page.article = byline + sources + Article schema. Next: 1 article/week (answer-first, sources, FAQ); check Search Console > Prestaties after ~4 weeks.
 Firefox AMO 1.6.1 SUBMITTED 17 Nov by owner (addons-linter 10.15.0: 0 errors, 1 expected warning); review pending.
 
 ## Human Override own site (plan 12 Nov)

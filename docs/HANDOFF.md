@@ -54,7 +54,8 @@ Open:
    own `gamble/own.txt`, `tools/build_ho_gamble.py`) + dating/random video chat (65, own `dating/source.txt`); separate switches in
    extension + Android; Windows option 5 asks y/n; Mac/Linux `family-on gambling dating`.
    Next features: IT dashboard / central management, AI Act/GDPR report, Human Override Box.
-   Never: antivirus, own VPN, through-wall Wi-Fi surveillance.
+   Never: own VPN, through-wall Wi-Fi surveillance.
+   Owner 19 Nov: antivirus/protection is now WANTED as "Mindveto Protect" (complete protect app). Honest scope: no own scan engine; virus scanning is done by the built-in Microsoft Defender, Mindveto adds web protection, warnings and a checkup. Marketing says "Mindveto Protect", never "best antivirus" or "100% safe" (EU misleading-claims rules).
 
 IP protection 18 Nov (free): `LICENSE` at the root of both repos + `human-override/LICENSE.txt` (all rights reserved, lists the
 third-party parts: MIT/CC0 lists, OFL font, ODbL holidays); `proof.yml` in both repos stamps SHA-256 lists of the code/site in `proof/`
@@ -80,6 +81,9 @@ B6 5-minute AI-literacy course: mindveto.app page, 8 langs, 8 short questions, p
 B7 Rollout file: page that builds Chrome/Edge policy (.reg + JSON + Intune OMA-URI) to force-install Mindveto with chosen settings;
    extension reads chrome.storage.managed (add managed_schema). Store ID needed for Chrome force-install (no store yet: say so honestly).
 B8 AI Act / GDPR proof report: popup button "Print report" opens a local page with settings, allowed AI, paste guard state, B3 counts, date.
+B9 Link check + phishing quiz: mindveto.app pages (8 langs). "Is this link safe?" checks a pasted link in the browser only (lookalike/homoglyph and punycode, IP address host, `＠` in URL, URL shorteners, odd TLDs); nothing is sent. Quiz: 8 real AI-phishing tricks (AI-written mail, cloned boss voice, fake login page), "real or fake", printable result. Fits B6 and AI Act art. 4.
+B10 Web protection in the extension (1.9.0): new category `threat` with malware/phishing domains from URLhaus (CC0; check license of any other list, MIT/CC0 only), on by default, also in Android/hosts/DNS lists via build_ho_lists.py; plus a local lookalike warning bar ("this is not bol.com") for a small list of big banks/shops/brands. Mind DNR rule limits.
+B11 Windows checkup ("Mindveto Protect" for PC): script/app shows in plain words whether Defender real-time protection, firewall and Windows Update are on, and starts a Defender quick scan with one click (`Start-MpScan`), showing the result. Download check: warn on .exe/.apk downloads; optional hash lookup in MalwareBazaar (only the hash leaves the PC, say so in the privacy text). No own engine.
 Each: tests, check.py/axe/Lighthouse >= 90 for site work, extension e2e + version bump, privacy text if data handling changes.
 Owner 18 Nov: every new feature is ALSO explained on mindveto.app (8 langs; parents/browser-extension pages etc.) and its download bumped. 1.7.0 night mode + 1.8.0 AI friend: done (mindveto#9, #10).
 

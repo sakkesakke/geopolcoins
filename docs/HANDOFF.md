@@ -1,4 +1,4 @@
-# Handoff (short) — state 18 Nov 2026
+# Handoff (short) — state 22 Nov 2026
 
 Loaded automatically through `CLAUDE.md`. Rules, owner and git/SQL workflow: `maiga-ops` skill.
 Read other files only when the task needs them. Update this file after every larger task (keep it under ~50 lines).
@@ -26,7 +26,9 @@ Anonymous counter (site_views): `ho` = page visits; `ho_ext/ho_android/ho_win/ho
 
 Open:
 1. Pricing — reminder Sat 14 Nov 09:00 Brussels (proposal: Free / Plus €15/yr / Pro €180/yr / Custom).
-2. Google Play — owner steps in `docs/google-play.md` (upload key → secrets HO_UPLOAD_*, $25, VPN declaration,
+2. Google Play — NEW 22 Nov: start from mindveto `docs/play-store/` (mindveto#18: START-PROMPT, app facts, fixes before upload incl.
+   package id `xyz.geopolcoins.humanoverride` → proposed `app.mindveto`, Ko-fi/terms links, VPN disclosure; replaces the old
+   `docs/google-play.md`). Old notes: owner steps in `docs/google-play.md` (upload key → secrets HO_UPLOAD_*, $25, VPN declaration,
    12 testers × 14 days). Store kit for Chrome/Edge/Firefox in `docs/store-kit/`; owner submits.
    Owner 12 Nov: NO paid accounts for now (no Chrome $5, no Play $25) → only free stores (Firefox AMO, Edge).
    1.3.0 store-ready 12 Nov: addons-linter 0 errors (1 expected warning: service_worker ignored by Firefox), gecko min 140,
@@ -120,7 +122,13 @@ business Edge/Intune rollout file (7.0) + AI Act/GDPR proof report (6.8). Live 1
 sites on click, CSP widened on that page only) and /bypass-tricks/, 8 languages. mindveto.app offers 1.8.0 since 18 Nov (mindveto#9; sync-lists.yml names the zip: bump it + rm the old zip on every version, else the daily sync 404s).
 18 Nov: checked with GoogleChrome/modern-web-guidance (CLI `npx modern-web-guidance@1.0.0 legacy-scan dist` = 0; `search`/`retrieve` for guides). mindveto#12: <pre><code> region, Speculation Rules prerender (moderate, no downloads), @view-transition, font-size-adjust.
 18 Nov blog (mindveto#13): /blog/ + 2 articles x 8 langs (charai = "Is Character.AI safe for kids?", aiact = "AI Act Article 4 for schools"); Page.article = byline + sources + Article schema. Next: 1 article/week (answer-first, sources, FAQ; check facts on the day); check Search Console > Prestaties after ~4 weeks.
-Blog queue (owner OK 18 Nov, in this order): A1 ChatGPT + customer data/GDPR (offices, paste guard) · A2 Snapchat My AI: safe/turn off? (honest: in-app, Mindveto can't block it) · A3 AI nudify apps (family filter) · A4 Can teachers detect ChatGPT? (detectors unreliable, exam button) · A5 Block AI on school Chromebooks (Google Admin) · A6 Meta AI in WhatsApp/Instagram: can you turn it off? · A7 Shadow AI at work (offices, B3) · A8 AI companion apps parents should know (friend list).
+22 Nov (mindveto#19): A1 DONE = `gdpr` /blog/chatgpt-customer-data-gdpr/ (8 langs; OpenAI data controls/DPA, Dutch DPA 72 h + chatbot leaks, 5-step plan → paste guard).
+Statistics page `stats` = /ai-statistics/ (nl/ai-statistieken, fr/statistiques-ia, es/estadisticas-ia, de/ki-statistiken, pt/estatisticas-ia, it/statistiche-ia, ar/ai-statistics):
+24 figures (Pew x3, Common Sense, Eurostat x2, HEPI, Thorn, PLOS ONE, IWF, Melbourne/KPMG, IBM, Garante), anchors #s1-#s24, how-to-cite, Article schema; linked from
+/blog/, footer, parents/schools/offices hub cards, llms.txt (incl. the 24 figures). Content `src/i18n/linkable/`, sources + date in `sources.ts`.
+UPDATE ITS NUMBERS EVERY 3 MONTHS (next ~22 Feb 2027): open every link, compare number + year, add newer editions, change CHECKED, all 8 langs.
+Not usable (Cloudflare blocks automated checks, not bypassed): Ofcom, OECD TALIS, CDT, Internet Matters. Cloud env `mindveto` allows the source hosts.
+Blog queue (owner OK 18 Nov, in this order): ~~A1 ChatGPT + customer data/GDPR~~ DONE 22 Nov · A2 Snapchat My AI: safe/turn off? (honest: in-app, Mindveto can't block it) · A3 AI nudify apps (family filter) · A4 Can teachers detect ChatGPT? (detectors unreliable, exam button) · A5 Block AI on school Chromebooks (Google Admin) · A6 Meta AI in WhatsApp/Instagram: can you turn it off? · A7 Shadow AI at work (offices, B3) · A8 AI companion apps parents should know (friend list).
 Firefox AMO 1.6.1 SUBMITTED 17 Nov by owner (addons-linter 10.15.0: 0 errors, 1 expected warning); review pending.
 
 ## Human Override own site (plan 12 Nov)

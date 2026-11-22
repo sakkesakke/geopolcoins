@@ -1,5 +1,8 @@
 # Human Override op Google Play — stappenplan
 
+> **Vervangen op 22 november 2026** door de map `docs/play-store/` in de repo sakkesakke/mindveto (start met `START-PROMPT.md`).
+> Dit bestand gebruikt nog de oude naam en de oude privacylink.
+
 Stand 10 november 2026. Wat al klaar is in de code:
 - De app richt zich op Android 16 (API 36). Dat is verplicht voor nieuwe apps sinds 31 augustus 2026.
 - GitHub bouwt bij elke wijziging een **.aab**-bestand voor Google Play (artifact `human-override-google-play-aab`,

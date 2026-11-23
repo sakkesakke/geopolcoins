@@ -18,5 +18,15 @@
   "vol": 20,
   "pump": 5,
   "crash": 15
+ },
+ {
+  "week": "2026-W48",
+  "pools": 20,
+  "any": 5,
+  "thin": 5,
+  "nosell": 0,
+  "vol": 10,
+  "pump": 5,
+  "crash": 0
  }
 ]

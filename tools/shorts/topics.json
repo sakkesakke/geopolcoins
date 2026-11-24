@@ -61,7 +61,7 @@
   "title": "4 new free things on geopolcoins.xyz #Shorts",
   "description": "Pixel World (walk around live with other visitors), 12 Scam Hunter badges, the weekly Language War trophy and the monthly State of Rugs report. No account, no wallet, 10 languages.",
   "tags": "shorts,pixel art,crypto safety,browser game,geopolcoins,rug pull,badges",
-  "slot": "2026-11-21"
+  "posted": "2026-11-21"
  },
  {
   "id": "scam-dms",
@@ -98,7 +98,7 @@
   "tags": "shorts,crypto scam,DM scam,seed phrase,phishing,crypto safety,pixel art,geopolcoins",
   "video": "scam-dms.mp4",
   "voice": "chatterbox:george",
-  "slot": "2026-11-24"
+  "posted": "2026-11-24"
  },
  {
   "id": "seed-phrase",
@@ -464,7 +464,7 @@
   "tags": "shorts,crypto,sécurité,rug pull,arnaque crypto,Solana,geopolcoins",
   "video": "redflags-5-fr.mp4",
   "voice": "chatterbox:george",
-  "slot": "2026-11-19"
+  "posted": "2026-11-19"
  },
  {
   "id": "redflags-5-es",
@@ -502,7 +502,7 @@
   "tags": "shorts,cripto,seguridad,rug pull,estafa cripto,Solana,geopolcoins",
   "video": "redflags-5-es.mp4",
   "voice": "chatterbox:george",
-  "slot": "2026-11-23"
+  "posted": "2026-11-23"
  },
  {
   "id": "redflags-5-de",
@@ -881,7 +881,7 @@
   "tags": "crypto scam,scam or not,crypto safety,seed phrase,quiz",
   "video": "quiz-scam-or-not-1.mp4",
   "voice": "chatterbox:george",
-  "slot": "2026-11-18"
+  "posted": "2026-11-18"
  },
  {
   "id": "quiz-scam-of-niet-1",
@@ -925,7 +925,7 @@
   "tags": "crypto scam,scam of niet,crypto veiligheid,seed phrase,quiz",
   "video": "quiz-scam-of-niet-1.mp4",
   "voice": "chatterbox:george",
-  "slot": "2026-11-20"
+  "posted": "2026-11-20"
  },
  {
   "id": "quiz-arnaque-ou-pas-1",
@@ -969,6 +969,6 @@
   "tags": "arnaque crypto,arnaque ou pas,sécurité crypto,seed phrase,quiz",
   "video": "quiz-arnaque-ou-pas-1.mp4",
   "voice": "chatterbox:george",
-  "slot": "2026-11-22"
+  "posted": "2026-11-22"
  }
 ]

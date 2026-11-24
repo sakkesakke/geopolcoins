@@ -1,10 +1,11 @@
 #!/bin/bash
 # Human Override (c) 2026 Amghar Said - end-to-end test on an Android emulator (run by the CI workflow).
 set -u
-PKG=xyz.geopolcoins.humanoverride
+PKG=app.mindveto                                      # Play applicationId
+ACT=xyz.geopolcoins.humanoverride.MainActivity        # Java package (namespace) is unchanged
 adb install -r "$1" || exit 1
 adb shell appops set $PKG ACTIVATE_VPN allow          # same as the user tapping "OK" on the VPN dialog
-adb shell am start -n $PKG/.MainActivity; sleep 6
+adb shell am start -n $PKG/$ACT; sleep 6
 tap() {   # tap the first element whose text contains $1
   adb shell uiautomator dump /sdcard/ui.xml >/dev/null; adb pull /sdcard/ui.xml /tmp/ui.xml >/dev/null
   python3 - "$1" <<'PY'
@@ -19,7 +20,8 @@ PY
 look() { adb shell "ping -c 1 -W 3 $1 2>&1" | head -1; }
 echo "== before"; for h in chatgpt.com www.google.com; do echo "$h: $(look $h)"; done
 tap "I agree" || exit 1; sleep 2
-tap "AI ALLOWED" || exit 1; sleep 6
+tap "AI ALLOWED" || exit 1; sleep 2
+tap "Continue" || { echo "FAIL: VPN disclosure not shown"; exit 1; }; sleep 6
 adb shell uiautomator dump /sdcard/ui.xml >/dev/null; adb pull /sdcard/ui.xml /tmp/ui.xml >/dev/null
 grep -qi "AI BLOCKED" /tmp/ui.xml && echo "UI: AI BLOCKED shown" || { echo "FAIL: button did not switch"; exit 1; }
 echo "== while blocking"; fail=0
@@ -27,7 +29,7 @@ for h in chatgpt.com claude.ai gemini.google.com chat.openai.com chat.com duck.a
 for h in www.google.com example.org wikipedia.org; do r=$(look $h); echo "$h: $r"; echo "$r" | grep -qi "unknown host" && { echo "FAIL: $h wrongly blocked"; fail=1; }; done
 adb shell "dumpsys connectivity | grep -i 'VPN' | head -3"
 echo "== camera guard (informative: needs an emulated camera)"
-adb shell am start -n $PKG/.MainActivity; sleep 2
+adb shell am start -n $PKG/$ACT; sleep 2
 found=0; for i in 1 2 3 4 5 6 7 8; do if tap "Warn me when" >/dev/null 2>&1; then found=1; break; fi; adb shell input swipe 500 1400 500 900 400; sleep 1; done
 if [ $found = 1 ]; then echo "guard switch tapped"; sleep 2
   adb shell am start -a android.media.action.STILL_IMAGE_CAMERA >/dev/null 2>&1; sleep 8

@@ -24,7 +24,6 @@
     <string name="open_vpn_settings">VPN-instellingen openen</string>
     <string name="honest_title">Eerlijke grenzen</string>
     <string name="honest_text">Mindveto blokkeert AI-diensten in elke app op deze telefoon door hun adresopvragingen te beantwoorden met \"bestaat niet\". Het kan geen AI blokkeren die ingebouwd is in apps die je toelaat, AI die volledig op de telefoon draait, of apps met een eigen beveiligde DNS. Android laat de eigenaar van de telefoon elke VPN uitzetten in Instellingen.</string>
-    <string name="donate">❤ Altijd gratis. Steun het met een koffie</string>
     <string name="footer">Mindveto © 2026 Amghar Said. Alle rechten voorbehouden. · mindveto.app</string>
     <string name="terms_title">Gebruiksvoorwaarden</string>
     <string name="terms_text">Mindveto is gratis software van Amghar Said, geleverd \"zoals het is\". Het helpt AI-diensten te blokkeren, maar kan niet garanderen dat elke AI geblokkeerd wordt. Je gebruikt het op eigen risico en blijft zelf verantwoordelijk voor je toestellen en beslissingen. Voor zover de wet het toelaat, is Amghar Said niet aansprakelijk voor schade of gevolgen van het gebruik.</string>
@@ -73,4 +72,8 @@
     <string name="fam_bypass">VPN-, proxy- en secure-DNS-diensten blokkeren</string>
     <string name="tamper_famon">Gezinsfilter aangezet</string>
     <string name="tamper_famoff">Gezinsfilter uitgezet</string>
+    <string name="vpn_title">Waarom Mindveto de VPN-plek nodig heeft</string>
+    <string name="vpn_text">Mindveto gebruikt de VPN-functie van Android alleen om een klein filter voor internetnamen (DNS) op deze telefoon te laten draaien. Als een app een AI-adres vraagt, antwoordt het filter dat het niet bestaat.\n\nJe ander verkeer wordt niet omgeleid, gelezen of veranderd. Andere namen gaan zoals altijd naar de gewone DNS-server van je telefoon. Er wordt niets naar ons gestuurd.\n\nHierna vraagt Android of je de VPN-verbinding toestaat.</string>
+    <string name="vpn_continue">Doorgaan</string>
+    <string name="vpn_not_now">Niet nu</string>
 </resources>

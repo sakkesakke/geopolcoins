@@ -94,7 +94,7 @@ $('scSave').onclick = () => change({ sched: { on: $('scOn').checked, from: $('sc
   days: [...$('scDays').children].filter(x => x.getAttribute('aria-pressed') === 'true').map(x => Number(x.dataset.d)) } });
 $('scNight').textContent = t.night;
 $('scNight').onclick = () => change({ sched: { on: true, days: [0, 1, 2, 3, 4, 5, 6], from: '22:00', to: '07:00', hol: 'off', region: $('scReg').value } });
-$('priv').textContent = t.priv; $('don').textContent = t.don;
+$('priv').textContent = t.priv;
 $('big').onclick = () => change({ on: !S.on });
 function clean(v) { v = v.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').split(/[\/?#]/)[0]; return v; }
 $('addBb').onclick = () => { const d = clean($('addB').value); if (d) change({ custom: S.custom.concat(d) }).then(ok => ok && ($('addB').value = '')); };

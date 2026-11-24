@@ -4,11 +4,11 @@ android {
     namespace 'xyz.geopolcoins.humanoverride'
     compileSdk 36
     defaultConfig {
-        applicationId 'xyz.geopolcoins.humanoverride'
+        applicationId 'app.mindveto'   // permanent Play id (owner 24 Nov); namespace/Java package unchanged
         minSdk 26
         targetSdk 36
         versionCode Integer.parseInt(System.getenv('HO_VERSION_CODE') ?: '1')
-        versionName '0.1.' + (System.getenv('HO_VERSION_CODE') ?: '0')
+        versionName '1.0.' + (System.getenv('HO_VERSION_CODE') ?: '0')
     }
     signingConfigs {
         release {

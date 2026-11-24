@@ -24,7 +24,6 @@
     <string name="open_vpn_settings">Ouvrir les réglages VPN</string>
     <string name="honest_title">Limites honnêtes</string>
     <string name="honest_text">Mindveto bloque les services d’IA dans toutes les applis de ce téléphone en répondant « n’existe pas » à leurs recherches d’adresse. Il ne peut pas bloquer l’IA intégrée aux applis autorisées, l’IA qui tourne entièrement sur le téléphone, ni les applis qui utilisent leur propre DNS sécurisé. Android permet au propriétaire de désactiver tout VPN dans les Réglages.</string>
-    <string name="donate">❤ Gratuit pour toujours. Soutenez-le avec un café</string>
     <string name="footer">Mindveto © 2026 Amghar Said. Tous droits réservés. · mindveto.app</string>
     <string name="terms_title">Conditions d’utilisation</string>
     <string name="terms_text">Mindveto est un logiciel gratuit d’Amghar Said, fourni « tel quel ». Il aide à bloquer les services d’IA mais ne peut garantir que toute IA soit bloquée. Vous l’utilisez à vos risques et restez responsable de vos appareils et décisions. Dans toute la mesure permise par la loi, Amghar Said n’est pas responsable des dommages ou conséquences de son utilisation.</string>
@@ -73,4 +72,8 @@
     <string name="fam_bypass">Bloquer les services de VPN, proxy et DNS sécurisé</string>
     <string name="tamper_famon">Filtre familial activé</string>
     <string name="tamper_famoff">Filtre familial désactivé</string>
+    <string name="vpn_title">Pourquoi Mindveto a besoin de la place VPN</string>
+    <string name="vpn_text">Mindveto utilise la fonction VPN d\'Android uniquement pour faire tourner un petit filtre de noms Internet (DNS) sur ce téléphone. Quand une app demande une adresse d\'IA, le filtre répond qu\'elle n\'existe pas.\n\nVotre autre trafic n\'est ni redirigé, ni lu, ni modifié. Les autres noms vont, comme avant, au serveur DNS habituel du téléphone. Rien ne nous est envoyé.\n\nEnsuite, Android vous demandera d\'autoriser la connexion VPN.</string>
+    <string name="vpn_continue">Continuer</string>
+    <string name="vpn_not_now">Pas maintenant</string>
 </resources>

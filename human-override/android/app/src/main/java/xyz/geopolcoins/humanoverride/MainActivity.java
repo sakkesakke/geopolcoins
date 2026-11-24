@@ -109,10 +109,8 @@ public class MainActivity extends Activity {
         LinearLayout hc = card(col, getString(R.string.honest_title));
         hc.addView(text(getString(R.string.honest_text), 13, DIM, false));
 
-        Button don = button(getString(R.string.donate), PINK, Color.BLACK);
-        don.setOnClickListener(v -> open("https://ko-fi.com/geopolcoins")); col.addView(don, lp(dp(18)));
         TextView tl = text(getString(R.string.terms_link), 13, AMBER, false); tl.setGravity(Gravity.CENTER);
-        tl.setOnClickListener(v -> open(TERMS_URL)); col.addView(tl, lp(dp(14)));
+        tl.setOnClickListener(v -> open(TERMS_URL)); col.addView(tl, lp(dp(24)));
         TextView pl = text(getString(R.string.privacy_link), 13, AMBER, false); pl.setGravity(Gravity.CENTER);
         pl.setOnClickListener(v -> open("https://mindveto.app/privacy/")); col.addView(pl, lp(dp(10)));
         TextView site = text(getString(R.string.footer), 12, DIM, false); site.setGravity(Gravity.CENTER);
@@ -121,7 +119,20 @@ public class MainActivity extends Activity {
     }
 
     static final int TERMS_VERSION = 1;
-    static final String TERMS_URL = "https://geopolcoins.xyz/human-override-terms.html";
+    static final String TERMS_URL = "https://mindveto.app/terms/";
+
+    // Prominent disclosure (Google Play VpnService policy): shown once, before Android's own VPN prompt.
+    private boolean vpnOk() { return Stats.prefs(this).getBoolean("vpn_ok", false); }
+
+    private void askVpn(Runnable then) {
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.vpn_title)
+            .setMessage(R.string.vpn_text)
+            .setCancelable(false)
+            .setPositiveButton(R.string.vpn_continue, (d, w) -> { Stats.prefs(this).edit().putBoolean("vpn_ok", true).apply(); if (then != null) then.run(); })
+            .setNegativeButton(R.string.vpn_not_now, (d, w) -> { })
+            .show();
+    }
 
     private boolean termsOk() { return Stats.prefs(this).getInt("terms_v", 0) >= TERMS_VERSION; }
 
@@ -163,6 +174,7 @@ public class MainActivity extends Activity {
         msg.setTextColor(RED); msg.setText("");
         if (!termsOk()) { askTerms(this::toggle); return; }
         if (!BlockVpnService.running) {
+            if (!vpnOk()) { askVpn(this::toggle); return; }
             Intent prep = VpnService.prepare(this);
             if (prep != null) startActivityForResult(prep, 1); else onActivityResult(1, RESULT_OK, null);
             return;

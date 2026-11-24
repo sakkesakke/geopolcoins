@@ -208,7 +208,8 @@
   "description": "Simple habits that protect you from buying in a panic.",
   "tags": "shorts,FOMO,crypto,crypto safety,trading psychology,pixel art,geopolcoins",
   "video": "fomo.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-30"
  },
  {
   "id": "fake-airdrops",
@@ -244,7 +245,8 @@
   "description": "Why random free tokens and claim links can empty your wallet.",
   "tags": "shorts,airdrop scam,crypto scam,wallet drainer,crypto safety,pixel art,geopolcoins",
   "video": "fake-airdrops.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-12-02"
  },
  {
   "id": "words-1",
@@ -280,7 +282,8 @@
   "description": "Wallet, liquidity, market cap, gas fee and DYOR explained simply.",
   "tags": "shorts,crypto for beginners,crypto words,learn crypto,blockchain,pixel art,geopolcoins",
   "video": "words-1.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-12-04"
  },
  {
   "id": "safe-habits",
@@ -652,7 +655,8 @@
   "description": "Zo hou je de herstelzin van je wallet veilig, in 26 seconden.\n\nCheck elke Solana-token gratis (geen wallet nodig): https://geopolcoins.xyz",
   "tags": "shorts,seed phrase,crypto wallet,crypto veiligheid,geopolcoins",
   "video": "seed-phrase-nl.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-11-29"
  },
  {
   "id": "seed-phrase-fr",
@@ -689,7 +693,8 @@
   "description": "Comment protéger la phrase de récupération de ton wallet, en 26 secondes.\n\nVérifie n'importe quel token Solana gratuitement (sans wallet) : https://geopolcoins.xyz",
   "tags": "shorts,seed phrase,wallet crypto,sécurité crypto,geopolcoins",
   "video": "seed-phrase-fr.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-12-01"
  },
  {
   "id": "seed-phrase-es",
@@ -726,7 +731,8 @@
   "description": "Cómo mantener segura la frase de recuperación de tu wallet, en 26 segundos.\n\nRevisa cualquier token de Solana gratis (sin wallet): https://geopolcoins.xyz",
   "tags": "shorts,seed phrase,wallet cripto,seguridad cripto,geopolcoins",
   "video": "seed-phrase-es.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-12-03"
  },
  {
   "id": "seed-phrase-de",

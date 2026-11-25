@@ -769,7 +769,8 @@
   "description": "So bleibt die Wiederherstellungsphrase deines Wallets sicher, in 26 Sekunden.\n\nPrüfe jeden Solana-Token gratis (ohne Wallet): https://geopolcoins.xyz",
   "tags": "shorts,seed phrase,krypto wallet,krypto sicherheit,geopolcoins",
   "video": "seed-phrase-de.mp4",
-  "voice": "chatterbox:george"
+  "voice": "chatterbox:george",
+  "slot": "2026-12-05"
  },
  {
   "id": "seed-phrase-pt",
